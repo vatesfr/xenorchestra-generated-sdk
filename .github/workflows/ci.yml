@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5
+        with:
+          go-version-file: go.mod
+      - name: Test maintained Go project
+        run: make test-sdk
+      - name: Check reproducible generation
+        run: make check-idempotence
+      - name: Generate SDKs
+        run: make generate
+      - name: Lint all sources
+        run: make lint
+      - name: Test generated SDKs
+        run: make test-generated-sdks
+      - name: Compile real-instance examples
+        run: make test-examples

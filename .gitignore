@@ -1,0 +1,6 @@
+/sdk/
+/.sdk-build.*
+/.sdk-first.*
+/.sdk-second.*
+/.openapi-normalized.*
+__pycache__/
