@@ -17,32 +17,32 @@ import (
 	gomock "go.uber.org/mock/gomock"
 )
 
-// MockGenerationBackend is a mock of GenerationBackend interface.
-type MockGenerationBackend struct {
+// MockBuildWorkspace is a mock of BuildWorkspace interface.
+type MockBuildWorkspace struct {
 	ctrl     *gomock.Controller
-	recorder *MockGenerationBackendMockRecorder
+	recorder *MockBuildWorkspaceMockRecorder
 	isgomock struct{}
 }
 
-// MockGenerationBackendMockRecorder is the mock recorder for MockGenerationBackend.
-type MockGenerationBackendMockRecorder struct {
-	mock *MockGenerationBackend
+// MockBuildWorkspaceMockRecorder is the mock recorder for MockBuildWorkspace.
+type MockBuildWorkspaceMockRecorder struct {
+	mock *MockBuildWorkspace
 }
 
-// NewMockGenerationBackend creates a new mock instance.
-func NewMockGenerationBackend(ctrl *gomock.Controller) *MockGenerationBackend {
-	mock := &MockGenerationBackend{ctrl: ctrl}
-	mock.recorder = &MockGenerationBackendMockRecorder{mock}
+// NewMockBuildWorkspace creates a new mock instance.
+func NewMockBuildWorkspace(ctrl *gomock.Controller) *MockBuildWorkspace {
+	mock := &MockBuildWorkspace{ctrl: ctrl}
+	mock.recorder = &MockBuildWorkspaceMockRecorder{mock}
 	return mock
 }
 
 // EXPECT returns an object that allows the caller to indicate expected use.
-func (m *MockGenerationBackend) EXPECT() *MockGenerationBackendMockRecorder {
+func (m *MockBuildWorkspace) EXPECT() *MockBuildWorkspaceMockRecorder {
 	return m.recorder
 }
 
 // Begin mocks base method.
-func (m *MockGenerationBackend) Begin(arg0 context.Context) (common.Build, error) {
+func (m *MockBuildWorkspace) Begin(arg0 context.Context) (common.Build, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Begin", arg0)
 	ret0, _ := ret[0].(common.Build)
@@ -51,13 +51,13 @@ func (m *MockGenerationBackend) Begin(arg0 context.Context) (common.Build, error
 }
 
 // Begin indicates an expected call of Begin.
-func (mr *MockGenerationBackendMockRecorder) Begin(arg0 any) *gomock.Call {
+func (mr *MockBuildWorkspaceMockRecorder) Begin(arg0 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Begin", reflect.TypeOf((*MockGenerationBackend)(nil).Begin), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Begin", reflect.TypeOf((*MockBuildWorkspace)(nil).Begin), arg0)
 }
 
 // Discard mocks base method.
-func (m *MockGenerationBackend) Discard(arg0 common.Build) error {
+func (m *MockBuildWorkspace) Discard(arg0 common.Build) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Discard", arg0)
 	ret0, _ := ret[0].(error)
@@ -65,13 +65,141 @@ func (m *MockGenerationBackend) Discard(arg0 common.Build) error {
 }
 
 // Discard indicates an expected call of Discard.
-func (mr *MockGenerationBackendMockRecorder) Discard(arg0 any) *gomock.Call {
+func (mr *MockBuildWorkspaceMockRecorder) Discard(arg0 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Discard", reflect.TypeOf((*MockGenerationBackend)(nil).Discard), arg0)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Discard", reflect.TypeOf((*MockBuildWorkspace)(nil).Discard), arg0)
+}
+
+// MockSpecificationPreparer is a mock of SpecificationPreparer interface.
+type MockSpecificationPreparer struct {
+	ctrl     *gomock.Controller
+	recorder *MockSpecificationPreparerMockRecorder
+	isgomock struct{}
+}
+
+// MockSpecificationPreparerMockRecorder is the mock recorder for MockSpecificationPreparer.
+type MockSpecificationPreparerMockRecorder struct {
+	mock *MockSpecificationPreparer
+}
+
+// NewMockSpecificationPreparer creates a new mock instance.
+func NewMockSpecificationPreparer(ctrl *gomock.Controller) *MockSpecificationPreparer {
+	mock := &MockSpecificationPreparer{ctrl: ctrl}
+	mock.recorder = &MockSpecificationPreparerMockRecorder{mock}
+	return mock
+}
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockSpecificationPreparer) EXPECT() *MockSpecificationPreparerMockRecorder {
+	return m.recorder
+}
+
+// PrepareSpecification mocks base method.
+func (m *MockSpecificationPreparer) PrepareSpecification(arg0 context.Context, arg1 common.Build) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "PrepareSpecification", arg0, arg1)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// PrepareSpecification indicates an expected call of PrepareSpecification.
+func (mr *MockSpecificationPreparerMockRecorder) PrepareSpecification(arg0, arg1 any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "PrepareSpecification", reflect.TypeOf((*MockSpecificationPreparer)(nil).PrepareSpecification), arg0, arg1)
+}
+
+// MockSDKGenerator is a mock of SDKGenerator interface.
+type MockSDKGenerator struct {
+	ctrl     *gomock.Controller
+	recorder *MockSDKGeneratorMockRecorder
+	isgomock struct{}
+}
+
+// MockSDKGeneratorMockRecorder is the mock recorder for MockSDKGenerator.
+type MockSDKGeneratorMockRecorder struct {
+	mock *MockSDKGenerator
+}
+
+// NewMockSDKGenerator creates a new mock instance.
+func NewMockSDKGenerator(ctrl *gomock.Controller) *MockSDKGenerator {
+	mock := &MockSDKGenerator{ctrl: ctrl}
+	mock.recorder = &MockSDKGeneratorMockRecorder{mock}
+	return mock
+}
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockSDKGenerator) EXPECT() *MockSDKGeneratorMockRecorder {
+	return m.recorder
+}
+
+// Generate mocks base method.
+func (m *MockSDKGenerator) Generate(arg0 context.Context, arg1 common.Build, arg2 common.SDKTarget) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Generate", arg0, arg1, arg2)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// Generate indicates an expected call of Generate.
+func (mr *MockSDKGeneratorMockRecorder) Generate(arg0, arg1, arg2 any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Generate", reflect.TypeOf((*MockSDKGenerator)(nil).Generate), arg0, arg1, arg2)
+}
+
+// Normalize mocks base method.
+func (m *MockSDKGenerator) Normalize(arg0 context.Context, arg1 common.Build, arg2 common.SDKTarget) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Normalize", arg0, arg1, arg2)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// Normalize indicates an expected call of Normalize.
+func (mr *MockSDKGeneratorMockRecorder) Normalize(arg0, arg1, arg2 any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Normalize", reflect.TypeOf((*MockSDKGenerator)(nil).Normalize), arg0, arg1, arg2)
+}
+
+// Patch mocks base method.
+func (m *MockSDKGenerator) Patch(arg0 context.Context, arg1 common.Build, arg2 common.SDKTarget) error {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Patch", arg0, arg1, arg2)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+// Patch indicates an expected call of Patch.
+func (mr *MockSDKGeneratorMockRecorder) Patch(arg0, arg1, arg2 any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Patch", reflect.TypeOf((*MockSDKGenerator)(nil).Patch), arg0, arg1, arg2)
+}
+
+// MockBuildPublication is a mock of BuildPublication interface.
+type MockBuildPublication struct {
+	ctrl     *gomock.Controller
+	recorder *MockBuildPublicationMockRecorder
+	isgomock struct{}
+}
+
+// MockBuildPublicationMockRecorder is the mock recorder for MockBuildPublication.
+type MockBuildPublicationMockRecorder struct {
+	mock *MockBuildPublication
+}
+
+// NewMockBuildPublication creates a new mock instance.
+func NewMockBuildPublication(ctrl *gomock.Controller) *MockBuildPublication {
+	mock := &MockBuildPublication{ctrl: ctrl}
+	mock.recorder = &MockBuildPublicationMockRecorder{mock}
+	return mock
+}
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockBuildPublication) EXPECT() *MockBuildPublicationMockRecorder {
+	return m.recorder
 }
 
 // Equal mocks base method.
-func (m *MockGenerationBackend) Equal(arg0, arg1 common.Build) (bool, error) {
+func (m *MockBuildPublication) Equal(arg0, arg1 common.Build) (bool, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Equal", arg0, arg1)
 	ret0, _ := ret[0].(bool)
@@ -80,69 +208,13 @@ func (m *MockGenerationBackend) Equal(arg0, arg1 common.Build) (bool, error) {
 }
 
 // Equal indicates an expected call of Equal.
-func (mr *MockGenerationBackendMockRecorder) Equal(arg0, arg1 any) *gomock.Call {
+func (mr *MockBuildPublicationMockRecorder) Equal(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Equal", reflect.TypeOf((*MockGenerationBackend)(nil).Equal), arg0, arg1)
-}
-
-// Generate mocks base method.
-func (m *MockGenerationBackend) Generate(arg0 context.Context, arg1 common.Build, arg2 common.SDKTarget) error {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Generate", arg0, arg1, arg2)
-	ret0, _ := ret[0].(error)
-	return ret0
-}
-
-// Generate indicates an expected call of Generate.
-func (mr *MockGenerationBackendMockRecorder) Generate(arg0, arg1, arg2 any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Generate", reflect.TypeOf((*MockGenerationBackend)(nil).Generate), arg0, arg1, arg2)
-}
-
-// Normalize mocks base method.
-func (m *MockGenerationBackend) Normalize(arg0 context.Context, arg1 common.Build, arg2 common.SDKTarget) error {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Normalize", arg0, arg1, arg2)
-	ret0, _ := ret[0].(error)
-	return ret0
-}
-
-// Normalize indicates an expected call of Normalize.
-func (mr *MockGenerationBackendMockRecorder) Normalize(arg0, arg1, arg2 any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Normalize", reflect.TypeOf((*MockGenerationBackend)(nil).Normalize), arg0, arg1, arg2)
-}
-
-// Patch mocks base method.
-func (m *MockGenerationBackend) Patch(arg0 context.Context, arg1 common.Build, arg2 common.SDKTarget) error {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "Patch", arg0, arg1, arg2)
-	ret0, _ := ret[0].(error)
-	return ret0
-}
-
-// Patch indicates an expected call of Patch.
-func (mr *MockGenerationBackendMockRecorder) Patch(arg0, arg1, arg2 any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Patch", reflect.TypeOf((*MockGenerationBackend)(nil).Patch), arg0, arg1, arg2)
-}
-
-// PrepareSpecification mocks base method.
-func (m *MockGenerationBackend) PrepareSpecification(arg0 context.Context, arg1 common.Build) error {
-	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "PrepareSpecification", arg0, arg1)
-	ret0, _ := ret[0].(error)
-	return ret0
-}
-
-// PrepareSpecification indicates an expected call of PrepareSpecification.
-func (mr *MockGenerationBackendMockRecorder) PrepareSpecification(arg0, arg1 any) *gomock.Call {
-	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "PrepareSpecification", reflect.TypeOf((*MockGenerationBackend)(nil).PrepareSpecification), arg0, arg1)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Equal", reflect.TypeOf((*MockBuildPublication)(nil).Equal), arg0, arg1)
 }
 
 // Publish mocks base method.
-func (m *MockGenerationBackend) Publish(arg0 context.Context, arg1 common.Build) error {
+func (m *MockBuildPublication) Publish(arg0 context.Context, arg1 common.Build) error {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "Publish", arg0, arg1)
 	ret0, _ := ret[0].(error)
@@ -150,9 +222,9 @@ func (m *MockGenerationBackend) Publish(arg0 context.Context, arg1 common.Build)
 }
 
 // Publish indicates an expected call of Publish.
-func (mr *MockGenerationBackendMockRecorder) Publish(arg0, arg1 any) *gomock.Call {
+func (mr *MockBuildPublicationMockRecorder) Publish(arg0, arg1 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Publish", reflect.TypeOf((*MockGenerationBackend)(nil).Publish), arg0, arg1)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Publish", reflect.TypeOf((*MockBuildPublication)(nil).Publish), arg0, arg1)
 }
 
 // MockSDKLintBackend is a mock of SDKLintBackend interface.

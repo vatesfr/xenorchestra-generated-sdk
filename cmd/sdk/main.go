@@ -51,7 +51,7 @@ func run() error {
 		patches.SourcePatcherActor{Output: os.Stdout},
 		workspaceActor,
 	)
-	generationService := generationservice.New(generationAdapter)
+	generationService := generationservice.New(generationAdapter, generationAdapter, generationAdapter, generationAdapter)
 	sdkLintAdapter := lintadapter.NewSDKAdapter(lintadapter.SDKLintConfiguration{
 		Root: root, Environment: environment, Output: os.Stdout, ErrorOutput: os.Stderr,
 	}, processActor, workspaceActor)

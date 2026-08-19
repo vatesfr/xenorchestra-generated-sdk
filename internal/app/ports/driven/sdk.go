@@ -8,13 +8,22 @@ import (
 	"github.com/vatesfr/xenorchestra-generated-sdk/internal/app/ports/common"
 )
 
-type GenerationBackend interface {
+type BuildWorkspace interface {
 	Begin(context.Context) (common.Build, error)
 	Discard(common.Build) error
+}
+
+type SpecificationPreparer interface {
 	PrepareSpecification(context.Context, common.Build) error
+}
+
+type SDKGenerator interface {
 	Generate(context.Context, common.Build, common.SDKTarget) error
 	Patch(context.Context, common.Build, common.SDKTarget) error
 	Normalize(context.Context, common.Build, common.SDKTarget) error
+}
+
+type BuildPublication interface {
 	Publish(context.Context, common.Build) error
 	Equal(common.Build, common.Build) (bool, error)
 }

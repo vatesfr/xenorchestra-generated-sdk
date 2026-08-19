@@ -10,24 +10,28 @@ import (
 )
 
 func TestGenerateOwnsGenerationWorkflow(t *testing.T) {
-	backend := mocks.NewMockGenerationBackend(gomock.NewController(t))
+	ctrl := gomock.NewController(t)
+	workspace := mocks.NewMockBuildWorkspace(ctrl)
+	preparer := mocks.NewMockSpecificationPreparer(ctrl)
+	generator := mocks.NewMockSDKGenerator(ctrl)
+	publisher := mocks.NewMockBuildPublication(ctrl)
 	ctx := context.Background()
 	build := common.Build{ID: "build"}
 
 	gomock.InOrder(
-		backend.EXPECT().Begin(ctx).Return(build, nil),
-		backend.EXPECT().PrepareSpecification(ctx, build).Return(nil),
-		backend.EXPECT().Generate(ctx, build, common.Rust).Return(nil),
-		backend.EXPECT().Patch(ctx, build, common.Rust).Return(nil),
-		backend.EXPECT().Normalize(ctx, build, common.Rust).Return(nil),
-		backend.EXPECT().Generate(ctx, build, common.Python).Return(nil),
-		backend.EXPECT().Patch(ctx, build, common.Python).Return(nil),
-		backend.EXPECT().Normalize(ctx, build, common.Python).Return(nil),
-		backend.EXPECT().Publish(ctx, build).Return(nil),
-		backend.EXPECT().Discard(build).Return(nil),
+		workspace.EXPECT().Begin(ctx).Return(build, nil),
+		preparer.EXPECT().PrepareSpecification(ctx, build).Return(nil),
+		generator.EXPECT().Generate(ctx, build, common.Rust).Return(nil),
+		generator.EXPECT().Patch(ctx, build, common.Rust).Return(nil),
+		generator.EXPECT().Normalize(ctx, build, common.Rust).Return(nil),
+		generator.EXPECT().Generate(ctx, build, common.Python).Return(nil),
+		generator.EXPECT().Patch(ctx, build, common.Python).Return(nil),
+		generator.EXPECT().Normalize(ctx, build, common.Python).Return(nil),
+		publisher.EXPECT().Publish(ctx, build).Return(nil),
+		workspace.EXPECT().Discard(build).Return(nil),
 	)
 
-	if err := New(backend).Generate(ctx); err != nil {
+	if err := New(workspace, preparer, generator, publisher).Generate(ctx); err != nil {
 		t.Fatal(err)
 	}
 }

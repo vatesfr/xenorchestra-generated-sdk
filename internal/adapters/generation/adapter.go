@@ -26,7 +26,10 @@ type Adapter struct {
 	pythonVersion  string
 }
 
-var _ driven.GenerationBackend = (*Adapter)(nil)
+var _ driven.BuildWorkspace = (*Adapter)(nil)
+var _ driven.SpecificationPreparer = (*Adapter)(nil)
+var _ driven.SDKGenerator = (*Adapter)(nil)
+var _ driven.BuildPublication = (*Adapter)(nil)
 
 type SDKGenerationConfiguration struct {
 	Root           string
