@@ -70,7 +70,9 @@ make check-idempotence
 
 The generation pipeline is:
 
-1. apply the Swagger transformations through the Go patch actor;
+1. prepare each target specification: copy `swagger.json` into the ephemeral
+   build directory, then apply the shared generator-compatibility transform and
+   the target's per-language specification transform through the Go patch actor;
 2. generate Rust and Python with the pinned OpenAPI Generator image;
 3. apply the Rust and Python transformations through the same actor;
 4. apply deterministic formatting to the generated Rust sources;
@@ -191,7 +193,9 @@ make lint
 Tests are not linted or executed by these targets. Current Swagger patch
 functions rewrite invalid backup-job settings, normalize authentication
 requirements and remove
-a legacy Rust field collision. Language patch functions fix generator output
+a legacy Rust field collision. Per-language specification transforms run after
+the shared ones and are no-ops until a language-only correction is required.
+Language patch functions fix generator output
 without introducing manual state under `sdk/`. They are programmable Go
 transformations rather than textual diffs, which lets them operate on
 structures and verify their assumptions explicitly.

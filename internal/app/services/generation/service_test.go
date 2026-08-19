@@ -20,10 +20,11 @@ func TestGenerateOwnsGenerationWorkflow(t *testing.T) {
 
 	gomock.InOrder(
 		workspace.EXPECT().Begin(ctx).Return(build, nil),
-		preparer.EXPECT().PrepareSpecification(ctx, build).Return(nil),
+		preparer.EXPECT().PrepareSpecification(ctx, build, common.Rust).Return(nil),
 		generator.EXPECT().Generate(ctx, build, common.Rust).Return(nil),
 		generator.EXPECT().Patch(ctx, build, common.Rust).Return(nil),
 		generator.EXPECT().Normalize(ctx, build, common.Rust).Return(nil),
+		preparer.EXPECT().PrepareSpecification(ctx, build, common.Python).Return(nil),
 		generator.EXPECT().Generate(ctx, build, common.Python).Return(nil),
 		generator.EXPECT().Patch(ctx, build, common.Python).Return(nil),
 		generator.EXPECT().Normalize(ctx, build, common.Python).Return(nil),

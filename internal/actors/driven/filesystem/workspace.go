@@ -21,6 +21,9 @@ func (LocalWorkspaceActor) Relative(root, path string) (string, error) {
 func (LocalWorkspaceActor) TemporaryDirectory(root, pattern string) (string, error) {
 	return os.MkdirTemp(root, pattern)
 }
+func (LocalWorkspaceActor) MkdirAll(path string, mode os.FileMode) error {
+	return os.MkdirAll(path, mode)
+}
 func (LocalWorkspaceActor) RemoveAll(path string) error { return os.RemoveAll(path) }
 func (LocalWorkspaceActor) RegularFile(path string) bool {
 	info, err := os.Stat(path)

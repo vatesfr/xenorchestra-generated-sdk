@@ -61,10 +61,10 @@ func (s *SDKGenerationService) Build(ctx context.Context) (common.Build, error) 
 		_ = s.workspace.Discard(build)
 		return common.Build{}, err
 	}
-	if err := s.preparer.PrepareSpecification(ctx, build); err != nil {
-		return fail(fmt.Errorf("prepare specification: %w", err))
-	}
 	for _, target := range common.GeneratedSDKTargets {
+		if err := s.preparer.PrepareSpecification(ctx, build, target); err != nil {
+			return fail(fmt.Errorf("prepare %s specification: %w", target, err))
+		}
 		if err := s.generator.Generate(ctx, build, target); err != nil {
 			return fail(err)
 		}

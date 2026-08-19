@@ -95,17 +95,17 @@ func (m *MockSpecificationPreparer) EXPECT() *MockSpecificationPreparerMockRecor
 }
 
 // PrepareSpecification mocks base method.
-func (m *MockSpecificationPreparer) PrepareSpecification(arg0 context.Context, arg1 common.Build) error {
+func (m *MockSpecificationPreparer) PrepareSpecification(arg0 context.Context, arg1 common.Build, arg2 common.SDKTarget) error {
 	m.ctrl.T.Helper()
-	ret := m.ctrl.Call(m, "PrepareSpecification", arg0, arg1)
+	ret := m.ctrl.Call(m, "PrepareSpecification", arg0, arg1, arg2)
 	ret0, _ := ret[0].(error)
 	return ret0
 }
 
 // PrepareSpecification indicates an expected call of PrepareSpecification.
-func (mr *MockSpecificationPreparerMockRecorder) PrepareSpecification(arg0, arg1 any) *gomock.Call {
+func (mr *MockSpecificationPreparerMockRecorder) PrepareSpecification(arg0, arg1, arg2 any) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "PrepareSpecification", reflect.TypeOf((*MockSpecificationPreparer)(nil).PrepareSpecification), arg0, arg1)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "PrepareSpecification", reflect.TypeOf((*MockSpecificationPreparer)(nil).PrepareSpecification), arg0, arg1, arg2)
 }
 
 // MockSDKGenerator is a mock of SDKGenerator interface.

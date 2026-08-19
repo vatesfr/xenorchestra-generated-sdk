@@ -14,7 +14,7 @@ type BuildWorkspace interface {
 }
 
 type SpecificationPreparer interface {
-	PrepareSpecification(context.Context, common.Build) error
+	PrepareSpecification(context.Context, common.Build, common.SDKTarget) error
 }
 
 type SDKGenerator interface {

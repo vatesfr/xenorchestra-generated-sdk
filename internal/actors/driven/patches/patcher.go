@@ -13,9 +13,11 @@ type SourcePatcherActor struct {
 type Artifact string
 
 const (
-	SwaggerArtifact Artifact = "swagger"
-	RustArtifact    Artifact = "rust"
-	PythonArtifact  Artifact = "python"
+	SwaggerArtifact       Artifact = "swagger"
+	RustSwaggerArtifact   Artifact = "rust-swagger"
+	PythonSwaggerArtifact Artifact = "python-swagger"
+	RustArtifact          Artifact = "rust"
+	PythonArtifact        Artifact = "python"
 )
 
 func (p SourcePatcherActor) announce(name string) {
@@ -29,6 +31,12 @@ func (p SourcePatcherActor) Apply(artifact Artifact, target string) error {
 	case SwaggerArtifact:
 		p.announce("swagger/0001_generator_compatibility")
 		return patchSwaggerGeneratorCompatibility(target)
+	case RustSwaggerArtifact:
+		p.announce("rust-swagger/0001_no_op")
+		return patchSwaggerRustLanguage(target)
+	case PythonSwaggerArtifact:
+		p.announce("python-swagger/0001_no_op")
+		return patchSwaggerPythonLanguage(target)
 	case RustArtifact:
 		p.announce("rust/0001_fix_generated_code")
 		return patchGeneratedRust(target)

@@ -17,12 +17,22 @@ func (a *Adapter) Begin(context.Context) (common.Build, error) {
 
 func (a *Adapter) Discard(build common.Build) error { return a.workspace.RemoveAll(build.ID) }
 
-func (a *Adapter) PrepareSpecification(_ context.Context, build common.Build) error {
-	target := a.workspace.Join(build.ID, "swagger.json")
-	if err := a.workspace.CopyFile(a.workspace.Join(a.root, "swagger.json"), target); err != nil {
+func (a *Adapter) PrepareSpecification(_ context.Context, build common.Build, target common.SDKTarget) error {
+	language, err := targetSwaggerArtifact(target)
+	if err != nil {
 		return err
 	}
-	return a.patcher.Apply(patches.SwaggerArtifact, target)
+	specification := a.workspace.Join(build.ID, "spec", string(target), "swagger.json")
+	if err := a.workspace.MkdirAll(a.workspace.Join(build.ID, "spec", string(target)), 0o755); err != nil {
+		return err
+	}
+	if err := a.workspace.CopyFile(a.workspace.Join(a.root, "swagger.json"), specification); err != nil {
+		return err
+	}
+	if err := a.patcher.Apply(patches.SwaggerArtifact, specification); err != nil {
+		return err
+	}
+	return a.patcher.Apply(language, specification)
 }
 
 func (a *Adapter) Generate(ctx context.Context, build common.Build, target common.SDKTarget) error {
@@ -31,7 +41,7 @@ func (a *Adapter) Generate(ctx context.Context, build common.Build, target commo
 		return err
 	}
 	fmt.Fprintf(a.output, "Generating %s SDK\n", strings.ToUpper(definition.Generator[:1])+definition.Generator[1:])
-	specification := a.workspace.Join(build.ID, "swagger.json")
+	specification := a.workspace.Join(build.ID, "spec", string(target), "swagger.json")
 	output := a.workspace.Join(build.ID, "sdk", string(target))
 	var log bytes.Buffer
 	command := a.command("docker", "run", "--rm", "-v", a.root+":/local", a.generatorImage, "generate",
