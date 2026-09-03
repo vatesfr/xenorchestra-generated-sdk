@@ -1,0 +1,57 @@
+# WithHrefPartialUnbrandXoHost
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**dollar_pbds** | Option<**Vec<String>**> |  | [optional]
+**dollar_pcis** | Option<**Vec<String>**> |  | [optional]
+**dollar_pgpus** | Option<**Vec<String>**> |  | [optional]
+**dollar_pifs** | Option<**Vec<String>**> |  | [optional]
+**dollar_pool** | Option<**String**> |  | [optional]
+**dollar_pool_id** | Option<**String**> |  | [optional]
+**pcis** | Option<**Vec<String>**> |  | [optional]
+**pgpus** | Option<**Vec<String>**> |  | [optional]
+**pifs** | Option<**Vec<String>**> |  | [optional]
+**_xapi_ref** | Option<**String**> |  | [optional]
+**address** | Option<**String**> |  | [optional]
+**agent_start_time** | Option<**f64**> |  | [optional]
+**bios_strings** | Option<[**serde_json::Value**](.md)> | Construct a type with a set of properties K of type T | [optional]
+**build** | Option<**String**> |  | [optional]
+**certificates** | Option<[**Vec<models::PartialUnbrandXoHostCertificatesInner>**](Partial_Unbrand_XoHost___certificates_inner.md)> |  | [optional]
+**chipset_info** | Option<[**models::PartialUnbrandXoHostChipsetInfo**](Partial_Unbrand_XoHost___chipset_info.md)> |  | [optional]
+**control_domain** | Option<**String**> |  | [optional]
+**cpus** | Option<[**models::PartialUnbrandXoHostCpus**](Partial_Unbrand_XoHost___cpus.md)> |  | [optional]
+**current_operations** | Option<[**serde_json::Value**](.md)> | Construct a type with a set of properties K of type T | [optional]
+**enabled** | Option<**bool**> |  | [optional]
+**hostname** | Option<**String**> |  | [optional]
+**hvm_capable** | Option<**bool**> |  | [optional]
+**id** | Option<**String**> |  | [optional]
+**iscsi_iqn** | Option<**String**> |  | [optional]
+**license_expiry** | Option<**f64**> |  | [optional]
+**license_params** | Option<[**serde_json::Value**](.md)> | Construct a type with a set of properties K of type T | [optional]
+**license_server** | Option<[**serde_json::Value**](.md)> | Construct a type with a set of properties K of type T | [optional]
+**logging** | Option<[**serde_json::Value**](.md)> | Construct a type with a set of properties K of type T | [optional]
+**memory** | Option<[**models::PartialUnbrandXoHostMemory**](Partial_Unbrand_XoHost___memory.md)> |  | [optional]
+**multipathing** | Option<**bool**> |  | [optional]
+**name_description** | Option<**String**> |  | [optional]
+**name_label** | Option<**String**> |  | [optional]
+**other_config** | Option<[**serde_json::Value**](.md)> | Construct a type with a set of properties K of type T | [optional]
+**patches** | Option<**Vec<String>**> |  | [optional]
+**power_on_mode** | Option<**String**> |  | [optional]
+**power_state** | Option<[**models::HostPowerState**](HOST_POWER_STATE.md)> |  | [optional]
+**product_brand** | Option<**String**> |  | [optional]
+**reboot_required** | Option<**bool**> |  | [optional]
+**resident_vms** | Option<**Vec<String>**> |  | [optional]
+**start_time** | Option<**f64**> |  | [optional]
+**supplemental_packs** | Option<[**models::PartialUnbrandXoHostSupplementalPacks**](Partial_Unbrand_XoHost___supplementalPacks.md)> |  | [optional]
+**tags** | Option<**Vec<String>**> |  | [optional]
+**r#type** | Option<**String**> |  | [optional]
+**uuid** | Option<**String**> |  | [optional]
+**version** | Option<**String**> |  | [optional]
+**zstd_supported** | Option<**bool**> |  | [optional]
+**href** | **String** |  | 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

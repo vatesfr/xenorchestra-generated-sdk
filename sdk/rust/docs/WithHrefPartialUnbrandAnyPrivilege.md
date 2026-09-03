@@ -1,0 +1,17 @@
+# WithHrefPartialUnbrandAnyPrivilege
+
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**action** | Option<**String**> |  | [optional]
+**effect** | Option<**String**> |  | [optional]
+**id** | Option<**String**> |  | [optional]
+**resource** | Option<**String**> |  | [optional]
+**role_id** | Option<**String**> |  | [optional]
+**selector** | Option<**String**> |  | [optional]
+**href** | **String** |  | 
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
