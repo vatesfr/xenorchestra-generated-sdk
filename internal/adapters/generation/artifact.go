@@ -13,10 +13,11 @@ type generatedSDK struct {
 	GeneratorProperties string
 }
 
-func generatedSDKs(rustVersion, pythonVersion string) []generatedSDK {
+func generatedSDKs(rustVersion, pythonVersion, dartVersion string) []generatedSDK {
 	return []generatedSDK{
 		{Artifact: patches.RustArtifact, Generator: "rust", GeneratorProperties: "packageName=xenorchestra-rust-sdk,packageVersion=" + rustVersion},
 		{Artifact: patches.PythonArtifact, Generator: "python", GeneratorProperties: "packageName=xenorchestra_client,projectName=xenorchestra-python-sdk,packageVersion=" + pythonVersion},
+		{Artifact: patches.DartArtifact, Generator: "dart-dio", GeneratorProperties: "pubName=xenorchestra_dart_sdk,pubVersion=" + dartVersion},
 	}
 }
 
@@ -26,6 +27,8 @@ func targetSwaggerArtifact(target common.SDKTarget) (patches.Artifact, error) {
 		return patches.RustSwaggerArtifact, nil
 	case common.Python:
 		return patches.PythonSwaggerArtifact, nil
+	case common.Dart:
+		return patches.DartSwaggerArtifact, nil
 	default:
 		return "", fmt.Errorf("unsupported SDK target %q", target)
 	}

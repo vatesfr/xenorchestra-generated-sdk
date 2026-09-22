@@ -1,0 +1,7 @@
+name: xenorchestra_dart_sdk_example
+publish_to: none
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+dependencies:
+  xenorchestra_dart_sdk:
+    path: ../../sdk/dart-dio

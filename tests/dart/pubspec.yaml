@@ -1,0 +1,11 @@
+name: xenorchestra_dart_sdk_tests
+publish_to: none
+environment:
+  sdk: ">=3.0.0 <4.0.0"
+dependencies:
+  built_collection: ^5.1.1
+  dio: ^5.7.0
+  xenorchestra_dart_sdk:
+    path: ../../sdk/dart-dio
+dev_dependencies:
+  test: ^1.25.0

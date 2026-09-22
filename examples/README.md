@@ -67,6 +67,17 @@ The Rust SDK normalizes every generated collection behind
 This demonstrates URL configuration, authentication and error handling without
 changing the Xen Orchestra installation.
 
+## Dart/Dio
+
+The Dart example points to the locally generated package:
+
+```sh
+dart run examples/dart/inventory.dart
+```
+
+In an external project, depend on `xenorchestra_dart_sdk` from pub.dev. The
+example supports the same token-cookie or Basic authentication configuration.
+
 Their imports and types are checked automatically with:
 
 ```sh

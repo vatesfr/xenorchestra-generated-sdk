@@ -8,9 +8,10 @@ type SDKTarget string
 const (
 	Rust   SDKTarget = "rust"
 	Python SDKTarget = "python"
+	Dart   SDKTarget = "dart-dio"
 )
 
-var GeneratedSDKTargets = []SDKTarget{Rust, Python}
+var GeneratedSDKTargets = []SDKTarget{Rust, Python, Dart}
 
 // Build is an opaque reference owned by a generation adapter.
 type Build struct{ ID string }

@@ -73,11 +73,15 @@ func (a *Adapter) Patch(_ context.Context, build common.Build, target common.SDK
 }
 
 func (a *Adapter) Normalize(ctx context.Context, build common.Build, target common.SDKTarget) error {
-	if target != common.Rust {
+	switch target {
+	case common.Rust:
+		manifest := a.workspace.Join(build.ID, "sdk", string(target), "Cargo.toml")
+		return a.runner.Run(ctx, a.command("cargo", "fmt", "--manifest-path", manifest))
+	case common.Dart:
+		return a.runner.Run(ctx, a.command("dart", "format", a.workspace.Join(build.ID, "sdk", string(target), "lib")))
+	default:
 		return nil
 	}
-	manifest := a.workspace.Join(build.ID, "sdk", string(target), "Cargo.toml")
-	return a.runner.Run(ctx, a.command("cargo", "fmt", "--manifest-path", manifest))
 }
 
 func (a *Adapter) Publish(_ context.Context, build common.Build) error {
@@ -89,7 +93,7 @@ func (a *Adapter) Equal(first, second common.Build) (bool, error) {
 }
 
 func (a *Adapter) definitionFor(target common.SDKTarget) (generatedSDK, error) {
-	for _, definition := range generatedSDKs(a.rustVersion, a.pythonVersion) {
+	for _, definition := range generatedSDKs(a.rustVersion, a.pythonVersion, a.dartVersion) {
 		if string(definition.Artifact) == string(target) {
 			return definition, nil
 		}

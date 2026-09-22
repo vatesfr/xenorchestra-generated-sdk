@@ -4,3 +4,4 @@
 /.sdk-second.*
 /.openapi-normalized.*
 __pycache__/
+**/.dart_tool/

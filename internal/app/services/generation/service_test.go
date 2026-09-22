@@ -28,6 +28,10 @@ func TestGenerateOwnsGenerationWorkflow(t *testing.T) {
 		generator.EXPECT().Generate(ctx, build, common.Python).Return(nil),
 		generator.EXPECT().Patch(ctx, build, common.Python).Return(nil),
 		generator.EXPECT().Normalize(ctx, build, common.Python).Return(nil),
+		preparer.EXPECT().PrepareSpecification(ctx, build, common.Dart).Return(nil),
+		generator.EXPECT().Generate(ctx, build, common.Dart).Return(nil),
+		generator.EXPECT().Patch(ctx, build, common.Dart).Return(nil),
+		generator.EXPECT().Normalize(ctx, build, common.Dart).Return(nil),
 		publisher.EXPECT().Publish(ctx, build).Return(nil),
 		workspace.EXPECT().Discard(build).Return(nil),
 	)

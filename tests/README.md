@@ -11,7 +11,7 @@ same data.
 
 ## Run
 
-Docker, Docker Compose, Cargo and Python 3 are required.
+Docker, Docker Compose, Cargo, Python 3 and Dart are required.
 
 ```sh
 make test
@@ -21,16 +21,16 @@ The aggregate first runs the SDK generation project's Go tests, then
 `make test-generated-sdks` for the generated clients:
 
 1. starts the pinned simulator;
-2. generates the Rust and Python SDKs when they are absent;
+2. generates the Rust, Python and Dart/Dio SDKs when they are absent;
 3. waits for the simulator health endpoint;
-4. runs the Rust and Python client suites against the same fixtures.
+4. runs the Rust, Python and Dart/Dio client suites against the same fixtures.
 
 `make test` is the single compatibility entry point. The project does not plan
 a second suite against a real Xen Orchestra instance: when required behavior
 cannot be tested faithfully, the simulator or its fixtures should be improved.
 
 The SDK and simulator may use different OpenAPI versions. A behavior is only
-considered compatible when both generated clients pass the same observable
+considered compatible when all generated clients pass the same observable
 scenario against the pinned simulator.
 
 ## Coverage
@@ -119,9 +119,9 @@ the single `make test` roadmap, but require improving the mock first:
   the Host collection.
 
 There is intentionally no `test-real` target. Each simulator improvement must
-be followed by matching Rust and Python scenarios in `make test`. Each newly
+be followed by matching cross-language scenarios in `make test`. Each newly
 found generation or compatibility bug should receive a failing regression test
-in both languages when both clients are affected.
+in every affected language.
 
 ## Adding another generated client
 

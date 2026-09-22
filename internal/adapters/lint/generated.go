@@ -37,7 +37,8 @@ func NewGeneratedSDKsAdapter(configuration GeneratedSDKsLintConfiguration, runne
 func (s *GeneratedSDKsAdapter) Require(targets []common.SDKTarget) error {
 	rustManifest := s.workspace.Join(s.root, "sdk", "rust", "Cargo.toml")
 	pythonProject := s.workspace.Join(s.root, "sdk", "python", "pyproject.toml")
-	if !s.workspace.RegularFile(rustManifest) || !s.workspace.RegularFile(pythonProject) {
+	dartProject := s.workspace.Join(s.root, "sdk", "dart-dio", "pubspec.yaml")
+	if !s.workspace.RegularFile(rustManifest) || !s.workspace.RegularFile(pythonProject) || !s.workspace.RegularFile(dartProject) {
 		return fmt.Errorf("generated SDKs are missing; run make generate first")
 	}
 	return nil
@@ -54,6 +55,14 @@ func (s *GeneratedSDKsAdapter) Lint(ctx context.Context, target common.SDKTarget
 		}
 	case common.Python:
 		commands = []process.Command{s.command("python3", "-m", "compileall", "-q", s.workspace.Join(s.root, "sdk", "python", "xenorchestra_client"))}
+	case common.Dart:
+		root := s.workspace.Join(s.root, "sdk", "dart-dio")
+		commands = []process.Command{
+			s.commandIn(root, "dart", "pub", "get"),
+			s.commandIn(root, "dart", "format", "--output=none", "--set-exit-if-changed", "lib"),
+			s.commandIn(root, "dart", "run", "build_runner", "build"),
+			s.commandIn(root, "dart", "analyze", "--no-fatal-warnings"),
+		}
 	default:
 		return fmt.Errorf("unsupported SDK target %q", target)
 	}
@@ -63,6 +72,12 @@ func (s *GeneratedSDKsAdapter) Lint(ctx context.Context, target common.SDKTarget
 		}
 	}
 	return nil
+}
+
+func (s *GeneratedSDKsAdapter) commandIn(dir, name string, args ...string) process.Command {
+	command := s.command(name, args...)
+	command.Dir = dir
+	return command
 }
 
 func (s *GeneratedSDKsAdapter) command(name string, args ...string) process.Command {

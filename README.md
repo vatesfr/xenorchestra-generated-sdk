@@ -1,6 +1,6 @@
 # Xen Orchestra generated SDKs
 
-Generated Rust and Python clients for the Xen Orchestra API.
+Generated Rust, Python and Dart/Dio clients for the Xen Orchestra API.
 
 Runnable, read-only examples for connecting to a real Xen Orchestra instance
 are available under [`examples/`](examples/README.md).
@@ -9,12 +9,12 @@ Made with OpenAPI Generator. Go, Docker, Cargo and Python 3 are required.
 
 The published distributions are named `xenorchestra-rust-sdk` on crates.io and
 `xenorchestra-python-sdk` on PyPI. The Python import package remains
-`xenorchestra_client`.
+`xenorchestra_client`. The Dart package is `xenorchestra_dart_sdk` on pub.dev.
 
 ## Building
 
-To regenerate both clients, use the Makefile. It recreates `sdk/rust/` and
-`sdk/python/` from `swagger.json` and the versioned patches.
+To regenerate all clients, use the Makefile. It recreates `sdk/rust/`,
+`sdk/python/` and `sdk/dart-dio/` from `swagger.json` and the versioned patches.
 
 ```bash
 make generate
@@ -24,7 +24,7 @@ The generated package versions can be selected independently. Both default to
 `0.1.0` for local development:
 
 ```bash
-PYTHON_SDK_VERSION=1.2.0 RUST_SDK_VERSION=0.4.0 make generate
+PYTHON_SDK_VERSION=1.2.0 RUST_SDK_VERSION=0.4.0 DART_SDK_VERSION=0.3.0 make generate
 ```
 
 ## Releases
@@ -34,8 +34,9 @@ same repository and OpenAPI document:
 
 - pushing `python-v1.2.0` builds and publishes version `1.2.0` to PyPI;
 - pushing `rust-v0.4.0` builds and publishes version `0.4.0` to crates.io.
+- pushing `dart-v0.3.0` builds and publishes version `0.3.0` to pub.dev.
 
-The release workflows regenerate and test both clients, verify that the
+The release workflows regenerate and test all clients, verify that the
 generated package version exactly matches the tag, and publish only the SDK
 selected by the tag. Configure the `pypi` and `crates-io` GitHub environments
 and register the corresponding workflows as trusted publishers before pushing
@@ -61,7 +62,7 @@ Git. Never edit it manually: every change must be expressed in `swagger.json`,
 in a programmable Go patch, or in the pinned generator configuration.
 
 Generation is deterministic and idempotent. It takes place in a temporary
-directory, and `sdk/` is replaced only after both clients and all patches have
+directory, and `sdk/` is replaced only after all clients and patches have
 been produced successfully. This property can be checked explicitly:
 
 ```bash
@@ -73,9 +74,9 @@ The generation pipeline is:
 1. prepare each target specification: copy `swagger.json` into the ephemeral
    build directory, then apply the shared generator-compatibility transform and
    the target's per-language specification transform through the Go patch actor;
-2. generate Rust and Python with the pinned OpenAPI Generator image;
-3. apply the Rust and Python transformations through the same actor;
-4. apply deterministic formatting to the generated Rust sources;
+2. generate Rust, Python and Dart/Dio with the pinned OpenAPI Generator image;
+3. apply the language transformations through the same actor;
+4. apply deterministic formatting to the generated Rust and Dart sources;
 5. publish the resulting ephemeral `sdk/` directory.
 
 Semantic corrections after generation are exclusively represented by patches;
@@ -168,7 +169,7 @@ make test
 
 `make test` aggregates the project tests (`make test-sdk`) and the generated
 client compatibility tests (`make test-generated-sdks`). The functional SDK tests call the
-simulator through both generated clients. They
+simulator through all generated clients. They
 do not require the SDK and simulator OpenAPI documents to have the same
 version. See
 [`tests/README.md`](tests/README.md) for details.

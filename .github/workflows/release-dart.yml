@@ -1,0 +1,45 @@
+name: Release Dart SDK
+
+on:
+  push:
+    tags: ["dart-v*"]
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: pub-dev
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-go@40f1582f2485089dde7abd97c1529aa768e1baff # v5
+        with:
+          go-version-file: go.mod
+      - uses: dart-lang/setup-dart@e630b99d28a3b71860378cafdc2a067c71107f94 # v1
+      - name: Read and validate version from tag
+        shell: bash
+        run: |
+          version="${GITHUB_REF_NAME#dart-v}"
+          if [[ ! "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$ ]]; then
+            echo "Invalid Dart release tag: $GITHUB_REF_NAME" >&2
+            exit 1
+          fi
+          echo "DART_SDK_VERSION=$version" >> "$GITHUB_ENV"
+      - name: Generate SDKs
+        run: make generate
+      - name: Test generator and reproducibility
+        run: make test-sdk check-idempotence
+      - name: Verify generated version
+        working-directory: sdk/dart-dio
+        run: test "$(dart pub deps --json | jq -r '.root.version')" = "$DART_SDK_VERSION"
+      - name: Test generated SDKs
+        run: make lint-generated-sdks test-generated-sdks test-examples
+      - name: Verify publishable package
+        working-directory: sdk/dart-dio
+        run: dart pub publish --dry-run
+      - name: Publish to pub.dev
+        working-directory: sdk/dart-dio
+        run: dart pub publish --force

@@ -72,9 +72,30 @@ func (a *Adapter) Test(ctx context.Context, target common.SDKTarget, simulator c
 		command := a.command(python, "-m", "unittest", "discover", "-s", a.workspace.Join(a.root, "tests", "python"), "-p", "test_*.py", "-v")
 		command.Env = environment
 		return a.runner.Run(ctx, command)
+	case common.Dart:
+		sdkDirectory := a.workspace.Join(a.root, "sdk", "dart-dio")
+		if err := a.runner.Run(ctx, a.commandIn(sdkDirectory, "dart", "pub", "get")); err != nil {
+			return fmt.Errorf("install Dart SDK dependencies: %w", err)
+		}
+		if err := a.runner.Run(ctx, a.commandIn(sdkDirectory, "dart", "run", "build_runner", "build")); err != nil {
+			return fmt.Errorf("build Dart serializers: %w", err)
+		}
+		directory := a.workspace.Join(a.root, "tests", "dart")
+		if err := a.runner.Run(ctx, a.commandIn(directory, "dart", "pub", "get")); err != nil {
+			return fmt.Errorf("install Dart test dependencies: %w", err)
+		}
+		command := a.commandIn(directory, "dart", "test")
+		command.Env = environment
+		return a.runner.Run(ctx, command)
 	default:
 		return fmt.Errorf("unsupported SDK target %q", target)
 	}
+}
+
+func (a *Adapter) commandIn(dir, name string, args ...string) process.Command {
+	command := a.command(name, args...)
+	command.Dir = dir
+	return command
 }
 
 func (a *Adapter) command(name string, args ...string) process.Command {
