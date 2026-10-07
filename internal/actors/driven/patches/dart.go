@@ -3,9 +3,45 @@ package patches
 import (
 	"fmt"
 	"path/filepath"
+	"regexp"
 )
 
 func patchGeneratedDart(root string) error {
+	// Dart String is not URI-escaped, so generated path parameters must be
+	// percent-encoded before being inserted into a URL path segment. Query
+	// parameters keep using encodeQueryParameter because dio escapes them
+	// itself when building the request URI.
+	if err := replacePatternAcrossFiles(
+		filepath.Join(root, "lib", "src", "api"),
+		".dart",
+		regexp.MustCompile(`encodeQueryParameter\(\s*_serializers,\s*([a-zA-Z0-9_]+),\s*const FullType\(((?:String|ExcludeSUPPORTEDVDIFORMATQcow2|XoListenerType))\),?\s*\)\.toString\(\)`),
+		"encodePathParameter(_serializers, $1, const FullType($2))",
+		313,
+	); err != nil {
+		return fmt.Errorf("patch Dart path parameter encoding: %w", err)
+	}
+	if err := replaceExactlyInFile(
+		filepath.Join(root, "lib", "src", "api_util.dart"),
+		"dynamic encodeQueryParameter(",
+		"/// Percent-encode a value for a URL path segment.\n"+
+			"///\n"+
+			"/// Path parameters are inserted verbatim into the URL path, so the\n"+
+			"/// value is fully encoded here. Query parameters keep using\n"+
+			"/// encodeQueryParameter because dio encodes them when building the\n"+
+			"/// request URI.\n"+
+			"dynamic encodePathParameter(\n"+
+			"  Serializers serializers,\n"+
+			"  dynamic value,\n"+
+			"  FullType type,\n"+
+			") {\n"+
+			"  final parameter = encodeQueryParameter(serializers, value, type);\n"+
+			"  return Uri.encodeComponent(parameter.toString());\n"+
+			"}\n\n"+
+			"dynamic encodeQueryParameter(",
+		1,
+	); err != nil {
+		return fmt.Errorf("patch Dart path encoder: %w", err)
+	}
 	models := filepath.Join(root, "lib", "src", "model")
 	if err := replaceExactlyAcrossFiles(filepath.Join(root, "lib", "src", "api"), ".dart", "'where': ''", "'where': 'cookie'", 325); err != nil {
 		return err

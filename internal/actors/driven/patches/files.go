@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"regexp"
 	"strings"
 )
 
@@ -40,6 +41,35 @@ func applyExactReplacements(path string, replacements [][2]string) error {
 		}
 	}
 	return os.WriteFile(path, []byte(content), 0o644)
+}
+
+func replacePatternAcrossFiles(root, suffix string, pattern *regexp.Regexp, replacement string, expected int) error {
+	changed := 0
+	err := filepath.WalkDir(root, func(path string, entry os.DirEntry, err error) error {
+		if err != nil {
+			return err
+		}
+		if entry.IsDir() || !strings.HasSuffix(entry.Name(), suffix) {
+			return nil
+		}
+		data, err := os.ReadFile(path)
+		if err != nil {
+			return err
+		}
+		matches := pattern.FindAll(data, -1)
+		if len(matches) == 0 {
+			return nil
+		}
+		changed += len(matches)
+		return os.WriteFile(path, pattern.ReplaceAll(data, []byte(replacement)), 0o644)
+	})
+	if err != nil {
+		return err
+	}
+	if changed != expected {
+		return fmt.Errorf("%s: expected %d occurrence(s) of %q, found %d", root, expected, pattern.String(), changed)
+	}
+	return nil
 }
 
 func replaceExactlyAcrossFiles(root, suffix, old, replacement string, expected int) error {

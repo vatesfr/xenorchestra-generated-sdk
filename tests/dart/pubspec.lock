@@ -50,7 +50,7 @@ packages:
     source: hosted
     version: "5.1.1"
   built_value:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: built_value
       sha256: "31b24be6615ec7fcf70b3aa5a7469fe35826485e639a16dd7eb83ba30e4cc6a8"

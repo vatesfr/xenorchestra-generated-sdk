@@ -35,7 +35,7 @@ scenario against the pinned simulator.
 
 ## Coverage
 
-Both generated clients currently exercise the same scenarios:
+All generated clients currently exercise the same scenarios:
 
 - deserialization of a complete Host fixture;
 - deserialization of a complete Pool fixture;
