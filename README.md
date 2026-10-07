@@ -1,6 +1,6 @@
 # Xen Orchestra generated SDKs
 
-Generated Rust, Python and Dart/Dio clients for the Xen Orchestra API.
+Generated Rust, Python, Dart/Dio and Java clients for the Xen Orchestra API.
 
 Runnable, read-only examples for connecting to a real Xen Orchestra instance
 are available under [`examples/`](examples/README.md).
@@ -9,12 +9,13 @@ Made with OpenAPI Generator. Go, Docker, Cargo and Python 3 are required.
 
 The published distributions are named `xenorchestra-rust-sdk` on crates.io and
 `xenorchestra-python-sdk` on PyPI. The Python import package remains
-`xenorchestra_client`. The Dart package is `xenorchestra_dart_sdk` on pub.dev.
+`xenorchestra_client`. The Dart package is `xenorchestra_dart_sdk` on pub.dev. The Java artifact is
+`tech.vates:xenorchestra-java-sdk` (not published; coordinates to be decided).
 
 ## Building
 
 To regenerate all clients, use the Makefile. It recreates `sdk/rust/`,
-`sdk/python/` and `sdk/dart-dio/` from `swagger.json` and the versioned patches.
+`sdk/python/`, `sdk/dart-dio/` and `sdk/java/` from `swagger.json` and the versioned patches.
 
 ```bash
 make generate
@@ -74,7 +75,7 @@ The generation pipeline is:
 1. prepare each target specification: copy `swagger.json` into the ephemeral
    build directory, then apply the shared generator-compatibility transform and
    the target's per-language specification transform through the Go patch actor;
-2. generate Rust, Python and Dart/Dio with the pinned OpenAPI Generator image;
+2. generate Rust, Python, Dart/Dio and Java with the pinned OpenAPI Generator image;
 3. apply the language transformations through the same actor;
 4. apply deterministic formatting to the generated Rust and Dart sources;
 5. publish the resulting ephemeral `sdk/` directory.

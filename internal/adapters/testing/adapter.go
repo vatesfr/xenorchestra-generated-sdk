@@ -87,6 +87,13 @@ func (a *Adapter) Test(ctx context.Context, target common.SDKTarget, simulator c
 		command := a.commandIn(directory, "dart", "test")
 		command.Env = environment
 		return a.runner.Run(ctx, command)
+	case common.Java:
+		if err := a.runner.Run(ctx, a.command("mvn", "--batch-mode", "--quiet", "--file", a.workspace.Join(a.root, "sdk", "java", "pom.xml"), "-DskipTests", "-Dmaven.javadoc.skip=true", "install")); err != nil {
+			return fmt.Errorf("install Java SDK: %w", err)
+		}
+		command := a.command("mvn", "--batch-mode", "--file", a.workspace.Join(a.root, "tests", "java", "pom.xml"), "test")
+		command.Env = environment
+		return a.runner.Run(ctx, command)
 	default:
 		return fmt.Errorf("unsupported SDK target %q", target)
 	}

@@ -11,7 +11,7 @@ same data.
 
 ## Run
 
-Docker, Docker Compose, Cargo, Python 3 and Dart are required.
+Docker, Docker Compose, Cargo, Python 3, Dart, a JDK and Maven are required.
 
 ```sh
 make test
@@ -21,9 +21,9 @@ The aggregate first runs the SDK generation project's Go tests, then
 `make test-generated-sdks` for the generated clients:
 
 1. starts the pinned simulator;
-2. generates the Rust, Python and Dart/Dio SDKs when they are absent;
+2. generates the Rust, Python, Dart/Dio and Java SDKs when they are absent;
 3. waits for the simulator health endpoint;
-4. runs the Rust, Python and Dart/Dio client suites against the same fixtures.
+4. runs the Rust, Python, Dart/Dio and Java client suites against the same fixtures.
 
 `make test` is the single compatibility entry point. The project does not plan
 a second suite against a real Xen Orchestra instance: when required behavior

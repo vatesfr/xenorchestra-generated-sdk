@@ -4,11 +4,11 @@ GO ?= go
 
 help:
 	@echo "Available commands:"
-	@echo "  make generate  Generate the Rust, Python and Dart/Dio SDKs"
+	@echo "  make generate  Generate the Rust, Python, Dart/Dio and Java SDKs"
 	@echo "  make generate-mocks  Generate Go mocks used by application service tests"
 	@echo "  make check-idempotence  Generate twice and compare outputs"
 	@echo "  make lint-sdk  Lint this SDK generation project"
-	@echo "  make lint-generated-sdks  Lint existing Rust, Python and Dart/Dio SDKs"
+	@echo "  make lint-generated-sdks  Lint existing Rust, Python, Dart/Dio and Java SDKs"
 	@echo "  make lint      Run both lint targets"
 	@echo "  make test-sdk  Test this SDK generation project"
 	@echo "  make test-generated-sdks  Test generated SDKs against the simulator"
