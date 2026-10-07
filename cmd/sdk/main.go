@@ -47,6 +47,7 @@ func run() error {
 			RustVersion:    os.Getenv("RUST_SDK_VERSION"),
 			PythonVersion:  os.Getenv("PYTHON_SDK_VERSION"),
 			DartVersion:    os.Getenv("DART_SDK_VERSION"),
+			JavaVersion:    os.Getenv("JAVA_SDK_VERSION"),
 		},
 		processActor,
 		patches.SourcePatcherActor{Output: os.Stdout},

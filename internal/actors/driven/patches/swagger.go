@@ -183,3 +183,5 @@ func objectAt(root map[string]any, path ...string) (map[string]any, error) {
 func patchSwaggerRustLanguage(string) error { return nil }
 
 func patchSwaggerPythonLanguage(string) error { return nil }
+
+func patchSwaggerJavaLanguage(string) error { return nil }

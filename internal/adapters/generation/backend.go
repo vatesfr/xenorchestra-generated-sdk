@@ -93,7 +93,7 @@ func (a *Adapter) Equal(first, second common.Build) (bool, error) {
 }
 
 func (a *Adapter) definitionFor(target common.SDKTarget) (generatedSDK, error) {
-	for _, definition := range generatedSDKs(a.rustVersion, a.pythonVersion, a.dartVersion) {
+	for _, definition := range generatedSDKs(a.rustVersion, a.pythonVersion, a.dartVersion, a.javaVersion) {
 		if string(definition.Artifact) == string(target) {
 			return definition, nil
 		}

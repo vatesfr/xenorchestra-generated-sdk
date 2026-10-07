@@ -25,6 +25,7 @@ type Adapter struct {
 	rustVersion    string
 	pythonVersion  string
 	dartVersion    string
+	javaVersion    string
 }
 
 var _ driven.BuildWorkspace = (*Adapter)(nil)
@@ -41,6 +42,7 @@ type SDKGenerationConfiguration struct {
 	RustVersion    string
 	PythonVersion  string
 	DartVersion    string
+	JavaVersion    string
 }
 
 func New(configuration SDKGenerationConfiguration, runner process.ProcessRunnerActor, patcher patches.SourcePatcherActor, workspace filesystem.LocalWorkspaceActor) *Adapter {
@@ -60,6 +62,10 @@ func New(configuration SDKGenerationConfiguration, runner process.ProcessRunnerA
 	if dartVersion == "" {
 		dartVersion = defaultSDKVersion
 	}
+	javaVersion := configuration.JavaVersion
+	if javaVersion == "" {
+		javaVersion = defaultSDKVersion
+	}
 	return &Adapter{
 		root:           configuration.Root,
 		runner:         runner,
@@ -72,6 +78,7 @@ func New(configuration SDKGenerationConfiguration, runner process.ProcessRunnerA
 		rustVersion:    rustVersion,
 		pythonVersion:  pythonVersion,
 		dartVersion:    dartVersion,
+		javaVersion:    javaVersion,
 	}
 }
 

@@ -43,6 +43,7 @@ func TestGeneratedSDKsLintChecksPresenceThenLintsEveryTarget(t *testing.T) {
 		backend.EXPECT().Lint(ctx, common.Rust).Return(nil),
 		backend.EXPECT().Lint(ctx, common.Python).Return(nil),
 		backend.EXPECT().Lint(ctx, common.Dart).Return(nil),
+		backend.EXPECT().Lint(ctx, common.Java).Return(nil),
 	)
 
 	if err := NewGeneratedSDKsLintService(catalog, backend).Lint(ctx); err != nil {

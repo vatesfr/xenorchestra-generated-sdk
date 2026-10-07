@@ -26,6 +26,7 @@ func TestCompatibilityTestOwnsSimulatorLifecycleAndMissingSDKPolicy(t *testing.T
 		tester.EXPECT().Test(ctx, common.Rust, running).Return(nil),
 		tester.EXPECT().Test(ctx, common.Python, running).Return(nil),
 		tester.EXPECT().Test(ctx, common.Dart, running).Return(nil),
+		tester.EXPECT().Test(ctx, common.Java, running).Return(nil),
 		simulator.EXPECT().Stop(gomock.Any(), running).Return(nil),
 	)
 
