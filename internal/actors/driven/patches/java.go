@@ -98,6 +98,16 @@ func patchGeneratedJava(root string) error {
 `, 1); err != nil {
 		return fmt.Errorf("patch Java authentication: %w", err)
 	}
+	// The native library's pom template hard-codes Java 11. Target Java 25,
+	// with --release so the build also checks the API against that version.
+	if err := replaceExactlyInFile(filepath.Join(root, "pom.xml"),
+		"        <maven.compiler.source>11</maven.compiler.source>\n        <maven.compiler.target>11</maven.compiler.target>\n",
+		"        <maven.compiler.release>25</maven.compiler.release>\n", 1); err != nil {
+		return fmt.Errorf("patch Java release: %w", err)
+	}
+	if err := replaceExactlyInFile(filepath.Join(root, "README.md"), "1. Java 11+\n", "1. Java 25+\n", 1); err != nil {
+		return fmt.Errorf("patch Java README requirement: %w", err)
+	}
 	return nil
 }
 

@@ -9,7 +9,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.release>11</maven.compiler.release>
+    <maven.compiler.release>25</maven.compiler.release>
     <sdk.version>0.1.0</sdk.version>
   </properties>
 
