@@ -45,3 +45,5 @@ test-examples:
 	@cargo check --manifest-path examples/rust/Cargo.toml
 	@cd sdk/dart-dio && dart pub get && dart run build_runner build
 	@cd examples/dart && dart pub get && dart analyze && dart run inventory.dart --check-only
+	@mvn --batch-mode --quiet --file sdk/java/pom.xml -DskipTests -Dmaven.javadoc.skip=true install
+	@mvn --batch-mode --quiet --file examples/java/pom.xml compile exec:java -Dexec.args=--check-only
