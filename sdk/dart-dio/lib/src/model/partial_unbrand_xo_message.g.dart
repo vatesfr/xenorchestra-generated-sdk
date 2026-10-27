@@ -9,12 +9,17 @@ part of 'partial_unbrand_xo_message.dart';
 const PartialUnbrandXoMessageTypeEnum
     _$partialUnbrandXoMessageTypeEnum_message =
     const PartialUnbrandXoMessageTypeEnum._('message');
+const PartialUnbrandXoMessageTypeEnum
+    _$partialUnbrandXoMessageTypeEnum_unknownDefaultOpenApi =
+    const PartialUnbrandXoMessageTypeEnum._('unknownDefaultOpenApi');
 
 PartialUnbrandXoMessageTypeEnum _$partialUnbrandXoMessageTypeEnumValueOf(
     String name) {
   switch (name) {
     case 'message':
       return _$partialUnbrandXoMessageTypeEnum_message;
+    case 'unknownDefaultOpenApi':
+      return _$partialUnbrandXoMessageTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -24,39 +29,8 @@ final BuiltSet<PartialUnbrandXoMessageTypeEnum>
     _$partialUnbrandXoMessageTypeEnumValues = BuiltSet<
         PartialUnbrandXoMessageTypeEnum>(const <PartialUnbrandXoMessageTypeEnum>[
   _$partialUnbrandXoMessageTypeEnum_message,
+  _$partialUnbrandXoMessageTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<PartialUnbrandXoMessageTypeEnum>
-    _$partialUnbrandXoMessageTypeEnumSerializer =
-    _$PartialUnbrandXoMessageTypeEnumSerializer();
-
-class _$PartialUnbrandXoMessageTypeEnumSerializer
-    implements PrimitiveSerializer<PartialUnbrandXoMessageTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'message': 'message',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'message': 'message',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[PartialUnbrandXoMessageTypeEnum];
-  @override
-  final String wireName = 'PartialUnbrandXoMessageTypeEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers, PartialUnbrandXoMessageTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  PartialUnbrandXoMessageTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      PartialUnbrandXoMessageTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$PartialUnbrandXoMessage extends PartialUnbrandXoMessage {
   @override

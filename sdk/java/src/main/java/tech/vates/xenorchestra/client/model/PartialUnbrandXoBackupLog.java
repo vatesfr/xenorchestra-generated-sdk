@@ -73,15 +73,16 @@ public class PartialUnbrandXoBackupLog {
   /**
    * Gets or Sets message
    */
-  public enum MessageEnum {
-    BACKUP(String.valueOf("backup")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+  public static final class MessageEnum {
+    public static final MessageEnum BACKUP = new MessageEnum("backup");
+    @JsonCreator public static MessageEnum fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static MessageEnum[] values() { return new MessageEnum[] {BACKUP}; }
+    @Override public boolean equals(Object other) { return other instanceof MessageEnum && value.equals(((MessageEnum) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-    private String value;
-
-    MessageEnum(String value) {
-      this.value = value;
+    private MessageEnum(String value) {
+      this.value = java.util.Objects.requireNonNull(value);
     }
 
     @JsonValue
@@ -94,16 +95,17 @@ public class PartialUnbrandXoBackupLog {
       return String.valueOf(value);
     }
 
-    @JsonCreator
+    
     public static MessageEnum fromValue(String value) {
       for (MessageEnum b : MessageEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      return new MessageEnum(value);
     }
   }
+
 
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nullable
@@ -116,23 +118,20 @@ public class PartialUnbrandXoBackupLog {
   /**
    * Gets or Sets status
    */
-  public enum StatusEnum {
-    FAILURE(String.valueOf("failure")),
-    
-    INTERRUPTED(String.valueOf("interrupted")),
-    
-    PENDING(String.valueOf("pending")),
-    
-    SUCCESS(String.valueOf("success")),
-    
-    SKIPPED(String.valueOf("skipped")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+  public static final class StatusEnum {
+    public static final StatusEnum FAILURE = new StatusEnum("failure");
+    public static final StatusEnum INTERRUPTED = new StatusEnum("interrupted");
+    public static final StatusEnum PENDING = new StatusEnum("pending");
+    public static final StatusEnum SUCCESS = new StatusEnum("success");
+    public static final StatusEnum SKIPPED = new StatusEnum("skipped");
+    @JsonCreator public static StatusEnum fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static StatusEnum[] values() { return new StatusEnum[] {FAILURE, INTERRUPTED, PENDING, SUCCESS, SKIPPED}; }
+    @Override public boolean equals(Object other) { return other instanceof StatusEnum && value.equals(((StatusEnum) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-    private String value;
-
-    StatusEnum(String value) {
-      this.value = value;
+    private StatusEnum(String value) {
+      this.value = java.util.Objects.requireNonNull(value);
     }
 
     @JsonValue
@@ -145,16 +144,17 @@ public class PartialUnbrandXoBackupLog {
       return String.valueOf(value);
     }
 
-    @JsonCreator
+    
     public static StatusEnum fromValue(String value) {
       for (StatusEnum b : StatusEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      return new StatusEnum(value);
     }
   }
+
 
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable

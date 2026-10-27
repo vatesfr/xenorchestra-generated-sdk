@@ -37,11 +37,11 @@ class TestWithHrefPartialUnbrandAnyPrivilege(unittest.TestCase):
             return WithHrefPartialUnbrandAnyPrivilege(
                 action = '*',
                 effect = 'allow',
+                href = '',
                 id = '',
                 resource = 'vtpm',
                 role_id = '',
-                selector = '',
-                href = ''
+                selector = ''
             )
         else:
             return WithHrefPartialUnbrandAnyPrivilege(

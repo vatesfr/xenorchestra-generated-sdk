@@ -28,36 +28,26 @@ import com.fasterxml.jackson.annotation.JsonValue;
 /**
  * Gets or Sets VDI_TYPE
  */
-public enum VDITYPE {
-  
-  METADATA("metadata"),
-  
-  SUSPEND("suspend"),
-  
-  CBT_METADATA("cbt_metadata"),
-  
-  CRASHDUMP("crashdump"),
-  
-  EPHEMERAL("ephemeral"),
-  
-  HA_STATEFILE("ha_statefile"),
-  
-  PVS_CACHE("pvs_cache"),
-  
-  REDO_LOG("redo_log"),
-  
-  RRD("rrd"),
-  
-  SYSTEM("system"),
-  
-  USER("user"),
-  
-  UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
+public final class VDITYPE {
+    public static final VDITYPE METADATA = new VDITYPE("metadata");
+    public static final VDITYPE SUSPEND = new VDITYPE("suspend");
+    public static final VDITYPE CBT_METADATA = new VDITYPE("cbt_metadata");
+    public static final VDITYPE CRASHDUMP = new VDITYPE("crashdump");
+    public static final VDITYPE EPHEMERAL = new VDITYPE("ephemeral");
+    public static final VDITYPE HA_STATEFILE = new VDITYPE("ha_statefile");
+    public static final VDITYPE PVS_CACHE = new VDITYPE("pvs_cache");
+    public static final VDITYPE REDO_LOG = new VDITYPE("redo_log");
+    public static final VDITYPE RRD = new VDITYPE("rrd");
+    public static final VDITYPE SYSTEM = new VDITYPE("system");
+    public static final VDITYPE USER = new VDITYPE("user");
+    @JsonCreator public static VDITYPE fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static VDITYPE[] values() { return new VDITYPE[] {METADATA, SUSPEND, CBT_METADATA, CRASHDUMP, EPHEMERAL, HA_STATEFILE, PVS_CACHE, REDO_LOG, RRD, SYSTEM, USER}; }
+    @Override public boolean equals(Object other) { return other instanceof VDITYPE && value.equals(((VDITYPE) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-  private String value;
-
-  VDITYPE(String value) {
-    this.value = value;
+  private VDITYPE(String value) {
+    this.value = java.util.Objects.requireNonNull(value);
   }
 
   @JsonValue
@@ -70,14 +60,14 @@ public enum VDITYPE {
     return String.valueOf(value);
   }
 
-  @JsonCreator
+  
   public static VDITYPE fromValue(String value) {
     for (VDITYPE b : VDITYPE.values()) {
       if (b.value.equals(value)) {
         return b;
       }
     }
-    return UNKNOWN_DEFAULT_OPEN_API;
+    return new VDITYPE(value);
   }
 
   /**
@@ -95,4 +85,5 @@ public enum VDITYPE {
   }
 
 }
+
 

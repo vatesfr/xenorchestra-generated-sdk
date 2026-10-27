@@ -23,10 +23,53 @@ impl BrandedPif {
     }
 }
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum Undefined {
-    #[serde(rename = "PIF")]
     Pif,
+    UnknownValue(String),
+}
+impl Undefined {
+    pub fn as_str(&self) -> &str {
+        match self {
+            Self::Pif => "PIF",
+            Self::UnknownValue(value) => value,
+        }
+    }
+}
+impl From<String> for Undefined {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "PIF" => Self::Pif,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for Undefined {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for Undefined {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for Undefined {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for Undefined {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
+    }
 }
 
 impl Default for Undefined {

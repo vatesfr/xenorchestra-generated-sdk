@@ -12,23 +12,58 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum BackupType {
-    #[serde(rename = "backup")]
     Backup,
-    #[serde(rename = "metadataBackup")]
     MetadataBackup,
-    #[serde(rename = "mirrorBackup")]
     MirrorBackup,
+    UnknownValue(String),
 }
-
-impl std::fmt::Display for BackupType {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+impl BackupType {
+    pub fn as_str(&self) -> &str {
         match self {
-            Self::Backup => write!(f, "backup"),
-            Self::MetadataBackup => write!(f, "metadataBackup"),
-            Self::MirrorBackup => write!(f, "mirrorBackup"),
+            Self::Backup => "backup",
+            Self::MetadataBackup => "metadataBackup",
+            Self::MirrorBackup => "mirrorBackup",
+            Self::UnknownValue(value) => value,
         }
+    }
+}
+impl From<String> for BackupType {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "backup" => Self::Backup,
+            "metadataBackup" => Self::MetadataBackup,
+            "mirrorBackup" => Self::MirrorBackup,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for BackupType {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for BackupType {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for BackupType {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for BackupType {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
     }
 }
 

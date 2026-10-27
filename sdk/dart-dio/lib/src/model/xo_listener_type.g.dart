@@ -31,6 +31,8 @@ const XoListenerType _$vMController = const XoListenerType._('vMController');
 const XoListenerType _$SM = const XoListenerType._('SM');
 const XoListenerType _$alarm = const XoListenerType._('alarm');
 const XoListenerType _$task = const XoListenerType._('task');
+const XoListenerType _$unknownDefaultOpenApi =
+    const XoListenerType._('unknownDefaultOpenApi');
 
 XoListenerType _$valueOf(String name) {
   switch (name) {
@@ -84,6 +86,8 @@ XoListenerType _$valueOf(String name) {
       return _$alarm;
     case 'task':
       return _$task;
+    case 'unknownDefaultOpenApi':
+      return _$unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -116,6 +120,7 @@ final BuiltSet<XoListenerType> _$values =
   _$SM,
   _$alarm,
   _$task,
+  _$unknownDefaultOpenApi,
 ]);
 
 class _$XoListenerTypeMeta {
@@ -145,6 +150,7 @@ class _$XoListenerTypeMeta {
   XoListenerType get SM => _$SM;
   XoListenerType get alarm => _$alarm;
   XoListenerType get task => _$task;
+  XoListenerType get unknownDefaultOpenApi => _$unknownDefaultOpenApi;
   XoListenerType valueOf(String name) => _$valueOf(name);
   BuiltSet<XoListenerType> get values => _$values;
 }
@@ -152,83 +158,6 @@ class _$XoListenerTypeMeta {
 abstract class _$XoListenerTypeMixin {
   // ignore: non_constant_identifier_names
   _$XoListenerTypeMeta get XoListenerType => const _$XoListenerTypeMeta();
-}
-
-Serializer<XoListenerType> _$xoListenerTypeSerializer =
-    _$XoListenerTypeSerializer();
-
-class _$XoListenerTypeSerializer
-    implements PrimitiveSerializer<XoListenerType> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'pool': 'pool',
-    'VBD': 'VBD',
-    'host': 'host',
-    'VIF': 'VIF',
-    'VTPM': 'VTPM',
-    'vMSnapshot': 'VM-snapshot',
-    'SR': 'SR',
-    'VM': 'VM',
-    'vMTemplate': 'VM-template',
-    'message': 'message',
-    'vgpu': 'vgpu',
-    'gpuGroup': 'gpuGroup',
-    'network': 'network',
-    'PBD': 'PBD',
-    'PCI': 'PCI',
-    'PGPU': 'PGPU',
-    'PIF': 'PIF',
-    'VDI': 'VDI',
-    'vDISnapshot': 'VDI-snapshot',
-    'vDIUnmanaged': 'VDI-unmanaged',
-    'vgpuType': 'vgpuType',
-    'vMController': 'VM-controller',
-    'SM': 'SM',
-    'alarm': 'alarm',
-    'task': 'task',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'pool': 'pool',
-    'VBD': 'VBD',
-    'host': 'host',
-    'VIF': 'VIF',
-    'VTPM': 'VTPM',
-    'VM-snapshot': 'vMSnapshot',
-    'SR': 'SR',
-    'VM': 'VM',
-    'VM-template': 'vMTemplate',
-    'message': 'message',
-    'vgpu': 'vgpu',
-    'gpuGroup': 'gpuGroup',
-    'network': 'network',
-    'PBD': 'PBD',
-    'PCI': 'PCI',
-    'PGPU': 'PGPU',
-    'PIF': 'PIF',
-    'VDI': 'VDI',
-    'VDI-snapshot': 'vDISnapshot',
-    'VDI-unmanaged': 'vDIUnmanaged',
-    'vgpuType': 'vgpuType',
-    'VM-controller': 'vMController',
-    'SM': 'SM',
-    'alarm': 'alarm',
-    'task': 'task',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[XoListenerType];
-  @override
-  final String wireName = 'XoListenerType';
-
-  @override
-  Object serialize(Serializers serializers, XoListenerType object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  XoListenerType deserialize(Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      XoListenerType.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
 }
 
 // ignore_for_file: deprecated_member_use_from_same_package,type=lint

@@ -43,6 +43,10 @@ func applyExactReplacements(path string, replacements [][2]string) error {
 	return os.WriteFile(path, []byte(content), 0o644)
 }
 
+// atLeastOneReplacement permits additional matches when a specification grows,
+// while rejecting a generator-template change that would make a patch a no-op.
+const atLeastOneReplacement = -1
+
 func replacePatternAcrossFiles(root, suffix string, pattern *regexp.Regexp, replacement string, expected int) error {
 	changed := 0
 	err := filepath.WalkDir(root, func(path string, entry os.DirEntry, err error) error {
@@ -66,7 +70,10 @@ func replacePatternAcrossFiles(root, suffix string, pattern *regexp.Regexp, repl
 	if err != nil {
 		return err
 	}
-	if changed != expected {
+	if expected == atLeastOneReplacement && changed == 0 {
+		return fmt.Errorf("%s: expected at least one replacement", root)
+	}
+	if expected != atLeastOneReplacement && changed != expected {
 		return fmt.Errorf("%s: expected %d occurrence(s) of %q, found %d", root, expected, pattern.String(), changed)
 	}
 	return nil
@@ -95,7 +102,10 @@ func replaceExactlyAcrossFiles(root, suffix, old, replacement string, expected i
 	if err != nil {
 		return err
 	}
-	if changed != expected {
+	if expected == atLeastOneReplacement && changed == 0 {
+		return fmt.Errorf("%s: expected at least one replacement", root)
+	}
+	if expected != atLeastOneReplacement && changed != expected {
 		return fmt.Errorf("%s: expected %d occurrence(s) of %q, found %d", root, expected, old, changed)
 	}
 	return nil

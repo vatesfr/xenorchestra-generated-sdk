@@ -263,9 +263,13 @@ class UnbrandXoAlarmTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'message')
   static const UnbrandXoAlarmTypeEnum message =
       _$unbrandXoAlarmTypeEnum_message;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UnbrandXoAlarmTypeEnum unknownDefaultOpenApi =
+      _$unbrandXoAlarmTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UnbrandXoAlarmTypeEnum> get serializer =>
-      _$unbrandXoAlarmTypeEnumSerializer;
+      _OpenUnbrandXoAlarmTypeEnumSerializer();
 
   const UnbrandXoAlarmTypeEnum._(String name) : super(name);
 
@@ -273,4 +277,45 @@ class UnbrandXoAlarmTypeEnum extends EnumClass {
       _$unbrandXoAlarmTypeEnumValues;
   static UnbrandXoAlarmTypeEnum valueOf(String name) =>
       _$unbrandXoAlarmTypeEnumValueOf(name);
+
+  static UnbrandXoAlarmTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'message':
+        return message;
+      default:
+        return UnbrandXoAlarmTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, message)) return r'message';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UnbrandXoAlarmTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUnbrandXoAlarmTypeEnumSerializer
+    implements PrimitiveSerializer<UnbrandXoAlarmTypeEnum> {
+  @override
+  final Iterable<Type> types = const [UnbrandXoAlarmTypeEnum];
+  @override
+  final String wireName = 'UnbrandXoAlarmTypeEnum';
+  @override
+  Object serialize(Serializers serializers, UnbrandXoAlarmTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UnbrandXoAlarmTypeEnum deserialize(Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError('Expected a string for UnbrandXoAlarmTypeEnum');
+    return UnbrandXoAlarmTypeEnum.fromValue(serialized);
+  }
 }

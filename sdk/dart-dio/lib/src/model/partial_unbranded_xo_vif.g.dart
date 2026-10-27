@@ -8,12 +8,17 @@ part of 'partial_unbranded_xo_vif.dart';
 
 const PartialUnbrandedXoVifTypeEnum _$partialUnbrandedXoVifTypeEnum_VIF =
     const PartialUnbrandedXoVifTypeEnum._('VIF');
+const PartialUnbrandedXoVifTypeEnum
+    _$partialUnbrandedXoVifTypeEnum_unknownDefaultOpenApi =
+    const PartialUnbrandedXoVifTypeEnum._('unknownDefaultOpenApi');
 
 PartialUnbrandedXoVifTypeEnum _$partialUnbrandedXoVifTypeEnumValueOf(
     String name) {
   switch (name) {
     case 'VIF':
       return _$partialUnbrandedXoVifTypeEnum_VIF;
+    case 'unknownDefaultOpenApi':
+      return _$partialUnbrandedXoVifTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -23,39 +28,8 @@ final BuiltSet<PartialUnbrandedXoVifTypeEnum>
     _$partialUnbrandedXoVifTypeEnumValues = BuiltSet<
         PartialUnbrandedXoVifTypeEnum>(const <PartialUnbrandedXoVifTypeEnum>[
   _$partialUnbrandedXoVifTypeEnum_VIF,
+  _$partialUnbrandedXoVifTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<PartialUnbrandedXoVifTypeEnum>
-    _$partialUnbrandedXoVifTypeEnumSerializer =
-    _$PartialUnbrandedXoVifTypeEnumSerializer();
-
-class _$PartialUnbrandedXoVifTypeEnumSerializer
-    implements PrimitiveSerializer<PartialUnbrandedXoVifTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'VIF': 'VIF',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'VIF': 'VIF',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[PartialUnbrandedXoVifTypeEnum];
-  @override
-  final String wireName = 'PartialUnbrandedXoVifTypeEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers, PartialUnbrandedXoVifTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  PartialUnbrandedXoVifTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      PartialUnbrandedXoVifTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$PartialUnbrandedXoVif extends PartialUnbrandedXoVif {
   @override

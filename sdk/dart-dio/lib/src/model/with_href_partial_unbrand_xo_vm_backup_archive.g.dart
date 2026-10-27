@@ -12,6 +12,10 @@ const WithHrefPartialUnbrandXoVmBackupArchiveModeEnum
 const WithHrefPartialUnbrandXoVmBackupArchiveModeEnum
     _$withHrefPartialUnbrandXoVmBackupArchiveModeEnum_delta =
     const WithHrefPartialUnbrandXoVmBackupArchiveModeEnum._('delta');
+const WithHrefPartialUnbrandXoVmBackupArchiveModeEnum
+    _$withHrefPartialUnbrandXoVmBackupArchiveModeEnum_unknownDefaultOpenApi =
+    const WithHrefPartialUnbrandXoVmBackupArchiveModeEnum._(
+        'unknownDefaultOpenApi');
 
 WithHrefPartialUnbrandXoVmBackupArchiveModeEnum
     _$withHrefPartialUnbrandXoVmBackupArchiveModeEnumValueOf(String name) {
@@ -20,6 +24,8 @@ WithHrefPartialUnbrandXoVmBackupArchiveModeEnum
       return _$withHrefPartialUnbrandXoVmBackupArchiveModeEnum_full;
     case 'delta':
       return _$withHrefPartialUnbrandXoVmBackupArchiveModeEnum_delta;
+    case 'unknownDefaultOpenApi':
+      return _$withHrefPartialUnbrandXoVmBackupArchiveModeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -30,17 +36,24 @@ final BuiltSet<WithHrefPartialUnbrandXoVmBackupArchiveModeEnum>
         WithHrefPartialUnbrandXoVmBackupArchiveModeEnum>(const <WithHrefPartialUnbrandXoVmBackupArchiveModeEnum>[
   _$withHrefPartialUnbrandXoVmBackupArchiveModeEnum_full,
   _$withHrefPartialUnbrandXoVmBackupArchiveModeEnum_delta,
+  _$withHrefPartialUnbrandXoVmBackupArchiveModeEnum_unknownDefaultOpenApi,
 ]);
 
 const WithHrefPartialUnbrandXoVmBackupArchiveTypeEnum
     _$withHrefPartialUnbrandXoVmBackupArchiveTypeEnum_xoVmBackup =
     const WithHrefPartialUnbrandXoVmBackupArchiveTypeEnum._('xoVmBackup');
+const WithHrefPartialUnbrandXoVmBackupArchiveTypeEnum
+    _$withHrefPartialUnbrandXoVmBackupArchiveTypeEnum_unknownDefaultOpenApi =
+    const WithHrefPartialUnbrandXoVmBackupArchiveTypeEnum._(
+        'unknownDefaultOpenApi');
 
 WithHrefPartialUnbrandXoVmBackupArchiveTypeEnum
     _$withHrefPartialUnbrandXoVmBackupArchiveTypeEnumValueOf(String name) {
   switch (name) {
     case 'xoVmBackup':
       return _$withHrefPartialUnbrandXoVmBackupArchiveTypeEnum_xoVmBackup;
+    case 'unknownDefaultOpenApi':
+      return _$withHrefPartialUnbrandXoVmBackupArchiveTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -50,78 +63,8 @@ final BuiltSet<WithHrefPartialUnbrandXoVmBackupArchiveTypeEnum>
     _$withHrefPartialUnbrandXoVmBackupArchiveTypeEnumValues = BuiltSet<
         WithHrefPartialUnbrandXoVmBackupArchiveTypeEnum>(const <WithHrefPartialUnbrandXoVmBackupArchiveTypeEnum>[
   _$withHrefPartialUnbrandXoVmBackupArchiveTypeEnum_xoVmBackup,
+  _$withHrefPartialUnbrandXoVmBackupArchiveTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<WithHrefPartialUnbrandXoVmBackupArchiveModeEnum>
-    _$withHrefPartialUnbrandXoVmBackupArchiveModeEnumSerializer =
-    _$WithHrefPartialUnbrandXoVmBackupArchiveModeEnumSerializer();
-Serializer<WithHrefPartialUnbrandXoVmBackupArchiveTypeEnum>
-    _$withHrefPartialUnbrandXoVmBackupArchiveTypeEnumSerializer =
-    _$WithHrefPartialUnbrandXoVmBackupArchiveTypeEnumSerializer();
-
-class _$WithHrefPartialUnbrandXoVmBackupArchiveModeEnumSerializer
-    implements
-        PrimitiveSerializer<WithHrefPartialUnbrandXoVmBackupArchiveModeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'full': 'full',
-    'delta': 'delta',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'full': 'full',
-    'delta': 'delta',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    WithHrefPartialUnbrandXoVmBackupArchiveModeEnum
-  ];
-  @override
-  final String wireName = 'WithHrefPartialUnbrandXoVmBackupArchiveModeEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          WithHrefPartialUnbrandXoVmBackupArchiveModeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  WithHrefPartialUnbrandXoVmBackupArchiveModeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      WithHrefPartialUnbrandXoVmBackupArchiveModeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
-
-class _$WithHrefPartialUnbrandXoVmBackupArchiveTypeEnumSerializer
-    implements
-        PrimitiveSerializer<WithHrefPartialUnbrandXoVmBackupArchiveTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'xoVmBackup': 'xo-vm-backup',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'xo-vm-backup': 'xoVmBackup',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    WithHrefPartialUnbrandXoVmBackupArchiveTypeEnum
-  ];
-  @override
-  final String wireName = 'WithHrefPartialUnbrandXoVmBackupArchiveTypeEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          WithHrefPartialUnbrandXoVmBackupArchiveTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  WithHrefPartialUnbrandXoVmBackupArchiveTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      WithHrefPartialUnbrandXoVmBackupArchiveTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$WithHrefPartialUnbrandXoVmBackupArchive
     extends WithHrefPartialUnbrandXoVmBackupArchive {

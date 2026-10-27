@@ -12,20 +12,55 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum PrimaryAddressType {
-    #[serde(rename = "IPv4")]
     Ipv4,
-    #[serde(rename = "IPv6")]
     Ipv6,
+    UnknownValue(String),
 }
-
-impl std::fmt::Display for PrimaryAddressType {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+impl PrimaryAddressType {
+    pub fn as_str(&self) -> &str {
         match self {
-            Self::Ipv4 => write!(f, "IPv4"),
-            Self::Ipv6 => write!(f, "IPv6"),
+            Self::Ipv4 => "IPv4",
+            Self::Ipv6 => "IPv6",
+            Self::UnknownValue(value) => value,
         }
+    }
+}
+impl From<String> for PrimaryAddressType {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "IPv4" => Self::Ipv4,
+            "IPv6" => Self::Ipv6,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for PrimaryAddressType {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for PrimaryAddressType {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for PrimaryAddressType {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for PrimaryAddressType {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
     }
 }
 

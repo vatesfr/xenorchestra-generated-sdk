@@ -48,8 +48,6 @@ class PartialUnbrandXoServer(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['connected', 'disconnected', 'connecting']):
-            raise ValueError("must be one of enum values ('connected', 'disconnected', 'connecting')")
         return value
 
     model_config = ConfigDict(

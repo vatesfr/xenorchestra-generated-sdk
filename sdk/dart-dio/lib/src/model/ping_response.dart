@@ -128,9 +128,13 @@ class _$PingResponseSerializer implements PrimitiveSerializer<PingResponse> {
 class PingResponseResultEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'pong')
   static const PingResponseResultEnum pong = _$pingResponseResultEnum_pong;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const PingResponseResultEnum unknownDefaultOpenApi =
+      _$pingResponseResultEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<PingResponseResultEnum> get serializer =>
-      _$pingResponseResultEnumSerializer;
+      _OpenPingResponseResultEnumSerializer();
 
   const PingResponseResultEnum._(String name) : super(name);
 
@@ -138,4 +142,45 @@ class PingResponseResultEnum extends EnumClass {
       _$pingResponseResultEnumValues;
   static PingResponseResultEnum valueOf(String name) =>
       _$pingResponseResultEnumValueOf(name);
+
+  static PingResponseResultEnum fromValue(String value) {
+    switch (value) {
+      case r'pong':
+        return pong;
+      default:
+        return PingResponseResultEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, pong)) return r'pong';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is PingResponseResultEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenPingResponseResultEnumSerializer
+    implements PrimitiveSerializer<PingResponseResultEnum> {
+  @override
+  final Iterable<Type> types = const [PingResponseResultEnum];
+  @override
+  final String wireName = 'PingResponseResultEnum';
+  @override
+  Object serialize(Serializers serializers, PingResponseResultEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  PingResponseResultEnum deserialize(Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError('Expected a string for PingResponseResultEnum');
+    return PingResponseResultEnum.fromValue(serialized);
+  }
 }

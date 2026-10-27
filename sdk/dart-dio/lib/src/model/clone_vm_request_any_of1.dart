@@ -160,9 +160,13 @@ class CloneVmRequestAnyOf1CompressEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'zstd')
   static const CloneVmRequestAnyOf1CompressEnum zstd =
       _$cloneVmRequestAnyOf1CompressEnum_zstd;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const CloneVmRequestAnyOf1CompressEnum unknownDefaultOpenApi =
+      _$cloneVmRequestAnyOf1CompressEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<CloneVmRequestAnyOf1CompressEnum> get serializer =>
-      _$cloneVmRequestAnyOf1CompressEnumSerializer;
+      _OpenCloneVmRequestAnyOf1CompressEnumSerializer();
 
   const CloneVmRequestAnyOf1CompressEnum._(String name) : super(name);
 
@@ -170,4 +174,51 @@ class CloneVmRequestAnyOf1CompressEnum extends EnumClass {
       _$cloneVmRequestAnyOf1CompressEnumValues;
   static CloneVmRequestAnyOf1CompressEnum valueOf(String name) =>
       _$cloneVmRequestAnyOf1CompressEnumValueOf(name);
+
+  static CloneVmRequestAnyOf1CompressEnum fromValue(String value) {
+    switch (value) {
+      case r'gzip':
+        return gzip;
+      case r'zstd':
+        return zstd;
+      default:
+        return CloneVmRequestAnyOf1CompressEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, gzip)) return r'gzip';
+    if (identical(this, zstd)) return r'zstd';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is CloneVmRequestAnyOf1CompressEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenCloneVmRequestAnyOf1CompressEnumSerializer
+    implements PrimitiveSerializer<CloneVmRequestAnyOf1CompressEnum> {
+  @override
+  final Iterable<Type> types = const [CloneVmRequestAnyOf1CompressEnum];
+  @override
+  final String wireName = 'CloneVmRequestAnyOf1CompressEnum';
+  @override
+  Object serialize(
+          Serializers serializers, CloneVmRequestAnyOf1CompressEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  CloneVmRequestAnyOf1CompressEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for CloneVmRequestAnyOf1CompressEnum');
+    return CloneVmRequestAnyOf1CompressEnum.fromValue(serialized);
+  }
 }

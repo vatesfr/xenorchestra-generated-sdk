@@ -50,8 +50,6 @@ class PartialUnbrandXoVmBackupArchive(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['full', 'delta']):
-            raise ValueError("must be one of enum values ('full', 'delta')")
         return value
 
     @field_validator('type')
@@ -60,8 +58,6 @@ class PartialUnbrandXoVmBackupArchive(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['xo-vm-backup']):
-            raise ValueError("must be one of enum values ('xo-vm-backup')")
         return value
 
     model_config = ConfigDict(

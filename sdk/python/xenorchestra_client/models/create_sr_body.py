@@ -43,15 +43,11 @@ class CreateSrBody(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['user', 'iso', 'disk']):
-            raise ValueError("must be one of enum values ('user', 'iso', 'disk')")
         return value
 
     @field_validator('sr_type')
     def sr_type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['cephfs', 'dummy', 'ext', 'file', 'glusterfs', 'hba', 'iso', 'largeblock', 'linstor', 'lvm', 'lvmofcoe', 'lvmohba', 'lvmoiscsi', 'moosefs', 'nfs', 'shm', 'smb', 'udev', 'xfs', 'zfs']):
-            raise ValueError("must be one of enum values ('cephfs', 'dummy', 'ext', 'file', 'glusterfs', 'hba', 'iso', 'largeblock', 'linstor', 'lvm', 'lvmofcoe', 'lvmohba', 'lvmoiscsi', 'moosefs', 'nfs', 'shm', 'smb', 'udev', 'xfs', 'zfs')")
         return value
 
     model_config = ConfigDict(

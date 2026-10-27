@@ -8,11 +8,15 @@ part of 'branded_pif.dart';
 
 const BrandedPIFUndefinedEnum _$brandedPIFUndefinedEnum_PIF =
     const BrandedPIFUndefinedEnum._('PIF');
+const BrandedPIFUndefinedEnum _$brandedPIFUndefinedEnum_unknownDefaultOpenApi =
+    const BrandedPIFUndefinedEnum._('unknownDefaultOpenApi');
 
 BrandedPIFUndefinedEnum _$brandedPIFUndefinedEnumValueOf(String name) {
   switch (name) {
     case 'PIF':
       return _$brandedPIFUndefinedEnum_PIF;
+    case 'unknownDefaultOpenApi':
+      return _$brandedPIFUndefinedEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -21,37 +25,8 @@ BrandedPIFUndefinedEnum _$brandedPIFUndefinedEnumValueOf(String name) {
 final BuiltSet<BrandedPIFUndefinedEnum> _$brandedPIFUndefinedEnumValues =
     BuiltSet<BrandedPIFUndefinedEnum>(const <BrandedPIFUndefinedEnum>[
   _$brandedPIFUndefinedEnum_PIF,
+  _$brandedPIFUndefinedEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<BrandedPIFUndefinedEnum> _$brandedPIFUndefinedEnumSerializer =
-    _$BrandedPIFUndefinedEnumSerializer();
-
-class _$BrandedPIFUndefinedEnumSerializer
-    implements PrimitiveSerializer<BrandedPIFUndefinedEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'PIF': 'PIF',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'PIF': 'PIF',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[BrandedPIFUndefinedEnum];
-  @override
-  final String wireName = 'BrandedPIFUndefinedEnum';
-
-  @override
-  Object serialize(Serializers serializers, BrandedPIFUndefinedEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  BrandedPIFUndefinedEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      BrandedPIFUndefinedEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$BrandedPIF extends BrandedPIF {
   @override

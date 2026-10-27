@@ -60,8 +60,6 @@ class WithHrefPartialUnbrandXoPool(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['pool']):
-            raise ValueError("must be one of enum values ('pool')")
         return value
 
     model_config = ConfigDict(

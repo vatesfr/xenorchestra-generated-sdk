@@ -304,9 +304,13 @@ class WithHrefPartialUnbrandXoMessageTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'message')
   static const WithHrefPartialUnbrandXoMessageTypeEnum message =
       _$withHrefPartialUnbrandXoMessageTypeEnum_message;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const WithHrefPartialUnbrandXoMessageTypeEnum unknownDefaultOpenApi =
+      _$withHrefPartialUnbrandXoMessageTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<WithHrefPartialUnbrandXoMessageTypeEnum> get serializer =>
-      _$withHrefPartialUnbrandXoMessageTypeEnumSerializer;
+      _OpenWithHrefPartialUnbrandXoMessageTypeEnumSerializer();
 
   const WithHrefPartialUnbrandXoMessageTypeEnum._(String name) : super(name);
 
@@ -314,4 +318,48 @@ class WithHrefPartialUnbrandXoMessageTypeEnum extends EnumClass {
       _$withHrefPartialUnbrandXoMessageTypeEnumValues;
   static WithHrefPartialUnbrandXoMessageTypeEnum valueOf(String name) =>
       _$withHrefPartialUnbrandXoMessageTypeEnumValueOf(name);
+
+  static WithHrefPartialUnbrandXoMessageTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'message':
+        return message;
+      default:
+        return WithHrefPartialUnbrandXoMessageTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, message)) return r'message';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is WithHrefPartialUnbrandXoMessageTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenWithHrefPartialUnbrandXoMessageTypeEnumSerializer
+    implements PrimitiveSerializer<WithHrefPartialUnbrandXoMessageTypeEnum> {
+  @override
+  final Iterable<Type> types = const [WithHrefPartialUnbrandXoMessageTypeEnum];
+  @override
+  final String wireName = 'WithHrefPartialUnbrandXoMessageTypeEnum';
+  @override
+  Object serialize(Serializers serializers,
+          WithHrefPartialUnbrandXoMessageTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  WithHrefPartialUnbrandXoMessageTypeEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for WithHrefPartialUnbrandXoMessageTypeEnum');
+    return WithHrefPartialUnbrandXoMessageTypeEnum.fromValue(serialized);
+  }
 }

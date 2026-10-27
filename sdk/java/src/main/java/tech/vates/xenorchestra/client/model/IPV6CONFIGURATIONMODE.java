@@ -28,22 +28,19 @@ import com.fasterxml.jackson.annotation.JsonValue;
 /**
  * Gets or Sets IPV6_CONFIGURATION_MODE
  */
-public enum IPV6CONFIGURATIONMODE {
-  
-  DHCP("DHCP"),
-  
-  AUTOCONF("Autoconf"),
-  
-  NONE("None"),
-  
-  STATIC("Static"),
-  
-  UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
+public final class IPV6CONFIGURATIONMODE {
+    public static final IPV6CONFIGURATIONMODE DHCP = new IPV6CONFIGURATIONMODE("DHCP");
+    public static final IPV6CONFIGURATIONMODE AUTOCONF = new IPV6CONFIGURATIONMODE("Autoconf");
+    public static final IPV6CONFIGURATIONMODE NONE = new IPV6CONFIGURATIONMODE("None");
+    public static final IPV6CONFIGURATIONMODE STATIC = new IPV6CONFIGURATIONMODE("Static");
+    @JsonCreator public static IPV6CONFIGURATIONMODE fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static IPV6CONFIGURATIONMODE[] values() { return new IPV6CONFIGURATIONMODE[] {DHCP, AUTOCONF, NONE, STATIC}; }
+    @Override public boolean equals(Object other) { return other instanceof IPV6CONFIGURATIONMODE && value.equals(((IPV6CONFIGURATIONMODE) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-  private String value;
-
-  IPV6CONFIGURATIONMODE(String value) {
-    this.value = value;
+  private IPV6CONFIGURATIONMODE(String value) {
+    this.value = java.util.Objects.requireNonNull(value);
   }
 
   @JsonValue
@@ -56,14 +53,14 @@ public enum IPV6CONFIGURATIONMODE {
     return String.valueOf(value);
   }
 
-  @JsonCreator
+  
   public static IPV6CONFIGURATIONMODE fromValue(String value) {
     for (IPV6CONFIGURATIONMODE b : IPV6CONFIGURATIONMODE.values()) {
       if (b.value.equals(value)) {
         return b;
       }
     }
-    return UNKNOWN_DEFAULT_OPEN_API;
+    return new IPV6CONFIGURATIONMODE(value);
   }
 
   /**
@@ -81,4 +78,5 @@ public enum IPV6CONFIGURATIONMODE {
   }
 
 }
+
 

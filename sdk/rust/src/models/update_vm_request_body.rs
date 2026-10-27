@@ -181,14 +181,59 @@ impl UpdateVmRequestBody {
     }
 }
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum HighAvailability {
-    #[serde(rename = "best-effort")]
     BestEffort,
-    #[serde(rename = "restart")]
     Restart,
-    #[serde(rename = "")]
     Empty,
+    UnknownValue(String),
+}
+impl HighAvailability {
+    pub fn as_str(&self) -> &str {
+        match self {
+            Self::BestEffort => "best-effort",
+            Self::Restart => "restart",
+            Self::Empty => "",
+            Self::UnknownValue(value) => value,
+        }
+    }
+}
+impl From<String> for HighAvailability {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "best-effort" => Self::BestEffort,
+            "restart" => Self::Restart,
+            "" => Self::Empty,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for HighAvailability {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for HighAvailability {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for HighAvailability {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for HighAvailability {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
+    }
 }
 
 impl Default for HighAvailability {
@@ -197,12 +242,56 @@ impl Default for HighAvailability {
     }
 }
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum UefiMode {
-    #[serde(rename = "setup")]
     Setup,
-    #[serde(rename = "user")]
     User,
+    UnknownValue(String),
+}
+impl UefiMode {
+    pub fn as_str(&self) -> &str {
+        match self {
+            Self::Setup => "setup",
+            Self::User => "user",
+            Self::UnknownValue(value) => value,
+        }
+    }
+}
+impl From<String> for UefiMode {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "setup" => Self::Setup,
+            "user" => Self::User,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for UefiMode {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for UefiMode {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for UefiMode {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for UefiMode {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
+    }
 }
 
 impl Default for UefiMode {
@@ -211,12 +300,56 @@ impl Default for UefiMode {
     }
 }
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum Vga {
-    #[serde(rename = "std")]
     Std,
-    #[serde(rename = "cirrus")]
     Cirrus,
+    UnknownValue(String),
+}
+impl Vga {
+    pub fn as_str(&self) -> &str {
+        match self {
+            Self::Std => "std",
+            Self::Cirrus => "cirrus",
+            Self::UnknownValue(value) => value,
+        }
+    }
+}
+impl From<String> for Vga {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "std" => Self::Std,
+            "cirrus" => Self::Cirrus,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for Vga {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for Vga {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for Vga {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for Vga {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
+    }
 }
 
 impl Default for Vga {
@@ -237,6 +370,8 @@ pub enum Videoram {
     Variant8,
     #[serde(rename = "16")]
     Variant16,
+    #[serde(rename = "11184809")]
+    UnknownDefaultOpenApi,
 }
 
 impl Default for Videoram {
@@ -245,12 +380,56 @@ impl Default for Videoram {
     }
 }
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum VirtualizationMode {
-    #[serde(rename = "pv")]
     Pv,
-    #[serde(rename = "hvm")]
     Hvm,
+    UnknownValue(String),
+}
+impl VirtualizationMode {
+    pub fn as_str(&self) -> &str {
+        match self {
+            Self::Pv => "pv",
+            Self::Hvm => "hvm",
+            Self::UnknownValue(value) => value,
+        }
+    }
+}
+impl From<String> for VirtualizationMode {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "pv" => Self::Pv,
+            "hvm" => Self::Hvm,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for VirtualizationMode {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for VirtualizationMode {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for VirtualizationMode {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for VirtualizationMode {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
+    }
 }
 
 impl Default for VirtualizationMode {

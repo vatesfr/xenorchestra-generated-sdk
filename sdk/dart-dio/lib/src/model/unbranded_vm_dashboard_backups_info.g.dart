@@ -15,6 +15,10 @@ const UnbrandedVmDashboardBackupsInfoVmProtectionEnum
 const UnbrandedVmDashboardBackupsInfoVmProtectionEnum
     _$unbrandedVmDashboardBackupsInfoVmProtectionEnum_notInActiveJob =
     const UnbrandedVmDashboardBackupsInfoVmProtectionEnum._('notInActiveJob');
+const UnbrandedVmDashboardBackupsInfoVmProtectionEnum
+    _$unbrandedVmDashboardBackupsInfoVmProtectionEnum_unknownDefaultOpenApi =
+    const UnbrandedVmDashboardBackupsInfoVmProtectionEnum._(
+        'unknownDefaultOpenApi');
 
 UnbrandedVmDashboardBackupsInfoVmProtectionEnum
     _$unbrandedVmDashboardBackupsInfoVmProtectionEnumValueOf(String name) {
@@ -25,6 +29,8 @@ UnbrandedVmDashboardBackupsInfoVmProtectionEnum
       return _$unbrandedVmDashboardBackupsInfoVmProtectionEnum_unprotected;
     case 'notInActiveJob':
       return _$unbrandedVmDashboardBackupsInfoVmProtectionEnum_notInActiveJob;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandedVmDashboardBackupsInfoVmProtectionEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -36,46 +42,8 @@ final BuiltSet<UnbrandedVmDashboardBackupsInfoVmProtectionEnum>
   _$unbrandedVmDashboardBackupsInfoVmProtectionEnum_protected,
   _$unbrandedVmDashboardBackupsInfoVmProtectionEnum_unprotected,
   _$unbrandedVmDashboardBackupsInfoVmProtectionEnum_notInActiveJob,
+  _$unbrandedVmDashboardBackupsInfoVmProtectionEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<UnbrandedVmDashboardBackupsInfoVmProtectionEnum>
-    _$unbrandedVmDashboardBackupsInfoVmProtectionEnumSerializer =
-    _$UnbrandedVmDashboardBackupsInfoVmProtectionEnumSerializer();
-
-class _$UnbrandedVmDashboardBackupsInfoVmProtectionEnumSerializer
-    implements
-        PrimitiveSerializer<UnbrandedVmDashboardBackupsInfoVmProtectionEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'protected': 'protected',
-    'unprotected': 'unprotected',
-    'notInActiveJob': 'not-in-active-job',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'protected': 'protected',
-    'unprotected': 'unprotected',
-    'not-in-active-job': 'notInActiveJob',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    UnbrandedVmDashboardBackupsInfoVmProtectionEnum
-  ];
-  @override
-  final String wireName = 'UnbrandedVmDashboardBackupsInfoVmProtectionEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          UnbrandedVmDashboardBackupsInfoVmProtectionEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandedVmDashboardBackupsInfoVmProtectionEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandedVmDashboardBackupsInfoVmProtectionEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$UnbrandedVmDashboardBackupsInfo
     extends UnbrandedVmDashboardBackupsInfo {

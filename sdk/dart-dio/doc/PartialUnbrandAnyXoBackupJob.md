@@ -12,16 +12,16 @@ Name | Type | Description | Notes
 **id** | **String** |  | [optional] 
 **mode** | **String** |  | [optional] 
 **name** | **String** |  | [optional] 
-**pools** | [**JsonObject**](.md) |  | [optional] 
 **proxy** | **String** |  | [optional] 
 **remotes** | [**JsonObject**](.md) |  | [optional] 
-**settings** | [**PartialUnbrandAnyXoBackupJobSettings**](PartialUnbrandAnyXoBackupJobSettings.md) |  | [optional] 
-**sourceRemote** | **String** |  | [optional] 
+**settings** | [**PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettings**](PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettings.md) |  | [optional] 
 **srs** | [**JsonObject**](.md) |  | [optional] 
 **type** | **String** |  | [optional] 
-**userId** | **String** |  | [optional] 
 **vms** | [**JsonObject**](.md) |  | [optional] 
+**pools** | [**JsonObject**](.md) |  | [optional] 
+**userId** | **String** |  | [optional] 
 **xoMetadata** | **bool** |  | [optional] 
+**sourceRemote** | **String** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

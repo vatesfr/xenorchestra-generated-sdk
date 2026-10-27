@@ -46,8 +46,6 @@ class PartialUnbrandXoAlarm(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['message']):
-            raise ValueError("must be one of enum values ('message')")
         return value
 
     model_config = ConfigDict(

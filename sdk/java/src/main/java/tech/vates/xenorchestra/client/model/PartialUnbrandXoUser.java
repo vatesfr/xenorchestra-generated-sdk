@@ -69,17 +69,17 @@ public class PartialUnbrandXoUser {
   /**
    * Gets or Sets permission
    */
-  public enum PermissionEnum {
-    NONE(String.valueOf("none")),
-    
-    ADMIN(String.valueOf("admin")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+  public static final class PermissionEnum {
+    public static final PermissionEnum NONE = new PermissionEnum("none");
+    public static final PermissionEnum ADMIN = new PermissionEnum("admin");
+    @JsonCreator public static PermissionEnum fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static PermissionEnum[] values() { return new PermissionEnum[] {NONE, ADMIN}; }
+    @Override public boolean equals(Object other) { return other instanceof PermissionEnum && value.equals(((PermissionEnum) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-    private String value;
-
-    PermissionEnum(String value) {
-      this.value = value;
+    private PermissionEnum(String value) {
+      this.value = java.util.Objects.requireNonNull(value);
     }
 
     @JsonValue
@@ -92,16 +92,17 @@ public class PartialUnbrandXoUser {
       return String.valueOf(value);
     }
 
-    @JsonCreator
+    
     public static PermissionEnum fromValue(String value) {
       for (PermissionEnum b : PermissionEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      return new PermissionEnum(value);
     }
   }
+
 
   public static final String JSON_PROPERTY_PERMISSION = "permission";
   @javax.annotation.Nullable

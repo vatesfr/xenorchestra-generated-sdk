@@ -15,6 +15,9 @@ const UpdateVmRequestBodyHighAvailabilityEnum
 const UpdateVmRequestBodyHighAvailabilityEnum
     _$updateVmRequestBodyHighAvailabilityEnum_empty =
     const UpdateVmRequestBodyHighAvailabilityEnum._('empty');
+const UpdateVmRequestBodyHighAvailabilityEnum
+    _$updateVmRequestBodyHighAvailabilityEnum_unknownDefaultOpenApi =
+    const UpdateVmRequestBodyHighAvailabilityEnum._('unknownDefaultOpenApi');
 
 UpdateVmRequestBodyHighAvailabilityEnum
     _$updateVmRequestBodyHighAvailabilityEnumValueOf(String name) {
@@ -25,6 +28,8 @@ UpdateVmRequestBodyHighAvailabilityEnum
       return _$updateVmRequestBodyHighAvailabilityEnum_restart;
     case 'empty':
       return _$updateVmRequestBodyHighAvailabilityEnum_empty;
+    case 'unknownDefaultOpenApi':
+      return _$updateVmRequestBodyHighAvailabilityEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -36,12 +41,16 @@ final BuiltSet<UpdateVmRequestBodyHighAvailabilityEnum>
   _$updateVmRequestBodyHighAvailabilityEnum_bestEffort,
   _$updateVmRequestBodyHighAvailabilityEnum_restart,
   _$updateVmRequestBodyHighAvailabilityEnum_empty,
+  _$updateVmRequestBodyHighAvailabilityEnum_unknownDefaultOpenApi,
 ]);
 
 const UpdateVmRequestBodyUefiModeEnum _$updateVmRequestBodyUefiModeEnum_setup =
     const UpdateVmRequestBodyUefiModeEnum._('setup');
 const UpdateVmRequestBodyUefiModeEnum _$updateVmRequestBodyUefiModeEnum_user =
     const UpdateVmRequestBodyUefiModeEnum._('user');
+const UpdateVmRequestBodyUefiModeEnum
+    _$updateVmRequestBodyUefiModeEnum_unknownDefaultOpenApi =
+    const UpdateVmRequestBodyUefiModeEnum._('unknownDefaultOpenApi');
 
 UpdateVmRequestBodyUefiModeEnum _$updateVmRequestBodyUefiModeEnumValueOf(
     String name) {
@@ -50,6 +59,8 @@ UpdateVmRequestBodyUefiModeEnum _$updateVmRequestBodyUefiModeEnumValueOf(
       return _$updateVmRequestBodyUefiModeEnum_setup;
     case 'user':
       return _$updateVmRequestBodyUefiModeEnum_user;
+    case 'unknownDefaultOpenApi':
+      return _$updateVmRequestBodyUefiModeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -60,12 +71,16 @@ final BuiltSet<UpdateVmRequestBodyUefiModeEnum>
         UpdateVmRequestBodyUefiModeEnum>(const <UpdateVmRequestBodyUefiModeEnum>[
   _$updateVmRequestBodyUefiModeEnum_setup,
   _$updateVmRequestBodyUefiModeEnum_user,
+  _$updateVmRequestBodyUefiModeEnum_unknownDefaultOpenApi,
 ]);
 
 const UpdateVmRequestBodyVgaEnum _$updateVmRequestBodyVgaEnum_std =
     const UpdateVmRequestBodyVgaEnum._('std');
 const UpdateVmRequestBodyVgaEnum _$updateVmRequestBodyVgaEnum_cirrus =
     const UpdateVmRequestBodyVgaEnum._('cirrus');
+const UpdateVmRequestBodyVgaEnum
+    _$updateVmRequestBodyVgaEnum_unknownDefaultOpenApi =
+    const UpdateVmRequestBodyVgaEnum._('unknownDefaultOpenApi');
 
 UpdateVmRequestBodyVgaEnum _$updateVmRequestBodyVgaEnumValueOf(String name) {
   switch (name) {
@@ -73,6 +88,8 @@ UpdateVmRequestBodyVgaEnum _$updateVmRequestBodyVgaEnumValueOf(String name) {
       return _$updateVmRequestBodyVgaEnum_std;
     case 'cirrus':
       return _$updateVmRequestBodyVgaEnum_cirrus;
+    case 'unknownDefaultOpenApi':
+      return _$updateVmRequestBodyVgaEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -82,6 +99,7 @@ final BuiltSet<UpdateVmRequestBodyVgaEnum> _$updateVmRequestBodyVgaEnumValues =
     BuiltSet<UpdateVmRequestBodyVgaEnum>(const <UpdateVmRequestBodyVgaEnum>[
   _$updateVmRequestBodyVgaEnum_std,
   _$updateVmRequestBodyVgaEnum_cirrus,
+  _$updateVmRequestBodyVgaEnum_unknownDefaultOpenApi,
 ]);
 
 const UpdateVmRequestBodyVideoramEnum _$updateVmRequestBodyVideoramEnum_n1 =
@@ -94,6 +112,9 @@ const UpdateVmRequestBodyVideoramEnum _$updateVmRequestBodyVideoramEnum_n8 =
     const UpdateVmRequestBodyVideoramEnum._('n8');
 const UpdateVmRequestBodyVideoramEnum _$updateVmRequestBodyVideoramEnum_n16 =
     const UpdateVmRequestBodyVideoramEnum._('n16');
+const UpdateVmRequestBodyVideoramEnum
+    _$updateVmRequestBodyVideoramEnum_unknownDefaultOpenApi =
+    const UpdateVmRequestBodyVideoramEnum._('unknownDefaultOpenApi');
 
 UpdateVmRequestBodyVideoramEnum _$updateVmRequestBodyVideoramEnumValueOf(
     String name) {
@@ -108,8 +129,10 @@ UpdateVmRequestBodyVideoramEnum _$updateVmRequestBodyVideoramEnumValueOf(
       return _$updateVmRequestBodyVideoramEnum_n8;
     case 'n16':
       return _$updateVmRequestBodyVideoramEnum_n16;
+    case 'unknownDefaultOpenApi':
+      return _$updateVmRequestBodyVideoramEnum_unknownDefaultOpenApi;
     default:
-      throw ArgumentError(name);
+      return _$updateVmRequestBodyVideoramEnum_unknownDefaultOpenApi;
   }
 }
 
@@ -121,6 +144,7 @@ final BuiltSet<UpdateVmRequestBodyVideoramEnum>
   _$updateVmRequestBodyVideoramEnum_n4,
   _$updateVmRequestBodyVideoramEnum_n8,
   _$updateVmRequestBodyVideoramEnum_n16,
+  _$updateVmRequestBodyVideoramEnum_unknownDefaultOpenApi,
 ]);
 
 const UpdateVmRequestBodyVirtualizationModeEnum
@@ -129,6 +153,9 @@ const UpdateVmRequestBodyVirtualizationModeEnum
 const UpdateVmRequestBodyVirtualizationModeEnum
     _$updateVmRequestBodyVirtualizationModeEnum_hvm =
     const UpdateVmRequestBodyVirtualizationModeEnum._('hvm');
+const UpdateVmRequestBodyVirtualizationModeEnum
+    _$updateVmRequestBodyVirtualizationModeEnum_unknownDefaultOpenApi =
+    const UpdateVmRequestBodyVirtualizationModeEnum._('unknownDefaultOpenApi');
 
 UpdateVmRequestBodyVirtualizationModeEnum
     _$updateVmRequestBodyVirtualizationModeEnumValueOf(String name) {
@@ -137,6 +164,8 @@ UpdateVmRequestBodyVirtualizationModeEnum
       return _$updateVmRequestBodyVirtualizationModeEnum_pv;
     case 'hvm':
       return _$updateVmRequestBodyVirtualizationModeEnum_hvm;
+    case 'unknownDefaultOpenApi':
+      return _$updateVmRequestBodyVirtualizationModeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -147,115 +176,12 @@ final BuiltSet<UpdateVmRequestBodyVirtualizationModeEnum>
         UpdateVmRequestBodyVirtualizationModeEnum>(const <UpdateVmRequestBodyVirtualizationModeEnum>[
   _$updateVmRequestBodyVirtualizationModeEnum_pv,
   _$updateVmRequestBodyVirtualizationModeEnum_hvm,
+  _$updateVmRequestBodyVirtualizationModeEnum_unknownDefaultOpenApi,
 ]);
 
-Serializer<UpdateVmRequestBodyHighAvailabilityEnum>
-    _$updateVmRequestBodyHighAvailabilityEnumSerializer =
-    _$UpdateVmRequestBodyHighAvailabilityEnumSerializer();
-Serializer<UpdateVmRequestBodyUefiModeEnum>
-    _$updateVmRequestBodyUefiModeEnumSerializer =
-    _$UpdateVmRequestBodyUefiModeEnumSerializer();
-Serializer<UpdateVmRequestBodyVgaEnum> _$updateVmRequestBodyVgaEnumSerializer =
-    _$UpdateVmRequestBodyVgaEnumSerializer();
 Serializer<UpdateVmRequestBodyVideoramEnum>
     _$updateVmRequestBodyVideoramEnumSerializer =
     _$UpdateVmRequestBodyVideoramEnumSerializer();
-Serializer<UpdateVmRequestBodyVirtualizationModeEnum>
-    _$updateVmRequestBodyVirtualizationModeEnumSerializer =
-    _$UpdateVmRequestBodyVirtualizationModeEnumSerializer();
-
-class _$UpdateVmRequestBodyHighAvailabilityEnumSerializer
-    implements PrimitiveSerializer<UpdateVmRequestBodyHighAvailabilityEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'bestEffort': 'best-effort',
-    'restart': 'restart',
-    'empty': '',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'best-effort': 'bestEffort',
-    'restart': 'restart',
-    '': 'empty',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    UpdateVmRequestBodyHighAvailabilityEnum
-  ];
-  @override
-  final String wireName = 'UpdateVmRequestBodyHighAvailabilityEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          UpdateVmRequestBodyHighAvailabilityEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UpdateVmRequestBodyHighAvailabilityEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UpdateVmRequestBodyHighAvailabilityEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
-
-class _$UpdateVmRequestBodyUefiModeEnumSerializer
-    implements PrimitiveSerializer<UpdateVmRequestBodyUefiModeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'setup': 'setup',
-    'user': 'user',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'setup': 'setup',
-    'user': 'user',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[UpdateVmRequestBodyUefiModeEnum];
-  @override
-  final String wireName = 'UpdateVmRequestBodyUefiModeEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers, UpdateVmRequestBodyUefiModeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UpdateVmRequestBodyUefiModeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UpdateVmRequestBodyUefiModeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
-
-class _$UpdateVmRequestBodyVgaEnumSerializer
-    implements PrimitiveSerializer<UpdateVmRequestBodyVgaEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'std': 'std',
-    'cirrus': 'cirrus',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'std': 'std',
-    'cirrus': 'cirrus',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[UpdateVmRequestBodyVgaEnum];
-  @override
-  final String wireName = 'UpdateVmRequestBodyVgaEnum';
-
-  @override
-  Object serialize(Serializers serializers, UpdateVmRequestBodyVgaEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UpdateVmRequestBodyVgaEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UpdateVmRequestBodyVgaEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$UpdateVmRequestBodyVideoramEnumSerializer
     implements PrimitiveSerializer<UpdateVmRequestBodyVideoramEnum> {
@@ -265,6 +191,7 @@ class _$UpdateVmRequestBodyVideoramEnumSerializer
     'n4': '4',
     'n8': '8',
     'n16': '16',
+    'unknownDefaultOpenApi': '11184809',
   };
   static const Map<Object, String> _fromWire = const <Object, String>{
     '1': 'n1',
@@ -272,6 +199,7 @@ class _$UpdateVmRequestBodyVideoramEnumSerializer
     '4': 'n4',
     '8': 'n8',
     '16': 'n16',
+    '11184809': 'unknownDefaultOpenApi',
   };
 
   @override
@@ -290,38 +218,6 @@ class _$UpdateVmRequestBodyVideoramEnumSerializer
           Serializers serializers, Object serialized,
           {FullType specifiedType = FullType.unspecified}) =>
       UpdateVmRequestBodyVideoramEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
-
-class _$UpdateVmRequestBodyVirtualizationModeEnumSerializer
-    implements PrimitiveSerializer<UpdateVmRequestBodyVirtualizationModeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'pv': 'pv',
-    'hvm': 'hvm',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'pv': 'pv',
-    'hvm': 'hvm',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    UpdateVmRequestBodyVirtualizationModeEnum
-  ];
-  @override
-  final String wireName = 'UpdateVmRequestBodyVirtualizationModeEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          UpdateVmRequestBodyVirtualizationModeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UpdateVmRequestBodyVirtualizationModeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UpdateVmRequestBodyVirtualizationModeEnum.valueOf(
           _fromWire[serialized] ?? (serialized is String ? serialized : ''));
 }
 

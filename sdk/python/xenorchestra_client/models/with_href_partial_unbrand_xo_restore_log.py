@@ -39,8 +39,6 @@ class WithHrefPartialUnbrandXoRestoreLog(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['restore']):
-            raise ValueError("must be one of enum values ('restore')")
         return value
 
     model_config = ConfigDict(

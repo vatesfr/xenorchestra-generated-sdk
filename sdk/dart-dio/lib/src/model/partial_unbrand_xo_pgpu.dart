@@ -413,9 +413,13 @@ class PartialUnbrandXoPgpuTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'PGPU')
   static const PartialUnbrandXoPgpuTypeEnum PGPU =
       _$partialUnbrandXoPgpuTypeEnum_PGPU;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const PartialUnbrandXoPgpuTypeEnum unknownDefaultOpenApi =
+      _$partialUnbrandXoPgpuTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<PartialUnbrandXoPgpuTypeEnum> get serializer =>
-      _$partialUnbrandXoPgpuTypeEnumSerializer;
+      _OpenPartialUnbrandXoPgpuTypeEnumSerializer();
 
   const PartialUnbrandXoPgpuTypeEnum._(String name) : super(name);
 
@@ -423,4 +427,46 @@ class PartialUnbrandXoPgpuTypeEnum extends EnumClass {
       _$partialUnbrandXoPgpuTypeEnumValues;
   static PartialUnbrandXoPgpuTypeEnum valueOf(String name) =>
       _$partialUnbrandXoPgpuTypeEnumValueOf(name);
+
+  static PartialUnbrandXoPgpuTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'PGPU':
+        return PGPU;
+      default:
+        return PartialUnbrandXoPgpuTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, PGPU)) return r'PGPU';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is PartialUnbrandXoPgpuTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenPartialUnbrandXoPgpuTypeEnumSerializer
+    implements PrimitiveSerializer<PartialUnbrandXoPgpuTypeEnum> {
+  @override
+  final Iterable<Type> types = const [PartialUnbrandXoPgpuTypeEnum];
+  @override
+  final String wireName = 'PartialUnbrandXoPgpuTypeEnum';
+  @override
+  Object serialize(Serializers serializers, PartialUnbrandXoPgpuTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  PartialUnbrandXoPgpuTypeEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError('Expected a string for PartialUnbrandXoPgpuTypeEnum');
+    return PartialUnbrandXoPgpuTypeEnum.fromValue(serialized);
+  }
 }

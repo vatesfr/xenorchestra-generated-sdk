@@ -12,26 +12,61 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum PgpuDom0Access {
-    #[serde(rename = "disabled")]
     Disabled,
-    #[serde(rename = "enabled")]
     Enabled,
-    #[serde(rename = "disable_on_reboot")]
     DisableOnReboot,
-    #[serde(rename = "enable_on_reboot")]
     EnableOnReboot,
+    UnknownValue(String),
 }
-
-impl std::fmt::Display for PgpuDom0Access {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+impl PgpuDom0Access {
+    pub fn as_str(&self) -> &str {
         match self {
-            Self::Disabled => write!(f, "disabled"),
-            Self::Enabled => write!(f, "enabled"),
-            Self::DisableOnReboot => write!(f, "disable_on_reboot"),
-            Self::EnableOnReboot => write!(f, "enable_on_reboot"),
+            Self::Disabled => "disabled",
+            Self::Enabled => "enabled",
+            Self::DisableOnReboot => "disable_on_reboot",
+            Self::EnableOnReboot => "enable_on_reboot",
+            Self::UnknownValue(value) => value,
         }
+    }
+}
+impl From<String> for PgpuDom0Access {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "disabled" => Self::Disabled,
+            "enabled" => Self::Enabled,
+            "disable_on_reboot" => Self::DisableOnReboot,
+            "enable_on_reboot" => Self::EnableOnReboot,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for PgpuDom0Access {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for PgpuDom0Access {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for PgpuDom0Access {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for PgpuDom0Access {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
     }
 }
 

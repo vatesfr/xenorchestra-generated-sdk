@@ -54,8 +54,6 @@ class PartialUnbrandXoNetwork(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['network']):
-            raise ValueError("must be one of enum values ('network')")
         return value
 
     model_config = ConfigDict(

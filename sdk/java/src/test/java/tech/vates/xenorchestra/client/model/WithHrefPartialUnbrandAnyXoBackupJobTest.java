@@ -20,7 +20,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyXoBackupJobAnyOf2Settings;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettings;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyXoBackupJobVariantBackup;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyXoBackupJobVariantMetadataBackup;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyXoBackupJobVariantMirrorBackup;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
@@ -48,6 +51,14 @@ class WithHrefPartialUnbrandAnyXoBackupJobTest {
     @Test
     void compressionTest() {
         // TODO: test compression
+    }
+
+    /**
+     * Test the property 'href'
+     */
+    @Test
+    void hrefTest() {
+        // TODO: test href
     }
 
     /**
@@ -152,14 +163,6 @@ class WithHrefPartialUnbrandAnyXoBackupJobTest {
     @Test
     void sourceRemoteTest() {
         // TODO: test sourceRemote
-    }
-
-    /**
-     * Test the property 'href'
-     */
-    @Test
-    void hrefTest() {
-        // TODO: test href
     }
 
 }

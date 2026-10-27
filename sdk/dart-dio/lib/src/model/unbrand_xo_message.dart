@@ -261,9 +261,13 @@ class UnbrandXoMessageTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'message')
   static const UnbrandXoMessageTypeEnum message =
       _$unbrandXoMessageTypeEnum_message;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UnbrandXoMessageTypeEnum unknownDefaultOpenApi =
+      _$unbrandXoMessageTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UnbrandXoMessageTypeEnum> get serializer =>
-      _$unbrandXoMessageTypeEnumSerializer;
+      _OpenUnbrandXoMessageTypeEnumSerializer();
 
   const UnbrandXoMessageTypeEnum._(String name) : super(name);
 
@@ -271,4 +275,46 @@ class UnbrandXoMessageTypeEnum extends EnumClass {
       _$unbrandXoMessageTypeEnumValues;
   static UnbrandXoMessageTypeEnum valueOf(String name) =>
       _$unbrandXoMessageTypeEnumValueOf(name);
+
+  static UnbrandXoMessageTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'message':
+        return message;
+      default:
+        return UnbrandXoMessageTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, message)) return r'message';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UnbrandXoMessageTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUnbrandXoMessageTypeEnumSerializer
+    implements PrimitiveSerializer<UnbrandXoMessageTypeEnum> {
+  @override
+  final Iterable<Type> types = const [UnbrandXoMessageTypeEnum];
+  @override
+  final String wireName = 'UnbrandXoMessageTypeEnum';
+  @override
+  Object serialize(Serializers serializers, UnbrandXoMessageTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UnbrandXoMessageTypeEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError('Expected a string for UnbrandXoMessageTypeEnum');
+    return UnbrandXoMessageTypeEnum.fromValue(serialized);
+  }
 }

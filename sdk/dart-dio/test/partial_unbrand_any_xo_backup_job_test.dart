@@ -27,11 +27,6 @@ void main() {
       // TODO
     });
 
-    // JsonObject pools
-    test('to test the property `pools`', () async {
-      // TODO
-    });
-
     // String proxy
     test('to test the property `proxy`', () async {
       // TODO
@@ -42,13 +37,8 @@ void main() {
       // TODO
     });
 
-    // PartialUnbrandAnyXoBackupJobSettings settings
+    // PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettings settings
     test('to test the property `settings`', () async {
-      // TODO
-    });
-
-    // String sourceRemote
-    test('to test the property `sourceRemote`', () async {
       // TODO
     });
 
@@ -62,18 +52,28 @@ void main() {
       // TODO
     });
 
-    // String userId
-    test('to test the property `userId`', () async {
-      // TODO
-    });
-
     // JsonObject vms
     test('to test the property `vms`', () async {
       // TODO
     });
 
+    // JsonObject pools
+    test('to test the property `pools`', () async {
+      // TODO
+    });
+
+    // String userId
+    test('to test the property `userId`', () async {
+      // TODO
+    });
+
     // bool xoMetadata
     test('to test the property `xoMetadata`', () async {
+      // TODO
+    });
+
+    // String sourceRemote
+    test('to test the property `sourceRemote`', () async {
       // TODO
     });
 

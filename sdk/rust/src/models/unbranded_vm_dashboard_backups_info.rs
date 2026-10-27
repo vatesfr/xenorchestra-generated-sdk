@@ -39,14 +39,59 @@ impl UnbrandedVmDashboardBackupsInfo {
     }
 }
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum VmProtection {
-    #[serde(rename = "protected")]
     Protected,
-    #[serde(rename = "unprotected")]
     Unprotected,
-    #[serde(rename = "not-in-active-job")]
     NotInActiveJob,
+    UnknownValue(String),
+}
+impl VmProtection {
+    pub fn as_str(&self) -> &str {
+        match self {
+            Self::Protected => "protected",
+            Self::Unprotected => "unprotected",
+            Self::NotInActiveJob => "not-in-active-job",
+            Self::UnknownValue(value) => value,
+        }
+    }
+}
+impl From<String> for VmProtection {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "protected" => Self::Protected,
+            "unprotected" => Self::Unprotected,
+            "not-in-active-job" => Self::NotInActiveJob,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for VmProtection {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for VmProtection {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for VmProtection {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for VmProtection {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
+    }
 }
 
 impl Default for VmProtection {

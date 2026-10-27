@@ -274,9 +274,15 @@ class WithHrefPartialUnbrandXoUserPermissionEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'admin')
   static const WithHrefPartialUnbrandXoUserPermissionEnum admin =
       _$withHrefPartialUnbrandXoUserPermissionEnum_admin;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const WithHrefPartialUnbrandXoUserPermissionEnum
+      unknownDefaultOpenApi =
+      _$withHrefPartialUnbrandXoUserPermissionEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<WithHrefPartialUnbrandXoUserPermissionEnum>
-      get serializer => _$withHrefPartialUnbrandXoUserPermissionEnumSerializer;
+      get serializer =>
+          _OpenWithHrefPartialUnbrandXoUserPermissionEnumSerializer();
 
   const WithHrefPartialUnbrandXoUserPermissionEnum._(String name) : super(name);
 
@@ -284,4 +290,54 @@ class WithHrefPartialUnbrandXoUserPermissionEnum extends EnumClass {
       _$withHrefPartialUnbrandXoUserPermissionEnumValues;
   static WithHrefPartialUnbrandXoUserPermissionEnum valueOf(String name) =>
       _$withHrefPartialUnbrandXoUserPermissionEnumValueOf(name);
+
+  static WithHrefPartialUnbrandXoUserPermissionEnum fromValue(String value) {
+    switch (value) {
+      case r'none':
+        return none;
+      case r'admin':
+        return admin;
+      default:
+        return WithHrefPartialUnbrandXoUserPermissionEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, none)) return r'none';
+    if (identical(this, admin)) return r'admin';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is WithHrefPartialUnbrandXoUserPermissionEnum &&
+      value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenWithHrefPartialUnbrandXoUserPermissionEnumSerializer
+    implements PrimitiveSerializer<WithHrefPartialUnbrandXoUserPermissionEnum> {
+  @override
+  final Iterable<Type> types = const [
+    WithHrefPartialUnbrandXoUserPermissionEnum
+  ];
+  @override
+  final String wireName = 'WithHrefPartialUnbrandXoUserPermissionEnum';
+  @override
+  Object serialize(Serializers serializers,
+          WithHrefPartialUnbrandXoUserPermissionEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  WithHrefPartialUnbrandXoUserPermissionEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for WithHrefPartialUnbrandXoUserPermissionEnum');
+    return WithHrefPartialUnbrandXoUserPermissionEnum.fromValue(serialized);
+  }
 }

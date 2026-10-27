@@ -28,22 +28,19 @@ import com.fasterxml.jackson.annotation.JsonValue;
 /**
  * Gets or Sets XapiStatsGranularity
  */
-public enum XapiStatsGranularity {
-  
-  SECONDS("seconds"),
-  
-  MINUTES("minutes"),
-  
-  HOURS("hours"),
-  
-  DAYS("days"),
-  
-  UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
+public final class XapiStatsGranularity {
+    public static final XapiStatsGranularity SECONDS = new XapiStatsGranularity("seconds");
+    public static final XapiStatsGranularity MINUTES = new XapiStatsGranularity("minutes");
+    public static final XapiStatsGranularity HOURS = new XapiStatsGranularity("hours");
+    public static final XapiStatsGranularity DAYS = new XapiStatsGranularity("days");
+    @JsonCreator public static XapiStatsGranularity fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static XapiStatsGranularity[] values() { return new XapiStatsGranularity[] {SECONDS, MINUTES, HOURS, DAYS}; }
+    @Override public boolean equals(Object other) { return other instanceof XapiStatsGranularity && value.equals(((XapiStatsGranularity) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-  private String value;
-
-  XapiStatsGranularity(String value) {
-    this.value = value;
+  private XapiStatsGranularity(String value) {
+    this.value = java.util.Objects.requireNonNull(value);
   }
 
   @JsonValue
@@ -56,14 +53,14 @@ public enum XapiStatsGranularity {
     return String.valueOf(value);
   }
 
-  @JsonCreator
+  
   public static XapiStatsGranularity fromValue(String value) {
     for (XapiStatsGranularity b : XapiStatsGranularity.values()) {
       if (b.value.equals(value)) {
         return b;
       }
     }
-    return UNKNOWN_DEFAULT_OPEN_API;
+    return new XapiStatsGranularity(value);
   }
 
   /**
@@ -81,4 +78,5 @@ public enum XapiStatsGranularity {
   }
 
 }
+
 

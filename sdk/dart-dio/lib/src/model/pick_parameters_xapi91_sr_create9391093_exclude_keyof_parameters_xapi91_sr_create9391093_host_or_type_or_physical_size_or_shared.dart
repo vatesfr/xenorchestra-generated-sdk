@@ -227,11 +227,16 @@ class PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate939
   static const PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum
       disk =
       _$pickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum_disk;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum
+      unknownDefaultOpenApi =
+      _$pickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<
           PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum>
       get serializer =>
-          _$pickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnumSerializer;
+          _OpenPickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnumSerializer();
 
   const PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum._(
       String name)
@@ -245,4 +250,66 @@ class PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate939
       valueOf(String name) =>
           _$pickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnumValueOf(
               name);
+
+  static PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum
+      fromValue(String value) {
+    switch (value) {
+      case r'user':
+        return user;
+      case r'iso':
+        return iso;
+      case r'disk':
+        return disk;
+      default:
+        return PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum
+            ._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, user)) return r'user';
+    if (identical(this, iso)) return r'iso';
+    if (identical(this, disk)) return r'disk';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other
+          is PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum &&
+      value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenPickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnumSerializer
+    implements
+        PrimitiveSerializer<
+            PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum> {
+  @override
+  final Iterable<Type> types = const [
+    PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum
+  ];
+  @override
+  final String wireName =
+      'PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum';
+  @override
+  Object serialize(
+          Serializers serializers,
+          PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum
+              object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum
+      deserialize(Serializers serializers, Object serialized,
+          {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum');
+    return PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum
+        .fromValue(serialized);
+  }
 }

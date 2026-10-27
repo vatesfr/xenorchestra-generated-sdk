@@ -153,9 +153,13 @@ class CreateUserRequestPermissionEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'admin')
   static const CreateUserRequestPermissionEnum admin =
       _$createUserRequestPermissionEnum_admin;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const CreateUserRequestPermissionEnum unknownDefaultOpenApi =
+      _$createUserRequestPermissionEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<CreateUserRequestPermissionEnum> get serializer =>
-      _$createUserRequestPermissionEnumSerializer;
+      _OpenCreateUserRequestPermissionEnumSerializer();
 
   const CreateUserRequestPermissionEnum._(String name) : super(name);
 
@@ -163,4 +167,51 @@ class CreateUserRequestPermissionEnum extends EnumClass {
       _$createUserRequestPermissionEnumValues;
   static CreateUserRequestPermissionEnum valueOf(String name) =>
       _$createUserRequestPermissionEnumValueOf(name);
+
+  static CreateUserRequestPermissionEnum fromValue(String value) {
+    switch (value) {
+      case r'none':
+        return none;
+      case r'admin':
+        return admin;
+      default:
+        return CreateUserRequestPermissionEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, none)) return r'none';
+    if (identical(this, admin)) return r'admin';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is CreateUserRequestPermissionEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenCreateUserRequestPermissionEnumSerializer
+    implements PrimitiveSerializer<CreateUserRequestPermissionEnum> {
+  @override
+  final Iterable<Type> types = const [CreateUserRequestPermissionEnum];
+  @override
+  final String wireName = 'CreateUserRequestPermissionEnum';
+  @override
+  Object serialize(
+          Serializers serializers, CreateUserRequestPermissionEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  CreateUserRequestPermissionEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for CreateUserRequestPermissionEnum');
+    return CreateUserRequestPermissionEnum.fromValue(serialized);
+  }
 }

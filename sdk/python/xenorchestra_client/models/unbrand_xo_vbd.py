@@ -45,8 +45,6 @@ class UnbrandXoVbd(BaseModel):
     @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['VBD']):
-            raise ValueError("must be one of enum values ('VBD')")
         return value
 
     model_config = ConfigDict(

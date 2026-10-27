@@ -187,10 +187,15 @@ class UnbrandedVmDashboardBackupsInfoVmProtectionEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'not-in-active-job')
   static const UnbrandedVmDashboardBackupsInfoVmProtectionEnum notInActiveJob =
       _$unbrandedVmDashboardBackupsInfoVmProtectionEnum_notInActiveJob;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UnbrandedVmDashboardBackupsInfoVmProtectionEnum
+      unknownDefaultOpenApi =
+      _$unbrandedVmDashboardBackupsInfoVmProtectionEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UnbrandedVmDashboardBackupsInfoVmProtectionEnum>
       get serializer =>
-          _$unbrandedVmDashboardBackupsInfoVmProtectionEnumSerializer;
+          _OpenUnbrandedVmDashboardBackupsInfoVmProtectionEnumSerializer();
 
   const UnbrandedVmDashboardBackupsInfoVmProtectionEnum._(String name)
       : super(name);
@@ -199,4 +204,60 @@ class UnbrandedVmDashboardBackupsInfoVmProtectionEnum extends EnumClass {
       _$unbrandedVmDashboardBackupsInfoVmProtectionEnumValues;
   static UnbrandedVmDashboardBackupsInfoVmProtectionEnum valueOf(String name) =>
       _$unbrandedVmDashboardBackupsInfoVmProtectionEnumValueOf(name);
+
+  static UnbrandedVmDashboardBackupsInfoVmProtectionEnum fromValue(
+      String value) {
+    switch (value) {
+      case r'protected':
+        return protected;
+      case r'unprotected':
+        return unprotected;
+      case r'not-in-active-job':
+        return notInActiveJob;
+      default:
+        return UnbrandedVmDashboardBackupsInfoVmProtectionEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, protected)) return r'protected';
+    if (identical(this, unprotected)) return r'unprotected';
+    if (identical(this, notInActiveJob)) return r'not-in-active-job';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UnbrandedVmDashboardBackupsInfoVmProtectionEnum &&
+      value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUnbrandedVmDashboardBackupsInfoVmProtectionEnumSerializer
+    implements
+        PrimitiveSerializer<UnbrandedVmDashboardBackupsInfoVmProtectionEnum> {
+  @override
+  final Iterable<Type> types = const [
+    UnbrandedVmDashboardBackupsInfoVmProtectionEnum
+  ];
+  @override
+  final String wireName = 'UnbrandedVmDashboardBackupsInfoVmProtectionEnum';
+  @override
+  Object serialize(Serializers serializers,
+          UnbrandedVmDashboardBackupsInfoVmProtectionEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UnbrandedVmDashboardBackupsInfoVmProtectionEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for UnbrandedVmDashboardBackupsInfoVmProtectionEnum');
+    return UnbrandedVmDashboardBackupsInfoVmProtectionEnum.fromValue(
+        serialized);
+  }
 }

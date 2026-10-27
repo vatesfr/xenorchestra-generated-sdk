@@ -1313,10 +1313,15 @@ class WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'restart')
   static const WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum restart =
       _$withHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum_restart;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum
+      unknownDefaultOpenApi =
+      _$withHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum>
       get serializer =>
-          _$withHrefPartialUnbrandXoVmTemplateHighAvailabilityEnumSerializer;
+          _OpenWithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnumSerializer();
 
   const WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum._(String name)
       : super(name);
@@ -1327,15 +1332,79 @@ class WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum extends EnumClass {
   static WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum valueOf(
           String name) =>
       _$withHrefPartialUnbrandXoVmTemplateHighAvailabilityEnumValueOf(name);
+
+  static WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum fromValue(
+      String value) {
+    switch (value) {
+      case r'':
+        return empty;
+      case r'best-effort':
+        return bestEffort;
+      case r'restart':
+        return restart;
+      default:
+        return WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, empty)) return r'';
+    if (identical(this, bestEffort)) return r'best-effort';
+    if (identical(this, restart)) return r'restart';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum &&
+      value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenWithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnumSerializer
+    implements
+        PrimitiveSerializer<
+            WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum> {
+  @override
+  final Iterable<Type> types = const [
+    WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum
+  ];
+  @override
+  final String wireName =
+      'WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum';
+  @override
+  Object serialize(Serializers serializers,
+          WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum');
+    return WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum.fromValue(
+        serialized);
+  }
 }
 
 class WithHrefPartialUnbrandXoVmTemplateTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'VM-template')
   static const WithHrefPartialUnbrandXoVmTemplateTypeEnum vMTemplate =
       _$withHrefPartialUnbrandXoVmTemplateTypeEnum_vMTemplate;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const WithHrefPartialUnbrandXoVmTemplateTypeEnum
+      unknownDefaultOpenApi =
+      _$withHrefPartialUnbrandXoVmTemplateTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<WithHrefPartialUnbrandXoVmTemplateTypeEnum>
-      get serializer => _$withHrefPartialUnbrandXoVmTemplateTypeEnumSerializer;
+      get serializer =>
+          _OpenWithHrefPartialUnbrandXoVmTemplateTypeEnumSerializer();
 
   const WithHrefPartialUnbrandXoVmTemplateTypeEnum._(String name) : super(name);
 
@@ -1343,4 +1412,51 @@ class WithHrefPartialUnbrandXoVmTemplateTypeEnum extends EnumClass {
       _$withHrefPartialUnbrandXoVmTemplateTypeEnumValues;
   static WithHrefPartialUnbrandXoVmTemplateTypeEnum valueOf(String name) =>
       _$withHrefPartialUnbrandXoVmTemplateTypeEnumValueOf(name);
+
+  static WithHrefPartialUnbrandXoVmTemplateTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'VM-template':
+        return vMTemplate;
+      default:
+        return WithHrefPartialUnbrandXoVmTemplateTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, vMTemplate)) return r'VM-template';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is WithHrefPartialUnbrandXoVmTemplateTypeEnum &&
+      value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenWithHrefPartialUnbrandXoVmTemplateTypeEnumSerializer
+    implements PrimitiveSerializer<WithHrefPartialUnbrandXoVmTemplateTypeEnum> {
+  @override
+  final Iterable<Type> types = const [
+    WithHrefPartialUnbrandXoVmTemplateTypeEnum
+  ];
+  @override
+  final String wireName = 'WithHrefPartialUnbrandXoVmTemplateTypeEnum';
+  @override
+  Object serialize(Serializers serializers,
+          WithHrefPartialUnbrandXoVmTemplateTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  WithHrefPartialUnbrandXoVmTemplateTypeEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for WithHrefPartialUnbrandXoVmTemplateTypeEnum');
+    return WithHrefPartialUnbrandXoVmTemplateTypeEnum.fromValue(serialized);
+  }
 }

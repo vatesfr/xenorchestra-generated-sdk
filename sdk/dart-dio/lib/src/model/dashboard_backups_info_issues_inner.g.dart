@@ -18,6 +18,9 @@ const DashboardBackupsInfoIssuesInnerLogsEnum
 const DashboardBackupsInfoIssuesInnerLogsEnum
     _$dashboardBackupsInfoIssuesInnerLogsEnum_success =
     const DashboardBackupsInfoIssuesInnerLogsEnum._('success');
+const DashboardBackupsInfoIssuesInnerLogsEnum
+    _$dashboardBackupsInfoIssuesInnerLogsEnum_unknownDefaultOpenApi =
+    const DashboardBackupsInfoIssuesInnerLogsEnum._('unknownDefaultOpenApi');
 
 DashboardBackupsInfoIssuesInnerLogsEnum
     _$dashboardBackupsInfoIssuesInnerLogsEnumValueOf(String name) {
@@ -30,6 +33,8 @@ DashboardBackupsInfoIssuesInnerLogsEnum
       return _$dashboardBackupsInfoIssuesInnerLogsEnum_skipped;
     case 'success':
       return _$dashboardBackupsInfoIssuesInnerLogsEnum_success;
+    case 'unknownDefaultOpenApi':
+      return _$dashboardBackupsInfoIssuesInnerLogsEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -42,47 +47,8 @@ final BuiltSet<DashboardBackupsInfoIssuesInnerLogsEnum>
   _$dashboardBackupsInfoIssuesInnerLogsEnum_interrupted,
   _$dashboardBackupsInfoIssuesInnerLogsEnum_skipped,
   _$dashboardBackupsInfoIssuesInnerLogsEnum_success,
+  _$dashboardBackupsInfoIssuesInnerLogsEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<DashboardBackupsInfoIssuesInnerLogsEnum>
-    _$dashboardBackupsInfoIssuesInnerLogsEnumSerializer =
-    _$DashboardBackupsInfoIssuesInnerLogsEnumSerializer();
-
-class _$DashboardBackupsInfoIssuesInnerLogsEnumSerializer
-    implements PrimitiveSerializer<DashboardBackupsInfoIssuesInnerLogsEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'failure': 'failure',
-    'interrupted': 'interrupted',
-    'skipped': 'skipped',
-    'success': 'success',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'failure': 'failure',
-    'interrupted': 'interrupted',
-    'skipped': 'skipped',
-    'success': 'success',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    DashboardBackupsInfoIssuesInnerLogsEnum
-  ];
-  @override
-  final String wireName = 'DashboardBackupsInfoIssuesInnerLogsEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          DashboardBackupsInfoIssuesInnerLogsEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  DashboardBackupsInfoIssuesInnerLogsEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      DashboardBackupsInfoIssuesInnerLogsEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$DashboardBackupsInfoIssuesInner
     extends DashboardBackupsInfoIssuesInner {

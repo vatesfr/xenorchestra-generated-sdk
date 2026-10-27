@@ -9,12 +9,17 @@ part of 'unbrand_create_vm_body_install.dart';
 const UnbrandCreateVmBodyInstallMethodEnum
     _$unbrandCreateVmBodyInstallMethodEnum_network =
     const UnbrandCreateVmBodyInstallMethodEnum._('network');
+const UnbrandCreateVmBodyInstallMethodEnum
+    _$unbrandCreateVmBodyInstallMethodEnum_unknownDefaultOpenApi =
+    const UnbrandCreateVmBodyInstallMethodEnum._('unknownDefaultOpenApi');
 
 UnbrandCreateVmBodyInstallMethodEnum
     _$unbrandCreateVmBodyInstallMethodEnumValueOf(String name) {
   switch (name) {
     case 'network':
       return _$unbrandCreateVmBodyInstallMethodEnum_network;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandCreateVmBodyInstallMethodEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -24,17 +29,23 @@ final BuiltSet<UnbrandCreateVmBodyInstallMethodEnum>
     _$unbrandCreateVmBodyInstallMethodEnumValues = BuiltSet<
         UnbrandCreateVmBodyInstallMethodEnum>(const <UnbrandCreateVmBodyInstallMethodEnum>[
   _$unbrandCreateVmBodyInstallMethodEnum_network,
+  _$unbrandCreateVmBodyInstallMethodEnum_unknownDefaultOpenApi,
 ]);
 
 const UnbrandCreateVmBodyInstallRepositoryEnum
     _$unbrandCreateVmBodyInstallRepositoryEnum_empty =
     const UnbrandCreateVmBodyInstallRepositoryEnum._('empty');
+const UnbrandCreateVmBodyInstallRepositoryEnum
+    _$unbrandCreateVmBodyInstallRepositoryEnum_unknownDefaultOpenApi =
+    const UnbrandCreateVmBodyInstallRepositoryEnum._('unknownDefaultOpenApi');
 
 UnbrandCreateVmBodyInstallRepositoryEnum
     _$unbrandCreateVmBodyInstallRepositoryEnumValueOf(String name) {
   switch (name) {
     case 'empty':
       return _$unbrandCreateVmBodyInstallRepositoryEnum_empty;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandCreateVmBodyInstallRepositoryEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -44,74 +55,8 @@ final BuiltSet<UnbrandCreateVmBodyInstallRepositoryEnum>
     _$unbrandCreateVmBodyInstallRepositoryEnumValues = BuiltSet<
         UnbrandCreateVmBodyInstallRepositoryEnum>(const <UnbrandCreateVmBodyInstallRepositoryEnum>[
   _$unbrandCreateVmBodyInstallRepositoryEnum_empty,
+  _$unbrandCreateVmBodyInstallRepositoryEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<UnbrandCreateVmBodyInstallMethodEnum>
-    _$unbrandCreateVmBodyInstallMethodEnumSerializer =
-    _$UnbrandCreateVmBodyInstallMethodEnumSerializer();
-Serializer<UnbrandCreateVmBodyInstallRepositoryEnum>
-    _$unbrandCreateVmBodyInstallRepositoryEnumSerializer =
-    _$UnbrandCreateVmBodyInstallRepositoryEnumSerializer();
-
-class _$UnbrandCreateVmBodyInstallMethodEnumSerializer
-    implements PrimitiveSerializer<UnbrandCreateVmBodyInstallMethodEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'network': 'network',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'network': 'network',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    UnbrandCreateVmBodyInstallMethodEnum
-  ];
-  @override
-  final String wireName = 'UnbrandCreateVmBodyInstallMethodEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers, UnbrandCreateVmBodyInstallMethodEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandCreateVmBodyInstallMethodEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandCreateVmBodyInstallMethodEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
-
-class _$UnbrandCreateVmBodyInstallRepositoryEnumSerializer
-    implements PrimitiveSerializer<UnbrandCreateVmBodyInstallRepositoryEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'empty': '',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    '': 'empty',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    UnbrandCreateVmBodyInstallRepositoryEnum
-  ];
-  @override
-  final String wireName = 'UnbrandCreateVmBodyInstallRepositoryEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          UnbrandCreateVmBodyInstallRepositoryEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandCreateVmBodyInstallRepositoryEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandCreateVmBodyInstallRepositoryEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$UnbrandCreateVmBodyInstall extends UnbrandCreateVmBodyInstall {
   @override

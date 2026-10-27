@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **pools** | **object** |  | [optional] 
 **proxy** | **str** |  | [optional] 
 **remotes** | **object** |  | [optional] 
-**settings** | [**PartialUnbrandAnyXoBackupJobAnyOf1Settings**](PartialUnbrandAnyXoBackupJobAnyOf1Settings.md) |  | [optional] 
+**settings** | [**PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings**](PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings.md) |  | [optional] 
 **type** | **str** |  | [optional] 
 **user_id** | **str** |  | [optional] 
 **xo_metadata** | **bool** |  | [optional] 

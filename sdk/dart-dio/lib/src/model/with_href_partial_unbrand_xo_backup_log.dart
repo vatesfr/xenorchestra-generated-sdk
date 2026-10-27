@@ -275,10 +275,15 @@ class WithHrefPartialUnbrandXoBackupLogMessageEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'backup')
   static const WithHrefPartialUnbrandXoBackupLogMessageEnum backup =
       _$withHrefPartialUnbrandXoBackupLogMessageEnum_backup;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const WithHrefPartialUnbrandXoBackupLogMessageEnum
+      unknownDefaultOpenApi =
+      _$withHrefPartialUnbrandXoBackupLogMessageEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<WithHrefPartialUnbrandXoBackupLogMessageEnum>
       get serializer =>
-          _$withHrefPartialUnbrandXoBackupLogMessageEnumSerializer;
+          _OpenWithHrefPartialUnbrandXoBackupLogMessageEnumSerializer();
 
   const WithHrefPartialUnbrandXoBackupLogMessageEnum._(String name)
       : super(name);
@@ -287,6 +292,54 @@ class WithHrefPartialUnbrandXoBackupLogMessageEnum extends EnumClass {
       _$withHrefPartialUnbrandXoBackupLogMessageEnumValues;
   static WithHrefPartialUnbrandXoBackupLogMessageEnum valueOf(String name) =>
       _$withHrefPartialUnbrandXoBackupLogMessageEnumValueOf(name);
+
+  static WithHrefPartialUnbrandXoBackupLogMessageEnum fromValue(String value) {
+    switch (value) {
+      case r'backup':
+        return backup;
+      default:
+        return WithHrefPartialUnbrandXoBackupLogMessageEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, backup)) return r'backup';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is WithHrefPartialUnbrandXoBackupLogMessageEnum &&
+      value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenWithHrefPartialUnbrandXoBackupLogMessageEnumSerializer
+    implements
+        PrimitiveSerializer<WithHrefPartialUnbrandXoBackupLogMessageEnum> {
+  @override
+  final Iterable<Type> types = const [
+    WithHrefPartialUnbrandXoBackupLogMessageEnum
+  ];
+  @override
+  final String wireName = 'WithHrefPartialUnbrandXoBackupLogMessageEnum';
+  @override
+  Object serialize(Serializers serializers,
+          WithHrefPartialUnbrandXoBackupLogMessageEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  WithHrefPartialUnbrandXoBackupLogMessageEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for WithHrefPartialUnbrandXoBackupLogMessageEnum');
+    return WithHrefPartialUnbrandXoBackupLogMessageEnum.fromValue(serialized);
+  }
 }
 
 class WithHrefPartialUnbrandXoBackupLogStatusEnum extends EnumClass {
@@ -305,9 +358,15 @@ class WithHrefPartialUnbrandXoBackupLogStatusEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'skipped')
   static const WithHrefPartialUnbrandXoBackupLogStatusEnum skipped =
       _$withHrefPartialUnbrandXoBackupLogStatusEnum_skipped;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const WithHrefPartialUnbrandXoBackupLogStatusEnum
+      unknownDefaultOpenApi =
+      _$withHrefPartialUnbrandXoBackupLogStatusEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<WithHrefPartialUnbrandXoBackupLogStatusEnum>
-      get serializer => _$withHrefPartialUnbrandXoBackupLogStatusEnumSerializer;
+      get serializer =>
+          _OpenWithHrefPartialUnbrandXoBackupLogStatusEnumSerializer();
 
   const WithHrefPartialUnbrandXoBackupLogStatusEnum._(String name)
       : super(name);
@@ -316,4 +375,64 @@ class WithHrefPartialUnbrandXoBackupLogStatusEnum extends EnumClass {
       _$withHrefPartialUnbrandXoBackupLogStatusEnumValues;
   static WithHrefPartialUnbrandXoBackupLogStatusEnum valueOf(String name) =>
       _$withHrefPartialUnbrandXoBackupLogStatusEnumValueOf(name);
+
+  static WithHrefPartialUnbrandXoBackupLogStatusEnum fromValue(String value) {
+    switch (value) {
+      case r'failure':
+        return failure;
+      case r'interrupted':
+        return interrupted;
+      case r'pending':
+        return pending;
+      case r'success':
+        return success;
+      case r'skipped':
+        return skipped;
+      default:
+        return WithHrefPartialUnbrandXoBackupLogStatusEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, failure)) return r'failure';
+    if (identical(this, interrupted)) return r'interrupted';
+    if (identical(this, pending)) return r'pending';
+    if (identical(this, success)) return r'success';
+    if (identical(this, skipped)) return r'skipped';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is WithHrefPartialUnbrandXoBackupLogStatusEnum &&
+      value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenWithHrefPartialUnbrandXoBackupLogStatusEnumSerializer
+    implements
+        PrimitiveSerializer<WithHrefPartialUnbrandXoBackupLogStatusEnum> {
+  @override
+  final Iterable<Type> types = const [
+    WithHrefPartialUnbrandXoBackupLogStatusEnum
+  ];
+  @override
+  final String wireName = 'WithHrefPartialUnbrandXoBackupLogStatusEnum';
+  @override
+  Object serialize(Serializers serializers,
+          WithHrefPartialUnbrandXoBackupLogStatusEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  WithHrefPartialUnbrandXoBackupLogStatusEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for WithHrefPartialUnbrandXoBackupLogStatusEnum');
+    return WithHrefPartialUnbrandXoBackupLogStatusEnum.fromValue(serialized);
+  }
 }

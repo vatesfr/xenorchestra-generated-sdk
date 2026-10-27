@@ -103,19 +103,18 @@ public class PartialUnbrandXoServer {
   /**
    * Gets or Sets status
    */
-  public enum StatusEnum {
-    CONNECTED(String.valueOf("connected")),
-    
-    DISCONNECTED(String.valueOf("disconnected")),
-    
-    CONNECTING(String.valueOf("connecting")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+  public static final class StatusEnum {
+    public static final StatusEnum CONNECTED = new StatusEnum("connected");
+    public static final StatusEnum DISCONNECTED = new StatusEnum("disconnected");
+    public static final StatusEnum CONNECTING = new StatusEnum("connecting");
+    @JsonCreator public static StatusEnum fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static StatusEnum[] values() { return new StatusEnum[] {CONNECTED, DISCONNECTED, CONNECTING}; }
+    @Override public boolean equals(Object other) { return other instanceof StatusEnum && value.equals(((StatusEnum) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-    private String value;
-
-    StatusEnum(String value) {
-      this.value = value;
+    private StatusEnum(String value) {
+      this.value = java.util.Objects.requireNonNull(value);
     }
 
     @JsonValue
@@ -128,16 +127,17 @@ public class PartialUnbrandXoServer {
       return String.valueOf(value);
     }
 
-    @JsonCreator
+    
     public static StatusEnum fromValue(String value) {
       for (StatusEnum b : StatusEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      return new StatusEnum(value);
     }
   }
+
 
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable

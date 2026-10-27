@@ -9,12 +9,17 @@ part of 'with_href_partial_unbrand_xo_host.dart';
 const WithHrefPartialUnbrandXoHostTypeEnum
     _$withHrefPartialUnbrandXoHostTypeEnum_host =
     const WithHrefPartialUnbrandXoHostTypeEnum._('host');
+const WithHrefPartialUnbrandXoHostTypeEnum
+    _$withHrefPartialUnbrandXoHostTypeEnum_unknownDefaultOpenApi =
+    const WithHrefPartialUnbrandXoHostTypeEnum._('unknownDefaultOpenApi');
 
 WithHrefPartialUnbrandXoHostTypeEnum
     _$withHrefPartialUnbrandXoHostTypeEnumValueOf(String name) {
   switch (name) {
     case 'host':
       return _$withHrefPartialUnbrandXoHostTypeEnum_host;
+    case 'unknownDefaultOpenApi':
+      return _$withHrefPartialUnbrandXoHostTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -24,41 +29,8 @@ final BuiltSet<WithHrefPartialUnbrandXoHostTypeEnum>
     _$withHrefPartialUnbrandXoHostTypeEnumValues = BuiltSet<
         WithHrefPartialUnbrandXoHostTypeEnum>(const <WithHrefPartialUnbrandXoHostTypeEnum>[
   _$withHrefPartialUnbrandXoHostTypeEnum_host,
+  _$withHrefPartialUnbrandXoHostTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<WithHrefPartialUnbrandXoHostTypeEnum>
-    _$withHrefPartialUnbrandXoHostTypeEnumSerializer =
-    _$WithHrefPartialUnbrandXoHostTypeEnumSerializer();
-
-class _$WithHrefPartialUnbrandXoHostTypeEnumSerializer
-    implements PrimitiveSerializer<WithHrefPartialUnbrandXoHostTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'host': 'host',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'host': 'host',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    WithHrefPartialUnbrandXoHostTypeEnum
-  ];
-  @override
-  final String wireName = 'WithHrefPartialUnbrandXoHostTypeEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers, WithHrefPartialUnbrandXoHostTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  WithHrefPartialUnbrandXoHostTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      WithHrefPartialUnbrandXoHostTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$WithHrefPartialUnbrandXoHost extends WithHrefPartialUnbrandXoHost {
   @override

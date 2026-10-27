@@ -37,8 +37,6 @@ class CloneVmRequestAnyOf1(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['gzip', 'zstd']):
-            raise ValueError("must be one of enum values ('gzip', 'zstd')")
         return value
 
     model_config = ConfigDict(

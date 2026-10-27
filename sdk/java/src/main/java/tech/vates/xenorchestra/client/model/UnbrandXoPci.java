@@ -81,15 +81,16 @@ public class UnbrandXoPci {
   /**
    * Gets or Sets type
    */
-  public enum TypeEnum {
-    PCI(String.valueOf("PCI")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+  public static final class TypeEnum {
+    public static final TypeEnum PCI = new TypeEnum("PCI");
+    @JsonCreator public static TypeEnum fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static TypeEnum[] values() { return new TypeEnum[] {PCI}; }
+    @Override public boolean equals(Object other) { return other instanceof TypeEnum && value.equals(((TypeEnum) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-    private String value;
-
-    TypeEnum(String value) {
-      this.value = value;
+    private TypeEnum(String value) {
+      this.value = java.util.Objects.requireNonNull(value);
     }
 
     @JsonValue
@@ -102,16 +103,17 @@ public class UnbrandXoPci {
       return String.valueOf(value);
     }
 
-    @JsonCreator
+    
     public static TypeEnum fromValue(String value) {
       for (TypeEnum b : TypeEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      return new TypeEnum(value);
     }
   }
+
 
   public static final String JSON_PROPERTY_TYPE = "type";
   @javax.annotation.Nonnull

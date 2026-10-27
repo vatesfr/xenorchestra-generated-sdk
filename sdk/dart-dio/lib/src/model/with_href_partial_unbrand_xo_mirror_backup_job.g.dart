@@ -12,6 +12,10 @@ const WithHrefPartialUnbrandXoMirrorBackupJobModeEnum
 const WithHrefPartialUnbrandXoMirrorBackupJobModeEnum
     _$withHrefPartialUnbrandXoMirrorBackupJobModeEnum_delta =
     const WithHrefPartialUnbrandXoMirrorBackupJobModeEnum._('delta');
+const WithHrefPartialUnbrandXoMirrorBackupJobModeEnum
+    _$withHrefPartialUnbrandXoMirrorBackupJobModeEnum_unknownDefaultOpenApi =
+    const WithHrefPartialUnbrandXoMirrorBackupJobModeEnum._(
+        'unknownDefaultOpenApi');
 
 WithHrefPartialUnbrandXoMirrorBackupJobModeEnum
     _$withHrefPartialUnbrandXoMirrorBackupJobModeEnumValueOf(String name) {
@@ -20,6 +24,8 @@ WithHrefPartialUnbrandXoMirrorBackupJobModeEnum
       return _$withHrefPartialUnbrandXoMirrorBackupJobModeEnum_full;
     case 'delta':
       return _$withHrefPartialUnbrandXoMirrorBackupJobModeEnum_delta;
+    case 'unknownDefaultOpenApi':
+      return _$withHrefPartialUnbrandXoMirrorBackupJobModeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -30,17 +36,24 @@ final BuiltSet<WithHrefPartialUnbrandXoMirrorBackupJobModeEnum>
         WithHrefPartialUnbrandXoMirrorBackupJobModeEnum>(const <WithHrefPartialUnbrandXoMirrorBackupJobModeEnum>[
   _$withHrefPartialUnbrandXoMirrorBackupJobModeEnum_full,
   _$withHrefPartialUnbrandXoMirrorBackupJobModeEnum_delta,
+  _$withHrefPartialUnbrandXoMirrorBackupJobModeEnum_unknownDefaultOpenApi,
 ]);
 
 const WithHrefPartialUnbrandXoMirrorBackupJobTypeEnum
     _$withHrefPartialUnbrandXoMirrorBackupJobTypeEnum_mirrorBackup =
     const WithHrefPartialUnbrandXoMirrorBackupJobTypeEnum._('mirrorBackup');
+const WithHrefPartialUnbrandXoMirrorBackupJobTypeEnum
+    _$withHrefPartialUnbrandXoMirrorBackupJobTypeEnum_unknownDefaultOpenApi =
+    const WithHrefPartialUnbrandXoMirrorBackupJobTypeEnum._(
+        'unknownDefaultOpenApi');
 
 WithHrefPartialUnbrandXoMirrorBackupJobTypeEnum
     _$withHrefPartialUnbrandXoMirrorBackupJobTypeEnumValueOf(String name) {
   switch (name) {
     case 'mirrorBackup':
       return _$withHrefPartialUnbrandXoMirrorBackupJobTypeEnum_mirrorBackup;
+    case 'unknownDefaultOpenApi':
+      return _$withHrefPartialUnbrandXoMirrorBackupJobTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -50,78 +63,8 @@ final BuiltSet<WithHrefPartialUnbrandXoMirrorBackupJobTypeEnum>
     _$withHrefPartialUnbrandXoMirrorBackupJobTypeEnumValues = BuiltSet<
         WithHrefPartialUnbrandXoMirrorBackupJobTypeEnum>(const <WithHrefPartialUnbrandXoMirrorBackupJobTypeEnum>[
   _$withHrefPartialUnbrandXoMirrorBackupJobTypeEnum_mirrorBackup,
+  _$withHrefPartialUnbrandXoMirrorBackupJobTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<WithHrefPartialUnbrandXoMirrorBackupJobModeEnum>
-    _$withHrefPartialUnbrandXoMirrorBackupJobModeEnumSerializer =
-    _$WithHrefPartialUnbrandXoMirrorBackupJobModeEnumSerializer();
-Serializer<WithHrefPartialUnbrandXoMirrorBackupJobTypeEnum>
-    _$withHrefPartialUnbrandXoMirrorBackupJobTypeEnumSerializer =
-    _$WithHrefPartialUnbrandXoMirrorBackupJobTypeEnumSerializer();
-
-class _$WithHrefPartialUnbrandXoMirrorBackupJobModeEnumSerializer
-    implements
-        PrimitiveSerializer<WithHrefPartialUnbrandXoMirrorBackupJobModeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'full': 'full',
-    'delta': 'delta',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'full': 'full',
-    'delta': 'delta',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    WithHrefPartialUnbrandXoMirrorBackupJobModeEnum
-  ];
-  @override
-  final String wireName = 'WithHrefPartialUnbrandXoMirrorBackupJobModeEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          WithHrefPartialUnbrandXoMirrorBackupJobModeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  WithHrefPartialUnbrandXoMirrorBackupJobModeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      WithHrefPartialUnbrandXoMirrorBackupJobModeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
-
-class _$WithHrefPartialUnbrandXoMirrorBackupJobTypeEnumSerializer
-    implements
-        PrimitiveSerializer<WithHrefPartialUnbrandXoMirrorBackupJobTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'mirrorBackup': 'mirrorBackup',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'mirrorBackup': 'mirrorBackup',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    WithHrefPartialUnbrandXoMirrorBackupJobTypeEnum
-  ];
-  @override
-  final String wireName = 'WithHrefPartialUnbrandXoMirrorBackupJobTypeEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          WithHrefPartialUnbrandXoMirrorBackupJobTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  WithHrefPartialUnbrandXoMirrorBackupJobTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      WithHrefPartialUnbrandXoMirrorBackupJobTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$WithHrefPartialUnbrandXoMirrorBackupJob
     extends WithHrefPartialUnbrandXoMirrorBackupJob {
@@ -138,7 +81,7 @@ class _$WithHrefPartialUnbrandXoMirrorBackupJob
   @override
   final JsonObject? remotes;
   @override
-  final PartialUnbrandXoMirrorBackupJobSettings? settings;
+  final PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettings? settings;
   @override
   final String? sourceRemote;
   @override
@@ -250,10 +193,13 @@ class WithHrefPartialUnbrandXoMirrorBackupJobBuilder
   JsonObject? get remotes => _$this._remotes;
   set remotes(JsonObject? remotes) => _$this._remotes = remotes;
 
-  PartialUnbrandXoMirrorBackupJobSettingsBuilder? _settings;
-  PartialUnbrandXoMirrorBackupJobSettingsBuilder get settings =>
-      _$this._settings ??= PartialUnbrandXoMirrorBackupJobSettingsBuilder();
-  set settings(PartialUnbrandXoMirrorBackupJobSettingsBuilder? settings) =>
+  PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettingsBuilder? _settings;
+  PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettingsBuilder get settings =>
+      _$this._settings ??=
+          PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettingsBuilder();
+  set settings(
+          PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettingsBuilder?
+              settings) =>
       _$this._settings = settings;
 
   String? _sourceRemote;

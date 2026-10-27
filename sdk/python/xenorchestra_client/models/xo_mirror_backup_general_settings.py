@@ -43,15 +43,11 @@ class XoMirrorBackupGeneralSettings(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['compactMjml']):
-            raise ValueError("must be one of enum values ('compactMjml')")
         return value
 
     @field_validator('report_when')
     def report_when_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['failure']):
-            raise ValueError("must be one of enum values ('failure')")
         return value
 
     model_config = ConfigDict(

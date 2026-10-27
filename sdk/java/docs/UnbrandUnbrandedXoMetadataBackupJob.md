@@ -12,7 +12,7 @@
 |**pools** | **Object** |  |  [optional] |
 |**proxy** | **String** |  |  [optional] |
 |**remotes** | **Object** |  |  |
-|**settings** | [**PartialUnbrandAnyXoBackupJobAnyOf1Settings**](PartialUnbrandAnyXoBackupJobAnyOf1Settings.md) |  |  |
+|**settings** | [**PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings**](PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings.md) |  |  |
 |**type** | [**TypeEnum**](#TypeEnum) |  |  |
 |**userId** | **String** |  |  |
 |**xoMetadata** | **Boolean** |  |  [optional] |

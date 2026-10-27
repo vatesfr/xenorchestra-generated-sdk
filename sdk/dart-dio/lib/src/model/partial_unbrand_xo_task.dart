@@ -358,9 +358,13 @@ class PartialUnbrandXoTaskStatusEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'success')
   static const PartialUnbrandXoTaskStatusEnum success =
       _$partialUnbrandXoTaskStatusEnum_success;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const PartialUnbrandXoTaskStatusEnum unknownDefaultOpenApi =
+      _$partialUnbrandXoTaskStatusEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<PartialUnbrandXoTaskStatusEnum> get serializer =>
-      _$partialUnbrandXoTaskStatusEnumSerializer;
+      _OpenPartialUnbrandXoTaskStatusEnumSerializer();
 
   const PartialUnbrandXoTaskStatusEnum._(String name) : super(name);
 
@@ -368,4 +372,57 @@ class PartialUnbrandXoTaskStatusEnum extends EnumClass {
       _$partialUnbrandXoTaskStatusEnumValues;
   static PartialUnbrandXoTaskStatusEnum valueOf(String name) =>
       _$partialUnbrandXoTaskStatusEnumValueOf(name);
+
+  static PartialUnbrandXoTaskStatusEnum fromValue(String value) {
+    switch (value) {
+      case r'failure':
+        return failure;
+      case r'interrupted':
+        return interrupted;
+      case r'pending':
+        return pending;
+      case r'success':
+        return success;
+      default:
+        return PartialUnbrandXoTaskStatusEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, failure)) return r'failure';
+    if (identical(this, interrupted)) return r'interrupted';
+    if (identical(this, pending)) return r'pending';
+    if (identical(this, success)) return r'success';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is PartialUnbrandXoTaskStatusEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenPartialUnbrandXoTaskStatusEnumSerializer
+    implements PrimitiveSerializer<PartialUnbrandXoTaskStatusEnum> {
+  @override
+  final Iterable<Type> types = const [PartialUnbrandXoTaskStatusEnum];
+  @override
+  final String wireName = 'PartialUnbrandXoTaskStatusEnum';
+  @override
+  Object serialize(
+          Serializers serializers, PartialUnbrandXoTaskStatusEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  PartialUnbrandXoTaskStatusEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for PartialUnbrandXoTaskStatusEnum');
+    return PartialUnbrandXoTaskStatusEnum.fromValue(serialized);
+  }
 }

@@ -12,6 +12,10 @@ const XoBackupJobGeneralSettingsBackupReportTplEnum
 const XoBackupJobGeneralSettingsBackupReportTplEnum
     _$xoBackupJobGeneralSettingsBackupReportTplEnum_mjml =
     const XoBackupJobGeneralSettingsBackupReportTplEnum._('mjml');
+const XoBackupJobGeneralSettingsBackupReportTplEnum
+    _$xoBackupJobGeneralSettingsBackupReportTplEnum_unknownDefaultOpenApi =
+    const XoBackupJobGeneralSettingsBackupReportTplEnum._(
+        'unknownDefaultOpenApi');
 
 XoBackupJobGeneralSettingsBackupReportTplEnum
     _$xoBackupJobGeneralSettingsBackupReportTplEnumValueOf(String name) {
@@ -20,6 +24,8 @@ XoBackupJobGeneralSettingsBackupReportTplEnum
       return _$xoBackupJobGeneralSettingsBackupReportTplEnum_compactMjml;
     case 'mjml':
       return _$xoBackupJobGeneralSettingsBackupReportTplEnum_mjml;
+    case 'unknownDefaultOpenApi':
+      return _$xoBackupJobGeneralSettingsBackupReportTplEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -30,6 +36,7 @@ final BuiltSet<XoBackupJobGeneralSettingsBackupReportTplEnum>
         XoBackupJobGeneralSettingsBackupReportTplEnum>(const <XoBackupJobGeneralSettingsBackupReportTplEnum>[
   _$xoBackupJobGeneralSettingsBackupReportTplEnum_compactMjml,
   _$xoBackupJobGeneralSettingsBackupReportTplEnum_mjml,
+  _$xoBackupJobGeneralSettingsBackupReportTplEnum_unknownDefaultOpenApi,
 ]);
 
 const XoBackupJobGeneralSettingsReportWhenEnum
@@ -44,6 +51,9 @@ const XoBackupJobGeneralSettingsReportWhenEnum
 const XoBackupJobGeneralSettingsReportWhenEnum
     _$xoBackupJobGeneralSettingsReportWhenEnum_never =
     const XoBackupJobGeneralSettingsReportWhenEnum._('never');
+const XoBackupJobGeneralSettingsReportWhenEnum
+    _$xoBackupJobGeneralSettingsReportWhenEnum_unknownDefaultOpenApi =
+    const XoBackupJobGeneralSettingsReportWhenEnum._('unknownDefaultOpenApi');
 
 XoBackupJobGeneralSettingsReportWhenEnum
     _$xoBackupJobGeneralSettingsReportWhenEnumValueOf(String name) {
@@ -56,6 +66,8 @@ XoBackupJobGeneralSettingsReportWhenEnum
       return _$xoBackupJobGeneralSettingsReportWhenEnum_failure;
     case 'never':
       return _$xoBackupJobGeneralSettingsReportWhenEnum_never;
+    case 'unknownDefaultOpenApi':
+      return _$xoBackupJobGeneralSettingsReportWhenEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -68,83 +80,8 @@ final BuiltSet<XoBackupJobGeneralSettingsReportWhenEnum>
   _$xoBackupJobGeneralSettingsReportWhenEnum_error,
   _$xoBackupJobGeneralSettingsReportWhenEnum_failure,
   _$xoBackupJobGeneralSettingsReportWhenEnum_never,
+  _$xoBackupJobGeneralSettingsReportWhenEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<XoBackupJobGeneralSettingsBackupReportTplEnum>
-    _$xoBackupJobGeneralSettingsBackupReportTplEnumSerializer =
-    _$XoBackupJobGeneralSettingsBackupReportTplEnumSerializer();
-Serializer<XoBackupJobGeneralSettingsReportWhenEnum>
-    _$xoBackupJobGeneralSettingsReportWhenEnumSerializer =
-    _$XoBackupJobGeneralSettingsReportWhenEnumSerializer();
-
-class _$XoBackupJobGeneralSettingsBackupReportTplEnumSerializer
-    implements
-        PrimitiveSerializer<XoBackupJobGeneralSettingsBackupReportTplEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'compactMjml': 'compactMjml',
-    'mjml': 'mjml',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'compactMjml': 'compactMjml',
-    'mjml': 'mjml',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    XoBackupJobGeneralSettingsBackupReportTplEnum
-  ];
-  @override
-  final String wireName = 'XoBackupJobGeneralSettingsBackupReportTplEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          XoBackupJobGeneralSettingsBackupReportTplEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  XoBackupJobGeneralSettingsBackupReportTplEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      XoBackupJobGeneralSettingsBackupReportTplEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
-
-class _$XoBackupJobGeneralSettingsReportWhenEnumSerializer
-    implements PrimitiveSerializer<XoBackupJobGeneralSettingsReportWhenEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'always': 'always',
-    'error': 'error',
-    'failure': 'failure',
-    'never': 'never',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'always': 'always',
-    'error': 'error',
-    'failure': 'failure',
-    'never': 'never',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    XoBackupJobGeneralSettingsReportWhenEnum
-  ];
-  @override
-  final String wireName = 'XoBackupJobGeneralSettingsReportWhenEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          XoBackupJobGeneralSettingsReportWhenEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  XoBackupJobGeneralSettingsReportWhenEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      XoBackupJobGeneralSettingsReportWhenEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$XoBackupJobGeneralSettings extends XoBackupJobGeneralSettings {
   @override

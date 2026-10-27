@@ -120,6 +120,10 @@ const PartialUnbrandXoTaskPropertiesObjectTypeEnum
 const PartialUnbrandXoTaskPropertiesObjectTypeEnum
     _$partialUnbrandXoTaskPropertiesObjectTypeEnum_aclRole =
     const PartialUnbrandXoTaskPropertiesObjectTypeEnum._('aclRole');
+const PartialUnbrandXoTaskPropertiesObjectTypeEnum
+    _$partialUnbrandXoTaskPropertiesObjectTypeEnum_unknownDefaultOpenApi =
+    const PartialUnbrandXoTaskPropertiesObjectTypeEnum._(
+        'unknownDefaultOpenApi');
 
 PartialUnbrandXoTaskPropertiesObjectTypeEnum
     _$partialUnbrandXoTaskPropertiesObjectTypeEnumValueOf(String name) {
@@ -200,6 +204,8 @@ PartialUnbrandXoTaskPropertiesObjectTypeEnum
       return _$partialUnbrandXoTaskPropertiesObjectTypeEnum_aclPrivilege;
     case 'aclRole':
       return _$partialUnbrandXoTaskPropertiesObjectTypeEnum_aclRole;
+    case 'unknownDefaultOpenApi':
+      return _$partialUnbrandXoTaskPropertiesObjectTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -246,116 +252,8 @@ final BuiltSet<PartialUnbrandXoTaskPropertiesObjectTypeEnum>
   _$partialUnbrandXoTaskPropertiesObjectTypeEnum_server,
   _$partialUnbrandXoTaskPropertiesObjectTypeEnum_aclPrivilege,
   _$partialUnbrandXoTaskPropertiesObjectTypeEnum_aclRole,
+  _$partialUnbrandXoTaskPropertiesObjectTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<PartialUnbrandXoTaskPropertiesObjectTypeEnum>
-    _$partialUnbrandXoTaskPropertiesObjectTypeEnumSerializer =
-    _$PartialUnbrandXoTaskPropertiesObjectTypeEnumSerializer();
-
-class _$PartialUnbrandXoTaskPropertiesObjectTypeEnumSerializer
-    implements
-        PrimitiveSerializer<PartialUnbrandXoTaskPropertiesObjectTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'backup': 'backup',
-    'pool': 'pool',
-    'VBD': 'VBD',
-    'host': 'host',
-    'VIF': 'VIF',
-    'VTPM': 'VTPM',
-    'vMSnapshot': 'VM-snapshot',
-    'SR': 'SR',
-    'VM': 'VM',
-    'vMTemplate': 'VM-template',
-    'message': 'message',
-    'vgpu': 'vgpu',
-    'gpuGroup': 'gpuGroup',
-    'network': 'network',
-    'PBD': 'PBD',
-    'PCI': 'PCI',
-    'PGPU': 'PGPU',
-    'PIF': 'PIF',
-    'VDI': 'VDI',
-    'vDISnapshot': 'VDI-snapshot',
-    'vDIUnmanaged': 'VDI-unmanaged',
-    'vgpuType': 'vgpuType',
-    'vMController': 'VM-controller',
-    'SM': 'SM',
-    'user': 'user',
-    'proxy': 'proxy',
-    'task': 'task',
-    'backupArchive': 'backup-archive',
-    'backupJob': 'backup-job',
-    'backupLog': 'backup-log',
-    'backupRepository': 'backup-repository',
-    'group': 'group',
-    'restore': 'restore',
-    'restoreLog': 'restore-log',
-    'schedule': 'schedule',
-    'server': 'server',
-    'aclPrivilege': 'acl-privilege',
-    'aclRole': 'acl-role',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'backup': 'backup',
-    'pool': 'pool',
-    'VBD': 'VBD',
-    'host': 'host',
-    'VIF': 'VIF',
-    'VTPM': 'VTPM',
-    'VM-snapshot': 'vMSnapshot',
-    'SR': 'SR',
-    'VM': 'VM',
-    'VM-template': 'vMTemplate',
-    'message': 'message',
-    'vgpu': 'vgpu',
-    'gpuGroup': 'gpuGroup',
-    'network': 'network',
-    'PBD': 'PBD',
-    'PCI': 'PCI',
-    'PGPU': 'PGPU',
-    'PIF': 'PIF',
-    'VDI': 'VDI',
-    'VDI-snapshot': 'vDISnapshot',
-    'VDI-unmanaged': 'vDIUnmanaged',
-    'vgpuType': 'vgpuType',
-    'VM-controller': 'vMController',
-    'SM': 'SM',
-    'user': 'user',
-    'proxy': 'proxy',
-    'task': 'task',
-    'backup-archive': 'backupArchive',
-    'backup-job': 'backupJob',
-    'backup-log': 'backupLog',
-    'backup-repository': 'backupRepository',
-    'group': 'group',
-    'restore': 'restore',
-    'restore-log': 'restoreLog',
-    'schedule': 'schedule',
-    'server': 'server',
-    'acl-privilege': 'aclPrivilege',
-    'acl-role': 'aclRole',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    PartialUnbrandXoTaskPropertiesObjectTypeEnum
-  ];
-  @override
-  final String wireName = 'PartialUnbrandXoTaskPropertiesObjectTypeEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          PartialUnbrandXoTaskPropertiesObjectTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  PartialUnbrandXoTaskPropertiesObjectTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      PartialUnbrandXoTaskPropertiesObjectTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$PartialUnbrandXoTaskProperties extends PartialUnbrandXoTaskProperties {
   @override

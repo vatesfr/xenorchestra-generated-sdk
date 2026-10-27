@@ -8,11 +8,16 @@ part of 'partial_unbrand_xo_pci.dart';
 
 const PartialUnbrandXoPciTypeEnum _$partialUnbrandXoPciTypeEnum_PCI =
     const PartialUnbrandXoPciTypeEnum._('PCI');
+const PartialUnbrandXoPciTypeEnum
+    _$partialUnbrandXoPciTypeEnum_unknownDefaultOpenApi =
+    const PartialUnbrandXoPciTypeEnum._('unknownDefaultOpenApi');
 
 PartialUnbrandXoPciTypeEnum _$partialUnbrandXoPciTypeEnumValueOf(String name) {
   switch (name) {
     case 'PCI':
       return _$partialUnbrandXoPciTypeEnum_PCI;
+    case 'unknownDefaultOpenApi':
+      return _$partialUnbrandXoPciTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -22,38 +27,8 @@ final BuiltSet<PartialUnbrandXoPciTypeEnum>
     _$partialUnbrandXoPciTypeEnumValues =
     BuiltSet<PartialUnbrandXoPciTypeEnum>(const <PartialUnbrandXoPciTypeEnum>[
   _$partialUnbrandXoPciTypeEnum_PCI,
+  _$partialUnbrandXoPciTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<PartialUnbrandXoPciTypeEnum>
-    _$partialUnbrandXoPciTypeEnumSerializer =
-    _$PartialUnbrandXoPciTypeEnumSerializer();
-
-class _$PartialUnbrandXoPciTypeEnumSerializer
-    implements PrimitiveSerializer<PartialUnbrandXoPciTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'PCI': 'PCI',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'PCI': 'PCI',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[PartialUnbrandXoPciTypeEnum];
-  @override
-  final String wireName = 'PartialUnbrandXoPciTypeEnum';
-
-  @override
-  Object serialize(Serializers serializers, PartialUnbrandXoPciTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  PartialUnbrandXoPciTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      PartialUnbrandXoPciTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$PartialUnbrandXoPci extends PartialUnbrandXoPci {
   @override

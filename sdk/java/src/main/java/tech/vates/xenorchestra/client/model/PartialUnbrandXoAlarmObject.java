@@ -46,61 +46,39 @@ public class PartialUnbrandXoAlarmObject {
   /**
    * Gets or Sets type
    */
-  public enum TypeEnum {
-    POOL(String.valueOf("pool")),
-    
-    VBD(String.valueOf("VBD")),
-    
-    HOST(String.valueOf("host")),
-    
-    VIF(String.valueOf("VIF")),
-    
-    VTPM(String.valueOf("VTPM")),
-    
-    VM_SNAPSHOT(String.valueOf("VM-snapshot")),
-    
-    SR(String.valueOf("SR")),
-    
-    VM(String.valueOf("VM")),
-    
-    VM_TEMPLATE(String.valueOf("VM-template")),
-    
-    MESSAGE(String.valueOf("message")),
-    
-    VGPU(String.valueOf("vgpu")),
-    
-    GPU_GROUP(String.valueOf("gpuGroup")),
-    
-    NETWORK(String.valueOf("network")),
-    
-    PBD(String.valueOf("PBD")),
-    
-    PCI(String.valueOf("PCI")),
-    
-    PGPU(String.valueOf("PGPU")),
-    
-    PIF(String.valueOf("PIF")),
-    
-    VDI(String.valueOf("VDI")),
-    
-    VDI_SNAPSHOT(String.valueOf("VDI-snapshot")),
-    
-    VDI_UNMANAGED(String.valueOf("VDI-unmanaged")),
-    
-    VGPU_TYPE(String.valueOf("vgpuType")),
-    
-    VM_CONTROLLER(String.valueOf("VM-controller")),
-    
-    SM(String.valueOf("SM")),
-    
-    UNKNOWN(String.valueOf("unknown")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+  public static final class TypeEnum {
+    public static final TypeEnum POOL = new TypeEnum("pool");
+    public static final TypeEnum VBD = new TypeEnum("VBD");
+    public static final TypeEnum HOST = new TypeEnum("host");
+    public static final TypeEnum VIF = new TypeEnum("VIF");
+    public static final TypeEnum VTPM = new TypeEnum("VTPM");
+    public static final TypeEnum VM_SNAPSHOT = new TypeEnum("VM-snapshot");
+    public static final TypeEnum SR = new TypeEnum("SR");
+    public static final TypeEnum VM = new TypeEnum("VM");
+    public static final TypeEnum VM_TEMPLATE = new TypeEnum("VM-template");
+    public static final TypeEnum MESSAGE = new TypeEnum("message");
+    public static final TypeEnum VGPU = new TypeEnum("vgpu");
+    public static final TypeEnum GPU_GROUP = new TypeEnum("gpuGroup");
+    public static final TypeEnum NETWORK = new TypeEnum("network");
+    public static final TypeEnum PBD = new TypeEnum("PBD");
+    public static final TypeEnum PCI = new TypeEnum("PCI");
+    public static final TypeEnum PGPU = new TypeEnum("PGPU");
+    public static final TypeEnum PIF = new TypeEnum("PIF");
+    public static final TypeEnum VDI = new TypeEnum("VDI");
+    public static final TypeEnum VDI_SNAPSHOT = new TypeEnum("VDI-snapshot");
+    public static final TypeEnum VDI_UNMANAGED = new TypeEnum("VDI-unmanaged");
+    public static final TypeEnum VGPU_TYPE = new TypeEnum("vgpuType");
+    public static final TypeEnum VM_CONTROLLER = new TypeEnum("VM-controller");
+    public static final TypeEnum SM = new TypeEnum("SM");
+    public static final TypeEnum UNKNOWN = new TypeEnum("unknown");
+    @JsonCreator public static TypeEnum fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static TypeEnum[] values() { return new TypeEnum[] {POOL, VBD, HOST, VIF, VTPM, VM_SNAPSHOT, SR, VM, VM_TEMPLATE, MESSAGE, VGPU, GPU_GROUP, NETWORK, PBD, PCI, PGPU, PIF, VDI, VDI_SNAPSHOT, VDI_UNMANAGED, VGPU_TYPE, VM_CONTROLLER, SM, UNKNOWN}; }
+    @Override public boolean equals(Object other) { return other instanceof TypeEnum && value.equals(((TypeEnum) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-    private String value;
-
-    TypeEnum(String value) {
-      this.value = value;
+    private TypeEnum(String value) {
+      this.value = java.util.Objects.requireNonNull(value);
     }
 
     @JsonValue
@@ -113,16 +91,17 @@ public class PartialUnbrandXoAlarmObject {
       return String.valueOf(value);
     }
 
-    @JsonCreator
+    
     public static TypeEnum fromValue(String value) {
       for (TypeEnum b : TypeEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      return new TypeEnum(value);
     }
   }
+
 
   public static final String JSON_PROPERTY_TYPE = "type";
   @javax.annotation.Nonnull

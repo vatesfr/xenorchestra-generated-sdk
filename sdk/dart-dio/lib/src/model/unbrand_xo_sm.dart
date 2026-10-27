@@ -339,9 +339,13 @@ class _$UnbrandXoSmSerializer implements PrimitiveSerializer<UnbrandXoSm> {
 class UnbrandXoSmTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'SM')
   static const UnbrandXoSmTypeEnum SM = _$unbrandXoSmTypeEnum_SM;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UnbrandXoSmTypeEnum unknownDefaultOpenApi =
+      _$unbrandXoSmTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UnbrandXoSmTypeEnum> get serializer =>
-      _$unbrandXoSmTypeEnumSerializer;
+      _OpenUnbrandXoSmTypeEnumSerializer();
 
   const UnbrandXoSmTypeEnum._(String name) : super(name);
 
@@ -349,4 +353,45 @@ class UnbrandXoSmTypeEnum extends EnumClass {
       _$unbrandXoSmTypeEnumValues;
   static UnbrandXoSmTypeEnum valueOf(String name) =>
       _$unbrandXoSmTypeEnumValueOf(name);
+
+  static UnbrandXoSmTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'SM':
+        return SM;
+      default:
+        return UnbrandXoSmTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, SM)) return r'SM';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UnbrandXoSmTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUnbrandXoSmTypeEnumSerializer
+    implements PrimitiveSerializer<UnbrandXoSmTypeEnum> {
+  @override
+  final Iterable<Type> types = const [UnbrandXoSmTypeEnum];
+  @override
+  final String wireName = 'UnbrandXoSmTypeEnum';
+  @override
+  Object serialize(Serializers serializers, UnbrandXoSmTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UnbrandXoSmTypeEnum deserialize(Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError('Expected a string for UnbrandXoSmTypeEnum');
+    return UnbrandXoSmTypeEnum.fromValue(serialized);
+  }
 }

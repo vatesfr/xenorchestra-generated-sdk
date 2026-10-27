@@ -25,10 +25,53 @@ impl PingResponse {
     }
 }
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum Result {
-    #[serde(rename = "pong")]
     Pong,
+    UnknownValue(String),
+}
+impl Result {
+    pub fn as_str(&self) -> &str {
+        match self {
+            Self::Pong => "pong",
+            Self::UnknownValue(value) => value,
+        }
+    }
+}
+impl From<String> for Result {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "pong" => Self::Pong,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for Result {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for Result {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for Result {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for Result {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
+    }
 }
 
 impl Default for Result {

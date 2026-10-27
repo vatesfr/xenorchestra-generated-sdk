@@ -15,6 +15,10 @@ const WithHrefPartialUnbrandAnyXoBackupJobCompressionEnum
 const WithHrefPartialUnbrandAnyXoBackupJobCompressionEnum
     _$withHrefPartialUnbrandAnyXoBackupJobCompressionEnum_native_ =
     const WithHrefPartialUnbrandAnyXoBackupJobCompressionEnum._('native_');
+const WithHrefPartialUnbrandAnyXoBackupJobCompressionEnum
+    _$withHrefPartialUnbrandAnyXoBackupJobCompressionEnum_unknownDefaultOpenApi =
+    const WithHrefPartialUnbrandAnyXoBackupJobCompressionEnum._(
+        'unknownDefaultOpenApi');
 
 WithHrefPartialUnbrandAnyXoBackupJobCompressionEnum
     _$withHrefPartialUnbrandAnyXoBackupJobCompressionEnumValueOf(String name) {
@@ -25,6 +29,8 @@ WithHrefPartialUnbrandAnyXoBackupJobCompressionEnum
       return _$withHrefPartialUnbrandAnyXoBackupJobCompressionEnum_zstd;
     case 'native_':
       return _$withHrefPartialUnbrandAnyXoBackupJobCompressionEnum_native_;
+    case 'unknownDefaultOpenApi':
+      return _$withHrefPartialUnbrandAnyXoBackupJobCompressionEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -36,6 +42,7 @@ final BuiltSet<WithHrefPartialUnbrandAnyXoBackupJobCompressionEnum>
   _$withHrefPartialUnbrandAnyXoBackupJobCompressionEnum_empty,
   _$withHrefPartialUnbrandAnyXoBackupJobCompressionEnum_zstd,
   _$withHrefPartialUnbrandAnyXoBackupJobCompressionEnum_native_,
+  _$withHrefPartialUnbrandAnyXoBackupJobCompressionEnum_unknownDefaultOpenApi,
 ]);
 
 const WithHrefPartialUnbrandAnyXoBackupJobModeEnum
@@ -44,6 +51,10 @@ const WithHrefPartialUnbrandAnyXoBackupJobModeEnum
 const WithHrefPartialUnbrandAnyXoBackupJobModeEnum
     _$withHrefPartialUnbrandAnyXoBackupJobModeEnum_delta =
     const WithHrefPartialUnbrandAnyXoBackupJobModeEnum._('delta');
+const WithHrefPartialUnbrandAnyXoBackupJobModeEnum
+    _$withHrefPartialUnbrandAnyXoBackupJobModeEnum_unknownDefaultOpenApi =
+    const WithHrefPartialUnbrandAnyXoBackupJobModeEnum._(
+        'unknownDefaultOpenApi');
 
 WithHrefPartialUnbrandAnyXoBackupJobModeEnum
     _$withHrefPartialUnbrandAnyXoBackupJobModeEnumValueOf(String name) {
@@ -52,6 +63,8 @@ WithHrefPartialUnbrandAnyXoBackupJobModeEnum
       return _$withHrefPartialUnbrandAnyXoBackupJobModeEnum_full;
     case 'delta':
       return _$withHrefPartialUnbrandAnyXoBackupJobModeEnum_delta;
+    case 'unknownDefaultOpenApi':
+      return _$withHrefPartialUnbrandAnyXoBackupJobModeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -62,6 +75,7 @@ final BuiltSet<WithHrefPartialUnbrandAnyXoBackupJobModeEnum>
         WithHrefPartialUnbrandAnyXoBackupJobModeEnum>(const <WithHrefPartialUnbrandAnyXoBackupJobModeEnum>[
   _$withHrefPartialUnbrandAnyXoBackupJobModeEnum_full,
   _$withHrefPartialUnbrandAnyXoBackupJobModeEnum_delta,
+  _$withHrefPartialUnbrandAnyXoBackupJobModeEnum_unknownDefaultOpenApi,
 ]);
 
 const WithHrefPartialUnbrandAnyXoBackupJobTypeEnum
@@ -73,6 +87,10 @@ const WithHrefPartialUnbrandAnyXoBackupJobTypeEnum
 const WithHrefPartialUnbrandAnyXoBackupJobTypeEnum
     _$withHrefPartialUnbrandAnyXoBackupJobTypeEnum_mirrorBackup =
     const WithHrefPartialUnbrandAnyXoBackupJobTypeEnum._('mirrorBackup');
+const WithHrefPartialUnbrandAnyXoBackupJobTypeEnum
+    _$withHrefPartialUnbrandAnyXoBackupJobTypeEnum_unknownDefaultOpenApi =
+    const WithHrefPartialUnbrandAnyXoBackupJobTypeEnum._(
+        'unknownDefaultOpenApi');
 
 WithHrefPartialUnbrandAnyXoBackupJobTypeEnum
     _$withHrefPartialUnbrandAnyXoBackupJobTypeEnumValueOf(String name) {
@@ -83,6 +101,8 @@ WithHrefPartialUnbrandAnyXoBackupJobTypeEnum
       return _$withHrefPartialUnbrandAnyXoBackupJobTypeEnum_metadataBackup;
     case 'mirrorBackup':
       return _$withHrefPartialUnbrandAnyXoBackupJobTypeEnum_mirrorBackup;
+    case 'unknownDefaultOpenApi':
+      return _$withHrefPartialUnbrandAnyXoBackupJobTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -94,177 +114,20 @@ final BuiltSet<WithHrefPartialUnbrandAnyXoBackupJobTypeEnum>
   _$withHrefPartialUnbrandAnyXoBackupJobTypeEnum_backup,
   _$withHrefPartialUnbrandAnyXoBackupJobTypeEnum_metadataBackup,
   _$withHrefPartialUnbrandAnyXoBackupJobTypeEnum_mirrorBackup,
+  _$withHrefPartialUnbrandAnyXoBackupJobTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<WithHrefPartialUnbrandAnyXoBackupJobCompressionEnum>
-    _$withHrefPartialUnbrandAnyXoBackupJobCompressionEnumSerializer =
-    _$WithHrefPartialUnbrandAnyXoBackupJobCompressionEnumSerializer();
-Serializer<WithHrefPartialUnbrandAnyXoBackupJobModeEnum>
-    _$withHrefPartialUnbrandAnyXoBackupJobModeEnumSerializer =
-    _$WithHrefPartialUnbrandAnyXoBackupJobModeEnumSerializer();
-Serializer<WithHrefPartialUnbrandAnyXoBackupJobTypeEnum>
-    _$withHrefPartialUnbrandAnyXoBackupJobTypeEnumSerializer =
-    _$WithHrefPartialUnbrandAnyXoBackupJobTypeEnumSerializer();
-
-class _$WithHrefPartialUnbrandAnyXoBackupJobCompressionEnumSerializer
-    implements
-        PrimitiveSerializer<
-            WithHrefPartialUnbrandAnyXoBackupJobCompressionEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'empty': '',
-    'zstd': 'zstd',
-    'native_': 'native',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    '': 'empty',
-    'zstd': 'zstd',
-    'native': 'native_',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    WithHrefPartialUnbrandAnyXoBackupJobCompressionEnum
-  ];
-  @override
-  final String wireName = 'WithHrefPartialUnbrandAnyXoBackupJobCompressionEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          WithHrefPartialUnbrandAnyXoBackupJobCompressionEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  WithHrefPartialUnbrandAnyXoBackupJobCompressionEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      WithHrefPartialUnbrandAnyXoBackupJobCompressionEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
-
-class _$WithHrefPartialUnbrandAnyXoBackupJobModeEnumSerializer
-    implements
-        PrimitiveSerializer<WithHrefPartialUnbrandAnyXoBackupJobModeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'full': 'full',
-    'delta': 'delta',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'full': 'full',
-    'delta': 'delta',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    WithHrefPartialUnbrandAnyXoBackupJobModeEnum
-  ];
-  @override
-  final String wireName = 'WithHrefPartialUnbrandAnyXoBackupJobModeEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          WithHrefPartialUnbrandAnyXoBackupJobModeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  WithHrefPartialUnbrandAnyXoBackupJobModeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      WithHrefPartialUnbrandAnyXoBackupJobModeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
-
-class _$WithHrefPartialUnbrandAnyXoBackupJobTypeEnumSerializer
-    implements
-        PrimitiveSerializer<WithHrefPartialUnbrandAnyXoBackupJobTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'backup': 'backup',
-    'metadataBackup': 'metadataBackup',
-    'mirrorBackup': 'mirrorBackup',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'backup': 'backup',
-    'metadataBackup': 'metadataBackup',
-    'mirrorBackup': 'mirrorBackup',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    WithHrefPartialUnbrandAnyXoBackupJobTypeEnum
-  ];
-  @override
-  final String wireName = 'WithHrefPartialUnbrandAnyXoBackupJobTypeEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          WithHrefPartialUnbrandAnyXoBackupJobTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  WithHrefPartialUnbrandAnyXoBackupJobTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      WithHrefPartialUnbrandAnyXoBackupJobTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$WithHrefPartialUnbrandAnyXoBackupJob
     extends WithHrefPartialUnbrandAnyXoBackupJob {
   @override
-  final WithHrefPartialUnbrandAnyXoBackupJobCompressionEnum? compression;
-  @override
-  final String href;
-  @override
-  final String? id;
-  @override
-  final WithHrefPartialUnbrandAnyXoBackupJobModeEnum? mode;
-  @override
-  final String? name;
-  @override
-  final JsonObject? pools;
-  @override
-  final String? proxy;
-  @override
-  final JsonObject? remotes;
-  @override
-  final PartialUnbrandAnyXoBackupJobSettings? settings;
-  @override
-  final String? sourceRemote;
-  @override
-  final JsonObject? srs;
-  @override
-  final WithHrefPartialUnbrandAnyXoBackupJobTypeEnum? type;
-  @override
-  final String? userId;
-  @override
-  final JsonObject? vms;
-  @override
-  final bool? xoMetadata;
+  final AnyOf anyOf;
 
   factory _$WithHrefPartialUnbrandAnyXoBackupJob(
           [void Function(WithHrefPartialUnbrandAnyXoBackupJobBuilder)?
               updates]) =>
       (WithHrefPartialUnbrandAnyXoBackupJobBuilder()..update(updates))._build();
 
-  _$WithHrefPartialUnbrandAnyXoBackupJob._(
-      {this.compression,
-      required this.href,
-      this.id,
-      this.mode,
-      this.name,
-      this.pools,
-      this.proxy,
-      this.remotes,
-      this.settings,
-      this.sourceRemote,
-      this.srs,
-      this.type,
-      this.userId,
-      this.vms,
-      this.xoMetadata})
-      : super._();
+  _$WithHrefPartialUnbrandAnyXoBackupJob._({required this.anyOf}) : super._();
   @override
   WithHrefPartialUnbrandAnyXoBackupJob rebuild(
           void Function(WithHrefPartialUnbrandAnyXoBackupJobBuilder) updates) =>
@@ -278,41 +141,13 @@ class _$WithHrefPartialUnbrandAnyXoBackupJob
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is WithHrefPartialUnbrandAnyXoBackupJob &&
-        compression == other.compression &&
-        href == other.href &&
-        id == other.id &&
-        mode == other.mode &&
-        name == other.name &&
-        pools == other.pools &&
-        proxy == other.proxy &&
-        remotes == other.remotes &&
-        settings == other.settings &&
-        sourceRemote == other.sourceRemote &&
-        srs == other.srs &&
-        type == other.type &&
-        userId == other.userId &&
-        vms == other.vms &&
-        xoMetadata == other.xoMetadata;
+        anyOf == other.anyOf;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, compression.hashCode);
-    _$hash = $jc(_$hash, href.hashCode);
-    _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, mode.hashCode);
-    _$hash = $jc(_$hash, name.hashCode);
-    _$hash = $jc(_$hash, pools.hashCode);
-    _$hash = $jc(_$hash, proxy.hashCode);
-    _$hash = $jc(_$hash, remotes.hashCode);
-    _$hash = $jc(_$hash, settings.hashCode);
-    _$hash = $jc(_$hash, sourceRemote.hashCode);
-    _$hash = $jc(_$hash, srs.hashCode);
-    _$hash = $jc(_$hash, type.hashCode);
-    _$hash = $jc(_$hash, userId.hashCode);
-    _$hash = $jc(_$hash, vms.hashCode);
-    _$hash = $jc(_$hash, xoMetadata.hashCode);
+    _$hash = $jc(_$hash, anyOf.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -320,21 +155,7 @@ class _$WithHrefPartialUnbrandAnyXoBackupJob
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'WithHrefPartialUnbrandAnyXoBackupJob')
-          ..add('compression', compression)
-          ..add('href', href)
-          ..add('id', id)
-          ..add('mode', mode)
-          ..add('name', name)
-          ..add('pools', pools)
-          ..add('proxy', proxy)
-          ..add('remotes', remotes)
-          ..add('settings', settings)
-          ..add('sourceRemote', sourceRemote)
-          ..add('srs', srs)
-          ..add('type', type)
-          ..add('userId', userId)
-          ..add('vms', vms)
-          ..add('xoMetadata', xoMetadata))
+          ..add('anyOf', anyOf))
         .toString();
   }
 }
@@ -345,72 +166,9 @@ class WithHrefPartialUnbrandAnyXoBackupJobBuilder
             WithHrefPartialUnbrandAnyXoBackupJobBuilder> {
   _$WithHrefPartialUnbrandAnyXoBackupJob? _$v;
 
-  WithHrefPartialUnbrandAnyXoBackupJobCompressionEnum? _compression;
-  WithHrefPartialUnbrandAnyXoBackupJobCompressionEnum? get compression =>
-      _$this._compression;
-  set compression(
-          WithHrefPartialUnbrandAnyXoBackupJobCompressionEnum? compression) =>
-      _$this._compression = compression;
-
-  String? _href;
-  String? get href => _$this._href;
-  set href(String? href) => _$this._href = href;
-
-  String? _id;
-  String? get id => _$this._id;
-  set id(String? id) => _$this._id = id;
-
-  WithHrefPartialUnbrandAnyXoBackupJobModeEnum? _mode;
-  WithHrefPartialUnbrandAnyXoBackupJobModeEnum? get mode => _$this._mode;
-  set mode(WithHrefPartialUnbrandAnyXoBackupJobModeEnum? mode) =>
-      _$this._mode = mode;
-
-  String? _name;
-  String? get name => _$this._name;
-  set name(String? name) => _$this._name = name;
-
-  JsonObject? _pools;
-  JsonObject? get pools => _$this._pools;
-  set pools(JsonObject? pools) => _$this._pools = pools;
-
-  String? _proxy;
-  String? get proxy => _$this._proxy;
-  set proxy(String? proxy) => _$this._proxy = proxy;
-
-  JsonObject? _remotes;
-  JsonObject? get remotes => _$this._remotes;
-  set remotes(JsonObject? remotes) => _$this._remotes = remotes;
-
-  PartialUnbrandAnyXoBackupJobSettingsBuilder? _settings;
-  PartialUnbrandAnyXoBackupJobSettingsBuilder get settings =>
-      _$this._settings ??= PartialUnbrandAnyXoBackupJobSettingsBuilder();
-  set settings(PartialUnbrandAnyXoBackupJobSettingsBuilder? settings) =>
-      _$this._settings = settings;
-
-  String? _sourceRemote;
-  String? get sourceRemote => _$this._sourceRemote;
-  set sourceRemote(String? sourceRemote) => _$this._sourceRemote = sourceRemote;
-
-  JsonObject? _srs;
-  JsonObject? get srs => _$this._srs;
-  set srs(JsonObject? srs) => _$this._srs = srs;
-
-  WithHrefPartialUnbrandAnyXoBackupJobTypeEnum? _type;
-  WithHrefPartialUnbrandAnyXoBackupJobTypeEnum? get type => _$this._type;
-  set type(WithHrefPartialUnbrandAnyXoBackupJobTypeEnum? type) =>
-      _$this._type = type;
-
-  String? _userId;
-  String? get userId => _$this._userId;
-  set userId(String? userId) => _$this._userId = userId;
-
-  JsonObject? _vms;
-  JsonObject? get vms => _$this._vms;
-  set vms(JsonObject? vms) => _$this._vms = vms;
-
-  bool? _xoMetadata;
-  bool? get xoMetadata => _$this._xoMetadata;
-  set xoMetadata(bool? xoMetadata) => _$this._xoMetadata = xoMetadata;
+  AnyOf? _anyOf;
+  AnyOf? get anyOf => _$this._anyOf;
+  set anyOf(AnyOf? anyOf) => _$this._anyOf = anyOf;
 
   WithHrefPartialUnbrandAnyXoBackupJobBuilder() {
     WithHrefPartialUnbrandAnyXoBackupJob._defaults(this);
@@ -419,21 +177,7 @@ class WithHrefPartialUnbrandAnyXoBackupJobBuilder
   WithHrefPartialUnbrandAnyXoBackupJobBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _compression = $v.compression;
-      _href = $v.href;
-      _id = $v.id;
-      _mode = $v.mode;
-      _name = $v.name;
-      _pools = $v.pools;
-      _proxy = $v.proxy;
-      _remotes = $v.remotes;
-      _settings = $v.settings?.toBuilder();
-      _sourceRemote = $v.sourceRemote;
-      _srs = $v.srs;
-      _type = $v.type;
-      _userId = $v.userId;
-      _vms = $v.vms;
-      _xoMetadata = $v.xoMetadata;
+      _anyOf = $v.anyOf;
       _$v = null;
     }
     return this;
@@ -454,40 +198,11 @@ class WithHrefPartialUnbrandAnyXoBackupJobBuilder
   WithHrefPartialUnbrandAnyXoBackupJob build() => _build();
 
   _$WithHrefPartialUnbrandAnyXoBackupJob _build() {
-    _$WithHrefPartialUnbrandAnyXoBackupJob _$result;
-    try {
-      _$result = _$v ??
-          _$WithHrefPartialUnbrandAnyXoBackupJob._(
-            compression: compression,
-            href: BuiltValueNullFieldError.checkNotNull(
-                href, r'WithHrefPartialUnbrandAnyXoBackupJob', 'href'),
-            id: id,
-            mode: mode,
-            name: name,
-            pools: pools,
-            proxy: proxy,
-            remotes: remotes,
-            settings: _settings?.build(),
-            sourceRemote: sourceRemote,
-            srs: srs,
-            type: type,
-            userId: userId,
-            vms: vms,
-            xoMetadata: xoMetadata,
-          );
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'settings';
-        _settings?.build();
-      } catch (e) {
-        throw BuiltValueNestedFieldError(
-            r'WithHrefPartialUnbrandAnyXoBackupJob',
-            _$failedField,
-            e.toString());
-      }
-      rethrow;
-    }
+    final _$result = _$v ??
+        _$WithHrefPartialUnbrandAnyXoBackupJob._(
+          anyOf: BuiltValueNullFieldError.checkNotNull(
+              anyOf, r'WithHrefPartialUnbrandAnyXoBackupJob', 'anyOf'),
+        );
     replace(_$result);
     return _$result;
   }

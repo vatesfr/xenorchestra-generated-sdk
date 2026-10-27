@@ -106,8 +106,6 @@ class WithHrefPartialUnbrandXoVmSnapshot(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['', 'best-effort', 'restart']):
-            raise ValueError("must be one of enum values ('', 'best-effort', 'restart')")
         return value
 
     @field_validator('type')
@@ -116,8 +114,6 @@ class WithHrefPartialUnbrandXoVmSnapshot(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['VM-snapshot']):
-            raise ValueError("must be one of enum values ('VM-snapshot')")
         return value
 
     model_config = ConfigDict(

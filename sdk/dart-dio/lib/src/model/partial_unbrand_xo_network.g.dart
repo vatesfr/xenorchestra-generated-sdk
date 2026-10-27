@@ -9,12 +9,17 @@ part of 'partial_unbrand_xo_network.dart';
 const PartialUnbrandXoNetworkTypeEnum
     _$partialUnbrandXoNetworkTypeEnum_network =
     const PartialUnbrandXoNetworkTypeEnum._('network');
+const PartialUnbrandXoNetworkTypeEnum
+    _$partialUnbrandXoNetworkTypeEnum_unknownDefaultOpenApi =
+    const PartialUnbrandXoNetworkTypeEnum._('unknownDefaultOpenApi');
 
 PartialUnbrandXoNetworkTypeEnum _$partialUnbrandXoNetworkTypeEnumValueOf(
     String name) {
   switch (name) {
     case 'network':
       return _$partialUnbrandXoNetworkTypeEnum_network;
+    case 'unknownDefaultOpenApi':
+      return _$partialUnbrandXoNetworkTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -24,39 +29,8 @@ final BuiltSet<PartialUnbrandXoNetworkTypeEnum>
     _$partialUnbrandXoNetworkTypeEnumValues = BuiltSet<
         PartialUnbrandXoNetworkTypeEnum>(const <PartialUnbrandXoNetworkTypeEnum>[
   _$partialUnbrandXoNetworkTypeEnum_network,
+  _$partialUnbrandXoNetworkTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<PartialUnbrandXoNetworkTypeEnum>
-    _$partialUnbrandXoNetworkTypeEnumSerializer =
-    _$PartialUnbrandXoNetworkTypeEnumSerializer();
-
-class _$PartialUnbrandXoNetworkTypeEnumSerializer
-    implements PrimitiveSerializer<PartialUnbrandXoNetworkTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'network': 'network',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'network': 'network',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[PartialUnbrandXoNetworkTypeEnum];
-  @override
-  final String wireName = 'PartialUnbrandXoNetworkTypeEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers, PartialUnbrandXoNetworkTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  PartialUnbrandXoNetworkTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      PartialUnbrandXoNetworkTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$PartialUnbrandXoNetwork extends PartialUnbrandXoNetwork {
   @override

@@ -33,10 +33,53 @@ impl PartialUnbrandXoRestoreLog {
     }
 }
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum Message {
-    #[serde(rename = "restore")]
     Restore,
+    UnknownValue(String),
+}
+impl Message {
+    pub fn as_str(&self) -> &str {
+        match self {
+            Self::Restore => "restore",
+            Self::UnknownValue(value) => value,
+        }
+    }
+}
+impl From<String> for Message {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "restore" => Self::Restore,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for Message {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for Message {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for Message {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for Message {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
+    }
 }
 
 impl Default for Message {

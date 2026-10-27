@@ -28,22 +28,19 @@ import com.fasterxml.jackson.annotation.JsonValue;
 /**
  * Gets or Sets PGPU_DOM0_ACCESS
  */
-public enum PGPUDOM0ACCESS {
-  
-  DISABLED("disabled"),
-  
-  ENABLED("enabled"),
-  
-  DISABLE_ON_REBOOT("disable_on_reboot"),
-  
-  ENABLE_ON_REBOOT("enable_on_reboot"),
-  
-  UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
+public final class PGPUDOM0ACCESS {
+    public static final PGPUDOM0ACCESS DISABLED = new PGPUDOM0ACCESS("disabled");
+    public static final PGPUDOM0ACCESS ENABLED = new PGPUDOM0ACCESS("enabled");
+    public static final PGPUDOM0ACCESS DISABLE_ON_REBOOT = new PGPUDOM0ACCESS("disable_on_reboot");
+    public static final PGPUDOM0ACCESS ENABLE_ON_REBOOT = new PGPUDOM0ACCESS("enable_on_reboot");
+    @JsonCreator public static PGPUDOM0ACCESS fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static PGPUDOM0ACCESS[] values() { return new PGPUDOM0ACCESS[] {DISABLED, ENABLED, DISABLE_ON_REBOOT, ENABLE_ON_REBOOT}; }
+    @Override public boolean equals(Object other) { return other instanceof PGPUDOM0ACCESS && value.equals(((PGPUDOM0ACCESS) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-  private String value;
-
-  PGPUDOM0ACCESS(String value) {
-    this.value = value;
+  private PGPUDOM0ACCESS(String value) {
+    this.value = java.util.Objects.requireNonNull(value);
   }
 
   @JsonValue
@@ -56,14 +53,14 @@ public enum PGPUDOM0ACCESS {
     return String.valueOf(value);
   }
 
-  @JsonCreator
+  
   public static PGPUDOM0ACCESS fromValue(String value) {
     for (PGPUDOM0ACCESS b : PGPUDOM0ACCESS.values()) {
       if (b.value.equals(value)) {
         return b;
       }
     }
-    return UNKNOWN_DEFAULT_OPEN_API;
+    return new PGPUDOM0ACCESS(value);
   }
 
   /**
@@ -81,4 +78,5 @@ public enum PGPUDOM0ACCESS {
   }
 
 }
+
 

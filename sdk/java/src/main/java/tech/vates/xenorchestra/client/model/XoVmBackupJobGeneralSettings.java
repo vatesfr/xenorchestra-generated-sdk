@@ -59,17 +59,17 @@ public class XoVmBackupJobGeneralSettings {
   /**
    * Gets or Sets backupReportTpl
    */
-  public enum BackupReportTplEnum {
-    COMPACT_MJML(String.valueOf("compactMjml")),
-    
-    MJML(String.valueOf("mjml")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+  public static final class BackupReportTplEnum {
+    public static final BackupReportTplEnum COMPACT_MJML = new BackupReportTplEnum("compactMjml");
+    public static final BackupReportTplEnum MJML = new BackupReportTplEnum("mjml");
+    @JsonCreator public static BackupReportTplEnum fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static BackupReportTplEnum[] values() { return new BackupReportTplEnum[] {COMPACT_MJML, MJML}; }
+    @Override public boolean equals(Object other) { return other instanceof BackupReportTplEnum && value.equals(((BackupReportTplEnum) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-    private String value;
-
-    BackupReportTplEnum(String value) {
-      this.value = value;
+    private BackupReportTplEnum(String value) {
+      this.value = java.util.Objects.requireNonNull(value);
     }
 
     @JsonValue
@@ -82,16 +82,17 @@ public class XoVmBackupJobGeneralSettings {
       return String.valueOf(value);
     }
 
-    @JsonCreator
+    
     public static BackupReportTplEnum fromValue(String value) {
       for (BackupReportTplEnum b : BackupReportTplEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      return new BackupReportTplEnum(value);
     }
   }
+
 
   public static final String JSON_PROPERTY_BACKUP_REPORT_TPL = "backupReportTpl";
   @javax.annotation.Nullable
@@ -108,21 +109,19 @@ public class XoVmBackupJobGeneralSettings {
   /**
    * Gets or Sets reportWhen
    */
-  public enum ReportWhenEnum {
-    ALWAYS(String.valueOf("always")),
-    
-    ERROR(String.valueOf("error")),
-    
-    FAILURE(String.valueOf("failure")),
-    
-    NEVER(String.valueOf("never")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+  public static final class ReportWhenEnum {
+    public static final ReportWhenEnum ALWAYS = new ReportWhenEnum("always");
+    public static final ReportWhenEnum ERROR = new ReportWhenEnum("error");
+    public static final ReportWhenEnum FAILURE = new ReportWhenEnum("failure");
+    public static final ReportWhenEnum NEVER = new ReportWhenEnum("never");
+    @JsonCreator public static ReportWhenEnum fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static ReportWhenEnum[] values() { return new ReportWhenEnum[] {ALWAYS, ERROR, FAILURE, NEVER}; }
+    @Override public boolean equals(Object other) { return other instanceof ReportWhenEnum && value.equals(((ReportWhenEnum) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-    private String value;
-
-    ReportWhenEnum(String value) {
-      this.value = value;
+    private ReportWhenEnum(String value) {
+      this.value = java.util.Objects.requireNonNull(value);
     }
 
     @JsonValue
@@ -135,16 +134,17 @@ public class XoVmBackupJobGeneralSettings {
       return String.valueOf(value);
     }
 
-    @JsonCreator
+    
     public static ReportWhenEnum fromValue(String value) {
       for (ReportWhenEnum b : ReportWhenEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      return new ReportWhenEnum(value);
     }
   }
+
 
   public static final String JSON_PROPERTY_REPORT_WHEN = "reportWhen";
   @javax.annotation.Nullable

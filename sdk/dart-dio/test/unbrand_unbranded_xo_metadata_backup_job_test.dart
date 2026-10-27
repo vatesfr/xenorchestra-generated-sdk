@@ -32,7 +32,7 @@ void main() {
       // TODO
     });
 
-    // PartialUnbrandXoMetadataBackupJobSettings settings
+    // PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings settings
     test('to test the property `settings`', () async {
       // TODO
     });

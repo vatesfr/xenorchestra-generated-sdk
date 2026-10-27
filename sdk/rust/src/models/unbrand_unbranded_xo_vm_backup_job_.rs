@@ -31,7 +31,7 @@ pub struct UnbrandUnbrandedXoVmBackupJob {
     )]
     pub remotes: Option<Option<serde_json::Value>>,
     #[serde(rename = "settings")]
-    pub settings: Box<models::PartialUnbrandAnyXoBackupJobAnyOfSettings>,
+    pub settings: Box<models::PartialUnbrandAnyXoBackupJobVariantBackupSettings>,
     #[serde(
         rename = "srs",
         default,
@@ -49,7 +49,7 @@ impl UnbrandUnbrandedXoVmBackupJob {
     pub fn new(
         id: String,
         mode: Mode,
-        settings: models::PartialUnbrandAnyXoBackupJobAnyOfSettings,
+        settings: models::PartialUnbrandAnyXoBackupJobVariantBackupSettings,
         r#type: Type,
         vms: Option<serde_json::Value>,
     ) -> UnbrandUnbrandedXoVmBackupJob {
@@ -68,14 +68,59 @@ impl UnbrandUnbrandedXoVmBackupJob {
     }
 }
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum Compression {
-    #[serde(rename = "")]
     Empty,
-    #[serde(rename = "zstd")]
     Zstd,
-    #[serde(rename = "native")]
     Native,
+    UnknownValue(String),
+}
+impl Compression {
+    pub fn as_str(&self) -> &str {
+        match self {
+            Self::Empty => "",
+            Self::Zstd => "zstd",
+            Self::Native => "native",
+            Self::UnknownValue(value) => value,
+        }
+    }
+}
+impl From<String> for Compression {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "" => Self::Empty,
+            "zstd" => Self::Zstd,
+            "native" => Self::Native,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for Compression {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for Compression {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for Compression {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for Compression {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
+    }
 }
 
 impl Default for Compression {
@@ -84,12 +129,56 @@ impl Default for Compression {
     }
 }
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum Mode {
-    #[serde(rename = "full")]
     Full,
-    #[serde(rename = "delta")]
     Delta,
+    UnknownValue(String),
+}
+impl Mode {
+    pub fn as_str(&self) -> &str {
+        match self {
+            Self::Full => "full",
+            Self::Delta => "delta",
+            Self::UnknownValue(value) => value,
+        }
+    }
+}
+impl From<String> for Mode {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "full" => Self::Full,
+            "delta" => Self::Delta,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for Mode {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for Mode {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for Mode {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for Mode {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
+    }
 }
 
 impl Default for Mode {
@@ -98,10 +187,53 @@ impl Default for Mode {
     }
 }
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum Type {
-    #[serde(rename = "backup")]
     Backup,
+    UnknownValue(String),
+}
+impl Type {
+    pub fn as_str(&self) -> &str {
+        match self {
+            Self::Backup => "backup",
+            Self::UnknownValue(value) => value,
+        }
+    }
+}
+impl From<String> for Type {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "backup" => Self::Backup,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for Type {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for Type {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for Type {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for Type {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
+    }
 }
 
 impl Default for Type {

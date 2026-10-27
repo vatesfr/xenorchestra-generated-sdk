@@ -28,20 +28,18 @@ import com.fasterxml.jackson.annotation.JsonValue;
 /**
  * Gets or Sets HOST_POWER_STATE
  */
-public enum HOSTPOWERSTATE {
-  
-  HALTED("Halted"),
-  
-  RUNNING("Running"),
-  
-  UNKNOWN("Unknown"),
-  
-  UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
+public final class HOSTPOWERSTATE {
+    public static final HOSTPOWERSTATE HALTED = new HOSTPOWERSTATE("Halted");
+    public static final HOSTPOWERSTATE RUNNING = new HOSTPOWERSTATE("Running");
+    public static final HOSTPOWERSTATE UNKNOWN = new HOSTPOWERSTATE("Unknown");
+    @JsonCreator public static HOSTPOWERSTATE fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static HOSTPOWERSTATE[] values() { return new HOSTPOWERSTATE[] {HALTED, RUNNING, UNKNOWN}; }
+    @Override public boolean equals(Object other) { return other instanceof HOSTPOWERSTATE && value.equals(((HOSTPOWERSTATE) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-  private String value;
-
-  HOSTPOWERSTATE(String value) {
-    this.value = value;
+  private HOSTPOWERSTATE(String value) {
+    this.value = java.util.Objects.requireNonNull(value);
   }
 
   @JsonValue
@@ -54,14 +52,14 @@ public enum HOSTPOWERSTATE {
     return String.valueOf(value);
   }
 
-  @JsonCreator
+  
   public static HOSTPOWERSTATE fromValue(String value) {
     for (HOSTPOWERSTATE b : HOSTPOWERSTATE.values()) {
       if (b.value.equals(value)) {
         return b;
       }
     }
-    return UNKNOWN_DEFAULT_OPEN_API;
+    return new HOSTPOWERSTATE(value);
   }
 
   /**
@@ -79,4 +77,5 @@ public enum HOSTPOWERSTATE {
   }
 
 }
+
 

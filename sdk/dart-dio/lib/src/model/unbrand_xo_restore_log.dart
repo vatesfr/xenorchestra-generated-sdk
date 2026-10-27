@@ -157,9 +157,13 @@ class UnbrandXoRestoreLogMessageEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'restore')
   static const UnbrandXoRestoreLogMessageEnum restore =
       _$unbrandXoRestoreLogMessageEnum_restore;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UnbrandXoRestoreLogMessageEnum unknownDefaultOpenApi =
+      _$unbrandXoRestoreLogMessageEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UnbrandXoRestoreLogMessageEnum> get serializer =>
-      _$unbrandXoRestoreLogMessageEnumSerializer;
+      _OpenUnbrandXoRestoreLogMessageEnumSerializer();
 
   const UnbrandXoRestoreLogMessageEnum._(String name) : super(name);
 
@@ -167,4 +171,48 @@ class UnbrandXoRestoreLogMessageEnum extends EnumClass {
       _$unbrandXoRestoreLogMessageEnumValues;
   static UnbrandXoRestoreLogMessageEnum valueOf(String name) =>
       _$unbrandXoRestoreLogMessageEnumValueOf(name);
+
+  static UnbrandXoRestoreLogMessageEnum fromValue(String value) {
+    switch (value) {
+      case r'restore':
+        return restore;
+      default:
+        return UnbrandXoRestoreLogMessageEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, restore)) return r'restore';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UnbrandXoRestoreLogMessageEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUnbrandXoRestoreLogMessageEnumSerializer
+    implements PrimitiveSerializer<UnbrandXoRestoreLogMessageEnum> {
+  @override
+  final Iterable<Type> types = const [UnbrandXoRestoreLogMessageEnum];
+  @override
+  final String wireName = 'UnbrandXoRestoreLogMessageEnum';
+  @override
+  Object serialize(
+          Serializers serializers, UnbrandXoRestoreLogMessageEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UnbrandXoRestoreLogMessageEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for UnbrandXoRestoreLogMessageEnum');
+    return UnbrandXoRestoreLogMessageEnum.fromValue(serialized);
+  }
 }

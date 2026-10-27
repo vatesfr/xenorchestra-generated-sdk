@@ -242,9 +242,13 @@ class UnbrandXoBackupLogMessageEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'backup')
   static const UnbrandXoBackupLogMessageEnum backup =
       _$unbrandXoBackupLogMessageEnum_backup;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UnbrandXoBackupLogMessageEnum unknownDefaultOpenApi =
+      _$unbrandXoBackupLogMessageEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UnbrandXoBackupLogMessageEnum> get serializer =>
-      _$unbrandXoBackupLogMessageEnumSerializer;
+      _OpenUnbrandXoBackupLogMessageEnumSerializer();
 
   const UnbrandXoBackupLogMessageEnum._(String name) : super(name);
 
@@ -252,6 +256,50 @@ class UnbrandXoBackupLogMessageEnum extends EnumClass {
       _$unbrandXoBackupLogMessageEnumValues;
   static UnbrandXoBackupLogMessageEnum valueOf(String name) =>
       _$unbrandXoBackupLogMessageEnumValueOf(name);
+
+  static UnbrandXoBackupLogMessageEnum fromValue(String value) {
+    switch (value) {
+      case r'backup':
+        return backup;
+      default:
+        return UnbrandXoBackupLogMessageEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, backup)) return r'backup';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UnbrandXoBackupLogMessageEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUnbrandXoBackupLogMessageEnumSerializer
+    implements PrimitiveSerializer<UnbrandXoBackupLogMessageEnum> {
+  @override
+  final Iterable<Type> types = const [UnbrandXoBackupLogMessageEnum];
+  @override
+  final String wireName = 'UnbrandXoBackupLogMessageEnum';
+  @override
+  Object serialize(
+          Serializers serializers, UnbrandXoBackupLogMessageEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UnbrandXoBackupLogMessageEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for UnbrandXoBackupLogMessageEnum');
+    return UnbrandXoBackupLogMessageEnum.fromValue(serialized);
+  }
 }
 
 class UnbrandXoBackupLogStatusEnum extends EnumClass {
@@ -270,9 +318,13 @@ class UnbrandXoBackupLogStatusEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'skipped')
   static const UnbrandXoBackupLogStatusEnum skipped =
       _$unbrandXoBackupLogStatusEnum_skipped;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UnbrandXoBackupLogStatusEnum unknownDefaultOpenApi =
+      _$unbrandXoBackupLogStatusEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UnbrandXoBackupLogStatusEnum> get serializer =>
-      _$unbrandXoBackupLogStatusEnumSerializer;
+      _OpenUnbrandXoBackupLogStatusEnumSerializer();
 
   const UnbrandXoBackupLogStatusEnum._(String name) : super(name);
 
@@ -280,4 +332,58 @@ class UnbrandXoBackupLogStatusEnum extends EnumClass {
       _$unbrandXoBackupLogStatusEnumValues;
   static UnbrandXoBackupLogStatusEnum valueOf(String name) =>
       _$unbrandXoBackupLogStatusEnumValueOf(name);
+
+  static UnbrandXoBackupLogStatusEnum fromValue(String value) {
+    switch (value) {
+      case r'failure':
+        return failure;
+      case r'interrupted':
+        return interrupted;
+      case r'pending':
+        return pending;
+      case r'success':
+        return success;
+      case r'skipped':
+        return skipped;
+      default:
+        return UnbrandXoBackupLogStatusEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, failure)) return r'failure';
+    if (identical(this, interrupted)) return r'interrupted';
+    if (identical(this, pending)) return r'pending';
+    if (identical(this, success)) return r'success';
+    if (identical(this, skipped)) return r'skipped';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UnbrandXoBackupLogStatusEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUnbrandXoBackupLogStatusEnumSerializer
+    implements PrimitiveSerializer<UnbrandXoBackupLogStatusEnum> {
+  @override
+  final Iterable<Type> types = const [UnbrandXoBackupLogStatusEnum];
+  @override
+  final String wireName = 'UnbrandXoBackupLogStatusEnum';
+  @override
+  Object serialize(Serializers serializers, UnbrandXoBackupLogStatusEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UnbrandXoBackupLogStatusEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError('Expected a string for UnbrandXoBackupLogStatusEnum');
+    return UnbrandXoBackupLogStatusEnum.fromValue(serialized);
+  }
 }

@@ -70,14 +70,59 @@ impl PartialUnbrandXoServer {
     }
 }
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum Status {
-    #[serde(rename = "connected")]
     Connected,
-    #[serde(rename = "disconnected")]
     Disconnected,
-    #[serde(rename = "connecting")]
     Connecting,
+    UnknownValue(String),
+}
+impl Status {
+    pub fn as_str(&self) -> &str {
+        match self {
+            Self::Connected => "connected",
+            Self::Disconnected => "disconnected",
+            Self::Connecting => "connecting",
+            Self::UnknownValue(value) => value,
+        }
+    }
+}
+impl From<String> for Status {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "connected" => Self::Connected,
+            "disconnected" => Self::Disconnected,
+            "connecting" => Self::Connecting,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for Status {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for Status {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for Status {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for Status {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
+    }
 }
 
 impl Default for Status {

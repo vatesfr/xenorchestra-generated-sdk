@@ -253,9 +253,13 @@ class PartialUnbrandXoUserPermissionEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'admin')
   static const PartialUnbrandXoUserPermissionEnum admin =
       _$partialUnbrandXoUserPermissionEnum_admin;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const PartialUnbrandXoUserPermissionEnum unknownDefaultOpenApi =
+      _$partialUnbrandXoUserPermissionEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<PartialUnbrandXoUserPermissionEnum> get serializer =>
-      _$partialUnbrandXoUserPermissionEnumSerializer;
+      _OpenPartialUnbrandXoUserPermissionEnumSerializer();
 
   const PartialUnbrandXoUserPermissionEnum._(String name) : super(name);
 
@@ -263,4 +267,51 @@ class PartialUnbrandXoUserPermissionEnum extends EnumClass {
       _$partialUnbrandXoUserPermissionEnumValues;
   static PartialUnbrandXoUserPermissionEnum valueOf(String name) =>
       _$partialUnbrandXoUserPermissionEnumValueOf(name);
+
+  static PartialUnbrandXoUserPermissionEnum fromValue(String value) {
+    switch (value) {
+      case r'none':
+        return none;
+      case r'admin':
+        return admin;
+      default:
+        return PartialUnbrandXoUserPermissionEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, none)) return r'none';
+    if (identical(this, admin)) return r'admin';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is PartialUnbrandXoUserPermissionEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenPartialUnbrandXoUserPermissionEnumSerializer
+    implements PrimitiveSerializer<PartialUnbrandXoUserPermissionEnum> {
+  @override
+  final Iterable<Type> types = const [PartialUnbrandXoUserPermissionEnum];
+  @override
+  final String wireName = 'PartialUnbrandXoUserPermissionEnum';
+  @override
+  Object serialize(
+          Serializers serializers, PartialUnbrandXoUserPermissionEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  PartialUnbrandXoUserPermissionEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for PartialUnbrandXoUserPermissionEnum');
+    return PartialUnbrandXoUserPermissionEnum.fromValue(serialized);
+  }
 }

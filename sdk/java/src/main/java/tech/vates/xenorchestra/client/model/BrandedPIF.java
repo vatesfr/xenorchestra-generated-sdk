@@ -40,15 +40,16 @@ public class BrandedPIF {
   /**
    * Gets or Sets undefined
    */
-  public enum UndefinedEnum {
-    PIF(String.valueOf("PIF")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+  public static final class UndefinedEnum {
+    public static final UndefinedEnum PIF = new UndefinedEnum("PIF");
+    @JsonCreator public static UndefinedEnum fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static UndefinedEnum[] values() { return new UndefinedEnum[] {PIF}; }
+    @Override public boolean equals(Object other) { return other instanceof UndefinedEnum && value.equals(((UndefinedEnum) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-    private String value;
-
-    UndefinedEnum(String value) {
-      this.value = value;
+    private UndefinedEnum(String value) {
+      this.value = java.util.Objects.requireNonNull(value);
     }
 
     @JsonValue
@@ -61,16 +62,17 @@ public class BrandedPIF {
       return String.valueOf(value);
     }
 
-    @JsonCreator
+    
     public static UndefinedEnum fromValue(String value) {
       for (UndefinedEnum b : UndefinedEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      return new UndefinedEnum(value);
     }
   }
+
 
   public static final String JSON_PROPERTY_UNDEFINED = "undefined";
   @javax.annotation.Nullable

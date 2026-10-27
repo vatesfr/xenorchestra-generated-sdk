@@ -12,47 +12,82 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum VdiType {
-    #[serde(rename = "metadata")]
     Metadata,
-    #[serde(rename = "suspend")]
     Suspend,
-    #[serde(rename = "cbt_metadata")]
     CbtMetadata,
-    #[serde(rename = "crashdump")]
     Crashdump,
-    #[serde(rename = "ephemeral")]
     Ephemeral,
-    #[serde(rename = "ha_statefile")]
     HaStatefile,
-    #[serde(rename = "pvs_cache")]
     PvsCache,
-    #[serde(rename = "redo_log")]
     RedoLog,
-    #[serde(rename = "rrd")]
     Rrd,
-    #[serde(rename = "system")]
     System,
-    #[serde(rename = "user")]
     User,
+    UnknownValue(String),
 }
-
-impl std::fmt::Display for VdiType {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+impl VdiType {
+    pub fn as_str(&self) -> &str {
         match self {
-            Self::Metadata => write!(f, "metadata"),
-            Self::Suspend => write!(f, "suspend"),
-            Self::CbtMetadata => write!(f, "cbt_metadata"),
-            Self::Crashdump => write!(f, "crashdump"),
-            Self::Ephemeral => write!(f, "ephemeral"),
-            Self::HaStatefile => write!(f, "ha_statefile"),
-            Self::PvsCache => write!(f, "pvs_cache"),
-            Self::RedoLog => write!(f, "redo_log"),
-            Self::Rrd => write!(f, "rrd"),
-            Self::System => write!(f, "system"),
-            Self::User => write!(f, "user"),
+            Self::Metadata => "metadata",
+            Self::Suspend => "suspend",
+            Self::CbtMetadata => "cbt_metadata",
+            Self::Crashdump => "crashdump",
+            Self::Ephemeral => "ephemeral",
+            Self::HaStatefile => "ha_statefile",
+            Self::PvsCache => "pvs_cache",
+            Self::RedoLog => "redo_log",
+            Self::Rrd => "rrd",
+            Self::System => "system",
+            Self::User => "user",
+            Self::UnknownValue(value) => value,
         }
+    }
+}
+impl From<String> for VdiType {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "metadata" => Self::Metadata,
+            "suspend" => Self::Suspend,
+            "cbt_metadata" => Self::CbtMetadata,
+            "crashdump" => Self::Crashdump,
+            "ephemeral" => Self::Ephemeral,
+            "ha_statefile" => Self::HaStatefile,
+            "pvs_cache" => Self::PvsCache,
+            "redo_log" => Self::RedoLog,
+            "rrd" => Self::Rrd,
+            "system" => Self::System,
+            "user" => Self::User,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for VdiType {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for VdiType {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for VdiType {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for VdiType {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
     }
 }
 

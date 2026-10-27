@@ -9,12 +9,17 @@ part of 'with_href_partial_unbranded_xo_message.dart';
 const WithHrefPartialUnbrandedXoMessageTypeEnum
     _$withHrefPartialUnbrandedXoMessageTypeEnum_message =
     const WithHrefPartialUnbrandedXoMessageTypeEnum._('message');
+const WithHrefPartialUnbrandedXoMessageTypeEnum
+    _$withHrefPartialUnbrandedXoMessageTypeEnum_unknownDefaultOpenApi =
+    const WithHrefPartialUnbrandedXoMessageTypeEnum._('unknownDefaultOpenApi');
 
 WithHrefPartialUnbrandedXoMessageTypeEnum
     _$withHrefPartialUnbrandedXoMessageTypeEnumValueOf(String name) {
   switch (name) {
     case 'message':
       return _$withHrefPartialUnbrandedXoMessageTypeEnum_message;
+    case 'unknownDefaultOpenApi':
+      return _$withHrefPartialUnbrandedXoMessageTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -24,41 +29,8 @@ final BuiltSet<WithHrefPartialUnbrandedXoMessageTypeEnum>
     _$withHrefPartialUnbrandedXoMessageTypeEnumValues = BuiltSet<
         WithHrefPartialUnbrandedXoMessageTypeEnum>(const <WithHrefPartialUnbrandedXoMessageTypeEnum>[
   _$withHrefPartialUnbrandedXoMessageTypeEnum_message,
+  _$withHrefPartialUnbrandedXoMessageTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<WithHrefPartialUnbrandedXoMessageTypeEnum>
-    _$withHrefPartialUnbrandedXoMessageTypeEnumSerializer =
-    _$WithHrefPartialUnbrandedXoMessageTypeEnumSerializer();
-
-class _$WithHrefPartialUnbrandedXoMessageTypeEnumSerializer
-    implements PrimitiveSerializer<WithHrefPartialUnbrandedXoMessageTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'message': 'message',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'message': 'message',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    WithHrefPartialUnbrandedXoMessageTypeEnum
-  ];
-  @override
-  final String wireName = 'WithHrefPartialUnbrandedXoMessageTypeEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          WithHrefPartialUnbrandedXoMessageTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  WithHrefPartialUnbrandedXoMessageTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      WithHrefPartialUnbrandedXoMessageTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$WithHrefPartialUnbrandedXoMessage
     extends WithHrefPartialUnbrandedXoMessage {

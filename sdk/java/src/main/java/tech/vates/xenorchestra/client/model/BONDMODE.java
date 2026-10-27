@@ -28,20 +28,18 @@ import com.fasterxml.jackson.annotation.JsonValue;
 /**
  * Gets or Sets BOND_MODE
  */
-public enum BONDMODE {
-  
-  ACTIVE_BACKUP("active-backup"),
-  
-  BALANCE_SLB("balance-slb"),
-  
-  LACP("lacp"),
-  
-  UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
+public final class BONDMODE {
+    public static final BONDMODE ACTIVE_BACKUP = new BONDMODE("active-backup");
+    public static final BONDMODE BALANCE_SLB = new BONDMODE("balance-slb");
+    public static final BONDMODE LACP = new BONDMODE("lacp");
+    @JsonCreator public static BONDMODE fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static BONDMODE[] values() { return new BONDMODE[] {ACTIVE_BACKUP, BALANCE_SLB, LACP}; }
+    @Override public boolean equals(Object other) { return other instanceof BONDMODE && value.equals(((BONDMODE) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-  private String value;
-
-  BONDMODE(String value) {
-    this.value = value;
+  private BONDMODE(String value) {
+    this.value = java.util.Objects.requireNonNull(value);
   }
 
   @JsonValue
@@ -54,14 +52,14 @@ public enum BONDMODE {
     return String.valueOf(value);
   }
 
-  @JsonCreator
+  
   public static BONDMODE fromValue(String value) {
     for (BONDMODE b : BONDMODE.values()) {
       if (b.value.equals(value)) {
         return b;
       }
     }
-    return UNKNOWN_DEFAULT_OPEN_API;
+    return new BONDMODE(value);
   }
 
   /**
@@ -79,4 +77,5 @@ public enum BONDMODE {
   }
 
 }
+
 

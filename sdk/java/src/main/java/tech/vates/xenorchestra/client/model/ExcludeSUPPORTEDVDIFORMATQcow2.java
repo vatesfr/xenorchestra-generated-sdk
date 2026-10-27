@@ -28,18 +28,17 @@ import com.fasterxml.jackson.annotation.JsonValue;
 /**
  * Exclude from T those types that are assignable to U
  */
-public enum ExcludeSUPPORTEDVDIFORMATQcow2 {
-  
-  RAW("raw"),
-  
-  VHD("vhd"),
-  
-  UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
+public final class ExcludeSUPPORTEDVDIFORMATQcow2 {
+    public static final ExcludeSUPPORTEDVDIFORMATQcow2 RAW = new ExcludeSUPPORTEDVDIFORMATQcow2("raw");
+    public static final ExcludeSUPPORTEDVDIFORMATQcow2 VHD = new ExcludeSUPPORTEDVDIFORMATQcow2("vhd");
+    @JsonCreator public static ExcludeSUPPORTEDVDIFORMATQcow2 fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static ExcludeSUPPORTEDVDIFORMATQcow2[] values() { return new ExcludeSUPPORTEDVDIFORMATQcow2[] {RAW, VHD}; }
+    @Override public boolean equals(Object other) { return other instanceof ExcludeSUPPORTEDVDIFORMATQcow2 && value.equals(((ExcludeSUPPORTEDVDIFORMATQcow2) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-  private String value;
-
-  ExcludeSUPPORTEDVDIFORMATQcow2(String value) {
-    this.value = value;
+  private ExcludeSUPPORTEDVDIFORMATQcow2(String value) {
+    this.value = java.util.Objects.requireNonNull(value);
   }
 
   @JsonValue
@@ -52,14 +51,14 @@ public enum ExcludeSUPPORTEDVDIFORMATQcow2 {
     return String.valueOf(value);
   }
 
-  @JsonCreator
+  
   public static ExcludeSUPPORTEDVDIFORMATQcow2 fromValue(String value) {
     for (ExcludeSUPPORTEDVDIFORMATQcow2 b : ExcludeSUPPORTEDVDIFORMATQcow2.values()) {
       if (b.value.equals(value)) {
         return b;
       }
     }
-    return UNKNOWN_DEFAULT_OPEN_API;
+    return new ExcludeSUPPORTEDVDIFORMATQcow2(value);
   }
 
   /**
@@ -77,4 +76,5 @@ public enum ExcludeSUPPORTEDVDIFORMATQcow2 {
   }
 
 }
+
 

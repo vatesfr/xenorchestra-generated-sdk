@@ -78,6 +78,9 @@ const PartialUnbrandXoAlarmObjectTypeEnum
 const PartialUnbrandXoAlarmObjectTypeEnum
     _$partialUnbrandXoAlarmObjectTypeEnum_unknown =
     const PartialUnbrandXoAlarmObjectTypeEnum._('unknown');
+const PartialUnbrandXoAlarmObjectTypeEnum
+    _$partialUnbrandXoAlarmObjectTypeEnum_unknownDefaultOpenApi =
+    const PartialUnbrandXoAlarmObjectTypeEnum._('unknownDefaultOpenApi');
 
 PartialUnbrandXoAlarmObjectTypeEnum
     _$partialUnbrandXoAlarmObjectTypeEnumValueOf(String name) {
@@ -130,6 +133,8 @@ PartialUnbrandXoAlarmObjectTypeEnum
       return _$partialUnbrandXoAlarmObjectTypeEnum_SM;
     case 'unknown':
       return _$partialUnbrandXoAlarmObjectTypeEnum_unknown;
+    case 'unknownDefaultOpenApi':
+      return _$partialUnbrandXoAlarmObjectTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -162,87 +167,8 @@ final BuiltSet<PartialUnbrandXoAlarmObjectTypeEnum>
   _$partialUnbrandXoAlarmObjectTypeEnum_vMController,
   _$partialUnbrandXoAlarmObjectTypeEnum_SM,
   _$partialUnbrandXoAlarmObjectTypeEnum_unknown,
+  _$partialUnbrandXoAlarmObjectTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<PartialUnbrandXoAlarmObjectTypeEnum>
-    _$partialUnbrandXoAlarmObjectTypeEnumSerializer =
-    _$PartialUnbrandXoAlarmObjectTypeEnumSerializer();
-
-class _$PartialUnbrandXoAlarmObjectTypeEnumSerializer
-    implements PrimitiveSerializer<PartialUnbrandXoAlarmObjectTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'pool': 'pool',
-    'VBD': 'VBD',
-    'host': 'host',
-    'VIF': 'VIF',
-    'VTPM': 'VTPM',
-    'vMSnapshot': 'VM-snapshot',
-    'SR': 'SR',
-    'VM': 'VM',
-    'vMTemplate': 'VM-template',
-    'message': 'message',
-    'vgpu': 'vgpu',
-    'gpuGroup': 'gpuGroup',
-    'network': 'network',
-    'PBD': 'PBD',
-    'PCI': 'PCI',
-    'PGPU': 'PGPU',
-    'PIF': 'PIF',
-    'VDI': 'VDI',
-    'vDISnapshot': 'VDI-snapshot',
-    'vDIUnmanaged': 'VDI-unmanaged',
-    'vgpuType': 'vgpuType',
-    'vMController': 'VM-controller',
-    'SM': 'SM',
-    'unknown': 'unknown',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'pool': 'pool',
-    'VBD': 'VBD',
-    'host': 'host',
-    'VIF': 'VIF',
-    'VTPM': 'VTPM',
-    'VM-snapshot': 'vMSnapshot',
-    'SR': 'SR',
-    'VM': 'VM',
-    'VM-template': 'vMTemplate',
-    'message': 'message',
-    'vgpu': 'vgpu',
-    'gpuGroup': 'gpuGroup',
-    'network': 'network',
-    'PBD': 'PBD',
-    'PCI': 'PCI',
-    'PGPU': 'PGPU',
-    'PIF': 'PIF',
-    'VDI': 'VDI',
-    'VDI-snapshot': 'vDISnapshot',
-    'VDI-unmanaged': 'vDIUnmanaged',
-    'vgpuType': 'vgpuType',
-    'VM-controller': 'vMController',
-    'SM': 'SM',
-    'unknown': 'unknown',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    PartialUnbrandXoAlarmObjectTypeEnum
-  ];
-  @override
-  final String wireName = 'PartialUnbrandXoAlarmObjectTypeEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers, PartialUnbrandXoAlarmObjectTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  PartialUnbrandXoAlarmObjectTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      PartialUnbrandXoAlarmObjectTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$PartialUnbrandXoAlarmObject extends PartialUnbrandXoAlarmObject {
   @override

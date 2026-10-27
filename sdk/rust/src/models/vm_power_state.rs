@@ -12,26 +12,61 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum VmPowerState {
-    #[serde(rename = "Halted")]
     Halted,
-    #[serde(rename = "Paused")]
     Paused,
-    #[serde(rename = "Running")]
     Running,
-    #[serde(rename = "Suspended")]
     Suspended,
+    UnknownValue(String),
 }
-
-impl std::fmt::Display for VmPowerState {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+impl VmPowerState {
+    pub fn as_str(&self) -> &str {
         match self {
-            Self::Halted => write!(f, "Halted"),
-            Self::Paused => write!(f, "Paused"),
-            Self::Running => write!(f, "Running"),
-            Self::Suspended => write!(f, "Suspended"),
+            Self::Halted => "Halted",
+            Self::Paused => "Paused",
+            Self::Running => "Running",
+            Self::Suspended => "Suspended",
+            Self::UnknownValue(value) => value,
         }
+    }
+}
+impl From<String> for VmPowerState {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "Halted" => Self::Halted,
+            "Paused" => Self::Paused,
+            "Running" => Self::Running,
+            "Suspended" => Self::Suspended,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for VmPowerState {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for VmPowerState {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for VmPowerState {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for VmPowerState {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
     }
 }
 

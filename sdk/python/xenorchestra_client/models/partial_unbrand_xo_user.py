@@ -42,8 +42,6 @@ class PartialUnbrandXoUser(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['none', 'admin']):
-            raise ValueError("must be one of enum values ('none', 'admin')")
         return value
 
     model_config = ConfigDict(

@@ -35,7 +35,7 @@ pub struct PartialUnbrandXoMetadataBackupJob {
     )]
     pub remotes: Option<Option<serde_json::Value>>,
     #[serde(rename = "settings", skip_serializing_if = "Option::is_none")]
-    pub settings: Option<Box<models::PartialUnbrandAnyXoBackupJobAnyOf1Settings>>,
+    pub settings: Option<Box<models::PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings>>,
     #[serde(rename = "type", skip_serializing_if = "Option::is_none")]
     pub r#type: Option<Type>,
     #[serde(rename = "userId", skip_serializing_if = "Option::is_none")]
@@ -61,10 +61,53 @@ impl PartialUnbrandXoMetadataBackupJob {
     }
 }
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum Type {
-    #[serde(rename = "metadataBackup")]
     MetadataBackup,
+    UnknownValue(String),
+}
+impl Type {
+    pub fn as_str(&self) -> &str {
+        match self {
+            Self::MetadataBackup => "metadataBackup",
+            Self::UnknownValue(value) => value,
+        }
+    }
+}
+impl From<String> for Type {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "metadataBackup" => Self::MetadataBackup,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for Type {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for Type {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for Type {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for Type {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
+    }
 }
 
 impl Default for Type {

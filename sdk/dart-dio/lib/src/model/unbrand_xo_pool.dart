@@ -495,9 +495,13 @@ class _$UnbrandXoPoolSerializer implements PrimitiveSerializer<UnbrandXoPool> {
 class UnbrandXoPoolTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'pool')
   static const UnbrandXoPoolTypeEnum pool = _$unbrandXoPoolTypeEnum_pool;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UnbrandXoPoolTypeEnum unknownDefaultOpenApi =
+      _$unbrandXoPoolTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UnbrandXoPoolTypeEnum> get serializer =>
-      _$unbrandXoPoolTypeEnumSerializer;
+      _OpenUnbrandXoPoolTypeEnumSerializer();
 
   const UnbrandXoPoolTypeEnum._(String name) : super(name);
 
@@ -505,4 +509,45 @@ class UnbrandXoPoolTypeEnum extends EnumClass {
       _$unbrandXoPoolTypeEnumValues;
   static UnbrandXoPoolTypeEnum valueOf(String name) =>
       _$unbrandXoPoolTypeEnumValueOf(name);
+
+  static UnbrandXoPoolTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'pool':
+        return pool;
+      default:
+        return UnbrandXoPoolTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, pool)) return r'pool';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UnbrandXoPoolTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUnbrandXoPoolTypeEnumSerializer
+    implements PrimitiveSerializer<UnbrandXoPoolTypeEnum> {
+  @override
+  final Iterable<Type> types = const [UnbrandXoPoolTypeEnum];
+  @override
+  final String wireName = 'UnbrandXoPoolTypeEnum';
+  @override
+  Object serialize(Serializers serializers, UnbrandXoPoolTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UnbrandXoPoolTypeEnum deserialize(Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError('Expected a string for UnbrandXoPoolTypeEnum');
+    return UnbrandXoPoolTypeEnum.fromValue(serialized);
+  }
 }

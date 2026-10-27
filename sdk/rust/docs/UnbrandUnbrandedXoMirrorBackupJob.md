@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **name** | Option<**String**> |  | [optional]
 **proxy** | Option<**String**> |  | [optional]
 **remotes** | Option<[**serde_json::Value**](.md)> |  | 
-**settings** | [**models::PartialUnbrandAnyXoBackupJobAnyOf2Settings**](Partial_UnbrandAnyXoBackupJob__anyOf_2_settings.md) |  | 
+**settings** | [**models::PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettings**](PartialUnbrandAnyXoBackupJobVariantMirrorBackup_settings.md) |  | 
 **source_remote** | **String** |  | 
 **r#type** | **String** |  | 
 

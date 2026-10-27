@@ -15,6 +15,9 @@ const PartialUnbrandXoTaskStatusEnum _$partialUnbrandXoTaskStatusEnum_pending =
     const PartialUnbrandXoTaskStatusEnum._('pending');
 const PartialUnbrandXoTaskStatusEnum _$partialUnbrandXoTaskStatusEnum_success =
     const PartialUnbrandXoTaskStatusEnum._('success');
+const PartialUnbrandXoTaskStatusEnum
+    _$partialUnbrandXoTaskStatusEnum_unknownDefaultOpenApi =
+    const PartialUnbrandXoTaskStatusEnum._('unknownDefaultOpenApi');
 
 PartialUnbrandXoTaskStatusEnum _$partialUnbrandXoTaskStatusEnumValueOf(
     String name) {
@@ -27,6 +30,8 @@ PartialUnbrandXoTaskStatusEnum _$partialUnbrandXoTaskStatusEnumValueOf(
       return _$partialUnbrandXoTaskStatusEnum_pending;
     case 'success':
       return _$partialUnbrandXoTaskStatusEnum_success;
+    case 'unknownDefaultOpenApi':
+      return _$partialUnbrandXoTaskStatusEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -39,45 +44,8 @@ final BuiltSet<PartialUnbrandXoTaskStatusEnum>
   _$partialUnbrandXoTaskStatusEnum_interrupted,
   _$partialUnbrandXoTaskStatusEnum_pending,
   _$partialUnbrandXoTaskStatusEnum_success,
+  _$partialUnbrandXoTaskStatusEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<PartialUnbrandXoTaskStatusEnum>
-    _$partialUnbrandXoTaskStatusEnumSerializer =
-    _$PartialUnbrandXoTaskStatusEnumSerializer();
-
-class _$PartialUnbrandXoTaskStatusEnumSerializer
-    implements PrimitiveSerializer<PartialUnbrandXoTaskStatusEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'failure': 'failure',
-    'interrupted': 'interrupted',
-    'pending': 'pending',
-    'success': 'success',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'failure': 'failure',
-    'interrupted': 'interrupted',
-    'pending': 'pending',
-    'success': 'success',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[PartialUnbrandXoTaskStatusEnum];
-  @override
-  final String wireName = 'PartialUnbrandXoTaskStatusEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers, PartialUnbrandXoTaskStatusEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  PartialUnbrandXoTaskStatusEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      PartialUnbrandXoTaskStatusEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$PartialUnbrandXoTask extends PartialUnbrandXoTask {
   @override

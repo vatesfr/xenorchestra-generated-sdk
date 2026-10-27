@@ -38,8 +38,6 @@ class UnbrandedVmDashboardBackupsInfo(BaseModel):
     @field_validator('vm_protection')
     def vm_protection_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['protected', 'unprotected', 'not-in-active-job']):
-            raise ValueError("must be one of enum values ('protected', 'unprotected', 'not-in-active-job')")
         return value
 
     model_config = ConfigDict(

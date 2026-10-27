@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from xenorchestra_client.models.partial_unbrand_any_xo_backup_job_any_of_settings import PartialUnbrandAnyXoBackupJobAnyOfSettings
+from xenorchestra_client.models.partial_unbrand_any_xo_backup_job_variant_backup_settings import PartialUnbrandAnyXoBackupJobVariantBackupSettings
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -33,7 +33,7 @@ class PartialUnbrandXoVmBackupJob(BaseModel):
     name: Optional[StrictStr] = None
     proxy: Optional[StrictStr] = None
     remotes: Optional[Any] = None
-    settings: Optional[PartialUnbrandAnyXoBackupJobAnyOfSettings] = None
+    settings: Optional[PartialUnbrandAnyXoBackupJobVariantBackupSettings] = None
     srs: Optional[Any] = None
     type: Optional[StrictStr] = None
     vms: Optional[Any] = None
@@ -45,8 +45,6 @@ class PartialUnbrandXoVmBackupJob(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['', 'zstd', 'native']):
-            raise ValueError("must be one of enum values ('', 'zstd', 'native')")
         return value
 
     @field_validator('mode')
@@ -55,8 +53,6 @@ class PartialUnbrandXoVmBackupJob(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['full', 'delta']):
-            raise ValueError("must be one of enum values ('full', 'delta')")
         return value
 
     @field_validator('type')
@@ -65,8 +61,6 @@ class PartialUnbrandXoVmBackupJob(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['backup']):
-            raise ValueError("must be one of enum values ('backup')")
         return value
 
     model_config = ConfigDict(
@@ -144,7 +138,7 @@ class PartialUnbrandXoVmBackupJob(BaseModel):
             "name": obj.get("name"),
             "proxy": obj.get("proxy"),
             "remotes": obj.get("remotes"),
-            "settings": PartialUnbrandAnyXoBackupJobAnyOfSettings.from_dict(obj["settings"]) if obj.get("settings") is not None else None,
+            "settings": PartialUnbrandAnyXoBackupJobVariantBackupSettings.from_dict(obj["settings"]) if obj.get("settings") is not None else None,
             "srs": obj.get("srs"),
             "type": obj.get("type"),
             "vms": obj.get("vms")

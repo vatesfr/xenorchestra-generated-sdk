@@ -32,7 +32,7 @@ void main() {
       // TODO
     });
 
-    // PartialUnbrandAnyXoBackupJobSettingsLongTermRetention longTermRetention
+    // PartialUnbrandAnyXoBackupJobVariantBackupSettingsLongTermRetention longTermRetention
     test('to test the property `longTermRetention`', () async {
       // TODO
     });

@@ -12,23 +12,58 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum BondMode {
-    #[serde(rename = "active-backup")]
     ActiveBackup,
-    #[serde(rename = "balance-slb")]
     BalanceSlb,
-    #[serde(rename = "lacp")]
     Lacp,
+    UnknownValue(String),
 }
-
-impl std::fmt::Display for BondMode {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+impl BondMode {
+    pub fn as_str(&self) -> &str {
         match self {
-            Self::ActiveBackup => write!(f, "active-backup"),
-            Self::BalanceSlb => write!(f, "balance-slb"),
-            Self::Lacp => write!(f, "lacp"),
+            Self::ActiveBackup => "active-backup",
+            Self::BalanceSlb => "balance-slb",
+            Self::Lacp => "lacp",
+            Self::UnknownValue(value) => value,
         }
+    }
+}
+impl From<String> for BondMode {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "active-backup" => Self::ActiveBackup,
+            "balance-slb" => Self::BalanceSlb,
+            "lacp" => Self::Lacp,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for BondMode {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for BondMode {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for BondMode {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for BondMode {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
     }
 }
 

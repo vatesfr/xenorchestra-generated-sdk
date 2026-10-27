@@ -83,8 +83,6 @@ class UnbrandXoHost(BaseModel):
     @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['host']):
-            raise ValueError("must be one of enum values ('host')")
         return value
 
     model_config = ConfigDict(

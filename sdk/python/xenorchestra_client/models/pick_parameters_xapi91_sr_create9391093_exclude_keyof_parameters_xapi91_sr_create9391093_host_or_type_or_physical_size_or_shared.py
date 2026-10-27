@@ -40,8 +40,6 @@ class PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate939
         if value is None:
             return value
 
-        if value not in set(['user', 'iso', 'disk']):
-            raise ValueError("must be one of enum values ('user', 'iso', 'disk')")
         return value
 
     model_config = ConfigDict(

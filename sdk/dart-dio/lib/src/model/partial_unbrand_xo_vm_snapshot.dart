@@ -1309,10 +1309,15 @@ class PartialUnbrandXoVmSnapshotHighAvailabilityEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'restart')
   static const PartialUnbrandXoVmSnapshotHighAvailabilityEnum restart =
       _$partialUnbrandXoVmSnapshotHighAvailabilityEnum_restart;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const PartialUnbrandXoVmSnapshotHighAvailabilityEnum
+      unknownDefaultOpenApi =
+      _$partialUnbrandXoVmSnapshotHighAvailabilityEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<PartialUnbrandXoVmSnapshotHighAvailabilityEnum>
       get serializer =>
-          _$partialUnbrandXoVmSnapshotHighAvailabilityEnumSerializer;
+          _OpenPartialUnbrandXoVmSnapshotHighAvailabilityEnumSerializer();
 
   const PartialUnbrandXoVmSnapshotHighAvailabilityEnum._(String name)
       : super(name);
@@ -1321,15 +1326,74 @@ class PartialUnbrandXoVmSnapshotHighAvailabilityEnum extends EnumClass {
       _$partialUnbrandXoVmSnapshotHighAvailabilityEnumValues;
   static PartialUnbrandXoVmSnapshotHighAvailabilityEnum valueOf(String name) =>
       _$partialUnbrandXoVmSnapshotHighAvailabilityEnumValueOf(name);
+
+  static PartialUnbrandXoVmSnapshotHighAvailabilityEnum fromValue(
+      String value) {
+    switch (value) {
+      case r'':
+        return empty;
+      case r'best-effort':
+        return bestEffort;
+      case r'restart':
+        return restart;
+      default:
+        return PartialUnbrandXoVmSnapshotHighAvailabilityEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, empty)) return r'';
+    if (identical(this, bestEffort)) return r'best-effort';
+    if (identical(this, restart)) return r'restart';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is PartialUnbrandXoVmSnapshotHighAvailabilityEnum &&
+      value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenPartialUnbrandXoVmSnapshotHighAvailabilityEnumSerializer
+    implements
+        PrimitiveSerializer<PartialUnbrandXoVmSnapshotHighAvailabilityEnum> {
+  @override
+  final Iterable<Type> types = const [
+    PartialUnbrandXoVmSnapshotHighAvailabilityEnum
+  ];
+  @override
+  final String wireName = 'PartialUnbrandXoVmSnapshotHighAvailabilityEnum';
+  @override
+  Object serialize(Serializers serializers,
+          PartialUnbrandXoVmSnapshotHighAvailabilityEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  PartialUnbrandXoVmSnapshotHighAvailabilityEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for PartialUnbrandXoVmSnapshotHighAvailabilityEnum');
+    return PartialUnbrandXoVmSnapshotHighAvailabilityEnum.fromValue(serialized);
+  }
 }
 
 class PartialUnbrandXoVmSnapshotTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'VM-snapshot')
   static const PartialUnbrandXoVmSnapshotTypeEnum vMSnapshot =
       _$partialUnbrandXoVmSnapshotTypeEnum_vMSnapshot;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const PartialUnbrandXoVmSnapshotTypeEnum unknownDefaultOpenApi =
+      _$partialUnbrandXoVmSnapshotTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<PartialUnbrandXoVmSnapshotTypeEnum> get serializer =>
-      _$partialUnbrandXoVmSnapshotTypeEnumSerializer;
+      _OpenPartialUnbrandXoVmSnapshotTypeEnumSerializer();
 
   const PartialUnbrandXoVmSnapshotTypeEnum._(String name) : super(name);
 
@@ -1337,4 +1401,48 @@ class PartialUnbrandXoVmSnapshotTypeEnum extends EnumClass {
       _$partialUnbrandXoVmSnapshotTypeEnumValues;
   static PartialUnbrandXoVmSnapshotTypeEnum valueOf(String name) =>
       _$partialUnbrandXoVmSnapshotTypeEnumValueOf(name);
+
+  static PartialUnbrandXoVmSnapshotTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'VM-snapshot':
+        return vMSnapshot;
+      default:
+        return PartialUnbrandXoVmSnapshotTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, vMSnapshot)) return r'VM-snapshot';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is PartialUnbrandXoVmSnapshotTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenPartialUnbrandXoVmSnapshotTypeEnumSerializer
+    implements PrimitiveSerializer<PartialUnbrandXoVmSnapshotTypeEnum> {
+  @override
+  final Iterable<Type> types = const [PartialUnbrandXoVmSnapshotTypeEnum];
+  @override
+  final String wireName = 'PartialUnbrandXoVmSnapshotTypeEnum';
+  @override
+  Object serialize(
+          Serializers serializers, PartialUnbrandXoVmSnapshotTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  PartialUnbrandXoVmSnapshotTypeEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for PartialUnbrandXoVmSnapshotTypeEnum');
+    return PartialUnbrandXoVmSnapshotTypeEnum.fromValue(serialized);
+  }
 }

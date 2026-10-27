@@ -44,8 +44,6 @@ class PartialUnbrandXoPci(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['PCI']):
-            raise ValueError("must be one of enum values ('PCI')")
         return value
 
     model_config = ConfigDict(

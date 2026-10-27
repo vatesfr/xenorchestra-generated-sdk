@@ -51,14 +51,59 @@ impl CreateSrBody {
     }
 }
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum ContentType {
-    #[serde(rename = "user")]
     User,
-    #[serde(rename = "iso")]
     Iso,
-    #[serde(rename = "disk")]
     Disk,
+    UnknownValue(String),
+}
+impl ContentType {
+    pub fn as_str(&self) -> &str {
+        match self {
+            Self::User => "user",
+            Self::Iso => "iso",
+            Self::Disk => "disk",
+            Self::UnknownValue(value) => value,
+        }
+    }
+}
+impl From<String> for ContentType {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "user" => Self::User,
+            "iso" => Self::Iso,
+            "disk" => Self::Disk,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for ContentType {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for ContentType {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for ContentType {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for ContentType {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
+    }
 }
 
 impl Default for ContentType {
@@ -67,48 +112,110 @@ impl Default for ContentType {
     }
 }
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum SrType {
-    #[serde(rename = "cephfs")]
     Cephfs,
-    #[serde(rename = "dummy")]
     Dummy,
-    #[serde(rename = "ext")]
     Ext,
-    #[serde(rename = "file")]
     File,
-    #[serde(rename = "glusterfs")]
     Glusterfs,
-    #[serde(rename = "hba")]
     Hba,
-    #[serde(rename = "iso")]
     Iso,
-    #[serde(rename = "largeblock")]
     Largeblock,
-    #[serde(rename = "linstor")]
     Linstor,
-    #[serde(rename = "lvm")]
     Lvm,
-    #[serde(rename = "lvmofcoe")]
     Lvmofcoe,
-    #[serde(rename = "lvmohba")]
     Lvmohba,
-    #[serde(rename = "lvmoiscsi")]
     Lvmoiscsi,
-    #[serde(rename = "moosefs")]
     Moosefs,
-    #[serde(rename = "nfs")]
     Nfs,
-    #[serde(rename = "shm")]
     Shm,
-    #[serde(rename = "smb")]
     Smb,
-    #[serde(rename = "udev")]
     Udev,
-    #[serde(rename = "xfs")]
     Xfs,
-    #[serde(rename = "zfs")]
     Zfs,
+    UnknownValue(String),
+}
+impl SrType {
+    pub fn as_str(&self) -> &str {
+        match self {
+            Self::Cephfs => "cephfs",
+            Self::Dummy => "dummy",
+            Self::Ext => "ext",
+            Self::File => "file",
+            Self::Glusterfs => "glusterfs",
+            Self::Hba => "hba",
+            Self::Iso => "iso",
+            Self::Largeblock => "largeblock",
+            Self::Linstor => "linstor",
+            Self::Lvm => "lvm",
+            Self::Lvmofcoe => "lvmofcoe",
+            Self::Lvmohba => "lvmohba",
+            Self::Lvmoiscsi => "lvmoiscsi",
+            Self::Moosefs => "moosefs",
+            Self::Nfs => "nfs",
+            Self::Shm => "shm",
+            Self::Smb => "smb",
+            Self::Udev => "udev",
+            Self::Xfs => "xfs",
+            Self::Zfs => "zfs",
+            Self::UnknownValue(value) => value,
+        }
+    }
+}
+impl From<String> for SrType {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "cephfs" => Self::Cephfs,
+            "dummy" => Self::Dummy,
+            "ext" => Self::Ext,
+            "file" => Self::File,
+            "glusterfs" => Self::Glusterfs,
+            "hba" => Self::Hba,
+            "iso" => Self::Iso,
+            "largeblock" => Self::Largeblock,
+            "linstor" => Self::Linstor,
+            "lvm" => Self::Lvm,
+            "lvmofcoe" => Self::Lvmofcoe,
+            "lvmohba" => Self::Lvmohba,
+            "lvmoiscsi" => Self::Lvmoiscsi,
+            "moosefs" => Self::Moosefs,
+            "nfs" => Self::Nfs,
+            "shm" => Self::Shm,
+            "smb" => Self::Smb,
+            "udev" => Self::Udev,
+            "xfs" => Self::Xfs,
+            "zfs" => Self::Zfs,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for SrType {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for SrType {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for SrType {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for SrType {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
+    }
 }
 
 impl Default for SrType {

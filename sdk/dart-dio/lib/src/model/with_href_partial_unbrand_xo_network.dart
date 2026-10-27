@@ -487,9 +487,13 @@ class WithHrefPartialUnbrandXoNetworkTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'network')
   static const WithHrefPartialUnbrandXoNetworkTypeEnum network =
       _$withHrefPartialUnbrandXoNetworkTypeEnum_network;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const WithHrefPartialUnbrandXoNetworkTypeEnum unknownDefaultOpenApi =
+      _$withHrefPartialUnbrandXoNetworkTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<WithHrefPartialUnbrandXoNetworkTypeEnum> get serializer =>
-      _$withHrefPartialUnbrandXoNetworkTypeEnumSerializer;
+      _OpenWithHrefPartialUnbrandXoNetworkTypeEnumSerializer();
 
   const WithHrefPartialUnbrandXoNetworkTypeEnum._(String name) : super(name);
 
@@ -497,4 +501,48 @@ class WithHrefPartialUnbrandXoNetworkTypeEnum extends EnumClass {
       _$withHrefPartialUnbrandXoNetworkTypeEnumValues;
   static WithHrefPartialUnbrandXoNetworkTypeEnum valueOf(String name) =>
       _$withHrefPartialUnbrandXoNetworkTypeEnumValueOf(name);
+
+  static WithHrefPartialUnbrandXoNetworkTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'network':
+        return network;
+      default:
+        return WithHrefPartialUnbrandXoNetworkTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, network)) return r'network';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is WithHrefPartialUnbrandXoNetworkTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenWithHrefPartialUnbrandXoNetworkTypeEnumSerializer
+    implements PrimitiveSerializer<WithHrefPartialUnbrandXoNetworkTypeEnum> {
+  @override
+  final Iterable<Type> types = const [WithHrefPartialUnbrandXoNetworkTypeEnum];
+  @override
+  final String wireName = 'WithHrefPartialUnbrandXoNetworkTypeEnum';
+  @override
+  Object serialize(Serializers serializers,
+          WithHrefPartialUnbrandXoNetworkTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  WithHrefPartialUnbrandXoNetworkTypeEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for WithHrefPartialUnbrandXoNetworkTypeEnum');
+    return WithHrefPartialUnbrandXoNetworkTypeEnum.fromValue(serialized);
+  }
 }

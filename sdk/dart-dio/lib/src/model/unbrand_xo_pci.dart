@@ -259,9 +259,13 @@ class _$UnbrandXoPciSerializer implements PrimitiveSerializer<UnbrandXoPci> {
 class UnbrandXoPciTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'PCI')
   static const UnbrandXoPciTypeEnum PCI = _$unbrandXoPciTypeEnum_PCI;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UnbrandXoPciTypeEnum unknownDefaultOpenApi =
+      _$unbrandXoPciTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UnbrandXoPciTypeEnum> get serializer =>
-      _$unbrandXoPciTypeEnumSerializer;
+      _OpenUnbrandXoPciTypeEnumSerializer();
 
   const UnbrandXoPciTypeEnum._(String name) : super(name);
 
@@ -269,4 +273,45 @@ class UnbrandXoPciTypeEnum extends EnumClass {
       _$unbrandXoPciTypeEnumValues;
   static UnbrandXoPciTypeEnum valueOf(String name) =>
       _$unbrandXoPciTypeEnumValueOf(name);
+
+  static UnbrandXoPciTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'PCI':
+        return PCI;
+      default:
+        return UnbrandXoPciTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, PCI)) return r'PCI';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UnbrandXoPciTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUnbrandXoPciTypeEnumSerializer
+    implements PrimitiveSerializer<UnbrandXoPciTypeEnum> {
+  @override
+  final Iterable<Type> types = const [UnbrandXoPciTypeEnum];
+  @override
+  final String wireName = 'UnbrandXoPciTypeEnum';
+  @override
+  Object serialize(Serializers serializers, UnbrandXoPciTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UnbrandXoPciTypeEnum deserialize(Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError('Expected a string for UnbrandXoPciTypeEnum');
+    return UnbrandXoPciTypeEnum.fromValue(serialized);
+  }
 }

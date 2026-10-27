@@ -32,7 +32,7 @@ void main() {
       // TODO
     });
 
-    // PartialUnbrandXoMirrorBackupJobSettings settings
+    // PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettings settings
     test('to test the property `settings`', () async {
       // TODO
     });

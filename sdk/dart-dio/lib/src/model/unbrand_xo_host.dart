@@ -865,9 +865,13 @@ class _$UnbrandXoHostSerializer implements PrimitiveSerializer<UnbrandXoHost> {
 class UnbrandXoHostTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'host')
   static const UnbrandXoHostTypeEnum host = _$unbrandXoHostTypeEnum_host;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UnbrandXoHostTypeEnum unknownDefaultOpenApi =
+      _$unbrandXoHostTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UnbrandXoHostTypeEnum> get serializer =>
-      _$unbrandXoHostTypeEnumSerializer;
+      _OpenUnbrandXoHostTypeEnumSerializer();
 
   const UnbrandXoHostTypeEnum._(String name) : super(name);
 
@@ -875,4 +879,45 @@ class UnbrandXoHostTypeEnum extends EnumClass {
       _$unbrandXoHostTypeEnumValues;
   static UnbrandXoHostTypeEnum valueOf(String name) =>
       _$unbrandXoHostTypeEnumValueOf(name);
+
+  static UnbrandXoHostTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'host':
+        return host;
+      default:
+        return UnbrandXoHostTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, host)) return r'host';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UnbrandXoHostTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUnbrandXoHostTypeEnumSerializer
+    implements PrimitiveSerializer<UnbrandXoHostTypeEnum> {
+  @override
+  final Iterable<Type> types = const [UnbrandXoHostTypeEnum];
+  @override
+  final String wireName = 'UnbrandXoHostTypeEnum';
+  @override
+  Object serialize(Serializers serializers, UnbrandXoHostTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UnbrandXoHostTypeEnum deserialize(Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError('Expected a string for UnbrandXoHostTypeEnum');
+    return UnbrandXoHostTypeEnum.fromValue(serialized);
+  }
 }

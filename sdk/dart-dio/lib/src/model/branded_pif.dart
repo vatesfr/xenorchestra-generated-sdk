@@ -113,9 +113,13 @@ class _$BrandedPIFSerializer implements PrimitiveSerializer<BrandedPIF> {
 class BrandedPIFUndefinedEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'PIF')
   static const BrandedPIFUndefinedEnum PIF = _$brandedPIFUndefinedEnum_PIF;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const BrandedPIFUndefinedEnum unknownDefaultOpenApi =
+      _$brandedPIFUndefinedEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<BrandedPIFUndefinedEnum> get serializer =>
-      _$brandedPIFUndefinedEnumSerializer;
+      _OpenBrandedPIFUndefinedEnumSerializer();
 
   const BrandedPIFUndefinedEnum._(String name) : super(name);
 
@@ -123,4 +127,46 @@ class BrandedPIFUndefinedEnum extends EnumClass {
       _$brandedPIFUndefinedEnumValues;
   static BrandedPIFUndefinedEnum valueOf(String name) =>
       _$brandedPIFUndefinedEnumValueOf(name);
+
+  static BrandedPIFUndefinedEnum fromValue(String value) {
+    switch (value) {
+      case r'PIF':
+        return PIF;
+      default:
+        return BrandedPIFUndefinedEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, PIF)) return r'PIF';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is BrandedPIFUndefinedEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenBrandedPIFUndefinedEnumSerializer
+    implements PrimitiveSerializer<BrandedPIFUndefinedEnum> {
+  @override
+  final Iterable<Type> types = const [BrandedPIFUndefinedEnum];
+  @override
+  final String wireName = 'BrandedPIFUndefinedEnum';
+  @override
+  Object serialize(Serializers serializers, BrandedPIFUndefinedEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  BrandedPIFUndefinedEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError('Expected a string for BrandedPIFUndefinedEnum');
+    return BrandedPIFUndefinedEnum.fromValue(serialized);
+  }
 }

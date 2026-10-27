@@ -35,8 +35,6 @@ class BrandedTask(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['task']):
-            raise ValueError("must be one of enum values ('task')")
         return value
 
     model_config = ConfigDict(

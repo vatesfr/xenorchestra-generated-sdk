@@ -28,18 +28,17 @@ import com.fasterxml.jackson.annotation.JsonValue;
 /**
  * Gets or Sets VBD_MODE
  */
-public enum VBDMODE {
-  
-  RO("RO"),
-  
-  RW("RW"),
-  
-  UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
+public final class VBDMODE {
+    public static final VBDMODE RO = new VBDMODE("RO");
+    public static final VBDMODE RW = new VBDMODE("RW");
+    @JsonCreator public static VBDMODE fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static VBDMODE[] values() { return new VBDMODE[] {RO, RW}; }
+    @Override public boolean equals(Object other) { return other instanceof VBDMODE && value.equals(((VBDMODE) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-  private String value;
-
-  VBDMODE(String value) {
-    this.value = value;
+  private VBDMODE(String value) {
+    this.value = java.util.Objects.requireNonNull(value);
   }
 
   @JsonValue
@@ -52,14 +51,14 @@ public enum VBDMODE {
     return String.valueOf(value);
   }
 
-  @JsonCreator
+  
   public static VBDMODE fromValue(String value) {
     for (VBDMODE b : VBDMODE.values()) {
       if (b.value.equals(value)) {
         return b;
       }
     }
-    return UNKNOWN_DEFAULT_OPEN_API;
+    return new VBDMODE(value);
   }
 
   /**
@@ -77,4 +76,5 @@ public enum VBDMODE {
   }
 
 }
+
 

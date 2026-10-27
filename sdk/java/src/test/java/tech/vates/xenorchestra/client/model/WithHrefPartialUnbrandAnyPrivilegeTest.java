@@ -19,6 +19,43 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantAclPrivilege;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantAclRole;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantAlarm;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantBackupArchive;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantBackupJob;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantBackupLog;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantBackupRepository;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantGpuGroup;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantGroup;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantHost;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantMessage;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantNetwork;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantPbd;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantPci;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantPgpu;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantPif;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantPool;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantProxy;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantRestoreLog;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantSchedule;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantServer;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantSm;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantSr;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantTask;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantUser;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantVbd;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantVdi;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantVdiSnapshot;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantVdiUnmanaged;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantVgpu;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantVgpuType;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantVif;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantVm;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantVmController;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantVmSnapshot;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantVmTemplate;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyPrivilegeVariantVtpm;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -54,6 +91,14 @@ class WithHrefPartialUnbrandAnyPrivilegeTest {
     }
 
     /**
+     * Test the property 'href'
+     */
+    @Test
+    void hrefTest() {
+        // TODO: test href
+    }
+
+    /**
      * Test the property 'id'
      */
     @Test
@@ -83,14 +128,6 @@ class WithHrefPartialUnbrandAnyPrivilegeTest {
     @Test
     void selectorTest() {
         // TODO: test selector
-    }
-
-    /**
-     * Test the property 'href'
-     */
-    @Test
-    void hrefTest() {
-        // TODO: test href
     }
 
 }

@@ -15,6 +15,9 @@ const UnbrandXoVmTemplateHighAvailabilityEnum
 const UnbrandXoVmTemplateHighAvailabilityEnum
     _$unbrandXoVmTemplateHighAvailabilityEnum_restart =
     const UnbrandXoVmTemplateHighAvailabilityEnum._('restart');
+const UnbrandXoVmTemplateHighAvailabilityEnum
+    _$unbrandXoVmTemplateHighAvailabilityEnum_unknownDefaultOpenApi =
+    const UnbrandXoVmTemplateHighAvailabilityEnum._('unknownDefaultOpenApi');
 
 UnbrandXoVmTemplateHighAvailabilityEnum
     _$unbrandXoVmTemplateHighAvailabilityEnumValueOf(String name) {
@@ -25,6 +28,8 @@ UnbrandXoVmTemplateHighAvailabilityEnum
       return _$unbrandXoVmTemplateHighAvailabilityEnum_bestEffort;
     case 'restart':
       return _$unbrandXoVmTemplateHighAvailabilityEnum_restart;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandXoVmTemplateHighAvailabilityEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -36,15 +41,21 @@ final BuiltSet<UnbrandXoVmTemplateHighAvailabilityEnum>
   _$unbrandXoVmTemplateHighAvailabilityEnum_empty,
   _$unbrandXoVmTemplateHighAvailabilityEnum_bestEffort,
   _$unbrandXoVmTemplateHighAvailabilityEnum_restart,
+  _$unbrandXoVmTemplateHighAvailabilityEnum_unknownDefaultOpenApi,
 ]);
 
 const UnbrandXoVmTemplateTypeEnum _$unbrandXoVmTemplateTypeEnum_vMTemplate =
     const UnbrandXoVmTemplateTypeEnum._('vMTemplate');
+const UnbrandXoVmTemplateTypeEnum
+    _$unbrandXoVmTemplateTypeEnum_unknownDefaultOpenApi =
+    const UnbrandXoVmTemplateTypeEnum._('unknownDefaultOpenApi');
 
 UnbrandXoVmTemplateTypeEnum _$unbrandXoVmTemplateTypeEnumValueOf(String name) {
   switch (name) {
     case 'vMTemplate':
       return _$unbrandXoVmTemplateTypeEnum_vMTemplate;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandXoVmTemplateTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -54,75 +65,8 @@ final BuiltSet<UnbrandXoVmTemplateTypeEnum>
     _$unbrandXoVmTemplateTypeEnumValues =
     BuiltSet<UnbrandXoVmTemplateTypeEnum>(const <UnbrandXoVmTemplateTypeEnum>[
   _$unbrandXoVmTemplateTypeEnum_vMTemplate,
+  _$unbrandXoVmTemplateTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<UnbrandXoVmTemplateHighAvailabilityEnum>
-    _$unbrandXoVmTemplateHighAvailabilityEnumSerializer =
-    _$UnbrandXoVmTemplateHighAvailabilityEnumSerializer();
-Serializer<UnbrandXoVmTemplateTypeEnum>
-    _$unbrandXoVmTemplateTypeEnumSerializer =
-    _$UnbrandXoVmTemplateTypeEnumSerializer();
-
-class _$UnbrandXoVmTemplateHighAvailabilityEnumSerializer
-    implements PrimitiveSerializer<UnbrandXoVmTemplateHighAvailabilityEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'empty': '',
-    'bestEffort': 'best-effort',
-    'restart': 'restart',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    '': 'empty',
-    'best-effort': 'bestEffort',
-    'restart': 'restart',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    UnbrandXoVmTemplateHighAvailabilityEnum
-  ];
-  @override
-  final String wireName = 'UnbrandXoVmTemplateHighAvailabilityEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          UnbrandXoVmTemplateHighAvailabilityEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandXoVmTemplateHighAvailabilityEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandXoVmTemplateHighAvailabilityEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
-
-class _$UnbrandXoVmTemplateTypeEnumSerializer
-    implements PrimitiveSerializer<UnbrandXoVmTemplateTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'vMTemplate': 'VM-template',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'VM-template': 'vMTemplate',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[UnbrandXoVmTemplateTypeEnum];
-  @override
-  final String wireName = 'UnbrandXoVmTemplateTypeEnum';
-
-  @override
-  Object serialize(Serializers serializers, UnbrandXoVmTemplateTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandXoVmTemplateTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandXoVmTemplateTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$UnbrandXoVmTemplate extends UnbrandXoVmTemplate {
   @override

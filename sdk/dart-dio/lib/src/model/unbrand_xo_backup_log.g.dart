@@ -8,12 +8,17 @@ part of 'unbrand_xo_backup_log.dart';
 
 const UnbrandXoBackupLogMessageEnum _$unbrandXoBackupLogMessageEnum_backup =
     const UnbrandXoBackupLogMessageEnum._('backup');
+const UnbrandXoBackupLogMessageEnum
+    _$unbrandXoBackupLogMessageEnum_unknownDefaultOpenApi =
+    const UnbrandXoBackupLogMessageEnum._('unknownDefaultOpenApi');
 
 UnbrandXoBackupLogMessageEnum _$unbrandXoBackupLogMessageEnumValueOf(
     String name) {
   switch (name) {
     case 'backup':
       return _$unbrandXoBackupLogMessageEnum_backup;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandXoBackupLogMessageEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -23,6 +28,7 @@ final BuiltSet<UnbrandXoBackupLogMessageEnum>
     _$unbrandXoBackupLogMessageEnumValues = BuiltSet<
         UnbrandXoBackupLogMessageEnum>(const <UnbrandXoBackupLogMessageEnum>[
   _$unbrandXoBackupLogMessageEnum_backup,
+  _$unbrandXoBackupLogMessageEnum_unknownDefaultOpenApi,
 ]);
 
 const UnbrandXoBackupLogStatusEnum _$unbrandXoBackupLogStatusEnum_failure =
@@ -35,6 +41,9 @@ const UnbrandXoBackupLogStatusEnum _$unbrandXoBackupLogStatusEnum_success =
     const UnbrandXoBackupLogStatusEnum._('success');
 const UnbrandXoBackupLogStatusEnum _$unbrandXoBackupLogStatusEnum_skipped =
     const UnbrandXoBackupLogStatusEnum._('skipped');
+const UnbrandXoBackupLogStatusEnum
+    _$unbrandXoBackupLogStatusEnum_unknownDefaultOpenApi =
+    const UnbrandXoBackupLogStatusEnum._('unknownDefaultOpenApi');
 
 UnbrandXoBackupLogStatusEnum _$unbrandXoBackupLogStatusEnumValueOf(
     String name) {
@@ -49,6 +58,8 @@ UnbrandXoBackupLogStatusEnum _$unbrandXoBackupLogStatusEnumValueOf(
       return _$unbrandXoBackupLogStatusEnum_success;
     case 'skipped':
       return _$unbrandXoBackupLogStatusEnum_skipped;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandXoBackupLogStatusEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -62,77 +73,8 @@ final BuiltSet<UnbrandXoBackupLogStatusEnum>
   _$unbrandXoBackupLogStatusEnum_pending,
   _$unbrandXoBackupLogStatusEnum_success,
   _$unbrandXoBackupLogStatusEnum_skipped,
+  _$unbrandXoBackupLogStatusEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<UnbrandXoBackupLogMessageEnum>
-    _$unbrandXoBackupLogMessageEnumSerializer =
-    _$UnbrandXoBackupLogMessageEnumSerializer();
-Serializer<UnbrandXoBackupLogStatusEnum>
-    _$unbrandXoBackupLogStatusEnumSerializer =
-    _$UnbrandXoBackupLogStatusEnumSerializer();
-
-class _$UnbrandXoBackupLogMessageEnumSerializer
-    implements PrimitiveSerializer<UnbrandXoBackupLogMessageEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'backup': 'backup',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'backup': 'backup',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[UnbrandXoBackupLogMessageEnum];
-  @override
-  final String wireName = 'UnbrandXoBackupLogMessageEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers, UnbrandXoBackupLogMessageEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandXoBackupLogMessageEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandXoBackupLogMessageEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
-
-class _$UnbrandXoBackupLogStatusEnumSerializer
-    implements PrimitiveSerializer<UnbrandXoBackupLogStatusEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'failure': 'failure',
-    'interrupted': 'interrupted',
-    'pending': 'pending',
-    'success': 'success',
-    'skipped': 'skipped',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'failure': 'failure',
-    'interrupted': 'interrupted',
-    'pending': 'pending',
-    'success': 'success',
-    'skipped': 'skipped',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[UnbrandXoBackupLogStatusEnum];
-  @override
-  final String wireName = 'UnbrandXoBackupLogStatusEnum';
-
-  @override
-  Object serialize(Serializers serializers, UnbrandXoBackupLogStatusEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandXoBackupLogStatusEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandXoBackupLogStatusEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$UnbrandXoBackupLog extends UnbrandXoBackupLog {
   @override

@@ -8,12 +8,17 @@ part of 'partial_unbrand_xo_pgpu.dart';
 
 const PartialUnbrandXoPgpuTypeEnum _$partialUnbrandXoPgpuTypeEnum_PGPU =
     const PartialUnbrandXoPgpuTypeEnum._('PGPU');
+const PartialUnbrandXoPgpuTypeEnum
+    _$partialUnbrandXoPgpuTypeEnum_unknownDefaultOpenApi =
+    const PartialUnbrandXoPgpuTypeEnum._('unknownDefaultOpenApi');
 
 PartialUnbrandXoPgpuTypeEnum _$partialUnbrandXoPgpuTypeEnumValueOf(
     String name) {
   switch (name) {
     case 'PGPU':
       return _$partialUnbrandXoPgpuTypeEnum_PGPU;
+    case 'unknownDefaultOpenApi':
+      return _$partialUnbrandXoPgpuTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -23,38 +28,8 @@ final BuiltSet<PartialUnbrandXoPgpuTypeEnum>
     _$partialUnbrandXoPgpuTypeEnumValues =
     BuiltSet<PartialUnbrandXoPgpuTypeEnum>(const <PartialUnbrandXoPgpuTypeEnum>[
   _$partialUnbrandXoPgpuTypeEnum_PGPU,
+  _$partialUnbrandXoPgpuTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<PartialUnbrandXoPgpuTypeEnum>
-    _$partialUnbrandXoPgpuTypeEnumSerializer =
-    _$PartialUnbrandXoPgpuTypeEnumSerializer();
-
-class _$PartialUnbrandXoPgpuTypeEnumSerializer
-    implements PrimitiveSerializer<PartialUnbrandXoPgpuTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'PGPU': 'PGPU',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'PGPU': 'PGPU',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[PartialUnbrandXoPgpuTypeEnum];
-  @override
-  final String wireName = 'PartialUnbrandXoPgpuTypeEnum';
-
-  @override
-  Object serialize(Serializers serializers, PartialUnbrandXoPgpuTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  PartialUnbrandXoPgpuTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      PartialUnbrandXoPgpuTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$PartialUnbrandXoPgpu extends PartialUnbrandXoPgpu {
   @override

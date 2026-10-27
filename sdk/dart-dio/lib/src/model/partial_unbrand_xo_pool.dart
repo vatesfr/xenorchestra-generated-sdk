@@ -540,9 +540,13 @@ class PartialUnbrandXoPoolTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'pool')
   static const PartialUnbrandXoPoolTypeEnum pool =
       _$partialUnbrandXoPoolTypeEnum_pool;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const PartialUnbrandXoPoolTypeEnum unknownDefaultOpenApi =
+      _$partialUnbrandXoPoolTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<PartialUnbrandXoPoolTypeEnum> get serializer =>
-      _$partialUnbrandXoPoolTypeEnumSerializer;
+      _OpenPartialUnbrandXoPoolTypeEnumSerializer();
 
   const PartialUnbrandXoPoolTypeEnum._(String name) : super(name);
 
@@ -550,4 +554,46 @@ class PartialUnbrandXoPoolTypeEnum extends EnumClass {
       _$partialUnbrandXoPoolTypeEnumValues;
   static PartialUnbrandXoPoolTypeEnum valueOf(String name) =>
       _$partialUnbrandXoPoolTypeEnumValueOf(name);
+
+  static PartialUnbrandXoPoolTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'pool':
+        return pool;
+      default:
+        return PartialUnbrandXoPoolTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, pool)) return r'pool';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is PartialUnbrandXoPoolTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenPartialUnbrandXoPoolTypeEnumSerializer
+    implements PrimitiveSerializer<PartialUnbrandXoPoolTypeEnum> {
+  @override
+  final Iterable<Type> types = const [PartialUnbrandXoPoolTypeEnum];
+  @override
+  final String wireName = 'PartialUnbrandXoPoolTypeEnum';
+  @override
+  Object serialize(Serializers serializers, PartialUnbrandXoPoolTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  PartialUnbrandXoPoolTypeEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError('Expected a string for PartialUnbrandXoPoolTypeEnum');
+    return PartialUnbrandXoPoolTypeEnum.fromValue(serialized);
+  }
 }

@@ -8,12 +8,17 @@ part of 'unbrand_xo_restore_log.dart';
 
 const UnbrandXoRestoreLogMessageEnum _$unbrandXoRestoreLogMessageEnum_restore =
     const UnbrandXoRestoreLogMessageEnum._('restore');
+const UnbrandXoRestoreLogMessageEnum
+    _$unbrandXoRestoreLogMessageEnum_unknownDefaultOpenApi =
+    const UnbrandXoRestoreLogMessageEnum._('unknownDefaultOpenApi');
 
 UnbrandXoRestoreLogMessageEnum _$unbrandXoRestoreLogMessageEnumValueOf(
     String name) {
   switch (name) {
     case 'restore':
       return _$unbrandXoRestoreLogMessageEnum_restore;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandXoRestoreLogMessageEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -23,39 +28,8 @@ final BuiltSet<UnbrandXoRestoreLogMessageEnum>
     _$unbrandXoRestoreLogMessageEnumValues = BuiltSet<
         UnbrandXoRestoreLogMessageEnum>(const <UnbrandXoRestoreLogMessageEnum>[
   _$unbrandXoRestoreLogMessageEnum_restore,
+  _$unbrandXoRestoreLogMessageEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<UnbrandXoRestoreLogMessageEnum>
-    _$unbrandXoRestoreLogMessageEnumSerializer =
-    _$UnbrandXoRestoreLogMessageEnumSerializer();
-
-class _$UnbrandXoRestoreLogMessageEnumSerializer
-    implements PrimitiveSerializer<UnbrandXoRestoreLogMessageEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'restore': 'restore',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'restore': 'restore',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[UnbrandXoRestoreLogMessageEnum];
-  @override
-  final String wireName = 'UnbrandXoRestoreLogMessageEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers, UnbrandXoRestoreLogMessageEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandXoRestoreLogMessageEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandXoRestoreLogMessageEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$UnbrandXoRestoreLog extends UnbrandXoRestoreLog {
   @override

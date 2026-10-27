@@ -9,12 +9,18 @@ part of 'with_href_partial_unbrand_xo_restore_log.dart';
 const WithHrefPartialUnbrandXoRestoreLogMessageEnum
     _$withHrefPartialUnbrandXoRestoreLogMessageEnum_restore =
     const WithHrefPartialUnbrandXoRestoreLogMessageEnum._('restore');
+const WithHrefPartialUnbrandXoRestoreLogMessageEnum
+    _$withHrefPartialUnbrandXoRestoreLogMessageEnum_unknownDefaultOpenApi =
+    const WithHrefPartialUnbrandXoRestoreLogMessageEnum._(
+        'unknownDefaultOpenApi');
 
 WithHrefPartialUnbrandXoRestoreLogMessageEnum
     _$withHrefPartialUnbrandXoRestoreLogMessageEnumValueOf(String name) {
   switch (name) {
     case 'restore':
       return _$withHrefPartialUnbrandXoRestoreLogMessageEnum_restore;
+    case 'unknownDefaultOpenApi':
+      return _$withHrefPartialUnbrandXoRestoreLogMessageEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -24,42 +30,8 @@ final BuiltSet<WithHrefPartialUnbrandXoRestoreLogMessageEnum>
     _$withHrefPartialUnbrandXoRestoreLogMessageEnumValues = BuiltSet<
         WithHrefPartialUnbrandXoRestoreLogMessageEnum>(const <WithHrefPartialUnbrandXoRestoreLogMessageEnum>[
   _$withHrefPartialUnbrandXoRestoreLogMessageEnum_restore,
+  _$withHrefPartialUnbrandXoRestoreLogMessageEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<WithHrefPartialUnbrandXoRestoreLogMessageEnum>
-    _$withHrefPartialUnbrandXoRestoreLogMessageEnumSerializer =
-    _$WithHrefPartialUnbrandXoRestoreLogMessageEnumSerializer();
-
-class _$WithHrefPartialUnbrandXoRestoreLogMessageEnumSerializer
-    implements
-        PrimitiveSerializer<WithHrefPartialUnbrandXoRestoreLogMessageEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'restore': 'restore',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'restore': 'restore',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    WithHrefPartialUnbrandXoRestoreLogMessageEnum
-  ];
-  @override
-  final String wireName = 'WithHrefPartialUnbrandXoRestoreLogMessageEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          WithHrefPartialUnbrandXoRestoreLogMessageEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  WithHrefPartialUnbrandXoRestoreLogMessageEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      WithHrefPartialUnbrandXoRestoreLogMessageEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$WithHrefPartialUnbrandXoRestoreLog
     extends WithHrefPartialUnbrandXoRestoreLog {

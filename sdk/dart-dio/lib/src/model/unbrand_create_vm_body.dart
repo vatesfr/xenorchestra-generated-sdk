@@ -512,9 +512,13 @@ class UnbrandCreateVmBodyHighAvailabilityEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'restart')
   static const UnbrandCreateVmBodyHighAvailabilityEnum restart =
       _$unbrandCreateVmBodyHighAvailabilityEnum_restart;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UnbrandCreateVmBodyHighAvailabilityEnum unknownDefaultOpenApi =
+      _$unbrandCreateVmBodyHighAvailabilityEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UnbrandCreateVmBodyHighAvailabilityEnum> get serializer =>
-      _$unbrandCreateVmBodyHighAvailabilityEnumSerializer;
+      _OpenUnbrandCreateVmBodyHighAvailabilityEnumSerializer();
 
   const UnbrandCreateVmBodyHighAvailabilityEnum._(String name) : super(name);
 
@@ -522,6 +526,56 @@ class UnbrandCreateVmBodyHighAvailabilityEnum extends EnumClass {
       _$unbrandCreateVmBodyHighAvailabilityEnumValues;
   static UnbrandCreateVmBodyHighAvailabilityEnum valueOf(String name) =>
       _$unbrandCreateVmBodyHighAvailabilityEnumValueOf(name);
+
+  static UnbrandCreateVmBodyHighAvailabilityEnum fromValue(String value) {
+    switch (value) {
+      case r'':
+        return empty;
+      case r'best-effort':
+        return bestEffort;
+      case r'restart':
+        return restart;
+      default:
+        return UnbrandCreateVmBodyHighAvailabilityEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, empty)) return r'';
+    if (identical(this, bestEffort)) return r'best-effort';
+    if (identical(this, restart)) return r'restart';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UnbrandCreateVmBodyHighAvailabilityEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUnbrandCreateVmBodyHighAvailabilityEnumSerializer
+    implements PrimitiveSerializer<UnbrandCreateVmBodyHighAvailabilityEnum> {
+  @override
+  final Iterable<Type> types = const [UnbrandCreateVmBodyHighAvailabilityEnum];
+  @override
+  final String wireName = 'UnbrandCreateVmBodyHighAvailabilityEnum';
+  @override
+  Object serialize(Serializers serializers,
+          UnbrandCreateVmBodyHighAvailabilityEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UnbrandCreateVmBodyHighAvailabilityEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for UnbrandCreateVmBodyHighAvailabilityEnum');
+    return UnbrandCreateVmBodyHighAvailabilityEnum.fromValue(serialized);
+  }
 }
 
 class UnbrandCreateVmBodyHvmBootFirmwareEnum extends EnumClass {
@@ -531,9 +585,13 @@ class UnbrandCreateVmBodyHvmBootFirmwareEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'bios')
   static const UnbrandCreateVmBodyHvmBootFirmwareEnum bios =
       _$unbrandCreateVmBodyHvmBootFirmwareEnum_bios;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UnbrandCreateVmBodyHvmBootFirmwareEnum unknownDefaultOpenApi =
+      _$unbrandCreateVmBodyHvmBootFirmwareEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UnbrandCreateVmBodyHvmBootFirmwareEnum> get serializer =>
-      _$unbrandCreateVmBodyHvmBootFirmwareEnumSerializer;
+      _OpenUnbrandCreateVmBodyHvmBootFirmwareEnumSerializer();
 
   const UnbrandCreateVmBodyHvmBootFirmwareEnum._(String name) : super(name);
 
@@ -541,4 +599,51 @@ class UnbrandCreateVmBodyHvmBootFirmwareEnum extends EnumClass {
       _$unbrandCreateVmBodyHvmBootFirmwareEnumValues;
   static UnbrandCreateVmBodyHvmBootFirmwareEnum valueOf(String name) =>
       _$unbrandCreateVmBodyHvmBootFirmwareEnumValueOf(name);
+
+  static UnbrandCreateVmBodyHvmBootFirmwareEnum fromValue(String value) {
+    switch (value) {
+      case r'uefi':
+        return uefi;
+      case r'bios':
+        return bios;
+      default:
+        return UnbrandCreateVmBodyHvmBootFirmwareEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, uefi)) return r'uefi';
+    if (identical(this, bios)) return r'bios';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UnbrandCreateVmBodyHvmBootFirmwareEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUnbrandCreateVmBodyHvmBootFirmwareEnumSerializer
+    implements PrimitiveSerializer<UnbrandCreateVmBodyHvmBootFirmwareEnum> {
+  @override
+  final Iterable<Type> types = const [UnbrandCreateVmBodyHvmBootFirmwareEnum];
+  @override
+  final String wireName = 'UnbrandCreateVmBodyHvmBootFirmwareEnum';
+  @override
+  Object serialize(Serializers serializers,
+          UnbrandCreateVmBodyHvmBootFirmwareEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UnbrandCreateVmBodyHvmBootFirmwareEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for UnbrandCreateVmBodyHvmBootFirmwareEnum');
+    return UnbrandCreateVmBodyHvmBootFirmwareEnum.fromValue(serialized);
+  }
 }

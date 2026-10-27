@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **pools** | Option<[**serde_json::Value**](.md)> |  | [optional]
 **proxy** | Option<**String**> |  | [optional]
 **remotes** | Option<[**serde_json::Value**](.md)> |  | [optional]
-**settings** | Option<[**models::PartialUnbrandAnyXoBackupJobAnyOf1Settings**](Partial_UnbrandAnyXoBackupJob__anyOf_1_settings.md)> |  | [optional]
+**settings** | Option<[**models::PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings**](PartialUnbrandAnyXoBackupJobVariantMetadataBackup_settings.md)> |  | [optional]
 **r#type** | Option<**String**> |  | [optional]
 **user_id** | Option<**String**> |  | [optional]
 **xo_metadata** | Option<**bool**> |  | [optional]

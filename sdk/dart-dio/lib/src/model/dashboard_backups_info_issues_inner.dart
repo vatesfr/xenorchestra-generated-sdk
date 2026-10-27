@@ -185,9 +185,13 @@ class DashboardBackupsInfoIssuesInnerLogsEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'success')
   static const DashboardBackupsInfoIssuesInnerLogsEnum success =
       _$dashboardBackupsInfoIssuesInnerLogsEnum_success;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const DashboardBackupsInfoIssuesInnerLogsEnum unknownDefaultOpenApi =
+      _$dashboardBackupsInfoIssuesInnerLogsEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<DashboardBackupsInfoIssuesInnerLogsEnum> get serializer =>
-      _$dashboardBackupsInfoIssuesInnerLogsEnumSerializer;
+      _OpenDashboardBackupsInfoIssuesInnerLogsEnumSerializer();
 
   const DashboardBackupsInfoIssuesInnerLogsEnum._(String name) : super(name);
 
@@ -195,4 +199,57 @@ class DashboardBackupsInfoIssuesInnerLogsEnum extends EnumClass {
       _$dashboardBackupsInfoIssuesInnerLogsEnumValues;
   static DashboardBackupsInfoIssuesInnerLogsEnum valueOf(String name) =>
       _$dashboardBackupsInfoIssuesInnerLogsEnumValueOf(name);
+
+  static DashboardBackupsInfoIssuesInnerLogsEnum fromValue(String value) {
+    switch (value) {
+      case r'failure':
+        return failure;
+      case r'interrupted':
+        return interrupted;
+      case r'skipped':
+        return skipped;
+      case r'success':
+        return success;
+      default:
+        return DashboardBackupsInfoIssuesInnerLogsEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, failure)) return r'failure';
+    if (identical(this, interrupted)) return r'interrupted';
+    if (identical(this, skipped)) return r'skipped';
+    if (identical(this, success)) return r'success';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is DashboardBackupsInfoIssuesInnerLogsEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenDashboardBackupsInfoIssuesInnerLogsEnumSerializer
+    implements PrimitiveSerializer<DashboardBackupsInfoIssuesInnerLogsEnum> {
+  @override
+  final Iterable<Type> types = const [DashboardBackupsInfoIssuesInnerLogsEnum];
+  @override
+  final String wireName = 'DashboardBackupsInfoIssuesInnerLogsEnum';
+  @override
+  Object serialize(Serializers serializers,
+          DashboardBackupsInfoIssuesInnerLogsEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  DashboardBackupsInfoIssuesInnerLogsEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for DashboardBackupsInfoIssuesInnerLogsEnum');
+    return DashboardBackupsInfoIssuesInnerLogsEnum.fromValue(serialized);
+  }
 }

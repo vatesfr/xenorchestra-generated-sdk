@@ -12,23 +12,58 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum IpConfigurationMode {
-    #[serde(rename = "DHCP")]
     Dhcp,
-    #[serde(rename = "None")]
     None,
-    #[serde(rename = "Static")]
     Static,
+    UnknownValue(String),
 }
-
-impl std::fmt::Display for IpConfigurationMode {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+impl IpConfigurationMode {
+    pub fn as_str(&self) -> &str {
         match self {
-            Self::Dhcp => write!(f, "DHCP"),
-            Self::None => write!(f, "None"),
-            Self::Static => write!(f, "Static"),
+            Self::Dhcp => "DHCP",
+            Self::None => "None",
+            Self::Static => "Static",
+            Self::UnknownValue(value) => value,
         }
+    }
+}
+impl From<String> for IpConfigurationMode {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "DHCP" => Self::Dhcp,
+            "None" => Self::None,
+            "Static" => Self::Static,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for IpConfigurationMode {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for IpConfigurationMode {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for IpConfigurationMode {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for IpConfigurationMode {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
     }
 }
 

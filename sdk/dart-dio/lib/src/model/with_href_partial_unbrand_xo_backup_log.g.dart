@@ -9,12 +9,18 @@ part of 'with_href_partial_unbrand_xo_backup_log.dart';
 const WithHrefPartialUnbrandXoBackupLogMessageEnum
     _$withHrefPartialUnbrandXoBackupLogMessageEnum_backup =
     const WithHrefPartialUnbrandXoBackupLogMessageEnum._('backup');
+const WithHrefPartialUnbrandXoBackupLogMessageEnum
+    _$withHrefPartialUnbrandXoBackupLogMessageEnum_unknownDefaultOpenApi =
+    const WithHrefPartialUnbrandXoBackupLogMessageEnum._(
+        'unknownDefaultOpenApi');
 
 WithHrefPartialUnbrandXoBackupLogMessageEnum
     _$withHrefPartialUnbrandXoBackupLogMessageEnumValueOf(String name) {
   switch (name) {
     case 'backup':
       return _$withHrefPartialUnbrandXoBackupLogMessageEnum_backup;
+    case 'unknownDefaultOpenApi':
+      return _$withHrefPartialUnbrandXoBackupLogMessageEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -24,6 +30,7 @@ final BuiltSet<WithHrefPartialUnbrandXoBackupLogMessageEnum>
     _$withHrefPartialUnbrandXoBackupLogMessageEnumValues = BuiltSet<
         WithHrefPartialUnbrandXoBackupLogMessageEnum>(const <WithHrefPartialUnbrandXoBackupLogMessageEnum>[
   _$withHrefPartialUnbrandXoBackupLogMessageEnum_backup,
+  _$withHrefPartialUnbrandXoBackupLogMessageEnum_unknownDefaultOpenApi,
 ]);
 
 const WithHrefPartialUnbrandXoBackupLogStatusEnum
@@ -41,6 +48,10 @@ const WithHrefPartialUnbrandXoBackupLogStatusEnum
 const WithHrefPartialUnbrandXoBackupLogStatusEnum
     _$withHrefPartialUnbrandXoBackupLogStatusEnum_skipped =
     const WithHrefPartialUnbrandXoBackupLogStatusEnum._('skipped');
+const WithHrefPartialUnbrandXoBackupLogStatusEnum
+    _$withHrefPartialUnbrandXoBackupLogStatusEnum_unknownDefaultOpenApi =
+    const WithHrefPartialUnbrandXoBackupLogStatusEnum._(
+        'unknownDefaultOpenApi');
 
 WithHrefPartialUnbrandXoBackupLogStatusEnum
     _$withHrefPartialUnbrandXoBackupLogStatusEnumValueOf(String name) {
@@ -55,6 +66,8 @@ WithHrefPartialUnbrandXoBackupLogStatusEnum
       return _$withHrefPartialUnbrandXoBackupLogStatusEnum_success;
     case 'skipped':
       return _$withHrefPartialUnbrandXoBackupLogStatusEnum_skipped;
+    case 'unknownDefaultOpenApi':
+      return _$withHrefPartialUnbrandXoBackupLogStatusEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -68,84 +81,8 @@ final BuiltSet<WithHrefPartialUnbrandXoBackupLogStatusEnum>
   _$withHrefPartialUnbrandXoBackupLogStatusEnum_pending,
   _$withHrefPartialUnbrandXoBackupLogStatusEnum_success,
   _$withHrefPartialUnbrandXoBackupLogStatusEnum_skipped,
+  _$withHrefPartialUnbrandXoBackupLogStatusEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<WithHrefPartialUnbrandXoBackupLogMessageEnum>
-    _$withHrefPartialUnbrandXoBackupLogMessageEnumSerializer =
-    _$WithHrefPartialUnbrandXoBackupLogMessageEnumSerializer();
-Serializer<WithHrefPartialUnbrandXoBackupLogStatusEnum>
-    _$withHrefPartialUnbrandXoBackupLogStatusEnumSerializer =
-    _$WithHrefPartialUnbrandXoBackupLogStatusEnumSerializer();
-
-class _$WithHrefPartialUnbrandXoBackupLogMessageEnumSerializer
-    implements
-        PrimitiveSerializer<WithHrefPartialUnbrandXoBackupLogMessageEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'backup': 'backup',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'backup': 'backup',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    WithHrefPartialUnbrandXoBackupLogMessageEnum
-  ];
-  @override
-  final String wireName = 'WithHrefPartialUnbrandXoBackupLogMessageEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          WithHrefPartialUnbrandXoBackupLogMessageEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  WithHrefPartialUnbrandXoBackupLogMessageEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      WithHrefPartialUnbrandXoBackupLogMessageEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
-
-class _$WithHrefPartialUnbrandXoBackupLogStatusEnumSerializer
-    implements
-        PrimitiveSerializer<WithHrefPartialUnbrandXoBackupLogStatusEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'failure': 'failure',
-    'interrupted': 'interrupted',
-    'pending': 'pending',
-    'success': 'success',
-    'skipped': 'skipped',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'failure': 'failure',
-    'interrupted': 'interrupted',
-    'pending': 'pending',
-    'success': 'success',
-    'skipped': 'skipped',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    WithHrefPartialUnbrandXoBackupLogStatusEnum
-  ];
-  @override
-  final String wireName = 'WithHrefPartialUnbrandXoBackupLogStatusEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          WithHrefPartialUnbrandXoBackupLogStatusEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  WithHrefPartialUnbrandXoBackupLogStatusEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      WithHrefPartialUnbrandXoBackupLogStatusEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$WithHrefPartialUnbrandXoBackupLog
     extends WithHrefPartialUnbrandXoBackupLog {

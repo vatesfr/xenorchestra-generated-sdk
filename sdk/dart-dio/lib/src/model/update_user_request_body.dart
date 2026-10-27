@@ -180,9 +180,13 @@ class UpdateUserRequestBodyPermissionEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'admin')
   static const UpdateUserRequestBodyPermissionEnum admin =
       _$updateUserRequestBodyPermissionEnum_admin;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UpdateUserRequestBodyPermissionEnum unknownDefaultOpenApi =
+      _$updateUserRequestBodyPermissionEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UpdateUserRequestBodyPermissionEnum> get serializer =>
-      _$updateUserRequestBodyPermissionEnumSerializer;
+      _OpenUpdateUserRequestBodyPermissionEnumSerializer();
 
   const UpdateUserRequestBodyPermissionEnum._(String name) : super(name);
 
@@ -190,4 +194,51 @@ class UpdateUserRequestBodyPermissionEnum extends EnumClass {
       _$updateUserRequestBodyPermissionEnumValues;
   static UpdateUserRequestBodyPermissionEnum valueOf(String name) =>
       _$updateUserRequestBodyPermissionEnumValueOf(name);
+
+  static UpdateUserRequestBodyPermissionEnum fromValue(String value) {
+    switch (value) {
+      case r'none':
+        return none;
+      case r'admin':
+        return admin;
+      default:
+        return UpdateUserRequestBodyPermissionEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, none)) return r'none';
+    if (identical(this, admin)) return r'admin';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UpdateUserRequestBodyPermissionEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUpdateUserRequestBodyPermissionEnumSerializer
+    implements PrimitiveSerializer<UpdateUserRequestBodyPermissionEnum> {
+  @override
+  final Iterable<Type> types = const [UpdateUserRequestBodyPermissionEnum];
+  @override
+  final String wireName = 'UpdateUserRequestBodyPermissionEnum';
+  @override
+  Object serialize(
+          Serializers serializers, UpdateUserRequestBodyPermissionEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UpdateUserRequestBodyPermissionEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for UpdateUserRequestBodyPermissionEnum');
+    return UpdateUserRequestBodyPermissionEnum.fromValue(serialized);
+  }
 }

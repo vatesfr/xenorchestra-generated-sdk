@@ -224,9 +224,13 @@ class PartialUnbrandXoAlarmObjectTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'unknown')
   static const PartialUnbrandXoAlarmObjectTypeEnum unknown =
       _$partialUnbrandXoAlarmObjectTypeEnum_unknown;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const PartialUnbrandXoAlarmObjectTypeEnum unknownDefaultOpenApi =
+      _$partialUnbrandXoAlarmObjectTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<PartialUnbrandXoAlarmObjectTypeEnum> get serializer =>
-      _$partialUnbrandXoAlarmObjectTypeEnumSerializer;
+      _OpenPartialUnbrandXoAlarmObjectTypeEnumSerializer();
 
   const PartialUnbrandXoAlarmObjectTypeEnum._(String name) : super(name);
 
@@ -234,4 +238,117 @@ class PartialUnbrandXoAlarmObjectTypeEnum extends EnumClass {
       _$partialUnbrandXoAlarmObjectTypeEnumValues;
   static PartialUnbrandXoAlarmObjectTypeEnum valueOf(String name) =>
       _$partialUnbrandXoAlarmObjectTypeEnumValueOf(name);
+
+  static PartialUnbrandXoAlarmObjectTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'pool':
+        return pool;
+      case r'VBD':
+        return VBD;
+      case r'host':
+        return host;
+      case r'VIF':
+        return VIF;
+      case r'VTPM':
+        return VTPM;
+      case r'VM-snapshot':
+        return vMSnapshot;
+      case r'SR':
+        return SR;
+      case r'VM':
+        return VM;
+      case r'VM-template':
+        return vMTemplate;
+      case r'message':
+        return message;
+      case r'vgpu':
+        return vgpu;
+      case r'gpuGroup':
+        return gpuGroup;
+      case r'network':
+        return network;
+      case r'PBD':
+        return PBD;
+      case r'PCI':
+        return PCI;
+      case r'PGPU':
+        return PGPU;
+      case r'PIF':
+        return PIF;
+      case r'VDI':
+        return VDI;
+      case r'VDI-snapshot':
+        return vDISnapshot;
+      case r'VDI-unmanaged':
+        return vDIUnmanaged;
+      case r'vgpuType':
+        return vgpuType;
+      case r'VM-controller':
+        return vMController;
+      case r'SM':
+        return SM;
+      case r'unknown':
+        return unknown;
+      default:
+        return PartialUnbrandXoAlarmObjectTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, pool)) return r'pool';
+    if (identical(this, VBD)) return r'VBD';
+    if (identical(this, host)) return r'host';
+    if (identical(this, VIF)) return r'VIF';
+    if (identical(this, VTPM)) return r'VTPM';
+    if (identical(this, vMSnapshot)) return r'VM-snapshot';
+    if (identical(this, SR)) return r'SR';
+    if (identical(this, VM)) return r'VM';
+    if (identical(this, vMTemplate)) return r'VM-template';
+    if (identical(this, message)) return r'message';
+    if (identical(this, vgpu)) return r'vgpu';
+    if (identical(this, gpuGroup)) return r'gpuGroup';
+    if (identical(this, network)) return r'network';
+    if (identical(this, PBD)) return r'PBD';
+    if (identical(this, PCI)) return r'PCI';
+    if (identical(this, PGPU)) return r'PGPU';
+    if (identical(this, PIF)) return r'PIF';
+    if (identical(this, VDI)) return r'VDI';
+    if (identical(this, vDISnapshot)) return r'VDI-snapshot';
+    if (identical(this, vDIUnmanaged)) return r'VDI-unmanaged';
+    if (identical(this, vgpuType)) return r'vgpuType';
+    if (identical(this, vMController)) return r'VM-controller';
+    if (identical(this, SM)) return r'SM';
+    if (identical(this, unknown)) return r'unknown';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is PartialUnbrandXoAlarmObjectTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenPartialUnbrandXoAlarmObjectTypeEnumSerializer
+    implements PrimitiveSerializer<PartialUnbrandXoAlarmObjectTypeEnum> {
+  @override
+  final Iterable<Type> types = const [PartialUnbrandXoAlarmObjectTypeEnum];
+  @override
+  final String wireName = 'PartialUnbrandXoAlarmObjectTypeEnum';
+  @override
+  Object serialize(
+          Serializers serializers, PartialUnbrandXoAlarmObjectTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  PartialUnbrandXoAlarmObjectTypeEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for PartialUnbrandXoAlarmObjectTypeEnum');
+    return PartialUnbrandXoAlarmObjectTypeEnum.fromValue(serialized);
+  }
 }

@@ -113,9 +113,13 @@ class _$BrandedVDISerializer implements PrimitiveSerializer<BrandedVDI> {
 class BrandedVDIUndefinedEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'VDI')
   static const BrandedVDIUndefinedEnum VDI = _$brandedVDIUndefinedEnum_VDI;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const BrandedVDIUndefinedEnum unknownDefaultOpenApi =
+      _$brandedVDIUndefinedEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<BrandedVDIUndefinedEnum> get serializer =>
-      _$brandedVDIUndefinedEnumSerializer;
+      _OpenBrandedVDIUndefinedEnumSerializer();
 
   const BrandedVDIUndefinedEnum._(String name) : super(name);
 
@@ -123,4 +127,46 @@ class BrandedVDIUndefinedEnum extends EnumClass {
       _$brandedVDIUndefinedEnumValues;
   static BrandedVDIUndefinedEnum valueOf(String name) =>
       _$brandedVDIUndefinedEnumValueOf(name);
+
+  static BrandedVDIUndefinedEnum fromValue(String value) {
+    switch (value) {
+      case r'VDI':
+        return VDI;
+      default:
+        return BrandedVDIUndefinedEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, VDI)) return r'VDI';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is BrandedVDIUndefinedEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenBrandedVDIUndefinedEnumSerializer
+    implements PrimitiveSerializer<BrandedVDIUndefinedEnum> {
+  @override
+  final Iterable<Type> types = const [BrandedVDIUndefinedEnum];
+  @override
+  final String wireName = 'BrandedVDIUndefinedEnum';
+  @override
+  Object serialize(Serializers serializers, BrandedVDIUndefinedEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  BrandedVDIUndefinedEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError('Expected a string for BrandedVDIUndefinedEnum');
+    return BrandedVDIUndefinedEnum.fromValue(serialized);
+  }
 }

@@ -86,8 +86,6 @@ class PartialUnbrandXoHost(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['host']):
-            raise ValueError("must be one of enum values ('host')")
         return value
 
     model_config = ConfigDict(

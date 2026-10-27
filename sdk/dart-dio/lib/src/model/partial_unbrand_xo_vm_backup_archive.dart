@@ -368,9 +368,13 @@ class PartialUnbrandXoVmBackupArchiveModeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'delta')
   static const PartialUnbrandXoVmBackupArchiveModeEnum delta =
       _$partialUnbrandXoVmBackupArchiveModeEnum_delta;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const PartialUnbrandXoVmBackupArchiveModeEnum unknownDefaultOpenApi =
+      _$partialUnbrandXoVmBackupArchiveModeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<PartialUnbrandXoVmBackupArchiveModeEnum> get serializer =>
-      _$partialUnbrandXoVmBackupArchiveModeEnumSerializer;
+      _OpenPartialUnbrandXoVmBackupArchiveModeEnumSerializer();
 
   const PartialUnbrandXoVmBackupArchiveModeEnum._(String name) : super(name);
 
@@ -378,15 +382,66 @@ class PartialUnbrandXoVmBackupArchiveModeEnum extends EnumClass {
       _$partialUnbrandXoVmBackupArchiveModeEnumValues;
   static PartialUnbrandXoVmBackupArchiveModeEnum valueOf(String name) =>
       _$partialUnbrandXoVmBackupArchiveModeEnumValueOf(name);
+
+  static PartialUnbrandXoVmBackupArchiveModeEnum fromValue(String value) {
+    switch (value) {
+      case r'full':
+        return full;
+      case r'delta':
+        return delta;
+      default:
+        return PartialUnbrandXoVmBackupArchiveModeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, full)) return r'full';
+    if (identical(this, delta)) return r'delta';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is PartialUnbrandXoVmBackupArchiveModeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenPartialUnbrandXoVmBackupArchiveModeEnumSerializer
+    implements PrimitiveSerializer<PartialUnbrandXoVmBackupArchiveModeEnum> {
+  @override
+  final Iterable<Type> types = const [PartialUnbrandXoVmBackupArchiveModeEnum];
+  @override
+  final String wireName = 'PartialUnbrandXoVmBackupArchiveModeEnum';
+  @override
+  Object serialize(Serializers serializers,
+          PartialUnbrandXoVmBackupArchiveModeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  PartialUnbrandXoVmBackupArchiveModeEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for PartialUnbrandXoVmBackupArchiveModeEnum');
+    return PartialUnbrandXoVmBackupArchiveModeEnum.fromValue(serialized);
+  }
 }
 
 class PartialUnbrandXoVmBackupArchiveTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'xo-vm-backup')
   static const PartialUnbrandXoVmBackupArchiveTypeEnum xoVmBackup =
       _$partialUnbrandXoVmBackupArchiveTypeEnum_xoVmBackup;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const PartialUnbrandXoVmBackupArchiveTypeEnum unknownDefaultOpenApi =
+      _$partialUnbrandXoVmBackupArchiveTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<PartialUnbrandXoVmBackupArchiveTypeEnum> get serializer =>
-      _$partialUnbrandXoVmBackupArchiveTypeEnumSerializer;
+      _OpenPartialUnbrandXoVmBackupArchiveTypeEnumSerializer();
 
   const PartialUnbrandXoVmBackupArchiveTypeEnum._(String name) : super(name);
 
@@ -394,4 +449,48 @@ class PartialUnbrandXoVmBackupArchiveTypeEnum extends EnumClass {
       _$partialUnbrandXoVmBackupArchiveTypeEnumValues;
   static PartialUnbrandXoVmBackupArchiveTypeEnum valueOf(String name) =>
       _$partialUnbrandXoVmBackupArchiveTypeEnumValueOf(name);
+
+  static PartialUnbrandXoVmBackupArchiveTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'xo-vm-backup':
+        return xoVmBackup;
+      default:
+        return PartialUnbrandXoVmBackupArchiveTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, xoVmBackup)) return r'xo-vm-backup';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is PartialUnbrandXoVmBackupArchiveTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenPartialUnbrandXoVmBackupArchiveTypeEnumSerializer
+    implements PrimitiveSerializer<PartialUnbrandXoVmBackupArchiveTypeEnum> {
+  @override
+  final Iterable<Type> types = const [PartialUnbrandXoVmBackupArchiveTypeEnum];
+  @override
+  final String wireName = 'PartialUnbrandXoVmBackupArchiveTypeEnum';
+  @override
+  Object serialize(Serializers serializers,
+          PartialUnbrandXoVmBackupArchiveTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  PartialUnbrandXoVmBackupArchiveTypeEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for PartialUnbrandXoVmBackupArchiveTypeEnum');
+    return PartialUnbrandXoVmBackupArchiveTypeEnum.fromValue(serialized);
+  }
 }

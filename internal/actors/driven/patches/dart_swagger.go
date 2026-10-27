@@ -20,12 +20,7 @@ func patchSwaggerDartLanguage(path string) error {
 	if err != nil {
 		return err
 	}
-	for _, name := range []string{"Partial_Unbrand_AnyPrivilege__", "Partial_UnbrandAnyXoBackupJob_"} {
-		schema, ok := schemas[name].(map[string]any)
-		if !ok || !collapseDartObjectUnion(schema) {
-			return fmt.Errorf("expected collapsible Dart object union %s", name)
-		}
-	}
+
 	arrayUnions := 0
 	for name, raw := range schemas {
 		schema, ok := raw.(map[string]any)
@@ -106,52 +101,6 @@ func rewriteDartArrayUnion(name string, schema map[string]any) bool {
 	}
 	schema["type"] = "array"
 	schema["items"] = map[string]any{}
-	return true
-}
-
-func collapseDartObjectUnion(schema map[string]any) bool {
-	variants, ok := schema["anyOf"].([]any)
-	if !ok || len(variants) < 2 {
-		return false
-	}
-	properties := map[string]any{}
-	for _, raw := range variants {
-		variant, ok := raw.(map[string]any)
-		if !ok {
-			return false
-		}
-		source, ok := variant["properties"].(map[string]any)
-		if !ok {
-			return false
-		}
-		for name, rawProperty := range source {
-			property := rawProperty.(map[string]any)
-			existingRaw, exists := properties[name]
-			if !exists {
-				properties[name] = property
-				continue
-			}
-			existing := existingRaw.(map[string]any)
-			values, hasEnum := property["enum"].([]any)
-			existingValues, existingHasEnum := existing["enum"].([]any)
-			if hasEnum && existingHasEnum {
-				seen := map[any]bool{}
-				for _, value := range existingValues {
-					seen[value] = true
-				}
-				for _, value := range values {
-					if !seen[value] {
-						existingValues = append(existingValues, value)
-						seen[value] = true
-					}
-				}
-				existing["enum"] = existingValues
-			}
-		}
-	}
-	delete(schema, "anyOf")
-	schema["type"] = "object"
-	schema["properties"] = properties
 	return true
 }
 

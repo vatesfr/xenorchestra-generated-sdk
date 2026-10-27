@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **gpu_group** | Option<**String**> |  | [optional]
 **high_availability** | Option<**String**> |  | [optional]
 **hvm_boot_firmware** | Option<**String**> |  | [optional]
-**install** | Option<[**models::UnbrandCreateVmBodyInstall**](Unbrand_CreateVmBody__install.md)> |  | [optional]
+**install** | Option<[**models::UnbrandCreateVmBodyInstall**](UnbrandCreateVmBodyInstall.md)> |  | [optional]
 **memory** | Option<**f64**> |  | [optional]
 **name_description** | Option<**String**> |  | [optional]
 **name_label** | **String** |  | 

@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyXoBackupJobAnyOf2Settings;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettings;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -52,17 +52,17 @@ public class UnbrandUnbrandedXoMirrorBackupJob {
   /**
    * Gets or Sets mode
    */
-  public enum ModeEnum {
-    FULL(String.valueOf("full")),
-    
-    DELTA(String.valueOf("delta")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+  public static final class ModeEnum {
+    public static final ModeEnum FULL = new ModeEnum("full");
+    public static final ModeEnum DELTA = new ModeEnum("delta");
+    @JsonCreator public static ModeEnum fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static ModeEnum[] values() { return new ModeEnum[] {FULL, DELTA}; }
+    @Override public boolean equals(Object other) { return other instanceof ModeEnum && value.equals(((ModeEnum) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-    private String value;
-
-    ModeEnum(String value) {
-      this.value = value;
+    private ModeEnum(String value) {
+      this.value = java.util.Objects.requireNonNull(value);
     }
 
     @JsonValue
@@ -75,16 +75,17 @@ public class UnbrandUnbrandedXoMirrorBackupJob {
       return String.valueOf(value);
     }
 
-    @JsonCreator
+    
     public static ModeEnum fromValue(String value) {
       for (ModeEnum b : ModeEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      return new ModeEnum(value);
     }
   }
+
 
   public static final String JSON_PROPERTY_MODE = "mode";
   @javax.annotation.Nonnull
@@ -104,7 +105,7 @@ public class UnbrandUnbrandedXoMirrorBackupJob {
 
   public static final String JSON_PROPERTY_SETTINGS = "settings";
   @javax.annotation.Nonnull
-  private PartialUnbrandAnyXoBackupJobAnyOf2Settings settings;
+  private PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettings settings;
 
   public static final String JSON_PROPERTY_SOURCE_REMOTE = "sourceRemote";
   @javax.annotation.Nonnull
@@ -113,15 +114,16 @@ public class UnbrandUnbrandedXoMirrorBackupJob {
   /**
    * Gets or Sets type
    */
-  public enum TypeEnum {
-    MIRROR_BACKUP(String.valueOf("mirrorBackup")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+  public static final class TypeEnum {
+    public static final TypeEnum MIRROR_BACKUP = new TypeEnum("mirrorBackup");
+    @JsonCreator public static TypeEnum fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static TypeEnum[] values() { return new TypeEnum[] {MIRROR_BACKUP}; }
+    @Override public boolean equals(Object other) { return other instanceof TypeEnum && value.equals(((TypeEnum) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-    private String value;
-
-    TypeEnum(String value) {
-      this.value = value;
+    private TypeEnum(String value) {
+      this.value = java.util.Objects.requireNonNull(value);
     }
 
     @JsonValue
@@ -134,16 +136,17 @@ public class UnbrandUnbrandedXoMirrorBackupJob {
       return String.valueOf(value);
     }
 
-    @JsonCreator
+    
     public static TypeEnum fromValue(String value) {
       for (TypeEnum b : TypeEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      return new TypeEnum(value);
     }
   }
+
 
   public static final String JSON_PROPERTY_TYPE = "type";
   @javax.annotation.Nonnull
@@ -272,7 +275,7 @@ public class UnbrandUnbrandedXoMirrorBackupJob {
   }
 
 
-  public UnbrandUnbrandedXoMirrorBackupJob settings(@javax.annotation.Nonnull PartialUnbrandAnyXoBackupJobAnyOf2Settings settings) {
+  public UnbrandUnbrandedXoMirrorBackupJob settings(@javax.annotation.Nonnull PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettings settings) {
     this.settings = settings;
     return this;
   }
@@ -284,14 +287,14 @@ public class UnbrandUnbrandedXoMirrorBackupJob {
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_SETTINGS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public PartialUnbrandAnyXoBackupJobAnyOf2Settings getSettings() {
+  public PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettings getSettings() {
     return settings;
   }
 
 
   @JsonProperty(JSON_PROPERTY_SETTINGS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setSettings(@javax.annotation.Nonnull PartialUnbrandAnyXoBackupJobAnyOf2Settings settings) {
+  public void setSettings(@javax.annotation.Nonnull PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettings settings) {
     this.settings = settings;
   }
 

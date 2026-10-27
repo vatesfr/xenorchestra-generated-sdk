@@ -58,8 +58,6 @@ class WithHrefPartialUnbrandXoSr(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['iso', 'cephfs', 'dummy', 'ext', 'file', 'glusterfs', 'hba', 'largeblock', 'linstor', 'lvm', 'lvmofcoe', 'lvmohba', 'lvmoiscsi', 'moosefs', 'nfs', 'shm', 'smb', 'udev', 'xfs', 'zfs']):
-            raise ValueError("must be one of enum values ('iso', 'cephfs', 'dummy', 'ext', 'file', 'glusterfs', 'hba', 'largeblock', 'linstor', 'lvm', 'lvmofcoe', 'lvmohba', 'lvmoiscsi', 'moosefs', 'nfs', 'shm', 'smb', 'udev', 'xfs', 'zfs')")
         return value
 
     @field_validator('allocation_strategy')
@@ -68,8 +66,6 @@ class WithHrefPartialUnbrandXoSr(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['unknown', 'thin', 'thick']):
-            raise ValueError("must be one of enum values ('unknown', 'thin', 'thick')")
         return value
 
     @field_validator('content_type')
@@ -78,8 +74,6 @@ class WithHrefPartialUnbrandXoSr(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['user', 'iso', 'disk']):
-            raise ValueError("must be one of enum values ('user', 'iso', 'disk')")
         return value
 
     @field_validator('type')
@@ -88,8 +82,6 @@ class WithHrefPartialUnbrandXoSr(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['SR']):
-            raise ValueError("must be one of enum values ('SR')")
         return value
 
     model_config = ConfigDict(

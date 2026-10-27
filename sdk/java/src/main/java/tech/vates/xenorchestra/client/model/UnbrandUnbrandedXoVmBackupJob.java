@@ -26,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyXoBackupJobAnyOfSettings;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyXoBackupJobVariantBackupSettings;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
@@ -54,19 +54,18 @@ public class UnbrandUnbrandedXoVmBackupJob {
   /**
    * Gets or Sets compression
    */
-  public enum CompressionEnum {
-    EMPTY(String.valueOf("")),
-    
-    ZSTD(String.valueOf("zstd")),
-    
-    NATIVE(String.valueOf("native")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+  public static final class CompressionEnum {
+    public static final CompressionEnum EMPTY = new CompressionEnum("");
+    public static final CompressionEnum ZSTD = new CompressionEnum("zstd");
+    public static final CompressionEnum NATIVE = new CompressionEnum("native");
+    @JsonCreator public static CompressionEnum fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static CompressionEnum[] values() { return new CompressionEnum[] {EMPTY, ZSTD, NATIVE}; }
+    @Override public boolean equals(Object other) { return other instanceof CompressionEnum && value.equals(((CompressionEnum) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-    private String value;
-
-    CompressionEnum(String value) {
-      this.value = value;
+    private CompressionEnum(String value) {
+      this.value = java.util.Objects.requireNonNull(value);
     }
 
     @JsonValue
@@ -79,16 +78,17 @@ public class UnbrandUnbrandedXoVmBackupJob {
       return String.valueOf(value);
     }
 
-    @JsonCreator
+    
     public static CompressionEnum fromValue(String value) {
       for (CompressionEnum b : CompressionEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      return new CompressionEnum(value);
     }
   }
+
 
   public static final String JSON_PROPERTY_COMPRESSION = "compression";
   @javax.annotation.Nullable
@@ -101,17 +101,17 @@ public class UnbrandUnbrandedXoVmBackupJob {
   /**
    * Gets or Sets mode
    */
-  public enum ModeEnum {
-    FULL(String.valueOf("full")),
-    
-    DELTA(String.valueOf("delta")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+  public static final class ModeEnum {
+    public static final ModeEnum FULL = new ModeEnum("full");
+    public static final ModeEnum DELTA = new ModeEnum("delta");
+    @JsonCreator public static ModeEnum fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static ModeEnum[] values() { return new ModeEnum[] {FULL, DELTA}; }
+    @Override public boolean equals(Object other) { return other instanceof ModeEnum && value.equals(((ModeEnum) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-    private String value;
-
-    ModeEnum(String value) {
-      this.value = value;
+    private ModeEnum(String value) {
+      this.value = java.util.Objects.requireNonNull(value);
     }
 
     @JsonValue
@@ -124,16 +124,17 @@ public class UnbrandUnbrandedXoVmBackupJob {
       return String.valueOf(value);
     }
 
-    @JsonCreator
+    
     public static ModeEnum fromValue(String value) {
       for (ModeEnum b : ModeEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      return new ModeEnum(value);
     }
   }
+
 
   public static final String JSON_PROPERTY_MODE = "mode";
   @javax.annotation.Nonnull
@@ -152,7 +153,7 @@ public class UnbrandUnbrandedXoVmBackupJob {
 
   public static final String JSON_PROPERTY_SETTINGS = "settings";
   @javax.annotation.Nonnull
-  private PartialUnbrandAnyXoBackupJobAnyOfSettings settings;
+  private PartialUnbrandAnyXoBackupJobVariantBackupSettings settings;
 
   public static final String JSON_PROPERTY_SRS = "srs";
   private JsonNullable<Object> srs = JsonNullable.<Object>of(null);
@@ -160,15 +161,16 @@ public class UnbrandUnbrandedXoVmBackupJob {
   /**
    * Gets or Sets type
    */
-  public enum TypeEnum {
-    BACKUP(String.valueOf("backup")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+  public static final class TypeEnum {
+    public static final TypeEnum BACKUP = new TypeEnum("backup");
+    @JsonCreator public static TypeEnum fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static TypeEnum[] values() { return new TypeEnum[] {BACKUP}; }
+    @Override public boolean equals(Object other) { return other instanceof TypeEnum && value.equals(((TypeEnum) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-    private String value;
-
-    TypeEnum(String value) {
-      this.value = value;
+    private TypeEnum(String value) {
+      this.value = java.util.Objects.requireNonNull(value);
     }
 
     @JsonValue
@@ -181,16 +183,17 @@ public class UnbrandUnbrandedXoVmBackupJob {
       return String.valueOf(value);
     }
 
-    @JsonCreator
+    
     public static TypeEnum fromValue(String value) {
       for (TypeEnum b : TypeEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      return new TypeEnum(value);
     }
   }
+
 
   public static final String JSON_PROPERTY_TYPE = "type";
   @javax.annotation.Nonnull
@@ -355,7 +358,7 @@ public class UnbrandUnbrandedXoVmBackupJob {
   }
 
 
-  public UnbrandUnbrandedXoVmBackupJob settings(@javax.annotation.Nonnull PartialUnbrandAnyXoBackupJobAnyOfSettings settings) {
+  public UnbrandUnbrandedXoVmBackupJob settings(@javax.annotation.Nonnull PartialUnbrandAnyXoBackupJobVariantBackupSettings settings) {
     this.settings = settings;
     return this;
   }
@@ -367,14 +370,14 @@ public class UnbrandUnbrandedXoVmBackupJob {
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_SETTINGS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public PartialUnbrandAnyXoBackupJobAnyOfSettings getSettings() {
+  public PartialUnbrandAnyXoBackupJobVariantBackupSettings getSettings() {
     return settings;
   }
 
 
   @JsonProperty(JSON_PROPERTY_SETTINGS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setSettings(@javax.annotation.Nonnull PartialUnbrandAnyXoBackupJobAnyOfSettings settings) {
+  public void setSettings(@javax.annotation.Nonnull PartialUnbrandAnyXoBackupJobVariantBackupSettings settings) {
     this.settings = settings;
   }
 

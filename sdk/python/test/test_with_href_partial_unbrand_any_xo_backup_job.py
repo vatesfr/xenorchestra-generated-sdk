@@ -36,6 +36,7 @@ class TestWithHrefPartialUnbrandAnyXoBackupJob(unittest.TestCase):
         if include_optional:
             return WithHrefPartialUnbrandAnyXoBackupJob(
                 compression = '',
+                href = '',
                 id = '',
                 mode = 'full',
                 name = '',
@@ -43,13 +44,12 @@ class TestWithHrefPartialUnbrandAnyXoBackupJob(unittest.TestCase):
                 remotes = xenorchestra_client.models.remotes.remotes(),
                 settings = None,
                 srs = xenorchestra_client.models.srs.srs(),
-                type = 'mirrorBackup',
+                type = 'backup',
                 vms = xenorchestra_client.models.vms.vms(),
                 pools = xenorchestra_client.models.pools.pools(),
                 user_id = '',
                 xo_metadata = True,
-                source_remote = '',
-                href = ''
+                source_remote = ''
             )
         else:
             return WithHrefPartialUnbrandAnyXoBackupJob(

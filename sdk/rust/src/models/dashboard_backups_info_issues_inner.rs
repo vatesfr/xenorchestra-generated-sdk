@@ -38,16 +38,62 @@ impl DashboardBackupsInfoIssuesInner {
     }
 }
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum Logs {
-    #[serde(rename = "failure")]
     Failure,
-    #[serde(rename = "interrupted")]
     Interrupted,
-    #[serde(rename = "skipped")]
     Skipped,
-    #[serde(rename = "success")]
     Success,
+    UnknownValue(String),
+}
+impl Logs {
+    pub fn as_str(&self) -> &str {
+        match self {
+            Self::Failure => "failure",
+            Self::Interrupted => "interrupted",
+            Self::Skipped => "skipped",
+            Self::Success => "success",
+            Self::UnknownValue(value) => value,
+        }
+    }
+}
+impl From<String> for Logs {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "failure" => Self::Failure,
+            "interrupted" => Self::Interrupted,
+            "skipped" => Self::Skipped,
+            "success" => Self::Success,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for Logs {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for Logs {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for Logs {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for Logs {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
+    }
 }
 
 impl Default for Logs {

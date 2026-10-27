@@ -786,9 +786,13 @@ class UpdateVmRequestBodyHighAvailabilityEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'')
   static const UpdateVmRequestBodyHighAvailabilityEnum empty =
       _$updateVmRequestBodyHighAvailabilityEnum_empty;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UpdateVmRequestBodyHighAvailabilityEnum unknownDefaultOpenApi =
+      _$updateVmRequestBodyHighAvailabilityEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UpdateVmRequestBodyHighAvailabilityEnum> get serializer =>
-      _$updateVmRequestBodyHighAvailabilityEnumSerializer;
+      _OpenUpdateVmRequestBodyHighAvailabilityEnumSerializer();
 
   const UpdateVmRequestBodyHighAvailabilityEnum._(String name) : super(name);
 
@@ -796,6 +800,56 @@ class UpdateVmRequestBodyHighAvailabilityEnum extends EnumClass {
       _$updateVmRequestBodyHighAvailabilityEnumValues;
   static UpdateVmRequestBodyHighAvailabilityEnum valueOf(String name) =>
       _$updateVmRequestBodyHighAvailabilityEnumValueOf(name);
+
+  static UpdateVmRequestBodyHighAvailabilityEnum fromValue(String value) {
+    switch (value) {
+      case r'best-effort':
+        return bestEffort;
+      case r'restart':
+        return restart;
+      case r'':
+        return empty;
+      default:
+        return UpdateVmRequestBodyHighAvailabilityEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, bestEffort)) return r'best-effort';
+    if (identical(this, restart)) return r'restart';
+    if (identical(this, empty)) return r'';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UpdateVmRequestBodyHighAvailabilityEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUpdateVmRequestBodyHighAvailabilityEnumSerializer
+    implements PrimitiveSerializer<UpdateVmRequestBodyHighAvailabilityEnum> {
+  @override
+  final Iterable<Type> types = const [UpdateVmRequestBodyHighAvailabilityEnum];
+  @override
+  final String wireName = 'UpdateVmRequestBodyHighAvailabilityEnum';
+  @override
+  Object serialize(Serializers serializers,
+          UpdateVmRequestBodyHighAvailabilityEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UpdateVmRequestBodyHighAvailabilityEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for UpdateVmRequestBodyHighAvailabilityEnum');
+    return UpdateVmRequestBodyHighAvailabilityEnum.fromValue(serialized);
+  }
 }
 
 class UpdateVmRequestBodyUefiModeEnum extends EnumClass {
@@ -805,9 +859,13 @@ class UpdateVmRequestBodyUefiModeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'user')
   static const UpdateVmRequestBodyUefiModeEnum user =
       _$updateVmRequestBodyUefiModeEnum_user;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UpdateVmRequestBodyUefiModeEnum unknownDefaultOpenApi =
+      _$updateVmRequestBodyUefiModeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UpdateVmRequestBodyUefiModeEnum> get serializer =>
-      _$updateVmRequestBodyUefiModeEnumSerializer;
+      _OpenUpdateVmRequestBodyUefiModeEnumSerializer();
 
   const UpdateVmRequestBodyUefiModeEnum._(String name) : super(name);
 
@@ -815,6 +873,53 @@ class UpdateVmRequestBodyUefiModeEnum extends EnumClass {
       _$updateVmRequestBodyUefiModeEnumValues;
   static UpdateVmRequestBodyUefiModeEnum valueOf(String name) =>
       _$updateVmRequestBodyUefiModeEnumValueOf(name);
+
+  static UpdateVmRequestBodyUefiModeEnum fromValue(String value) {
+    switch (value) {
+      case r'setup':
+        return setup;
+      case r'user':
+        return user;
+      default:
+        return UpdateVmRequestBodyUefiModeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, setup)) return r'setup';
+    if (identical(this, user)) return r'user';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UpdateVmRequestBodyUefiModeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUpdateVmRequestBodyUefiModeEnumSerializer
+    implements PrimitiveSerializer<UpdateVmRequestBodyUefiModeEnum> {
+  @override
+  final Iterable<Type> types = const [UpdateVmRequestBodyUefiModeEnum];
+  @override
+  final String wireName = 'UpdateVmRequestBodyUefiModeEnum';
+  @override
+  Object serialize(
+          Serializers serializers, UpdateVmRequestBodyUefiModeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UpdateVmRequestBodyUefiModeEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for UpdateVmRequestBodyUefiModeEnum');
+    return UpdateVmRequestBodyUefiModeEnum.fromValue(serialized);
+  }
 }
 
 class UpdateVmRequestBodyVgaEnum extends EnumClass {
@@ -824,9 +929,13 @@ class UpdateVmRequestBodyVgaEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'cirrus')
   static const UpdateVmRequestBodyVgaEnum cirrus =
       _$updateVmRequestBodyVgaEnum_cirrus;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UpdateVmRequestBodyVgaEnum unknownDefaultOpenApi =
+      _$updateVmRequestBodyVgaEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UpdateVmRequestBodyVgaEnum> get serializer =>
-      _$updateVmRequestBodyVgaEnumSerializer;
+      _OpenUpdateVmRequestBodyVgaEnumSerializer();
 
   const UpdateVmRequestBodyVgaEnum._(String name) : super(name);
 
@@ -834,6 +943,51 @@ class UpdateVmRequestBodyVgaEnum extends EnumClass {
       _$updateVmRequestBodyVgaEnumValues;
   static UpdateVmRequestBodyVgaEnum valueOf(String name) =>
       _$updateVmRequestBodyVgaEnumValueOf(name);
+
+  static UpdateVmRequestBodyVgaEnum fromValue(String value) {
+    switch (value) {
+      case r'std':
+        return std;
+      case r'cirrus':
+        return cirrus;
+      default:
+        return UpdateVmRequestBodyVgaEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, std)) return r'std';
+    if (identical(this, cirrus)) return r'cirrus';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UpdateVmRequestBodyVgaEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUpdateVmRequestBodyVgaEnumSerializer
+    implements PrimitiveSerializer<UpdateVmRequestBodyVgaEnum> {
+  @override
+  final Iterable<Type> types = const [UpdateVmRequestBodyVgaEnum];
+  @override
+  final String wireName = 'UpdateVmRequestBodyVgaEnum';
+  @override
+  Object serialize(Serializers serializers, UpdateVmRequestBodyVgaEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UpdateVmRequestBodyVgaEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError('Expected a string for UpdateVmRequestBodyVgaEnum');
+    return UpdateVmRequestBodyVgaEnum.fromValue(serialized);
+  }
 }
 
 class UpdateVmRequestBodyVideoramEnum extends EnumClass {
@@ -852,6 +1006,9 @@ class UpdateVmRequestBodyVideoramEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'16')
   static const UpdateVmRequestBodyVideoramEnum n16 =
       _$updateVmRequestBodyVideoramEnum_n16;
+  @BuiltValueEnumConst(wireName: r'11184809', fallback: true)
+  static const UpdateVmRequestBodyVideoramEnum unknownDefaultOpenApi =
+      _$updateVmRequestBodyVideoramEnum_unknownDefaultOpenApi;
 
   static Serializer<UpdateVmRequestBodyVideoramEnum> get serializer =>
       _$updateVmRequestBodyVideoramEnumSerializer;
@@ -871,9 +1028,13 @@ class UpdateVmRequestBodyVirtualizationModeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'hvm')
   static const UpdateVmRequestBodyVirtualizationModeEnum hvm =
       _$updateVmRequestBodyVirtualizationModeEnum_hvm;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UpdateVmRequestBodyVirtualizationModeEnum unknownDefaultOpenApi =
+      _$updateVmRequestBodyVirtualizationModeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UpdateVmRequestBodyVirtualizationModeEnum> get serializer =>
-      _$updateVmRequestBodyVirtualizationModeEnumSerializer;
+      _OpenUpdateVmRequestBodyVirtualizationModeEnumSerializer();
 
   const UpdateVmRequestBodyVirtualizationModeEnum._(String name) : super(name);
 
@@ -881,4 +1042,54 @@ class UpdateVmRequestBodyVirtualizationModeEnum extends EnumClass {
       _$updateVmRequestBodyVirtualizationModeEnumValues;
   static UpdateVmRequestBodyVirtualizationModeEnum valueOf(String name) =>
       _$updateVmRequestBodyVirtualizationModeEnumValueOf(name);
+
+  static UpdateVmRequestBodyVirtualizationModeEnum fromValue(String value) {
+    switch (value) {
+      case r'pv':
+        return pv;
+      case r'hvm':
+        return hvm;
+      default:
+        return UpdateVmRequestBodyVirtualizationModeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, pv)) return r'pv';
+    if (identical(this, hvm)) return r'hvm';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UpdateVmRequestBodyVirtualizationModeEnum &&
+      value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUpdateVmRequestBodyVirtualizationModeEnumSerializer
+    implements PrimitiveSerializer<UpdateVmRequestBodyVirtualizationModeEnum> {
+  @override
+  final Iterable<Type> types = const [
+    UpdateVmRequestBodyVirtualizationModeEnum
+  ];
+  @override
+  final String wireName = 'UpdateVmRequestBodyVirtualizationModeEnum';
+  @override
+  Object serialize(Serializers serializers,
+          UpdateVmRequestBodyVirtualizationModeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UpdateVmRequestBodyVirtualizationModeEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for UpdateVmRequestBodyVirtualizationModeEnum');
+    return UpdateVmRequestBodyVirtualizationModeEnum.fromValue(serialized);
+  }
 }

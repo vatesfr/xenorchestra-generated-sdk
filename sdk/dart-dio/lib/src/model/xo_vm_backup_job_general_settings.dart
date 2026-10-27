@@ -3,8 +3,8 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:xenorchestra_dart_sdk/src/model/partial_unbrand_any_xo_backup_job_settings_long_term_retention.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:xenorchestra_dart_sdk/src/model/partial_unbrand_any_xo_backup_job_variant_backup_settings_long_term_retention.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -52,7 +52,8 @@ abstract class XoVmBackupJobGeneralSettings
   bool? get hideSuccessfulItems;
 
   @BuiltValueField(wireName: r'longTermRetention')
-  PartialUnbrandAnyXoBackupJobSettingsLongTermRetention? get longTermRetention;
+  PartialUnbrandAnyXoBackupJobVariantBackupSettingsLongTermRetention?
+      get longTermRetention;
 
   @BuiltValueField(wireName: r'maxExportRate')
   double? get maxExportRate;
@@ -159,7 +160,7 @@ class _$XoVmBackupJobGeneralSettingsSerializer
       yield serializers.serialize(
         object.longTermRetention,
         specifiedType: const FullType(
-            PartialUnbrandAnyXoBackupJobSettingsLongTermRetention),
+            PartialUnbrandAnyXoBackupJobVariantBackupSettingsLongTermRetention),
       );
     }
     if (object.maxExportRate != null) {
@@ -305,8 +306,8 @@ class _$XoVmBackupJobGeneralSettingsSerializer
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(
-                PartialUnbrandAnyXoBackupJobSettingsLongTermRetention),
-          ) as PartialUnbrandAnyXoBackupJobSettingsLongTermRetention;
+                PartialUnbrandAnyXoBackupJobVariantBackupSettingsLongTermRetention),
+          ) as PartialUnbrandAnyXoBackupJobVariantBackupSettingsLongTermRetention;
           result.longTermRetention.replace(valueDes);
           break;
         case r'maxExportRate':
@@ -423,10 +424,15 @@ class XoVmBackupJobGeneralSettingsBackupReportTplEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'mjml')
   static const XoVmBackupJobGeneralSettingsBackupReportTplEnum mjml =
       _$xoVmBackupJobGeneralSettingsBackupReportTplEnum_mjml;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const XoVmBackupJobGeneralSettingsBackupReportTplEnum
+      unknownDefaultOpenApi =
+      _$xoVmBackupJobGeneralSettingsBackupReportTplEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<XoVmBackupJobGeneralSettingsBackupReportTplEnum>
       get serializer =>
-          _$xoVmBackupJobGeneralSettingsBackupReportTplEnumSerializer;
+          _OpenXoVmBackupJobGeneralSettingsBackupReportTplEnumSerializer();
 
   const XoVmBackupJobGeneralSettingsBackupReportTplEnum._(String name)
       : super(name);
@@ -435,6 +441,59 @@ class XoVmBackupJobGeneralSettingsBackupReportTplEnum extends EnumClass {
       _$xoVmBackupJobGeneralSettingsBackupReportTplEnumValues;
   static XoVmBackupJobGeneralSettingsBackupReportTplEnum valueOf(String name) =>
       _$xoVmBackupJobGeneralSettingsBackupReportTplEnumValueOf(name);
+
+  static XoVmBackupJobGeneralSettingsBackupReportTplEnum fromValue(
+      String value) {
+    switch (value) {
+      case r'compactMjml':
+        return compactMjml;
+      case r'mjml':
+        return mjml;
+      default:
+        return XoVmBackupJobGeneralSettingsBackupReportTplEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, compactMjml)) return r'compactMjml';
+    if (identical(this, mjml)) return r'mjml';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is XoVmBackupJobGeneralSettingsBackupReportTplEnum &&
+      value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenXoVmBackupJobGeneralSettingsBackupReportTplEnumSerializer
+    implements
+        PrimitiveSerializer<XoVmBackupJobGeneralSettingsBackupReportTplEnum> {
+  @override
+  final Iterable<Type> types = const [
+    XoVmBackupJobGeneralSettingsBackupReportTplEnum
+  ];
+  @override
+  final String wireName = 'XoVmBackupJobGeneralSettingsBackupReportTplEnum';
+  @override
+  Object serialize(Serializers serializers,
+          XoVmBackupJobGeneralSettingsBackupReportTplEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  XoVmBackupJobGeneralSettingsBackupReportTplEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for XoVmBackupJobGeneralSettingsBackupReportTplEnum');
+    return XoVmBackupJobGeneralSettingsBackupReportTplEnum.fromValue(
+        serialized);
+  }
 }
 
 class XoVmBackupJobGeneralSettingsReportWhenEnum extends EnumClass {
@@ -450,9 +509,15 @@ class XoVmBackupJobGeneralSettingsReportWhenEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'never')
   static const XoVmBackupJobGeneralSettingsReportWhenEnum never =
       _$xoVmBackupJobGeneralSettingsReportWhenEnum_never;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const XoVmBackupJobGeneralSettingsReportWhenEnum
+      unknownDefaultOpenApi =
+      _$xoVmBackupJobGeneralSettingsReportWhenEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<XoVmBackupJobGeneralSettingsReportWhenEnum>
-      get serializer => _$xoVmBackupJobGeneralSettingsReportWhenEnumSerializer;
+      get serializer =>
+          _OpenXoVmBackupJobGeneralSettingsReportWhenEnumSerializer();
 
   const XoVmBackupJobGeneralSettingsReportWhenEnum._(String name) : super(name);
 
@@ -460,4 +525,60 @@ class XoVmBackupJobGeneralSettingsReportWhenEnum extends EnumClass {
       _$xoVmBackupJobGeneralSettingsReportWhenEnumValues;
   static XoVmBackupJobGeneralSettingsReportWhenEnum valueOf(String name) =>
       _$xoVmBackupJobGeneralSettingsReportWhenEnumValueOf(name);
+
+  static XoVmBackupJobGeneralSettingsReportWhenEnum fromValue(String value) {
+    switch (value) {
+      case r'always':
+        return always;
+      case r'error':
+        return error;
+      case r'failure':
+        return failure;
+      case r'never':
+        return never;
+      default:
+        return XoVmBackupJobGeneralSettingsReportWhenEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, always)) return r'always';
+    if (identical(this, error)) return r'error';
+    if (identical(this, failure)) return r'failure';
+    if (identical(this, never)) return r'never';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is XoVmBackupJobGeneralSettingsReportWhenEnum &&
+      value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenXoVmBackupJobGeneralSettingsReportWhenEnumSerializer
+    implements PrimitiveSerializer<XoVmBackupJobGeneralSettingsReportWhenEnum> {
+  @override
+  final Iterable<Type> types = const [
+    XoVmBackupJobGeneralSettingsReportWhenEnum
+  ];
+  @override
+  final String wireName = 'XoVmBackupJobGeneralSettingsReportWhenEnum';
+  @override
+  Object serialize(Serializers serializers,
+          XoVmBackupJobGeneralSettingsReportWhenEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  XoVmBackupJobGeneralSettingsReportWhenEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for XoVmBackupJobGeneralSettingsReportWhenEnum');
+    return XoVmBackupJobGeneralSettingsReportWhenEnum.fromValue(serialized);
+  }
 }

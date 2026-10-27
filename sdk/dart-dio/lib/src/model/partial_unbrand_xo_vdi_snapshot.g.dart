@@ -9,12 +9,17 @@ part of 'partial_unbrand_xo_vdi_snapshot.dart';
 const PartialUnbrandXoVdiSnapshotTypeEnum
     _$partialUnbrandXoVdiSnapshotTypeEnum_vDISnapshot =
     const PartialUnbrandXoVdiSnapshotTypeEnum._('vDISnapshot');
+const PartialUnbrandXoVdiSnapshotTypeEnum
+    _$partialUnbrandXoVdiSnapshotTypeEnum_unknownDefaultOpenApi =
+    const PartialUnbrandXoVdiSnapshotTypeEnum._('unknownDefaultOpenApi');
 
 PartialUnbrandXoVdiSnapshotTypeEnum
     _$partialUnbrandXoVdiSnapshotTypeEnumValueOf(String name) {
   switch (name) {
     case 'vDISnapshot':
       return _$partialUnbrandXoVdiSnapshotTypeEnum_vDISnapshot;
+    case 'unknownDefaultOpenApi':
+      return _$partialUnbrandXoVdiSnapshotTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -24,41 +29,8 @@ final BuiltSet<PartialUnbrandXoVdiSnapshotTypeEnum>
     _$partialUnbrandXoVdiSnapshotTypeEnumValues = BuiltSet<
         PartialUnbrandXoVdiSnapshotTypeEnum>(const <PartialUnbrandXoVdiSnapshotTypeEnum>[
   _$partialUnbrandXoVdiSnapshotTypeEnum_vDISnapshot,
+  _$partialUnbrandXoVdiSnapshotTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<PartialUnbrandXoVdiSnapshotTypeEnum>
-    _$partialUnbrandXoVdiSnapshotTypeEnumSerializer =
-    _$PartialUnbrandXoVdiSnapshotTypeEnumSerializer();
-
-class _$PartialUnbrandXoVdiSnapshotTypeEnumSerializer
-    implements PrimitiveSerializer<PartialUnbrandXoVdiSnapshotTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'vDISnapshot': 'VDI-snapshot',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'VDI-snapshot': 'vDISnapshot',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    PartialUnbrandXoVdiSnapshotTypeEnum
-  ];
-  @override
-  final String wireName = 'PartialUnbrandXoVdiSnapshotTypeEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers, PartialUnbrandXoVdiSnapshotTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  PartialUnbrandXoVdiSnapshotTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      PartialUnbrandXoVdiSnapshotTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$PartialUnbrandXoVdiSnapshot extends PartialUnbrandXoVdiSnapshot {
   @override

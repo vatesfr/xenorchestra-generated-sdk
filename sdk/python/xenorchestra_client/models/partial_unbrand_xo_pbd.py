@@ -46,8 +46,6 @@ class PartialUnbrandXoPbd(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['PBD']):
-            raise ValueError("must be one of enum values ('PBD')")
         return value
 
     model_config = ConfigDict(

@@ -58,10 +58,53 @@ impl XoMirrorBackupGeneralSettings {
     }
 }
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum BackupReportTpl {
-    #[serde(rename = "compactMjml")]
     CompactMjml,
+    UnknownValue(String),
+}
+impl BackupReportTpl {
+    pub fn as_str(&self) -> &str {
+        match self {
+            Self::CompactMjml => "compactMjml",
+            Self::UnknownValue(value) => value,
+        }
+    }
+}
+impl From<String> for BackupReportTpl {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "compactMjml" => Self::CompactMjml,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for BackupReportTpl {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for BackupReportTpl {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for BackupReportTpl {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for BackupReportTpl {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
+    }
 }
 
 impl Default for BackupReportTpl {
@@ -70,10 +113,53 @@ impl Default for BackupReportTpl {
     }
 }
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum ReportWhen {
-    #[serde(rename = "failure")]
     Failure,
+    UnknownValue(String),
+}
+impl ReportWhen {
+    pub fn as_str(&self) -> &str {
+        match self {
+            Self::Failure => "failure",
+            Self::UnknownValue(value) => value,
+        }
+    }
+}
+impl From<String> for ReportWhen {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "failure" => Self::Failure,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for ReportWhen {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for ReportWhen {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for ReportWhen {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for ReportWhen {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
+    }
 }
 
 impl Default for ReportWhen {

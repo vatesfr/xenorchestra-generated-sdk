@@ -8,11 +8,16 @@ part of 'partial_unbrand_xo_vdi.dart';
 
 const PartialUnbrandXoVdiTypeEnum _$partialUnbrandXoVdiTypeEnum_VDI =
     const PartialUnbrandXoVdiTypeEnum._('VDI');
+const PartialUnbrandXoVdiTypeEnum
+    _$partialUnbrandXoVdiTypeEnum_unknownDefaultOpenApi =
+    const PartialUnbrandXoVdiTypeEnum._('unknownDefaultOpenApi');
 
 PartialUnbrandXoVdiTypeEnum _$partialUnbrandXoVdiTypeEnumValueOf(String name) {
   switch (name) {
     case 'VDI':
       return _$partialUnbrandXoVdiTypeEnum_VDI;
+    case 'unknownDefaultOpenApi':
+      return _$partialUnbrandXoVdiTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -22,38 +27,8 @@ final BuiltSet<PartialUnbrandXoVdiTypeEnum>
     _$partialUnbrandXoVdiTypeEnumValues =
     BuiltSet<PartialUnbrandXoVdiTypeEnum>(const <PartialUnbrandXoVdiTypeEnum>[
   _$partialUnbrandXoVdiTypeEnum_VDI,
+  _$partialUnbrandXoVdiTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<PartialUnbrandXoVdiTypeEnum>
-    _$partialUnbrandXoVdiTypeEnumSerializer =
-    _$PartialUnbrandXoVdiTypeEnumSerializer();
-
-class _$PartialUnbrandXoVdiTypeEnumSerializer
-    implements PrimitiveSerializer<PartialUnbrandXoVdiTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'VDI': 'VDI',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'VDI': 'VDI',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[PartialUnbrandXoVdiTypeEnum];
-  @override
-  final String wireName = 'PartialUnbrandXoVdiTypeEnum';
-
-  @override
-  Object serialize(Serializers serializers, PartialUnbrandXoVdiTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  PartialUnbrandXoVdiTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      PartialUnbrandXoVdiTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$PartialUnbrandXoVdi extends PartialUnbrandXoVdi {
   @override

@@ -42,15 +42,11 @@ class UnbrandXoBackupLog(BaseModel):
     @field_validator('message')
     def message_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['backup']):
-            raise ValueError("must be one of enum values ('backup')")
         return value
 
     @field_validator('status')
     def status_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['failure', 'interrupted', 'pending', 'success', 'skipped']):
-            raise ValueError("must be one of enum values ('failure', 'interrupted', 'pending', 'success', 'skipped')")
         return value
 
     model_config = ConfigDict(

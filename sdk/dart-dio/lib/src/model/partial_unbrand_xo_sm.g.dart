@@ -8,11 +8,16 @@ part of 'partial_unbrand_xo_sm.dart';
 
 const PartialUnbrandXoSmTypeEnum _$partialUnbrandXoSmTypeEnum_SM =
     const PartialUnbrandXoSmTypeEnum._('SM');
+const PartialUnbrandXoSmTypeEnum
+    _$partialUnbrandXoSmTypeEnum_unknownDefaultOpenApi =
+    const PartialUnbrandXoSmTypeEnum._('unknownDefaultOpenApi');
 
 PartialUnbrandXoSmTypeEnum _$partialUnbrandXoSmTypeEnumValueOf(String name) {
   switch (name) {
     case 'SM':
       return _$partialUnbrandXoSmTypeEnum_SM;
+    case 'unknownDefaultOpenApi':
+      return _$partialUnbrandXoSmTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -21,37 +26,8 @@ PartialUnbrandXoSmTypeEnum _$partialUnbrandXoSmTypeEnumValueOf(String name) {
 final BuiltSet<PartialUnbrandXoSmTypeEnum> _$partialUnbrandXoSmTypeEnumValues =
     BuiltSet<PartialUnbrandXoSmTypeEnum>(const <PartialUnbrandXoSmTypeEnum>[
   _$partialUnbrandXoSmTypeEnum_SM,
+  _$partialUnbrandXoSmTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<PartialUnbrandXoSmTypeEnum> _$partialUnbrandXoSmTypeEnumSerializer =
-    _$PartialUnbrandXoSmTypeEnumSerializer();
-
-class _$PartialUnbrandXoSmTypeEnumSerializer
-    implements PrimitiveSerializer<PartialUnbrandXoSmTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'SM': 'SM',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'SM': 'SM',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[PartialUnbrandXoSmTypeEnum];
-  @override
-  final String wireName = 'PartialUnbrandXoSmTypeEnum';
-
-  @override
-  Object serialize(Serializers serializers, PartialUnbrandXoSmTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  PartialUnbrandXoSmTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      PartialUnbrandXoSmTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$PartialUnbrandXoSm extends PartialUnbrandXoSm {
   @override

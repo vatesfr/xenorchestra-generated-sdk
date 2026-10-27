@@ -8,6 +8,8 @@ part of 'vbdmode.dart';
 
 const VBDMODE _$RO = const VBDMODE._('RO');
 const VBDMODE _$RW = const VBDMODE._('RW');
+const VBDMODE _$unknownDefaultOpenApi =
+    const VBDMODE._('unknownDefaultOpenApi');
 
 VBDMODE _$valueOf(String name) {
   switch (name) {
@@ -15,6 +17,8 @@ VBDMODE _$valueOf(String name) {
       return _$RO;
     case 'RW':
       return _$RW;
+    case 'unknownDefaultOpenApi':
+      return _$unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -23,12 +27,14 @@ VBDMODE _$valueOf(String name) {
 final BuiltSet<VBDMODE> _$values = BuiltSet<VBDMODE>(const <VBDMODE>[
   _$RO,
   _$RW,
+  _$unknownDefaultOpenApi,
 ]);
 
 class _$VBDMODEMeta {
   const _$VBDMODEMeta();
   VBDMODE get RO => _$RO;
   VBDMODE get RW => _$RW;
+  VBDMODE get unknownDefaultOpenApi => _$unknownDefaultOpenApi;
   VBDMODE valueOf(String name) => _$valueOf(name);
   BuiltSet<VBDMODE> get values => _$values;
 }
@@ -36,35 +42,6 @@ class _$VBDMODEMeta {
 abstract class _$VBDMODEMixin {
   // ignore: non_constant_identifier_names
   _$VBDMODEMeta get VBDMODE => const _$VBDMODEMeta();
-}
-
-Serializer<VBDMODE> _$vBDMODESerializer = _$VBDMODESerializer();
-
-class _$VBDMODESerializer implements PrimitiveSerializer<VBDMODE> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'RO': 'RO',
-    'RW': 'RW',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'RO': 'RO',
-    'RW': 'RW',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[VBDMODE];
-  @override
-  final String wireName = 'VBDMODE';
-
-  @override
-  Object serialize(Serializers serializers, VBDMODE object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  VBDMODE deserialize(Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      VBDMODE.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
 }
 
 // ignore_for_file: deprecated_member_use_from_same_package,type=lint

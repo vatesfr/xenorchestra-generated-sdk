@@ -14,6 +14,8 @@ const XoTaskStatusEnum _$xoTaskStatusEnum_pending =
     const XoTaskStatusEnum._('pending');
 const XoTaskStatusEnum _$xoTaskStatusEnum_success =
     const XoTaskStatusEnum._('success');
+const XoTaskStatusEnum _$xoTaskStatusEnum_unknownDefaultOpenApi =
+    const XoTaskStatusEnum._('unknownDefaultOpenApi');
 
 XoTaskStatusEnum _$xoTaskStatusEnumValueOf(String name) {
   switch (name) {
@@ -25,6 +27,8 @@ XoTaskStatusEnum _$xoTaskStatusEnumValueOf(String name) {
       return _$xoTaskStatusEnum_pending;
     case 'success':
       return _$xoTaskStatusEnum_success;
+    case 'unknownDefaultOpenApi':
+      return _$xoTaskStatusEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -36,42 +40,8 @@ final BuiltSet<XoTaskStatusEnum> _$xoTaskStatusEnumValues =
   _$xoTaskStatusEnum_interrupted,
   _$xoTaskStatusEnum_pending,
   _$xoTaskStatusEnum_success,
+  _$xoTaskStatusEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<XoTaskStatusEnum> _$xoTaskStatusEnumSerializer =
-    _$XoTaskStatusEnumSerializer();
-
-class _$XoTaskStatusEnumSerializer
-    implements PrimitiveSerializer<XoTaskStatusEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'failure': 'failure',
-    'interrupted': 'interrupted',
-    'pending': 'pending',
-    'success': 'success',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'failure': 'failure',
-    'interrupted': 'interrupted',
-    'pending': 'pending',
-    'success': 'success',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[XoTaskStatusEnum];
-  @override
-  final String wireName = 'XoTaskStatusEnum';
-
-  @override
-  Object serialize(Serializers serializers, XoTaskStatusEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  XoTaskStatusEnum deserialize(Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      XoTaskStatusEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$XoTask extends XoTask {
   @override

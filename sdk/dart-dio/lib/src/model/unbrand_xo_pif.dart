@@ -608,9 +608,13 @@ class _$UnbrandXoPifSerializer implements PrimitiveSerializer<UnbrandXoPif> {
 class UnbrandXoPifTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'PIF')
   static const UnbrandXoPifTypeEnum PIF = _$unbrandXoPifTypeEnum_PIF;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UnbrandXoPifTypeEnum unknownDefaultOpenApi =
+      _$unbrandXoPifTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UnbrandXoPifTypeEnum> get serializer =>
-      _$unbrandXoPifTypeEnumSerializer;
+      _OpenUnbrandXoPifTypeEnumSerializer();
 
   const UnbrandXoPifTypeEnum._(String name) : super(name);
 
@@ -618,4 +622,45 @@ class UnbrandXoPifTypeEnum extends EnumClass {
       _$unbrandXoPifTypeEnumValues;
   static UnbrandXoPifTypeEnum valueOf(String name) =>
       _$unbrandXoPifTypeEnumValueOf(name);
+
+  static UnbrandXoPifTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'PIF':
+        return PIF;
+      default:
+        return UnbrandXoPifTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, PIF)) return r'PIF';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UnbrandXoPifTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUnbrandXoPifTypeEnumSerializer
+    implements PrimitiveSerializer<UnbrandXoPifTypeEnum> {
+  @override
+  final Iterable<Type> types = const [UnbrandXoPifTypeEnum];
+  @override
+  final String wireName = 'UnbrandXoPifTypeEnum';
+  @override
+  Object serialize(Serializers serializers, UnbrandXoPifTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UnbrandXoPifTypeEnum deserialize(Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError('Expected a string for UnbrandXoPifTypeEnum');
+    return UnbrandXoPifTypeEnum.fromValue(serialized);
+  }
 }

@@ -13,7 +13,7 @@ Make all properties in T optional
 |**pools** | **Object** |  |  [optional] |
 |**proxy** | **String** |  |  [optional] |
 |**remotes** | **Object** |  |  [optional] |
-|**settings** | [**PartialUnbrandAnyXoBackupJobAnyOf1Settings**](PartialUnbrandAnyXoBackupJobAnyOf1Settings.md) |  |  [optional] |
+|**settings** | [**PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings**](PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings.md) |  |  [optional] |
 |**type** | [**TypeEnum**](#TypeEnum) |  |  [optional] |
 |**userId** | **String** |  |  [optional] |
 |**xoMetadata** | **Boolean** |  |  [optional] |

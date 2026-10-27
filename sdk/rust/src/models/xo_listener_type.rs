@@ -12,89 +12,124 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum XoListenerType {
-    #[serde(rename = "pool")]
     Pool,
-    #[serde(rename = "VBD")]
     Vbd,
-    #[serde(rename = "host")]
     Host,
-    #[serde(rename = "VIF")]
     Vif,
-    #[serde(rename = "VTPM")]
     Vtpm,
-    #[serde(rename = "VM-snapshot")]
     VmSnapshot,
-    #[serde(rename = "SR")]
     Sr,
-    #[serde(rename = "VM")]
     Vm,
-    #[serde(rename = "VM-template")]
     VmTemplate,
-    #[serde(rename = "message")]
     Message,
-    #[serde(rename = "vgpu")]
     Vgpu,
-    #[serde(rename = "gpuGroup")]
     GpuGroup,
-    #[serde(rename = "network")]
     Network,
-    #[serde(rename = "PBD")]
     Pbd,
-    #[serde(rename = "PCI")]
     Pci,
-    #[serde(rename = "PGPU")]
     Pgpu,
-    #[serde(rename = "PIF")]
     Pif,
-    #[serde(rename = "VDI")]
     Vdi,
-    #[serde(rename = "VDI-snapshot")]
     VdiSnapshot,
-    #[serde(rename = "VDI-unmanaged")]
     VdiUnmanaged,
-    #[serde(rename = "vgpuType")]
     VgpuType,
-    #[serde(rename = "VM-controller")]
     VmController,
-    #[serde(rename = "SM")]
     Sm,
-    #[serde(rename = "alarm")]
     Alarm,
-    #[serde(rename = "task")]
     Task,
+    UnknownValue(String),
 }
-
-impl std::fmt::Display for XoListenerType {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+impl XoListenerType {
+    pub fn as_str(&self) -> &str {
         match self {
-            Self::Pool => write!(f, "pool"),
-            Self::Vbd => write!(f, "VBD"),
-            Self::Host => write!(f, "host"),
-            Self::Vif => write!(f, "VIF"),
-            Self::Vtpm => write!(f, "VTPM"),
-            Self::VmSnapshot => write!(f, "VM-snapshot"),
-            Self::Sr => write!(f, "SR"),
-            Self::Vm => write!(f, "VM"),
-            Self::VmTemplate => write!(f, "VM-template"),
-            Self::Message => write!(f, "message"),
-            Self::Vgpu => write!(f, "vgpu"),
-            Self::GpuGroup => write!(f, "gpuGroup"),
-            Self::Network => write!(f, "network"),
-            Self::Pbd => write!(f, "PBD"),
-            Self::Pci => write!(f, "PCI"),
-            Self::Pgpu => write!(f, "PGPU"),
-            Self::Pif => write!(f, "PIF"),
-            Self::Vdi => write!(f, "VDI"),
-            Self::VdiSnapshot => write!(f, "VDI-snapshot"),
-            Self::VdiUnmanaged => write!(f, "VDI-unmanaged"),
-            Self::VgpuType => write!(f, "vgpuType"),
-            Self::VmController => write!(f, "VM-controller"),
-            Self::Sm => write!(f, "SM"),
-            Self::Alarm => write!(f, "alarm"),
-            Self::Task => write!(f, "task"),
+            Self::Pool => "pool",
+            Self::Vbd => "VBD",
+            Self::Host => "host",
+            Self::Vif => "VIF",
+            Self::Vtpm => "VTPM",
+            Self::VmSnapshot => "VM-snapshot",
+            Self::Sr => "SR",
+            Self::Vm => "VM",
+            Self::VmTemplate => "VM-template",
+            Self::Message => "message",
+            Self::Vgpu => "vgpu",
+            Self::GpuGroup => "gpuGroup",
+            Self::Network => "network",
+            Self::Pbd => "PBD",
+            Self::Pci => "PCI",
+            Self::Pgpu => "PGPU",
+            Self::Pif => "PIF",
+            Self::Vdi => "VDI",
+            Self::VdiSnapshot => "VDI-snapshot",
+            Self::VdiUnmanaged => "VDI-unmanaged",
+            Self::VgpuType => "vgpuType",
+            Self::VmController => "VM-controller",
+            Self::Sm => "SM",
+            Self::Alarm => "alarm",
+            Self::Task => "task",
+            Self::UnknownValue(value) => value,
         }
+    }
+}
+impl From<String> for XoListenerType {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "pool" => Self::Pool,
+            "VBD" => Self::Vbd,
+            "host" => Self::Host,
+            "VIF" => Self::Vif,
+            "VTPM" => Self::Vtpm,
+            "VM-snapshot" => Self::VmSnapshot,
+            "SR" => Self::Sr,
+            "VM" => Self::Vm,
+            "VM-template" => Self::VmTemplate,
+            "message" => Self::Message,
+            "vgpu" => Self::Vgpu,
+            "gpuGroup" => Self::GpuGroup,
+            "network" => Self::Network,
+            "PBD" => Self::Pbd,
+            "PCI" => Self::Pci,
+            "PGPU" => Self::Pgpu,
+            "PIF" => Self::Pif,
+            "VDI" => Self::Vdi,
+            "VDI-snapshot" => Self::VdiSnapshot,
+            "VDI-unmanaged" => Self::VdiUnmanaged,
+            "vgpuType" => Self::VgpuType,
+            "VM-controller" => Self::VmController,
+            "SM" => Self::Sm,
+            "alarm" => Self::Alarm,
+            "task" => Self::Task,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for XoListenerType {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for XoListenerType {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for XoListenerType {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for XoListenerType {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
     }
 }
 

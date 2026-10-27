@@ -9,12 +9,18 @@ part of 'with_href_partial_unbrand_xo_metadata_backup_job.dart';
 const WithHrefPartialUnbrandXoMetadataBackupJobTypeEnum
     _$withHrefPartialUnbrandXoMetadataBackupJobTypeEnum_metadataBackup =
     const WithHrefPartialUnbrandXoMetadataBackupJobTypeEnum._('metadataBackup');
+const WithHrefPartialUnbrandXoMetadataBackupJobTypeEnum
+    _$withHrefPartialUnbrandXoMetadataBackupJobTypeEnum_unknownDefaultOpenApi =
+    const WithHrefPartialUnbrandXoMetadataBackupJobTypeEnum._(
+        'unknownDefaultOpenApi');
 
 WithHrefPartialUnbrandXoMetadataBackupJobTypeEnum
     _$withHrefPartialUnbrandXoMetadataBackupJobTypeEnumValueOf(String name) {
   switch (name) {
     case 'metadataBackup':
       return _$withHrefPartialUnbrandXoMetadataBackupJobTypeEnum_metadataBackup;
+    case 'unknownDefaultOpenApi':
+      return _$withHrefPartialUnbrandXoMetadataBackupJobTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -24,42 +30,8 @@ final BuiltSet<WithHrefPartialUnbrandXoMetadataBackupJobTypeEnum>
     _$withHrefPartialUnbrandXoMetadataBackupJobTypeEnumValues = BuiltSet<
         WithHrefPartialUnbrandXoMetadataBackupJobTypeEnum>(const <WithHrefPartialUnbrandXoMetadataBackupJobTypeEnum>[
   _$withHrefPartialUnbrandXoMetadataBackupJobTypeEnum_metadataBackup,
+  _$withHrefPartialUnbrandXoMetadataBackupJobTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<WithHrefPartialUnbrandXoMetadataBackupJobTypeEnum>
-    _$withHrefPartialUnbrandXoMetadataBackupJobTypeEnumSerializer =
-    _$WithHrefPartialUnbrandXoMetadataBackupJobTypeEnumSerializer();
-
-class _$WithHrefPartialUnbrandXoMetadataBackupJobTypeEnumSerializer
-    implements
-        PrimitiveSerializer<WithHrefPartialUnbrandXoMetadataBackupJobTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'metadataBackup': 'metadataBackup',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'metadataBackup': 'metadataBackup',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    WithHrefPartialUnbrandXoMetadataBackupJobTypeEnum
-  ];
-  @override
-  final String wireName = 'WithHrefPartialUnbrandXoMetadataBackupJobTypeEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          WithHrefPartialUnbrandXoMetadataBackupJobTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  WithHrefPartialUnbrandXoMetadataBackupJobTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      WithHrefPartialUnbrandXoMetadataBackupJobTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$WithHrefPartialUnbrandXoMetadataBackupJob
     extends WithHrefPartialUnbrandXoMetadataBackupJob {
@@ -76,7 +48,7 @@ class _$WithHrefPartialUnbrandXoMetadataBackupJob
   @override
   final JsonObject? remotes;
   @override
-  final PartialUnbrandXoMetadataBackupJobSettings? settings;
+  final PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings? settings;
   @override
   final WithHrefPartialUnbrandXoMetadataBackupJobTypeEnum? type;
   @override
@@ -193,10 +165,13 @@ class WithHrefPartialUnbrandXoMetadataBackupJobBuilder
   JsonObject? get remotes => _$this._remotes;
   set remotes(JsonObject? remotes) => _$this._remotes = remotes;
 
-  PartialUnbrandXoMetadataBackupJobSettingsBuilder? _settings;
-  PartialUnbrandXoMetadataBackupJobSettingsBuilder get settings =>
-      _$this._settings ??= PartialUnbrandXoMetadataBackupJobSettingsBuilder();
-  set settings(PartialUnbrandXoMetadataBackupJobSettingsBuilder? settings) =>
+  PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettingsBuilder? _settings;
+  PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettingsBuilder
+      get settings => _$this._settings ??=
+          PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettingsBuilder();
+  set settings(
+          PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettingsBuilder?
+              settings) =>
       _$this._settings = settings;
 
   WithHrefPartialUnbrandXoMetadataBackupJobTypeEnum? _type;

@@ -26,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyXoBackupJobAnyOf1Settings;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;
@@ -71,20 +71,21 @@ public class UnbrandUnbrandedXoMetadataBackupJob {
 
   public static final String JSON_PROPERTY_SETTINGS = "settings";
   @javax.annotation.Nonnull
-  private PartialUnbrandAnyXoBackupJobAnyOf1Settings settings;
+  private PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings settings;
 
   /**
    * Gets or Sets type
    */
-  public enum TypeEnum {
-    METADATA_BACKUP(String.valueOf("metadataBackup")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+  public static final class TypeEnum {
+    public static final TypeEnum METADATA_BACKUP = new TypeEnum("metadataBackup");
+    @JsonCreator public static TypeEnum fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static TypeEnum[] values() { return new TypeEnum[] {METADATA_BACKUP}; }
+    @Override public boolean equals(Object other) { return other instanceof TypeEnum && value.equals(((TypeEnum) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-    private String value;
-
-    TypeEnum(String value) {
-      this.value = value;
+    private TypeEnum(String value) {
+      this.value = java.util.Objects.requireNonNull(value);
     }
 
     @JsonValue
@@ -97,16 +98,17 @@ public class UnbrandUnbrandedXoMetadataBackupJob {
       return String.valueOf(value);
     }
 
-    @JsonCreator
+    
     public static TypeEnum fromValue(String value) {
       for (TypeEnum b : TypeEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      return new TypeEnum(value);
     }
   }
+
 
   public static final String JSON_PROPERTY_TYPE = "type";
   @javax.annotation.Nonnull
@@ -251,7 +253,7 @@ public class UnbrandUnbrandedXoMetadataBackupJob {
   }
 
 
-  public UnbrandUnbrandedXoMetadataBackupJob settings(@javax.annotation.Nonnull PartialUnbrandAnyXoBackupJobAnyOf1Settings settings) {
+  public UnbrandUnbrandedXoMetadataBackupJob settings(@javax.annotation.Nonnull PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings settings) {
     this.settings = settings;
     return this;
   }
@@ -263,14 +265,14 @@ public class UnbrandUnbrandedXoMetadataBackupJob {
   @javax.annotation.Nonnull
   @JsonProperty(JSON_PROPERTY_SETTINGS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public PartialUnbrandAnyXoBackupJobAnyOf1Settings getSettings() {
+  public PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings getSettings() {
     return settings;
   }
 
 
   @JsonProperty(JSON_PROPERTY_SETTINGS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setSettings(@javax.annotation.Nonnull PartialUnbrandAnyXoBackupJobAnyOf1Settings settings) {
+  public void setSettings(@javax.annotation.Nonnull PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings settings) {
     this.settings = settings;
   }
 

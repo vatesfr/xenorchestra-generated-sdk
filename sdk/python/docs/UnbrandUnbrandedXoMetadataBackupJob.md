@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **pools** | **object** |  | [optional] 
 **proxy** | **str** |  | [optional] 
 **remotes** | **object** |  | 
-**settings** | [**PartialUnbrandAnyXoBackupJobAnyOf1Settings**](PartialUnbrandAnyXoBackupJobAnyOf1Settings.md) |  | 
+**settings** | [**PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings**](PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings.md) |  | 
 **type** | **str** |  | 
 **user_id** | **str** |  | 
 **xo_metadata** | **bool** |  | [optional] 

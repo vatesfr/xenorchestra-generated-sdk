@@ -248,14 +248,59 @@ impl WithHrefPartialUnbrandXoVm {
     }
 }
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum HighAvailability {
-    #[serde(rename = "")]
     Empty,
-    #[serde(rename = "best-effort")]
     BestEffort,
-    #[serde(rename = "restart")]
     Restart,
+    UnknownValue(String),
+}
+impl HighAvailability {
+    pub fn as_str(&self) -> &str {
+        match self {
+            Self::Empty => "",
+            Self::BestEffort => "best-effort",
+            Self::Restart => "restart",
+            Self::UnknownValue(value) => value,
+        }
+    }
+}
+impl From<String> for HighAvailability {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "" => Self::Empty,
+            "best-effort" => Self::BestEffort,
+            "restart" => Self::Restart,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for HighAvailability {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for HighAvailability {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for HighAvailability {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for HighAvailability {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
+    }
 }
 
 impl Default for HighAvailability {
@@ -264,10 +309,53 @@ impl Default for HighAvailability {
     }
 }
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum Type {
-    #[serde(rename = "VM")]
     Vm,
+    UnknownValue(String),
+}
+impl Type {
+    pub fn as_str(&self) -> &str {
+        match self {
+            Self::Vm => "VM",
+            Self::UnknownValue(value) => value,
+        }
+    }
+}
+impl From<String> for Type {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "VM" => Self::Vm,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for Type {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for Type {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for Type {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for Type {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
+    }
 }
 
 impl Default for Type {

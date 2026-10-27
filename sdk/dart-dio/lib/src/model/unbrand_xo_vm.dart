@@ -1185,9 +1185,13 @@ class UnbrandXoVmHighAvailabilityEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'restart')
   static const UnbrandXoVmHighAvailabilityEnum restart =
       _$unbrandXoVmHighAvailabilityEnum_restart;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UnbrandXoVmHighAvailabilityEnum unknownDefaultOpenApi =
+      _$unbrandXoVmHighAvailabilityEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UnbrandXoVmHighAvailabilityEnum> get serializer =>
-      _$unbrandXoVmHighAvailabilityEnumSerializer;
+      _OpenUnbrandXoVmHighAvailabilityEnumSerializer();
 
   const UnbrandXoVmHighAvailabilityEnum._(String name) : super(name);
 
@@ -1195,14 +1199,68 @@ class UnbrandXoVmHighAvailabilityEnum extends EnumClass {
       _$unbrandXoVmHighAvailabilityEnumValues;
   static UnbrandXoVmHighAvailabilityEnum valueOf(String name) =>
       _$unbrandXoVmHighAvailabilityEnumValueOf(name);
+
+  static UnbrandXoVmHighAvailabilityEnum fromValue(String value) {
+    switch (value) {
+      case r'':
+        return empty;
+      case r'best-effort':
+        return bestEffort;
+      case r'restart':
+        return restart;
+      default:
+        return UnbrandXoVmHighAvailabilityEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, empty)) return r'';
+    if (identical(this, bestEffort)) return r'best-effort';
+    if (identical(this, restart)) return r'restart';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UnbrandXoVmHighAvailabilityEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUnbrandXoVmHighAvailabilityEnumSerializer
+    implements PrimitiveSerializer<UnbrandXoVmHighAvailabilityEnum> {
+  @override
+  final Iterable<Type> types = const [UnbrandXoVmHighAvailabilityEnum];
+  @override
+  final String wireName = 'UnbrandXoVmHighAvailabilityEnum';
+  @override
+  Object serialize(
+          Serializers serializers, UnbrandXoVmHighAvailabilityEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UnbrandXoVmHighAvailabilityEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for UnbrandXoVmHighAvailabilityEnum');
+    return UnbrandXoVmHighAvailabilityEnum.fromValue(serialized);
+  }
 }
 
 class UnbrandXoVmTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'VM')
   static const UnbrandXoVmTypeEnum VM = _$unbrandXoVmTypeEnum_VM;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UnbrandXoVmTypeEnum unknownDefaultOpenApi =
+      _$unbrandXoVmTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UnbrandXoVmTypeEnum> get serializer =>
-      _$unbrandXoVmTypeEnumSerializer;
+      _OpenUnbrandXoVmTypeEnumSerializer();
 
   const UnbrandXoVmTypeEnum._(String name) : super(name);
 
@@ -1210,4 +1268,45 @@ class UnbrandXoVmTypeEnum extends EnumClass {
       _$unbrandXoVmTypeEnumValues;
   static UnbrandXoVmTypeEnum valueOf(String name) =>
       _$unbrandXoVmTypeEnumValueOf(name);
+
+  static UnbrandXoVmTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'VM':
+        return VM;
+      default:
+        return UnbrandXoVmTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, VM)) return r'VM';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UnbrandXoVmTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUnbrandXoVmTypeEnumSerializer
+    implements PrimitiveSerializer<UnbrandXoVmTypeEnum> {
+  @override
+  final Iterable<Type> types = const [UnbrandXoVmTypeEnum];
+  @override
+  final String wireName = 'UnbrandXoVmTypeEnum';
+  @override
+  Object serialize(Serializers serializers, UnbrandXoVmTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UnbrandXoVmTypeEnum deserialize(Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError('Expected a string for UnbrandXoVmTypeEnum');
+    return UnbrandXoVmTypeEnum.fromValue(serialized);
+  }
 }

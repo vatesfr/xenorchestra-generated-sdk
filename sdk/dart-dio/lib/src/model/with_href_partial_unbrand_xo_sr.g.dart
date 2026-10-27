@@ -66,6 +66,9 @@ const WithHrefPartialUnbrandXoSrSRTypeEnum
 const WithHrefPartialUnbrandXoSrSRTypeEnum
     _$withHrefPartialUnbrandXoSrSRTypeEnum_zfs =
     const WithHrefPartialUnbrandXoSrSRTypeEnum._('zfs');
+const WithHrefPartialUnbrandXoSrSRTypeEnum
+    _$withHrefPartialUnbrandXoSrSRTypeEnum_unknownDefaultOpenApi =
+    const WithHrefPartialUnbrandXoSrSRTypeEnum._('unknownDefaultOpenApi');
 
 WithHrefPartialUnbrandXoSrSRTypeEnum
     _$withHrefPartialUnbrandXoSrSRTypeEnumValueOf(String name) {
@@ -110,6 +113,8 @@ WithHrefPartialUnbrandXoSrSRTypeEnum
       return _$withHrefPartialUnbrandXoSrSRTypeEnum_xfs;
     case 'zfs':
       return _$withHrefPartialUnbrandXoSrSRTypeEnum_zfs;
+    case 'unknownDefaultOpenApi':
+      return _$withHrefPartialUnbrandXoSrSRTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -138,6 +143,7 @@ final BuiltSet<WithHrefPartialUnbrandXoSrSRTypeEnum>
   _$withHrefPartialUnbrandXoSrSRTypeEnum_udev,
   _$withHrefPartialUnbrandXoSrSRTypeEnum_xfs,
   _$withHrefPartialUnbrandXoSrSRTypeEnum_zfs,
+  _$withHrefPartialUnbrandXoSrSRTypeEnum_unknownDefaultOpenApi,
 ]);
 
 const WithHrefPartialUnbrandXoSrAllocationStrategyEnum
@@ -149,6 +155,10 @@ const WithHrefPartialUnbrandXoSrAllocationStrategyEnum
 const WithHrefPartialUnbrandXoSrAllocationStrategyEnum
     _$withHrefPartialUnbrandXoSrAllocationStrategyEnum_thick =
     const WithHrefPartialUnbrandXoSrAllocationStrategyEnum._('thick');
+const WithHrefPartialUnbrandXoSrAllocationStrategyEnum
+    _$withHrefPartialUnbrandXoSrAllocationStrategyEnum_unknownDefaultOpenApi =
+    const WithHrefPartialUnbrandXoSrAllocationStrategyEnum._(
+        'unknownDefaultOpenApi');
 
 WithHrefPartialUnbrandXoSrAllocationStrategyEnum
     _$withHrefPartialUnbrandXoSrAllocationStrategyEnumValueOf(String name) {
@@ -159,6 +169,8 @@ WithHrefPartialUnbrandXoSrAllocationStrategyEnum
       return _$withHrefPartialUnbrandXoSrAllocationStrategyEnum_thin;
     case 'thick':
       return _$withHrefPartialUnbrandXoSrAllocationStrategyEnum_thick;
+    case 'unknownDefaultOpenApi':
+      return _$withHrefPartialUnbrandXoSrAllocationStrategyEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -170,6 +182,7 @@ final BuiltSet<WithHrefPartialUnbrandXoSrAllocationStrategyEnum>
   _$withHrefPartialUnbrandXoSrAllocationStrategyEnum_unknown,
   _$withHrefPartialUnbrandXoSrAllocationStrategyEnum_thin,
   _$withHrefPartialUnbrandXoSrAllocationStrategyEnum_thick,
+  _$withHrefPartialUnbrandXoSrAllocationStrategyEnum_unknownDefaultOpenApi,
 ]);
 
 const WithHrefPartialUnbrandXoSrContentTypeEnum
@@ -181,6 +194,9 @@ const WithHrefPartialUnbrandXoSrContentTypeEnum
 const WithHrefPartialUnbrandXoSrContentTypeEnum
     _$withHrefPartialUnbrandXoSrContentTypeEnum_disk =
     const WithHrefPartialUnbrandXoSrContentTypeEnum._('disk');
+const WithHrefPartialUnbrandXoSrContentTypeEnum
+    _$withHrefPartialUnbrandXoSrContentTypeEnum_unknownDefaultOpenApi =
+    const WithHrefPartialUnbrandXoSrContentTypeEnum._('unknownDefaultOpenApi');
 
 WithHrefPartialUnbrandXoSrContentTypeEnum
     _$withHrefPartialUnbrandXoSrContentTypeEnumValueOf(String name) {
@@ -191,6 +207,8 @@ WithHrefPartialUnbrandXoSrContentTypeEnum
       return _$withHrefPartialUnbrandXoSrContentTypeEnum_iso;
     case 'disk':
       return _$withHrefPartialUnbrandXoSrContentTypeEnum_disk;
+    case 'unknownDefaultOpenApi':
+      return _$withHrefPartialUnbrandXoSrContentTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -202,17 +220,23 @@ final BuiltSet<WithHrefPartialUnbrandXoSrContentTypeEnum>
   _$withHrefPartialUnbrandXoSrContentTypeEnum_user,
   _$withHrefPartialUnbrandXoSrContentTypeEnum_iso,
   _$withHrefPartialUnbrandXoSrContentTypeEnum_disk,
+  _$withHrefPartialUnbrandXoSrContentTypeEnum_unknownDefaultOpenApi,
 ]);
 
 const WithHrefPartialUnbrandXoSrTypeEnum
     _$withHrefPartialUnbrandXoSrTypeEnum_SR =
     const WithHrefPartialUnbrandXoSrTypeEnum._('SR');
+const WithHrefPartialUnbrandXoSrTypeEnum
+    _$withHrefPartialUnbrandXoSrTypeEnum_unknownDefaultOpenApi =
+    const WithHrefPartialUnbrandXoSrTypeEnum._('unknownDefaultOpenApi');
 
 WithHrefPartialUnbrandXoSrTypeEnum _$withHrefPartialUnbrandXoSrTypeEnumValueOf(
     String name) {
   switch (name) {
     case 'SR':
       return _$withHrefPartialUnbrandXoSrTypeEnum_SR;
+    case 'unknownDefaultOpenApi':
+      return _$withHrefPartialUnbrandXoSrTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -222,185 +246,8 @@ final BuiltSet<WithHrefPartialUnbrandXoSrTypeEnum>
     _$withHrefPartialUnbrandXoSrTypeEnumValues = BuiltSet<
         WithHrefPartialUnbrandXoSrTypeEnum>(const <WithHrefPartialUnbrandXoSrTypeEnum>[
   _$withHrefPartialUnbrandXoSrTypeEnum_SR,
+  _$withHrefPartialUnbrandXoSrTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<WithHrefPartialUnbrandXoSrSRTypeEnum>
-    _$withHrefPartialUnbrandXoSrSRTypeEnumSerializer =
-    _$WithHrefPartialUnbrandXoSrSRTypeEnumSerializer();
-Serializer<WithHrefPartialUnbrandXoSrAllocationStrategyEnum>
-    _$withHrefPartialUnbrandXoSrAllocationStrategyEnumSerializer =
-    _$WithHrefPartialUnbrandXoSrAllocationStrategyEnumSerializer();
-Serializer<WithHrefPartialUnbrandXoSrContentTypeEnum>
-    _$withHrefPartialUnbrandXoSrContentTypeEnumSerializer =
-    _$WithHrefPartialUnbrandXoSrContentTypeEnumSerializer();
-Serializer<WithHrefPartialUnbrandXoSrTypeEnum>
-    _$withHrefPartialUnbrandXoSrTypeEnumSerializer =
-    _$WithHrefPartialUnbrandXoSrTypeEnumSerializer();
-
-class _$WithHrefPartialUnbrandXoSrSRTypeEnumSerializer
-    implements PrimitiveSerializer<WithHrefPartialUnbrandXoSrSRTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'iso': 'iso',
-    'cephfs': 'cephfs',
-    'dummy': 'dummy',
-    'ext': 'ext',
-    'file': 'file',
-    'glusterfs': 'glusterfs',
-    'hba': 'hba',
-    'largeblock': 'largeblock',
-    'linstor': 'linstor',
-    'lvm': 'lvm',
-    'lvmofcoe': 'lvmofcoe',
-    'lvmohba': 'lvmohba',
-    'lvmoiscsi': 'lvmoiscsi',
-    'moosefs': 'moosefs',
-    'nfs': 'nfs',
-    'shm': 'shm',
-    'smb': 'smb',
-    'udev': 'udev',
-    'xfs': 'xfs',
-    'zfs': 'zfs',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'iso': 'iso',
-    'cephfs': 'cephfs',
-    'dummy': 'dummy',
-    'ext': 'ext',
-    'file': 'file',
-    'glusterfs': 'glusterfs',
-    'hba': 'hba',
-    'largeblock': 'largeblock',
-    'linstor': 'linstor',
-    'lvm': 'lvm',
-    'lvmofcoe': 'lvmofcoe',
-    'lvmohba': 'lvmohba',
-    'lvmoiscsi': 'lvmoiscsi',
-    'moosefs': 'moosefs',
-    'nfs': 'nfs',
-    'shm': 'shm',
-    'smb': 'smb',
-    'udev': 'udev',
-    'xfs': 'xfs',
-    'zfs': 'zfs',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    WithHrefPartialUnbrandXoSrSRTypeEnum
-  ];
-  @override
-  final String wireName = 'WithHrefPartialUnbrandXoSrSRTypeEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers, WithHrefPartialUnbrandXoSrSRTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  WithHrefPartialUnbrandXoSrSRTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      WithHrefPartialUnbrandXoSrSRTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
-
-class _$WithHrefPartialUnbrandXoSrAllocationStrategyEnumSerializer
-    implements
-        PrimitiveSerializer<WithHrefPartialUnbrandXoSrAllocationStrategyEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'unknown': 'unknown',
-    'thin': 'thin',
-    'thick': 'thick',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'unknown': 'unknown',
-    'thin': 'thin',
-    'thick': 'thick',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    WithHrefPartialUnbrandXoSrAllocationStrategyEnum
-  ];
-  @override
-  final String wireName = 'WithHrefPartialUnbrandXoSrAllocationStrategyEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          WithHrefPartialUnbrandXoSrAllocationStrategyEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  WithHrefPartialUnbrandXoSrAllocationStrategyEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      WithHrefPartialUnbrandXoSrAllocationStrategyEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
-
-class _$WithHrefPartialUnbrandXoSrContentTypeEnumSerializer
-    implements PrimitiveSerializer<WithHrefPartialUnbrandXoSrContentTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'user': 'user',
-    'iso': 'iso',
-    'disk': 'disk',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'user': 'user',
-    'iso': 'iso',
-    'disk': 'disk',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    WithHrefPartialUnbrandXoSrContentTypeEnum
-  ];
-  @override
-  final String wireName = 'WithHrefPartialUnbrandXoSrContentTypeEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          WithHrefPartialUnbrandXoSrContentTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  WithHrefPartialUnbrandXoSrContentTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      WithHrefPartialUnbrandXoSrContentTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
-
-class _$WithHrefPartialUnbrandXoSrTypeEnumSerializer
-    implements PrimitiveSerializer<WithHrefPartialUnbrandXoSrTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'SR': 'SR',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'SR': 'SR',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[WithHrefPartialUnbrandXoSrTypeEnum];
-  @override
-  final String wireName = 'WithHrefPartialUnbrandXoSrTypeEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers, WithHrefPartialUnbrandXoSrTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  WithHrefPartialUnbrandXoSrTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      WithHrefPartialUnbrandXoSrTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$WithHrefPartialUnbrandXoSr extends WithHrefPartialUnbrandXoSr {
   @override

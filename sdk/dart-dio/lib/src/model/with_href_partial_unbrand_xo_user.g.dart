@@ -12,6 +12,9 @@ const WithHrefPartialUnbrandXoUserPermissionEnum
 const WithHrefPartialUnbrandXoUserPermissionEnum
     _$withHrefPartialUnbrandXoUserPermissionEnum_admin =
     const WithHrefPartialUnbrandXoUserPermissionEnum._('admin');
+const WithHrefPartialUnbrandXoUserPermissionEnum
+    _$withHrefPartialUnbrandXoUserPermissionEnum_unknownDefaultOpenApi =
+    const WithHrefPartialUnbrandXoUserPermissionEnum._('unknownDefaultOpenApi');
 
 WithHrefPartialUnbrandXoUserPermissionEnum
     _$withHrefPartialUnbrandXoUserPermissionEnumValueOf(String name) {
@@ -20,6 +23,8 @@ WithHrefPartialUnbrandXoUserPermissionEnum
       return _$withHrefPartialUnbrandXoUserPermissionEnum_none;
     case 'admin':
       return _$withHrefPartialUnbrandXoUserPermissionEnum_admin;
+    case 'unknownDefaultOpenApi':
+      return _$withHrefPartialUnbrandXoUserPermissionEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -30,43 +35,8 @@ final BuiltSet<WithHrefPartialUnbrandXoUserPermissionEnum>
         WithHrefPartialUnbrandXoUserPermissionEnum>(const <WithHrefPartialUnbrandXoUserPermissionEnum>[
   _$withHrefPartialUnbrandXoUserPermissionEnum_none,
   _$withHrefPartialUnbrandXoUserPermissionEnum_admin,
+  _$withHrefPartialUnbrandXoUserPermissionEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<WithHrefPartialUnbrandXoUserPermissionEnum>
-    _$withHrefPartialUnbrandXoUserPermissionEnumSerializer =
-    _$WithHrefPartialUnbrandXoUserPermissionEnumSerializer();
-
-class _$WithHrefPartialUnbrandXoUserPermissionEnumSerializer
-    implements PrimitiveSerializer<WithHrefPartialUnbrandXoUserPermissionEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'none': 'none',
-    'admin': 'admin',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'none': 'none',
-    'admin': 'admin',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    WithHrefPartialUnbrandXoUserPermissionEnum
-  ];
-  @override
-  final String wireName = 'WithHrefPartialUnbrandXoUserPermissionEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          WithHrefPartialUnbrandXoUserPermissionEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  WithHrefPartialUnbrandXoUserPermissionEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      WithHrefPartialUnbrandXoUserPermissionEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$WithHrefPartialUnbrandXoUser extends WithHrefPartialUnbrandXoUser {
   @override

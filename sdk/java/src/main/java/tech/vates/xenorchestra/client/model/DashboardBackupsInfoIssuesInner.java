@@ -46,21 +46,19 @@ public class DashboardBackupsInfoIssuesInner {
   /**
    * Gets or Sets logs
    */
-  public enum LogsEnum {
-    FAILURE(String.valueOf("failure")),
-    
-    INTERRUPTED(String.valueOf("interrupted")),
-    
-    SKIPPED(String.valueOf("skipped")),
-    
-    SUCCESS(String.valueOf("success")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+  public static final class LogsEnum {
+    public static final LogsEnum FAILURE = new LogsEnum("failure");
+    public static final LogsEnum INTERRUPTED = new LogsEnum("interrupted");
+    public static final LogsEnum SKIPPED = new LogsEnum("skipped");
+    public static final LogsEnum SUCCESS = new LogsEnum("success");
+    @JsonCreator public static LogsEnum fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static LogsEnum[] values() { return new LogsEnum[] {FAILURE, INTERRUPTED, SKIPPED, SUCCESS}; }
+    @Override public boolean equals(Object other) { return other instanceof LogsEnum && value.equals(((LogsEnum) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-    private String value;
-
-    LogsEnum(String value) {
-      this.value = value;
+    private LogsEnum(String value) {
+      this.value = java.util.Objects.requireNonNull(value);
     }
 
     @JsonValue
@@ -73,16 +71,17 @@ public class DashboardBackupsInfoIssuesInner {
       return String.valueOf(value);
     }
 
-    @JsonCreator
+    
     public static LogsEnum fromValue(String value) {
       for (LogsEnum b : LogsEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      return new LogsEnum(value);
     }
   }
+
 
   public static final String JSON_PROPERTY_LOGS = "logs";
   @javax.annotation.Nonnull

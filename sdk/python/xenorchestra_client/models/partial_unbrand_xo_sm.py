@@ -49,8 +49,6 @@ class PartialUnbrandXoSm(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['SM']):
-            raise ValueError("must be one of enum values ('SM')")
         return value
 
     model_config = ConfigDict(

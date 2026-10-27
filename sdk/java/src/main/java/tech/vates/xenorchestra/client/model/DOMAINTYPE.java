@@ -28,24 +28,20 @@ import com.fasterxml.jackson.annotation.JsonValue;
 /**
  * Gets or Sets DOMAIN_TYPE
  */
-public enum DOMAINTYPE {
-  
-  HVM("hvm"),
-  
-  PV("pv"),
-  
-  PVH("pvh"),
-  
-  PV_IN_PVH("pv_in_pvh"),
-  
-  UNSPECIFIED("unspecified"),
-  
-  UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
+public final class DOMAINTYPE {
+    public static final DOMAINTYPE HVM = new DOMAINTYPE("hvm");
+    public static final DOMAINTYPE PV = new DOMAINTYPE("pv");
+    public static final DOMAINTYPE PVH = new DOMAINTYPE("pvh");
+    public static final DOMAINTYPE PV_IN_PVH = new DOMAINTYPE("pv_in_pvh");
+    public static final DOMAINTYPE UNSPECIFIED = new DOMAINTYPE("unspecified");
+    @JsonCreator public static DOMAINTYPE fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static DOMAINTYPE[] values() { return new DOMAINTYPE[] {HVM, PV, PVH, PV_IN_PVH, UNSPECIFIED}; }
+    @Override public boolean equals(Object other) { return other instanceof DOMAINTYPE && value.equals(((DOMAINTYPE) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-  private String value;
-
-  DOMAINTYPE(String value) {
-    this.value = value;
+  private DOMAINTYPE(String value) {
+    this.value = java.util.Objects.requireNonNull(value);
   }
 
   @JsonValue
@@ -58,14 +54,14 @@ public enum DOMAINTYPE {
     return String.valueOf(value);
   }
 
-  @JsonCreator
+  
   public static DOMAINTYPE fromValue(String value) {
     for (DOMAINTYPE b : DOMAINTYPE.values()) {
       if (b.value.equals(value)) {
         return b;
       }
     }
-    return UNKNOWN_DEFAULT_OPEN_API;
+    return new DOMAINTYPE(value);
   }
 
   /**
@@ -83,4 +79,5 @@ public enum DOMAINTYPE {
   }
 
 }
+
 

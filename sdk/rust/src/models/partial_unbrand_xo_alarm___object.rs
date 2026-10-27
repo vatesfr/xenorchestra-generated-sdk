@@ -31,56 +31,122 @@ impl PartialUnbrandXoAlarmObject {
     }
 }
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum Type {
-    #[serde(rename = "pool")]
     Pool,
-    #[serde(rename = "VBD")]
     Vbd,
-    #[serde(rename = "host")]
     Host,
-    #[serde(rename = "VIF")]
     Vif,
-    #[serde(rename = "VTPM")]
     Vtpm,
-    #[serde(rename = "VM-snapshot")]
     VmSnapshot,
-    #[serde(rename = "SR")]
     Sr,
-    #[serde(rename = "VM")]
     Vm,
-    #[serde(rename = "VM-template")]
     VmTemplate,
-    #[serde(rename = "message")]
     Message,
-    #[serde(rename = "vgpu")]
     Vgpu,
-    #[serde(rename = "gpuGroup")]
     GpuGroup,
-    #[serde(rename = "network")]
     Network,
-    #[serde(rename = "PBD")]
     Pbd,
-    #[serde(rename = "PCI")]
     Pci,
-    #[serde(rename = "PGPU")]
     Pgpu,
-    #[serde(rename = "PIF")]
     Pif,
-    #[serde(rename = "VDI")]
     Vdi,
-    #[serde(rename = "VDI-snapshot")]
     VdiSnapshot,
-    #[serde(rename = "VDI-unmanaged")]
     VdiUnmanaged,
-    #[serde(rename = "vgpuType")]
     VgpuType,
-    #[serde(rename = "VM-controller")]
     VmController,
-    #[serde(rename = "SM")]
     Sm,
-    #[serde(rename = "unknown")]
     Unknown,
+    UnknownValue(String),
+}
+impl Type {
+    pub fn as_str(&self) -> &str {
+        match self {
+            Self::Pool => "pool",
+            Self::Vbd => "VBD",
+            Self::Host => "host",
+            Self::Vif => "VIF",
+            Self::Vtpm => "VTPM",
+            Self::VmSnapshot => "VM-snapshot",
+            Self::Sr => "SR",
+            Self::Vm => "VM",
+            Self::VmTemplate => "VM-template",
+            Self::Message => "message",
+            Self::Vgpu => "vgpu",
+            Self::GpuGroup => "gpuGroup",
+            Self::Network => "network",
+            Self::Pbd => "PBD",
+            Self::Pci => "PCI",
+            Self::Pgpu => "PGPU",
+            Self::Pif => "PIF",
+            Self::Vdi => "VDI",
+            Self::VdiSnapshot => "VDI-snapshot",
+            Self::VdiUnmanaged => "VDI-unmanaged",
+            Self::VgpuType => "vgpuType",
+            Self::VmController => "VM-controller",
+            Self::Sm => "SM",
+            Self::Unknown => "unknown",
+            Self::UnknownValue(value) => value,
+        }
+    }
+}
+impl From<String> for Type {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "pool" => Self::Pool,
+            "VBD" => Self::Vbd,
+            "host" => Self::Host,
+            "VIF" => Self::Vif,
+            "VTPM" => Self::Vtpm,
+            "VM-snapshot" => Self::VmSnapshot,
+            "SR" => Self::Sr,
+            "VM" => Self::Vm,
+            "VM-template" => Self::VmTemplate,
+            "message" => Self::Message,
+            "vgpu" => Self::Vgpu,
+            "gpuGroup" => Self::GpuGroup,
+            "network" => Self::Network,
+            "PBD" => Self::Pbd,
+            "PCI" => Self::Pci,
+            "PGPU" => Self::Pgpu,
+            "PIF" => Self::Pif,
+            "VDI" => Self::Vdi,
+            "VDI-snapshot" => Self::VdiSnapshot,
+            "VDI-unmanaged" => Self::VdiUnmanaged,
+            "vgpuType" => Self::VgpuType,
+            "VM-controller" => Self::VmController,
+            "SM" => Self::Sm,
+            "unknown" => Self::Unknown,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for Type {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for Type {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for Type {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for Type {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
+    }
 }
 
 impl Default for Type {

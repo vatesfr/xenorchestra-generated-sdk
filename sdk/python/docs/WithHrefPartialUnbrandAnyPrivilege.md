@@ -7,11 +7,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **action** | **str** |  | [optional] 
 **effect** | **str** |  | [optional] 
+**href** | **str** |  | 
 **id** | **str** |  | [optional] 
 **resource** | **str** |  | [optional] 
 **role_id** | **str** |  | [optional] 
 **selector** | **str** |  | [optional] 
-**href** | **str** |  | 
 
 ## Example
 

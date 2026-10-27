@@ -8,12 +8,17 @@ part of 'unbrand_xo_vdi_snapshot.dart';
 
 const UnbrandXoVdiSnapshotTypeEnum _$unbrandXoVdiSnapshotTypeEnum_vDISnapshot =
     const UnbrandXoVdiSnapshotTypeEnum._('vDISnapshot');
+const UnbrandXoVdiSnapshotTypeEnum
+    _$unbrandXoVdiSnapshotTypeEnum_unknownDefaultOpenApi =
+    const UnbrandXoVdiSnapshotTypeEnum._('unknownDefaultOpenApi');
 
 UnbrandXoVdiSnapshotTypeEnum _$unbrandXoVdiSnapshotTypeEnumValueOf(
     String name) {
   switch (name) {
     case 'vDISnapshot':
       return _$unbrandXoVdiSnapshotTypeEnum_vDISnapshot;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandXoVdiSnapshotTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -23,38 +28,8 @@ final BuiltSet<UnbrandXoVdiSnapshotTypeEnum>
     _$unbrandXoVdiSnapshotTypeEnumValues =
     BuiltSet<UnbrandXoVdiSnapshotTypeEnum>(const <UnbrandXoVdiSnapshotTypeEnum>[
   _$unbrandXoVdiSnapshotTypeEnum_vDISnapshot,
+  _$unbrandXoVdiSnapshotTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<UnbrandXoVdiSnapshotTypeEnum>
-    _$unbrandXoVdiSnapshotTypeEnumSerializer =
-    _$UnbrandXoVdiSnapshotTypeEnumSerializer();
-
-class _$UnbrandXoVdiSnapshotTypeEnumSerializer
-    implements PrimitiveSerializer<UnbrandXoVdiSnapshotTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'vDISnapshot': 'VDI-snapshot',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'VDI-snapshot': 'vDISnapshot',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[UnbrandXoVdiSnapshotTypeEnum];
-  @override
-  final String wireName = 'UnbrandXoVdiSnapshotTypeEnum';
-
-  @override
-  Object serialize(Serializers serializers, UnbrandXoVdiSnapshotTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandXoVdiSnapshotTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandXoVdiSnapshotTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$UnbrandXoVdiSnapshot extends UnbrandXoVdiSnapshot {
   @override

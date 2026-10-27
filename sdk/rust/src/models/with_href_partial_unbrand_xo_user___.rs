@@ -51,12 +51,56 @@ impl WithHrefPartialUnbrandXoUser {
     }
 }
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum Permission {
-    #[serde(rename = "none")]
     None,
-    #[serde(rename = "admin")]
     Admin,
+    UnknownValue(String),
+}
+impl Permission {
+    pub fn as_str(&self) -> &str {
+        match self {
+            Self::None => "none",
+            Self::Admin => "admin",
+            Self::UnknownValue(value) => value,
+        }
+    }
+}
+impl From<String> for Permission {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "none" => Self::None,
+            "admin" => Self::Admin,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for Permission {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for Permission {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for Permission {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for Permission {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
+    }
 }
 
 impl Default for Permission {

@@ -8,11 +8,15 @@ part of 'unbrand_xo_pgpu.dart';
 
 const UnbrandXoPgpuTypeEnum _$unbrandXoPgpuTypeEnum_PGPU =
     const UnbrandXoPgpuTypeEnum._('PGPU');
+const UnbrandXoPgpuTypeEnum _$unbrandXoPgpuTypeEnum_unknownDefaultOpenApi =
+    const UnbrandXoPgpuTypeEnum._('unknownDefaultOpenApi');
 
 UnbrandXoPgpuTypeEnum _$unbrandXoPgpuTypeEnumValueOf(String name) {
   switch (name) {
     case 'PGPU':
       return _$unbrandXoPgpuTypeEnum_PGPU;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandXoPgpuTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -21,36 +25,8 @@ UnbrandXoPgpuTypeEnum _$unbrandXoPgpuTypeEnumValueOf(String name) {
 final BuiltSet<UnbrandXoPgpuTypeEnum> _$unbrandXoPgpuTypeEnumValues =
     BuiltSet<UnbrandXoPgpuTypeEnum>(const <UnbrandXoPgpuTypeEnum>[
   _$unbrandXoPgpuTypeEnum_PGPU,
+  _$unbrandXoPgpuTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<UnbrandXoPgpuTypeEnum> _$unbrandXoPgpuTypeEnumSerializer =
-    _$UnbrandXoPgpuTypeEnumSerializer();
-
-class _$UnbrandXoPgpuTypeEnumSerializer
-    implements PrimitiveSerializer<UnbrandXoPgpuTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'PGPU': 'PGPU',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'PGPU': 'PGPU',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[UnbrandXoPgpuTypeEnum];
-  @override
-  final String wireName = 'UnbrandXoPgpuTypeEnum';
-
-  @override
-  Object serialize(Serializers serializers, UnbrandXoPgpuTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandXoPgpuTypeEnum deserialize(Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandXoPgpuTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$UnbrandXoPgpu extends UnbrandXoPgpu {
   @override

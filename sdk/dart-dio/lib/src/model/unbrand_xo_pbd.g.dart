@@ -8,11 +8,15 @@ part of 'unbrand_xo_pbd.dart';
 
 const UnbrandXoPbdTypeEnum _$unbrandXoPbdTypeEnum_PBD =
     const UnbrandXoPbdTypeEnum._('PBD');
+const UnbrandXoPbdTypeEnum _$unbrandXoPbdTypeEnum_unknownDefaultOpenApi =
+    const UnbrandXoPbdTypeEnum._('unknownDefaultOpenApi');
 
 UnbrandXoPbdTypeEnum _$unbrandXoPbdTypeEnumValueOf(String name) {
   switch (name) {
     case 'PBD':
       return _$unbrandXoPbdTypeEnum_PBD;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandXoPbdTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -21,36 +25,8 @@ UnbrandXoPbdTypeEnum _$unbrandXoPbdTypeEnumValueOf(String name) {
 final BuiltSet<UnbrandXoPbdTypeEnum> _$unbrandXoPbdTypeEnumValues =
     BuiltSet<UnbrandXoPbdTypeEnum>(const <UnbrandXoPbdTypeEnum>[
   _$unbrandXoPbdTypeEnum_PBD,
+  _$unbrandXoPbdTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<UnbrandXoPbdTypeEnum> _$unbrandXoPbdTypeEnumSerializer =
-    _$UnbrandXoPbdTypeEnumSerializer();
-
-class _$UnbrandXoPbdTypeEnumSerializer
-    implements PrimitiveSerializer<UnbrandXoPbdTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'PBD': 'PBD',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'PBD': 'PBD',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[UnbrandXoPbdTypeEnum];
-  @override
-  final String wireName = 'UnbrandXoPbdTypeEnum';
-
-  @override
-  Object serialize(Serializers serializers, UnbrandXoPbdTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandXoPbdTypeEnum deserialize(Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandXoPbdTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$UnbrandXoPbd extends UnbrandXoPbd {
   @override

@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **checkpointSnapshot** | **bool** |  | [optional] 
 **concurrency** | **double** |  | [optional] 
 **hideSuccessfulItems** | **bool** |  | [optional] 
-**longTermRetention** | [**PartialUnbrandAnyXoBackupJobSettingsLongTermRetention**](PartialUnbrandAnyXoBackupJobSettingsLongTermRetention.md) |  | [optional] 
+**longTermRetention** | [**PartialUnbrandAnyXoBackupJobVariantBackupSettingsLongTermRetention**](PartialUnbrandAnyXoBackupJobVariantBackupSettingsLongTermRetention.md) |  | [optional] 
 **maxExportRate** | **double** |  | [optional] 
 **mergeBackupsSynchronously** | **bool** |  | [optional] 
 **nRetriesVmBackupFailures** | **double** |  | [optional] 

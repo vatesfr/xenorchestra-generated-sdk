@@ -52,8 +52,6 @@ class XoVmBackupJobGeneralSettings(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['compactMjml', 'mjml']):
-            raise ValueError("must be one of enum values ('compactMjml', 'mjml')")
         return value
 
     @field_validator('report_when')
@@ -62,8 +60,6 @@ class XoVmBackupJobGeneralSettings(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['always', 'error', 'failure', 'never']):
-            raise ValueError("must be one of enum values ('always', 'error', 'failure', 'never')")
         return value
 
     model_config = ConfigDict(

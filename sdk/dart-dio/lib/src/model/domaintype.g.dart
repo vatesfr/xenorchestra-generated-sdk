@@ -11,6 +11,8 @@ const DOMAINTYPE _$pv = const DOMAINTYPE._('pv');
 const DOMAINTYPE _$pvh = const DOMAINTYPE._('pvh');
 const DOMAINTYPE _$pvInPvh = const DOMAINTYPE._('pvInPvh');
 const DOMAINTYPE _$unspecified = const DOMAINTYPE._('unspecified');
+const DOMAINTYPE _$unknownDefaultOpenApi =
+    const DOMAINTYPE._('unknownDefaultOpenApi');
 
 DOMAINTYPE _$valueOf(String name) {
   switch (name) {
@@ -24,6 +26,8 @@ DOMAINTYPE _$valueOf(String name) {
       return _$pvInPvh;
     case 'unspecified':
       return _$unspecified;
+    case 'unknownDefaultOpenApi':
+      return _$unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -35,6 +39,7 @@ final BuiltSet<DOMAINTYPE> _$values = BuiltSet<DOMAINTYPE>(const <DOMAINTYPE>[
   _$pvh,
   _$pvInPvh,
   _$unspecified,
+  _$unknownDefaultOpenApi,
 ]);
 
 class _$DOMAINTYPEMeta {
@@ -44,6 +49,7 @@ class _$DOMAINTYPEMeta {
   DOMAINTYPE get pvh => _$pvh;
   DOMAINTYPE get pvInPvh => _$pvInPvh;
   DOMAINTYPE get unspecified => _$unspecified;
+  DOMAINTYPE get unknownDefaultOpenApi => _$unknownDefaultOpenApi;
   DOMAINTYPE valueOf(String name) => _$valueOf(name);
   BuiltSet<DOMAINTYPE> get values => _$values;
 }
@@ -51,41 +57,6 @@ class _$DOMAINTYPEMeta {
 abstract class _$DOMAINTYPEMixin {
   // ignore: non_constant_identifier_names
   _$DOMAINTYPEMeta get DOMAINTYPE => const _$DOMAINTYPEMeta();
-}
-
-Serializer<DOMAINTYPE> _$dOMAINTYPESerializer = _$DOMAINTYPESerializer();
-
-class _$DOMAINTYPESerializer implements PrimitiveSerializer<DOMAINTYPE> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'hvm': 'hvm',
-    'pv': 'pv',
-    'pvh': 'pvh',
-    'pvInPvh': 'pv_in_pvh',
-    'unspecified': 'unspecified',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'hvm': 'hvm',
-    'pv': 'pv',
-    'pvh': 'pvh',
-    'pv_in_pvh': 'pvInPvh',
-    'unspecified': 'unspecified',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[DOMAINTYPE];
-  @override
-  final String wireName = 'DOMAINTYPE';
-
-  @override
-  Object serialize(Serializers serializers, DOMAINTYPE object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  DOMAINTYPE deserialize(Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      DOMAINTYPE.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
 }
 
 // ignore_for_file: deprecated_member_use_from_same_package,type=lint

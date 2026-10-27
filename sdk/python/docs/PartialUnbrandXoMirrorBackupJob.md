@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **name** | **str** |  | [optional] 
 **proxy** | **str** |  | [optional] 
 **remotes** | **object** |  | [optional] 
-**settings** | [**PartialUnbrandAnyXoBackupJobAnyOf2Settings**](PartialUnbrandAnyXoBackupJobAnyOf2Settings.md) |  | [optional] 
+**settings** | [**PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettings**](PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettings.md) |  | [optional] 
 **source_remote** | **str** |  | [optional] 
 **type** | **str** |  | [optional] 
 

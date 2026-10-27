@@ -16,14 +16,65 @@ class IPCONFIGURATIONMODE extends EnumClass {
   static const IPCONFIGURATIONMODE none = _$none;
   @BuiltValueEnumConst(wireName: r'Static')
   static const IPCONFIGURATIONMODE static_ = _$static_;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const IPCONFIGURATIONMODE unknownDefaultOpenApi =
+      _$unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<IPCONFIGURATIONMODE> get serializer =>
-      _$iPCONFIGURATIONMODESerializer;
+      _OpenIPCONFIGURATIONMODESerializer();
 
   const IPCONFIGURATIONMODE._(String name) : super(name);
 
   static BuiltSet<IPCONFIGURATIONMODE> get values => _$values;
   static IPCONFIGURATIONMODE valueOf(String name) => _$valueOf(name);
+
+  static IPCONFIGURATIONMODE fromValue(String value) {
+    switch (value) {
+      case r'DHCP':
+        return DHCP;
+      case r'None':
+        return none;
+      case r'Static':
+        return static_;
+      default:
+        return IPCONFIGURATIONMODE._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, DHCP)) return r'DHCP';
+    if (identical(this, none)) return r'None';
+    if (identical(this, static_)) return r'Static';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is IPCONFIGURATIONMODE && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenIPCONFIGURATIONMODESerializer
+    implements PrimitiveSerializer<IPCONFIGURATIONMODE> {
+  @override
+  final Iterable<Type> types = const [IPCONFIGURATIONMODE];
+  @override
+  final String wireName = 'IPCONFIGURATIONMODE';
+  @override
+  Object serialize(Serializers serializers, IPCONFIGURATIONMODE object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  IPCONFIGURATIONMODE deserialize(Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError('Expected a string for IPCONFIGURATIONMODE');
+    return IPCONFIGURATIONMODE.fromValue(serialized);
+  }
 }
 
 /// Optionally, enum_class can generate a mixin to go with your enum for use

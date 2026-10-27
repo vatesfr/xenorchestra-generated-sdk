@@ -8,12 +8,17 @@ part of 'partial_unbrand_xo_pool.dart';
 
 const PartialUnbrandXoPoolTypeEnum _$partialUnbrandXoPoolTypeEnum_pool =
     const PartialUnbrandXoPoolTypeEnum._('pool');
+const PartialUnbrandXoPoolTypeEnum
+    _$partialUnbrandXoPoolTypeEnum_unknownDefaultOpenApi =
+    const PartialUnbrandXoPoolTypeEnum._('unknownDefaultOpenApi');
 
 PartialUnbrandXoPoolTypeEnum _$partialUnbrandXoPoolTypeEnumValueOf(
     String name) {
   switch (name) {
     case 'pool':
       return _$partialUnbrandXoPoolTypeEnum_pool;
+    case 'unknownDefaultOpenApi':
+      return _$partialUnbrandXoPoolTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -23,38 +28,8 @@ final BuiltSet<PartialUnbrandXoPoolTypeEnum>
     _$partialUnbrandXoPoolTypeEnumValues =
     BuiltSet<PartialUnbrandXoPoolTypeEnum>(const <PartialUnbrandXoPoolTypeEnum>[
   _$partialUnbrandXoPoolTypeEnum_pool,
+  _$partialUnbrandXoPoolTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<PartialUnbrandXoPoolTypeEnum>
-    _$partialUnbrandXoPoolTypeEnumSerializer =
-    _$PartialUnbrandXoPoolTypeEnumSerializer();
-
-class _$PartialUnbrandXoPoolTypeEnumSerializer
-    implements PrimitiveSerializer<PartialUnbrandXoPoolTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'pool': 'pool',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'pool': 'pool',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[PartialUnbrandXoPoolTypeEnum];
-  @override
-  final String wireName = 'PartialUnbrandXoPoolTypeEnum';
-
-  @override
-  Object serialize(Serializers serializers, PartialUnbrandXoPoolTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  PartialUnbrandXoPoolTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      PartialUnbrandXoPoolTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$PartialUnbrandXoPool extends PartialUnbrandXoPool {
   @override

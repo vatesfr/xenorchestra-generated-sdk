@@ -12,20 +12,55 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum VbdMode {
-    #[serde(rename = "RO")]
     Ro,
-    #[serde(rename = "RW")]
     Rw,
+    UnknownValue(String),
 }
-
-impl std::fmt::Display for VbdMode {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+impl VbdMode {
+    pub fn as_str(&self) -> &str {
         match self {
-            Self::Ro => write!(f, "RO"),
-            Self::Rw => write!(f, "RW"),
+            Self::Ro => "RO",
+            Self::Rw => "RW",
+            Self::UnknownValue(value) => value,
         }
+    }
+}
+impl From<String> for VbdMode {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "RO" => Self::Ro,
+            "RW" => Self::Rw,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for VbdMode {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for VbdMode {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for VbdMode {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for VbdMode {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
     }
 }
 

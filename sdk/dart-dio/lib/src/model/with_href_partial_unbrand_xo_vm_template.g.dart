@@ -16,6 +16,10 @@ const WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum
 const WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum
     _$withHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum_restart =
     const WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum._('restart');
+const WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum
+    _$withHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum_unknownDefaultOpenApi =
+    const WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum._(
+        'unknownDefaultOpenApi');
 
 WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum
     _$withHrefPartialUnbrandXoVmTemplateHighAvailabilityEnumValueOf(
@@ -27,6 +31,8 @@ WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum
       return _$withHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum_bestEffort;
     case 'restart':
       return _$withHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum_restart;
+    case 'unknownDefaultOpenApi':
+      return _$withHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -38,17 +44,23 @@ final BuiltSet<WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum>
   _$withHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum_empty,
   _$withHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum_bestEffort,
   _$withHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum_restart,
+  _$withHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum_unknownDefaultOpenApi,
 ]);
 
 const WithHrefPartialUnbrandXoVmTemplateTypeEnum
     _$withHrefPartialUnbrandXoVmTemplateTypeEnum_vMTemplate =
     const WithHrefPartialUnbrandXoVmTemplateTypeEnum._('vMTemplate');
+const WithHrefPartialUnbrandXoVmTemplateTypeEnum
+    _$withHrefPartialUnbrandXoVmTemplateTypeEnum_unknownDefaultOpenApi =
+    const WithHrefPartialUnbrandXoVmTemplateTypeEnum._('unknownDefaultOpenApi');
 
 WithHrefPartialUnbrandXoVmTemplateTypeEnum
     _$withHrefPartialUnbrandXoVmTemplateTypeEnumValueOf(String name) {
   switch (name) {
     case 'vMTemplate':
       return _$withHrefPartialUnbrandXoVmTemplateTypeEnum_vMTemplate;
+    case 'unknownDefaultOpenApi':
+      return _$withHrefPartialUnbrandXoVmTemplateTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -58,81 +70,8 @@ final BuiltSet<WithHrefPartialUnbrandXoVmTemplateTypeEnum>
     _$withHrefPartialUnbrandXoVmTemplateTypeEnumValues = BuiltSet<
         WithHrefPartialUnbrandXoVmTemplateTypeEnum>(const <WithHrefPartialUnbrandXoVmTemplateTypeEnum>[
   _$withHrefPartialUnbrandXoVmTemplateTypeEnum_vMTemplate,
+  _$withHrefPartialUnbrandXoVmTemplateTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum>
-    _$withHrefPartialUnbrandXoVmTemplateHighAvailabilityEnumSerializer =
-    _$WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnumSerializer();
-Serializer<WithHrefPartialUnbrandXoVmTemplateTypeEnum>
-    _$withHrefPartialUnbrandXoVmTemplateTypeEnumSerializer =
-    _$WithHrefPartialUnbrandXoVmTemplateTypeEnumSerializer();
-
-class _$WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnumSerializer
-    implements
-        PrimitiveSerializer<
-            WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'empty': '',
-    'bestEffort': 'best-effort',
-    'restart': 'restart',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    '': 'empty',
-    'best-effort': 'bestEffort',
-    'restart': 'restart',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum
-  ];
-  @override
-  final String wireName =
-      'WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
-
-class _$WithHrefPartialUnbrandXoVmTemplateTypeEnumSerializer
-    implements PrimitiveSerializer<WithHrefPartialUnbrandXoVmTemplateTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'vMTemplate': 'VM-template',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'VM-template': 'vMTemplate',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    WithHrefPartialUnbrandXoVmTemplateTypeEnum
-  ];
-  @override
-  final String wireName = 'WithHrefPartialUnbrandXoVmTemplateTypeEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          WithHrefPartialUnbrandXoVmTemplateTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  WithHrefPartialUnbrandXoVmTemplateTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      WithHrefPartialUnbrandXoVmTemplateTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$WithHrefPartialUnbrandXoVmTemplate
     extends WithHrefPartialUnbrandXoVmTemplate {

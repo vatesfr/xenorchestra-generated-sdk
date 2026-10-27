@@ -33,8 +33,6 @@ class PingResponse(BaseModel):
     @field_validator('result')
     def result_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['pong']):
-            raise ValueError("must be one of enum values ('pong')")
         return value
 
     model_config = ConfigDict(

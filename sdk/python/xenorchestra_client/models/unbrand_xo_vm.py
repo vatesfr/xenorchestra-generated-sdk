@@ -101,15 +101,11 @@ class UnbrandXoVm(BaseModel):
     @field_validator('high_availability')
     def high_availability_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['', 'best-effort', 'restart']):
-            raise ValueError("must be one of enum values ('', 'best-effort', 'restart')")
         return value
 
     @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['VM']):
-            raise ValueError("must be one of enum values ('VM')")
         return value
 
     model_config = ConfigDict(

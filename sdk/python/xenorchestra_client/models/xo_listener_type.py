@@ -51,6 +51,16 @@ class XoListenerType(str, Enum):
     SM = 'SM'
     ALARM = 'alarm'
     TASK = 'task'
+    UNKNOWN_DEFAULT_OPEN_API = 'unknown_default_open_api'
+
+    @classmethod
+    def _missing_(cls, value):
+        if not isinstance(value, str):
+            return None
+        member = str.__new__(cls, value)
+        member._name_ = None
+        member._value_ = value
+        return member
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:

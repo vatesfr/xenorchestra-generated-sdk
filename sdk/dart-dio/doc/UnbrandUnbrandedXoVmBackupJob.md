@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **name** | **String** |  | [optional] 
 **proxy** | **String** |  | [optional] 
 **remotes** | [**JsonObject**](.md) |  | [optional] 
-**settings** | [**PartialUnbrandAnyXoBackupJobSettings**](PartialUnbrandAnyXoBackupJobSettings.md) |  | 
+**settings** | [**PartialUnbrandAnyXoBackupJobVariantBackupSettings**](PartialUnbrandAnyXoBackupJobVariantBackupSettings.md) |  | 
 **srs** | [**JsonObject**](.md) |  | [optional] 
 **type** | **String** |  | 
 **vms** | [**JsonObject**](.md) |  | 

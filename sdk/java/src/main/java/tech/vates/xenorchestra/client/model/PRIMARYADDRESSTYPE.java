@@ -28,18 +28,17 @@ import com.fasterxml.jackson.annotation.JsonValue;
 /**
  * Gets or Sets PRIMARY_ADDRESS_TYPE
  */
-public enum PRIMARYADDRESSTYPE {
-  
-  IPV4("IPv4"),
-  
-  IPV6("IPv6"),
-  
-  UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
+public final class PRIMARYADDRESSTYPE {
+    public static final PRIMARYADDRESSTYPE IPV4 = new PRIMARYADDRESSTYPE("IPv4");
+    public static final PRIMARYADDRESSTYPE IPV6 = new PRIMARYADDRESSTYPE("IPv6");
+    @JsonCreator public static PRIMARYADDRESSTYPE fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static PRIMARYADDRESSTYPE[] values() { return new PRIMARYADDRESSTYPE[] {IPV4, IPV6}; }
+    @Override public boolean equals(Object other) { return other instanceof PRIMARYADDRESSTYPE && value.equals(((PRIMARYADDRESSTYPE) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-  private String value;
-
-  PRIMARYADDRESSTYPE(String value) {
-    this.value = value;
+  private PRIMARYADDRESSTYPE(String value) {
+    this.value = java.util.Objects.requireNonNull(value);
   }
 
   @JsonValue
@@ -52,14 +51,14 @@ public enum PRIMARYADDRESSTYPE {
     return String.valueOf(value);
   }
 
-  @JsonCreator
+  
   public static PRIMARYADDRESSTYPE fromValue(String value) {
     for (PRIMARYADDRESSTYPE b : PRIMARYADDRESSTYPE.values()) {
       if (b.value.equals(value)) {
         return b;
       }
     }
-    return UNKNOWN_DEFAULT_OPEN_API;
+    return new PRIMARYADDRESSTYPE(value);
   }
 
   /**
@@ -77,4 +76,5 @@ public enum PRIMARYADDRESSTYPE {
   }
 
 }
+
 

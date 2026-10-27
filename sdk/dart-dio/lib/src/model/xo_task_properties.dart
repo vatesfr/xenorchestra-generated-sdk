@@ -359,9 +359,13 @@ class XoTaskPropertiesObjectTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'acl-role')
   static const XoTaskPropertiesObjectTypeEnum aclRole =
       _$xoTaskPropertiesObjectTypeEnum_aclRole;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const XoTaskPropertiesObjectTypeEnum unknownDefaultOpenApi =
+      _$xoTaskPropertiesObjectTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<XoTaskPropertiesObjectTypeEnum> get serializer =>
-      _$xoTaskPropertiesObjectTypeEnumSerializer;
+      _OpenXoTaskPropertiesObjectTypeEnumSerializer();
 
   const XoTaskPropertiesObjectTypeEnum._(String name) : super(name);
 
@@ -369,4 +373,159 @@ class XoTaskPropertiesObjectTypeEnum extends EnumClass {
       _$xoTaskPropertiesObjectTypeEnumValues;
   static XoTaskPropertiesObjectTypeEnum valueOf(String name) =>
       _$xoTaskPropertiesObjectTypeEnumValueOf(name);
+
+  static XoTaskPropertiesObjectTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'pool':
+        return pool;
+      case r'VBD':
+        return VBD;
+      case r'host':
+        return host;
+      case r'VIF':
+        return VIF;
+      case r'VTPM':
+        return VTPM;
+      case r'VM-snapshot':
+        return vMSnapshot;
+      case r'SR':
+        return SR;
+      case r'VM':
+        return VM;
+      case r'VM-template':
+        return vMTemplate;
+      case r'message':
+        return message;
+      case r'vgpu':
+        return vgpu;
+      case r'gpuGroup':
+        return gpuGroup;
+      case r'network':
+        return network;
+      case r'PBD':
+        return PBD;
+      case r'PCI':
+        return PCI;
+      case r'PGPU':
+        return PGPU;
+      case r'PIF':
+        return PIF;
+      case r'VDI':
+        return VDI;
+      case r'VDI-snapshot':
+        return vDISnapshot;
+      case r'VDI-unmanaged':
+        return vDIUnmanaged;
+      case r'vgpuType':
+        return vgpuType;
+      case r'VM-controller':
+        return vMController;
+      case r'SM':
+        return SM;
+      case r'backup':
+        return backup;
+      case r'backup-archive':
+        return backupArchive;
+      case r'backup-job':
+        return backupJob;
+      case r'backup-log':
+        return backupLog;
+      case r'backup-repository':
+        return backupRepository;
+      case r'group':
+        return group;
+      case r'proxy':
+        return proxy;
+      case r'restore':
+        return restore;
+      case r'restore-log':
+        return restoreLog;
+      case r'schedule':
+        return schedule;
+      case r'server':
+        return server;
+      case r'task':
+        return task;
+      case r'user':
+        return user;
+      case r'acl-privilege':
+        return aclPrivilege;
+      case r'acl-role':
+        return aclRole;
+      default:
+        return XoTaskPropertiesObjectTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, pool)) return r'pool';
+    if (identical(this, VBD)) return r'VBD';
+    if (identical(this, host)) return r'host';
+    if (identical(this, VIF)) return r'VIF';
+    if (identical(this, VTPM)) return r'VTPM';
+    if (identical(this, vMSnapshot)) return r'VM-snapshot';
+    if (identical(this, SR)) return r'SR';
+    if (identical(this, VM)) return r'VM';
+    if (identical(this, vMTemplate)) return r'VM-template';
+    if (identical(this, message)) return r'message';
+    if (identical(this, vgpu)) return r'vgpu';
+    if (identical(this, gpuGroup)) return r'gpuGroup';
+    if (identical(this, network)) return r'network';
+    if (identical(this, PBD)) return r'PBD';
+    if (identical(this, PCI)) return r'PCI';
+    if (identical(this, PGPU)) return r'PGPU';
+    if (identical(this, PIF)) return r'PIF';
+    if (identical(this, VDI)) return r'VDI';
+    if (identical(this, vDISnapshot)) return r'VDI-snapshot';
+    if (identical(this, vDIUnmanaged)) return r'VDI-unmanaged';
+    if (identical(this, vgpuType)) return r'vgpuType';
+    if (identical(this, vMController)) return r'VM-controller';
+    if (identical(this, SM)) return r'SM';
+    if (identical(this, backup)) return r'backup';
+    if (identical(this, backupArchive)) return r'backup-archive';
+    if (identical(this, backupJob)) return r'backup-job';
+    if (identical(this, backupLog)) return r'backup-log';
+    if (identical(this, backupRepository)) return r'backup-repository';
+    if (identical(this, group)) return r'group';
+    if (identical(this, proxy)) return r'proxy';
+    if (identical(this, restore)) return r'restore';
+    if (identical(this, restoreLog)) return r'restore-log';
+    if (identical(this, schedule)) return r'schedule';
+    if (identical(this, server)) return r'server';
+    if (identical(this, task)) return r'task';
+    if (identical(this, user)) return r'user';
+    if (identical(this, aclPrivilege)) return r'acl-privilege';
+    if (identical(this, aclRole)) return r'acl-role';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is XoTaskPropertiesObjectTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenXoTaskPropertiesObjectTypeEnumSerializer
+    implements PrimitiveSerializer<XoTaskPropertiesObjectTypeEnum> {
+  @override
+  final Iterable<Type> types = const [XoTaskPropertiesObjectTypeEnum];
+  @override
+  final String wireName = 'XoTaskPropertiesObjectTypeEnum';
+  @override
+  Object serialize(
+          Serializers serializers, XoTaskPropertiesObjectTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  XoTaskPropertiesObjectTypeEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for XoTaskPropertiesObjectTypeEnum');
+    return XoTaskPropertiesObjectTypeEnum.fromValue(serialized);
+  }
 }

@@ -468,9 +468,13 @@ class PartialUnbrandXoNetworkTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'network')
   static const PartialUnbrandXoNetworkTypeEnum network =
       _$partialUnbrandXoNetworkTypeEnum_network;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const PartialUnbrandXoNetworkTypeEnum unknownDefaultOpenApi =
+      _$partialUnbrandXoNetworkTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<PartialUnbrandXoNetworkTypeEnum> get serializer =>
-      _$partialUnbrandXoNetworkTypeEnumSerializer;
+      _OpenPartialUnbrandXoNetworkTypeEnumSerializer();
 
   const PartialUnbrandXoNetworkTypeEnum._(String name) : super(name);
 
@@ -478,4 +482,48 @@ class PartialUnbrandXoNetworkTypeEnum extends EnumClass {
       _$partialUnbrandXoNetworkTypeEnumValues;
   static PartialUnbrandXoNetworkTypeEnum valueOf(String name) =>
       _$partialUnbrandXoNetworkTypeEnumValueOf(name);
+
+  static PartialUnbrandXoNetworkTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'network':
+        return network;
+      default:
+        return PartialUnbrandXoNetworkTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, network)) return r'network';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is PartialUnbrandXoNetworkTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenPartialUnbrandXoNetworkTypeEnumSerializer
+    implements PrimitiveSerializer<PartialUnbrandXoNetworkTypeEnum> {
+  @override
+  final Iterable<Type> types = const [PartialUnbrandXoNetworkTypeEnum];
+  @override
+  final String wireName = 'PartialUnbrandXoNetworkTypeEnum';
+  @override
+  Object serialize(
+          Serializers serializers, PartialUnbrandXoNetworkTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  PartialUnbrandXoNetworkTypeEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for PartialUnbrandXoNetworkTypeEnum');
+    return PartialUnbrandXoNetworkTypeEnum.fromValue(serialized);
+  }
 }

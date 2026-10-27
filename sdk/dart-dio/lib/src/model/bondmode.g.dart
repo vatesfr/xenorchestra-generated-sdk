@@ -9,6 +9,8 @@ part of 'bondmode.dart';
 const BONDMODE _$activeBackup = const BONDMODE._('activeBackup');
 const BONDMODE _$balanceSlb = const BONDMODE._('balanceSlb');
 const BONDMODE _$lacp = const BONDMODE._('lacp');
+const BONDMODE _$unknownDefaultOpenApi =
+    const BONDMODE._('unknownDefaultOpenApi');
 
 BONDMODE _$valueOf(String name) {
   switch (name) {
@@ -18,6 +20,8 @@ BONDMODE _$valueOf(String name) {
       return _$balanceSlb;
     case 'lacp':
       return _$lacp;
+    case 'unknownDefaultOpenApi':
+      return _$unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -27,6 +31,7 @@ final BuiltSet<BONDMODE> _$values = BuiltSet<BONDMODE>(const <BONDMODE>[
   _$activeBackup,
   _$balanceSlb,
   _$lacp,
+  _$unknownDefaultOpenApi,
 ]);
 
 class _$BONDMODEMeta {
@@ -34,6 +39,7 @@ class _$BONDMODEMeta {
   BONDMODE get activeBackup => _$activeBackup;
   BONDMODE get balanceSlb => _$balanceSlb;
   BONDMODE get lacp => _$lacp;
+  BONDMODE get unknownDefaultOpenApi => _$unknownDefaultOpenApi;
   BONDMODE valueOf(String name) => _$valueOf(name);
   BuiltSet<BONDMODE> get values => _$values;
 }
@@ -41,37 +47,6 @@ class _$BONDMODEMeta {
 abstract class _$BONDMODEMixin {
   // ignore: non_constant_identifier_names
   _$BONDMODEMeta get BONDMODE => const _$BONDMODEMeta();
-}
-
-Serializer<BONDMODE> _$bONDMODESerializer = _$BONDMODESerializer();
-
-class _$BONDMODESerializer implements PrimitiveSerializer<BONDMODE> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'activeBackup': 'active-backup',
-    'balanceSlb': 'balance-slb',
-    'lacp': 'lacp',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'active-backup': 'activeBackup',
-    'balance-slb': 'balanceSlb',
-    'lacp': 'lacp',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[BONDMODE];
-  @override
-  final String wireName = 'BONDMODE';
-
-  @override
-  Object serialize(Serializers serializers, BONDMODE object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  BONDMODE deserialize(Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      BONDMODE.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
 }
 
 // ignore_for_file: deprecated_member_use_from_same_package,type=lint

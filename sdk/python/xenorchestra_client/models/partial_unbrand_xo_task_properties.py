@@ -43,8 +43,6 @@ class PartialUnbrandXoTaskProperties(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['backup', 'pool', 'VBD', 'host', 'VIF', 'VTPM', 'VM-snapshot', 'SR', 'VM', 'VM-template', 'message', 'vgpu', 'gpuGroup', 'network', 'PBD', 'PCI', 'PGPU', 'PIF', 'VDI', 'VDI-snapshot', 'VDI-unmanaged', 'vgpuType', 'VM-controller', 'SM', 'user', 'proxy', 'task', 'backup-archive', 'backup-job', 'backup-log', 'backup-repository', 'group', 'restore', 'restore-log', 'schedule', 'server', 'acl-privilege', 'acl-role']):
-            raise ValueError("must be one of enum values ('backup', 'pool', 'VBD', 'host', 'VIF', 'VTPM', 'VM-snapshot', 'SR', 'VM', 'VM-template', 'message', 'vgpu', 'gpuGroup', 'network', 'PBD', 'PCI', 'PGPU', 'PIF', 'VDI', 'VDI-snapshot', 'VDI-unmanaged', 'vgpuType', 'VM-controller', 'SM', 'user', 'proxy', 'task', 'backup-archive', 'backup-job', 'backup-log', 'backup-repository', 'group', 'restore', 'restore-log', 'schedule', 'server', 'acl-privilege', 'acl-role')")
         return value
 
     model_config = ConfigDict(

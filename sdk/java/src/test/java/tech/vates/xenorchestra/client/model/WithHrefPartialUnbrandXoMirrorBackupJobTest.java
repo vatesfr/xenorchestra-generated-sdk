@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyXoBackupJobAnyOf2Settings;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettings;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openapitools.jackson.nullable.JsonNullable;
 import java.util.NoSuchElementException;

@@ -15,6 +15,10 @@ const PartialUnbrandXoVmTemplateHighAvailabilityEnum
 const PartialUnbrandXoVmTemplateHighAvailabilityEnum
     _$partialUnbrandXoVmTemplateHighAvailabilityEnum_restart =
     const PartialUnbrandXoVmTemplateHighAvailabilityEnum._('restart');
+const PartialUnbrandXoVmTemplateHighAvailabilityEnum
+    _$partialUnbrandXoVmTemplateHighAvailabilityEnum_unknownDefaultOpenApi =
+    const PartialUnbrandXoVmTemplateHighAvailabilityEnum._(
+        'unknownDefaultOpenApi');
 
 PartialUnbrandXoVmTemplateHighAvailabilityEnum
     _$partialUnbrandXoVmTemplateHighAvailabilityEnumValueOf(String name) {
@@ -25,6 +29,8 @@ PartialUnbrandXoVmTemplateHighAvailabilityEnum
       return _$partialUnbrandXoVmTemplateHighAvailabilityEnum_bestEffort;
     case 'restart':
       return _$partialUnbrandXoVmTemplateHighAvailabilityEnum_restart;
+    case 'unknownDefaultOpenApi':
+      return _$partialUnbrandXoVmTemplateHighAvailabilityEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -36,17 +42,23 @@ final BuiltSet<PartialUnbrandXoVmTemplateHighAvailabilityEnum>
   _$partialUnbrandXoVmTemplateHighAvailabilityEnum_empty,
   _$partialUnbrandXoVmTemplateHighAvailabilityEnum_bestEffort,
   _$partialUnbrandXoVmTemplateHighAvailabilityEnum_restart,
+  _$partialUnbrandXoVmTemplateHighAvailabilityEnum_unknownDefaultOpenApi,
 ]);
 
 const PartialUnbrandXoVmTemplateTypeEnum
     _$partialUnbrandXoVmTemplateTypeEnum_vMTemplate =
     const PartialUnbrandXoVmTemplateTypeEnum._('vMTemplate');
+const PartialUnbrandXoVmTemplateTypeEnum
+    _$partialUnbrandXoVmTemplateTypeEnum_unknownDefaultOpenApi =
+    const PartialUnbrandXoVmTemplateTypeEnum._('unknownDefaultOpenApi');
 
 PartialUnbrandXoVmTemplateTypeEnum _$partialUnbrandXoVmTemplateTypeEnumValueOf(
     String name) {
   switch (name) {
     case 'vMTemplate':
       return _$partialUnbrandXoVmTemplateTypeEnum_vMTemplate;
+    case 'unknownDefaultOpenApi':
+      return _$partialUnbrandXoVmTemplateTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -56,77 +68,8 @@ final BuiltSet<PartialUnbrandXoVmTemplateTypeEnum>
     _$partialUnbrandXoVmTemplateTypeEnumValues = BuiltSet<
         PartialUnbrandXoVmTemplateTypeEnum>(const <PartialUnbrandXoVmTemplateTypeEnum>[
   _$partialUnbrandXoVmTemplateTypeEnum_vMTemplate,
+  _$partialUnbrandXoVmTemplateTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<PartialUnbrandXoVmTemplateHighAvailabilityEnum>
-    _$partialUnbrandXoVmTemplateHighAvailabilityEnumSerializer =
-    _$PartialUnbrandXoVmTemplateHighAvailabilityEnumSerializer();
-Serializer<PartialUnbrandXoVmTemplateTypeEnum>
-    _$partialUnbrandXoVmTemplateTypeEnumSerializer =
-    _$PartialUnbrandXoVmTemplateTypeEnumSerializer();
-
-class _$PartialUnbrandXoVmTemplateHighAvailabilityEnumSerializer
-    implements
-        PrimitiveSerializer<PartialUnbrandXoVmTemplateHighAvailabilityEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'empty': '',
-    'bestEffort': 'best-effort',
-    'restart': 'restart',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    '': 'empty',
-    'best-effort': 'bestEffort',
-    'restart': 'restart',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    PartialUnbrandXoVmTemplateHighAvailabilityEnum
-  ];
-  @override
-  final String wireName = 'PartialUnbrandXoVmTemplateHighAvailabilityEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          PartialUnbrandXoVmTemplateHighAvailabilityEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  PartialUnbrandXoVmTemplateHighAvailabilityEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      PartialUnbrandXoVmTemplateHighAvailabilityEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
-
-class _$PartialUnbrandXoVmTemplateTypeEnumSerializer
-    implements PrimitiveSerializer<PartialUnbrandXoVmTemplateTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'vMTemplate': 'VM-template',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'VM-template': 'vMTemplate',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[PartialUnbrandXoVmTemplateTypeEnum];
-  @override
-  final String wireName = 'PartialUnbrandXoVmTemplateTypeEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers, PartialUnbrandXoVmTemplateTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  PartialUnbrandXoVmTemplateTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      PartialUnbrandXoVmTemplateTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$PartialUnbrandXoVmTemplate extends PartialUnbrandXoVmTemplate {
   @override

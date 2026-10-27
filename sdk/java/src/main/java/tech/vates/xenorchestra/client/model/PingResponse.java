@@ -41,15 +41,16 @@ public class PingResponse {
   /**
    * Gets or Sets result
    */
-  public enum ResultEnum {
-    PONG(String.valueOf("pong")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+  public static final class ResultEnum {
+    public static final ResultEnum PONG = new ResultEnum("pong");
+    @JsonCreator public static ResultEnum fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static ResultEnum[] values() { return new ResultEnum[] {PONG}; }
+    @Override public boolean equals(Object other) { return other instanceof ResultEnum && value.equals(((ResultEnum) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-    private String value;
-
-    ResultEnum(String value) {
-      this.value = value;
+    private ResultEnum(String value) {
+      this.value = java.util.Objects.requireNonNull(value);
     }
 
     @JsonValue
@@ -62,16 +63,17 @@ public class PingResponse {
       return String.valueOf(value);
     }
 
-    @JsonCreator
+    
     public static ResultEnum fromValue(String value) {
       for (ResultEnum b : ResultEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      return new ResultEnum(value);
     }
   }
+
 
   public static final String JSON_PROPERTY_RESULT = "result";
   @javax.annotation.Nonnull

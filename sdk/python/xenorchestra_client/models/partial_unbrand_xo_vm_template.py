@@ -105,8 +105,6 @@ class PartialUnbrandXoVmTemplate(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['', 'best-effort', 'restart']):
-            raise ValueError("must be one of enum values ('', 'best-effort', 'restart')")
         return value
 
     @field_validator('type')
@@ -115,8 +113,6 @@ class PartialUnbrandXoVmTemplate(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['VM-template']):
-            raise ValueError("must be one of enum values ('VM-template')")
         return value
 
     model_config = ConfigDict(

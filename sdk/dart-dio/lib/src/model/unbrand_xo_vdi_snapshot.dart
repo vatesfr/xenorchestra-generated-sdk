@@ -485,9 +485,13 @@ class UnbrandXoVdiSnapshotTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'VDI-snapshot')
   static const UnbrandXoVdiSnapshotTypeEnum vDISnapshot =
       _$unbrandXoVdiSnapshotTypeEnum_vDISnapshot;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UnbrandXoVdiSnapshotTypeEnum unknownDefaultOpenApi =
+      _$unbrandXoVdiSnapshotTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UnbrandXoVdiSnapshotTypeEnum> get serializer =>
-      _$unbrandXoVdiSnapshotTypeEnumSerializer;
+      _OpenUnbrandXoVdiSnapshotTypeEnumSerializer();
 
   const UnbrandXoVdiSnapshotTypeEnum._(String name) : super(name);
 
@@ -495,4 +499,46 @@ class UnbrandXoVdiSnapshotTypeEnum extends EnumClass {
       _$unbrandXoVdiSnapshotTypeEnumValues;
   static UnbrandXoVdiSnapshotTypeEnum valueOf(String name) =>
       _$unbrandXoVdiSnapshotTypeEnumValueOf(name);
+
+  static UnbrandXoVdiSnapshotTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'VDI-snapshot':
+        return vDISnapshot;
+      default:
+        return UnbrandXoVdiSnapshotTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, vDISnapshot)) return r'VDI-snapshot';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UnbrandXoVdiSnapshotTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUnbrandXoVdiSnapshotTypeEnumSerializer
+    implements PrimitiveSerializer<UnbrandXoVdiSnapshotTypeEnum> {
+  @override
+  final Iterable<Type> types = const [UnbrandXoVdiSnapshotTypeEnum];
+  @override
+  final String wireName = 'UnbrandXoVdiSnapshotTypeEnum';
+  @override
+  Object serialize(Serializers serializers, UnbrandXoVdiSnapshotTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UnbrandXoVdiSnapshotTypeEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError('Expected a string for UnbrandXoVdiSnapshotTypeEnum');
+    return UnbrandXoVdiSnapshotTypeEnum.fromValue(serialized);
+  }
 }

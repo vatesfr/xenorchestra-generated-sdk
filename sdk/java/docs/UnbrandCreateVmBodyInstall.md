@@ -3,33 +3,33 @@
 # UnbrandCreateVmBodyInstall
 
 ## anyOf schemas
-* [UnbrandCreateVmBodyInstallAnyOf](UnbrandCreateVmBodyInstallAnyOf.md)
-* [UnbrandCreateVmBodyInstallAnyOf1](UnbrandCreateVmBodyInstallAnyOf1.md)
+* [UnbrandCreateVmBodyInstallVariantCdrom](UnbrandCreateVmBodyInstallVariantCdrom.md)
+* [UnbrandCreateVmBodyInstallVariantNetwork](UnbrandCreateVmBodyInstallVariantNetwork.md)
 
 ## Example
 ```java
 // Import classes:
 import tech.vates.xenorchestra.client.model.UnbrandCreateVmBodyInstall;
-import tech.vates.xenorchestra.client.model.UnbrandCreateVmBodyInstallAnyOf;
-import tech.vates.xenorchestra.client.model.UnbrandCreateVmBodyInstallAnyOf1;
+import tech.vates.xenorchestra.client.model.UnbrandCreateVmBodyInstallVariantCdrom;
+import tech.vates.xenorchestra.client.model.UnbrandCreateVmBodyInstallVariantNetwork;
 
 public class Example {
     public static void main(String[] args) {
         UnbrandCreateVmBodyInstall exampleUnbrandCreateVmBodyInstall = new UnbrandCreateVmBodyInstall();
 
-        // create a new UnbrandCreateVmBodyInstallAnyOf
-        UnbrandCreateVmBodyInstallAnyOf exampleUnbrandCreateVmBodyInstallAnyOf = new UnbrandCreateVmBodyInstallAnyOf();
-        // set UnbrandCreateVmBodyInstall to UnbrandCreateVmBodyInstallAnyOf
-        exampleUnbrandCreateVmBodyInstall.setActualInstance(exampleUnbrandCreateVmBodyInstallAnyOf);
-        // to get back the UnbrandCreateVmBodyInstallAnyOf set earlier
-        UnbrandCreateVmBodyInstallAnyOf testUnbrandCreateVmBodyInstallAnyOf = (UnbrandCreateVmBodyInstallAnyOf) exampleUnbrandCreateVmBodyInstall.getActualInstance();
+        // create a new UnbrandCreateVmBodyInstallVariantCdrom
+        UnbrandCreateVmBodyInstallVariantCdrom exampleUnbrandCreateVmBodyInstallVariantCdrom = new UnbrandCreateVmBodyInstallVariantCdrom();
+        // set UnbrandCreateVmBodyInstall to UnbrandCreateVmBodyInstallVariantCdrom
+        exampleUnbrandCreateVmBodyInstall.setActualInstance(exampleUnbrandCreateVmBodyInstallVariantCdrom);
+        // to get back the UnbrandCreateVmBodyInstallVariantCdrom set earlier
+        UnbrandCreateVmBodyInstallVariantCdrom testUnbrandCreateVmBodyInstallVariantCdrom = (UnbrandCreateVmBodyInstallVariantCdrom) exampleUnbrandCreateVmBodyInstall.getActualInstance();
 
-        // create a new UnbrandCreateVmBodyInstallAnyOf1
-        UnbrandCreateVmBodyInstallAnyOf1 exampleUnbrandCreateVmBodyInstallAnyOf1 = new UnbrandCreateVmBodyInstallAnyOf1();
-        // set UnbrandCreateVmBodyInstall to UnbrandCreateVmBodyInstallAnyOf1
-        exampleUnbrandCreateVmBodyInstall.setActualInstance(exampleUnbrandCreateVmBodyInstallAnyOf1);
-        // to get back the UnbrandCreateVmBodyInstallAnyOf1 set earlier
-        UnbrandCreateVmBodyInstallAnyOf1 testUnbrandCreateVmBodyInstallAnyOf1 = (UnbrandCreateVmBodyInstallAnyOf1) exampleUnbrandCreateVmBodyInstall.getActualInstance();
+        // create a new UnbrandCreateVmBodyInstallVariantNetwork
+        UnbrandCreateVmBodyInstallVariantNetwork exampleUnbrandCreateVmBodyInstallVariantNetwork = new UnbrandCreateVmBodyInstallVariantNetwork();
+        // set UnbrandCreateVmBodyInstall to UnbrandCreateVmBodyInstallVariantNetwork
+        exampleUnbrandCreateVmBodyInstall.setActualInstance(exampleUnbrandCreateVmBodyInstallVariantNetwork);
+        // to get back the UnbrandCreateVmBodyInstallVariantNetwork set earlier
+        UnbrandCreateVmBodyInstallVariantNetwork testUnbrandCreateVmBodyInstallVariantNetwork = (UnbrandCreateVmBodyInstallVariantNetwork) exampleUnbrandCreateVmBodyInstall.getActualInstance();
     }
 }
 ```

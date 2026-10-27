@@ -66,6 +66,9 @@ func (a *Adapter) Patch(_ context.Context, build common.Build, target common.SDK
 		return err
 	}
 	root := a.workspace.Join(build.ID, "sdk", string(target))
+	if err := a.workspace.CopyFile(a.workspace.Join(build.ID, "spec", string(target), "swagger.json.unions.json"), a.workspace.Join(root, ".openapi-generator", "xo-unions.json")); err != nil {
+		return err
+	}
 	if err := a.patcher.Apply(definition.Artifact, root); err != nil {
 		return err
 	}
@@ -119,6 +122,9 @@ func (a *Adapter) Equal(first, second common.Build) (bool, error) {
 func (a *Adapter) definitionFor(target common.SDKTarget) (generatedSDK, error) {
 	for _, definition := range generatedSDKs(a.rustVersion, a.pythonVersion, a.dartVersion, a.javaVersion) {
 		if string(definition.Artifact) == string(target) {
+			if !strings.Contains(definition.GeneratorProperties, "enumUnknownDefaultCase=") {
+				definition.GeneratorProperties += ",enumUnknownDefaultCase=true"
+			}
 			return definition, nil
 		}
 	}

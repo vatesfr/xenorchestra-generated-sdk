@@ -15,6 +15,9 @@ const WithHrefPartialUnbrandXoServerStatusEnum
 const WithHrefPartialUnbrandXoServerStatusEnum
     _$withHrefPartialUnbrandXoServerStatusEnum_connecting =
     const WithHrefPartialUnbrandXoServerStatusEnum._('connecting');
+const WithHrefPartialUnbrandXoServerStatusEnum
+    _$withHrefPartialUnbrandXoServerStatusEnum_unknownDefaultOpenApi =
+    const WithHrefPartialUnbrandXoServerStatusEnum._('unknownDefaultOpenApi');
 
 WithHrefPartialUnbrandXoServerStatusEnum
     _$withHrefPartialUnbrandXoServerStatusEnumValueOf(String name) {
@@ -25,6 +28,8 @@ WithHrefPartialUnbrandXoServerStatusEnum
       return _$withHrefPartialUnbrandXoServerStatusEnum_disconnected;
     case 'connecting':
       return _$withHrefPartialUnbrandXoServerStatusEnum_connecting;
+    case 'unknownDefaultOpenApi':
+      return _$withHrefPartialUnbrandXoServerStatusEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -36,45 +41,8 @@ final BuiltSet<WithHrefPartialUnbrandXoServerStatusEnum>
   _$withHrefPartialUnbrandXoServerStatusEnum_connected,
   _$withHrefPartialUnbrandXoServerStatusEnum_disconnected,
   _$withHrefPartialUnbrandXoServerStatusEnum_connecting,
+  _$withHrefPartialUnbrandXoServerStatusEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<WithHrefPartialUnbrandXoServerStatusEnum>
-    _$withHrefPartialUnbrandXoServerStatusEnumSerializer =
-    _$WithHrefPartialUnbrandXoServerStatusEnumSerializer();
-
-class _$WithHrefPartialUnbrandXoServerStatusEnumSerializer
-    implements PrimitiveSerializer<WithHrefPartialUnbrandXoServerStatusEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'connected': 'connected',
-    'disconnected': 'disconnected',
-    'connecting': 'connecting',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'connected': 'connected',
-    'disconnected': 'disconnected',
-    'connecting': 'connecting',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    WithHrefPartialUnbrandXoServerStatusEnum
-  ];
-  @override
-  final String wireName = 'WithHrefPartialUnbrandXoServerStatusEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          WithHrefPartialUnbrandXoServerStatusEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  WithHrefPartialUnbrandXoServerStatusEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      WithHrefPartialUnbrandXoServerStatusEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$WithHrefPartialUnbrandXoServer extends WithHrefPartialUnbrandXoServer {
   @override

@@ -8,11 +8,16 @@ part of 'unbrand_xo_network.dart';
 
 const UnbrandXoNetworkTypeEnum _$unbrandXoNetworkTypeEnum_network =
     const UnbrandXoNetworkTypeEnum._('network');
+const UnbrandXoNetworkTypeEnum
+    _$unbrandXoNetworkTypeEnum_unknownDefaultOpenApi =
+    const UnbrandXoNetworkTypeEnum._('unknownDefaultOpenApi');
 
 UnbrandXoNetworkTypeEnum _$unbrandXoNetworkTypeEnumValueOf(String name) {
   switch (name) {
     case 'network':
       return _$unbrandXoNetworkTypeEnum_network;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandXoNetworkTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -21,37 +26,8 @@ UnbrandXoNetworkTypeEnum _$unbrandXoNetworkTypeEnumValueOf(String name) {
 final BuiltSet<UnbrandXoNetworkTypeEnum> _$unbrandXoNetworkTypeEnumValues =
     BuiltSet<UnbrandXoNetworkTypeEnum>(const <UnbrandXoNetworkTypeEnum>[
   _$unbrandXoNetworkTypeEnum_network,
+  _$unbrandXoNetworkTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<UnbrandXoNetworkTypeEnum> _$unbrandXoNetworkTypeEnumSerializer =
-    _$UnbrandXoNetworkTypeEnumSerializer();
-
-class _$UnbrandXoNetworkTypeEnumSerializer
-    implements PrimitiveSerializer<UnbrandXoNetworkTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'network': 'network',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'network': 'network',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[UnbrandXoNetworkTypeEnum];
-  @override
-  final String wireName = 'UnbrandXoNetworkTypeEnum';
-
-  @override
-  Object serialize(Serializers serializers, UnbrandXoNetworkTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandXoNetworkTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandXoNetworkTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$UnbrandXoNetwork extends UnbrandXoNetwork {
   @override

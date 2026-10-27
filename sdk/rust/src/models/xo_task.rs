@@ -71,16 +71,62 @@ impl XoTask {
     }
 }
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum Status {
-    #[serde(rename = "failure")]
     Failure,
-    #[serde(rename = "interrupted")]
     Interrupted,
-    #[serde(rename = "pending")]
     Pending,
-    #[serde(rename = "success")]
     Success,
+    UnknownValue(String),
+}
+impl Status {
+    pub fn as_str(&self) -> &str {
+        match self {
+            Self::Failure => "failure",
+            Self::Interrupted => "interrupted",
+            Self::Pending => "pending",
+            Self::Success => "success",
+            Self::UnknownValue(value) => value,
+        }
+    }
+}
+impl From<String> for Status {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "failure" => Self::Failure,
+            "interrupted" => Self::Interrupted,
+            "pending" => Self::Pending,
+            "success" => Self::Success,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for Status {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for Status {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for Status {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for Status {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
+    }
 }
 
 impl Default for Status {

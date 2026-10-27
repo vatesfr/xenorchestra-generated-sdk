@@ -47,19 +47,18 @@ public class PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCr
   /**
    * Gets or Sets contentType
    */
-  public enum ContentTypeEnum {
-    USER(String.valueOf("user")),
-    
-    ISO(String.valueOf("iso")),
-    
-    DISK(String.valueOf("disk")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+  public static final class ContentTypeEnum {
+    public static final ContentTypeEnum USER = new ContentTypeEnum("user");
+    public static final ContentTypeEnum ISO = new ContentTypeEnum("iso");
+    public static final ContentTypeEnum DISK = new ContentTypeEnum("disk");
+    @JsonCreator public static ContentTypeEnum fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static ContentTypeEnum[] values() { return new ContentTypeEnum[] {USER, ISO, DISK}; }
+    @Override public boolean equals(Object other) { return other instanceof ContentTypeEnum && value.equals(((ContentTypeEnum) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-    private String value;
-
-    ContentTypeEnum(String value) {
-      this.value = value;
+    private ContentTypeEnum(String value) {
+      this.value = java.util.Objects.requireNonNull(value);
     }
 
     @JsonValue
@@ -72,16 +71,17 @@ public class PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCr
       return String.valueOf(value);
     }
 
-    @JsonCreator
+    
     public static ContentTypeEnum fromValue(String value) {
       for (ContentTypeEnum b : ContentTypeEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      return new ContentTypeEnum(value);
     }
   }
+
 
   public static final String JSON_PROPERTY_CONTENT_TYPE = "content_type";
   @javax.annotation.Nullable

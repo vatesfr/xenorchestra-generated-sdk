@@ -9,12 +9,18 @@ part of 'unbrand_unbranded_xo_metadata_backup_job.dart';
 const UnbrandUnbrandedXoMetadataBackupJobTypeEnum
     _$unbrandUnbrandedXoMetadataBackupJobTypeEnum_metadataBackup =
     const UnbrandUnbrandedXoMetadataBackupJobTypeEnum._('metadataBackup');
+const UnbrandUnbrandedXoMetadataBackupJobTypeEnum
+    _$unbrandUnbrandedXoMetadataBackupJobTypeEnum_unknownDefaultOpenApi =
+    const UnbrandUnbrandedXoMetadataBackupJobTypeEnum._(
+        'unknownDefaultOpenApi');
 
 UnbrandUnbrandedXoMetadataBackupJobTypeEnum
     _$unbrandUnbrandedXoMetadataBackupJobTypeEnumValueOf(String name) {
   switch (name) {
     case 'metadataBackup':
       return _$unbrandUnbrandedXoMetadataBackupJobTypeEnum_metadataBackup;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandUnbrandedXoMetadataBackupJobTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -24,42 +30,8 @@ final BuiltSet<UnbrandUnbrandedXoMetadataBackupJobTypeEnum>
     _$unbrandUnbrandedXoMetadataBackupJobTypeEnumValues = BuiltSet<
         UnbrandUnbrandedXoMetadataBackupJobTypeEnum>(const <UnbrandUnbrandedXoMetadataBackupJobTypeEnum>[
   _$unbrandUnbrandedXoMetadataBackupJobTypeEnum_metadataBackup,
+  _$unbrandUnbrandedXoMetadataBackupJobTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<UnbrandUnbrandedXoMetadataBackupJobTypeEnum>
-    _$unbrandUnbrandedXoMetadataBackupJobTypeEnumSerializer =
-    _$UnbrandUnbrandedXoMetadataBackupJobTypeEnumSerializer();
-
-class _$UnbrandUnbrandedXoMetadataBackupJobTypeEnumSerializer
-    implements
-        PrimitiveSerializer<UnbrandUnbrandedXoMetadataBackupJobTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'metadataBackup': 'metadataBackup',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'metadataBackup': 'metadataBackup',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    UnbrandUnbrandedXoMetadataBackupJobTypeEnum
-  ];
-  @override
-  final String wireName = 'UnbrandUnbrandedXoMetadataBackupJobTypeEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          UnbrandUnbrandedXoMetadataBackupJobTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandUnbrandedXoMetadataBackupJobTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandUnbrandedXoMetadataBackupJobTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$UnbrandUnbrandedXoMetadataBackupJob
     extends UnbrandUnbrandedXoMetadataBackupJob {
@@ -74,7 +46,7 @@ class _$UnbrandUnbrandedXoMetadataBackupJob
   @override
   final JsonObject? remotes;
   @override
-  final PartialUnbrandXoMetadataBackupJobSettings settings;
+  final PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings settings;
   @override
   final UnbrandUnbrandedXoMetadataBackupJobTypeEnum type;
   @override
@@ -180,10 +152,13 @@ class UnbrandUnbrandedXoMetadataBackupJobBuilder
   JsonObject? get remotes => _$this._remotes;
   set remotes(JsonObject? remotes) => _$this._remotes = remotes;
 
-  PartialUnbrandXoMetadataBackupJobSettingsBuilder? _settings;
-  PartialUnbrandXoMetadataBackupJobSettingsBuilder get settings =>
-      _$this._settings ??= PartialUnbrandXoMetadataBackupJobSettingsBuilder();
-  set settings(PartialUnbrandXoMetadataBackupJobSettingsBuilder? settings) =>
+  PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettingsBuilder? _settings;
+  PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettingsBuilder
+      get settings => _$this._settings ??=
+          PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettingsBuilder();
+  set settings(
+          PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettingsBuilder?
+              settings) =>
       _$this._settings = settings;
 
   UnbrandUnbrandedXoMetadataBackupJobTypeEnum? _type;

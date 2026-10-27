@@ -46,6 +46,8 @@ const CreateSrBodySRTypeEnum _$createSrBodySRTypeEnum_xfs =
     const CreateSrBodySRTypeEnum._('xfs');
 const CreateSrBodySRTypeEnum _$createSrBodySRTypeEnum_zfs =
     const CreateSrBodySRTypeEnum._('zfs');
+const CreateSrBodySRTypeEnum _$createSrBodySRTypeEnum_unknownDefaultOpenApi =
+    const CreateSrBodySRTypeEnum._('unknownDefaultOpenApi');
 
 CreateSrBodySRTypeEnum _$createSrBodySRTypeEnumValueOf(String name) {
   switch (name) {
@@ -89,6 +91,8 @@ CreateSrBodySRTypeEnum _$createSrBodySRTypeEnumValueOf(String name) {
       return _$createSrBodySRTypeEnum_xfs;
     case 'zfs':
       return _$createSrBodySRTypeEnum_zfs;
+    case 'unknownDefaultOpenApi':
+      return _$createSrBodySRTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -116,74 +120,8 @@ final BuiltSet<CreateSrBodySRTypeEnum> _$createSrBodySRTypeEnumValues =
   _$createSrBodySRTypeEnum_udev,
   _$createSrBodySRTypeEnum_xfs,
   _$createSrBodySRTypeEnum_zfs,
+  _$createSrBodySRTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<CreateSrBodySRTypeEnum> _$createSrBodySRTypeEnumSerializer =
-    _$CreateSrBodySRTypeEnumSerializer();
-
-class _$CreateSrBodySRTypeEnumSerializer
-    implements PrimitiveSerializer<CreateSrBodySRTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'cephfs': 'cephfs',
-    'dummy': 'dummy',
-    'ext': 'ext',
-    'file': 'file',
-    'glusterfs': 'glusterfs',
-    'hba': 'hba',
-    'iso': 'iso',
-    'largeblock': 'largeblock',
-    'linstor': 'linstor',
-    'lvm': 'lvm',
-    'lvmofcoe': 'lvmofcoe',
-    'lvmohba': 'lvmohba',
-    'lvmoiscsi': 'lvmoiscsi',
-    'moosefs': 'moosefs',
-    'nfs': 'nfs',
-    'shm': 'shm',
-    'smb': 'smb',
-    'udev': 'udev',
-    'xfs': 'xfs',
-    'zfs': 'zfs',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'cephfs': 'cephfs',
-    'dummy': 'dummy',
-    'ext': 'ext',
-    'file': 'file',
-    'glusterfs': 'glusterfs',
-    'hba': 'hba',
-    'iso': 'iso',
-    'largeblock': 'largeblock',
-    'linstor': 'linstor',
-    'lvm': 'lvm',
-    'lvmofcoe': 'lvmofcoe',
-    'lvmohba': 'lvmohba',
-    'lvmoiscsi': 'lvmoiscsi',
-    'moosefs': 'moosefs',
-    'nfs': 'nfs',
-    'shm': 'shm',
-    'smb': 'smb',
-    'udev': 'udev',
-    'xfs': 'xfs',
-    'zfs': 'zfs',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[CreateSrBodySRTypeEnum];
-  @override
-  final String wireName = 'CreateSrBodySRTypeEnum';
-
-  @override
-  Object serialize(Serializers serializers, CreateSrBodySRTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  CreateSrBodySRTypeEnum deserialize(Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      CreateSrBodySRTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$CreateSrBody extends CreateSrBody {
   @override

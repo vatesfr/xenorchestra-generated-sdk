@@ -53,8 +53,6 @@ class WithHrefPartialUnbrandXoPgpu(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['PGPU']):
-            raise ValueError("must be one of enum values ('PGPU')")
         return value
 
     model_config = ConfigDict(

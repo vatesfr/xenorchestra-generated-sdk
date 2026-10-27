@@ -45,8 +45,6 @@ class PartialUnbrandXoBackupLog(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['backup']):
-            raise ValueError("must be one of enum values ('backup')")
         return value
 
     @field_validator('status')
@@ -55,8 +53,6 @@ class PartialUnbrandXoBackupLog(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['failure', 'interrupted', 'pending', 'success', 'skipped']):
-            raise ValueError("must be one of enum values ('failure', 'interrupted', 'pending', 'success', 'skipped')")
         return value
 
     model_config = ConfigDict(

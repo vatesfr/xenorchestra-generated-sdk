@@ -1,82 +1,49 @@
+import 'package:one_of/any_of.dart';
+import 'package:built_value/json_object.dart';
+import 'partial_unbrand_any_xo_backup_job_variant_backup.dart';
+import 'partial_unbrand_any_xo_backup_job_variant_metadata_backup.dart';
+import 'partial_unbrand_any_xo_backup_job_variant_mirror_backup.dart';
 //
 // AUTO-GENERATED FILE, DO NOT MODIFY!
 //
 
 // ignore_for_file: unused_element
+import 'package:xenorchestra_dart_sdk/src/model/partial_unbrand_any_xo_backup_job_variant_backup.dart';
 import 'package:built_collection/built_collection.dart';
-import 'package:xenorchestra_dart_sdk/src/model/partial_unbrand_any_xo_backup_job_settings.dart';
+import 'package:xenorchestra_dart_sdk/src/model/partial_unbrand_any_xo_backup_job_variant_mirror_backup.dart';
+import 'package:xenorchestra_dart_sdk/src/model/partial_unbrand_any_xo_backup_job_variant_mirror_backup_settings.dart';
+import 'package:xenorchestra_dart_sdk/src/model/partial_unbrand_any_xo_backup_job_variant_metadata_backup.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
+import 'package:one_of/any_of.dart';
 
 part 'partial_unbrand_any_xo_backup_job.g.dart';
 
-/// Make all properties in T optional
+/// PartialUnbrandAnyXoBackupJob
 ///
 /// Properties:
 /// * [compression]
 /// * [id]
 /// * [mode]
 /// * [name]
-/// * [pools]
 /// * [proxy]
 /// * [remotes]
 /// * [settings]
-/// * [sourceRemote]
 /// * [srs]
 /// * [type]
-/// * [userId]
 /// * [vms]
+/// * [pools]
+/// * [userId]
 /// * [xoMetadata]
+/// * [sourceRemote]
 @BuiltValue()
 abstract class PartialUnbrandAnyXoBackupJob
     implements
         Built<PartialUnbrandAnyXoBackupJob,
             PartialUnbrandAnyXoBackupJobBuilder> {
-  @BuiltValueField(wireName: r'compression')
-  PartialUnbrandAnyXoBackupJobCompressionEnum? get compression;
-  // enum compressionEnum {  ,  zstd,  native,  };
-
-  @BuiltValueField(wireName: r'id')
-  String? get id;
-
-  @BuiltValueField(wireName: r'mode')
-  PartialUnbrandAnyXoBackupJobModeEnum? get mode;
-  // enum modeEnum {  full,  delta,  };
-
-  @BuiltValueField(wireName: r'name')
-  String? get name;
-
-  @BuiltValueField(wireName: r'pools')
-  JsonObject? get pools;
-
-  @BuiltValueField(wireName: r'proxy')
-  String? get proxy;
-
-  @BuiltValueField(wireName: r'remotes')
-  JsonObject? get remotes;
-
-  @BuiltValueField(wireName: r'settings')
-  PartialUnbrandAnyXoBackupJobSettings? get settings;
-
-  @BuiltValueField(wireName: r'sourceRemote')
-  String? get sourceRemote;
-
-  @BuiltValueField(wireName: r'srs')
-  JsonObject? get srs;
-
-  @BuiltValueField(wireName: r'type')
-  PartialUnbrandAnyXoBackupJobTypeEnum? get type;
-  // enum typeEnum {  backup,  metadataBackup,  mirrorBackup,  };
-
-  @BuiltValueField(wireName: r'userId')
-  String? get userId;
-
-  @BuiltValueField(wireName: r'vms')
-  JsonObject? get vms;
-
-  @BuiltValueField(wireName: r'xoMetadata')
-  bool? get xoMetadata;
+  /// Any Of [PartialUnbrandAnyXoBackupJobVariantBackup], [PartialUnbrandAnyXoBackupJobVariantMetadataBackup], [PartialUnbrandAnyXoBackupJobVariantMirrorBackup]
+  AnyOf get anyOf;
 
   PartialUnbrandAnyXoBackupJob._();
 
@@ -99,268 +66,63 @@ class _$PartialUnbrandAnyXoBackupJobSerializer
     PartialUnbrandAnyXoBackupJob,
     _$PartialUnbrandAnyXoBackupJob
   ];
-
   @override
-  final String wireName = r'PartialUnbrandAnyXoBackupJob';
-
-  Iterable<Object?> _serializeProperties(
-    Serializers serializers,
-    PartialUnbrandAnyXoBackupJob object, {
-    FullType specifiedType = FullType.unspecified,
-  }) sync* {
-    if (object.compression != null) {
-      yield r'compression';
-      yield serializers.serialize(
-        object.compression,
-        specifiedType:
-            const FullType(PartialUnbrandAnyXoBackupJobCompressionEnum),
-      );
-    }
-    if (object.id != null) {
-      yield r'id';
-      yield serializers.serialize(
-        object.id,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.mode != null) {
-      yield r'mode';
-      yield serializers.serialize(
-        object.mode,
-        specifiedType: const FullType(PartialUnbrandAnyXoBackupJobModeEnum),
-      );
-    }
-    if (object.name != null) {
-      yield r'name';
-      yield serializers.serialize(
-        object.name,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.pools != null) {
-      yield r'pools';
-      yield serializers.serialize(
-        object.pools,
-        specifiedType: const FullType.nullable(JsonObject),
-      );
-    }
-    if (object.proxy != null) {
-      yield r'proxy';
-      yield serializers.serialize(
-        object.proxy,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.remotes != null) {
-      yield r'remotes';
-      yield serializers.serialize(
-        object.remotes,
-        specifiedType: const FullType.nullable(JsonObject),
-      );
-    }
-    if (object.settings != null) {
-      yield r'settings';
-      yield serializers.serialize(
-        object.settings,
-        specifiedType: const FullType(PartialUnbrandAnyXoBackupJobSettings),
-      );
-    }
-    if (object.sourceRemote != null) {
-      yield r'sourceRemote';
-      yield serializers.serialize(
-        object.sourceRemote,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.srs != null) {
-      yield r'srs';
-      yield serializers.serialize(
-        object.srs,
-        specifiedType: const FullType.nullable(JsonObject),
-      );
-    }
-    if (object.type != null) {
-      yield r'type';
-      yield serializers.serialize(
-        object.type,
-        specifiedType: const FullType(PartialUnbrandAnyXoBackupJobTypeEnum),
-      );
-    }
-    if (object.userId != null) {
-      yield r'userId';
-      yield serializers.serialize(
-        object.userId,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.vms != null) {
-      yield r'vms';
-      yield serializers.serialize(
-        object.vms,
-        specifiedType: const FullType.nullable(JsonObject),
-      );
-    }
-    if (object.xoMetadata != null) {
-      yield r'xoMetadata';
-      yield serializers.serialize(
-        object.xoMetadata,
-        specifiedType: const FullType(bool),
-      );
-    }
-  }
-
+  final String wireName = 'PartialUnbrandAnyXoBackupJob';
   @override
-  Object serialize(
-    Serializers serializers,
-    PartialUnbrandAnyXoBackupJob object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    return _serializeProperties(serializers, object,
-            specifiedType: specifiedType)
-        .toList();
-  }
-
-  void _deserializeProperties(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-    required List<Object?> serializedList,
-    required PartialUnbrandAnyXoBackupJobBuilder result,
-    required List<Object?> unhandled,
-  }) {
-    for (var i = 0; i < serializedList.length; i += 2) {
-      final key = serializedList[i] as String;
-      final value = serializedList[i + 1];
-      switch (key) {
-        case r'compression':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType:
-                const FullType(PartialUnbrandAnyXoBackupJobCompressionEnum),
-          ) as PartialUnbrandAnyXoBackupJobCompressionEnum;
-          result.compression = valueDes;
-          break;
-        case r'id':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.id = valueDes;
-          break;
-        case r'mode':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(PartialUnbrandAnyXoBackupJobModeEnum),
-          ) as PartialUnbrandAnyXoBackupJobModeEnum;
-          result.mode = valueDes;
-          break;
-        case r'name':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.name = valueDes;
-          break;
-        case r'pools':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(JsonObject),
-          ) as JsonObject?;
-          if (valueDes == null) continue;
-          result.pools = valueDes;
-          break;
-        case r'proxy':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.proxy = valueDes;
-          break;
-        case r'remotes':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(JsonObject),
-          ) as JsonObject?;
-          if (valueDes == null) continue;
-          result.remotes = valueDes;
-          break;
-        case r'settings':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(PartialUnbrandAnyXoBackupJobSettings),
-          ) as PartialUnbrandAnyXoBackupJobSettings;
-          result.settings.replace(valueDes);
-          break;
-        case r'sourceRemote':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.sourceRemote = valueDes;
-          break;
-        case r'srs':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(JsonObject),
-          ) as JsonObject?;
-          if (valueDes == null) continue;
-          result.srs = valueDes;
-          break;
-        case r'type':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(PartialUnbrandAnyXoBackupJobTypeEnum),
-          ) as PartialUnbrandAnyXoBackupJobTypeEnum;
-          result.type = valueDes;
-          break;
-        case r'userId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.userId = valueDes;
-          break;
-        case r'vms':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType.nullable(JsonObject),
-          ) as JsonObject?;
-          if (valueDes == null) continue;
-          result.vms = valueDes;
-          break;
-        case r'xoMetadata':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.xoMetadata = valueDes;
-          break;
-        default:
-          unhandled.add(key);
-          unhandled.add(value);
-          break;
-      }
-    }
+  Object serialize(Serializers serializers, PartialUnbrandAnyXoBackupJob object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final entry = object.anyOf.values.entries.single;
+    final value = entry.value;
+    if (value is JsonObject) return value.value;
+    return serializers.serialize(value,
+        specifiedType: FullType(object.anyOf.types[entry.key]))!;
   }
 
   @override
   PartialUnbrandAnyXoBackupJob deserialize(
-    Serializers serializers,
-    Object serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = PartialUnbrandAnyXoBackupJobBuilder();
-    final serializedList = (serialized as Iterable<Object?>).toList();
-    final unhandled = <Object?>[];
-    _deserializeProperties(
-      serializers,
-      serialized,
-      specifiedType: specifiedType,
-      serializedList: serializedList,
-      unhandled: unhandled,
-      result: result,
-    );
-    return result.build();
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final Object? raw =
+        serialized is JsonObject ? serialized.value : serialized;
+    if (raw is! Map) throw ArgumentError('Expected an object');
+    final data = Map<String, Object?>.from(raw);
+    final tag = data["type"];
+    if (data.containsKey("type") && tag is! String)
+      throw ArgumentError('Discriminator must be a string');
+    switch (tag) {
+      case "backup":
+        final value = serializers.deserialize(data,
+            specifiedType:
+                const FullType(PartialUnbrandAnyXoBackupJobVariantBackup))!;
+        return (PartialUnbrandAnyXoBackupJobBuilder()
+              ..anyOf = AnyOfDynamic(
+                  types: [PartialUnbrandAnyXoBackupJobVariantBackup],
+                  values: {0: value}))
+            .build();
+      case "metadataBackup":
+        final value = serializers.deserialize(data,
+            specifiedType: const FullType(
+                PartialUnbrandAnyXoBackupJobVariantMetadataBackup))!;
+        return (PartialUnbrandAnyXoBackupJobBuilder()
+              ..anyOf = AnyOfDynamic(
+                  types: [PartialUnbrandAnyXoBackupJobVariantMetadataBackup],
+                  values: {0: value}))
+            .build();
+      case "mirrorBackup":
+        final value = serializers.deserialize(data,
+            specifiedType: const FullType(
+                PartialUnbrandAnyXoBackupJobVariantMirrorBackup))!;
+        return (PartialUnbrandAnyXoBackupJobBuilder()
+              ..anyOf = AnyOfDynamic(
+                  types: [PartialUnbrandAnyXoBackupJobVariantMirrorBackup],
+                  values: {0: value}))
+            .build();
+      default:
+        return (PartialUnbrandAnyXoBackupJobBuilder()
+              ..anyOf = AnyOfDynamic(
+                  types: [JsonObject], values: {0: JsonObject(data)}))
+            .build();
+    }
   }
 }
 
@@ -374,9 +136,15 @@ class PartialUnbrandAnyXoBackupJobCompressionEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'native')
   static const PartialUnbrandAnyXoBackupJobCompressionEnum native_ =
       _$partialUnbrandAnyXoBackupJobCompressionEnum_native_;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const PartialUnbrandAnyXoBackupJobCompressionEnum
+      unknownDefaultOpenApi =
+      _$partialUnbrandAnyXoBackupJobCompressionEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<PartialUnbrandAnyXoBackupJobCompressionEnum>
-      get serializer => _$partialUnbrandAnyXoBackupJobCompressionEnumSerializer;
+      get serializer =>
+          _OpenPartialUnbrandAnyXoBackupJobCompressionEnumSerializer();
 
   const PartialUnbrandAnyXoBackupJobCompressionEnum._(String name)
       : super(name);
@@ -385,6 +153,60 @@ class PartialUnbrandAnyXoBackupJobCompressionEnum extends EnumClass {
       _$partialUnbrandAnyXoBackupJobCompressionEnumValues;
   static PartialUnbrandAnyXoBackupJobCompressionEnum valueOf(String name) =>
       _$partialUnbrandAnyXoBackupJobCompressionEnumValueOf(name);
+
+  static PartialUnbrandAnyXoBackupJobCompressionEnum fromValue(String value) {
+    switch (value) {
+      case r'':
+        return empty;
+      case r'zstd':
+        return zstd;
+      case r'native':
+        return native_;
+      default:
+        return PartialUnbrandAnyXoBackupJobCompressionEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, empty)) return r'';
+    if (identical(this, zstd)) return r'zstd';
+    if (identical(this, native_)) return r'native';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is PartialUnbrandAnyXoBackupJobCompressionEnum &&
+      value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenPartialUnbrandAnyXoBackupJobCompressionEnumSerializer
+    implements
+        PrimitiveSerializer<PartialUnbrandAnyXoBackupJobCompressionEnum> {
+  @override
+  final Iterable<Type> types = const [
+    PartialUnbrandAnyXoBackupJobCompressionEnum
+  ];
+  @override
+  final String wireName = 'PartialUnbrandAnyXoBackupJobCompressionEnum';
+  @override
+  Object serialize(Serializers serializers,
+          PartialUnbrandAnyXoBackupJobCompressionEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  PartialUnbrandAnyXoBackupJobCompressionEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for PartialUnbrandAnyXoBackupJobCompressionEnum');
+    return PartialUnbrandAnyXoBackupJobCompressionEnum.fromValue(serialized);
+  }
 }
 
 class PartialUnbrandAnyXoBackupJobModeEnum extends EnumClass {
@@ -394,9 +216,13 @@ class PartialUnbrandAnyXoBackupJobModeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'delta')
   static const PartialUnbrandAnyXoBackupJobModeEnum delta =
       _$partialUnbrandAnyXoBackupJobModeEnum_delta;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const PartialUnbrandAnyXoBackupJobModeEnum unknownDefaultOpenApi =
+      _$partialUnbrandAnyXoBackupJobModeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<PartialUnbrandAnyXoBackupJobModeEnum> get serializer =>
-      _$partialUnbrandAnyXoBackupJobModeEnumSerializer;
+      _OpenPartialUnbrandAnyXoBackupJobModeEnumSerializer();
 
   const PartialUnbrandAnyXoBackupJobModeEnum._(String name) : super(name);
 
@@ -404,6 +230,53 @@ class PartialUnbrandAnyXoBackupJobModeEnum extends EnumClass {
       _$partialUnbrandAnyXoBackupJobModeEnumValues;
   static PartialUnbrandAnyXoBackupJobModeEnum valueOf(String name) =>
       _$partialUnbrandAnyXoBackupJobModeEnumValueOf(name);
+
+  static PartialUnbrandAnyXoBackupJobModeEnum fromValue(String value) {
+    switch (value) {
+      case r'full':
+        return full;
+      case r'delta':
+        return delta;
+      default:
+        return PartialUnbrandAnyXoBackupJobModeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, full)) return r'full';
+    if (identical(this, delta)) return r'delta';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is PartialUnbrandAnyXoBackupJobModeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenPartialUnbrandAnyXoBackupJobModeEnumSerializer
+    implements PrimitiveSerializer<PartialUnbrandAnyXoBackupJobModeEnum> {
+  @override
+  final Iterable<Type> types = const [PartialUnbrandAnyXoBackupJobModeEnum];
+  @override
+  final String wireName = 'PartialUnbrandAnyXoBackupJobModeEnum';
+  @override
+  Object serialize(
+          Serializers serializers, PartialUnbrandAnyXoBackupJobModeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  PartialUnbrandAnyXoBackupJobModeEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for PartialUnbrandAnyXoBackupJobModeEnum');
+    return PartialUnbrandAnyXoBackupJobModeEnum.fromValue(serialized);
+  }
 }
 
 class PartialUnbrandAnyXoBackupJobTypeEnum extends EnumClass {
@@ -416,9 +289,13 @@ class PartialUnbrandAnyXoBackupJobTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'mirrorBackup')
   static const PartialUnbrandAnyXoBackupJobTypeEnum mirrorBackup =
       _$partialUnbrandAnyXoBackupJobTypeEnum_mirrorBackup;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const PartialUnbrandAnyXoBackupJobTypeEnum unknownDefaultOpenApi =
+      _$partialUnbrandAnyXoBackupJobTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<PartialUnbrandAnyXoBackupJobTypeEnum> get serializer =>
-      _$partialUnbrandAnyXoBackupJobTypeEnumSerializer;
+      _OpenPartialUnbrandAnyXoBackupJobTypeEnumSerializer();
 
   const PartialUnbrandAnyXoBackupJobTypeEnum._(String name) : super(name);
 
@@ -426,4 +303,54 @@ class PartialUnbrandAnyXoBackupJobTypeEnum extends EnumClass {
       _$partialUnbrandAnyXoBackupJobTypeEnumValues;
   static PartialUnbrandAnyXoBackupJobTypeEnum valueOf(String name) =>
       _$partialUnbrandAnyXoBackupJobTypeEnumValueOf(name);
+
+  static PartialUnbrandAnyXoBackupJobTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'backup':
+        return backup;
+      case r'metadataBackup':
+        return metadataBackup;
+      case r'mirrorBackup':
+        return mirrorBackup;
+      default:
+        return PartialUnbrandAnyXoBackupJobTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, backup)) return r'backup';
+    if (identical(this, metadataBackup)) return r'metadataBackup';
+    if (identical(this, mirrorBackup)) return r'mirrorBackup';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is PartialUnbrandAnyXoBackupJobTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenPartialUnbrandAnyXoBackupJobTypeEnumSerializer
+    implements PrimitiveSerializer<PartialUnbrandAnyXoBackupJobTypeEnum> {
+  @override
+  final Iterable<Type> types = const [PartialUnbrandAnyXoBackupJobTypeEnum];
+  @override
+  final String wireName = 'PartialUnbrandAnyXoBackupJobTypeEnum';
+  @override
+  Object serialize(
+          Serializers serializers, PartialUnbrandAnyXoBackupJobTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  PartialUnbrandAnyXoBackupJobTypeEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for PartialUnbrandAnyXoBackupJobTypeEnum');
+    return PartialUnbrandAnyXoBackupJobTypeEnum.fromValue(serialized);
+  }
 }

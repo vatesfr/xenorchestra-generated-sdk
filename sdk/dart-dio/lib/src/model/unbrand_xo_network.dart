@@ -428,9 +428,13 @@ class UnbrandXoNetworkTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'network')
   static const UnbrandXoNetworkTypeEnum network =
       _$unbrandXoNetworkTypeEnum_network;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UnbrandXoNetworkTypeEnum unknownDefaultOpenApi =
+      _$unbrandXoNetworkTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UnbrandXoNetworkTypeEnum> get serializer =>
-      _$unbrandXoNetworkTypeEnumSerializer;
+      _OpenUnbrandXoNetworkTypeEnumSerializer();
 
   const UnbrandXoNetworkTypeEnum._(String name) : super(name);
 
@@ -438,4 +442,46 @@ class UnbrandXoNetworkTypeEnum extends EnumClass {
       _$unbrandXoNetworkTypeEnumValues;
   static UnbrandXoNetworkTypeEnum valueOf(String name) =>
       _$unbrandXoNetworkTypeEnumValueOf(name);
+
+  static UnbrandXoNetworkTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'network':
+        return network;
+      default:
+        return UnbrandXoNetworkTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, network)) return r'network';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UnbrandXoNetworkTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUnbrandXoNetworkTypeEnumSerializer
+    implements PrimitiveSerializer<UnbrandXoNetworkTypeEnum> {
+  @override
+  final Iterable<Type> types = const [UnbrandXoNetworkTypeEnum];
+  @override
+  final String wireName = 'UnbrandXoNetworkTypeEnum';
+  @override
+  Object serialize(Serializers serializers, UnbrandXoNetworkTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UnbrandXoNetworkTypeEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError('Expected a string for UnbrandXoNetworkTypeEnum');
+    return UnbrandXoNetworkTypeEnum.fromValue(serialized);
+  }
 }

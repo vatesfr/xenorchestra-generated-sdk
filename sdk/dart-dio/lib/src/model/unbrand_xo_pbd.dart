@@ -276,9 +276,13 @@ class _$UnbrandXoPbdSerializer implements PrimitiveSerializer<UnbrandXoPbd> {
 class UnbrandXoPbdTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'PBD')
   static const UnbrandXoPbdTypeEnum PBD = _$unbrandXoPbdTypeEnum_PBD;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UnbrandXoPbdTypeEnum unknownDefaultOpenApi =
+      _$unbrandXoPbdTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UnbrandXoPbdTypeEnum> get serializer =>
-      _$unbrandXoPbdTypeEnumSerializer;
+      _OpenUnbrandXoPbdTypeEnumSerializer();
 
   const UnbrandXoPbdTypeEnum._(String name) : super(name);
 
@@ -286,4 +290,45 @@ class UnbrandXoPbdTypeEnum extends EnumClass {
       _$unbrandXoPbdTypeEnumValues;
   static UnbrandXoPbdTypeEnum valueOf(String name) =>
       _$unbrandXoPbdTypeEnumValueOf(name);
+
+  static UnbrandXoPbdTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'PBD':
+        return PBD;
+      default:
+        return UnbrandXoPbdTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, PBD)) return r'PBD';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UnbrandXoPbdTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUnbrandXoPbdTypeEnumSerializer
+    implements PrimitiveSerializer<UnbrandXoPbdTypeEnum> {
+  @override
+  final Iterable<Type> types = const [UnbrandXoPbdTypeEnum];
+  @override
+  final String wireName = 'UnbrandXoPbdTypeEnum';
+  @override
+  Object serialize(Serializers serializers, UnbrandXoPbdTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UnbrandXoPbdTypeEnum deserialize(Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError('Expected a string for UnbrandXoPbdTypeEnum');
+    return UnbrandXoPbdTypeEnum.fromValue(serialized);
+  }
 }

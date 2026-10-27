@@ -8,11 +8,15 @@ part of 'unbrand_xo_alarm.dart';
 
 const UnbrandXoAlarmTypeEnum _$unbrandXoAlarmTypeEnum_message =
     const UnbrandXoAlarmTypeEnum._('message');
+const UnbrandXoAlarmTypeEnum _$unbrandXoAlarmTypeEnum_unknownDefaultOpenApi =
+    const UnbrandXoAlarmTypeEnum._('unknownDefaultOpenApi');
 
 UnbrandXoAlarmTypeEnum _$unbrandXoAlarmTypeEnumValueOf(String name) {
   switch (name) {
     case 'message':
       return _$unbrandXoAlarmTypeEnum_message;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandXoAlarmTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -21,36 +25,8 @@ UnbrandXoAlarmTypeEnum _$unbrandXoAlarmTypeEnumValueOf(String name) {
 final BuiltSet<UnbrandXoAlarmTypeEnum> _$unbrandXoAlarmTypeEnumValues =
     BuiltSet<UnbrandXoAlarmTypeEnum>(const <UnbrandXoAlarmTypeEnum>[
   _$unbrandXoAlarmTypeEnum_message,
+  _$unbrandXoAlarmTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<UnbrandXoAlarmTypeEnum> _$unbrandXoAlarmTypeEnumSerializer =
-    _$UnbrandXoAlarmTypeEnumSerializer();
-
-class _$UnbrandXoAlarmTypeEnumSerializer
-    implements PrimitiveSerializer<UnbrandXoAlarmTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'message': 'message',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'message': 'message',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[UnbrandXoAlarmTypeEnum];
-  @override
-  final String wireName = 'UnbrandXoAlarmTypeEnum';
-
-  @override
-  Object serialize(Serializers serializers, UnbrandXoAlarmTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandXoAlarmTypeEnum deserialize(Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandXoAlarmTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$UnbrandXoAlarm extends UnbrandXoAlarm {
   @override

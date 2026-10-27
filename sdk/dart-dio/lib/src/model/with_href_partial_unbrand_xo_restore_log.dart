@@ -181,10 +181,15 @@ class WithHrefPartialUnbrandXoRestoreLogMessageEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'restore')
   static const WithHrefPartialUnbrandXoRestoreLogMessageEnum restore =
       _$withHrefPartialUnbrandXoRestoreLogMessageEnum_restore;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const WithHrefPartialUnbrandXoRestoreLogMessageEnum
+      unknownDefaultOpenApi =
+      _$withHrefPartialUnbrandXoRestoreLogMessageEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<WithHrefPartialUnbrandXoRestoreLogMessageEnum>
       get serializer =>
-          _$withHrefPartialUnbrandXoRestoreLogMessageEnumSerializer;
+          _OpenWithHrefPartialUnbrandXoRestoreLogMessageEnumSerializer();
 
   const WithHrefPartialUnbrandXoRestoreLogMessageEnum._(String name)
       : super(name);
@@ -193,4 +198,52 @@ class WithHrefPartialUnbrandXoRestoreLogMessageEnum extends EnumClass {
       _$withHrefPartialUnbrandXoRestoreLogMessageEnumValues;
   static WithHrefPartialUnbrandXoRestoreLogMessageEnum valueOf(String name) =>
       _$withHrefPartialUnbrandXoRestoreLogMessageEnumValueOf(name);
+
+  static WithHrefPartialUnbrandXoRestoreLogMessageEnum fromValue(String value) {
+    switch (value) {
+      case r'restore':
+        return restore;
+      default:
+        return WithHrefPartialUnbrandXoRestoreLogMessageEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, restore)) return r'restore';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is WithHrefPartialUnbrandXoRestoreLogMessageEnum &&
+      value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenWithHrefPartialUnbrandXoRestoreLogMessageEnumSerializer
+    implements
+        PrimitiveSerializer<WithHrefPartialUnbrandXoRestoreLogMessageEnum> {
+  @override
+  final Iterable<Type> types = const [
+    WithHrefPartialUnbrandXoRestoreLogMessageEnum
+  ];
+  @override
+  final String wireName = 'WithHrefPartialUnbrandXoRestoreLogMessageEnum';
+  @override
+  Object serialize(Serializers serializers,
+          WithHrefPartialUnbrandXoRestoreLogMessageEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  WithHrefPartialUnbrandXoRestoreLogMessageEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for WithHrefPartialUnbrandXoRestoreLogMessageEnum');
+    return WithHrefPartialUnbrandXoRestoreLogMessageEnum.fromValue(serialized);
+  }
 }

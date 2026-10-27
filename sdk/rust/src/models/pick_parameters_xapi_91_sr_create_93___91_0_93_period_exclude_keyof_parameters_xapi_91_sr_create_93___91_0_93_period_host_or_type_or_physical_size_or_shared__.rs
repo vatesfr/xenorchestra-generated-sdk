@@ -39,14 +39,59 @@ impl PickParametersXapi91SrCreate9391093PeriodExcludeKeyofParametersXapi91SrCrea
     }
 }
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum ContentType {
-    #[serde(rename = "user")]
     User,
-    #[serde(rename = "iso")]
     Iso,
-    #[serde(rename = "disk")]
     Disk,
+    UnknownValue(String),
+}
+impl ContentType {
+    pub fn as_str(&self) -> &str {
+        match self {
+            Self::User => "user",
+            Self::Iso => "iso",
+            Self::Disk => "disk",
+            Self::UnknownValue(value) => value,
+        }
+    }
+}
+impl From<String> for ContentType {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "user" => Self::User,
+            "iso" => Self::Iso,
+            "disk" => Self::Disk,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for ContentType {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for ContentType {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for ContentType {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for ContentType {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
+    }
 }
 
 impl Default for ContentType {

@@ -3,348 +3,348 @@
 # UnbrandSafeOmitAnyPrivilegeId
 
 ## anyOf schemas
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf](UnbrandSafeOmitAnyPrivilegeIdAnyOf.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf1](UnbrandSafeOmitAnyPrivilegeIdAnyOf1.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf10](UnbrandSafeOmitAnyPrivilegeIdAnyOf10.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf11](UnbrandSafeOmitAnyPrivilegeIdAnyOf11.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf12](UnbrandSafeOmitAnyPrivilegeIdAnyOf12.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf13](UnbrandSafeOmitAnyPrivilegeIdAnyOf13.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf14](UnbrandSafeOmitAnyPrivilegeIdAnyOf14.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf15](UnbrandSafeOmitAnyPrivilegeIdAnyOf15.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf16](UnbrandSafeOmitAnyPrivilegeIdAnyOf16.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf17](UnbrandSafeOmitAnyPrivilegeIdAnyOf17.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf18](UnbrandSafeOmitAnyPrivilegeIdAnyOf18.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf19](UnbrandSafeOmitAnyPrivilegeIdAnyOf19.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf2](UnbrandSafeOmitAnyPrivilegeIdAnyOf2.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf20](UnbrandSafeOmitAnyPrivilegeIdAnyOf20.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf21](UnbrandSafeOmitAnyPrivilegeIdAnyOf21.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf22](UnbrandSafeOmitAnyPrivilegeIdAnyOf22.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf23](UnbrandSafeOmitAnyPrivilegeIdAnyOf23.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf24](UnbrandSafeOmitAnyPrivilegeIdAnyOf24.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf25](UnbrandSafeOmitAnyPrivilegeIdAnyOf25.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf26](UnbrandSafeOmitAnyPrivilegeIdAnyOf26.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf27](UnbrandSafeOmitAnyPrivilegeIdAnyOf27.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf28](UnbrandSafeOmitAnyPrivilegeIdAnyOf28.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf29](UnbrandSafeOmitAnyPrivilegeIdAnyOf29.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf3](UnbrandSafeOmitAnyPrivilegeIdAnyOf3.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf30](UnbrandSafeOmitAnyPrivilegeIdAnyOf30.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf31](UnbrandSafeOmitAnyPrivilegeIdAnyOf31.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf32](UnbrandSafeOmitAnyPrivilegeIdAnyOf32.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf33](UnbrandSafeOmitAnyPrivilegeIdAnyOf33.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf34](UnbrandSafeOmitAnyPrivilegeIdAnyOf34.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf35](UnbrandSafeOmitAnyPrivilegeIdAnyOf35.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf36](UnbrandSafeOmitAnyPrivilegeIdAnyOf36.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf4](UnbrandSafeOmitAnyPrivilegeIdAnyOf4.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf5](UnbrandSafeOmitAnyPrivilegeIdAnyOf5.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf6](UnbrandSafeOmitAnyPrivilegeIdAnyOf6.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf7](UnbrandSafeOmitAnyPrivilegeIdAnyOf7.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf8](UnbrandSafeOmitAnyPrivilegeIdAnyOf8.md)
-* [UnbrandSafeOmitAnyPrivilegeIdAnyOf9](UnbrandSafeOmitAnyPrivilegeIdAnyOf9.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantAclPrivilege](UnbrandSafeOmitAnyPrivilegeIdVariantAclPrivilege.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantAclRole](UnbrandSafeOmitAnyPrivilegeIdVariantAclRole.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantAlarm](UnbrandSafeOmitAnyPrivilegeIdVariantAlarm.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantBackupArchive](UnbrandSafeOmitAnyPrivilegeIdVariantBackupArchive.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantBackupJob](UnbrandSafeOmitAnyPrivilegeIdVariantBackupJob.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantBackupLog](UnbrandSafeOmitAnyPrivilegeIdVariantBackupLog.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantBackupRepository](UnbrandSafeOmitAnyPrivilegeIdVariantBackupRepository.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantGpuGroup](UnbrandSafeOmitAnyPrivilegeIdVariantGpuGroup.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantGroup](UnbrandSafeOmitAnyPrivilegeIdVariantGroup.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantHost](UnbrandSafeOmitAnyPrivilegeIdVariantHost.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantMessage](UnbrandSafeOmitAnyPrivilegeIdVariantMessage.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantNetwork](UnbrandSafeOmitAnyPrivilegeIdVariantNetwork.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantPbd](UnbrandSafeOmitAnyPrivilegeIdVariantPbd.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantPci](UnbrandSafeOmitAnyPrivilegeIdVariantPci.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantPgpu](UnbrandSafeOmitAnyPrivilegeIdVariantPgpu.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantPif](UnbrandSafeOmitAnyPrivilegeIdVariantPif.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantPool](UnbrandSafeOmitAnyPrivilegeIdVariantPool.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantProxy](UnbrandSafeOmitAnyPrivilegeIdVariantProxy.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantRestoreLog](UnbrandSafeOmitAnyPrivilegeIdVariantRestoreLog.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantSchedule](UnbrandSafeOmitAnyPrivilegeIdVariantSchedule.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantServer](UnbrandSafeOmitAnyPrivilegeIdVariantServer.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantSm](UnbrandSafeOmitAnyPrivilegeIdVariantSm.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantSr](UnbrandSafeOmitAnyPrivilegeIdVariantSr.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantTask](UnbrandSafeOmitAnyPrivilegeIdVariantTask.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantUser](UnbrandSafeOmitAnyPrivilegeIdVariantUser.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantVbd](UnbrandSafeOmitAnyPrivilegeIdVariantVbd.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantVdi](UnbrandSafeOmitAnyPrivilegeIdVariantVdi.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantVdiSnapshot](UnbrandSafeOmitAnyPrivilegeIdVariantVdiSnapshot.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantVdiUnmanaged](UnbrandSafeOmitAnyPrivilegeIdVariantVdiUnmanaged.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantVgpu](UnbrandSafeOmitAnyPrivilegeIdVariantVgpu.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantVgpuType](UnbrandSafeOmitAnyPrivilegeIdVariantVgpuType.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantVif](UnbrandSafeOmitAnyPrivilegeIdVariantVif.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantVm](UnbrandSafeOmitAnyPrivilegeIdVariantVm.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantVmController](UnbrandSafeOmitAnyPrivilegeIdVariantVmController.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantVmSnapshot](UnbrandSafeOmitAnyPrivilegeIdVariantVmSnapshot.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantVmTemplate](UnbrandSafeOmitAnyPrivilegeIdVariantVmTemplate.md)
+* [UnbrandSafeOmitAnyPrivilegeIdVariantVtpm](UnbrandSafeOmitAnyPrivilegeIdVariantVtpm.md)
 
 ## Example
 ```java
 // Import classes:
 import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeId;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf1;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf10;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf11;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf12;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf13;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf14;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf15;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf16;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf17;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf18;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf19;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf2;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf20;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf21;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf22;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf23;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf24;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf25;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf26;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf27;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf28;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf29;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf3;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf30;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf31;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf32;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf33;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf34;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf35;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf36;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf4;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf5;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf6;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf7;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf8;
-import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdAnyOf9;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantAclPrivilege;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantAclRole;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantAlarm;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantBackupArchive;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantBackupJob;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantBackupLog;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantBackupRepository;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantGpuGroup;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantGroup;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantHost;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantMessage;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantNetwork;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantPbd;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantPci;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantPgpu;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantPif;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantPool;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantProxy;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantRestoreLog;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantSchedule;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantServer;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantSm;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantSr;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantTask;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantUser;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantVbd;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantVdi;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantVdiSnapshot;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantVdiUnmanaged;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantVgpu;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantVgpuType;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantVif;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantVm;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantVmController;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantVmSnapshot;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantVmTemplate;
+import tech.vates.xenorchestra.client.model.UnbrandSafeOmitAnyPrivilegeIdVariantVtpm;
 
 public class Example {
     public static void main(String[] args) {
         UnbrandSafeOmitAnyPrivilegeId exampleUnbrandSafeOmitAnyPrivilegeId = new UnbrandSafeOmitAnyPrivilegeId();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf = new UnbrandSafeOmitAnyPrivilegeIdAnyOf();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf testUnbrandSafeOmitAnyPrivilegeIdAnyOf = (UnbrandSafeOmitAnyPrivilegeIdAnyOf) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantAclPrivilege
+        UnbrandSafeOmitAnyPrivilegeIdVariantAclPrivilege exampleUnbrandSafeOmitAnyPrivilegeIdVariantAclPrivilege = new UnbrandSafeOmitAnyPrivilegeIdVariantAclPrivilege();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantAclPrivilege
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantAclPrivilege);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantAclPrivilege set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantAclPrivilege testUnbrandSafeOmitAnyPrivilegeIdVariantAclPrivilege = (UnbrandSafeOmitAnyPrivilegeIdVariantAclPrivilege) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf1
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf1 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf1 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf1();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf1
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf1);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf1 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf1 testUnbrandSafeOmitAnyPrivilegeIdAnyOf1 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf1) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantAclRole
+        UnbrandSafeOmitAnyPrivilegeIdVariantAclRole exampleUnbrandSafeOmitAnyPrivilegeIdVariantAclRole = new UnbrandSafeOmitAnyPrivilegeIdVariantAclRole();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantAclRole
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantAclRole);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantAclRole set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantAclRole testUnbrandSafeOmitAnyPrivilegeIdVariantAclRole = (UnbrandSafeOmitAnyPrivilegeIdVariantAclRole) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf10
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf10 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf10 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf10();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf10
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf10);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf10 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf10 testUnbrandSafeOmitAnyPrivilegeIdAnyOf10 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf10) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantAlarm
+        UnbrandSafeOmitAnyPrivilegeIdVariantAlarm exampleUnbrandSafeOmitAnyPrivilegeIdVariantAlarm = new UnbrandSafeOmitAnyPrivilegeIdVariantAlarm();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantAlarm
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantAlarm);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantAlarm set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantAlarm testUnbrandSafeOmitAnyPrivilegeIdVariantAlarm = (UnbrandSafeOmitAnyPrivilegeIdVariantAlarm) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf11
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf11 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf11 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf11();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf11
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf11);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf11 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf11 testUnbrandSafeOmitAnyPrivilegeIdAnyOf11 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf11) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantBackupArchive
+        UnbrandSafeOmitAnyPrivilegeIdVariantBackupArchive exampleUnbrandSafeOmitAnyPrivilegeIdVariantBackupArchive = new UnbrandSafeOmitAnyPrivilegeIdVariantBackupArchive();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantBackupArchive
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantBackupArchive);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantBackupArchive set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantBackupArchive testUnbrandSafeOmitAnyPrivilegeIdVariantBackupArchive = (UnbrandSafeOmitAnyPrivilegeIdVariantBackupArchive) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf12
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf12 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf12 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf12();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf12
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf12);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf12 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf12 testUnbrandSafeOmitAnyPrivilegeIdAnyOf12 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf12) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantBackupJob
+        UnbrandSafeOmitAnyPrivilegeIdVariantBackupJob exampleUnbrandSafeOmitAnyPrivilegeIdVariantBackupJob = new UnbrandSafeOmitAnyPrivilegeIdVariantBackupJob();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantBackupJob
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantBackupJob);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantBackupJob set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantBackupJob testUnbrandSafeOmitAnyPrivilegeIdVariantBackupJob = (UnbrandSafeOmitAnyPrivilegeIdVariantBackupJob) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf13
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf13 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf13 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf13();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf13
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf13);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf13 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf13 testUnbrandSafeOmitAnyPrivilegeIdAnyOf13 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf13) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantBackupLog
+        UnbrandSafeOmitAnyPrivilegeIdVariantBackupLog exampleUnbrandSafeOmitAnyPrivilegeIdVariantBackupLog = new UnbrandSafeOmitAnyPrivilegeIdVariantBackupLog();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantBackupLog
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantBackupLog);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantBackupLog set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantBackupLog testUnbrandSafeOmitAnyPrivilegeIdVariantBackupLog = (UnbrandSafeOmitAnyPrivilegeIdVariantBackupLog) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf14
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf14 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf14 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf14();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf14
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf14);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf14 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf14 testUnbrandSafeOmitAnyPrivilegeIdAnyOf14 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf14) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantBackupRepository
+        UnbrandSafeOmitAnyPrivilegeIdVariantBackupRepository exampleUnbrandSafeOmitAnyPrivilegeIdVariantBackupRepository = new UnbrandSafeOmitAnyPrivilegeIdVariantBackupRepository();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantBackupRepository
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantBackupRepository);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantBackupRepository set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantBackupRepository testUnbrandSafeOmitAnyPrivilegeIdVariantBackupRepository = (UnbrandSafeOmitAnyPrivilegeIdVariantBackupRepository) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf15
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf15 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf15 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf15();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf15
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf15);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf15 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf15 testUnbrandSafeOmitAnyPrivilegeIdAnyOf15 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf15) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantGpuGroup
+        UnbrandSafeOmitAnyPrivilegeIdVariantGpuGroup exampleUnbrandSafeOmitAnyPrivilegeIdVariantGpuGroup = new UnbrandSafeOmitAnyPrivilegeIdVariantGpuGroup();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantGpuGroup
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantGpuGroup);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantGpuGroup set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantGpuGroup testUnbrandSafeOmitAnyPrivilegeIdVariantGpuGroup = (UnbrandSafeOmitAnyPrivilegeIdVariantGpuGroup) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf16
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf16 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf16 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf16();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf16
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf16);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf16 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf16 testUnbrandSafeOmitAnyPrivilegeIdAnyOf16 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf16) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantGroup
+        UnbrandSafeOmitAnyPrivilegeIdVariantGroup exampleUnbrandSafeOmitAnyPrivilegeIdVariantGroup = new UnbrandSafeOmitAnyPrivilegeIdVariantGroup();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantGroup
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantGroup);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantGroup set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantGroup testUnbrandSafeOmitAnyPrivilegeIdVariantGroup = (UnbrandSafeOmitAnyPrivilegeIdVariantGroup) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf17
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf17 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf17 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf17();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf17
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf17);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf17 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf17 testUnbrandSafeOmitAnyPrivilegeIdAnyOf17 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf17) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantHost
+        UnbrandSafeOmitAnyPrivilegeIdVariantHost exampleUnbrandSafeOmitAnyPrivilegeIdVariantHost = new UnbrandSafeOmitAnyPrivilegeIdVariantHost();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantHost
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantHost);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantHost set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantHost testUnbrandSafeOmitAnyPrivilegeIdVariantHost = (UnbrandSafeOmitAnyPrivilegeIdVariantHost) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf18
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf18 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf18 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf18();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf18
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf18);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf18 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf18 testUnbrandSafeOmitAnyPrivilegeIdAnyOf18 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf18) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantMessage
+        UnbrandSafeOmitAnyPrivilegeIdVariantMessage exampleUnbrandSafeOmitAnyPrivilegeIdVariantMessage = new UnbrandSafeOmitAnyPrivilegeIdVariantMessage();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantMessage
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantMessage);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantMessage set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantMessage testUnbrandSafeOmitAnyPrivilegeIdVariantMessage = (UnbrandSafeOmitAnyPrivilegeIdVariantMessage) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf19
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf19 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf19 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf19();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf19
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf19);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf19 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf19 testUnbrandSafeOmitAnyPrivilegeIdAnyOf19 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf19) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantNetwork
+        UnbrandSafeOmitAnyPrivilegeIdVariantNetwork exampleUnbrandSafeOmitAnyPrivilegeIdVariantNetwork = new UnbrandSafeOmitAnyPrivilegeIdVariantNetwork();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantNetwork
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantNetwork);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantNetwork set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantNetwork testUnbrandSafeOmitAnyPrivilegeIdVariantNetwork = (UnbrandSafeOmitAnyPrivilegeIdVariantNetwork) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf2
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf2 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf2 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf2();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf2
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf2);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf2 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf2 testUnbrandSafeOmitAnyPrivilegeIdAnyOf2 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf2) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantPbd
+        UnbrandSafeOmitAnyPrivilegeIdVariantPbd exampleUnbrandSafeOmitAnyPrivilegeIdVariantPbd = new UnbrandSafeOmitAnyPrivilegeIdVariantPbd();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantPbd
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantPbd);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantPbd set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantPbd testUnbrandSafeOmitAnyPrivilegeIdVariantPbd = (UnbrandSafeOmitAnyPrivilegeIdVariantPbd) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf20
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf20 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf20 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf20();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf20
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf20);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf20 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf20 testUnbrandSafeOmitAnyPrivilegeIdAnyOf20 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf20) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantPci
+        UnbrandSafeOmitAnyPrivilegeIdVariantPci exampleUnbrandSafeOmitAnyPrivilegeIdVariantPci = new UnbrandSafeOmitAnyPrivilegeIdVariantPci();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantPci
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantPci);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantPci set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantPci testUnbrandSafeOmitAnyPrivilegeIdVariantPci = (UnbrandSafeOmitAnyPrivilegeIdVariantPci) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf21
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf21 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf21 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf21();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf21
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf21);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf21 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf21 testUnbrandSafeOmitAnyPrivilegeIdAnyOf21 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf21) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantPgpu
+        UnbrandSafeOmitAnyPrivilegeIdVariantPgpu exampleUnbrandSafeOmitAnyPrivilegeIdVariantPgpu = new UnbrandSafeOmitAnyPrivilegeIdVariantPgpu();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantPgpu
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantPgpu);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantPgpu set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantPgpu testUnbrandSafeOmitAnyPrivilegeIdVariantPgpu = (UnbrandSafeOmitAnyPrivilegeIdVariantPgpu) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf22
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf22 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf22 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf22();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf22
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf22);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf22 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf22 testUnbrandSafeOmitAnyPrivilegeIdAnyOf22 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf22) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantPif
+        UnbrandSafeOmitAnyPrivilegeIdVariantPif exampleUnbrandSafeOmitAnyPrivilegeIdVariantPif = new UnbrandSafeOmitAnyPrivilegeIdVariantPif();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantPif
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantPif);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantPif set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantPif testUnbrandSafeOmitAnyPrivilegeIdVariantPif = (UnbrandSafeOmitAnyPrivilegeIdVariantPif) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf23
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf23 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf23 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf23();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf23
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf23);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf23 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf23 testUnbrandSafeOmitAnyPrivilegeIdAnyOf23 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf23) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantPool
+        UnbrandSafeOmitAnyPrivilegeIdVariantPool exampleUnbrandSafeOmitAnyPrivilegeIdVariantPool = new UnbrandSafeOmitAnyPrivilegeIdVariantPool();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantPool
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantPool);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantPool set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantPool testUnbrandSafeOmitAnyPrivilegeIdVariantPool = (UnbrandSafeOmitAnyPrivilegeIdVariantPool) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf24
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf24 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf24 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf24();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf24
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf24);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf24 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf24 testUnbrandSafeOmitAnyPrivilegeIdAnyOf24 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf24) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantProxy
+        UnbrandSafeOmitAnyPrivilegeIdVariantProxy exampleUnbrandSafeOmitAnyPrivilegeIdVariantProxy = new UnbrandSafeOmitAnyPrivilegeIdVariantProxy();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantProxy
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantProxy);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantProxy set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantProxy testUnbrandSafeOmitAnyPrivilegeIdVariantProxy = (UnbrandSafeOmitAnyPrivilegeIdVariantProxy) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf25
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf25 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf25 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf25();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf25
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf25);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf25 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf25 testUnbrandSafeOmitAnyPrivilegeIdAnyOf25 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf25) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantRestoreLog
+        UnbrandSafeOmitAnyPrivilegeIdVariantRestoreLog exampleUnbrandSafeOmitAnyPrivilegeIdVariantRestoreLog = new UnbrandSafeOmitAnyPrivilegeIdVariantRestoreLog();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantRestoreLog
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantRestoreLog);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantRestoreLog set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantRestoreLog testUnbrandSafeOmitAnyPrivilegeIdVariantRestoreLog = (UnbrandSafeOmitAnyPrivilegeIdVariantRestoreLog) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf26
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf26 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf26 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf26();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf26
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf26);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf26 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf26 testUnbrandSafeOmitAnyPrivilegeIdAnyOf26 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf26) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantSchedule
+        UnbrandSafeOmitAnyPrivilegeIdVariantSchedule exampleUnbrandSafeOmitAnyPrivilegeIdVariantSchedule = new UnbrandSafeOmitAnyPrivilegeIdVariantSchedule();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantSchedule
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantSchedule);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantSchedule set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantSchedule testUnbrandSafeOmitAnyPrivilegeIdVariantSchedule = (UnbrandSafeOmitAnyPrivilegeIdVariantSchedule) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf27
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf27 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf27 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf27();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf27
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf27);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf27 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf27 testUnbrandSafeOmitAnyPrivilegeIdAnyOf27 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf27) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantServer
+        UnbrandSafeOmitAnyPrivilegeIdVariantServer exampleUnbrandSafeOmitAnyPrivilegeIdVariantServer = new UnbrandSafeOmitAnyPrivilegeIdVariantServer();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantServer
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantServer);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantServer set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantServer testUnbrandSafeOmitAnyPrivilegeIdVariantServer = (UnbrandSafeOmitAnyPrivilegeIdVariantServer) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf28
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf28 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf28 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf28();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf28
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf28);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf28 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf28 testUnbrandSafeOmitAnyPrivilegeIdAnyOf28 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf28) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantSm
+        UnbrandSafeOmitAnyPrivilegeIdVariantSm exampleUnbrandSafeOmitAnyPrivilegeIdVariantSm = new UnbrandSafeOmitAnyPrivilegeIdVariantSm();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantSm
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantSm);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantSm set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantSm testUnbrandSafeOmitAnyPrivilegeIdVariantSm = (UnbrandSafeOmitAnyPrivilegeIdVariantSm) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf29
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf29 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf29 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf29();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf29
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf29);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf29 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf29 testUnbrandSafeOmitAnyPrivilegeIdAnyOf29 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf29) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantSr
+        UnbrandSafeOmitAnyPrivilegeIdVariantSr exampleUnbrandSafeOmitAnyPrivilegeIdVariantSr = new UnbrandSafeOmitAnyPrivilegeIdVariantSr();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantSr
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantSr);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantSr set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantSr testUnbrandSafeOmitAnyPrivilegeIdVariantSr = (UnbrandSafeOmitAnyPrivilegeIdVariantSr) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf3
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf3 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf3 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf3();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf3
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf3);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf3 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf3 testUnbrandSafeOmitAnyPrivilegeIdAnyOf3 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf3) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantTask
+        UnbrandSafeOmitAnyPrivilegeIdVariantTask exampleUnbrandSafeOmitAnyPrivilegeIdVariantTask = new UnbrandSafeOmitAnyPrivilegeIdVariantTask();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantTask
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantTask);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantTask set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantTask testUnbrandSafeOmitAnyPrivilegeIdVariantTask = (UnbrandSafeOmitAnyPrivilegeIdVariantTask) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf30
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf30 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf30 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf30();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf30
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf30);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf30 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf30 testUnbrandSafeOmitAnyPrivilegeIdAnyOf30 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf30) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantUser
+        UnbrandSafeOmitAnyPrivilegeIdVariantUser exampleUnbrandSafeOmitAnyPrivilegeIdVariantUser = new UnbrandSafeOmitAnyPrivilegeIdVariantUser();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantUser
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantUser);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantUser set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantUser testUnbrandSafeOmitAnyPrivilegeIdVariantUser = (UnbrandSafeOmitAnyPrivilegeIdVariantUser) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf31
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf31 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf31 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf31();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf31
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf31);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf31 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf31 testUnbrandSafeOmitAnyPrivilegeIdAnyOf31 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf31) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantVbd
+        UnbrandSafeOmitAnyPrivilegeIdVariantVbd exampleUnbrandSafeOmitAnyPrivilegeIdVariantVbd = new UnbrandSafeOmitAnyPrivilegeIdVariantVbd();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantVbd
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantVbd);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantVbd set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantVbd testUnbrandSafeOmitAnyPrivilegeIdVariantVbd = (UnbrandSafeOmitAnyPrivilegeIdVariantVbd) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf32
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf32 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf32 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf32();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf32
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf32);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf32 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf32 testUnbrandSafeOmitAnyPrivilegeIdAnyOf32 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf32) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantVdi
+        UnbrandSafeOmitAnyPrivilegeIdVariantVdi exampleUnbrandSafeOmitAnyPrivilegeIdVariantVdi = new UnbrandSafeOmitAnyPrivilegeIdVariantVdi();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantVdi
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantVdi);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantVdi set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantVdi testUnbrandSafeOmitAnyPrivilegeIdVariantVdi = (UnbrandSafeOmitAnyPrivilegeIdVariantVdi) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf33
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf33 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf33 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf33();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf33
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf33);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf33 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf33 testUnbrandSafeOmitAnyPrivilegeIdAnyOf33 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf33) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantVdiSnapshot
+        UnbrandSafeOmitAnyPrivilegeIdVariantVdiSnapshot exampleUnbrandSafeOmitAnyPrivilegeIdVariantVdiSnapshot = new UnbrandSafeOmitAnyPrivilegeIdVariantVdiSnapshot();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantVdiSnapshot
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantVdiSnapshot);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantVdiSnapshot set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantVdiSnapshot testUnbrandSafeOmitAnyPrivilegeIdVariantVdiSnapshot = (UnbrandSafeOmitAnyPrivilegeIdVariantVdiSnapshot) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf34
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf34 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf34 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf34();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf34
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf34);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf34 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf34 testUnbrandSafeOmitAnyPrivilegeIdAnyOf34 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf34) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantVdiUnmanaged
+        UnbrandSafeOmitAnyPrivilegeIdVariantVdiUnmanaged exampleUnbrandSafeOmitAnyPrivilegeIdVariantVdiUnmanaged = new UnbrandSafeOmitAnyPrivilegeIdVariantVdiUnmanaged();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantVdiUnmanaged
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantVdiUnmanaged);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantVdiUnmanaged set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantVdiUnmanaged testUnbrandSafeOmitAnyPrivilegeIdVariantVdiUnmanaged = (UnbrandSafeOmitAnyPrivilegeIdVariantVdiUnmanaged) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf35
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf35 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf35 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf35();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf35
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf35);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf35 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf35 testUnbrandSafeOmitAnyPrivilegeIdAnyOf35 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf35) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantVgpu
+        UnbrandSafeOmitAnyPrivilegeIdVariantVgpu exampleUnbrandSafeOmitAnyPrivilegeIdVariantVgpu = new UnbrandSafeOmitAnyPrivilegeIdVariantVgpu();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantVgpu
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantVgpu);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantVgpu set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantVgpu testUnbrandSafeOmitAnyPrivilegeIdVariantVgpu = (UnbrandSafeOmitAnyPrivilegeIdVariantVgpu) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf36
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf36 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf36 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf36();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf36
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf36);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf36 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf36 testUnbrandSafeOmitAnyPrivilegeIdAnyOf36 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf36) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantVgpuType
+        UnbrandSafeOmitAnyPrivilegeIdVariantVgpuType exampleUnbrandSafeOmitAnyPrivilegeIdVariantVgpuType = new UnbrandSafeOmitAnyPrivilegeIdVariantVgpuType();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantVgpuType
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantVgpuType);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantVgpuType set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantVgpuType testUnbrandSafeOmitAnyPrivilegeIdVariantVgpuType = (UnbrandSafeOmitAnyPrivilegeIdVariantVgpuType) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf4
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf4 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf4 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf4();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf4
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf4);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf4 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf4 testUnbrandSafeOmitAnyPrivilegeIdAnyOf4 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf4) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantVif
+        UnbrandSafeOmitAnyPrivilegeIdVariantVif exampleUnbrandSafeOmitAnyPrivilegeIdVariantVif = new UnbrandSafeOmitAnyPrivilegeIdVariantVif();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantVif
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantVif);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantVif set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantVif testUnbrandSafeOmitAnyPrivilegeIdVariantVif = (UnbrandSafeOmitAnyPrivilegeIdVariantVif) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf5
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf5 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf5 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf5();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf5
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf5);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf5 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf5 testUnbrandSafeOmitAnyPrivilegeIdAnyOf5 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf5) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantVm
+        UnbrandSafeOmitAnyPrivilegeIdVariantVm exampleUnbrandSafeOmitAnyPrivilegeIdVariantVm = new UnbrandSafeOmitAnyPrivilegeIdVariantVm();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantVm
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantVm);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantVm set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantVm testUnbrandSafeOmitAnyPrivilegeIdVariantVm = (UnbrandSafeOmitAnyPrivilegeIdVariantVm) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf6
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf6 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf6 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf6();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf6
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf6);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf6 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf6 testUnbrandSafeOmitAnyPrivilegeIdAnyOf6 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf6) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantVmController
+        UnbrandSafeOmitAnyPrivilegeIdVariantVmController exampleUnbrandSafeOmitAnyPrivilegeIdVariantVmController = new UnbrandSafeOmitAnyPrivilegeIdVariantVmController();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantVmController
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantVmController);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantVmController set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantVmController testUnbrandSafeOmitAnyPrivilegeIdVariantVmController = (UnbrandSafeOmitAnyPrivilegeIdVariantVmController) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf7
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf7 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf7 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf7();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf7
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf7);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf7 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf7 testUnbrandSafeOmitAnyPrivilegeIdAnyOf7 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf7) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantVmSnapshot
+        UnbrandSafeOmitAnyPrivilegeIdVariantVmSnapshot exampleUnbrandSafeOmitAnyPrivilegeIdVariantVmSnapshot = new UnbrandSafeOmitAnyPrivilegeIdVariantVmSnapshot();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantVmSnapshot
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantVmSnapshot);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantVmSnapshot set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantVmSnapshot testUnbrandSafeOmitAnyPrivilegeIdVariantVmSnapshot = (UnbrandSafeOmitAnyPrivilegeIdVariantVmSnapshot) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf8
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf8 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf8 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf8();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf8
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf8);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf8 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf8 testUnbrandSafeOmitAnyPrivilegeIdAnyOf8 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf8) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantVmTemplate
+        UnbrandSafeOmitAnyPrivilegeIdVariantVmTemplate exampleUnbrandSafeOmitAnyPrivilegeIdVariantVmTemplate = new UnbrandSafeOmitAnyPrivilegeIdVariantVmTemplate();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantVmTemplate
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantVmTemplate);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantVmTemplate set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantVmTemplate testUnbrandSafeOmitAnyPrivilegeIdVariantVmTemplate = (UnbrandSafeOmitAnyPrivilegeIdVariantVmTemplate) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
 
-        // create a new UnbrandSafeOmitAnyPrivilegeIdAnyOf9
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf9 exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf9 = new UnbrandSafeOmitAnyPrivilegeIdAnyOf9();
-        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdAnyOf9
-        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdAnyOf9);
-        // to get back the UnbrandSafeOmitAnyPrivilegeIdAnyOf9 set earlier
-        UnbrandSafeOmitAnyPrivilegeIdAnyOf9 testUnbrandSafeOmitAnyPrivilegeIdAnyOf9 = (UnbrandSafeOmitAnyPrivilegeIdAnyOf9) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
+        // create a new UnbrandSafeOmitAnyPrivilegeIdVariantVtpm
+        UnbrandSafeOmitAnyPrivilegeIdVariantVtpm exampleUnbrandSafeOmitAnyPrivilegeIdVariantVtpm = new UnbrandSafeOmitAnyPrivilegeIdVariantVtpm();
+        // set UnbrandSafeOmitAnyPrivilegeId to UnbrandSafeOmitAnyPrivilegeIdVariantVtpm
+        exampleUnbrandSafeOmitAnyPrivilegeId.setActualInstance(exampleUnbrandSafeOmitAnyPrivilegeIdVariantVtpm);
+        // to get back the UnbrandSafeOmitAnyPrivilegeIdVariantVtpm set earlier
+        UnbrandSafeOmitAnyPrivilegeIdVariantVtpm testUnbrandSafeOmitAnyPrivilegeIdVariantVtpm = (UnbrandSafeOmitAnyPrivilegeIdVariantVtpm) exampleUnbrandSafeOmitAnyPrivilegeId.getActualInstance();
     }
 }
 ```

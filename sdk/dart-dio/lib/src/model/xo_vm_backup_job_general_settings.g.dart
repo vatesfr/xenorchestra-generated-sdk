@@ -12,6 +12,10 @@ const XoVmBackupJobGeneralSettingsBackupReportTplEnum
 const XoVmBackupJobGeneralSettingsBackupReportTplEnum
     _$xoVmBackupJobGeneralSettingsBackupReportTplEnum_mjml =
     const XoVmBackupJobGeneralSettingsBackupReportTplEnum._('mjml');
+const XoVmBackupJobGeneralSettingsBackupReportTplEnum
+    _$xoVmBackupJobGeneralSettingsBackupReportTplEnum_unknownDefaultOpenApi =
+    const XoVmBackupJobGeneralSettingsBackupReportTplEnum._(
+        'unknownDefaultOpenApi');
 
 XoVmBackupJobGeneralSettingsBackupReportTplEnum
     _$xoVmBackupJobGeneralSettingsBackupReportTplEnumValueOf(String name) {
@@ -20,6 +24,8 @@ XoVmBackupJobGeneralSettingsBackupReportTplEnum
       return _$xoVmBackupJobGeneralSettingsBackupReportTplEnum_compactMjml;
     case 'mjml':
       return _$xoVmBackupJobGeneralSettingsBackupReportTplEnum_mjml;
+    case 'unknownDefaultOpenApi':
+      return _$xoVmBackupJobGeneralSettingsBackupReportTplEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -30,6 +36,7 @@ final BuiltSet<XoVmBackupJobGeneralSettingsBackupReportTplEnum>
         XoVmBackupJobGeneralSettingsBackupReportTplEnum>(const <XoVmBackupJobGeneralSettingsBackupReportTplEnum>[
   _$xoVmBackupJobGeneralSettingsBackupReportTplEnum_compactMjml,
   _$xoVmBackupJobGeneralSettingsBackupReportTplEnum_mjml,
+  _$xoVmBackupJobGeneralSettingsBackupReportTplEnum_unknownDefaultOpenApi,
 ]);
 
 const XoVmBackupJobGeneralSettingsReportWhenEnum
@@ -44,6 +51,9 @@ const XoVmBackupJobGeneralSettingsReportWhenEnum
 const XoVmBackupJobGeneralSettingsReportWhenEnum
     _$xoVmBackupJobGeneralSettingsReportWhenEnum_never =
     const XoVmBackupJobGeneralSettingsReportWhenEnum._('never');
+const XoVmBackupJobGeneralSettingsReportWhenEnum
+    _$xoVmBackupJobGeneralSettingsReportWhenEnum_unknownDefaultOpenApi =
+    const XoVmBackupJobGeneralSettingsReportWhenEnum._('unknownDefaultOpenApi');
 
 XoVmBackupJobGeneralSettingsReportWhenEnum
     _$xoVmBackupJobGeneralSettingsReportWhenEnumValueOf(String name) {
@@ -56,6 +66,8 @@ XoVmBackupJobGeneralSettingsReportWhenEnum
       return _$xoVmBackupJobGeneralSettingsReportWhenEnum_failure;
     case 'never':
       return _$xoVmBackupJobGeneralSettingsReportWhenEnum_never;
+    case 'unknownDefaultOpenApi':
+      return _$xoVmBackupJobGeneralSettingsReportWhenEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -68,83 +80,8 @@ final BuiltSet<XoVmBackupJobGeneralSettingsReportWhenEnum>
   _$xoVmBackupJobGeneralSettingsReportWhenEnum_error,
   _$xoVmBackupJobGeneralSettingsReportWhenEnum_failure,
   _$xoVmBackupJobGeneralSettingsReportWhenEnum_never,
+  _$xoVmBackupJobGeneralSettingsReportWhenEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<XoVmBackupJobGeneralSettingsBackupReportTplEnum>
-    _$xoVmBackupJobGeneralSettingsBackupReportTplEnumSerializer =
-    _$XoVmBackupJobGeneralSettingsBackupReportTplEnumSerializer();
-Serializer<XoVmBackupJobGeneralSettingsReportWhenEnum>
-    _$xoVmBackupJobGeneralSettingsReportWhenEnumSerializer =
-    _$XoVmBackupJobGeneralSettingsReportWhenEnumSerializer();
-
-class _$XoVmBackupJobGeneralSettingsBackupReportTplEnumSerializer
-    implements
-        PrimitiveSerializer<XoVmBackupJobGeneralSettingsBackupReportTplEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'compactMjml': 'compactMjml',
-    'mjml': 'mjml',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'compactMjml': 'compactMjml',
-    'mjml': 'mjml',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    XoVmBackupJobGeneralSettingsBackupReportTplEnum
-  ];
-  @override
-  final String wireName = 'XoVmBackupJobGeneralSettingsBackupReportTplEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          XoVmBackupJobGeneralSettingsBackupReportTplEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  XoVmBackupJobGeneralSettingsBackupReportTplEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      XoVmBackupJobGeneralSettingsBackupReportTplEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
-
-class _$XoVmBackupJobGeneralSettingsReportWhenEnumSerializer
-    implements PrimitiveSerializer<XoVmBackupJobGeneralSettingsReportWhenEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'always': 'always',
-    'error': 'error',
-    'failure': 'failure',
-    'never': 'never',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'always': 'always',
-    'error': 'error',
-    'failure': 'failure',
-    'never': 'never',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    XoVmBackupJobGeneralSettingsReportWhenEnum
-  ];
-  @override
-  final String wireName = 'XoVmBackupJobGeneralSettingsReportWhenEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          XoVmBackupJobGeneralSettingsReportWhenEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  XoVmBackupJobGeneralSettingsReportWhenEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      XoVmBackupJobGeneralSettingsReportWhenEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$XoVmBackupJobGeneralSettings extends XoVmBackupJobGeneralSettings {
   @override
@@ -158,7 +95,7 @@ class _$XoVmBackupJobGeneralSettings extends XoVmBackupJobGeneralSettings {
   @override
   final bool? hideSuccessfulItems;
   @override
-  final PartialUnbrandAnyXoBackupJobSettingsLongTermRetention?
+  final PartialUnbrandAnyXoBackupJobVariantBackupSettingsLongTermRetention?
       longTermRetention;
   @override
   final double? maxExportRate;
@@ -318,13 +255,13 @@ class XoVmBackupJobGeneralSettingsBuilder
   set hideSuccessfulItems(bool? hideSuccessfulItems) =>
       _$this._hideSuccessfulItems = hideSuccessfulItems;
 
-  PartialUnbrandAnyXoBackupJobSettingsLongTermRetentionBuilder?
+  PartialUnbrandAnyXoBackupJobVariantBackupSettingsLongTermRetentionBuilder?
       _longTermRetention;
-  PartialUnbrandAnyXoBackupJobSettingsLongTermRetentionBuilder
+  PartialUnbrandAnyXoBackupJobVariantBackupSettingsLongTermRetentionBuilder
       get longTermRetention => _$this._longTermRetention ??=
-          PartialUnbrandAnyXoBackupJobSettingsLongTermRetentionBuilder();
+          PartialUnbrandAnyXoBackupJobVariantBackupSettingsLongTermRetentionBuilder();
   set longTermRetention(
-          PartialUnbrandAnyXoBackupJobSettingsLongTermRetentionBuilder?
+          PartialUnbrandAnyXoBackupJobVariantBackupSettingsLongTermRetentionBuilder?
               longTermRetention) =>
       _$this._longTermRetention = longTermRetention;
 

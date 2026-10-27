@@ -1,6 +1,5 @@
 # PartialUnbrandAnyXoBackupJob
 
-Make all properties in T optional
 
 ## Properties
 
@@ -12,7 +11,7 @@ Name | Type | Description | Notes
 **name** | **str** |  | [optional] 
 **proxy** | **str** |  | [optional] 
 **remotes** | **object** |  | [optional] 
-**settings** | [**PartialUnbrandAnyXoBackupJobAnyOf2Settings**](PartialUnbrandAnyXoBackupJobAnyOf2Settings.md) |  | [optional] 
+**settings** | [**PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettings**](PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettings.md) |  | [optional] 
 **srs** | **object** |  | [optional] 
 **type** | **str** |  | [optional] 
 **vms** | **object** |  | [optional] 

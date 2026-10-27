@@ -8,11 +8,15 @@ part of 'unbrand_xo_pci.dart';
 
 const UnbrandXoPciTypeEnum _$unbrandXoPciTypeEnum_PCI =
     const UnbrandXoPciTypeEnum._('PCI');
+const UnbrandXoPciTypeEnum _$unbrandXoPciTypeEnum_unknownDefaultOpenApi =
+    const UnbrandXoPciTypeEnum._('unknownDefaultOpenApi');
 
 UnbrandXoPciTypeEnum _$unbrandXoPciTypeEnumValueOf(String name) {
   switch (name) {
     case 'PCI':
       return _$unbrandXoPciTypeEnum_PCI;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandXoPciTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -21,36 +25,8 @@ UnbrandXoPciTypeEnum _$unbrandXoPciTypeEnumValueOf(String name) {
 final BuiltSet<UnbrandXoPciTypeEnum> _$unbrandXoPciTypeEnumValues =
     BuiltSet<UnbrandXoPciTypeEnum>(const <UnbrandXoPciTypeEnum>[
   _$unbrandXoPciTypeEnum_PCI,
+  _$unbrandXoPciTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<UnbrandXoPciTypeEnum> _$unbrandXoPciTypeEnumSerializer =
-    _$UnbrandXoPciTypeEnumSerializer();
-
-class _$UnbrandXoPciTypeEnumSerializer
-    implements PrimitiveSerializer<UnbrandXoPciTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'PCI': 'PCI',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'PCI': 'PCI',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[UnbrandXoPciTypeEnum];
-  @override
-  final String wireName = 'UnbrandXoPciTypeEnum';
-
-  @override
-  Object serialize(Serializers serializers, UnbrandXoPciTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandXoPciTypeEnum deserialize(Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandXoPciTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$UnbrandXoPci extends UnbrandXoPci {
   @override

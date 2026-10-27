@@ -95,14 +95,59 @@ impl UnbrandCreateVmBody {
     }
 }
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum HighAvailability {
-    #[serde(rename = "")]
     Empty,
-    #[serde(rename = "best-effort")]
     BestEffort,
-    #[serde(rename = "restart")]
     Restart,
+    UnknownValue(String),
+}
+impl HighAvailability {
+    pub fn as_str(&self) -> &str {
+        match self {
+            Self::Empty => "",
+            Self::BestEffort => "best-effort",
+            Self::Restart => "restart",
+            Self::UnknownValue(value) => value,
+        }
+    }
+}
+impl From<String> for HighAvailability {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "" => Self::Empty,
+            "best-effort" => Self::BestEffort,
+            "restart" => Self::Restart,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for HighAvailability {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for HighAvailability {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for HighAvailability {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for HighAvailability {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
+    }
 }
 
 impl Default for HighAvailability {
@@ -111,12 +156,56 @@ impl Default for HighAvailability {
     }
 }
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum HvmBootFirmware {
-    #[serde(rename = "uefi")]
     Uefi,
-    #[serde(rename = "bios")]
     Bios,
+    UnknownValue(String),
+}
+impl HvmBootFirmware {
+    pub fn as_str(&self) -> &str {
+        match self {
+            Self::Uefi => "uefi",
+            Self::Bios => "bios",
+            Self::UnknownValue(value) => value,
+        }
+    }
+}
+impl From<String> for HvmBootFirmware {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "uefi" => Self::Uefi,
+            "bios" => Self::Bios,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for HvmBootFirmware {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for HvmBootFirmware {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for HvmBootFirmware {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for HvmBootFirmware {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
+    }
 }
 
 impl Default for HvmBootFirmware {

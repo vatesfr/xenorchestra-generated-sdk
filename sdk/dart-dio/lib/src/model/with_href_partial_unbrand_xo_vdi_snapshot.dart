@@ -544,9 +544,15 @@ class WithHrefPartialUnbrandXoVdiSnapshotTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'VDI-snapshot')
   static const WithHrefPartialUnbrandXoVdiSnapshotTypeEnum vDISnapshot =
       _$withHrefPartialUnbrandXoVdiSnapshotTypeEnum_vDISnapshot;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const WithHrefPartialUnbrandXoVdiSnapshotTypeEnum
+      unknownDefaultOpenApi =
+      _$withHrefPartialUnbrandXoVdiSnapshotTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<WithHrefPartialUnbrandXoVdiSnapshotTypeEnum>
-      get serializer => _$withHrefPartialUnbrandXoVdiSnapshotTypeEnumSerializer;
+      get serializer =>
+          _OpenWithHrefPartialUnbrandXoVdiSnapshotTypeEnumSerializer();
 
   const WithHrefPartialUnbrandXoVdiSnapshotTypeEnum._(String name)
       : super(name);
@@ -555,4 +561,52 @@ class WithHrefPartialUnbrandXoVdiSnapshotTypeEnum extends EnumClass {
       _$withHrefPartialUnbrandXoVdiSnapshotTypeEnumValues;
   static WithHrefPartialUnbrandXoVdiSnapshotTypeEnum valueOf(String name) =>
       _$withHrefPartialUnbrandXoVdiSnapshotTypeEnumValueOf(name);
+
+  static WithHrefPartialUnbrandXoVdiSnapshotTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'VDI-snapshot':
+        return vDISnapshot;
+      default:
+        return WithHrefPartialUnbrandXoVdiSnapshotTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, vDISnapshot)) return r'VDI-snapshot';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is WithHrefPartialUnbrandXoVdiSnapshotTypeEnum &&
+      value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenWithHrefPartialUnbrandXoVdiSnapshotTypeEnumSerializer
+    implements
+        PrimitiveSerializer<WithHrefPartialUnbrandXoVdiSnapshotTypeEnum> {
+  @override
+  final Iterable<Type> types = const [
+    WithHrefPartialUnbrandXoVdiSnapshotTypeEnum
+  ];
+  @override
+  final String wireName = 'WithHrefPartialUnbrandXoVdiSnapshotTypeEnum';
+  @override
+  Object serialize(Serializers serializers,
+          WithHrefPartialUnbrandXoVdiSnapshotTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  WithHrefPartialUnbrandXoVdiSnapshotTypeEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for WithHrefPartialUnbrandXoVdiSnapshotTypeEnum');
+    return WithHrefPartialUnbrandXoVdiSnapshotTypeEnum.fromValue(serialized);
+  }
 }

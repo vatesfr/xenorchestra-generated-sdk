@@ -12,26 +12,61 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum VifLockingMode {
-    #[serde(rename = "disabled")]
     Disabled,
-    #[serde(rename = "locked")]
     Locked,
-    #[serde(rename = "network_default")]
     NetworkDefault,
-    #[serde(rename = "unlocked")]
     Unlocked,
+    UnknownValue(String),
 }
-
-impl std::fmt::Display for VifLockingMode {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+impl VifLockingMode {
+    pub fn as_str(&self) -> &str {
         match self {
-            Self::Disabled => write!(f, "disabled"),
-            Self::Locked => write!(f, "locked"),
-            Self::NetworkDefault => write!(f, "network_default"),
-            Self::Unlocked => write!(f, "unlocked"),
+            Self::Disabled => "disabled",
+            Self::Locked => "locked",
+            Self::NetworkDefault => "network_default",
+            Self::Unlocked => "unlocked",
+            Self::UnknownValue(value) => value,
         }
+    }
+}
+impl From<String> for VifLockingMode {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "disabled" => Self::Disabled,
+            "locked" => Self::Locked,
+            "network_default" => Self::NetworkDefault,
+            "unlocked" => Self::Unlocked,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for VifLockingMode {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for VifLockingMode {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for VifLockingMode {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for VifLockingMode {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
     }
 }
 

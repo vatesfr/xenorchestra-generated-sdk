@@ -392,9 +392,13 @@ class _$UnbrandXoVifSerializer implements PrimitiveSerializer<UnbrandXoVif> {
 class UnbrandXoVifTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'VIF')
   static const UnbrandXoVifTypeEnum VIF = _$unbrandXoVifTypeEnum_VIF;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UnbrandXoVifTypeEnum unknownDefaultOpenApi =
+      _$unbrandXoVifTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UnbrandXoVifTypeEnum> get serializer =>
-      _$unbrandXoVifTypeEnumSerializer;
+      _OpenUnbrandXoVifTypeEnumSerializer();
 
   const UnbrandXoVifTypeEnum._(String name) : super(name);
 
@@ -402,4 +406,45 @@ class UnbrandXoVifTypeEnum extends EnumClass {
       _$unbrandXoVifTypeEnumValues;
   static UnbrandXoVifTypeEnum valueOf(String name) =>
       _$unbrandXoVifTypeEnumValueOf(name);
+
+  static UnbrandXoVifTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'VIF':
+        return VIF;
+      default:
+        return UnbrandXoVifTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, VIF)) return r'VIF';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UnbrandXoVifTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUnbrandXoVifTypeEnumSerializer
+    implements PrimitiveSerializer<UnbrandXoVifTypeEnum> {
+  @override
+  final Iterable<Type> types = const [UnbrandXoVifTypeEnum];
+  @override
+  final String wireName = 'UnbrandXoVifTypeEnum';
+  @override
+  Object serialize(Serializers serializers, UnbrandXoVifTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UnbrandXoVifTypeEnum deserialize(Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError('Expected a string for UnbrandXoVifTypeEnum');
+    return UnbrandXoVifTypeEnum.fromValue(serialized);
+  }
 }

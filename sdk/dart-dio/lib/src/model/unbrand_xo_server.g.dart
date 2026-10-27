@@ -12,6 +12,9 @@ const UnbrandXoServerStatusEnum _$unbrandXoServerStatusEnum_disconnected =
     const UnbrandXoServerStatusEnum._('disconnected');
 const UnbrandXoServerStatusEnum _$unbrandXoServerStatusEnum_connecting =
     const UnbrandXoServerStatusEnum._('connecting');
+const UnbrandXoServerStatusEnum
+    _$unbrandXoServerStatusEnum_unknownDefaultOpenApi =
+    const UnbrandXoServerStatusEnum._('unknownDefaultOpenApi');
 
 UnbrandXoServerStatusEnum _$unbrandXoServerStatusEnumValueOf(String name) {
   switch (name) {
@@ -21,6 +24,8 @@ UnbrandXoServerStatusEnum _$unbrandXoServerStatusEnumValueOf(String name) {
       return _$unbrandXoServerStatusEnum_disconnected;
     case 'connecting':
       return _$unbrandXoServerStatusEnum_connecting;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandXoServerStatusEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -31,41 +36,8 @@ final BuiltSet<UnbrandXoServerStatusEnum> _$unbrandXoServerStatusEnumValues =
   _$unbrandXoServerStatusEnum_connected,
   _$unbrandXoServerStatusEnum_disconnected,
   _$unbrandXoServerStatusEnum_connecting,
+  _$unbrandXoServerStatusEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<UnbrandXoServerStatusEnum> _$unbrandXoServerStatusEnumSerializer =
-    _$UnbrandXoServerStatusEnumSerializer();
-
-class _$UnbrandXoServerStatusEnumSerializer
-    implements PrimitiveSerializer<UnbrandXoServerStatusEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'connected': 'connected',
-    'disconnected': 'disconnected',
-    'connecting': 'connecting',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'connected': 'connected',
-    'disconnected': 'disconnected',
-    'connecting': 'connecting',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[UnbrandXoServerStatusEnum];
-  @override
-  final String wireName = 'UnbrandXoServerStatusEnum';
-
-  @override
-  Object serialize(Serializers serializers, UnbrandXoServerStatusEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandXoServerStatusEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandXoServerStatusEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$UnbrandXoServer extends UnbrandXoServer {
   @override

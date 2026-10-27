@@ -525,9 +525,13 @@ class PartialUnbrandXoVdiSnapshotTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'VDI-snapshot')
   static const PartialUnbrandXoVdiSnapshotTypeEnum vDISnapshot =
       _$partialUnbrandXoVdiSnapshotTypeEnum_vDISnapshot;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const PartialUnbrandXoVdiSnapshotTypeEnum unknownDefaultOpenApi =
+      _$partialUnbrandXoVdiSnapshotTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<PartialUnbrandXoVdiSnapshotTypeEnum> get serializer =>
-      _$partialUnbrandXoVdiSnapshotTypeEnumSerializer;
+      _OpenPartialUnbrandXoVdiSnapshotTypeEnumSerializer();
 
   const PartialUnbrandXoVdiSnapshotTypeEnum._(String name) : super(name);
 
@@ -535,4 +539,48 @@ class PartialUnbrandXoVdiSnapshotTypeEnum extends EnumClass {
       _$partialUnbrandXoVdiSnapshotTypeEnumValues;
   static PartialUnbrandXoVdiSnapshotTypeEnum valueOf(String name) =>
       _$partialUnbrandXoVdiSnapshotTypeEnumValueOf(name);
+
+  static PartialUnbrandXoVdiSnapshotTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'VDI-snapshot':
+        return vDISnapshot;
+      default:
+        return PartialUnbrandXoVdiSnapshotTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, vDISnapshot)) return r'VDI-snapshot';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is PartialUnbrandXoVdiSnapshotTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenPartialUnbrandXoVdiSnapshotTypeEnumSerializer
+    implements PrimitiveSerializer<PartialUnbrandXoVdiSnapshotTypeEnum> {
+  @override
+  final Iterable<Type> types = const [PartialUnbrandXoVdiSnapshotTypeEnum];
+  @override
+  final String wireName = 'PartialUnbrandXoVdiSnapshotTypeEnum';
+  @override
+  Object serialize(
+          Serializers serializers, PartialUnbrandXoVdiSnapshotTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  PartialUnbrandXoVdiSnapshotTypeEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for PartialUnbrandXoVdiSnapshotTypeEnum');
+    return PartialUnbrandXoVdiSnapshotTypeEnum.fromValue(serialized);
+  }
 }

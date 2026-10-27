@@ -12,6 +12,9 @@ const UpdateUserRequestBodyPermissionEnum
 const UpdateUserRequestBodyPermissionEnum
     _$updateUserRequestBodyPermissionEnum_admin =
     const UpdateUserRequestBodyPermissionEnum._('admin');
+const UpdateUserRequestBodyPermissionEnum
+    _$updateUserRequestBodyPermissionEnum_unknownDefaultOpenApi =
+    const UpdateUserRequestBodyPermissionEnum._('unknownDefaultOpenApi');
 
 UpdateUserRequestBodyPermissionEnum
     _$updateUserRequestBodyPermissionEnumValueOf(String name) {
@@ -20,6 +23,8 @@ UpdateUserRequestBodyPermissionEnum
       return _$updateUserRequestBodyPermissionEnum_none;
     case 'admin':
       return _$updateUserRequestBodyPermissionEnum_admin;
+    case 'unknownDefaultOpenApi':
+      return _$updateUserRequestBodyPermissionEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -30,43 +35,8 @@ final BuiltSet<UpdateUserRequestBodyPermissionEnum>
         UpdateUserRequestBodyPermissionEnum>(const <UpdateUserRequestBodyPermissionEnum>[
   _$updateUserRequestBodyPermissionEnum_none,
   _$updateUserRequestBodyPermissionEnum_admin,
+  _$updateUserRequestBodyPermissionEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<UpdateUserRequestBodyPermissionEnum>
-    _$updateUserRequestBodyPermissionEnumSerializer =
-    _$UpdateUserRequestBodyPermissionEnumSerializer();
-
-class _$UpdateUserRequestBodyPermissionEnumSerializer
-    implements PrimitiveSerializer<UpdateUserRequestBodyPermissionEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'none': 'none',
-    'admin': 'admin',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'none': 'none',
-    'admin': 'admin',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    UpdateUserRequestBodyPermissionEnum
-  ];
-  @override
-  final String wireName = 'UpdateUserRequestBodyPermissionEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers, UpdateUserRequestBodyPermissionEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UpdateUserRequestBodyPermissionEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UpdateUserRequestBodyPermissionEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$UpdateUserRequestBody extends UpdateUserRequestBody {
   @override

@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **pools** | [**JsonObject**](.md) |  | [optional] 
 **proxy** | **String** |  | [optional] 
 **remotes** | [**JsonObject**](.md) |  | 
-**settings** | [**PartialUnbrandXoMetadataBackupJobSettings**](PartialUnbrandXoMetadataBackupJobSettings.md) |  | 
+**settings** | [**PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings**](PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings.md) |  | 
 **type** | **String** |  | 
 **userId** | **String** |  | 
 **xoMetadata** | **bool** |  | [optional] 

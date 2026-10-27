@@ -53,8 +53,6 @@ class PartialUnbrandedXoVif(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['VIF']):
-            raise ValueError("must be one of enum values ('VIF')")
         return value
 
     model_config = ConfigDict(

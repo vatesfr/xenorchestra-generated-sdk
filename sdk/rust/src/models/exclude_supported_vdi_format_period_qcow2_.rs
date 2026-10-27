@@ -13,20 +13,55 @@ use serde::{Deserialize, Serialize};
 
 /// ExcludeSupportedVdiFormatPeriodQcow2 : Exclude from T those types that are assignable to U
 /// Exclude from T those types that are assignable to U
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum ExcludeSupportedVdiFormatPeriodQcow2 {
-    #[serde(rename = "raw")]
     Raw,
-    #[serde(rename = "vhd")]
     Vhd,
+    UnknownValue(String),
 }
-
-impl std::fmt::Display for ExcludeSupportedVdiFormatPeriodQcow2 {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+impl ExcludeSupportedVdiFormatPeriodQcow2 {
+    pub fn as_str(&self) -> &str {
         match self {
-            Self::Raw => write!(f, "raw"),
-            Self::Vhd => write!(f, "vhd"),
+            Self::Raw => "raw",
+            Self::Vhd => "vhd",
+            Self::UnknownValue(value) => value,
         }
+    }
+}
+impl From<String> for ExcludeSupportedVdiFormatPeriodQcow2 {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "raw" => Self::Raw,
+            "vhd" => Self::Vhd,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for ExcludeSupportedVdiFormatPeriodQcow2 {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for ExcludeSupportedVdiFormatPeriodQcow2 {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for ExcludeSupportedVdiFormatPeriodQcow2 {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for ExcludeSupportedVdiFormatPeriodQcow2 {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
     }
 }
 

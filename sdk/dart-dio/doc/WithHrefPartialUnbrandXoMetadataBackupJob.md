@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **pools** | [**JsonObject**](.md) |  | [optional] 
 **proxy** | **String** |  | [optional] 
 **remotes** | [**JsonObject**](.md) |  | [optional] 
-**settings** | [**PartialUnbrandXoMetadataBackupJobSettings**](PartialUnbrandXoMetadataBackupJobSettings.md) |  | [optional] 
+**settings** | [**PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings**](PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings.md) |  | [optional] 
 **type** | **String** |  | [optional] 
 **userId** | **String** |  | [optional] 
 **xoMetadata** | **bool** |  | [optional] 

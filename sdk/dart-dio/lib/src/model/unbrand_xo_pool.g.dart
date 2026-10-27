@@ -8,11 +8,15 @@ part of 'unbrand_xo_pool.dart';
 
 const UnbrandXoPoolTypeEnum _$unbrandXoPoolTypeEnum_pool =
     const UnbrandXoPoolTypeEnum._('pool');
+const UnbrandXoPoolTypeEnum _$unbrandXoPoolTypeEnum_unknownDefaultOpenApi =
+    const UnbrandXoPoolTypeEnum._('unknownDefaultOpenApi');
 
 UnbrandXoPoolTypeEnum _$unbrandXoPoolTypeEnumValueOf(String name) {
   switch (name) {
     case 'pool':
       return _$unbrandXoPoolTypeEnum_pool;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandXoPoolTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -21,36 +25,8 @@ UnbrandXoPoolTypeEnum _$unbrandXoPoolTypeEnumValueOf(String name) {
 final BuiltSet<UnbrandXoPoolTypeEnum> _$unbrandXoPoolTypeEnumValues =
     BuiltSet<UnbrandXoPoolTypeEnum>(const <UnbrandXoPoolTypeEnum>[
   _$unbrandXoPoolTypeEnum_pool,
+  _$unbrandXoPoolTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<UnbrandXoPoolTypeEnum> _$unbrandXoPoolTypeEnumSerializer =
-    _$UnbrandXoPoolTypeEnumSerializer();
-
-class _$UnbrandXoPoolTypeEnumSerializer
-    implements PrimitiveSerializer<UnbrandXoPoolTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'pool': 'pool',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'pool': 'pool',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[UnbrandXoPoolTypeEnum];
-  @override
-  final String wireName = 'UnbrandXoPoolTypeEnum';
-
-  @override
-  Object serialize(Serializers serializers, UnbrandXoPoolTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandXoPoolTypeEnum deserialize(Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandXoPoolTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$UnbrandXoPool extends UnbrandXoPool {
   @override

@@ -12,26 +12,61 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum XapiStatsGranularity {
-    #[serde(rename = "seconds")]
     Seconds,
-    #[serde(rename = "minutes")]
     Minutes,
-    #[serde(rename = "hours")]
     Hours,
-    #[serde(rename = "days")]
     Days,
+    UnknownValue(String),
 }
-
-impl std::fmt::Display for XapiStatsGranularity {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+impl XapiStatsGranularity {
+    pub fn as_str(&self) -> &str {
         match self {
-            Self::Seconds => write!(f, "seconds"),
-            Self::Minutes => write!(f, "minutes"),
-            Self::Hours => write!(f, "hours"),
-            Self::Days => write!(f, "days"),
+            Self::Seconds => "seconds",
+            Self::Minutes => "minutes",
+            Self::Hours => "hours",
+            Self::Days => "days",
+            Self::UnknownValue(value) => value,
         }
+    }
+}
+impl From<String> for XapiStatsGranularity {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "seconds" => Self::Seconds,
+            "minutes" => Self::Minutes,
+            "hours" => Self::Hours,
+            "days" => Self::Days,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for XapiStatsGranularity {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for XapiStatsGranularity {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for XapiStatsGranularity {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for XapiStatsGranularity {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
     }
 }
 

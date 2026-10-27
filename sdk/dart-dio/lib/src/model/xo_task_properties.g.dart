@@ -93,6 +93,9 @@ const XoTaskPropertiesObjectTypeEnum
     const XoTaskPropertiesObjectTypeEnum._('aclPrivilege');
 const XoTaskPropertiesObjectTypeEnum _$xoTaskPropertiesObjectTypeEnum_aclRole =
     const XoTaskPropertiesObjectTypeEnum._('aclRole');
+const XoTaskPropertiesObjectTypeEnum
+    _$xoTaskPropertiesObjectTypeEnum_unknownDefaultOpenApi =
+    const XoTaskPropertiesObjectTypeEnum._('unknownDefaultOpenApi');
 
 XoTaskPropertiesObjectTypeEnum _$xoTaskPropertiesObjectTypeEnumValueOf(
     String name) {
@@ -173,6 +176,8 @@ XoTaskPropertiesObjectTypeEnum _$xoTaskPropertiesObjectTypeEnumValueOf(
       return _$xoTaskPropertiesObjectTypeEnum_aclPrivilege;
     case 'aclRole':
       return _$xoTaskPropertiesObjectTypeEnum_aclRole;
+    case 'unknownDefaultOpenApi':
+      return _$xoTaskPropertiesObjectTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -219,113 +224,8 @@ final BuiltSet<XoTaskPropertiesObjectTypeEnum>
   _$xoTaskPropertiesObjectTypeEnum_user,
   _$xoTaskPropertiesObjectTypeEnum_aclPrivilege,
   _$xoTaskPropertiesObjectTypeEnum_aclRole,
+  _$xoTaskPropertiesObjectTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<XoTaskPropertiesObjectTypeEnum>
-    _$xoTaskPropertiesObjectTypeEnumSerializer =
-    _$XoTaskPropertiesObjectTypeEnumSerializer();
-
-class _$XoTaskPropertiesObjectTypeEnumSerializer
-    implements PrimitiveSerializer<XoTaskPropertiesObjectTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'pool': 'pool',
-    'VBD': 'VBD',
-    'host': 'host',
-    'VIF': 'VIF',
-    'VTPM': 'VTPM',
-    'vMSnapshot': 'VM-snapshot',
-    'SR': 'SR',
-    'VM': 'VM',
-    'vMTemplate': 'VM-template',
-    'message': 'message',
-    'vgpu': 'vgpu',
-    'gpuGroup': 'gpuGroup',
-    'network': 'network',
-    'PBD': 'PBD',
-    'PCI': 'PCI',
-    'PGPU': 'PGPU',
-    'PIF': 'PIF',
-    'VDI': 'VDI',
-    'vDISnapshot': 'VDI-snapshot',
-    'vDIUnmanaged': 'VDI-unmanaged',
-    'vgpuType': 'vgpuType',
-    'vMController': 'VM-controller',
-    'SM': 'SM',
-    'backup': 'backup',
-    'backupArchive': 'backup-archive',
-    'backupJob': 'backup-job',
-    'backupLog': 'backup-log',
-    'backupRepository': 'backup-repository',
-    'group': 'group',
-    'proxy': 'proxy',
-    'restore': 'restore',
-    'restoreLog': 'restore-log',
-    'schedule': 'schedule',
-    'server': 'server',
-    'task': 'task',
-    'user': 'user',
-    'aclPrivilege': 'acl-privilege',
-    'aclRole': 'acl-role',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'pool': 'pool',
-    'VBD': 'VBD',
-    'host': 'host',
-    'VIF': 'VIF',
-    'VTPM': 'VTPM',
-    'VM-snapshot': 'vMSnapshot',
-    'SR': 'SR',
-    'VM': 'VM',
-    'VM-template': 'vMTemplate',
-    'message': 'message',
-    'vgpu': 'vgpu',
-    'gpuGroup': 'gpuGroup',
-    'network': 'network',
-    'PBD': 'PBD',
-    'PCI': 'PCI',
-    'PGPU': 'PGPU',
-    'PIF': 'PIF',
-    'VDI': 'VDI',
-    'VDI-snapshot': 'vDISnapshot',
-    'VDI-unmanaged': 'vDIUnmanaged',
-    'vgpuType': 'vgpuType',
-    'VM-controller': 'vMController',
-    'SM': 'SM',
-    'backup': 'backup',
-    'backup-archive': 'backupArchive',
-    'backup-job': 'backupJob',
-    'backup-log': 'backupLog',
-    'backup-repository': 'backupRepository',
-    'group': 'group',
-    'proxy': 'proxy',
-    'restore': 'restore',
-    'restore-log': 'restoreLog',
-    'schedule': 'schedule',
-    'server': 'server',
-    'task': 'task',
-    'user': 'user',
-    'acl-privilege': 'aclPrivilege',
-    'acl-role': 'aclRole',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[XoTaskPropertiesObjectTypeEnum];
-  @override
-  final String wireName = 'XoTaskPropertiesObjectTypeEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers, XoTaskPropertiesObjectTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  XoTaskPropertiesObjectTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      XoTaskPropertiesObjectTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$XoTaskProperties extends XoTaskProperties {
   @override

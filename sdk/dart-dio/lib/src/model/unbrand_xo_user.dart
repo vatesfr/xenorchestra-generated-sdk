@@ -239,9 +239,13 @@ class UnbrandXoUserPermissionEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'admin')
   static const UnbrandXoUserPermissionEnum admin =
       _$unbrandXoUserPermissionEnum_admin;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UnbrandXoUserPermissionEnum unknownDefaultOpenApi =
+      _$unbrandXoUserPermissionEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UnbrandXoUserPermissionEnum> get serializer =>
-      _$unbrandXoUserPermissionEnumSerializer;
+      _OpenUnbrandXoUserPermissionEnumSerializer();
 
   const UnbrandXoUserPermissionEnum._(String name) : super(name);
 
@@ -249,4 +253,49 @@ class UnbrandXoUserPermissionEnum extends EnumClass {
       _$unbrandXoUserPermissionEnumValues;
   static UnbrandXoUserPermissionEnum valueOf(String name) =>
       _$unbrandXoUserPermissionEnumValueOf(name);
+
+  static UnbrandXoUserPermissionEnum fromValue(String value) {
+    switch (value) {
+      case r'none':
+        return none;
+      case r'admin':
+        return admin;
+      default:
+        return UnbrandXoUserPermissionEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, none)) return r'none';
+    if (identical(this, admin)) return r'admin';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UnbrandXoUserPermissionEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUnbrandXoUserPermissionEnumSerializer
+    implements PrimitiveSerializer<UnbrandXoUserPermissionEnum> {
+  @override
+  final Iterable<Type> types = const [UnbrandXoUserPermissionEnum];
+  @override
+  final String wireName = 'UnbrandXoUserPermissionEnum';
+  @override
+  Object serialize(Serializers serializers, UnbrandXoUserPermissionEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UnbrandXoUserPermissionEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError('Expected a string for UnbrandXoUserPermissionEnum');
+    return UnbrandXoUserPermissionEnum.fromValue(serialized);
+  }
 }

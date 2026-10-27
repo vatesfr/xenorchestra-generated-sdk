@@ -1210,9 +1210,13 @@ class UnbrandXoVmTemplateHighAvailabilityEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'restart')
   static const UnbrandXoVmTemplateHighAvailabilityEnum restart =
       _$unbrandXoVmTemplateHighAvailabilityEnum_restart;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UnbrandXoVmTemplateHighAvailabilityEnum unknownDefaultOpenApi =
+      _$unbrandXoVmTemplateHighAvailabilityEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UnbrandXoVmTemplateHighAvailabilityEnum> get serializer =>
-      _$unbrandXoVmTemplateHighAvailabilityEnumSerializer;
+      _OpenUnbrandXoVmTemplateHighAvailabilityEnumSerializer();
 
   const UnbrandXoVmTemplateHighAvailabilityEnum._(String name) : super(name);
 
@@ -1220,15 +1224,69 @@ class UnbrandXoVmTemplateHighAvailabilityEnum extends EnumClass {
       _$unbrandXoVmTemplateHighAvailabilityEnumValues;
   static UnbrandXoVmTemplateHighAvailabilityEnum valueOf(String name) =>
       _$unbrandXoVmTemplateHighAvailabilityEnumValueOf(name);
+
+  static UnbrandXoVmTemplateHighAvailabilityEnum fromValue(String value) {
+    switch (value) {
+      case r'':
+        return empty;
+      case r'best-effort':
+        return bestEffort;
+      case r'restart':
+        return restart;
+      default:
+        return UnbrandXoVmTemplateHighAvailabilityEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, empty)) return r'';
+    if (identical(this, bestEffort)) return r'best-effort';
+    if (identical(this, restart)) return r'restart';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UnbrandXoVmTemplateHighAvailabilityEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUnbrandXoVmTemplateHighAvailabilityEnumSerializer
+    implements PrimitiveSerializer<UnbrandXoVmTemplateHighAvailabilityEnum> {
+  @override
+  final Iterable<Type> types = const [UnbrandXoVmTemplateHighAvailabilityEnum];
+  @override
+  final String wireName = 'UnbrandXoVmTemplateHighAvailabilityEnum';
+  @override
+  Object serialize(Serializers serializers,
+          UnbrandXoVmTemplateHighAvailabilityEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UnbrandXoVmTemplateHighAvailabilityEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for UnbrandXoVmTemplateHighAvailabilityEnum');
+    return UnbrandXoVmTemplateHighAvailabilityEnum.fromValue(serialized);
+  }
 }
 
 class UnbrandXoVmTemplateTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'VM-template')
   static const UnbrandXoVmTemplateTypeEnum vMTemplate =
       _$unbrandXoVmTemplateTypeEnum_vMTemplate;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UnbrandXoVmTemplateTypeEnum unknownDefaultOpenApi =
+      _$unbrandXoVmTemplateTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UnbrandXoVmTemplateTypeEnum> get serializer =>
-      _$unbrandXoVmTemplateTypeEnumSerializer;
+      _OpenUnbrandXoVmTemplateTypeEnumSerializer();
 
   const UnbrandXoVmTemplateTypeEnum._(String name) : super(name);
 
@@ -1236,4 +1294,46 @@ class UnbrandXoVmTemplateTypeEnum extends EnumClass {
       _$unbrandXoVmTemplateTypeEnumValues;
   static UnbrandXoVmTemplateTypeEnum valueOf(String name) =>
       _$unbrandXoVmTemplateTypeEnumValueOf(name);
+
+  static UnbrandXoVmTemplateTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'VM-template':
+        return vMTemplate;
+      default:
+        return UnbrandXoVmTemplateTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, vMTemplate)) return r'VM-template';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UnbrandXoVmTemplateTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUnbrandXoVmTemplateTypeEnumSerializer
+    implements PrimitiveSerializer<UnbrandXoVmTemplateTypeEnum> {
+  @override
+  final Iterable<Type> types = const [UnbrandXoVmTemplateTypeEnum];
+  @override
+  final String wireName = 'UnbrandXoVmTemplateTypeEnum';
+  @override
+  Object serialize(Serializers serializers, UnbrandXoVmTemplateTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UnbrandXoVmTemplateTypeEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError('Expected a string for UnbrandXoVmTemplateTypeEnum');
+    return UnbrandXoVmTemplateTypeEnum.fromValue(serialized);
+  }
 }

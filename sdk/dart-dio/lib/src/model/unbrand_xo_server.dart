@@ -348,9 +348,13 @@ class UnbrandXoServerStatusEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'connecting')
   static const UnbrandXoServerStatusEnum connecting =
       _$unbrandXoServerStatusEnum_connecting;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UnbrandXoServerStatusEnum unknownDefaultOpenApi =
+      _$unbrandXoServerStatusEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UnbrandXoServerStatusEnum> get serializer =>
-      _$unbrandXoServerStatusEnumSerializer;
+      _OpenUnbrandXoServerStatusEnumSerializer();
 
   const UnbrandXoServerStatusEnum._(String name) : super(name);
 
@@ -358,4 +362,52 @@ class UnbrandXoServerStatusEnum extends EnumClass {
       _$unbrandXoServerStatusEnumValues;
   static UnbrandXoServerStatusEnum valueOf(String name) =>
       _$unbrandXoServerStatusEnumValueOf(name);
+
+  static UnbrandXoServerStatusEnum fromValue(String value) {
+    switch (value) {
+      case r'connected':
+        return connected;
+      case r'disconnected':
+        return disconnected;
+      case r'connecting':
+        return connecting;
+      default:
+        return UnbrandXoServerStatusEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, connected)) return r'connected';
+    if (identical(this, disconnected)) return r'disconnected';
+    if (identical(this, connecting)) return r'connecting';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UnbrandXoServerStatusEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUnbrandXoServerStatusEnumSerializer
+    implements PrimitiveSerializer<UnbrandXoServerStatusEnum> {
+  @override
+  final Iterable<Type> types = const [UnbrandXoServerStatusEnum];
+  @override
+  final String wireName = 'UnbrandXoServerStatusEnum';
+  @override
+  Object serialize(Serializers serializers, UnbrandXoServerStatusEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UnbrandXoServerStatusEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError('Expected a string for UnbrandXoServerStatusEnum');
+    return UnbrandXoServerStatusEnum.fromValue(serialized);
+  }
 }

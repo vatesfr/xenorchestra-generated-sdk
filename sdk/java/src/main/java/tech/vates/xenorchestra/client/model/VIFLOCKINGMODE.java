@@ -28,22 +28,19 @@ import com.fasterxml.jackson.annotation.JsonValue;
 /**
  * Gets or Sets VIF_LOCKING_MODE
  */
-public enum VIFLOCKINGMODE {
-  
-  DISABLED("disabled"),
-  
-  LOCKED("locked"),
-  
-  NETWORK_DEFAULT("network_default"),
-  
-  UNLOCKED("unlocked"),
-  
-  UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
+public final class VIFLOCKINGMODE {
+    public static final VIFLOCKINGMODE DISABLED = new VIFLOCKINGMODE("disabled");
+    public static final VIFLOCKINGMODE LOCKED = new VIFLOCKINGMODE("locked");
+    public static final VIFLOCKINGMODE NETWORK_DEFAULT = new VIFLOCKINGMODE("network_default");
+    public static final VIFLOCKINGMODE UNLOCKED = new VIFLOCKINGMODE("unlocked");
+    @JsonCreator public static VIFLOCKINGMODE fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static VIFLOCKINGMODE[] values() { return new VIFLOCKINGMODE[] {DISABLED, LOCKED, NETWORK_DEFAULT, UNLOCKED}; }
+    @Override public boolean equals(Object other) { return other instanceof VIFLOCKINGMODE && value.equals(((VIFLOCKINGMODE) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-  private String value;
-
-  VIFLOCKINGMODE(String value) {
-    this.value = value;
+  private VIFLOCKINGMODE(String value) {
+    this.value = java.util.Objects.requireNonNull(value);
   }
 
   @JsonValue
@@ -56,14 +53,14 @@ public enum VIFLOCKINGMODE {
     return String.valueOf(value);
   }
 
-  @JsonCreator
+  
   public static VIFLOCKINGMODE fromValue(String value) {
     for (VIFLOCKINGMODE b : VIFLOCKINGMODE.values()) {
       if (b.value.equals(value)) {
         return b;
       }
     }
-    return UNKNOWN_DEFAULT_OPEN_API;
+    return new VIFLOCKINGMODE(value);
   }
 
   /**
@@ -81,4 +78,5 @@ public enum VIFLOCKINGMODE {
   }
 
 }
+
 

@@ -12,6 +12,9 @@ const PartialUnbrandXoUserPermissionEnum
 const PartialUnbrandXoUserPermissionEnum
     _$partialUnbrandXoUserPermissionEnum_admin =
     const PartialUnbrandXoUserPermissionEnum._('admin');
+const PartialUnbrandXoUserPermissionEnum
+    _$partialUnbrandXoUserPermissionEnum_unknownDefaultOpenApi =
+    const PartialUnbrandXoUserPermissionEnum._('unknownDefaultOpenApi');
 
 PartialUnbrandXoUserPermissionEnum _$partialUnbrandXoUserPermissionEnumValueOf(
     String name) {
@@ -20,6 +23,8 @@ PartialUnbrandXoUserPermissionEnum _$partialUnbrandXoUserPermissionEnumValueOf(
       return _$partialUnbrandXoUserPermissionEnum_none;
     case 'admin':
       return _$partialUnbrandXoUserPermissionEnum_admin;
+    case 'unknownDefaultOpenApi':
+      return _$partialUnbrandXoUserPermissionEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -30,41 +35,8 @@ final BuiltSet<PartialUnbrandXoUserPermissionEnum>
         PartialUnbrandXoUserPermissionEnum>(const <PartialUnbrandXoUserPermissionEnum>[
   _$partialUnbrandXoUserPermissionEnum_none,
   _$partialUnbrandXoUserPermissionEnum_admin,
+  _$partialUnbrandXoUserPermissionEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<PartialUnbrandXoUserPermissionEnum>
-    _$partialUnbrandXoUserPermissionEnumSerializer =
-    _$PartialUnbrandXoUserPermissionEnumSerializer();
-
-class _$PartialUnbrandXoUserPermissionEnumSerializer
-    implements PrimitiveSerializer<PartialUnbrandXoUserPermissionEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'none': 'none',
-    'admin': 'admin',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'none': 'none',
-    'admin': 'admin',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[PartialUnbrandXoUserPermissionEnum];
-  @override
-  final String wireName = 'PartialUnbrandXoUserPermissionEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers, PartialUnbrandXoUserPermissionEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  PartialUnbrandXoUserPermissionEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      PartialUnbrandXoUserPermissionEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$PartialUnbrandXoUser extends PartialUnbrandXoUser {
   @override

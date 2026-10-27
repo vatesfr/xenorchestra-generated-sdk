@@ -56,8 +56,6 @@ class UnbrandXoPool(BaseModel):
     @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['pool']):
-            raise ValueError("must be one of enum values ('pool')")
         return value
 
     model_config = ConfigDict(

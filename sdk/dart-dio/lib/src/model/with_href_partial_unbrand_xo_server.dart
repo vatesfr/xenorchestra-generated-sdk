@@ -385,9 +385,13 @@ class WithHrefPartialUnbrandXoServerStatusEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'connecting')
   static const WithHrefPartialUnbrandXoServerStatusEnum connecting =
       _$withHrefPartialUnbrandXoServerStatusEnum_connecting;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const WithHrefPartialUnbrandXoServerStatusEnum unknownDefaultOpenApi =
+      _$withHrefPartialUnbrandXoServerStatusEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<WithHrefPartialUnbrandXoServerStatusEnum> get serializer =>
-      _$withHrefPartialUnbrandXoServerStatusEnumSerializer;
+      _OpenWithHrefPartialUnbrandXoServerStatusEnumSerializer();
 
   const WithHrefPartialUnbrandXoServerStatusEnum._(String name) : super(name);
 
@@ -395,4 +399,54 @@ class WithHrefPartialUnbrandXoServerStatusEnum extends EnumClass {
       _$withHrefPartialUnbrandXoServerStatusEnumValues;
   static WithHrefPartialUnbrandXoServerStatusEnum valueOf(String name) =>
       _$withHrefPartialUnbrandXoServerStatusEnumValueOf(name);
+
+  static WithHrefPartialUnbrandXoServerStatusEnum fromValue(String value) {
+    switch (value) {
+      case r'connected':
+        return connected;
+      case r'disconnected':
+        return disconnected;
+      case r'connecting':
+        return connecting;
+      default:
+        return WithHrefPartialUnbrandXoServerStatusEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, connected)) return r'connected';
+    if (identical(this, disconnected)) return r'disconnected';
+    if (identical(this, connecting)) return r'connecting';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is WithHrefPartialUnbrandXoServerStatusEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenWithHrefPartialUnbrandXoServerStatusEnumSerializer
+    implements PrimitiveSerializer<WithHrefPartialUnbrandXoServerStatusEnum> {
+  @override
+  final Iterable<Type> types = const [WithHrefPartialUnbrandXoServerStatusEnum];
+  @override
+  final String wireName = 'WithHrefPartialUnbrandXoServerStatusEnum';
+  @override
+  Object serialize(Serializers serializers,
+          WithHrefPartialUnbrandXoServerStatusEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  WithHrefPartialUnbrandXoServerStatusEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for WithHrefPartialUnbrandXoServerStatusEnum');
+    return WithHrefPartialUnbrandXoServerStatusEnum.fromValue(serialized);
+  }
 }

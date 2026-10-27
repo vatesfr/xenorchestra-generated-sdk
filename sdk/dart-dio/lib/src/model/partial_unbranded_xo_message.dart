@@ -286,9 +286,13 @@ class PartialUnbrandedXoMessageTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'message')
   static const PartialUnbrandedXoMessageTypeEnum message =
       _$partialUnbrandedXoMessageTypeEnum_message;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const PartialUnbrandedXoMessageTypeEnum unknownDefaultOpenApi =
+      _$partialUnbrandedXoMessageTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<PartialUnbrandedXoMessageTypeEnum> get serializer =>
-      _$partialUnbrandedXoMessageTypeEnumSerializer;
+      _OpenPartialUnbrandedXoMessageTypeEnumSerializer();
 
   const PartialUnbrandedXoMessageTypeEnum._(String name) : super(name);
 
@@ -296,4 +300,48 @@ class PartialUnbrandedXoMessageTypeEnum extends EnumClass {
       _$partialUnbrandedXoMessageTypeEnumValues;
   static PartialUnbrandedXoMessageTypeEnum valueOf(String name) =>
       _$partialUnbrandedXoMessageTypeEnumValueOf(name);
+
+  static PartialUnbrandedXoMessageTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'message':
+        return message;
+      default:
+        return PartialUnbrandedXoMessageTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, message)) return r'message';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is PartialUnbrandedXoMessageTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenPartialUnbrandedXoMessageTypeEnumSerializer
+    implements PrimitiveSerializer<PartialUnbrandedXoMessageTypeEnum> {
+  @override
+  final Iterable<Type> types = const [PartialUnbrandedXoMessageTypeEnum];
+  @override
+  final String wireName = 'PartialUnbrandedXoMessageTypeEnum';
+  @override
+  Object serialize(
+          Serializers serializers, PartialUnbrandedXoMessageTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  PartialUnbrandedXoMessageTypeEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for PartialUnbrandedXoMessageTypeEnum');
+    return PartialUnbrandedXoMessageTypeEnum.fromValue(serialized);
+  }
 }

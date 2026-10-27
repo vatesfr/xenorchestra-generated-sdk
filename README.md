@@ -93,6 +93,15 @@ Patch functions validate the structures and occurrence counts they expect. An
 unexpected Swagger or generated output therefore makes generation fail and
 requires an explicit review of the affected transformation.
 
+## Forward-compatible values
+
+Normal generation preserves unknown string enum values and unknown variants of
+unambiguous tagged object unions across the four SDKs. Known values retain named
+constants; unknown object variants retain their raw JSON.
+
+This changes public SDK APIs, especially Java enums and Rust unions. Unknown
+values require explicit handling by callers.
+
 ## Hexagonal architecture
 
 The `internal/app/` directory is the application core. It contains only

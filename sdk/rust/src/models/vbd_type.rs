@@ -12,23 +12,58 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum VbdType {
-    #[serde(rename = "CD")]
     Cd,
-    #[serde(rename = "Disk")]
     Disk,
-    #[serde(rename = "Floppy")]
     Floppy,
+    UnknownValue(String),
 }
-
-impl std::fmt::Display for VbdType {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+impl VbdType {
+    pub fn as_str(&self) -> &str {
         match self {
-            Self::Cd => write!(f, "CD"),
-            Self::Disk => write!(f, "Disk"),
-            Self::Floppy => write!(f, "Floppy"),
+            Self::Cd => "CD",
+            Self::Disk => "Disk",
+            Self::Floppy => "Floppy",
+            Self::UnknownValue(value) => value,
         }
+    }
+}
+impl From<String> for VbdType {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "CD" => Self::Cd,
+            "Disk" => Self::Disk,
+            "Floppy" => Self::Floppy,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for VbdType {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for VbdType {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for VbdType {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for VbdType {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
     }
 }
 

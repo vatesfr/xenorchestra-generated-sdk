@@ -12,23 +12,58 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum HostPowerState {
-    #[serde(rename = "Halted")]
     Halted,
-    #[serde(rename = "Running")]
     Running,
-    #[serde(rename = "Unknown")]
     Unknown,
+    UnknownValue(String),
 }
-
-impl std::fmt::Display for HostPowerState {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+impl HostPowerState {
+    pub fn as_str(&self) -> &str {
         match self {
-            Self::Halted => write!(f, "Halted"),
-            Self::Running => write!(f, "Running"),
-            Self::Unknown => write!(f, "Unknown"),
+            Self::Halted => "Halted",
+            Self::Running => "Running",
+            Self::Unknown => "Unknown",
+            Self::UnknownValue(value) => value,
         }
+    }
+}
+impl From<String> for HostPowerState {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "Halted" => Self::Halted,
+            "Running" => Self::Running,
+            "Unknown" => Self::Unknown,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for HostPowerState {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for HostPowerState {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for HostPowerState {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for HostPowerState {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
     }
 }
 

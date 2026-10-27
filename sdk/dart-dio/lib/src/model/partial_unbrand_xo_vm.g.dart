@@ -15,6 +15,9 @@ const PartialUnbrandXoVmHighAvailabilityEnum
 const PartialUnbrandXoVmHighAvailabilityEnum
     _$partialUnbrandXoVmHighAvailabilityEnum_restart =
     const PartialUnbrandXoVmHighAvailabilityEnum._('restart');
+const PartialUnbrandXoVmHighAvailabilityEnum
+    _$partialUnbrandXoVmHighAvailabilityEnum_unknownDefaultOpenApi =
+    const PartialUnbrandXoVmHighAvailabilityEnum._('unknownDefaultOpenApi');
 
 PartialUnbrandXoVmHighAvailabilityEnum
     _$partialUnbrandXoVmHighAvailabilityEnumValueOf(String name) {
@@ -25,6 +28,8 @@ PartialUnbrandXoVmHighAvailabilityEnum
       return _$partialUnbrandXoVmHighAvailabilityEnum_bestEffort;
     case 'restart':
       return _$partialUnbrandXoVmHighAvailabilityEnum_restart;
+    case 'unknownDefaultOpenApi':
+      return _$partialUnbrandXoVmHighAvailabilityEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -36,15 +41,21 @@ final BuiltSet<PartialUnbrandXoVmHighAvailabilityEnum>
   _$partialUnbrandXoVmHighAvailabilityEnum_empty,
   _$partialUnbrandXoVmHighAvailabilityEnum_bestEffort,
   _$partialUnbrandXoVmHighAvailabilityEnum_restart,
+  _$partialUnbrandXoVmHighAvailabilityEnum_unknownDefaultOpenApi,
 ]);
 
 const PartialUnbrandXoVmTypeEnum _$partialUnbrandXoVmTypeEnum_VM =
     const PartialUnbrandXoVmTypeEnum._('VM');
+const PartialUnbrandXoVmTypeEnum
+    _$partialUnbrandXoVmTypeEnum_unknownDefaultOpenApi =
+    const PartialUnbrandXoVmTypeEnum._('unknownDefaultOpenApi');
 
 PartialUnbrandXoVmTypeEnum _$partialUnbrandXoVmTypeEnumValueOf(String name) {
   switch (name) {
     case 'VM':
       return _$partialUnbrandXoVmTypeEnum_VM;
+    case 'unknownDefaultOpenApi':
+      return _$partialUnbrandXoVmTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -53,74 +64,8 @@ PartialUnbrandXoVmTypeEnum _$partialUnbrandXoVmTypeEnumValueOf(String name) {
 final BuiltSet<PartialUnbrandXoVmTypeEnum> _$partialUnbrandXoVmTypeEnumValues =
     BuiltSet<PartialUnbrandXoVmTypeEnum>(const <PartialUnbrandXoVmTypeEnum>[
   _$partialUnbrandXoVmTypeEnum_VM,
+  _$partialUnbrandXoVmTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<PartialUnbrandXoVmHighAvailabilityEnum>
-    _$partialUnbrandXoVmHighAvailabilityEnumSerializer =
-    _$PartialUnbrandXoVmHighAvailabilityEnumSerializer();
-Serializer<PartialUnbrandXoVmTypeEnum> _$partialUnbrandXoVmTypeEnumSerializer =
-    _$PartialUnbrandXoVmTypeEnumSerializer();
-
-class _$PartialUnbrandXoVmHighAvailabilityEnumSerializer
-    implements PrimitiveSerializer<PartialUnbrandXoVmHighAvailabilityEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'empty': '',
-    'bestEffort': 'best-effort',
-    'restart': 'restart',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    '': 'empty',
-    'best-effort': 'bestEffort',
-    'restart': 'restart',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    PartialUnbrandXoVmHighAvailabilityEnum
-  ];
-  @override
-  final String wireName = 'PartialUnbrandXoVmHighAvailabilityEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          PartialUnbrandXoVmHighAvailabilityEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  PartialUnbrandXoVmHighAvailabilityEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      PartialUnbrandXoVmHighAvailabilityEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
-
-class _$PartialUnbrandXoVmTypeEnumSerializer
-    implements PrimitiveSerializer<PartialUnbrandXoVmTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'VM': 'VM',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'VM': 'VM',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[PartialUnbrandXoVmTypeEnum];
-  @override
-  final String wireName = 'PartialUnbrandXoVmTypeEnum';
-
-  @override
-  Object serialize(Serializers serializers, PartialUnbrandXoVmTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  PartialUnbrandXoVmTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      PartialUnbrandXoVmTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$PartialUnbrandXoVm extends PartialUnbrandXoVm {
   @override

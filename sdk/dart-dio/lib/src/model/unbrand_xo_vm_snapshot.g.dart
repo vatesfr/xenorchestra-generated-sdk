@@ -15,6 +15,9 @@ const UnbrandXoVmSnapshotHighAvailabilityEnum
 const UnbrandXoVmSnapshotHighAvailabilityEnum
     _$unbrandXoVmSnapshotHighAvailabilityEnum_restart =
     const UnbrandXoVmSnapshotHighAvailabilityEnum._('restart');
+const UnbrandXoVmSnapshotHighAvailabilityEnum
+    _$unbrandXoVmSnapshotHighAvailabilityEnum_unknownDefaultOpenApi =
+    const UnbrandXoVmSnapshotHighAvailabilityEnum._('unknownDefaultOpenApi');
 
 UnbrandXoVmSnapshotHighAvailabilityEnum
     _$unbrandXoVmSnapshotHighAvailabilityEnumValueOf(String name) {
@@ -25,6 +28,8 @@ UnbrandXoVmSnapshotHighAvailabilityEnum
       return _$unbrandXoVmSnapshotHighAvailabilityEnum_bestEffort;
     case 'restart':
       return _$unbrandXoVmSnapshotHighAvailabilityEnum_restart;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandXoVmSnapshotHighAvailabilityEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -36,15 +41,21 @@ final BuiltSet<UnbrandXoVmSnapshotHighAvailabilityEnum>
   _$unbrandXoVmSnapshotHighAvailabilityEnum_empty,
   _$unbrandXoVmSnapshotHighAvailabilityEnum_bestEffort,
   _$unbrandXoVmSnapshotHighAvailabilityEnum_restart,
+  _$unbrandXoVmSnapshotHighAvailabilityEnum_unknownDefaultOpenApi,
 ]);
 
 const UnbrandXoVmSnapshotTypeEnum _$unbrandXoVmSnapshotTypeEnum_vMSnapshot =
     const UnbrandXoVmSnapshotTypeEnum._('vMSnapshot');
+const UnbrandXoVmSnapshotTypeEnum
+    _$unbrandXoVmSnapshotTypeEnum_unknownDefaultOpenApi =
+    const UnbrandXoVmSnapshotTypeEnum._('unknownDefaultOpenApi');
 
 UnbrandXoVmSnapshotTypeEnum _$unbrandXoVmSnapshotTypeEnumValueOf(String name) {
   switch (name) {
     case 'vMSnapshot':
       return _$unbrandXoVmSnapshotTypeEnum_vMSnapshot;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandXoVmSnapshotTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -54,75 +65,8 @@ final BuiltSet<UnbrandXoVmSnapshotTypeEnum>
     _$unbrandXoVmSnapshotTypeEnumValues =
     BuiltSet<UnbrandXoVmSnapshotTypeEnum>(const <UnbrandXoVmSnapshotTypeEnum>[
   _$unbrandXoVmSnapshotTypeEnum_vMSnapshot,
+  _$unbrandXoVmSnapshotTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<UnbrandXoVmSnapshotHighAvailabilityEnum>
-    _$unbrandXoVmSnapshotHighAvailabilityEnumSerializer =
-    _$UnbrandXoVmSnapshotHighAvailabilityEnumSerializer();
-Serializer<UnbrandXoVmSnapshotTypeEnum>
-    _$unbrandXoVmSnapshotTypeEnumSerializer =
-    _$UnbrandXoVmSnapshotTypeEnumSerializer();
-
-class _$UnbrandXoVmSnapshotHighAvailabilityEnumSerializer
-    implements PrimitiveSerializer<UnbrandXoVmSnapshotHighAvailabilityEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'empty': '',
-    'bestEffort': 'best-effort',
-    'restart': 'restart',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    '': 'empty',
-    'best-effort': 'bestEffort',
-    'restart': 'restart',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    UnbrandXoVmSnapshotHighAvailabilityEnum
-  ];
-  @override
-  final String wireName = 'UnbrandXoVmSnapshotHighAvailabilityEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          UnbrandXoVmSnapshotHighAvailabilityEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandXoVmSnapshotHighAvailabilityEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandXoVmSnapshotHighAvailabilityEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
-
-class _$UnbrandXoVmSnapshotTypeEnumSerializer
-    implements PrimitiveSerializer<UnbrandXoVmSnapshotTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'vMSnapshot': 'VM-snapshot',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'VM-snapshot': 'vMSnapshot',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[UnbrandXoVmSnapshotTypeEnum];
-  @override
-  final String wireName = 'UnbrandXoVmSnapshotTypeEnum';
-
-  @override
-  Object serialize(Serializers serializers, UnbrandXoVmSnapshotTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandXoVmSnapshotTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandXoVmSnapshotTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$UnbrandXoVmSnapshot extends UnbrandXoVmSnapshot {
   @override

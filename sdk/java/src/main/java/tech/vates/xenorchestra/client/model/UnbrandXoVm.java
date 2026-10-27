@@ -223,19 +223,18 @@ public class UnbrandXoVm {
   /**
    * Gets or Sets highAvailability
    */
-  public enum HighAvailabilityEnum {
-    EMPTY(String.valueOf("")),
-    
-    BEST_EFFORT(String.valueOf("best-effort")),
-    
-    RESTART(String.valueOf("restart")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+  public static final class HighAvailabilityEnum {
+    public static final HighAvailabilityEnum EMPTY = new HighAvailabilityEnum("");
+    public static final HighAvailabilityEnum BEST_EFFORT = new HighAvailabilityEnum("best-effort");
+    public static final HighAvailabilityEnum RESTART = new HighAvailabilityEnum("restart");
+    @JsonCreator public static HighAvailabilityEnum fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static HighAvailabilityEnum[] values() { return new HighAvailabilityEnum[] {EMPTY, BEST_EFFORT, RESTART}; }
+    @Override public boolean equals(Object other) { return other instanceof HighAvailabilityEnum && value.equals(((HighAvailabilityEnum) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-    private String value;
-
-    HighAvailabilityEnum(String value) {
-      this.value = value;
+    private HighAvailabilityEnum(String value) {
+      this.value = java.util.Objects.requireNonNull(value);
     }
 
     @JsonValue
@@ -248,16 +247,17 @@ public class UnbrandXoVm {
       return String.valueOf(value);
     }
 
-    @JsonCreator
+    
     public static HighAvailabilityEnum fromValue(String value) {
       for (HighAvailabilityEnum b : HighAvailabilityEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      return new HighAvailabilityEnum(value);
     }
   }
+
 
   public static final String JSON_PROPERTY_HIGH_AVAILABILITY = "high_availability";
   @javax.annotation.Nonnull
@@ -368,15 +368,16 @@ public class UnbrandXoVm {
   /**
    * Gets or Sets type
    */
-  public enum TypeEnum {
-    VM(String.valueOf("VM")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+  public static final class TypeEnum {
+    public static final TypeEnum VM = new TypeEnum("VM");
+    @JsonCreator public static TypeEnum fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static TypeEnum[] values() { return new TypeEnum[] {VM}; }
+    @Override public boolean equals(Object other) { return other instanceof TypeEnum && value.equals(((TypeEnum) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-    private String value;
-
-    TypeEnum(String value) {
-      this.value = value;
+    private TypeEnum(String value) {
+      this.value = java.util.Objects.requireNonNull(value);
     }
 
     @JsonValue
@@ -389,16 +390,17 @@ public class UnbrandXoVm {
       return String.valueOf(value);
     }
 
-    @JsonCreator
+    
     public static TypeEnum fromValue(String value) {
       for (TypeEnum b : TypeEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      return new TypeEnum(value);
     }
   }
+
 
   public static final String JSON_PROPERTY_TYPE = "type";
   @javax.annotation.Nonnull

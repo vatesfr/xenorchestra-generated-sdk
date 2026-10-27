@@ -8,11 +8,16 @@ part of 'unbrand_xo_message.dart';
 
 const UnbrandXoMessageTypeEnum _$unbrandXoMessageTypeEnum_message =
     const UnbrandXoMessageTypeEnum._('message');
+const UnbrandXoMessageTypeEnum
+    _$unbrandXoMessageTypeEnum_unknownDefaultOpenApi =
+    const UnbrandXoMessageTypeEnum._('unknownDefaultOpenApi');
 
 UnbrandXoMessageTypeEnum _$unbrandXoMessageTypeEnumValueOf(String name) {
   switch (name) {
     case 'message':
       return _$unbrandXoMessageTypeEnum_message;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandXoMessageTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -21,37 +26,8 @@ UnbrandXoMessageTypeEnum _$unbrandXoMessageTypeEnumValueOf(String name) {
 final BuiltSet<UnbrandXoMessageTypeEnum> _$unbrandXoMessageTypeEnumValues =
     BuiltSet<UnbrandXoMessageTypeEnum>(const <UnbrandXoMessageTypeEnum>[
   _$unbrandXoMessageTypeEnum_message,
+  _$unbrandXoMessageTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<UnbrandXoMessageTypeEnum> _$unbrandXoMessageTypeEnumSerializer =
-    _$UnbrandXoMessageTypeEnumSerializer();
-
-class _$UnbrandXoMessageTypeEnumSerializer
-    implements PrimitiveSerializer<UnbrandXoMessageTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'message': 'message',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'message': 'message',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[UnbrandXoMessageTypeEnum];
-  @override
-  final String wireName = 'UnbrandXoMessageTypeEnum';
-
-  @override
-  Object serialize(Serializers serializers, UnbrandXoMessageTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandXoMessageTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandXoMessageTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$UnbrandXoMessage extends UnbrandXoMessage {
   @override

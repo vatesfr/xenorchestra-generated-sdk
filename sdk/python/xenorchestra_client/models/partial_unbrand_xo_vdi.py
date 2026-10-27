@@ -57,8 +57,6 @@ class PartialUnbrandXoVdi(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['VDI']):
-            raise ValueError("must be one of enum values ('VDI')")
         return value
 
     model_config = ConfigDict(

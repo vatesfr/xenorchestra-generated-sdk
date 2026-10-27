@@ -28,64 +28,40 @@ import com.fasterxml.jackson.annotation.JsonValue;
 /**
  * Gets or Sets XoListenerType
  */
-public enum XoListenerType {
-  
-  POOL("pool"),
-  
-  VBD("VBD"),
-  
-  HOST("host"),
-  
-  VIF("VIF"),
-  
-  VTPM("VTPM"),
-  
-  VM_SNAPSHOT("VM-snapshot"),
-  
-  SR("SR"),
-  
-  VM("VM"),
-  
-  VM_TEMPLATE("VM-template"),
-  
-  MESSAGE("message"),
-  
-  VGPU("vgpu"),
-  
-  GPU_GROUP("gpuGroup"),
-  
-  NETWORK("network"),
-  
-  PBD("PBD"),
-  
-  PCI("PCI"),
-  
-  PGPU("PGPU"),
-  
-  PIF("PIF"),
-  
-  VDI("VDI"),
-  
-  VDI_SNAPSHOT("VDI-snapshot"),
-  
-  VDI_UNMANAGED("VDI-unmanaged"),
-  
-  VGPU_TYPE("vgpuType"),
-  
-  VM_CONTROLLER("VM-controller"),
-  
-  SM("SM"),
-  
-  ALARM("alarm"),
-  
-  TASK("task"),
-  
-  UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
+public final class XoListenerType {
+    public static final XoListenerType POOL = new XoListenerType("pool");
+    public static final XoListenerType VBD = new XoListenerType("VBD");
+    public static final XoListenerType HOST = new XoListenerType("host");
+    public static final XoListenerType VIF = new XoListenerType("VIF");
+    public static final XoListenerType VTPM = new XoListenerType("VTPM");
+    public static final XoListenerType VM_SNAPSHOT = new XoListenerType("VM-snapshot");
+    public static final XoListenerType SR = new XoListenerType("SR");
+    public static final XoListenerType VM = new XoListenerType("VM");
+    public static final XoListenerType VM_TEMPLATE = new XoListenerType("VM-template");
+    public static final XoListenerType MESSAGE = new XoListenerType("message");
+    public static final XoListenerType VGPU = new XoListenerType("vgpu");
+    public static final XoListenerType GPU_GROUP = new XoListenerType("gpuGroup");
+    public static final XoListenerType NETWORK = new XoListenerType("network");
+    public static final XoListenerType PBD = new XoListenerType("PBD");
+    public static final XoListenerType PCI = new XoListenerType("PCI");
+    public static final XoListenerType PGPU = new XoListenerType("PGPU");
+    public static final XoListenerType PIF = new XoListenerType("PIF");
+    public static final XoListenerType VDI = new XoListenerType("VDI");
+    public static final XoListenerType VDI_SNAPSHOT = new XoListenerType("VDI-snapshot");
+    public static final XoListenerType VDI_UNMANAGED = new XoListenerType("VDI-unmanaged");
+    public static final XoListenerType VGPU_TYPE = new XoListenerType("vgpuType");
+    public static final XoListenerType VM_CONTROLLER = new XoListenerType("VM-controller");
+    public static final XoListenerType SM = new XoListenerType("SM");
+    public static final XoListenerType ALARM = new XoListenerType("alarm");
+    public static final XoListenerType TASK = new XoListenerType("task");
+    @JsonCreator public static XoListenerType fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static XoListenerType[] values() { return new XoListenerType[] {POOL, VBD, HOST, VIF, VTPM, VM_SNAPSHOT, SR, VM, VM_TEMPLATE, MESSAGE, VGPU, GPU_GROUP, NETWORK, PBD, PCI, PGPU, PIF, VDI, VDI_SNAPSHOT, VDI_UNMANAGED, VGPU_TYPE, VM_CONTROLLER, SM, ALARM, TASK}; }
+    @Override public boolean equals(Object other) { return other instanceof XoListenerType && value.equals(((XoListenerType) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-  private String value;
-
-  XoListenerType(String value) {
-    this.value = value;
+  private XoListenerType(String value) {
+    this.value = java.util.Objects.requireNonNull(value);
   }
 
   @JsonValue
@@ -98,14 +74,14 @@ public enum XoListenerType {
     return String.valueOf(value);
   }
 
-  @JsonCreator
+  
   public static XoListenerType fromValue(String value) {
     for (XoListenerType b : XoListenerType.values()) {
       if (b.value.equals(value)) {
         return b;
       }
     }
-    return UNKNOWN_DEFAULT_OPEN_API;
+    return new XoListenerType(value);
   }
 
   /**
@@ -123,4 +99,5 @@ public enum XoListenerType {
   }
 
 }
+
 

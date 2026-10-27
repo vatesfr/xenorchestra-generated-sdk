@@ -9,12 +9,17 @@ part of 'with_href_partial_unbranded_xo_vif.dart';
 const WithHrefPartialUnbrandedXoVifTypeEnum
     _$withHrefPartialUnbrandedXoVifTypeEnum_VIF =
     const WithHrefPartialUnbrandedXoVifTypeEnum._('VIF');
+const WithHrefPartialUnbrandedXoVifTypeEnum
+    _$withHrefPartialUnbrandedXoVifTypeEnum_unknownDefaultOpenApi =
+    const WithHrefPartialUnbrandedXoVifTypeEnum._('unknownDefaultOpenApi');
 
 WithHrefPartialUnbrandedXoVifTypeEnum
     _$withHrefPartialUnbrandedXoVifTypeEnumValueOf(String name) {
   switch (name) {
     case 'VIF':
       return _$withHrefPartialUnbrandedXoVifTypeEnum_VIF;
+    case 'unknownDefaultOpenApi':
+      return _$withHrefPartialUnbrandedXoVifTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -24,41 +29,8 @@ final BuiltSet<WithHrefPartialUnbrandedXoVifTypeEnum>
     _$withHrefPartialUnbrandedXoVifTypeEnumValues = BuiltSet<
         WithHrefPartialUnbrandedXoVifTypeEnum>(const <WithHrefPartialUnbrandedXoVifTypeEnum>[
   _$withHrefPartialUnbrandedXoVifTypeEnum_VIF,
+  _$withHrefPartialUnbrandedXoVifTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<WithHrefPartialUnbrandedXoVifTypeEnum>
-    _$withHrefPartialUnbrandedXoVifTypeEnumSerializer =
-    _$WithHrefPartialUnbrandedXoVifTypeEnumSerializer();
-
-class _$WithHrefPartialUnbrandedXoVifTypeEnumSerializer
-    implements PrimitiveSerializer<WithHrefPartialUnbrandedXoVifTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'VIF': 'VIF',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'VIF': 'VIF',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    WithHrefPartialUnbrandedXoVifTypeEnum
-  ];
-  @override
-  final String wireName = 'WithHrefPartialUnbrandedXoVifTypeEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers, WithHrefPartialUnbrandedXoVifTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  WithHrefPartialUnbrandedXoVifTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      WithHrefPartialUnbrandedXoVifTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$WithHrefPartialUnbrandedXoVif extends WithHrefPartialUnbrandedXoVif {
   @override

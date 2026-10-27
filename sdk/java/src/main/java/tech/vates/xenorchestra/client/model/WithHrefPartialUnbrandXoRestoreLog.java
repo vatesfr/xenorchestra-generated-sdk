@@ -54,15 +54,16 @@ public class WithHrefPartialUnbrandXoRestoreLog {
   /**
    * Gets or Sets message
    */
-  public enum MessageEnum {
-    RESTORE(String.valueOf("restore")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+  public static final class MessageEnum {
+    public static final MessageEnum RESTORE = new MessageEnum("restore");
+    @JsonCreator public static MessageEnum fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static MessageEnum[] values() { return new MessageEnum[] {RESTORE}; }
+    @Override public boolean equals(Object other) { return other instanceof MessageEnum && value.equals(((MessageEnum) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-    private String value;
-
-    MessageEnum(String value) {
-      this.value = value;
+    private MessageEnum(String value) {
+      this.value = java.util.Objects.requireNonNull(value);
     }
 
     @JsonValue
@@ -75,16 +76,17 @@ public class WithHrefPartialUnbrandXoRestoreLog {
       return String.valueOf(value);
     }
 
-    @JsonCreator
+    
     public static MessageEnum fromValue(String value) {
       for (MessageEnum b : MessageEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      return new MessageEnum(value);
     }
   }
+
 
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nullable

@@ -515,9 +515,13 @@ class UnbrandXoSrSRTypeEnum extends EnumClass {
   static const UnbrandXoSrSRTypeEnum xfs = _$unbrandXoSrSRTypeEnum_xfs;
   @BuiltValueEnumConst(wireName: r'zfs')
   static const UnbrandXoSrSRTypeEnum zfs = _$unbrandXoSrSRTypeEnum_zfs;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UnbrandXoSrSRTypeEnum unknownDefaultOpenApi =
+      _$unbrandXoSrSRTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UnbrandXoSrSRTypeEnum> get serializer =>
-      _$unbrandXoSrSRTypeEnumSerializer;
+      _OpenUnbrandXoSrSRTypeEnumSerializer();
 
   const UnbrandXoSrSRTypeEnum._(String name) : super(name);
 
@@ -525,6 +529,104 @@ class UnbrandXoSrSRTypeEnum extends EnumClass {
       _$unbrandXoSrSRTypeEnumValues;
   static UnbrandXoSrSRTypeEnum valueOf(String name) =>
       _$unbrandXoSrSRTypeEnumValueOf(name);
+
+  static UnbrandXoSrSRTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'iso':
+        return iso;
+      case r'cephfs':
+        return cephfs;
+      case r'dummy':
+        return dummy;
+      case r'ext':
+        return ext;
+      case r'file':
+        return file;
+      case r'glusterfs':
+        return glusterfs;
+      case r'hba':
+        return hba;
+      case r'largeblock':
+        return largeblock;
+      case r'linstor':
+        return linstor;
+      case r'lvm':
+        return lvm;
+      case r'lvmofcoe':
+        return lvmofcoe;
+      case r'lvmohba':
+        return lvmohba;
+      case r'lvmoiscsi':
+        return lvmoiscsi;
+      case r'moosefs':
+        return moosefs;
+      case r'nfs':
+        return nfs;
+      case r'shm':
+        return shm;
+      case r'smb':
+        return smb;
+      case r'udev':
+        return udev;
+      case r'xfs':
+        return xfs;
+      case r'zfs':
+        return zfs;
+      default:
+        return UnbrandXoSrSRTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, iso)) return r'iso';
+    if (identical(this, cephfs)) return r'cephfs';
+    if (identical(this, dummy)) return r'dummy';
+    if (identical(this, ext)) return r'ext';
+    if (identical(this, file)) return r'file';
+    if (identical(this, glusterfs)) return r'glusterfs';
+    if (identical(this, hba)) return r'hba';
+    if (identical(this, largeblock)) return r'largeblock';
+    if (identical(this, linstor)) return r'linstor';
+    if (identical(this, lvm)) return r'lvm';
+    if (identical(this, lvmofcoe)) return r'lvmofcoe';
+    if (identical(this, lvmohba)) return r'lvmohba';
+    if (identical(this, lvmoiscsi)) return r'lvmoiscsi';
+    if (identical(this, moosefs)) return r'moosefs';
+    if (identical(this, nfs)) return r'nfs';
+    if (identical(this, shm)) return r'shm';
+    if (identical(this, smb)) return r'smb';
+    if (identical(this, udev)) return r'udev';
+    if (identical(this, xfs)) return r'xfs';
+    if (identical(this, zfs)) return r'zfs';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UnbrandXoSrSRTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUnbrandXoSrSRTypeEnumSerializer
+    implements PrimitiveSerializer<UnbrandXoSrSRTypeEnum> {
+  @override
+  final Iterable<Type> types = const [UnbrandXoSrSRTypeEnum];
+  @override
+  final String wireName = 'UnbrandXoSrSRTypeEnum';
+  @override
+  Object serialize(Serializers serializers, UnbrandXoSrSRTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UnbrandXoSrSRTypeEnum deserialize(Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError('Expected a string for UnbrandXoSrSRTypeEnum');
+    return UnbrandXoSrSRTypeEnum.fromValue(serialized);
+  }
 }
 
 class UnbrandXoSrAllocationStrategyEnum extends EnumClass {
@@ -537,9 +639,13 @@ class UnbrandXoSrAllocationStrategyEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'thick')
   static const UnbrandXoSrAllocationStrategyEnum thick =
       _$unbrandXoSrAllocationStrategyEnum_thick;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UnbrandXoSrAllocationStrategyEnum unknownDefaultOpenApi =
+      _$unbrandXoSrAllocationStrategyEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UnbrandXoSrAllocationStrategyEnum> get serializer =>
-      _$unbrandXoSrAllocationStrategyEnumSerializer;
+      _OpenUnbrandXoSrAllocationStrategyEnumSerializer();
 
   const UnbrandXoSrAllocationStrategyEnum._(String name) : super(name);
 
@@ -547,6 +653,56 @@ class UnbrandXoSrAllocationStrategyEnum extends EnumClass {
       _$unbrandXoSrAllocationStrategyEnumValues;
   static UnbrandXoSrAllocationStrategyEnum valueOf(String name) =>
       _$unbrandXoSrAllocationStrategyEnumValueOf(name);
+
+  static UnbrandXoSrAllocationStrategyEnum fromValue(String value) {
+    switch (value) {
+      case r'unknown':
+        return unknown;
+      case r'thin':
+        return thin;
+      case r'thick':
+        return thick;
+      default:
+        return UnbrandXoSrAllocationStrategyEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, unknown)) return r'unknown';
+    if (identical(this, thin)) return r'thin';
+    if (identical(this, thick)) return r'thick';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UnbrandXoSrAllocationStrategyEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUnbrandXoSrAllocationStrategyEnumSerializer
+    implements PrimitiveSerializer<UnbrandXoSrAllocationStrategyEnum> {
+  @override
+  final Iterable<Type> types = const [UnbrandXoSrAllocationStrategyEnum];
+  @override
+  final String wireName = 'UnbrandXoSrAllocationStrategyEnum';
+  @override
+  Object serialize(
+          Serializers serializers, UnbrandXoSrAllocationStrategyEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UnbrandXoSrAllocationStrategyEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for UnbrandXoSrAllocationStrategyEnum');
+    return UnbrandXoSrAllocationStrategyEnum.fromValue(serialized);
+  }
 }
 
 class UnbrandXoSrContentTypeEnum extends EnumClass {
@@ -559,9 +715,13 @@ class UnbrandXoSrContentTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'disk')
   static const UnbrandXoSrContentTypeEnum disk =
       _$unbrandXoSrContentTypeEnum_disk;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UnbrandXoSrContentTypeEnum unknownDefaultOpenApi =
+      _$unbrandXoSrContentTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UnbrandXoSrContentTypeEnum> get serializer =>
-      _$unbrandXoSrContentTypeEnumSerializer;
+      _OpenUnbrandXoSrContentTypeEnumSerializer();
 
   const UnbrandXoSrContentTypeEnum._(String name) : super(name);
 
@@ -569,14 +729,66 @@ class UnbrandXoSrContentTypeEnum extends EnumClass {
       _$unbrandXoSrContentTypeEnumValues;
   static UnbrandXoSrContentTypeEnum valueOf(String name) =>
       _$unbrandXoSrContentTypeEnumValueOf(name);
+
+  static UnbrandXoSrContentTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'user':
+        return user;
+      case r'iso':
+        return iso;
+      case r'disk':
+        return disk;
+      default:
+        return UnbrandXoSrContentTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, user)) return r'user';
+    if (identical(this, iso)) return r'iso';
+    if (identical(this, disk)) return r'disk';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UnbrandXoSrContentTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUnbrandXoSrContentTypeEnumSerializer
+    implements PrimitiveSerializer<UnbrandXoSrContentTypeEnum> {
+  @override
+  final Iterable<Type> types = const [UnbrandXoSrContentTypeEnum];
+  @override
+  final String wireName = 'UnbrandXoSrContentTypeEnum';
+  @override
+  Object serialize(Serializers serializers, UnbrandXoSrContentTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UnbrandXoSrContentTypeEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError('Expected a string for UnbrandXoSrContentTypeEnum');
+    return UnbrandXoSrContentTypeEnum.fromValue(serialized);
+  }
 }
 
 class UnbrandXoSrTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'SR')
   static const UnbrandXoSrTypeEnum SR = _$unbrandXoSrTypeEnum_SR;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UnbrandXoSrTypeEnum unknownDefaultOpenApi =
+      _$unbrandXoSrTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UnbrandXoSrTypeEnum> get serializer =>
-      _$unbrandXoSrTypeEnumSerializer;
+      _OpenUnbrandXoSrTypeEnumSerializer();
 
   const UnbrandXoSrTypeEnum._(String name) : super(name);
 
@@ -584,4 +796,45 @@ class UnbrandXoSrTypeEnum extends EnumClass {
       _$unbrandXoSrTypeEnumValues;
   static UnbrandXoSrTypeEnum valueOf(String name) =>
       _$unbrandXoSrTypeEnumValueOf(name);
+
+  static UnbrandXoSrTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'SR':
+        return SR;
+      default:
+        return UnbrandXoSrTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, SR)) return r'SR';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UnbrandXoSrTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUnbrandXoSrTypeEnumSerializer
+    implements PrimitiveSerializer<UnbrandXoSrTypeEnum> {
+  @override
+  final Iterable<Type> types = const [UnbrandXoSrTypeEnum];
+  @override
+  final String wireName = 'UnbrandXoSrTypeEnum';
+  @override
+  Object serialize(Serializers serializers, UnbrandXoSrTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UnbrandXoSrTypeEnum deserialize(Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError('Expected a string for UnbrandXoSrTypeEnum');
+    return UnbrandXoSrTypeEnum.fromValue(serialized);
+  }
 }

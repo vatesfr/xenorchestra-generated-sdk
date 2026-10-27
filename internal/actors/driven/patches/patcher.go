@@ -3,6 +3,7 @@ package patches
 import (
 	"fmt"
 	"io"
+	"path/filepath"
 )
 
 // Patcher applies the repository's programmable source transformations.
@@ -31,6 +32,47 @@ func (p SourcePatcherActor) announce(name string) {
 }
 
 func (p SourcePatcherActor) Apply(artifact Artifact, target string) error {
+	if err := p.applyBase(artifact, target); err != nil {
+		return err
+	}
+	switch artifact {
+	case SwaggerArtifact:
+		p.announce("swagger/open_values")
+		return patchSwaggerOpenValues(target)
+	case RustArtifact:
+		p.announce("rust/open_values")
+		if err := patchRustOpenValues(target); err != nil {
+			return err
+		}
+	case PythonArtifact:
+		p.announce("python/open_values")
+		if err := patchPythonOpenValues(target); err != nil {
+			return err
+		}
+	case JavaArtifact:
+		p.announce("java/open_values")
+		root := filepath.Join(target, "src", "main", "java")
+		if err := transformSources(root, ".java", openJavaEnums); err != nil {
+			return err
+		}
+		if err := patchJavaOpenUnions(target); err != nil {
+			return err
+		}
+	case DartArtifact:
+		p.announce("dart-dio/open_values")
+		if err := transformSources(filepath.Join(target, "lib", "src", "model"), ".dart", openDartEnums); err != nil {
+			return err
+		}
+		if err := patchDartOpenUnions(target); err != nil {
+			return err
+		}
+	default:
+		return nil
+	}
+	return nil
+}
+
+func (p SourcePatcherActor) applyBase(artifact Artifact, target string) error {
 	switch artifact {
 	case SwaggerArtifact:
 		p.announce("swagger/0001_generator_compatibility")

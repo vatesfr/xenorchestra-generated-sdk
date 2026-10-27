@@ -47,8 +47,6 @@ class UnbrandXoTask(BaseModel):
     @field_validator('status')
     def status_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['failure', 'interrupted', 'pending', 'success']):
-            raise ValueError("must be one of enum values ('failure', 'interrupted', 'pending', 'success')")
         return value
 
     model_config = ConfigDict(

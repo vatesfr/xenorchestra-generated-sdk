@@ -16,6 +16,10 @@ const WithHrefPartialUnbrandXoVmSnapshotHighAvailabilityEnum
 const WithHrefPartialUnbrandXoVmSnapshotHighAvailabilityEnum
     _$withHrefPartialUnbrandXoVmSnapshotHighAvailabilityEnum_restart =
     const WithHrefPartialUnbrandXoVmSnapshotHighAvailabilityEnum._('restart');
+const WithHrefPartialUnbrandXoVmSnapshotHighAvailabilityEnum
+    _$withHrefPartialUnbrandXoVmSnapshotHighAvailabilityEnum_unknownDefaultOpenApi =
+    const WithHrefPartialUnbrandXoVmSnapshotHighAvailabilityEnum._(
+        'unknownDefaultOpenApi');
 
 WithHrefPartialUnbrandXoVmSnapshotHighAvailabilityEnum
     _$withHrefPartialUnbrandXoVmSnapshotHighAvailabilityEnumValueOf(
@@ -27,6 +31,8 @@ WithHrefPartialUnbrandXoVmSnapshotHighAvailabilityEnum
       return _$withHrefPartialUnbrandXoVmSnapshotHighAvailabilityEnum_bestEffort;
     case 'restart':
       return _$withHrefPartialUnbrandXoVmSnapshotHighAvailabilityEnum_restart;
+    case 'unknownDefaultOpenApi':
+      return _$withHrefPartialUnbrandXoVmSnapshotHighAvailabilityEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -38,17 +44,23 @@ final BuiltSet<WithHrefPartialUnbrandXoVmSnapshotHighAvailabilityEnum>
   _$withHrefPartialUnbrandXoVmSnapshotHighAvailabilityEnum_empty,
   _$withHrefPartialUnbrandXoVmSnapshotHighAvailabilityEnum_bestEffort,
   _$withHrefPartialUnbrandXoVmSnapshotHighAvailabilityEnum_restart,
+  _$withHrefPartialUnbrandXoVmSnapshotHighAvailabilityEnum_unknownDefaultOpenApi,
 ]);
 
 const WithHrefPartialUnbrandXoVmSnapshotTypeEnum
     _$withHrefPartialUnbrandXoVmSnapshotTypeEnum_vMSnapshot =
     const WithHrefPartialUnbrandXoVmSnapshotTypeEnum._('vMSnapshot');
+const WithHrefPartialUnbrandXoVmSnapshotTypeEnum
+    _$withHrefPartialUnbrandXoVmSnapshotTypeEnum_unknownDefaultOpenApi =
+    const WithHrefPartialUnbrandXoVmSnapshotTypeEnum._('unknownDefaultOpenApi');
 
 WithHrefPartialUnbrandXoVmSnapshotTypeEnum
     _$withHrefPartialUnbrandXoVmSnapshotTypeEnumValueOf(String name) {
   switch (name) {
     case 'vMSnapshot':
       return _$withHrefPartialUnbrandXoVmSnapshotTypeEnum_vMSnapshot;
+    case 'unknownDefaultOpenApi':
+      return _$withHrefPartialUnbrandXoVmSnapshotTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -58,81 +70,8 @@ final BuiltSet<WithHrefPartialUnbrandXoVmSnapshotTypeEnum>
     _$withHrefPartialUnbrandXoVmSnapshotTypeEnumValues = BuiltSet<
         WithHrefPartialUnbrandXoVmSnapshotTypeEnum>(const <WithHrefPartialUnbrandXoVmSnapshotTypeEnum>[
   _$withHrefPartialUnbrandXoVmSnapshotTypeEnum_vMSnapshot,
+  _$withHrefPartialUnbrandXoVmSnapshotTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<WithHrefPartialUnbrandXoVmSnapshotHighAvailabilityEnum>
-    _$withHrefPartialUnbrandXoVmSnapshotHighAvailabilityEnumSerializer =
-    _$WithHrefPartialUnbrandXoVmSnapshotHighAvailabilityEnumSerializer();
-Serializer<WithHrefPartialUnbrandXoVmSnapshotTypeEnum>
-    _$withHrefPartialUnbrandXoVmSnapshotTypeEnumSerializer =
-    _$WithHrefPartialUnbrandXoVmSnapshotTypeEnumSerializer();
-
-class _$WithHrefPartialUnbrandXoVmSnapshotHighAvailabilityEnumSerializer
-    implements
-        PrimitiveSerializer<
-            WithHrefPartialUnbrandXoVmSnapshotHighAvailabilityEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'empty': '',
-    'bestEffort': 'best-effort',
-    'restart': 'restart',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    '': 'empty',
-    'best-effort': 'bestEffort',
-    'restart': 'restart',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    WithHrefPartialUnbrandXoVmSnapshotHighAvailabilityEnum
-  ];
-  @override
-  final String wireName =
-      'WithHrefPartialUnbrandXoVmSnapshotHighAvailabilityEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          WithHrefPartialUnbrandXoVmSnapshotHighAvailabilityEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  WithHrefPartialUnbrandXoVmSnapshotHighAvailabilityEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      WithHrefPartialUnbrandXoVmSnapshotHighAvailabilityEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
-
-class _$WithHrefPartialUnbrandXoVmSnapshotTypeEnumSerializer
-    implements PrimitiveSerializer<WithHrefPartialUnbrandXoVmSnapshotTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'vMSnapshot': 'VM-snapshot',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'VM-snapshot': 'vMSnapshot',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    WithHrefPartialUnbrandXoVmSnapshotTypeEnum
-  ];
-  @override
-  final String wireName = 'WithHrefPartialUnbrandXoVmSnapshotTypeEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          WithHrefPartialUnbrandXoVmSnapshotTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  WithHrefPartialUnbrandXoVmSnapshotTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      WithHrefPartialUnbrandXoVmSnapshotTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$WithHrefPartialUnbrandXoVmSnapshot
     extends WithHrefPartialUnbrandXoVmSnapshot {

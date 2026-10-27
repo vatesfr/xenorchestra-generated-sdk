@@ -2,351 +2,349 @@
 
 # PartialUnbrandAnyPrivilege
 
-Make all properties in T optional
-
 ## anyOf schemas
-* [PartialUnbrandAnyPrivilegeAnyOf](PartialUnbrandAnyPrivilegeAnyOf.md)
-* [PartialUnbrandAnyPrivilegeAnyOf1](PartialUnbrandAnyPrivilegeAnyOf1.md)
-* [PartialUnbrandAnyPrivilegeAnyOf10](PartialUnbrandAnyPrivilegeAnyOf10.md)
-* [PartialUnbrandAnyPrivilegeAnyOf11](PartialUnbrandAnyPrivilegeAnyOf11.md)
-* [PartialUnbrandAnyPrivilegeAnyOf12](PartialUnbrandAnyPrivilegeAnyOf12.md)
-* [PartialUnbrandAnyPrivilegeAnyOf13](PartialUnbrandAnyPrivilegeAnyOf13.md)
-* [PartialUnbrandAnyPrivilegeAnyOf14](PartialUnbrandAnyPrivilegeAnyOf14.md)
-* [PartialUnbrandAnyPrivilegeAnyOf15](PartialUnbrandAnyPrivilegeAnyOf15.md)
-* [PartialUnbrandAnyPrivilegeAnyOf16](PartialUnbrandAnyPrivilegeAnyOf16.md)
-* [PartialUnbrandAnyPrivilegeAnyOf17](PartialUnbrandAnyPrivilegeAnyOf17.md)
-* [PartialUnbrandAnyPrivilegeAnyOf18](PartialUnbrandAnyPrivilegeAnyOf18.md)
-* [PartialUnbrandAnyPrivilegeAnyOf19](PartialUnbrandAnyPrivilegeAnyOf19.md)
-* [PartialUnbrandAnyPrivilegeAnyOf2](PartialUnbrandAnyPrivilegeAnyOf2.md)
-* [PartialUnbrandAnyPrivilegeAnyOf20](PartialUnbrandAnyPrivilegeAnyOf20.md)
-* [PartialUnbrandAnyPrivilegeAnyOf21](PartialUnbrandAnyPrivilegeAnyOf21.md)
-* [PartialUnbrandAnyPrivilegeAnyOf22](PartialUnbrandAnyPrivilegeAnyOf22.md)
-* [PartialUnbrandAnyPrivilegeAnyOf23](PartialUnbrandAnyPrivilegeAnyOf23.md)
-* [PartialUnbrandAnyPrivilegeAnyOf24](PartialUnbrandAnyPrivilegeAnyOf24.md)
-* [PartialUnbrandAnyPrivilegeAnyOf25](PartialUnbrandAnyPrivilegeAnyOf25.md)
-* [PartialUnbrandAnyPrivilegeAnyOf26](PartialUnbrandAnyPrivilegeAnyOf26.md)
-* [PartialUnbrandAnyPrivilegeAnyOf27](PartialUnbrandAnyPrivilegeAnyOf27.md)
-* [PartialUnbrandAnyPrivilegeAnyOf28](PartialUnbrandAnyPrivilegeAnyOf28.md)
-* [PartialUnbrandAnyPrivilegeAnyOf29](PartialUnbrandAnyPrivilegeAnyOf29.md)
-* [PartialUnbrandAnyPrivilegeAnyOf3](PartialUnbrandAnyPrivilegeAnyOf3.md)
-* [PartialUnbrandAnyPrivilegeAnyOf30](PartialUnbrandAnyPrivilegeAnyOf30.md)
-* [PartialUnbrandAnyPrivilegeAnyOf31](PartialUnbrandAnyPrivilegeAnyOf31.md)
-* [PartialUnbrandAnyPrivilegeAnyOf32](PartialUnbrandAnyPrivilegeAnyOf32.md)
-* [PartialUnbrandAnyPrivilegeAnyOf33](PartialUnbrandAnyPrivilegeAnyOf33.md)
-* [PartialUnbrandAnyPrivilegeAnyOf34](PartialUnbrandAnyPrivilegeAnyOf34.md)
-* [PartialUnbrandAnyPrivilegeAnyOf35](PartialUnbrandAnyPrivilegeAnyOf35.md)
-* [PartialUnbrandAnyPrivilegeAnyOf36](PartialUnbrandAnyPrivilegeAnyOf36.md)
-* [PartialUnbrandAnyPrivilegeAnyOf4](PartialUnbrandAnyPrivilegeAnyOf4.md)
-* [PartialUnbrandAnyPrivilegeAnyOf5](PartialUnbrandAnyPrivilegeAnyOf5.md)
-* [PartialUnbrandAnyPrivilegeAnyOf6](PartialUnbrandAnyPrivilegeAnyOf6.md)
-* [PartialUnbrandAnyPrivilegeAnyOf7](PartialUnbrandAnyPrivilegeAnyOf7.md)
-* [PartialUnbrandAnyPrivilegeAnyOf8](PartialUnbrandAnyPrivilegeAnyOf8.md)
-* [PartialUnbrandAnyPrivilegeAnyOf9](PartialUnbrandAnyPrivilegeAnyOf9.md)
+* [PartialUnbrandAnyPrivilegeVariantAclPrivilege](PartialUnbrandAnyPrivilegeVariantAclPrivilege.md)
+* [PartialUnbrandAnyPrivilegeVariantAclRole](PartialUnbrandAnyPrivilegeVariantAclRole.md)
+* [PartialUnbrandAnyPrivilegeVariantAlarm](PartialUnbrandAnyPrivilegeVariantAlarm.md)
+* [PartialUnbrandAnyPrivilegeVariantBackupArchive](PartialUnbrandAnyPrivilegeVariantBackupArchive.md)
+* [PartialUnbrandAnyPrivilegeVariantBackupJob](PartialUnbrandAnyPrivilegeVariantBackupJob.md)
+* [PartialUnbrandAnyPrivilegeVariantBackupLog](PartialUnbrandAnyPrivilegeVariantBackupLog.md)
+* [PartialUnbrandAnyPrivilegeVariantBackupRepository](PartialUnbrandAnyPrivilegeVariantBackupRepository.md)
+* [PartialUnbrandAnyPrivilegeVariantGpuGroup](PartialUnbrandAnyPrivilegeVariantGpuGroup.md)
+* [PartialUnbrandAnyPrivilegeVariantGroup](PartialUnbrandAnyPrivilegeVariantGroup.md)
+* [PartialUnbrandAnyPrivilegeVariantHost](PartialUnbrandAnyPrivilegeVariantHost.md)
+* [PartialUnbrandAnyPrivilegeVariantMessage](PartialUnbrandAnyPrivilegeVariantMessage.md)
+* [PartialUnbrandAnyPrivilegeVariantNetwork](PartialUnbrandAnyPrivilegeVariantNetwork.md)
+* [PartialUnbrandAnyPrivilegeVariantPbd](PartialUnbrandAnyPrivilegeVariantPbd.md)
+* [PartialUnbrandAnyPrivilegeVariantPci](PartialUnbrandAnyPrivilegeVariantPci.md)
+* [PartialUnbrandAnyPrivilegeVariantPgpu](PartialUnbrandAnyPrivilegeVariantPgpu.md)
+* [PartialUnbrandAnyPrivilegeVariantPif](PartialUnbrandAnyPrivilegeVariantPif.md)
+* [PartialUnbrandAnyPrivilegeVariantPool](PartialUnbrandAnyPrivilegeVariantPool.md)
+* [PartialUnbrandAnyPrivilegeVariantProxy](PartialUnbrandAnyPrivilegeVariantProxy.md)
+* [PartialUnbrandAnyPrivilegeVariantRestoreLog](PartialUnbrandAnyPrivilegeVariantRestoreLog.md)
+* [PartialUnbrandAnyPrivilegeVariantSchedule](PartialUnbrandAnyPrivilegeVariantSchedule.md)
+* [PartialUnbrandAnyPrivilegeVariantServer](PartialUnbrandAnyPrivilegeVariantServer.md)
+* [PartialUnbrandAnyPrivilegeVariantSm](PartialUnbrandAnyPrivilegeVariantSm.md)
+* [PartialUnbrandAnyPrivilegeVariantSr](PartialUnbrandAnyPrivilegeVariantSr.md)
+* [PartialUnbrandAnyPrivilegeVariantTask](PartialUnbrandAnyPrivilegeVariantTask.md)
+* [PartialUnbrandAnyPrivilegeVariantUser](PartialUnbrandAnyPrivilegeVariantUser.md)
+* [PartialUnbrandAnyPrivilegeVariantVbd](PartialUnbrandAnyPrivilegeVariantVbd.md)
+* [PartialUnbrandAnyPrivilegeVariantVdi](PartialUnbrandAnyPrivilegeVariantVdi.md)
+* [PartialUnbrandAnyPrivilegeVariantVdiSnapshot](PartialUnbrandAnyPrivilegeVariantVdiSnapshot.md)
+* [PartialUnbrandAnyPrivilegeVariantVdiUnmanaged](PartialUnbrandAnyPrivilegeVariantVdiUnmanaged.md)
+* [PartialUnbrandAnyPrivilegeVariantVgpu](PartialUnbrandAnyPrivilegeVariantVgpu.md)
+* [PartialUnbrandAnyPrivilegeVariantVgpuType](PartialUnbrandAnyPrivilegeVariantVgpuType.md)
+* [PartialUnbrandAnyPrivilegeVariantVif](PartialUnbrandAnyPrivilegeVariantVif.md)
+* [PartialUnbrandAnyPrivilegeVariantVm](PartialUnbrandAnyPrivilegeVariantVm.md)
+* [PartialUnbrandAnyPrivilegeVariantVmController](PartialUnbrandAnyPrivilegeVariantVmController.md)
+* [PartialUnbrandAnyPrivilegeVariantVmSnapshot](PartialUnbrandAnyPrivilegeVariantVmSnapshot.md)
+* [PartialUnbrandAnyPrivilegeVariantVmTemplate](PartialUnbrandAnyPrivilegeVariantVmTemplate.md)
+* [PartialUnbrandAnyPrivilegeVariantVtpm](PartialUnbrandAnyPrivilegeVariantVtpm.md)
 
 ## Example
 ```java
 // Import classes:
 import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilege;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf1;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf10;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf11;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf12;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf13;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf14;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf15;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf16;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf17;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf18;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf19;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf2;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf20;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf21;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf22;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf23;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf24;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf25;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf26;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf27;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf28;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf29;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf3;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf30;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf31;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf32;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf33;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf34;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf35;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf36;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf4;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf5;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf6;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf7;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf8;
-import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeAnyOf9;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantAclPrivilege;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantAclRole;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantAlarm;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantBackupArchive;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantBackupJob;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantBackupLog;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantBackupRepository;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantGpuGroup;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantGroup;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantHost;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantMessage;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantNetwork;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantPbd;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantPci;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantPgpu;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantPif;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantPool;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantProxy;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantRestoreLog;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantSchedule;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantServer;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantSm;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantSr;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantTask;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantUser;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantVbd;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantVdi;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantVdiSnapshot;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantVdiUnmanaged;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantVgpu;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantVgpuType;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantVif;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantVm;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantVmController;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantVmSnapshot;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantVmTemplate;
+import tech.vates.xenorchestra.client.model.PartialUnbrandAnyPrivilegeVariantVtpm;
 
 public class Example {
     public static void main(String[] args) {
         PartialUnbrandAnyPrivilege examplePartialUnbrandAnyPrivilege = new PartialUnbrandAnyPrivilege();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf
-        PartialUnbrandAnyPrivilegeAnyOf examplePartialUnbrandAnyPrivilegeAnyOf = new PartialUnbrandAnyPrivilegeAnyOf();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf set earlier
-        PartialUnbrandAnyPrivilegeAnyOf testPartialUnbrandAnyPrivilegeAnyOf = (PartialUnbrandAnyPrivilegeAnyOf) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantAclPrivilege
+        PartialUnbrandAnyPrivilegeVariantAclPrivilege examplePartialUnbrandAnyPrivilegeVariantAclPrivilege = new PartialUnbrandAnyPrivilegeVariantAclPrivilege();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantAclPrivilege
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantAclPrivilege);
+        // to get back the PartialUnbrandAnyPrivilegeVariantAclPrivilege set earlier
+        PartialUnbrandAnyPrivilegeVariantAclPrivilege testPartialUnbrandAnyPrivilegeVariantAclPrivilege = (PartialUnbrandAnyPrivilegeVariantAclPrivilege) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf1
-        PartialUnbrandAnyPrivilegeAnyOf1 examplePartialUnbrandAnyPrivilegeAnyOf1 = new PartialUnbrandAnyPrivilegeAnyOf1();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf1
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf1);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf1 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf1 testPartialUnbrandAnyPrivilegeAnyOf1 = (PartialUnbrandAnyPrivilegeAnyOf1) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantAclRole
+        PartialUnbrandAnyPrivilegeVariantAclRole examplePartialUnbrandAnyPrivilegeVariantAclRole = new PartialUnbrandAnyPrivilegeVariantAclRole();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantAclRole
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantAclRole);
+        // to get back the PartialUnbrandAnyPrivilegeVariantAclRole set earlier
+        PartialUnbrandAnyPrivilegeVariantAclRole testPartialUnbrandAnyPrivilegeVariantAclRole = (PartialUnbrandAnyPrivilegeVariantAclRole) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf10
-        PartialUnbrandAnyPrivilegeAnyOf10 examplePartialUnbrandAnyPrivilegeAnyOf10 = new PartialUnbrandAnyPrivilegeAnyOf10();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf10
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf10);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf10 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf10 testPartialUnbrandAnyPrivilegeAnyOf10 = (PartialUnbrandAnyPrivilegeAnyOf10) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantAlarm
+        PartialUnbrandAnyPrivilegeVariantAlarm examplePartialUnbrandAnyPrivilegeVariantAlarm = new PartialUnbrandAnyPrivilegeVariantAlarm();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantAlarm
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantAlarm);
+        // to get back the PartialUnbrandAnyPrivilegeVariantAlarm set earlier
+        PartialUnbrandAnyPrivilegeVariantAlarm testPartialUnbrandAnyPrivilegeVariantAlarm = (PartialUnbrandAnyPrivilegeVariantAlarm) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf11
-        PartialUnbrandAnyPrivilegeAnyOf11 examplePartialUnbrandAnyPrivilegeAnyOf11 = new PartialUnbrandAnyPrivilegeAnyOf11();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf11
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf11);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf11 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf11 testPartialUnbrandAnyPrivilegeAnyOf11 = (PartialUnbrandAnyPrivilegeAnyOf11) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantBackupArchive
+        PartialUnbrandAnyPrivilegeVariantBackupArchive examplePartialUnbrandAnyPrivilegeVariantBackupArchive = new PartialUnbrandAnyPrivilegeVariantBackupArchive();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantBackupArchive
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantBackupArchive);
+        // to get back the PartialUnbrandAnyPrivilegeVariantBackupArchive set earlier
+        PartialUnbrandAnyPrivilegeVariantBackupArchive testPartialUnbrandAnyPrivilegeVariantBackupArchive = (PartialUnbrandAnyPrivilegeVariantBackupArchive) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf12
-        PartialUnbrandAnyPrivilegeAnyOf12 examplePartialUnbrandAnyPrivilegeAnyOf12 = new PartialUnbrandAnyPrivilegeAnyOf12();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf12
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf12);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf12 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf12 testPartialUnbrandAnyPrivilegeAnyOf12 = (PartialUnbrandAnyPrivilegeAnyOf12) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantBackupJob
+        PartialUnbrandAnyPrivilegeVariantBackupJob examplePartialUnbrandAnyPrivilegeVariantBackupJob = new PartialUnbrandAnyPrivilegeVariantBackupJob();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantBackupJob
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantBackupJob);
+        // to get back the PartialUnbrandAnyPrivilegeVariantBackupJob set earlier
+        PartialUnbrandAnyPrivilegeVariantBackupJob testPartialUnbrandAnyPrivilegeVariantBackupJob = (PartialUnbrandAnyPrivilegeVariantBackupJob) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf13
-        PartialUnbrandAnyPrivilegeAnyOf13 examplePartialUnbrandAnyPrivilegeAnyOf13 = new PartialUnbrandAnyPrivilegeAnyOf13();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf13
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf13);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf13 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf13 testPartialUnbrandAnyPrivilegeAnyOf13 = (PartialUnbrandAnyPrivilegeAnyOf13) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantBackupLog
+        PartialUnbrandAnyPrivilegeVariantBackupLog examplePartialUnbrandAnyPrivilegeVariantBackupLog = new PartialUnbrandAnyPrivilegeVariantBackupLog();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantBackupLog
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantBackupLog);
+        // to get back the PartialUnbrandAnyPrivilegeVariantBackupLog set earlier
+        PartialUnbrandAnyPrivilegeVariantBackupLog testPartialUnbrandAnyPrivilegeVariantBackupLog = (PartialUnbrandAnyPrivilegeVariantBackupLog) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf14
-        PartialUnbrandAnyPrivilegeAnyOf14 examplePartialUnbrandAnyPrivilegeAnyOf14 = new PartialUnbrandAnyPrivilegeAnyOf14();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf14
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf14);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf14 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf14 testPartialUnbrandAnyPrivilegeAnyOf14 = (PartialUnbrandAnyPrivilegeAnyOf14) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantBackupRepository
+        PartialUnbrandAnyPrivilegeVariantBackupRepository examplePartialUnbrandAnyPrivilegeVariantBackupRepository = new PartialUnbrandAnyPrivilegeVariantBackupRepository();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantBackupRepository
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantBackupRepository);
+        // to get back the PartialUnbrandAnyPrivilegeVariantBackupRepository set earlier
+        PartialUnbrandAnyPrivilegeVariantBackupRepository testPartialUnbrandAnyPrivilegeVariantBackupRepository = (PartialUnbrandAnyPrivilegeVariantBackupRepository) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf15
-        PartialUnbrandAnyPrivilegeAnyOf15 examplePartialUnbrandAnyPrivilegeAnyOf15 = new PartialUnbrandAnyPrivilegeAnyOf15();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf15
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf15);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf15 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf15 testPartialUnbrandAnyPrivilegeAnyOf15 = (PartialUnbrandAnyPrivilegeAnyOf15) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantGpuGroup
+        PartialUnbrandAnyPrivilegeVariantGpuGroup examplePartialUnbrandAnyPrivilegeVariantGpuGroup = new PartialUnbrandAnyPrivilegeVariantGpuGroup();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantGpuGroup
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantGpuGroup);
+        // to get back the PartialUnbrandAnyPrivilegeVariantGpuGroup set earlier
+        PartialUnbrandAnyPrivilegeVariantGpuGroup testPartialUnbrandAnyPrivilegeVariantGpuGroup = (PartialUnbrandAnyPrivilegeVariantGpuGroup) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf16
-        PartialUnbrandAnyPrivilegeAnyOf16 examplePartialUnbrandAnyPrivilegeAnyOf16 = new PartialUnbrandAnyPrivilegeAnyOf16();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf16
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf16);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf16 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf16 testPartialUnbrandAnyPrivilegeAnyOf16 = (PartialUnbrandAnyPrivilegeAnyOf16) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantGroup
+        PartialUnbrandAnyPrivilegeVariantGroup examplePartialUnbrandAnyPrivilegeVariantGroup = new PartialUnbrandAnyPrivilegeVariantGroup();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantGroup
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantGroup);
+        // to get back the PartialUnbrandAnyPrivilegeVariantGroup set earlier
+        PartialUnbrandAnyPrivilegeVariantGroup testPartialUnbrandAnyPrivilegeVariantGroup = (PartialUnbrandAnyPrivilegeVariantGroup) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf17
-        PartialUnbrandAnyPrivilegeAnyOf17 examplePartialUnbrandAnyPrivilegeAnyOf17 = new PartialUnbrandAnyPrivilegeAnyOf17();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf17
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf17);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf17 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf17 testPartialUnbrandAnyPrivilegeAnyOf17 = (PartialUnbrandAnyPrivilegeAnyOf17) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantHost
+        PartialUnbrandAnyPrivilegeVariantHost examplePartialUnbrandAnyPrivilegeVariantHost = new PartialUnbrandAnyPrivilegeVariantHost();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantHost
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantHost);
+        // to get back the PartialUnbrandAnyPrivilegeVariantHost set earlier
+        PartialUnbrandAnyPrivilegeVariantHost testPartialUnbrandAnyPrivilegeVariantHost = (PartialUnbrandAnyPrivilegeVariantHost) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf18
-        PartialUnbrandAnyPrivilegeAnyOf18 examplePartialUnbrandAnyPrivilegeAnyOf18 = new PartialUnbrandAnyPrivilegeAnyOf18();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf18
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf18);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf18 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf18 testPartialUnbrandAnyPrivilegeAnyOf18 = (PartialUnbrandAnyPrivilegeAnyOf18) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantMessage
+        PartialUnbrandAnyPrivilegeVariantMessage examplePartialUnbrandAnyPrivilegeVariantMessage = new PartialUnbrandAnyPrivilegeVariantMessage();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantMessage
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantMessage);
+        // to get back the PartialUnbrandAnyPrivilegeVariantMessage set earlier
+        PartialUnbrandAnyPrivilegeVariantMessage testPartialUnbrandAnyPrivilegeVariantMessage = (PartialUnbrandAnyPrivilegeVariantMessage) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf19
-        PartialUnbrandAnyPrivilegeAnyOf19 examplePartialUnbrandAnyPrivilegeAnyOf19 = new PartialUnbrandAnyPrivilegeAnyOf19();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf19
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf19);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf19 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf19 testPartialUnbrandAnyPrivilegeAnyOf19 = (PartialUnbrandAnyPrivilegeAnyOf19) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantNetwork
+        PartialUnbrandAnyPrivilegeVariantNetwork examplePartialUnbrandAnyPrivilegeVariantNetwork = new PartialUnbrandAnyPrivilegeVariantNetwork();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantNetwork
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantNetwork);
+        // to get back the PartialUnbrandAnyPrivilegeVariantNetwork set earlier
+        PartialUnbrandAnyPrivilegeVariantNetwork testPartialUnbrandAnyPrivilegeVariantNetwork = (PartialUnbrandAnyPrivilegeVariantNetwork) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf2
-        PartialUnbrandAnyPrivilegeAnyOf2 examplePartialUnbrandAnyPrivilegeAnyOf2 = new PartialUnbrandAnyPrivilegeAnyOf2();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf2
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf2);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf2 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf2 testPartialUnbrandAnyPrivilegeAnyOf2 = (PartialUnbrandAnyPrivilegeAnyOf2) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantPbd
+        PartialUnbrandAnyPrivilegeVariantPbd examplePartialUnbrandAnyPrivilegeVariantPbd = new PartialUnbrandAnyPrivilegeVariantPbd();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantPbd
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantPbd);
+        // to get back the PartialUnbrandAnyPrivilegeVariantPbd set earlier
+        PartialUnbrandAnyPrivilegeVariantPbd testPartialUnbrandAnyPrivilegeVariantPbd = (PartialUnbrandAnyPrivilegeVariantPbd) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf20
-        PartialUnbrandAnyPrivilegeAnyOf20 examplePartialUnbrandAnyPrivilegeAnyOf20 = new PartialUnbrandAnyPrivilegeAnyOf20();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf20
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf20);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf20 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf20 testPartialUnbrandAnyPrivilegeAnyOf20 = (PartialUnbrandAnyPrivilegeAnyOf20) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantPci
+        PartialUnbrandAnyPrivilegeVariantPci examplePartialUnbrandAnyPrivilegeVariantPci = new PartialUnbrandAnyPrivilegeVariantPci();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantPci
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantPci);
+        // to get back the PartialUnbrandAnyPrivilegeVariantPci set earlier
+        PartialUnbrandAnyPrivilegeVariantPci testPartialUnbrandAnyPrivilegeVariantPci = (PartialUnbrandAnyPrivilegeVariantPci) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf21
-        PartialUnbrandAnyPrivilegeAnyOf21 examplePartialUnbrandAnyPrivilegeAnyOf21 = new PartialUnbrandAnyPrivilegeAnyOf21();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf21
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf21);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf21 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf21 testPartialUnbrandAnyPrivilegeAnyOf21 = (PartialUnbrandAnyPrivilegeAnyOf21) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantPgpu
+        PartialUnbrandAnyPrivilegeVariantPgpu examplePartialUnbrandAnyPrivilegeVariantPgpu = new PartialUnbrandAnyPrivilegeVariantPgpu();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantPgpu
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantPgpu);
+        // to get back the PartialUnbrandAnyPrivilegeVariantPgpu set earlier
+        PartialUnbrandAnyPrivilegeVariantPgpu testPartialUnbrandAnyPrivilegeVariantPgpu = (PartialUnbrandAnyPrivilegeVariantPgpu) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf22
-        PartialUnbrandAnyPrivilegeAnyOf22 examplePartialUnbrandAnyPrivilegeAnyOf22 = new PartialUnbrandAnyPrivilegeAnyOf22();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf22
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf22);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf22 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf22 testPartialUnbrandAnyPrivilegeAnyOf22 = (PartialUnbrandAnyPrivilegeAnyOf22) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantPif
+        PartialUnbrandAnyPrivilegeVariantPif examplePartialUnbrandAnyPrivilegeVariantPif = new PartialUnbrandAnyPrivilegeVariantPif();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantPif
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantPif);
+        // to get back the PartialUnbrandAnyPrivilegeVariantPif set earlier
+        PartialUnbrandAnyPrivilegeVariantPif testPartialUnbrandAnyPrivilegeVariantPif = (PartialUnbrandAnyPrivilegeVariantPif) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf23
-        PartialUnbrandAnyPrivilegeAnyOf23 examplePartialUnbrandAnyPrivilegeAnyOf23 = new PartialUnbrandAnyPrivilegeAnyOf23();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf23
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf23);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf23 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf23 testPartialUnbrandAnyPrivilegeAnyOf23 = (PartialUnbrandAnyPrivilegeAnyOf23) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantPool
+        PartialUnbrandAnyPrivilegeVariantPool examplePartialUnbrandAnyPrivilegeVariantPool = new PartialUnbrandAnyPrivilegeVariantPool();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantPool
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantPool);
+        // to get back the PartialUnbrandAnyPrivilegeVariantPool set earlier
+        PartialUnbrandAnyPrivilegeVariantPool testPartialUnbrandAnyPrivilegeVariantPool = (PartialUnbrandAnyPrivilegeVariantPool) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf24
-        PartialUnbrandAnyPrivilegeAnyOf24 examplePartialUnbrandAnyPrivilegeAnyOf24 = new PartialUnbrandAnyPrivilegeAnyOf24();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf24
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf24);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf24 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf24 testPartialUnbrandAnyPrivilegeAnyOf24 = (PartialUnbrandAnyPrivilegeAnyOf24) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantProxy
+        PartialUnbrandAnyPrivilegeVariantProxy examplePartialUnbrandAnyPrivilegeVariantProxy = new PartialUnbrandAnyPrivilegeVariantProxy();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantProxy
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantProxy);
+        // to get back the PartialUnbrandAnyPrivilegeVariantProxy set earlier
+        PartialUnbrandAnyPrivilegeVariantProxy testPartialUnbrandAnyPrivilegeVariantProxy = (PartialUnbrandAnyPrivilegeVariantProxy) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf25
-        PartialUnbrandAnyPrivilegeAnyOf25 examplePartialUnbrandAnyPrivilegeAnyOf25 = new PartialUnbrandAnyPrivilegeAnyOf25();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf25
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf25);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf25 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf25 testPartialUnbrandAnyPrivilegeAnyOf25 = (PartialUnbrandAnyPrivilegeAnyOf25) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantRestoreLog
+        PartialUnbrandAnyPrivilegeVariantRestoreLog examplePartialUnbrandAnyPrivilegeVariantRestoreLog = new PartialUnbrandAnyPrivilegeVariantRestoreLog();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantRestoreLog
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantRestoreLog);
+        // to get back the PartialUnbrandAnyPrivilegeVariantRestoreLog set earlier
+        PartialUnbrandAnyPrivilegeVariantRestoreLog testPartialUnbrandAnyPrivilegeVariantRestoreLog = (PartialUnbrandAnyPrivilegeVariantRestoreLog) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf26
-        PartialUnbrandAnyPrivilegeAnyOf26 examplePartialUnbrandAnyPrivilegeAnyOf26 = new PartialUnbrandAnyPrivilegeAnyOf26();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf26
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf26);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf26 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf26 testPartialUnbrandAnyPrivilegeAnyOf26 = (PartialUnbrandAnyPrivilegeAnyOf26) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantSchedule
+        PartialUnbrandAnyPrivilegeVariantSchedule examplePartialUnbrandAnyPrivilegeVariantSchedule = new PartialUnbrandAnyPrivilegeVariantSchedule();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantSchedule
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantSchedule);
+        // to get back the PartialUnbrandAnyPrivilegeVariantSchedule set earlier
+        PartialUnbrandAnyPrivilegeVariantSchedule testPartialUnbrandAnyPrivilegeVariantSchedule = (PartialUnbrandAnyPrivilegeVariantSchedule) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf27
-        PartialUnbrandAnyPrivilegeAnyOf27 examplePartialUnbrandAnyPrivilegeAnyOf27 = new PartialUnbrandAnyPrivilegeAnyOf27();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf27
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf27);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf27 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf27 testPartialUnbrandAnyPrivilegeAnyOf27 = (PartialUnbrandAnyPrivilegeAnyOf27) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantServer
+        PartialUnbrandAnyPrivilegeVariantServer examplePartialUnbrandAnyPrivilegeVariantServer = new PartialUnbrandAnyPrivilegeVariantServer();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantServer
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantServer);
+        // to get back the PartialUnbrandAnyPrivilegeVariantServer set earlier
+        PartialUnbrandAnyPrivilegeVariantServer testPartialUnbrandAnyPrivilegeVariantServer = (PartialUnbrandAnyPrivilegeVariantServer) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf28
-        PartialUnbrandAnyPrivilegeAnyOf28 examplePartialUnbrandAnyPrivilegeAnyOf28 = new PartialUnbrandAnyPrivilegeAnyOf28();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf28
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf28);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf28 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf28 testPartialUnbrandAnyPrivilegeAnyOf28 = (PartialUnbrandAnyPrivilegeAnyOf28) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantSm
+        PartialUnbrandAnyPrivilegeVariantSm examplePartialUnbrandAnyPrivilegeVariantSm = new PartialUnbrandAnyPrivilegeVariantSm();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantSm
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantSm);
+        // to get back the PartialUnbrandAnyPrivilegeVariantSm set earlier
+        PartialUnbrandAnyPrivilegeVariantSm testPartialUnbrandAnyPrivilegeVariantSm = (PartialUnbrandAnyPrivilegeVariantSm) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf29
-        PartialUnbrandAnyPrivilegeAnyOf29 examplePartialUnbrandAnyPrivilegeAnyOf29 = new PartialUnbrandAnyPrivilegeAnyOf29();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf29
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf29);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf29 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf29 testPartialUnbrandAnyPrivilegeAnyOf29 = (PartialUnbrandAnyPrivilegeAnyOf29) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantSr
+        PartialUnbrandAnyPrivilegeVariantSr examplePartialUnbrandAnyPrivilegeVariantSr = new PartialUnbrandAnyPrivilegeVariantSr();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantSr
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantSr);
+        // to get back the PartialUnbrandAnyPrivilegeVariantSr set earlier
+        PartialUnbrandAnyPrivilegeVariantSr testPartialUnbrandAnyPrivilegeVariantSr = (PartialUnbrandAnyPrivilegeVariantSr) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf3
-        PartialUnbrandAnyPrivilegeAnyOf3 examplePartialUnbrandAnyPrivilegeAnyOf3 = new PartialUnbrandAnyPrivilegeAnyOf3();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf3
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf3);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf3 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf3 testPartialUnbrandAnyPrivilegeAnyOf3 = (PartialUnbrandAnyPrivilegeAnyOf3) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantTask
+        PartialUnbrandAnyPrivilegeVariantTask examplePartialUnbrandAnyPrivilegeVariantTask = new PartialUnbrandAnyPrivilegeVariantTask();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantTask
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantTask);
+        // to get back the PartialUnbrandAnyPrivilegeVariantTask set earlier
+        PartialUnbrandAnyPrivilegeVariantTask testPartialUnbrandAnyPrivilegeVariantTask = (PartialUnbrandAnyPrivilegeVariantTask) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf30
-        PartialUnbrandAnyPrivilegeAnyOf30 examplePartialUnbrandAnyPrivilegeAnyOf30 = new PartialUnbrandAnyPrivilegeAnyOf30();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf30
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf30);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf30 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf30 testPartialUnbrandAnyPrivilegeAnyOf30 = (PartialUnbrandAnyPrivilegeAnyOf30) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantUser
+        PartialUnbrandAnyPrivilegeVariantUser examplePartialUnbrandAnyPrivilegeVariantUser = new PartialUnbrandAnyPrivilegeVariantUser();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantUser
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantUser);
+        // to get back the PartialUnbrandAnyPrivilegeVariantUser set earlier
+        PartialUnbrandAnyPrivilegeVariantUser testPartialUnbrandAnyPrivilegeVariantUser = (PartialUnbrandAnyPrivilegeVariantUser) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf31
-        PartialUnbrandAnyPrivilegeAnyOf31 examplePartialUnbrandAnyPrivilegeAnyOf31 = new PartialUnbrandAnyPrivilegeAnyOf31();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf31
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf31);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf31 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf31 testPartialUnbrandAnyPrivilegeAnyOf31 = (PartialUnbrandAnyPrivilegeAnyOf31) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantVbd
+        PartialUnbrandAnyPrivilegeVariantVbd examplePartialUnbrandAnyPrivilegeVariantVbd = new PartialUnbrandAnyPrivilegeVariantVbd();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantVbd
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantVbd);
+        // to get back the PartialUnbrandAnyPrivilegeVariantVbd set earlier
+        PartialUnbrandAnyPrivilegeVariantVbd testPartialUnbrandAnyPrivilegeVariantVbd = (PartialUnbrandAnyPrivilegeVariantVbd) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf32
-        PartialUnbrandAnyPrivilegeAnyOf32 examplePartialUnbrandAnyPrivilegeAnyOf32 = new PartialUnbrandAnyPrivilegeAnyOf32();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf32
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf32);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf32 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf32 testPartialUnbrandAnyPrivilegeAnyOf32 = (PartialUnbrandAnyPrivilegeAnyOf32) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantVdi
+        PartialUnbrandAnyPrivilegeVariantVdi examplePartialUnbrandAnyPrivilegeVariantVdi = new PartialUnbrandAnyPrivilegeVariantVdi();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantVdi
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantVdi);
+        // to get back the PartialUnbrandAnyPrivilegeVariantVdi set earlier
+        PartialUnbrandAnyPrivilegeVariantVdi testPartialUnbrandAnyPrivilegeVariantVdi = (PartialUnbrandAnyPrivilegeVariantVdi) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf33
-        PartialUnbrandAnyPrivilegeAnyOf33 examplePartialUnbrandAnyPrivilegeAnyOf33 = new PartialUnbrandAnyPrivilegeAnyOf33();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf33
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf33);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf33 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf33 testPartialUnbrandAnyPrivilegeAnyOf33 = (PartialUnbrandAnyPrivilegeAnyOf33) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantVdiSnapshot
+        PartialUnbrandAnyPrivilegeVariantVdiSnapshot examplePartialUnbrandAnyPrivilegeVariantVdiSnapshot = new PartialUnbrandAnyPrivilegeVariantVdiSnapshot();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantVdiSnapshot
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantVdiSnapshot);
+        // to get back the PartialUnbrandAnyPrivilegeVariantVdiSnapshot set earlier
+        PartialUnbrandAnyPrivilegeVariantVdiSnapshot testPartialUnbrandAnyPrivilegeVariantVdiSnapshot = (PartialUnbrandAnyPrivilegeVariantVdiSnapshot) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf34
-        PartialUnbrandAnyPrivilegeAnyOf34 examplePartialUnbrandAnyPrivilegeAnyOf34 = new PartialUnbrandAnyPrivilegeAnyOf34();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf34
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf34);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf34 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf34 testPartialUnbrandAnyPrivilegeAnyOf34 = (PartialUnbrandAnyPrivilegeAnyOf34) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantVdiUnmanaged
+        PartialUnbrandAnyPrivilegeVariantVdiUnmanaged examplePartialUnbrandAnyPrivilegeVariantVdiUnmanaged = new PartialUnbrandAnyPrivilegeVariantVdiUnmanaged();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantVdiUnmanaged
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantVdiUnmanaged);
+        // to get back the PartialUnbrandAnyPrivilegeVariantVdiUnmanaged set earlier
+        PartialUnbrandAnyPrivilegeVariantVdiUnmanaged testPartialUnbrandAnyPrivilegeVariantVdiUnmanaged = (PartialUnbrandAnyPrivilegeVariantVdiUnmanaged) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf35
-        PartialUnbrandAnyPrivilegeAnyOf35 examplePartialUnbrandAnyPrivilegeAnyOf35 = new PartialUnbrandAnyPrivilegeAnyOf35();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf35
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf35);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf35 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf35 testPartialUnbrandAnyPrivilegeAnyOf35 = (PartialUnbrandAnyPrivilegeAnyOf35) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantVgpu
+        PartialUnbrandAnyPrivilegeVariantVgpu examplePartialUnbrandAnyPrivilegeVariantVgpu = new PartialUnbrandAnyPrivilegeVariantVgpu();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantVgpu
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantVgpu);
+        // to get back the PartialUnbrandAnyPrivilegeVariantVgpu set earlier
+        PartialUnbrandAnyPrivilegeVariantVgpu testPartialUnbrandAnyPrivilegeVariantVgpu = (PartialUnbrandAnyPrivilegeVariantVgpu) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf36
-        PartialUnbrandAnyPrivilegeAnyOf36 examplePartialUnbrandAnyPrivilegeAnyOf36 = new PartialUnbrandAnyPrivilegeAnyOf36();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf36
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf36);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf36 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf36 testPartialUnbrandAnyPrivilegeAnyOf36 = (PartialUnbrandAnyPrivilegeAnyOf36) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantVgpuType
+        PartialUnbrandAnyPrivilegeVariantVgpuType examplePartialUnbrandAnyPrivilegeVariantVgpuType = new PartialUnbrandAnyPrivilegeVariantVgpuType();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantVgpuType
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantVgpuType);
+        // to get back the PartialUnbrandAnyPrivilegeVariantVgpuType set earlier
+        PartialUnbrandAnyPrivilegeVariantVgpuType testPartialUnbrandAnyPrivilegeVariantVgpuType = (PartialUnbrandAnyPrivilegeVariantVgpuType) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf4
-        PartialUnbrandAnyPrivilegeAnyOf4 examplePartialUnbrandAnyPrivilegeAnyOf4 = new PartialUnbrandAnyPrivilegeAnyOf4();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf4
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf4);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf4 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf4 testPartialUnbrandAnyPrivilegeAnyOf4 = (PartialUnbrandAnyPrivilegeAnyOf4) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantVif
+        PartialUnbrandAnyPrivilegeVariantVif examplePartialUnbrandAnyPrivilegeVariantVif = new PartialUnbrandAnyPrivilegeVariantVif();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantVif
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantVif);
+        // to get back the PartialUnbrandAnyPrivilegeVariantVif set earlier
+        PartialUnbrandAnyPrivilegeVariantVif testPartialUnbrandAnyPrivilegeVariantVif = (PartialUnbrandAnyPrivilegeVariantVif) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf5
-        PartialUnbrandAnyPrivilegeAnyOf5 examplePartialUnbrandAnyPrivilegeAnyOf5 = new PartialUnbrandAnyPrivilegeAnyOf5();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf5
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf5);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf5 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf5 testPartialUnbrandAnyPrivilegeAnyOf5 = (PartialUnbrandAnyPrivilegeAnyOf5) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantVm
+        PartialUnbrandAnyPrivilegeVariantVm examplePartialUnbrandAnyPrivilegeVariantVm = new PartialUnbrandAnyPrivilegeVariantVm();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantVm
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantVm);
+        // to get back the PartialUnbrandAnyPrivilegeVariantVm set earlier
+        PartialUnbrandAnyPrivilegeVariantVm testPartialUnbrandAnyPrivilegeVariantVm = (PartialUnbrandAnyPrivilegeVariantVm) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf6
-        PartialUnbrandAnyPrivilegeAnyOf6 examplePartialUnbrandAnyPrivilegeAnyOf6 = new PartialUnbrandAnyPrivilegeAnyOf6();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf6
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf6);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf6 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf6 testPartialUnbrandAnyPrivilegeAnyOf6 = (PartialUnbrandAnyPrivilegeAnyOf6) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantVmController
+        PartialUnbrandAnyPrivilegeVariantVmController examplePartialUnbrandAnyPrivilegeVariantVmController = new PartialUnbrandAnyPrivilegeVariantVmController();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantVmController
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantVmController);
+        // to get back the PartialUnbrandAnyPrivilegeVariantVmController set earlier
+        PartialUnbrandAnyPrivilegeVariantVmController testPartialUnbrandAnyPrivilegeVariantVmController = (PartialUnbrandAnyPrivilegeVariantVmController) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf7
-        PartialUnbrandAnyPrivilegeAnyOf7 examplePartialUnbrandAnyPrivilegeAnyOf7 = new PartialUnbrandAnyPrivilegeAnyOf7();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf7
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf7);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf7 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf7 testPartialUnbrandAnyPrivilegeAnyOf7 = (PartialUnbrandAnyPrivilegeAnyOf7) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantVmSnapshot
+        PartialUnbrandAnyPrivilegeVariantVmSnapshot examplePartialUnbrandAnyPrivilegeVariantVmSnapshot = new PartialUnbrandAnyPrivilegeVariantVmSnapshot();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantVmSnapshot
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantVmSnapshot);
+        // to get back the PartialUnbrandAnyPrivilegeVariantVmSnapshot set earlier
+        PartialUnbrandAnyPrivilegeVariantVmSnapshot testPartialUnbrandAnyPrivilegeVariantVmSnapshot = (PartialUnbrandAnyPrivilegeVariantVmSnapshot) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf8
-        PartialUnbrandAnyPrivilegeAnyOf8 examplePartialUnbrandAnyPrivilegeAnyOf8 = new PartialUnbrandAnyPrivilegeAnyOf8();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf8
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf8);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf8 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf8 testPartialUnbrandAnyPrivilegeAnyOf8 = (PartialUnbrandAnyPrivilegeAnyOf8) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantVmTemplate
+        PartialUnbrandAnyPrivilegeVariantVmTemplate examplePartialUnbrandAnyPrivilegeVariantVmTemplate = new PartialUnbrandAnyPrivilegeVariantVmTemplate();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantVmTemplate
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantVmTemplate);
+        // to get back the PartialUnbrandAnyPrivilegeVariantVmTemplate set earlier
+        PartialUnbrandAnyPrivilegeVariantVmTemplate testPartialUnbrandAnyPrivilegeVariantVmTemplate = (PartialUnbrandAnyPrivilegeVariantVmTemplate) examplePartialUnbrandAnyPrivilege.getActualInstance();
 
-        // create a new PartialUnbrandAnyPrivilegeAnyOf9
-        PartialUnbrandAnyPrivilegeAnyOf9 examplePartialUnbrandAnyPrivilegeAnyOf9 = new PartialUnbrandAnyPrivilegeAnyOf9();
-        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeAnyOf9
-        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeAnyOf9);
-        // to get back the PartialUnbrandAnyPrivilegeAnyOf9 set earlier
-        PartialUnbrandAnyPrivilegeAnyOf9 testPartialUnbrandAnyPrivilegeAnyOf9 = (PartialUnbrandAnyPrivilegeAnyOf9) examplePartialUnbrandAnyPrivilege.getActualInstance();
+        // create a new PartialUnbrandAnyPrivilegeVariantVtpm
+        PartialUnbrandAnyPrivilegeVariantVtpm examplePartialUnbrandAnyPrivilegeVariantVtpm = new PartialUnbrandAnyPrivilegeVariantVtpm();
+        // set PartialUnbrandAnyPrivilege to PartialUnbrandAnyPrivilegeVariantVtpm
+        examplePartialUnbrandAnyPrivilege.setActualInstance(examplePartialUnbrandAnyPrivilegeVariantVtpm);
+        // to get back the PartialUnbrandAnyPrivilegeVariantVtpm set earlier
+        PartialUnbrandAnyPrivilegeVariantVtpm testPartialUnbrandAnyPrivilegeVariantVtpm = (PartialUnbrandAnyPrivilegeVariantVtpm) examplePartialUnbrandAnyPrivilege.getActualInstance();
     }
 }
 ```

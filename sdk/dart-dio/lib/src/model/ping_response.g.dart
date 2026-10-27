@@ -8,11 +8,15 @@ part of 'ping_response.dart';
 
 const PingResponseResultEnum _$pingResponseResultEnum_pong =
     const PingResponseResultEnum._('pong');
+const PingResponseResultEnum _$pingResponseResultEnum_unknownDefaultOpenApi =
+    const PingResponseResultEnum._('unknownDefaultOpenApi');
 
 PingResponseResultEnum _$pingResponseResultEnumValueOf(String name) {
   switch (name) {
     case 'pong':
       return _$pingResponseResultEnum_pong;
+    case 'unknownDefaultOpenApi':
+      return _$pingResponseResultEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -21,36 +25,8 @@ PingResponseResultEnum _$pingResponseResultEnumValueOf(String name) {
 final BuiltSet<PingResponseResultEnum> _$pingResponseResultEnumValues =
     BuiltSet<PingResponseResultEnum>(const <PingResponseResultEnum>[
   _$pingResponseResultEnum_pong,
+  _$pingResponseResultEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<PingResponseResultEnum> _$pingResponseResultEnumSerializer =
-    _$PingResponseResultEnumSerializer();
-
-class _$PingResponseResultEnumSerializer
-    implements PrimitiveSerializer<PingResponseResultEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'pong': 'pong',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'pong': 'pong',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[PingResponseResultEnum];
-  @override
-  final String wireName = 'PingResponseResultEnum';
-
-  @override
-  Object serialize(Serializers serializers, PingResponseResultEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  PingResponseResultEnum deserialize(Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      PingResponseResultEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$PingResponse extends PingResponse {
   @override

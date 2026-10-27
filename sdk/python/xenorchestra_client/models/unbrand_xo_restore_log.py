@@ -36,8 +36,6 @@ class UnbrandXoRestoreLog(BaseModel):
     @field_validator('message')
     def message_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['restore']):
-            raise ValueError("must be one of enum values ('restore')")
         return value
 
     model_config = ConfigDict(

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **name** | **str** |  | [optional] 
 **proxy** | **str** |  | [optional] 
 **remotes** | **object** |  | [optional] 
-**settings** | [**PartialUnbrandAnyXoBackupJobAnyOfSettings**](PartialUnbrandAnyXoBackupJobAnyOfSettings.md) |  | [optional] 
+**settings** | [**PartialUnbrandAnyXoBackupJobVariantBackupSettings**](PartialUnbrandAnyXoBackupJobVariantBackupSettings.md) |  | [optional] 
 **srs** | **object** |  | [optional] 
 **type** | **str** |  | [optional] 
 **vms** | **object** |  | [optional] 

@@ -9,12 +9,17 @@ part of 'partial_unbrand_xo_restore_log.dart';
 const PartialUnbrandXoRestoreLogMessageEnum
     _$partialUnbrandXoRestoreLogMessageEnum_restore =
     const PartialUnbrandXoRestoreLogMessageEnum._('restore');
+const PartialUnbrandXoRestoreLogMessageEnum
+    _$partialUnbrandXoRestoreLogMessageEnum_unknownDefaultOpenApi =
+    const PartialUnbrandXoRestoreLogMessageEnum._('unknownDefaultOpenApi');
 
 PartialUnbrandXoRestoreLogMessageEnum
     _$partialUnbrandXoRestoreLogMessageEnumValueOf(String name) {
   switch (name) {
     case 'restore':
       return _$partialUnbrandXoRestoreLogMessageEnum_restore;
+    case 'unknownDefaultOpenApi':
+      return _$partialUnbrandXoRestoreLogMessageEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -24,41 +29,8 @@ final BuiltSet<PartialUnbrandXoRestoreLogMessageEnum>
     _$partialUnbrandXoRestoreLogMessageEnumValues = BuiltSet<
         PartialUnbrandXoRestoreLogMessageEnum>(const <PartialUnbrandXoRestoreLogMessageEnum>[
   _$partialUnbrandXoRestoreLogMessageEnum_restore,
+  _$partialUnbrandXoRestoreLogMessageEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<PartialUnbrandXoRestoreLogMessageEnum>
-    _$partialUnbrandXoRestoreLogMessageEnumSerializer =
-    _$PartialUnbrandXoRestoreLogMessageEnumSerializer();
-
-class _$PartialUnbrandXoRestoreLogMessageEnumSerializer
-    implements PrimitiveSerializer<PartialUnbrandXoRestoreLogMessageEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'restore': 'restore',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'restore': 'restore',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    PartialUnbrandXoRestoreLogMessageEnum
-  ];
-  @override
-  final String wireName = 'PartialUnbrandXoRestoreLogMessageEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers, PartialUnbrandXoRestoreLogMessageEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  PartialUnbrandXoRestoreLogMessageEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      PartialUnbrandXoRestoreLogMessageEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$PartialUnbrandXoRestoreLog extends PartialUnbrandXoRestoreLog {
   @override

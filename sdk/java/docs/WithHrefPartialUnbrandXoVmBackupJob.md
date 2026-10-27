@@ -13,7 +13,7 @@
 |**name** | **String** |  |  [optional] |
 |**proxy** | **String** |  |  [optional] |
 |**remotes** | **Object** |  |  [optional] |
-|**settings** | [**PartialUnbrandAnyXoBackupJobAnyOfSettings**](PartialUnbrandAnyXoBackupJobAnyOfSettings.md) |  |  [optional] |
+|**settings** | [**PartialUnbrandAnyXoBackupJobVariantBackupSettings**](PartialUnbrandAnyXoBackupJobVariantBackupSettings.md) |  |  [optional] |
 |**srs** | **Object** |  |  [optional] |
 |**type** | [**TypeEnum**](#TypeEnum) |  |  [optional] |
 |**vms** | **Object** |  |  [optional] |

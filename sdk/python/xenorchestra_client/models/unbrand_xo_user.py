@@ -39,8 +39,6 @@ class UnbrandXoUser(BaseModel):
     @field_validator('permission')
     def permission_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['none', 'admin']):
-            raise ValueError("must be one of enum values ('none', 'admin')")
         return value
 
     model_config = ConfigDict(

@@ -9,12 +9,18 @@ part of 'with_href_partial_unbrand_xo_vdi_snapshot.dart';
 const WithHrefPartialUnbrandXoVdiSnapshotTypeEnum
     _$withHrefPartialUnbrandXoVdiSnapshotTypeEnum_vDISnapshot =
     const WithHrefPartialUnbrandXoVdiSnapshotTypeEnum._('vDISnapshot');
+const WithHrefPartialUnbrandXoVdiSnapshotTypeEnum
+    _$withHrefPartialUnbrandXoVdiSnapshotTypeEnum_unknownDefaultOpenApi =
+    const WithHrefPartialUnbrandXoVdiSnapshotTypeEnum._(
+        'unknownDefaultOpenApi');
 
 WithHrefPartialUnbrandXoVdiSnapshotTypeEnum
     _$withHrefPartialUnbrandXoVdiSnapshotTypeEnumValueOf(String name) {
   switch (name) {
     case 'vDISnapshot':
       return _$withHrefPartialUnbrandXoVdiSnapshotTypeEnum_vDISnapshot;
+    case 'unknownDefaultOpenApi':
+      return _$withHrefPartialUnbrandXoVdiSnapshotTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -24,42 +30,8 @@ final BuiltSet<WithHrefPartialUnbrandXoVdiSnapshotTypeEnum>
     _$withHrefPartialUnbrandXoVdiSnapshotTypeEnumValues = BuiltSet<
         WithHrefPartialUnbrandXoVdiSnapshotTypeEnum>(const <WithHrefPartialUnbrandXoVdiSnapshotTypeEnum>[
   _$withHrefPartialUnbrandXoVdiSnapshotTypeEnum_vDISnapshot,
+  _$withHrefPartialUnbrandXoVdiSnapshotTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<WithHrefPartialUnbrandXoVdiSnapshotTypeEnum>
-    _$withHrefPartialUnbrandXoVdiSnapshotTypeEnumSerializer =
-    _$WithHrefPartialUnbrandXoVdiSnapshotTypeEnumSerializer();
-
-class _$WithHrefPartialUnbrandXoVdiSnapshotTypeEnumSerializer
-    implements
-        PrimitiveSerializer<WithHrefPartialUnbrandXoVdiSnapshotTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'vDISnapshot': 'VDI-snapshot',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'VDI-snapshot': 'vDISnapshot',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    WithHrefPartialUnbrandXoVdiSnapshotTypeEnum
-  ];
-  @override
-  final String wireName = 'WithHrefPartialUnbrandXoVdiSnapshotTypeEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          WithHrefPartialUnbrandXoVdiSnapshotTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  WithHrefPartialUnbrandXoVdiSnapshotTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      WithHrefPartialUnbrandXoVdiSnapshotTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$WithHrefPartialUnbrandXoVdiSnapshot
     extends WithHrefPartialUnbrandXoVdiSnapshot {

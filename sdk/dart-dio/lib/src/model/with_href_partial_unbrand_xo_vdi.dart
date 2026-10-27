@@ -523,9 +523,13 @@ class WithHrefPartialUnbrandXoVdiTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'VDI')
   static const WithHrefPartialUnbrandXoVdiTypeEnum VDI =
       _$withHrefPartialUnbrandXoVdiTypeEnum_VDI;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const WithHrefPartialUnbrandXoVdiTypeEnum unknownDefaultOpenApi =
+      _$withHrefPartialUnbrandXoVdiTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<WithHrefPartialUnbrandXoVdiTypeEnum> get serializer =>
-      _$withHrefPartialUnbrandXoVdiTypeEnumSerializer;
+      _OpenWithHrefPartialUnbrandXoVdiTypeEnumSerializer();
 
   const WithHrefPartialUnbrandXoVdiTypeEnum._(String name) : super(name);
 
@@ -533,4 +537,48 @@ class WithHrefPartialUnbrandXoVdiTypeEnum extends EnumClass {
       _$withHrefPartialUnbrandXoVdiTypeEnumValues;
   static WithHrefPartialUnbrandXoVdiTypeEnum valueOf(String name) =>
       _$withHrefPartialUnbrandXoVdiTypeEnumValueOf(name);
+
+  static WithHrefPartialUnbrandXoVdiTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'VDI':
+        return VDI;
+      default:
+        return WithHrefPartialUnbrandXoVdiTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, VDI)) return r'VDI';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is WithHrefPartialUnbrandXoVdiTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenWithHrefPartialUnbrandXoVdiTypeEnumSerializer
+    implements PrimitiveSerializer<WithHrefPartialUnbrandXoVdiTypeEnum> {
+  @override
+  final Iterable<Type> types = const [WithHrefPartialUnbrandXoVdiTypeEnum];
+  @override
+  final String wireName = 'WithHrefPartialUnbrandXoVdiTypeEnum';
+  @override
+  Object serialize(
+          Serializers serializers, WithHrefPartialUnbrandXoVdiTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  WithHrefPartialUnbrandXoVdiTypeEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for WithHrefPartialUnbrandXoVdiTypeEnum');
+    return WithHrefPartialUnbrandXoVdiTypeEnum.fromValue(serialized);
+  }
 }

@@ -10,6 +10,8 @@ const VMPOWERSTATE _$halted = const VMPOWERSTATE._('halted');
 const VMPOWERSTATE _$paused = const VMPOWERSTATE._('paused');
 const VMPOWERSTATE _$running = const VMPOWERSTATE._('running');
 const VMPOWERSTATE _$suspended = const VMPOWERSTATE._('suspended');
+const VMPOWERSTATE _$unknownDefaultOpenApi =
+    const VMPOWERSTATE._('unknownDefaultOpenApi');
 
 VMPOWERSTATE _$valueOf(String name) {
   switch (name) {
@@ -21,6 +23,8 @@ VMPOWERSTATE _$valueOf(String name) {
       return _$running;
     case 'suspended':
       return _$suspended;
+    case 'unknownDefaultOpenApi':
+      return _$unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -32,6 +36,7 @@ final BuiltSet<VMPOWERSTATE> _$values =
   _$paused,
   _$running,
   _$suspended,
+  _$unknownDefaultOpenApi,
 ]);
 
 class _$VMPOWERSTATEMeta {
@@ -40,6 +45,7 @@ class _$VMPOWERSTATEMeta {
   VMPOWERSTATE get paused => _$paused;
   VMPOWERSTATE get running => _$running;
   VMPOWERSTATE get suspended => _$suspended;
+  VMPOWERSTATE get unknownDefaultOpenApi => _$unknownDefaultOpenApi;
   VMPOWERSTATE valueOf(String name) => _$valueOf(name);
   BuiltSet<VMPOWERSTATE> get values => _$values;
 }
@@ -47,39 +53,6 @@ class _$VMPOWERSTATEMeta {
 abstract class _$VMPOWERSTATEMixin {
   // ignore: non_constant_identifier_names
   _$VMPOWERSTATEMeta get VMPOWERSTATE => const _$VMPOWERSTATEMeta();
-}
-
-Serializer<VMPOWERSTATE> _$vMPOWERSTATESerializer = _$VMPOWERSTATESerializer();
-
-class _$VMPOWERSTATESerializer implements PrimitiveSerializer<VMPOWERSTATE> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'halted': 'Halted',
-    'paused': 'Paused',
-    'running': 'Running',
-    'suspended': 'Suspended',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'Halted': 'halted',
-    'Paused': 'paused',
-    'Running': 'running',
-    'Suspended': 'suspended',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[VMPOWERSTATE];
-  @override
-  final String wireName = 'VMPOWERSTATE';
-
-  @override
-  Object serialize(Serializers serializers, VMPOWERSTATE object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  VMPOWERSTATE deserialize(Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      VMPOWERSTATE.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
 }
 
 // ignore_for_file: deprecated_member_use_from_same_package,type=lint

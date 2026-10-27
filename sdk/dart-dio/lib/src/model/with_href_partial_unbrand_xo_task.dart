@@ -378,9 +378,13 @@ class WithHrefPartialUnbrandXoTaskStatusEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'success')
   static const WithHrefPartialUnbrandXoTaskStatusEnum success =
       _$withHrefPartialUnbrandXoTaskStatusEnum_success;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const WithHrefPartialUnbrandXoTaskStatusEnum unknownDefaultOpenApi =
+      _$withHrefPartialUnbrandXoTaskStatusEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<WithHrefPartialUnbrandXoTaskStatusEnum> get serializer =>
-      _$withHrefPartialUnbrandXoTaskStatusEnumSerializer;
+      _OpenWithHrefPartialUnbrandXoTaskStatusEnumSerializer();
 
   const WithHrefPartialUnbrandXoTaskStatusEnum._(String name) : super(name);
 
@@ -388,4 +392,57 @@ class WithHrefPartialUnbrandXoTaskStatusEnum extends EnumClass {
       _$withHrefPartialUnbrandXoTaskStatusEnumValues;
   static WithHrefPartialUnbrandXoTaskStatusEnum valueOf(String name) =>
       _$withHrefPartialUnbrandXoTaskStatusEnumValueOf(name);
+
+  static WithHrefPartialUnbrandXoTaskStatusEnum fromValue(String value) {
+    switch (value) {
+      case r'failure':
+        return failure;
+      case r'interrupted':
+        return interrupted;
+      case r'pending':
+        return pending;
+      case r'success':
+        return success;
+      default:
+        return WithHrefPartialUnbrandXoTaskStatusEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, failure)) return r'failure';
+    if (identical(this, interrupted)) return r'interrupted';
+    if (identical(this, pending)) return r'pending';
+    if (identical(this, success)) return r'success';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is WithHrefPartialUnbrandXoTaskStatusEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenWithHrefPartialUnbrandXoTaskStatusEnumSerializer
+    implements PrimitiveSerializer<WithHrefPartialUnbrandXoTaskStatusEnum> {
+  @override
+  final Iterable<Type> types = const [WithHrefPartialUnbrandXoTaskStatusEnum];
+  @override
+  final String wireName = 'WithHrefPartialUnbrandXoTaskStatusEnum';
+  @override
+  Object serialize(Serializers serializers,
+          WithHrefPartialUnbrandXoTaskStatusEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  WithHrefPartialUnbrandXoTaskStatusEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for WithHrefPartialUnbrandXoTaskStatusEnum');
+    return WithHrefPartialUnbrandXoTaskStatusEnum.fromValue(serialized);
+  }
 }

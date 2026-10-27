@@ -36,9 +36,6 @@ class DashboardBackupsInfoIssuesInner(BaseModel):
     @field_validator('logs')
     def logs_validate_enum(cls, value):
         """Validates the enum"""
-        for i in value:
-            if i not in set(['failure', 'interrupted', 'skipped', 'success']):
-                raise ValueError("each list item must be one of ('failure', 'interrupted', 'skipped', 'success')")
         return value
 
     model_config = ConfigDict(

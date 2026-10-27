@@ -604,9 +604,13 @@ class WithHrefPartialUnbrandXoSrSRTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'zfs')
   static const WithHrefPartialUnbrandXoSrSRTypeEnum zfs =
       _$withHrefPartialUnbrandXoSrSRTypeEnum_zfs;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const WithHrefPartialUnbrandXoSrSRTypeEnum unknownDefaultOpenApi =
+      _$withHrefPartialUnbrandXoSrSRTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<WithHrefPartialUnbrandXoSrSRTypeEnum> get serializer =>
-      _$withHrefPartialUnbrandXoSrSRTypeEnumSerializer;
+      _OpenWithHrefPartialUnbrandXoSrSRTypeEnumSerializer();
 
   const WithHrefPartialUnbrandXoSrSRTypeEnum._(String name) : super(name);
 
@@ -614,6 +618,107 @@ class WithHrefPartialUnbrandXoSrSRTypeEnum extends EnumClass {
       _$withHrefPartialUnbrandXoSrSRTypeEnumValues;
   static WithHrefPartialUnbrandXoSrSRTypeEnum valueOf(String name) =>
       _$withHrefPartialUnbrandXoSrSRTypeEnumValueOf(name);
+
+  static WithHrefPartialUnbrandXoSrSRTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'iso':
+        return iso;
+      case r'cephfs':
+        return cephfs;
+      case r'dummy':
+        return dummy;
+      case r'ext':
+        return ext;
+      case r'file':
+        return file;
+      case r'glusterfs':
+        return glusterfs;
+      case r'hba':
+        return hba;
+      case r'largeblock':
+        return largeblock;
+      case r'linstor':
+        return linstor;
+      case r'lvm':
+        return lvm;
+      case r'lvmofcoe':
+        return lvmofcoe;
+      case r'lvmohba':
+        return lvmohba;
+      case r'lvmoiscsi':
+        return lvmoiscsi;
+      case r'moosefs':
+        return moosefs;
+      case r'nfs':
+        return nfs;
+      case r'shm':
+        return shm;
+      case r'smb':
+        return smb;
+      case r'udev':
+        return udev;
+      case r'xfs':
+        return xfs;
+      case r'zfs':
+        return zfs;
+      default:
+        return WithHrefPartialUnbrandXoSrSRTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, iso)) return r'iso';
+    if (identical(this, cephfs)) return r'cephfs';
+    if (identical(this, dummy)) return r'dummy';
+    if (identical(this, ext)) return r'ext';
+    if (identical(this, file)) return r'file';
+    if (identical(this, glusterfs)) return r'glusterfs';
+    if (identical(this, hba)) return r'hba';
+    if (identical(this, largeblock)) return r'largeblock';
+    if (identical(this, linstor)) return r'linstor';
+    if (identical(this, lvm)) return r'lvm';
+    if (identical(this, lvmofcoe)) return r'lvmofcoe';
+    if (identical(this, lvmohba)) return r'lvmohba';
+    if (identical(this, lvmoiscsi)) return r'lvmoiscsi';
+    if (identical(this, moosefs)) return r'moosefs';
+    if (identical(this, nfs)) return r'nfs';
+    if (identical(this, shm)) return r'shm';
+    if (identical(this, smb)) return r'smb';
+    if (identical(this, udev)) return r'udev';
+    if (identical(this, xfs)) return r'xfs';
+    if (identical(this, zfs)) return r'zfs';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is WithHrefPartialUnbrandXoSrSRTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenWithHrefPartialUnbrandXoSrSRTypeEnumSerializer
+    implements PrimitiveSerializer<WithHrefPartialUnbrandXoSrSRTypeEnum> {
+  @override
+  final Iterable<Type> types = const [WithHrefPartialUnbrandXoSrSRTypeEnum];
+  @override
+  final String wireName = 'WithHrefPartialUnbrandXoSrSRTypeEnum';
+  @override
+  Object serialize(
+          Serializers serializers, WithHrefPartialUnbrandXoSrSRTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  WithHrefPartialUnbrandXoSrSRTypeEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for WithHrefPartialUnbrandXoSrSRTypeEnum');
+    return WithHrefPartialUnbrandXoSrSRTypeEnum.fromValue(serialized);
+  }
 }
 
 class WithHrefPartialUnbrandXoSrAllocationStrategyEnum extends EnumClass {
@@ -626,10 +731,15 @@ class WithHrefPartialUnbrandXoSrAllocationStrategyEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'thick')
   static const WithHrefPartialUnbrandXoSrAllocationStrategyEnum thick =
       _$withHrefPartialUnbrandXoSrAllocationStrategyEnum_thick;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const WithHrefPartialUnbrandXoSrAllocationStrategyEnum
+      unknownDefaultOpenApi =
+      _$withHrefPartialUnbrandXoSrAllocationStrategyEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<WithHrefPartialUnbrandXoSrAllocationStrategyEnum>
       get serializer =>
-          _$withHrefPartialUnbrandXoSrAllocationStrategyEnumSerializer;
+          _OpenWithHrefPartialUnbrandXoSrAllocationStrategyEnumSerializer();
 
   const WithHrefPartialUnbrandXoSrAllocationStrategyEnum._(String name)
       : super(name);
@@ -639,6 +749,62 @@ class WithHrefPartialUnbrandXoSrAllocationStrategyEnum extends EnumClass {
   static WithHrefPartialUnbrandXoSrAllocationStrategyEnum valueOf(
           String name) =>
       _$withHrefPartialUnbrandXoSrAllocationStrategyEnumValueOf(name);
+
+  static WithHrefPartialUnbrandXoSrAllocationStrategyEnum fromValue(
+      String value) {
+    switch (value) {
+      case r'unknown':
+        return unknown;
+      case r'thin':
+        return thin;
+      case r'thick':
+        return thick;
+      default:
+        return WithHrefPartialUnbrandXoSrAllocationStrategyEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, unknown)) return r'unknown';
+    if (identical(this, thin)) return r'thin';
+    if (identical(this, thick)) return r'thick';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is WithHrefPartialUnbrandXoSrAllocationStrategyEnum &&
+      value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenWithHrefPartialUnbrandXoSrAllocationStrategyEnumSerializer
+    implements
+        PrimitiveSerializer<WithHrefPartialUnbrandXoSrAllocationStrategyEnum> {
+  @override
+  final Iterable<Type> types = const [
+    WithHrefPartialUnbrandXoSrAllocationStrategyEnum
+  ];
+  @override
+  final String wireName = 'WithHrefPartialUnbrandXoSrAllocationStrategyEnum';
+  @override
+  Object serialize(Serializers serializers,
+          WithHrefPartialUnbrandXoSrAllocationStrategyEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  WithHrefPartialUnbrandXoSrAllocationStrategyEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for WithHrefPartialUnbrandXoSrAllocationStrategyEnum');
+    return WithHrefPartialUnbrandXoSrAllocationStrategyEnum.fromValue(
+        serialized);
+  }
 }
 
 class WithHrefPartialUnbrandXoSrContentTypeEnum extends EnumClass {
@@ -651,9 +817,13 @@ class WithHrefPartialUnbrandXoSrContentTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'disk')
   static const WithHrefPartialUnbrandXoSrContentTypeEnum disk =
       _$withHrefPartialUnbrandXoSrContentTypeEnum_disk;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const WithHrefPartialUnbrandXoSrContentTypeEnum unknownDefaultOpenApi =
+      _$withHrefPartialUnbrandXoSrContentTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<WithHrefPartialUnbrandXoSrContentTypeEnum> get serializer =>
-      _$withHrefPartialUnbrandXoSrContentTypeEnumSerializer;
+      _OpenWithHrefPartialUnbrandXoSrContentTypeEnumSerializer();
 
   const WithHrefPartialUnbrandXoSrContentTypeEnum._(String name) : super(name);
 
@@ -661,15 +831,72 @@ class WithHrefPartialUnbrandXoSrContentTypeEnum extends EnumClass {
       _$withHrefPartialUnbrandXoSrContentTypeEnumValues;
   static WithHrefPartialUnbrandXoSrContentTypeEnum valueOf(String name) =>
       _$withHrefPartialUnbrandXoSrContentTypeEnumValueOf(name);
+
+  static WithHrefPartialUnbrandXoSrContentTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'user':
+        return user;
+      case r'iso':
+        return iso;
+      case r'disk':
+        return disk;
+      default:
+        return WithHrefPartialUnbrandXoSrContentTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, user)) return r'user';
+    if (identical(this, iso)) return r'iso';
+    if (identical(this, disk)) return r'disk';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is WithHrefPartialUnbrandXoSrContentTypeEnum &&
+      value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenWithHrefPartialUnbrandXoSrContentTypeEnumSerializer
+    implements PrimitiveSerializer<WithHrefPartialUnbrandXoSrContentTypeEnum> {
+  @override
+  final Iterable<Type> types = const [
+    WithHrefPartialUnbrandXoSrContentTypeEnum
+  ];
+  @override
+  final String wireName = 'WithHrefPartialUnbrandXoSrContentTypeEnum';
+  @override
+  Object serialize(Serializers serializers,
+          WithHrefPartialUnbrandXoSrContentTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  WithHrefPartialUnbrandXoSrContentTypeEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for WithHrefPartialUnbrandXoSrContentTypeEnum');
+    return WithHrefPartialUnbrandXoSrContentTypeEnum.fromValue(serialized);
+  }
 }
 
 class WithHrefPartialUnbrandXoSrTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'SR')
   static const WithHrefPartialUnbrandXoSrTypeEnum SR =
       _$withHrefPartialUnbrandXoSrTypeEnum_SR;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const WithHrefPartialUnbrandXoSrTypeEnum unknownDefaultOpenApi =
+      _$withHrefPartialUnbrandXoSrTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<WithHrefPartialUnbrandXoSrTypeEnum> get serializer =>
-      _$withHrefPartialUnbrandXoSrTypeEnumSerializer;
+      _OpenWithHrefPartialUnbrandXoSrTypeEnumSerializer();
 
   const WithHrefPartialUnbrandXoSrTypeEnum._(String name) : super(name);
 
@@ -677,4 +904,48 @@ class WithHrefPartialUnbrandXoSrTypeEnum extends EnumClass {
       _$withHrefPartialUnbrandXoSrTypeEnumValues;
   static WithHrefPartialUnbrandXoSrTypeEnum valueOf(String name) =>
       _$withHrefPartialUnbrandXoSrTypeEnumValueOf(name);
+
+  static WithHrefPartialUnbrandXoSrTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'SR':
+        return SR;
+      default:
+        return WithHrefPartialUnbrandXoSrTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, SR)) return r'SR';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is WithHrefPartialUnbrandXoSrTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenWithHrefPartialUnbrandXoSrTypeEnumSerializer
+    implements PrimitiveSerializer<WithHrefPartialUnbrandXoSrTypeEnum> {
+  @override
+  final Iterable<Type> types = const [WithHrefPartialUnbrandXoSrTypeEnum];
+  @override
+  final String wireName = 'WithHrefPartialUnbrandXoSrTypeEnum';
+  @override
+  Object serialize(
+          Serializers serializers, WithHrefPartialUnbrandXoSrTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  WithHrefPartialUnbrandXoSrTypeEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for WithHrefPartialUnbrandXoSrTypeEnum');
+    return WithHrefPartialUnbrandXoSrTypeEnum.fromValue(serialized);
+  }
 }

@@ -59,8 +59,6 @@ class UnbrandCreateVmBody(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['', 'best-effort', 'restart']):
-            raise ValueError("must be one of enum values ('', 'best-effort', 'restart')")
         return value
 
     @field_validator('hvm_boot_firmware')
@@ -69,8 +67,6 @@ class UnbrandCreateVmBody(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['uefi', 'bios']):
-            raise ValueError("must be one of enum values ('uefi', 'bios')")
         return value
 
     model_config = ConfigDict(

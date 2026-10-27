@@ -34,12 +34,56 @@ impl CloneVmRequest {
     }
 }
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum Compress {
-    #[serde(rename = "gzip")]
     Gzip,
-    #[serde(rename = "zstd")]
     Zstd,
+    UnknownValue(String),
+}
+impl Compress {
+    pub fn as_str(&self) -> &str {
+        match self {
+            Self::Gzip => "gzip",
+            Self::Zstd => "zstd",
+            Self::UnknownValue(value) => value,
+        }
+    }
+}
+impl From<String> for Compress {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "gzip" => Self::Gzip,
+            "zstd" => Self::Zstd,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for Compress {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for Compress {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for Compress {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for Compress {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
+    }
 }
 
 impl Default for Compress {

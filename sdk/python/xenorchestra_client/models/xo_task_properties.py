@@ -43,8 +43,6 @@ class XoTaskProperties(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['pool', 'VBD', 'host', 'VIF', 'VTPM', 'VM-snapshot', 'SR', 'VM', 'VM-template', 'message', 'vgpu', 'gpuGroup', 'network', 'PBD', 'PCI', 'PGPU', 'PIF', 'VDI', 'VDI-snapshot', 'VDI-unmanaged', 'vgpuType', 'VM-controller', 'SM', 'backup', 'backup-archive', 'backup-job', 'backup-log', 'backup-repository', 'group', 'proxy', 'restore', 'restore-log', 'schedule', 'server', 'task', 'user', 'acl-privilege', 'acl-role']):
-            raise ValueError("must be one of enum values ('pool', 'VBD', 'host', 'VIF', 'VTPM', 'VM-snapshot', 'SR', 'VM', 'VM-template', 'message', 'vgpu', 'gpuGroup', 'network', 'PBD', 'PCI', 'PGPU', 'PIF', 'VDI', 'VDI-snapshot', 'VDI-unmanaged', 'vgpuType', 'VM-controller', 'SM', 'backup', 'backup-archive', 'backup-job', 'backup-log', 'backup-repository', 'group', 'proxy', 'restore', 'restore-log', 'schedule', 'server', 'task', 'user', 'acl-privilege', 'acl-role')")
         return value
 
     model_config = ConfigDict(

@@ -113,9 +113,13 @@ class _$BrandedTaskSerializer implements PrimitiveSerializer<BrandedTask> {
 class BrandedTaskUndefinedEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'task')
   static const BrandedTaskUndefinedEnum task = _$brandedTaskUndefinedEnum_task;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const BrandedTaskUndefinedEnum unknownDefaultOpenApi =
+      _$brandedTaskUndefinedEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<BrandedTaskUndefinedEnum> get serializer =>
-      _$brandedTaskUndefinedEnumSerializer;
+      _OpenBrandedTaskUndefinedEnumSerializer();
 
   const BrandedTaskUndefinedEnum._(String name) : super(name);
 
@@ -123,4 +127,46 @@ class BrandedTaskUndefinedEnum extends EnumClass {
       _$brandedTaskUndefinedEnumValues;
   static BrandedTaskUndefinedEnum valueOf(String name) =>
       _$brandedTaskUndefinedEnumValueOf(name);
+
+  static BrandedTaskUndefinedEnum fromValue(String value) {
+    switch (value) {
+      case r'task':
+        return task;
+      default:
+        return BrandedTaskUndefinedEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, task)) return r'task';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is BrandedTaskUndefinedEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenBrandedTaskUndefinedEnumSerializer
+    implements PrimitiveSerializer<BrandedTaskUndefinedEnum> {
+  @override
+  final Iterable<Type> types = const [BrandedTaskUndefinedEnum];
+  @override
+  final String wireName = 'BrandedTaskUndefinedEnum';
+  @override
+  Object serialize(Serializers serializers, BrandedTaskUndefinedEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  BrandedTaskUndefinedEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError('Expected a string for BrandedTaskUndefinedEnum');
+    return BrandedTaskUndefinedEnum.fromValue(serialized);
+  }
 }

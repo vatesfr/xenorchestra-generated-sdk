@@ -28,20 +28,18 @@ import com.fasterxml.jackson.annotation.JsonValue;
 /**
  * Gets or Sets BACKUP_TYPE
  */
-public enum BACKUPTYPE {
-  
-  BACKUP("backup"),
-  
-  METADATA_BACKUP("metadataBackup"),
-  
-  MIRROR_BACKUP("mirrorBackup"),
-  
-  UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
+public final class BACKUPTYPE {
+    public static final BACKUPTYPE BACKUP = new BACKUPTYPE("backup");
+    public static final BACKUPTYPE METADATA_BACKUP = new BACKUPTYPE("metadataBackup");
+    public static final BACKUPTYPE MIRROR_BACKUP = new BACKUPTYPE("mirrorBackup");
+    @JsonCreator public static BACKUPTYPE fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static BACKUPTYPE[] values() { return new BACKUPTYPE[] {BACKUP, METADATA_BACKUP, MIRROR_BACKUP}; }
+    @Override public boolean equals(Object other) { return other instanceof BACKUPTYPE && value.equals(((BACKUPTYPE) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-  private String value;
-
-  BACKUPTYPE(String value) {
-    this.value = value;
+  private BACKUPTYPE(String value) {
+    this.value = java.util.Objects.requireNonNull(value);
   }
 
   @JsonValue
@@ -54,14 +52,14 @@ public enum BACKUPTYPE {
     return String.valueOf(value);
   }
 
-  @JsonCreator
+  
   public static BACKUPTYPE fromValue(String value) {
     for (BACKUPTYPE b : BACKUPTYPE.values()) {
       if (b.value.equals(value)) {
         return b;
       }
     }
-    return UNKNOWN_DEFAULT_OPEN_API;
+    return new BACKUPTYPE(value);
   }
 
   /**
@@ -79,4 +77,5 @@ public enum BACKUPTYPE {
   }
 
 }
+
 

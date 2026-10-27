@@ -8,11 +8,16 @@ part of 'branded_task.dart';
 
 const BrandedTaskUndefinedEnum _$brandedTaskUndefinedEnum_task =
     const BrandedTaskUndefinedEnum._('task');
+const BrandedTaskUndefinedEnum
+    _$brandedTaskUndefinedEnum_unknownDefaultOpenApi =
+    const BrandedTaskUndefinedEnum._('unknownDefaultOpenApi');
 
 BrandedTaskUndefinedEnum _$brandedTaskUndefinedEnumValueOf(String name) {
   switch (name) {
     case 'task':
       return _$brandedTaskUndefinedEnum_task;
+    case 'unknownDefaultOpenApi':
+      return _$brandedTaskUndefinedEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -21,37 +26,8 @@ BrandedTaskUndefinedEnum _$brandedTaskUndefinedEnumValueOf(String name) {
 final BuiltSet<BrandedTaskUndefinedEnum> _$brandedTaskUndefinedEnumValues =
     BuiltSet<BrandedTaskUndefinedEnum>(const <BrandedTaskUndefinedEnum>[
   _$brandedTaskUndefinedEnum_task,
+  _$brandedTaskUndefinedEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<BrandedTaskUndefinedEnum> _$brandedTaskUndefinedEnumSerializer =
-    _$BrandedTaskUndefinedEnumSerializer();
-
-class _$BrandedTaskUndefinedEnumSerializer
-    implements PrimitiveSerializer<BrandedTaskUndefinedEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'task': 'task',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'task': 'task',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[BrandedTaskUndefinedEnum];
-  @override
-  final String wireName = 'BrandedTaskUndefinedEnum';
-
-  @override
-  Object serialize(Serializers serializers, BrandedTaskUndefinedEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  BrandedTaskUndefinedEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      BrandedTaskUndefinedEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$BrandedTask extends BrandedTask {
   @override

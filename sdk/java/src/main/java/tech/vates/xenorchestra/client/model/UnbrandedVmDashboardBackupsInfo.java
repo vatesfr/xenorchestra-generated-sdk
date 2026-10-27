@@ -60,19 +60,18 @@ public class UnbrandedVmDashboardBackupsInfo {
   /**
    * Gets or Sets vmProtection
    */
-  public enum VmProtectionEnum {
-    PROTECTED(String.valueOf("protected")),
-    
-    UNPROTECTED(String.valueOf("unprotected")),
-    
-    NOT_IN_ACTIVE_JOB(String.valueOf("not-in-active-job")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+  public static final class VmProtectionEnum {
+    public static final VmProtectionEnum PROTECTED = new VmProtectionEnum("protected");
+    public static final VmProtectionEnum UNPROTECTED = new VmProtectionEnum("unprotected");
+    public static final VmProtectionEnum NOT_IN_ACTIVE_JOB = new VmProtectionEnum("not-in-active-job");
+    @JsonCreator public static VmProtectionEnum fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static VmProtectionEnum[] values() { return new VmProtectionEnum[] {PROTECTED, UNPROTECTED, NOT_IN_ACTIVE_JOB}; }
+    @Override public boolean equals(Object other) { return other instanceof VmProtectionEnum && value.equals(((VmProtectionEnum) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-    private String value;
-
-    VmProtectionEnum(String value) {
-      this.value = value;
+    private VmProtectionEnum(String value) {
+      this.value = java.util.Objects.requireNonNull(value);
     }
 
     @JsonValue
@@ -85,16 +84,17 @@ public class UnbrandedVmDashboardBackupsInfo {
       return String.valueOf(value);
     }
 
-    @JsonCreator
+    
     public static VmProtectionEnum fromValue(String value) {
       for (VmProtectionEnum b : VmProtectionEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      return new VmProtectionEnum(value);
     }
   }
+
 
   public static final String JSON_PROPERTY_VM_PROTECTION = "vmProtection";
   @javax.annotation.Nonnull

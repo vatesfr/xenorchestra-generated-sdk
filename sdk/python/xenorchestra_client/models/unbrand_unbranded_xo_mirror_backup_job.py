@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from xenorchestra_client.models.partial_unbrand_any_xo_backup_job_any_of2_settings import PartialUnbrandAnyXoBackupJobAnyOf2Settings
+from xenorchestra_client.models.partial_unbrand_any_xo_backup_job_variant_mirror_backup_settings import PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettings
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -32,7 +32,7 @@ class UnbrandUnbrandedXoMirrorBackupJob(BaseModel):
     name: Optional[StrictStr] = None
     proxy: Optional[StrictStr] = None
     remotes: Optional[Any]
-    settings: PartialUnbrandAnyXoBackupJobAnyOf2Settings
+    settings: PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettings
     source_remote: StrictStr = Field(alias="sourceRemote")
     type: StrictStr
     __properties: ClassVar[List[str]] = ["id", "mode", "name", "proxy", "remotes", "settings", "sourceRemote", "type"]
@@ -40,15 +40,11 @@ class UnbrandUnbrandedXoMirrorBackupJob(BaseModel):
     @field_validator('mode')
     def mode_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['full', 'delta']):
-            raise ValueError("must be one of enum values ('full', 'delta')")
         return value
 
     @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['mirrorBackup']):
-            raise ValueError("must be one of enum values ('mirrorBackup')")
         return value
 
     model_config = ConfigDict(
@@ -115,7 +111,7 @@ class UnbrandUnbrandedXoMirrorBackupJob(BaseModel):
             "name": obj.get("name"),
             "proxy": obj.get("proxy"),
             "remotes": obj.get("remotes"),
-            "settings": PartialUnbrandAnyXoBackupJobAnyOf2Settings.from_dict(obj["settings"]) if obj.get("settings") is not None else None,
+            "settings": PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettings.from_dict(obj["settings"]) if obj.get("settings") is not None else None,
             "sourceRemote": obj.get("sourceRemote"),
             "type": obj.get("type")
         })

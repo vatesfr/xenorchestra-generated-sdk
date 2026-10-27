@@ -18,6 +18,9 @@ const WithHrefPartialUnbrandXoTaskStatusEnum
 const WithHrefPartialUnbrandXoTaskStatusEnum
     _$withHrefPartialUnbrandXoTaskStatusEnum_success =
     const WithHrefPartialUnbrandXoTaskStatusEnum._('success');
+const WithHrefPartialUnbrandXoTaskStatusEnum
+    _$withHrefPartialUnbrandXoTaskStatusEnum_unknownDefaultOpenApi =
+    const WithHrefPartialUnbrandXoTaskStatusEnum._('unknownDefaultOpenApi');
 
 WithHrefPartialUnbrandXoTaskStatusEnum
     _$withHrefPartialUnbrandXoTaskStatusEnumValueOf(String name) {
@@ -30,6 +33,8 @@ WithHrefPartialUnbrandXoTaskStatusEnum
       return _$withHrefPartialUnbrandXoTaskStatusEnum_pending;
     case 'success':
       return _$withHrefPartialUnbrandXoTaskStatusEnum_success;
+    case 'unknownDefaultOpenApi':
+      return _$withHrefPartialUnbrandXoTaskStatusEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -42,47 +47,8 @@ final BuiltSet<WithHrefPartialUnbrandXoTaskStatusEnum>
   _$withHrefPartialUnbrandXoTaskStatusEnum_interrupted,
   _$withHrefPartialUnbrandXoTaskStatusEnum_pending,
   _$withHrefPartialUnbrandXoTaskStatusEnum_success,
+  _$withHrefPartialUnbrandXoTaskStatusEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<WithHrefPartialUnbrandXoTaskStatusEnum>
-    _$withHrefPartialUnbrandXoTaskStatusEnumSerializer =
-    _$WithHrefPartialUnbrandXoTaskStatusEnumSerializer();
-
-class _$WithHrefPartialUnbrandXoTaskStatusEnumSerializer
-    implements PrimitiveSerializer<WithHrefPartialUnbrandXoTaskStatusEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'failure': 'failure',
-    'interrupted': 'interrupted',
-    'pending': 'pending',
-    'success': 'success',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'failure': 'failure',
-    'interrupted': 'interrupted',
-    'pending': 'pending',
-    'success': 'success',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    WithHrefPartialUnbrandXoTaskStatusEnum
-  ];
-  @override
-  final String wireName = 'WithHrefPartialUnbrandXoTaskStatusEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          WithHrefPartialUnbrandXoTaskStatusEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  WithHrefPartialUnbrandXoTaskStatusEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      WithHrefPartialUnbrandXoTaskStatusEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$WithHrefPartialUnbrandXoTask extends WithHrefPartialUnbrandXoTask {
   @override

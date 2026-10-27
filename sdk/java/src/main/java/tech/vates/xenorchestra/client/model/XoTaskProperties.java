@@ -65,89 +65,53 @@ public class XoTaskProperties {
   /**
    * Gets or Sets objectType
    */
-  public enum ObjectTypeEnum {
-    POOL(String.valueOf("pool")),
-    
-    VBD(String.valueOf("VBD")),
-    
-    HOST(String.valueOf("host")),
-    
-    VIF(String.valueOf("VIF")),
-    
-    VTPM(String.valueOf("VTPM")),
-    
-    VM_SNAPSHOT(String.valueOf("VM-snapshot")),
-    
-    SR(String.valueOf("SR")),
-    
-    VM(String.valueOf("VM")),
-    
-    VM_TEMPLATE(String.valueOf("VM-template")),
-    
-    MESSAGE(String.valueOf("message")),
-    
-    VGPU(String.valueOf("vgpu")),
-    
-    GPU_GROUP(String.valueOf("gpuGroup")),
-    
-    NETWORK(String.valueOf("network")),
-    
-    PBD(String.valueOf("PBD")),
-    
-    PCI(String.valueOf("PCI")),
-    
-    PGPU(String.valueOf("PGPU")),
-    
-    PIF(String.valueOf("PIF")),
-    
-    VDI(String.valueOf("VDI")),
-    
-    VDI_SNAPSHOT(String.valueOf("VDI-snapshot")),
-    
-    VDI_UNMANAGED(String.valueOf("VDI-unmanaged")),
-    
-    VGPU_TYPE(String.valueOf("vgpuType")),
-    
-    VM_CONTROLLER(String.valueOf("VM-controller")),
-    
-    SM(String.valueOf("SM")),
-    
-    BACKUP(String.valueOf("backup")),
-    
-    BACKUP_ARCHIVE(String.valueOf("backup-archive")),
-    
-    BACKUP_JOB(String.valueOf("backup-job")),
-    
-    BACKUP_LOG(String.valueOf("backup-log")),
-    
-    BACKUP_REPOSITORY(String.valueOf("backup-repository")),
-    
-    GROUP(String.valueOf("group")),
-    
-    PROXY(String.valueOf("proxy")),
-    
-    RESTORE(String.valueOf("restore")),
-    
-    RESTORE_LOG(String.valueOf("restore-log")),
-    
-    SCHEDULE(String.valueOf("schedule")),
-    
-    SERVER(String.valueOf("server")),
-    
-    TASK(String.valueOf("task")),
-    
-    USER(String.valueOf("user")),
-    
-    ACL_PRIVILEGE(String.valueOf("acl-privilege")),
-    
-    ACL_ROLE(String.valueOf("acl-role")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+  public static final class ObjectTypeEnum {
+    public static final ObjectTypeEnum POOL = new ObjectTypeEnum("pool");
+    public static final ObjectTypeEnum VBD = new ObjectTypeEnum("VBD");
+    public static final ObjectTypeEnum HOST = new ObjectTypeEnum("host");
+    public static final ObjectTypeEnum VIF = new ObjectTypeEnum("VIF");
+    public static final ObjectTypeEnum VTPM = new ObjectTypeEnum("VTPM");
+    public static final ObjectTypeEnum VM_SNAPSHOT = new ObjectTypeEnum("VM-snapshot");
+    public static final ObjectTypeEnum SR = new ObjectTypeEnum("SR");
+    public static final ObjectTypeEnum VM = new ObjectTypeEnum("VM");
+    public static final ObjectTypeEnum VM_TEMPLATE = new ObjectTypeEnum("VM-template");
+    public static final ObjectTypeEnum MESSAGE = new ObjectTypeEnum("message");
+    public static final ObjectTypeEnum VGPU = new ObjectTypeEnum("vgpu");
+    public static final ObjectTypeEnum GPU_GROUP = new ObjectTypeEnum("gpuGroup");
+    public static final ObjectTypeEnum NETWORK = new ObjectTypeEnum("network");
+    public static final ObjectTypeEnum PBD = new ObjectTypeEnum("PBD");
+    public static final ObjectTypeEnum PCI = new ObjectTypeEnum("PCI");
+    public static final ObjectTypeEnum PGPU = new ObjectTypeEnum("PGPU");
+    public static final ObjectTypeEnum PIF = new ObjectTypeEnum("PIF");
+    public static final ObjectTypeEnum VDI = new ObjectTypeEnum("VDI");
+    public static final ObjectTypeEnum VDI_SNAPSHOT = new ObjectTypeEnum("VDI-snapshot");
+    public static final ObjectTypeEnum VDI_UNMANAGED = new ObjectTypeEnum("VDI-unmanaged");
+    public static final ObjectTypeEnum VGPU_TYPE = new ObjectTypeEnum("vgpuType");
+    public static final ObjectTypeEnum VM_CONTROLLER = new ObjectTypeEnum("VM-controller");
+    public static final ObjectTypeEnum SM = new ObjectTypeEnum("SM");
+    public static final ObjectTypeEnum BACKUP = new ObjectTypeEnum("backup");
+    public static final ObjectTypeEnum BACKUP_ARCHIVE = new ObjectTypeEnum("backup-archive");
+    public static final ObjectTypeEnum BACKUP_JOB = new ObjectTypeEnum("backup-job");
+    public static final ObjectTypeEnum BACKUP_LOG = new ObjectTypeEnum("backup-log");
+    public static final ObjectTypeEnum BACKUP_REPOSITORY = new ObjectTypeEnum("backup-repository");
+    public static final ObjectTypeEnum GROUP = new ObjectTypeEnum("group");
+    public static final ObjectTypeEnum PROXY = new ObjectTypeEnum("proxy");
+    public static final ObjectTypeEnum RESTORE = new ObjectTypeEnum("restore");
+    public static final ObjectTypeEnum RESTORE_LOG = new ObjectTypeEnum("restore-log");
+    public static final ObjectTypeEnum SCHEDULE = new ObjectTypeEnum("schedule");
+    public static final ObjectTypeEnum SERVER = new ObjectTypeEnum("server");
+    public static final ObjectTypeEnum TASK = new ObjectTypeEnum("task");
+    public static final ObjectTypeEnum USER = new ObjectTypeEnum("user");
+    public static final ObjectTypeEnum ACL_PRIVILEGE = new ObjectTypeEnum("acl-privilege");
+    public static final ObjectTypeEnum ACL_ROLE = new ObjectTypeEnum("acl-role");
+    @JsonCreator public static ObjectTypeEnum fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static ObjectTypeEnum[] values() { return new ObjectTypeEnum[] {POOL, VBD, HOST, VIF, VTPM, VM_SNAPSHOT, SR, VM, VM_TEMPLATE, MESSAGE, VGPU, GPU_GROUP, NETWORK, PBD, PCI, PGPU, PIF, VDI, VDI_SNAPSHOT, VDI_UNMANAGED, VGPU_TYPE, VM_CONTROLLER, SM, BACKUP, BACKUP_ARCHIVE, BACKUP_JOB, BACKUP_LOG, BACKUP_REPOSITORY, GROUP, PROXY, RESTORE, RESTORE_LOG, SCHEDULE, SERVER, TASK, USER, ACL_PRIVILEGE, ACL_ROLE}; }
+    @Override public boolean equals(Object other) { return other instanceof ObjectTypeEnum && value.equals(((ObjectTypeEnum) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-    private String value;
-
-    ObjectTypeEnum(String value) {
-      this.value = value;
+    private ObjectTypeEnum(String value) {
+      this.value = java.util.Objects.requireNonNull(value);
     }
 
     @JsonValue
@@ -160,16 +124,17 @@ public class XoTaskProperties {
       return String.valueOf(value);
     }
 
-    @JsonCreator
+    
     public static ObjectTypeEnum fromValue(String value) {
       for (ObjectTypeEnum b : ObjectTypeEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      return new ObjectTypeEnum(value);
     }
   }
+
 
   public static final String JSON_PROPERTY_OBJECT_TYPE = "objectType";
   @javax.annotation.Nullable

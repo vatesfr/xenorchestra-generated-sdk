@@ -10,6 +10,9 @@ const CreateUserRequestPermissionEnum _$createUserRequestPermissionEnum_none =
     const CreateUserRequestPermissionEnum._('none');
 const CreateUserRequestPermissionEnum _$createUserRequestPermissionEnum_admin =
     const CreateUserRequestPermissionEnum._('admin');
+const CreateUserRequestPermissionEnum
+    _$createUserRequestPermissionEnum_unknownDefaultOpenApi =
+    const CreateUserRequestPermissionEnum._('unknownDefaultOpenApi');
 
 CreateUserRequestPermissionEnum _$createUserRequestPermissionEnumValueOf(
     String name) {
@@ -18,6 +21,8 @@ CreateUserRequestPermissionEnum _$createUserRequestPermissionEnumValueOf(
       return _$createUserRequestPermissionEnum_none;
     case 'admin':
       return _$createUserRequestPermissionEnum_admin;
+    case 'unknownDefaultOpenApi':
+      return _$createUserRequestPermissionEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -28,41 +33,8 @@ final BuiltSet<CreateUserRequestPermissionEnum>
         CreateUserRequestPermissionEnum>(const <CreateUserRequestPermissionEnum>[
   _$createUserRequestPermissionEnum_none,
   _$createUserRequestPermissionEnum_admin,
+  _$createUserRequestPermissionEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<CreateUserRequestPermissionEnum>
-    _$createUserRequestPermissionEnumSerializer =
-    _$CreateUserRequestPermissionEnumSerializer();
-
-class _$CreateUserRequestPermissionEnumSerializer
-    implements PrimitiveSerializer<CreateUserRequestPermissionEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'none': 'none',
-    'admin': 'admin',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'none': 'none',
-    'admin': 'admin',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[CreateUserRequestPermissionEnum];
-  @override
-  final String wireName = 'CreateUserRequestPermissionEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers, CreateUserRequestPermissionEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  CreateUserRequestPermissionEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      CreateUserRequestPermissionEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$CreateUserRequest extends CreateUserRequest {
   @override

@@ -59,8 +59,6 @@ class WithHrefPartialUnbrandXoVdiSnapshot(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['VDI-snapshot']):
-            raise ValueError("must be one of enum values ('VDI-snapshot')")
         return value
 
     model_config = ConfigDict(

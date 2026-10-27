@@ -12,29 +12,64 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum DomainType {
-    #[serde(rename = "hvm")]
     Hvm,
-    #[serde(rename = "pv")]
     Pv,
-    #[serde(rename = "pvh")]
     Pvh,
-    #[serde(rename = "pv_in_pvh")]
     PvInPvh,
-    #[serde(rename = "unspecified")]
     Unspecified,
+    UnknownValue(String),
 }
-
-impl std::fmt::Display for DomainType {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+impl DomainType {
+    pub fn as_str(&self) -> &str {
         match self {
-            Self::Hvm => write!(f, "hvm"),
-            Self::Pv => write!(f, "pv"),
-            Self::Pvh => write!(f, "pvh"),
-            Self::PvInPvh => write!(f, "pv_in_pvh"),
-            Self::Unspecified => write!(f, "unspecified"),
+            Self::Hvm => "hvm",
+            Self::Pv => "pv",
+            Self::Pvh => "pvh",
+            Self::PvInPvh => "pv_in_pvh",
+            Self::Unspecified => "unspecified",
+            Self::UnknownValue(value) => value,
         }
+    }
+}
+impl From<String> for DomainType {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "hvm" => Self::Hvm,
+            "pv" => Self::Pv,
+            "pvh" => Self::Pvh,
+            "pv_in_pvh" => Self::PvInPvh,
+            "unspecified" => Self::Unspecified,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for DomainType {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for DomainType {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for DomainType {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for DomainType {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
     }
 }
 

@@ -10,6 +10,9 @@ const UnbrandAnyPrivilegeActionEnum _$unbrandAnyPrivilegeActionEnum_star =
     const UnbrandAnyPrivilegeActionEnum._('star');
 const UnbrandAnyPrivilegeActionEnum _$unbrandAnyPrivilegeActionEnum_read =
     const UnbrandAnyPrivilegeActionEnum._('read');
+const UnbrandAnyPrivilegeActionEnum
+    _$unbrandAnyPrivilegeActionEnum_unknownDefaultOpenApi =
+    const UnbrandAnyPrivilegeActionEnum._('unknownDefaultOpenApi');
 
 UnbrandAnyPrivilegeActionEnum _$unbrandAnyPrivilegeActionEnumValueOf(
     String name) {
@@ -18,6 +21,8 @@ UnbrandAnyPrivilegeActionEnum _$unbrandAnyPrivilegeActionEnumValueOf(
       return _$unbrandAnyPrivilegeActionEnum_star;
     case 'read':
       return _$unbrandAnyPrivilegeActionEnum_read;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandAnyPrivilegeActionEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -28,12 +33,16 @@ final BuiltSet<UnbrandAnyPrivilegeActionEnum>
         UnbrandAnyPrivilegeActionEnum>(const <UnbrandAnyPrivilegeActionEnum>[
   _$unbrandAnyPrivilegeActionEnum_star,
   _$unbrandAnyPrivilegeActionEnum_read,
+  _$unbrandAnyPrivilegeActionEnum_unknownDefaultOpenApi,
 ]);
 
 const UnbrandAnyPrivilegeEffectEnum _$unbrandAnyPrivilegeEffectEnum_allow =
     const UnbrandAnyPrivilegeEffectEnum._('allow');
 const UnbrandAnyPrivilegeEffectEnum _$unbrandAnyPrivilegeEffectEnum_deny =
     const UnbrandAnyPrivilegeEffectEnum._('deny');
+const UnbrandAnyPrivilegeEffectEnum
+    _$unbrandAnyPrivilegeEffectEnum_unknownDefaultOpenApi =
+    const UnbrandAnyPrivilegeEffectEnum._('unknownDefaultOpenApi');
 
 UnbrandAnyPrivilegeEffectEnum _$unbrandAnyPrivilegeEffectEnumValueOf(
     String name) {
@@ -42,6 +51,8 @@ UnbrandAnyPrivilegeEffectEnum _$unbrandAnyPrivilegeEffectEnumValueOf(
       return _$unbrandAnyPrivilegeEffectEnum_allow;
     case 'deny':
       return _$unbrandAnyPrivilegeEffectEnum_deny;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandAnyPrivilegeEffectEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -52,16 +63,22 @@ final BuiltSet<UnbrandAnyPrivilegeEffectEnum>
         UnbrandAnyPrivilegeEffectEnum>(const <UnbrandAnyPrivilegeEffectEnum>[
   _$unbrandAnyPrivilegeEffectEnum_allow,
   _$unbrandAnyPrivilegeEffectEnum_deny,
+  _$unbrandAnyPrivilegeEffectEnum_unknownDefaultOpenApi,
 ]);
 
 const UnbrandAnyPrivilegeResourceEnum _$unbrandAnyPrivilegeResourceEnum_vtpm =
     const UnbrandAnyPrivilegeResourceEnum._('vtpm');
+const UnbrandAnyPrivilegeResourceEnum
+    _$unbrandAnyPrivilegeResourceEnum_unknownDefaultOpenApi =
+    const UnbrandAnyPrivilegeResourceEnum._('unknownDefaultOpenApi');
 
 UnbrandAnyPrivilegeResourceEnum _$unbrandAnyPrivilegeResourceEnumValueOf(
     String name) {
   switch (name) {
     case 'vtpm':
       return _$unbrandAnyPrivilegeResourceEnum_vtpm;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandAnyPrivilegeResourceEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -71,105 +88,8 @@ final BuiltSet<UnbrandAnyPrivilegeResourceEnum>
     _$unbrandAnyPrivilegeResourceEnumValues = BuiltSet<
         UnbrandAnyPrivilegeResourceEnum>(const <UnbrandAnyPrivilegeResourceEnum>[
   _$unbrandAnyPrivilegeResourceEnum_vtpm,
+  _$unbrandAnyPrivilegeResourceEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<UnbrandAnyPrivilegeActionEnum>
-    _$unbrandAnyPrivilegeActionEnumSerializer =
-    _$UnbrandAnyPrivilegeActionEnumSerializer();
-Serializer<UnbrandAnyPrivilegeEffectEnum>
-    _$unbrandAnyPrivilegeEffectEnumSerializer =
-    _$UnbrandAnyPrivilegeEffectEnumSerializer();
-Serializer<UnbrandAnyPrivilegeResourceEnum>
-    _$unbrandAnyPrivilegeResourceEnumSerializer =
-    _$UnbrandAnyPrivilegeResourceEnumSerializer();
-
-class _$UnbrandAnyPrivilegeActionEnumSerializer
-    implements PrimitiveSerializer<UnbrandAnyPrivilegeActionEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'star': '*',
-    'read': 'read',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    '*': 'star',
-    'read': 'read',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[UnbrandAnyPrivilegeActionEnum];
-  @override
-  final String wireName = 'UnbrandAnyPrivilegeActionEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers, UnbrandAnyPrivilegeActionEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandAnyPrivilegeActionEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandAnyPrivilegeActionEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
-
-class _$UnbrandAnyPrivilegeEffectEnumSerializer
-    implements PrimitiveSerializer<UnbrandAnyPrivilegeEffectEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'allow': 'allow',
-    'deny': 'deny',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'allow': 'allow',
-    'deny': 'deny',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[UnbrandAnyPrivilegeEffectEnum];
-  @override
-  final String wireName = 'UnbrandAnyPrivilegeEffectEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers, UnbrandAnyPrivilegeEffectEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandAnyPrivilegeEffectEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandAnyPrivilegeEffectEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
-
-class _$UnbrandAnyPrivilegeResourceEnumSerializer
-    implements PrimitiveSerializer<UnbrandAnyPrivilegeResourceEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'vtpm': 'vtpm',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'vtpm': 'vtpm',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[UnbrandAnyPrivilegeResourceEnum];
-  @override
-  final String wireName = 'UnbrandAnyPrivilegeResourceEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers, UnbrandAnyPrivilegeResourceEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandAnyPrivilegeResourceEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandAnyPrivilegeResourceEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$UnbrandAnyPrivilege extends UnbrandAnyPrivilege {
   @override

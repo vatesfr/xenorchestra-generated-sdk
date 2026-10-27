@@ -286,9 +286,13 @@ class PartialUnbrandXoAlarmTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'message')
   static const PartialUnbrandXoAlarmTypeEnum message =
       _$partialUnbrandXoAlarmTypeEnum_message;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const PartialUnbrandXoAlarmTypeEnum unknownDefaultOpenApi =
+      _$partialUnbrandXoAlarmTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<PartialUnbrandXoAlarmTypeEnum> get serializer =>
-      _$partialUnbrandXoAlarmTypeEnumSerializer;
+      _OpenPartialUnbrandXoAlarmTypeEnumSerializer();
 
   const PartialUnbrandXoAlarmTypeEnum._(String name) : super(name);
 
@@ -296,4 +300,48 @@ class PartialUnbrandXoAlarmTypeEnum extends EnumClass {
       _$partialUnbrandXoAlarmTypeEnumValues;
   static PartialUnbrandXoAlarmTypeEnum valueOf(String name) =>
       _$partialUnbrandXoAlarmTypeEnumValueOf(name);
+
+  static PartialUnbrandXoAlarmTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'message':
+        return message;
+      default:
+        return PartialUnbrandXoAlarmTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, message)) return r'message';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is PartialUnbrandXoAlarmTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenPartialUnbrandXoAlarmTypeEnumSerializer
+    implements PrimitiveSerializer<PartialUnbrandXoAlarmTypeEnum> {
+  @override
+  final Iterable<Type> types = const [PartialUnbrandXoAlarmTypeEnum];
+  @override
+  final String wireName = 'PartialUnbrandXoAlarmTypeEnum';
+  @override
+  Object serialize(
+          Serializers serializers, PartialUnbrandXoAlarmTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  PartialUnbrandXoAlarmTypeEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for PartialUnbrandXoAlarmTypeEnum');
+    return PartialUnbrandXoAlarmTypeEnum.fromValue(serialized);
+  }
 }

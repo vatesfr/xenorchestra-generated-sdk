@@ -28,20 +28,18 @@ import com.fasterxml.jackson.annotation.JsonValue;
 /**
  * Gets or Sets VBD_TYPE
  */
-public enum VBDTYPE {
-  
-  CD("CD"),
-  
-  DISK("Disk"),
-  
-  FLOPPY("Floppy"),
-  
-  UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
+public final class VBDTYPE {
+    public static final VBDTYPE CD = new VBDTYPE("CD");
+    public static final VBDTYPE DISK = new VBDTYPE("Disk");
+    public static final VBDTYPE FLOPPY = new VBDTYPE("Floppy");
+    @JsonCreator public static VBDTYPE fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static VBDTYPE[] values() { return new VBDTYPE[] {CD, DISK, FLOPPY}; }
+    @Override public boolean equals(Object other) { return other instanceof VBDTYPE && value.equals(((VBDTYPE) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-  private String value;
-
-  VBDTYPE(String value) {
-    this.value = value;
+  private VBDTYPE(String value) {
+    this.value = java.util.Objects.requireNonNull(value);
   }
 
   @JsonValue
@@ -54,14 +52,14 @@ public enum VBDTYPE {
     return String.valueOf(value);
   }
 
-  @JsonCreator
+  
   public static VBDTYPE fromValue(String value) {
     for (VBDTYPE b : VBDTYPE.values()) {
       if (b.value.equals(value)) {
         return b;
       }
     }
-    return UNKNOWN_DEFAULT_OPEN_API;
+    return new VBDTYPE(value);
   }
 
   /**
@@ -79,4 +77,5 @@ public enum VBDTYPE {
   }
 
 }
+
 

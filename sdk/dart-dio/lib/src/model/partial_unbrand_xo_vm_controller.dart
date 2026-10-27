@@ -1256,10 +1256,15 @@ class PartialUnbrandXoVmControllerHighAvailabilityEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'restart')
   static const PartialUnbrandXoVmControllerHighAvailabilityEnum restart =
       _$partialUnbrandXoVmControllerHighAvailabilityEnum_restart;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const PartialUnbrandXoVmControllerHighAvailabilityEnum
+      unknownDefaultOpenApi =
+      _$partialUnbrandXoVmControllerHighAvailabilityEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<PartialUnbrandXoVmControllerHighAvailabilityEnum>
       get serializer =>
-          _$partialUnbrandXoVmControllerHighAvailabilityEnumSerializer;
+          _OpenPartialUnbrandXoVmControllerHighAvailabilityEnumSerializer();
 
   const PartialUnbrandXoVmControllerHighAvailabilityEnum._(String name)
       : super(name);
@@ -1269,15 +1274,75 @@ class PartialUnbrandXoVmControllerHighAvailabilityEnum extends EnumClass {
   static PartialUnbrandXoVmControllerHighAvailabilityEnum valueOf(
           String name) =>
       _$partialUnbrandXoVmControllerHighAvailabilityEnumValueOf(name);
+
+  static PartialUnbrandXoVmControllerHighAvailabilityEnum fromValue(
+      String value) {
+    switch (value) {
+      case r'':
+        return empty;
+      case r'best-effort':
+        return bestEffort;
+      case r'restart':
+        return restart;
+      default:
+        return PartialUnbrandXoVmControllerHighAvailabilityEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, empty)) return r'';
+    if (identical(this, bestEffort)) return r'best-effort';
+    if (identical(this, restart)) return r'restart';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is PartialUnbrandXoVmControllerHighAvailabilityEnum &&
+      value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenPartialUnbrandXoVmControllerHighAvailabilityEnumSerializer
+    implements
+        PrimitiveSerializer<PartialUnbrandXoVmControllerHighAvailabilityEnum> {
+  @override
+  final Iterable<Type> types = const [
+    PartialUnbrandXoVmControllerHighAvailabilityEnum
+  ];
+  @override
+  final String wireName = 'PartialUnbrandXoVmControllerHighAvailabilityEnum';
+  @override
+  Object serialize(Serializers serializers,
+          PartialUnbrandXoVmControllerHighAvailabilityEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  PartialUnbrandXoVmControllerHighAvailabilityEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for PartialUnbrandXoVmControllerHighAvailabilityEnum');
+    return PartialUnbrandXoVmControllerHighAvailabilityEnum.fromValue(
+        serialized);
+  }
 }
 
 class PartialUnbrandXoVmControllerTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'VM-controller')
   static const PartialUnbrandXoVmControllerTypeEnum vMController =
       _$partialUnbrandXoVmControllerTypeEnum_vMController;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const PartialUnbrandXoVmControllerTypeEnum unknownDefaultOpenApi =
+      _$partialUnbrandXoVmControllerTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<PartialUnbrandXoVmControllerTypeEnum> get serializer =>
-      _$partialUnbrandXoVmControllerTypeEnumSerializer;
+      _OpenPartialUnbrandXoVmControllerTypeEnumSerializer();
 
   const PartialUnbrandXoVmControllerTypeEnum._(String name) : super(name);
 
@@ -1285,4 +1350,48 @@ class PartialUnbrandXoVmControllerTypeEnum extends EnumClass {
       _$partialUnbrandXoVmControllerTypeEnumValues;
   static PartialUnbrandXoVmControllerTypeEnum valueOf(String name) =>
       _$partialUnbrandXoVmControllerTypeEnumValueOf(name);
+
+  static PartialUnbrandXoVmControllerTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'VM-controller':
+        return vMController;
+      default:
+        return PartialUnbrandXoVmControllerTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, vMController)) return r'VM-controller';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is PartialUnbrandXoVmControllerTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenPartialUnbrandXoVmControllerTypeEnumSerializer
+    implements PrimitiveSerializer<PartialUnbrandXoVmControllerTypeEnum> {
+  @override
+  final Iterable<Type> types = const [PartialUnbrandXoVmControllerTypeEnum];
+  @override
+  final String wireName = 'PartialUnbrandXoVmControllerTypeEnum';
+  @override
+  Object serialize(
+          Serializers serializers, PartialUnbrandXoVmControllerTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  PartialUnbrandXoVmControllerTypeEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for PartialUnbrandXoVmControllerTypeEnum');
+    return PartialUnbrandXoVmControllerTypeEnum.fromValue(serialized);
+  }
 }

@@ -134,50 +134,50 @@ __all__ = [
     "PartialRecordVMOPERATIONSBooleanOrStringOrNull",
     "PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid",
     "PartialUnbrandAnyPrivilege",
-    "PartialUnbrandAnyPrivilegeAnyOf",
-    "PartialUnbrandAnyPrivilegeAnyOf1",
-    "PartialUnbrandAnyPrivilegeAnyOf10",
-    "PartialUnbrandAnyPrivilegeAnyOf11",
-    "PartialUnbrandAnyPrivilegeAnyOf12",
-    "PartialUnbrandAnyPrivilegeAnyOf13",
-    "PartialUnbrandAnyPrivilegeAnyOf14",
-    "PartialUnbrandAnyPrivilegeAnyOf15",
-    "PartialUnbrandAnyPrivilegeAnyOf16",
-    "PartialUnbrandAnyPrivilegeAnyOf17",
-    "PartialUnbrandAnyPrivilegeAnyOf18",
-    "PartialUnbrandAnyPrivilegeAnyOf19",
-    "PartialUnbrandAnyPrivilegeAnyOf2",
-    "PartialUnbrandAnyPrivilegeAnyOf20",
-    "PartialUnbrandAnyPrivilegeAnyOf21",
-    "PartialUnbrandAnyPrivilegeAnyOf22",
-    "PartialUnbrandAnyPrivilegeAnyOf23",
-    "PartialUnbrandAnyPrivilegeAnyOf24",
-    "PartialUnbrandAnyPrivilegeAnyOf25",
-    "PartialUnbrandAnyPrivilegeAnyOf26",
-    "PartialUnbrandAnyPrivilegeAnyOf27",
-    "PartialUnbrandAnyPrivilegeAnyOf28",
-    "PartialUnbrandAnyPrivilegeAnyOf29",
-    "PartialUnbrandAnyPrivilegeAnyOf3",
-    "PartialUnbrandAnyPrivilegeAnyOf30",
-    "PartialUnbrandAnyPrivilegeAnyOf31",
-    "PartialUnbrandAnyPrivilegeAnyOf32",
-    "PartialUnbrandAnyPrivilegeAnyOf33",
-    "PartialUnbrandAnyPrivilegeAnyOf34",
-    "PartialUnbrandAnyPrivilegeAnyOf35",
-    "PartialUnbrandAnyPrivilegeAnyOf36",
-    "PartialUnbrandAnyPrivilegeAnyOf4",
-    "PartialUnbrandAnyPrivilegeAnyOf5",
-    "PartialUnbrandAnyPrivilegeAnyOf6",
-    "PartialUnbrandAnyPrivilegeAnyOf7",
-    "PartialUnbrandAnyPrivilegeAnyOf8",
-    "PartialUnbrandAnyPrivilegeAnyOf9",
+    "PartialUnbrandAnyPrivilegeVariantAclPrivilege",
+    "PartialUnbrandAnyPrivilegeVariantAclRole",
+    "PartialUnbrandAnyPrivilegeVariantAlarm",
+    "PartialUnbrandAnyPrivilegeVariantBackupArchive",
+    "PartialUnbrandAnyPrivilegeVariantBackupJob",
+    "PartialUnbrandAnyPrivilegeVariantBackupLog",
+    "PartialUnbrandAnyPrivilegeVariantBackupRepository",
+    "PartialUnbrandAnyPrivilegeVariantGpuGroup",
+    "PartialUnbrandAnyPrivilegeVariantGroup",
+    "PartialUnbrandAnyPrivilegeVariantHost",
+    "PartialUnbrandAnyPrivilegeVariantMessage",
+    "PartialUnbrandAnyPrivilegeVariantNetwork",
+    "PartialUnbrandAnyPrivilegeVariantPbd",
+    "PartialUnbrandAnyPrivilegeVariantPci",
+    "PartialUnbrandAnyPrivilegeVariantPgpu",
+    "PartialUnbrandAnyPrivilegeVariantPif",
+    "PartialUnbrandAnyPrivilegeVariantPool",
+    "PartialUnbrandAnyPrivilegeVariantProxy",
+    "PartialUnbrandAnyPrivilegeVariantRestoreLog",
+    "PartialUnbrandAnyPrivilegeVariantSchedule",
+    "PartialUnbrandAnyPrivilegeVariantServer",
+    "PartialUnbrandAnyPrivilegeVariantSm",
+    "PartialUnbrandAnyPrivilegeVariantSr",
+    "PartialUnbrandAnyPrivilegeVariantTask",
+    "PartialUnbrandAnyPrivilegeVariantUser",
+    "PartialUnbrandAnyPrivilegeVariantVbd",
+    "PartialUnbrandAnyPrivilegeVariantVdi",
+    "PartialUnbrandAnyPrivilegeVariantVdiSnapshot",
+    "PartialUnbrandAnyPrivilegeVariantVdiUnmanaged",
+    "PartialUnbrandAnyPrivilegeVariantVgpu",
+    "PartialUnbrandAnyPrivilegeVariantVgpuType",
+    "PartialUnbrandAnyPrivilegeVariantVif",
+    "PartialUnbrandAnyPrivilegeVariantVm",
+    "PartialUnbrandAnyPrivilegeVariantVmController",
+    "PartialUnbrandAnyPrivilegeVariantVmSnapshot",
+    "PartialUnbrandAnyPrivilegeVariantVmTemplate",
+    "PartialUnbrandAnyPrivilegeVariantVtpm",
     "PartialUnbrandAnyXoBackupJob",
-    "PartialUnbrandAnyXoBackupJobAnyOf",
-    "PartialUnbrandAnyXoBackupJobAnyOf1",
-    "PartialUnbrandAnyXoBackupJobAnyOf1Settings",
-    "PartialUnbrandAnyXoBackupJobAnyOf2",
-    "PartialUnbrandAnyXoBackupJobAnyOf2Settings",
-    "PartialUnbrandAnyXoBackupJobAnyOfSettings",
+    "PartialUnbrandAnyXoBackupJobVariantBackup",
+    "PartialUnbrandAnyXoBackupJobVariantBackupSettings",
+    "PartialUnbrandAnyXoBackupJobVariantMetadataBackup",
+    "PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings",
+    "PartialUnbrandAnyXoBackupJobVariantMirrorBackup",
+    "PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettings",
     "PartialUnbrandExcludeXoAclRoleIsTemplateTrue",
     "PartialUnbrandXoAclRole",
     "PartialUnbrandXoAclRoleAnyOf",
@@ -334,50 +334,50 @@ __all__ = [
     "SrSizeInfoSize",
     "StartVmRequest",
     "UnbrandAnyPrivilege",
-    "UnbrandAnyPrivilegeAnyOf",
-    "UnbrandAnyPrivilegeAnyOf1",
-    "UnbrandAnyPrivilegeAnyOf10",
-    "UnbrandAnyPrivilegeAnyOf11",
-    "UnbrandAnyPrivilegeAnyOf12",
-    "UnbrandAnyPrivilegeAnyOf13",
-    "UnbrandAnyPrivilegeAnyOf14",
-    "UnbrandAnyPrivilegeAnyOf15",
-    "UnbrandAnyPrivilegeAnyOf16",
-    "UnbrandAnyPrivilegeAnyOf17",
-    "UnbrandAnyPrivilegeAnyOf18",
-    "UnbrandAnyPrivilegeAnyOf19",
-    "UnbrandAnyPrivilegeAnyOf2",
-    "UnbrandAnyPrivilegeAnyOf20",
-    "UnbrandAnyPrivilegeAnyOf21",
-    "UnbrandAnyPrivilegeAnyOf22",
-    "UnbrandAnyPrivilegeAnyOf23",
-    "UnbrandAnyPrivilegeAnyOf24",
-    "UnbrandAnyPrivilegeAnyOf25",
-    "UnbrandAnyPrivilegeAnyOf26",
-    "UnbrandAnyPrivilegeAnyOf27",
-    "UnbrandAnyPrivilegeAnyOf28",
-    "UnbrandAnyPrivilegeAnyOf29",
-    "UnbrandAnyPrivilegeAnyOf3",
-    "UnbrandAnyPrivilegeAnyOf30",
-    "UnbrandAnyPrivilegeAnyOf31",
-    "UnbrandAnyPrivilegeAnyOf32",
-    "UnbrandAnyPrivilegeAnyOf33",
-    "UnbrandAnyPrivilegeAnyOf34",
-    "UnbrandAnyPrivilegeAnyOf35",
-    "UnbrandAnyPrivilegeAnyOf36",
-    "UnbrandAnyPrivilegeAnyOf4",
-    "UnbrandAnyPrivilegeAnyOf5",
-    "UnbrandAnyPrivilegeAnyOf6",
-    "UnbrandAnyPrivilegeAnyOf7",
-    "UnbrandAnyPrivilegeAnyOf8",
-    "UnbrandAnyPrivilegeAnyOf9",
+    "UnbrandAnyPrivilegeVariantAclPrivilege",
+    "UnbrandAnyPrivilegeVariantAclRole",
+    "UnbrandAnyPrivilegeVariantAlarm",
+    "UnbrandAnyPrivilegeVariantBackupArchive",
+    "UnbrandAnyPrivilegeVariantBackupJob",
+    "UnbrandAnyPrivilegeVariantBackupLog",
+    "UnbrandAnyPrivilegeVariantBackupRepository",
+    "UnbrandAnyPrivilegeVariantGpuGroup",
+    "UnbrandAnyPrivilegeVariantGroup",
+    "UnbrandAnyPrivilegeVariantHost",
+    "UnbrandAnyPrivilegeVariantMessage",
+    "UnbrandAnyPrivilegeVariantNetwork",
+    "UnbrandAnyPrivilegeVariantPbd",
+    "UnbrandAnyPrivilegeVariantPci",
+    "UnbrandAnyPrivilegeVariantPgpu",
+    "UnbrandAnyPrivilegeVariantPif",
+    "UnbrandAnyPrivilegeVariantPool",
+    "UnbrandAnyPrivilegeVariantProxy",
+    "UnbrandAnyPrivilegeVariantRestoreLog",
+    "UnbrandAnyPrivilegeVariantSchedule",
+    "UnbrandAnyPrivilegeVariantServer",
+    "UnbrandAnyPrivilegeVariantSm",
+    "UnbrandAnyPrivilegeVariantSr",
+    "UnbrandAnyPrivilegeVariantTask",
+    "UnbrandAnyPrivilegeVariantUser",
+    "UnbrandAnyPrivilegeVariantVbd",
+    "UnbrandAnyPrivilegeVariantVdi",
+    "UnbrandAnyPrivilegeVariantVdiSnapshot",
+    "UnbrandAnyPrivilegeVariantVdiUnmanaged",
+    "UnbrandAnyPrivilegeVariantVgpu",
+    "UnbrandAnyPrivilegeVariantVgpuType",
+    "UnbrandAnyPrivilegeVariantVif",
+    "UnbrandAnyPrivilegeVariantVm",
+    "UnbrandAnyPrivilegeVariantVmController",
+    "UnbrandAnyPrivilegeVariantVmSnapshot",
+    "UnbrandAnyPrivilegeVariantVmTemplate",
+    "UnbrandAnyPrivilegeVariantVtpm",
     "UnbrandAnyXoBackupJob",
     "UnbrandCreateBondedNetworkBody",
     "UnbrandCreateNetworkBody",
     "UnbrandCreateVmBody",
     "UnbrandCreateVmBodyInstall",
-    "UnbrandCreateVmBodyInstallAnyOf",
-    "UnbrandCreateVmBodyInstallAnyOf1",
+    "UnbrandCreateVmBodyInstallVariantCdrom",
+    "UnbrandCreateVmBodyInstallVariantNetwork",
     "UnbrandCreateVmBodyVdisInner",
     "UnbrandCreateVmBodyVdisInnerAnyOf",
     "UnbrandCreateVmBodyVdisInnerAnyOf1",
@@ -388,81 +388,81 @@ __all__ = [
     "UnbrandParametersXoAppAtCreateRemote91093",
     "UnbrandParametersXoAppAtUpdateRemote91193",
     "UnbrandSafeOmitAnyPrivilegeId",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf1",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf10",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf11",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf12",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf13",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf14",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf15",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf16",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf17",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf18",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf19",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf2",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf20",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf21",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf22",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf23",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf24",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf25",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf26",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf27",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf28",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf29",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf3",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf30",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf31",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf32",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf33",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf34",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf35",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf36",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf4",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf5",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf6",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf7",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf8",
-    "UnbrandSafeOmitAnyPrivilegeIdAnyOf9",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantAclPrivilege",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantAclRole",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantAlarm",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantBackupArchive",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantBackupJob",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantBackupLog",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantBackupRepository",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantGpuGroup",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantGroup",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantHost",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantMessage",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantNetwork",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantPbd",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantPci",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantPgpu",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantPif",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantPool",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantProxy",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantRestoreLog",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantSchedule",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantServer",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantSm",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantSr",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantTask",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantUser",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantVbd",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantVdi",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantVdiSnapshot",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantVdiUnmanaged",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantVgpu",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantVgpuType",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantVif",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantVm",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantVmController",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantVmSnapshot",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantVmTemplate",
+    "UnbrandSafeOmitAnyPrivilegeIdVariantVtpm",
     "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleId",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf1",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf10",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf11",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf12",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf13",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf14",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf15",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf16",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf17",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf18",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf19",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf2",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf20",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf21",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf22",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf23",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf24",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf25",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf26",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf27",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf28",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf29",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf3",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf30",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf31",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf32",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf33",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf34",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf35",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf36",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf4",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf5",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf6",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf7",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf8",
-    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf9",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantAclPrivilege",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantAclRole",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantAlarm",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantBackupArchive",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantBackupJob",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantBackupLog",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantBackupRepository",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantGpuGroup",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantGroup",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantHost",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantMessage",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantNetwork",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantPbd",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantPci",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantPgpu",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantPif",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantPool",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantProxy",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantRestoreLog",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantSchedule",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantServer",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantSm",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantSr",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantTask",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantUser",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVbd",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVdi",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVdiSnapshot",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVdiUnmanaged",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVgpu",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVgpuType",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVif",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVm",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVmController",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVmSnapshot",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVmTemplate",
+    "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVtpm",
     "UnbrandUnbrandedXoMetadataBackupJob",
     "UnbrandUnbrandedXoMirrorBackupJob",
     "UnbrandUnbrandedXoVmBackupJob",
@@ -526,7 +526,47 @@ __all__ = [
     "VIFLOCKINGMODE",
     "VMPOWERSTATE",
     "WithHrefPartialUnbrandAnyPrivilege",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantAclPrivilege",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantAclRole",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantAlarm",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantBackupArchive",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantBackupJob",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantBackupLog",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantBackupRepository",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantGpuGroup",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantGroup",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantHost",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantMessage",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantNetwork",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantPbd",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantPci",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantPgpu",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantPif",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantPool",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantProxy",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantRestoreLog",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantSchedule",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantServer",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantSm",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantSr",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantTask",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantUser",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantVbd",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantVdi",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantVdiSnapshot",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantVdiUnmanaged",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantVgpu",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantVgpuType",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantVif",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantVm",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantVmController",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantVmSnapshot",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantVmTemplate",
+    "WithHrefPartialUnbrandAnyPrivilegeVariantVtpm",
     "WithHrefPartialUnbrandAnyXoBackupJob",
+    "WithHrefPartialUnbrandAnyXoBackupJobVariantBackup",
+    "WithHrefPartialUnbrandAnyXoBackupJobVariantMetadataBackup",
+    "WithHrefPartialUnbrandAnyXoBackupJobVariantMirrorBackup",
     "WithHrefPartialUnbrandExcludeXoAclRoleIsTemplateTrue",
     "WithHrefPartialUnbrandXoAclRole",
     "WithHrefPartialUnbrandXoAlarm",
@@ -717,50 +757,50 @@ from xenorchestra_client.models.primaryaddresstype import PRIMARYADDRESSTYPE as 
 from xenorchestra_client.models.partial_record_vmoperations_boolean_or_string_or_null import PartialRecordVMOPERATIONSBooleanOrStringOrNull as PartialRecordVMOPERATIONSBooleanOrStringOrNull
 from xenorchestra_client.models.partial_record_vmoperations_boolean_or_string_or_null_assert_operation_valid import PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid as PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid
 from xenorchestra_client.models.partial_unbrand_any_privilege import PartialUnbrandAnyPrivilege as PartialUnbrandAnyPrivilege
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of import PartialUnbrandAnyPrivilegeAnyOf as PartialUnbrandAnyPrivilegeAnyOf
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of1 import PartialUnbrandAnyPrivilegeAnyOf1 as PartialUnbrandAnyPrivilegeAnyOf1
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of10 import PartialUnbrandAnyPrivilegeAnyOf10 as PartialUnbrandAnyPrivilegeAnyOf10
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of11 import PartialUnbrandAnyPrivilegeAnyOf11 as PartialUnbrandAnyPrivilegeAnyOf11
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of12 import PartialUnbrandAnyPrivilegeAnyOf12 as PartialUnbrandAnyPrivilegeAnyOf12
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of13 import PartialUnbrandAnyPrivilegeAnyOf13 as PartialUnbrandAnyPrivilegeAnyOf13
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of14 import PartialUnbrandAnyPrivilegeAnyOf14 as PartialUnbrandAnyPrivilegeAnyOf14
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of15 import PartialUnbrandAnyPrivilegeAnyOf15 as PartialUnbrandAnyPrivilegeAnyOf15
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of16 import PartialUnbrandAnyPrivilegeAnyOf16 as PartialUnbrandAnyPrivilegeAnyOf16
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of17 import PartialUnbrandAnyPrivilegeAnyOf17 as PartialUnbrandAnyPrivilegeAnyOf17
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of18 import PartialUnbrandAnyPrivilegeAnyOf18 as PartialUnbrandAnyPrivilegeAnyOf18
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of19 import PartialUnbrandAnyPrivilegeAnyOf19 as PartialUnbrandAnyPrivilegeAnyOf19
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of2 import PartialUnbrandAnyPrivilegeAnyOf2 as PartialUnbrandAnyPrivilegeAnyOf2
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of20 import PartialUnbrandAnyPrivilegeAnyOf20 as PartialUnbrandAnyPrivilegeAnyOf20
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of21 import PartialUnbrandAnyPrivilegeAnyOf21 as PartialUnbrandAnyPrivilegeAnyOf21
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of22 import PartialUnbrandAnyPrivilegeAnyOf22 as PartialUnbrandAnyPrivilegeAnyOf22
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of23 import PartialUnbrandAnyPrivilegeAnyOf23 as PartialUnbrandAnyPrivilegeAnyOf23
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of24 import PartialUnbrandAnyPrivilegeAnyOf24 as PartialUnbrandAnyPrivilegeAnyOf24
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of25 import PartialUnbrandAnyPrivilegeAnyOf25 as PartialUnbrandAnyPrivilegeAnyOf25
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of26 import PartialUnbrandAnyPrivilegeAnyOf26 as PartialUnbrandAnyPrivilegeAnyOf26
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of27 import PartialUnbrandAnyPrivilegeAnyOf27 as PartialUnbrandAnyPrivilegeAnyOf27
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of28 import PartialUnbrandAnyPrivilegeAnyOf28 as PartialUnbrandAnyPrivilegeAnyOf28
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of29 import PartialUnbrandAnyPrivilegeAnyOf29 as PartialUnbrandAnyPrivilegeAnyOf29
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of3 import PartialUnbrandAnyPrivilegeAnyOf3 as PartialUnbrandAnyPrivilegeAnyOf3
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of30 import PartialUnbrandAnyPrivilegeAnyOf30 as PartialUnbrandAnyPrivilegeAnyOf30
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of31 import PartialUnbrandAnyPrivilegeAnyOf31 as PartialUnbrandAnyPrivilegeAnyOf31
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of32 import PartialUnbrandAnyPrivilegeAnyOf32 as PartialUnbrandAnyPrivilegeAnyOf32
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of33 import PartialUnbrandAnyPrivilegeAnyOf33 as PartialUnbrandAnyPrivilegeAnyOf33
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of34 import PartialUnbrandAnyPrivilegeAnyOf34 as PartialUnbrandAnyPrivilegeAnyOf34
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of35 import PartialUnbrandAnyPrivilegeAnyOf35 as PartialUnbrandAnyPrivilegeAnyOf35
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of36 import PartialUnbrandAnyPrivilegeAnyOf36 as PartialUnbrandAnyPrivilegeAnyOf36
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of4 import PartialUnbrandAnyPrivilegeAnyOf4 as PartialUnbrandAnyPrivilegeAnyOf4
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of5 import PartialUnbrandAnyPrivilegeAnyOf5 as PartialUnbrandAnyPrivilegeAnyOf5
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of6 import PartialUnbrandAnyPrivilegeAnyOf6 as PartialUnbrandAnyPrivilegeAnyOf6
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of7 import PartialUnbrandAnyPrivilegeAnyOf7 as PartialUnbrandAnyPrivilegeAnyOf7
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of8 import PartialUnbrandAnyPrivilegeAnyOf8 as PartialUnbrandAnyPrivilegeAnyOf8
-from xenorchestra_client.models.partial_unbrand_any_privilege_any_of9 import PartialUnbrandAnyPrivilegeAnyOf9 as PartialUnbrandAnyPrivilegeAnyOf9
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_acl_privilege import PartialUnbrandAnyPrivilegeVariantAclPrivilege as PartialUnbrandAnyPrivilegeVariantAclPrivilege
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_acl_role import PartialUnbrandAnyPrivilegeVariantAclRole as PartialUnbrandAnyPrivilegeVariantAclRole
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_alarm import PartialUnbrandAnyPrivilegeVariantAlarm as PartialUnbrandAnyPrivilegeVariantAlarm
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_backup_archive import PartialUnbrandAnyPrivilegeVariantBackupArchive as PartialUnbrandAnyPrivilegeVariantBackupArchive
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_backup_job import PartialUnbrandAnyPrivilegeVariantBackupJob as PartialUnbrandAnyPrivilegeVariantBackupJob
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_backup_log import PartialUnbrandAnyPrivilegeVariantBackupLog as PartialUnbrandAnyPrivilegeVariantBackupLog
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_backup_repository import PartialUnbrandAnyPrivilegeVariantBackupRepository as PartialUnbrandAnyPrivilegeVariantBackupRepository
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_gpu_group import PartialUnbrandAnyPrivilegeVariantGpuGroup as PartialUnbrandAnyPrivilegeVariantGpuGroup
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_group import PartialUnbrandAnyPrivilegeVariantGroup as PartialUnbrandAnyPrivilegeVariantGroup
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_host import PartialUnbrandAnyPrivilegeVariantHost as PartialUnbrandAnyPrivilegeVariantHost
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_message import PartialUnbrandAnyPrivilegeVariantMessage as PartialUnbrandAnyPrivilegeVariantMessage
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_network import PartialUnbrandAnyPrivilegeVariantNetwork as PartialUnbrandAnyPrivilegeVariantNetwork
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_pbd import PartialUnbrandAnyPrivilegeVariantPbd as PartialUnbrandAnyPrivilegeVariantPbd
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_pci import PartialUnbrandAnyPrivilegeVariantPci as PartialUnbrandAnyPrivilegeVariantPci
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_pgpu import PartialUnbrandAnyPrivilegeVariantPgpu as PartialUnbrandAnyPrivilegeVariantPgpu
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_pif import PartialUnbrandAnyPrivilegeVariantPif as PartialUnbrandAnyPrivilegeVariantPif
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_pool import PartialUnbrandAnyPrivilegeVariantPool as PartialUnbrandAnyPrivilegeVariantPool
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_proxy import PartialUnbrandAnyPrivilegeVariantProxy as PartialUnbrandAnyPrivilegeVariantProxy
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_restore_log import PartialUnbrandAnyPrivilegeVariantRestoreLog as PartialUnbrandAnyPrivilegeVariantRestoreLog
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_schedule import PartialUnbrandAnyPrivilegeVariantSchedule as PartialUnbrandAnyPrivilegeVariantSchedule
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_server import PartialUnbrandAnyPrivilegeVariantServer as PartialUnbrandAnyPrivilegeVariantServer
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_sm import PartialUnbrandAnyPrivilegeVariantSm as PartialUnbrandAnyPrivilegeVariantSm
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_sr import PartialUnbrandAnyPrivilegeVariantSr as PartialUnbrandAnyPrivilegeVariantSr
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_task import PartialUnbrandAnyPrivilegeVariantTask as PartialUnbrandAnyPrivilegeVariantTask
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_user import PartialUnbrandAnyPrivilegeVariantUser as PartialUnbrandAnyPrivilegeVariantUser
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_vbd import PartialUnbrandAnyPrivilegeVariantVbd as PartialUnbrandAnyPrivilegeVariantVbd
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_vdi import PartialUnbrandAnyPrivilegeVariantVdi as PartialUnbrandAnyPrivilegeVariantVdi
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_vdi_snapshot import PartialUnbrandAnyPrivilegeVariantVdiSnapshot as PartialUnbrandAnyPrivilegeVariantVdiSnapshot
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_vdi_unmanaged import PartialUnbrandAnyPrivilegeVariantVdiUnmanaged as PartialUnbrandAnyPrivilegeVariantVdiUnmanaged
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_vgpu import PartialUnbrandAnyPrivilegeVariantVgpu as PartialUnbrandAnyPrivilegeVariantVgpu
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_vgpu_type import PartialUnbrandAnyPrivilegeVariantVgpuType as PartialUnbrandAnyPrivilegeVariantVgpuType
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_vif import PartialUnbrandAnyPrivilegeVariantVif as PartialUnbrandAnyPrivilegeVariantVif
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_vm import PartialUnbrandAnyPrivilegeVariantVm as PartialUnbrandAnyPrivilegeVariantVm
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_vm_controller import PartialUnbrandAnyPrivilegeVariantVmController as PartialUnbrandAnyPrivilegeVariantVmController
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_vm_snapshot import PartialUnbrandAnyPrivilegeVariantVmSnapshot as PartialUnbrandAnyPrivilegeVariantVmSnapshot
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_vm_template import PartialUnbrandAnyPrivilegeVariantVmTemplate as PartialUnbrandAnyPrivilegeVariantVmTemplate
+from xenorchestra_client.models.partial_unbrand_any_privilege_variant_vtpm import PartialUnbrandAnyPrivilegeVariantVtpm as PartialUnbrandAnyPrivilegeVariantVtpm
 from xenorchestra_client.models.partial_unbrand_any_xo_backup_job import PartialUnbrandAnyXoBackupJob as PartialUnbrandAnyXoBackupJob
-from xenorchestra_client.models.partial_unbrand_any_xo_backup_job_any_of import PartialUnbrandAnyXoBackupJobAnyOf as PartialUnbrandAnyXoBackupJobAnyOf
-from xenorchestra_client.models.partial_unbrand_any_xo_backup_job_any_of1 import PartialUnbrandAnyXoBackupJobAnyOf1 as PartialUnbrandAnyXoBackupJobAnyOf1
-from xenorchestra_client.models.partial_unbrand_any_xo_backup_job_any_of1_settings import PartialUnbrandAnyXoBackupJobAnyOf1Settings as PartialUnbrandAnyXoBackupJobAnyOf1Settings
-from xenorchestra_client.models.partial_unbrand_any_xo_backup_job_any_of2 import PartialUnbrandAnyXoBackupJobAnyOf2 as PartialUnbrandAnyXoBackupJobAnyOf2
-from xenorchestra_client.models.partial_unbrand_any_xo_backup_job_any_of2_settings import PartialUnbrandAnyXoBackupJobAnyOf2Settings as PartialUnbrandAnyXoBackupJobAnyOf2Settings
-from xenorchestra_client.models.partial_unbrand_any_xo_backup_job_any_of_settings import PartialUnbrandAnyXoBackupJobAnyOfSettings as PartialUnbrandAnyXoBackupJobAnyOfSettings
+from xenorchestra_client.models.partial_unbrand_any_xo_backup_job_variant_backup import PartialUnbrandAnyXoBackupJobVariantBackup as PartialUnbrandAnyXoBackupJobVariantBackup
+from xenorchestra_client.models.partial_unbrand_any_xo_backup_job_variant_backup_settings import PartialUnbrandAnyXoBackupJobVariantBackupSettings as PartialUnbrandAnyXoBackupJobVariantBackupSettings
+from xenorchestra_client.models.partial_unbrand_any_xo_backup_job_variant_metadata_backup import PartialUnbrandAnyXoBackupJobVariantMetadataBackup as PartialUnbrandAnyXoBackupJobVariantMetadataBackup
+from xenorchestra_client.models.partial_unbrand_any_xo_backup_job_variant_metadata_backup_settings import PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings as PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings
+from xenorchestra_client.models.partial_unbrand_any_xo_backup_job_variant_mirror_backup import PartialUnbrandAnyXoBackupJobVariantMirrorBackup as PartialUnbrandAnyXoBackupJobVariantMirrorBackup
+from xenorchestra_client.models.partial_unbrand_any_xo_backup_job_variant_mirror_backup_settings import PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettings as PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettings
 from xenorchestra_client.models.partial_unbrand_exclude_xo_acl_role_is_template_true import PartialUnbrandExcludeXoAclRoleIsTemplateTrue as PartialUnbrandExcludeXoAclRoleIsTemplateTrue
 from xenorchestra_client.models.partial_unbrand_xo_acl_role import PartialUnbrandXoAclRole as PartialUnbrandXoAclRole
 from xenorchestra_client.models.partial_unbrand_xo_acl_role_any_of import PartialUnbrandXoAclRoleAnyOf as PartialUnbrandXoAclRoleAnyOf
@@ -917,50 +957,50 @@ from xenorchestra_client.models.sr_size_info import SrSizeInfo as SrSizeInfo
 from xenorchestra_client.models.sr_size_info_size import SrSizeInfoSize as SrSizeInfoSize
 from xenorchestra_client.models.start_vm_request import StartVmRequest as StartVmRequest
 from xenorchestra_client.models.unbrand_any_privilege import UnbrandAnyPrivilege as UnbrandAnyPrivilege
-from xenorchestra_client.models.unbrand_any_privilege_any_of import UnbrandAnyPrivilegeAnyOf as UnbrandAnyPrivilegeAnyOf
-from xenorchestra_client.models.unbrand_any_privilege_any_of1 import UnbrandAnyPrivilegeAnyOf1 as UnbrandAnyPrivilegeAnyOf1
-from xenorchestra_client.models.unbrand_any_privilege_any_of10 import UnbrandAnyPrivilegeAnyOf10 as UnbrandAnyPrivilegeAnyOf10
-from xenorchestra_client.models.unbrand_any_privilege_any_of11 import UnbrandAnyPrivilegeAnyOf11 as UnbrandAnyPrivilegeAnyOf11
-from xenorchestra_client.models.unbrand_any_privilege_any_of12 import UnbrandAnyPrivilegeAnyOf12 as UnbrandAnyPrivilegeAnyOf12
-from xenorchestra_client.models.unbrand_any_privilege_any_of13 import UnbrandAnyPrivilegeAnyOf13 as UnbrandAnyPrivilegeAnyOf13
-from xenorchestra_client.models.unbrand_any_privilege_any_of14 import UnbrandAnyPrivilegeAnyOf14 as UnbrandAnyPrivilegeAnyOf14
-from xenorchestra_client.models.unbrand_any_privilege_any_of15 import UnbrandAnyPrivilegeAnyOf15 as UnbrandAnyPrivilegeAnyOf15
-from xenorchestra_client.models.unbrand_any_privilege_any_of16 import UnbrandAnyPrivilegeAnyOf16 as UnbrandAnyPrivilegeAnyOf16
-from xenorchestra_client.models.unbrand_any_privilege_any_of17 import UnbrandAnyPrivilegeAnyOf17 as UnbrandAnyPrivilegeAnyOf17
-from xenorchestra_client.models.unbrand_any_privilege_any_of18 import UnbrandAnyPrivilegeAnyOf18 as UnbrandAnyPrivilegeAnyOf18
-from xenorchestra_client.models.unbrand_any_privilege_any_of19 import UnbrandAnyPrivilegeAnyOf19 as UnbrandAnyPrivilegeAnyOf19
-from xenorchestra_client.models.unbrand_any_privilege_any_of2 import UnbrandAnyPrivilegeAnyOf2 as UnbrandAnyPrivilegeAnyOf2
-from xenorchestra_client.models.unbrand_any_privilege_any_of20 import UnbrandAnyPrivilegeAnyOf20 as UnbrandAnyPrivilegeAnyOf20
-from xenorchestra_client.models.unbrand_any_privilege_any_of21 import UnbrandAnyPrivilegeAnyOf21 as UnbrandAnyPrivilegeAnyOf21
-from xenorchestra_client.models.unbrand_any_privilege_any_of22 import UnbrandAnyPrivilegeAnyOf22 as UnbrandAnyPrivilegeAnyOf22
-from xenorchestra_client.models.unbrand_any_privilege_any_of23 import UnbrandAnyPrivilegeAnyOf23 as UnbrandAnyPrivilegeAnyOf23
-from xenorchestra_client.models.unbrand_any_privilege_any_of24 import UnbrandAnyPrivilegeAnyOf24 as UnbrandAnyPrivilegeAnyOf24
-from xenorchestra_client.models.unbrand_any_privilege_any_of25 import UnbrandAnyPrivilegeAnyOf25 as UnbrandAnyPrivilegeAnyOf25
-from xenorchestra_client.models.unbrand_any_privilege_any_of26 import UnbrandAnyPrivilegeAnyOf26 as UnbrandAnyPrivilegeAnyOf26
-from xenorchestra_client.models.unbrand_any_privilege_any_of27 import UnbrandAnyPrivilegeAnyOf27 as UnbrandAnyPrivilegeAnyOf27
-from xenorchestra_client.models.unbrand_any_privilege_any_of28 import UnbrandAnyPrivilegeAnyOf28 as UnbrandAnyPrivilegeAnyOf28
-from xenorchestra_client.models.unbrand_any_privilege_any_of29 import UnbrandAnyPrivilegeAnyOf29 as UnbrandAnyPrivilegeAnyOf29
-from xenorchestra_client.models.unbrand_any_privilege_any_of3 import UnbrandAnyPrivilegeAnyOf3 as UnbrandAnyPrivilegeAnyOf3
-from xenorchestra_client.models.unbrand_any_privilege_any_of30 import UnbrandAnyPrivilegeAnyOf30 as UnbrandAnyPrivilegeAnyOf30
-from xenorchestra_client.models.unbrand_any_privilege_any_of31 import UnbrandAnyPrivilegeAnyOf31 as UnbrandAnyPrivilegeAnyOf31
-from xenorchestra_client.models.unbrand_any_privilege_any_of32 import UnbrandAnyPrivilegeAnyOf32 as UnbrandAnyPrivilegeAnyOf32
-from xenorchestra_client.models.unbrand_any_privilege_any_of33 import UnbrandAnyPrivilegeAnyOf33 as UnbrandAnyPrivilegeAnyOf33
-from xenorchestra_client.models.unbrand_any_privilege_any_of34 import UnbrandAnyPrivilegeAnyOf34 as UnbrandAnyPrivilegeAnyOf34
-from xenorchestra_client.models.unbrand_any_privilege_any_of35 import UnbrandAnyPrivilegeAnyOf35 as UnbrandAnyPrivilegeAnyOf35
-from xenorchestra_client.models.unbrand_any_privilege_any_of36 import UnbrandAnyPrivilegeAnyOf36 as UnbrandAnyPrivilegeAnyOf36
-from xenorchestra_client.models.unbrand_any_privilege_any_of4 import UnbrandAnyPrivilegeAnyOf4 as UnbrandAnyPrivilegeAnyOf4
-from xenorchestra_client.models.unbrand_any_privilege_any_of5 import UnbrandAnyPrivilegeAnyOf5 as UnbrandAnyPrivilegeAnyOf5
-from xenorchestra_client.models.unbrand_any_privilege_any_of6 import UnbrandAnyPrivilegeAnyOf6 as UnbrandAnyPrivilegeAnyOf6
-from xenorchestra_client.models.unbrand_any_privilege_any_of7 import UnbrandAnyPrivilegeAnyOf7 as UnbrandAnyPrivilegeAnyOf7
-from xenorchestra_client.models.unbrand_any_privilege_any_of8 import UnbrandAnyPrivilegeAnyOf8 as UnbrandAnyPrivilegeAnyOf8
-from xenorchestra_client.models.unbrand_any_privilege_any_of9 import UnbrandAnyPrivilegeAnyOf9 as UnbrandAnyPrivilegeAnyOf9
+from xenorchestra_client.models.unbrand_any_privilege_variant_acl_privilege import UnbrandAnyPrivilegeVariantAclPrivilege as UnbrandAnyPrivilegeVariantAclPrivilege
+from xenorchestra_client.models.unbrand_any_privilege_variant_acl_role import UnbrandAnyPrivilegeVariantAclRole as UnbrandAnyPrivilegeVariantAclRole
+from xenorchestra_client.models.unbrand_any_privilege_variant_alarm import UnbrandAnyPrivilegeVariantAlarm as UnbrandAnyPrivilegeVariantAlarm
+from xenorchestra_client.models.unbrand_any_privilege_variant_backup_archive import UnbrandAnyPrivilegeVariantBackupArchive as UnbrandAnyPrivilegeVariantBackupArchive
+from xenorchestra_client.models.unbrand_any_privilege_variant_backup_job import UnbrandAnyPrivilegeVariantBackupJob as UnbrandAnyPrivilegeVariantBackupJob
+from xenorchestra_client.models.unbrand_any_privilege_variant_backup_log import UnbrandAnyPrivilegeVariantBackupLog as UnbrandAnyPrivilegeVariantBackupLog
+from xenorchestra_client.models.unbrand_any_privilege_variant_backup_repository import UnbrandAnyPrivilegeVariantBackupRepository as UnbrandAnyPrivilegeVariantBackupRepository
+from xenorchestra_client.models.unbrand_any_privilege_variant_gpu_group import UnbrandAnyPrivilegeVariantGpuGroup as UnbrandAnyPrivilegeVariantGpuGroup
+from xenorchestra_client.models.unbrand_any_privilege_variant_group import UnbrandAnyPrivilegeVariantGroup as UnbrandAnyPrivilegeVariantGroup
+from xenorchestra_client.models.unbrand_any_privilege_variant_host import UnbrandAnyPrivilegeVariantHost as UnbrandAnyPrivilegeVariantHost
+from xenorchestra_client.models.unbrand_any_privilege_variant_message import UnbrandAnyPrivilegeVariantMessage as UnbrandAnyPrivilegeVariantMessage
+from xenorchestra_client.models.unbrand_any_privilege_variant_network import UnbrandAnyPrivilegeVariantNetwork as UnbrandAnyPrivilegeVariantNetwork
+from xenorchestra_client.models.unbrand_any_privilege_variant_pbd import UnbrandAnyPrivilegeVariantPbd as UnbrandAnyPrivilegeVariantPbd
+from xenorchestra_client.models.unbrand_any_privilege_variant_pci import UnbrandAnyPrivilegeVariantPci as UnbrandAnyPrivilegeVariantPci
+from xenorchestra_client.models.unbrand_any_privilege_variant_pgpu import UnbrandAnyPrivilegeVariantPgpu as UnbrandAnyPrivilegeVariantPgpu
+from xenorchestra_client.models.unbrand_any_privilege_variant_pif import UnbrandAnyPrivilegeVariantPif as UnbrandAnyPrivilegeVariantPif
+from xenorchestra_client.models.unbrand_any_privilege_variant_pool import UnbrandAnyPrivilegeVariantPool as UnbrandAnyPrivilegeVariantPool
+from xenorchestra_client.models.unbrand_any_privilege_variant_proxy import UnbrandAnyPrivilegeVariantProxy as UnbrandAnyPrivilegeVariantProxy
+from xenorchestra_client.models.unbrand_any_privilege_variant_restore_log import UnbrandAnyPrivilegeVariantRestoreLog as UnbrandAnyPrivilegeVariantRestoreLog
+from xenorchestra_client.models.unbrand_any_privilege_variant_schedule import UnbrandAnyPrivilegeVariantSchedule as UnbrandAnyPrivilegeVariantSchedule
+from xenorchestra_client.models.unbrand_any_privilege_variant_server import UnbrandAnyPrivilegeVariantServer as UnbrandAnyPrivilegeVariantServer
+from xenorchestra_client.models.unbrand_any_privilege_variant_sm import UnbrandAnyPrivilegeVariantSm as UnbrandAnyPrivilegeVariantSm
+from xenorchestra_client.models.unbrand_any_privilege_variant_sr import UnbrandAnyPrivilegeVariantSr as UnbrandAnyPrivilegeVariantSr
+from xenorchestra_client.models.unbrand_any_privilege_variant_task import UnbrandAnyPrivilegeVariantTask as UnbrandAnyPrivilegeVariantTask
+from xenorchestra_client.models.unbrand_any_privilege_variant_user import UnbrandAnyPrivilegeVariantUser as UnbrandAnyPrivilegeVariantUser
+from xenorchestra_client.models.unbrand_any_privilege_variant_vbd import UnbrandAnyPrivilegeVariantVbd as UnbrandAnyPrivilegeVariantVbd
+from xenorchestra_client.models.unbrand_any_privilege_variant_vdi import UnbrandAnyPrivilegeVariantVdi as UnbrandAnyPrivilegeVariantVdi
+from xenorchestra_client.models.unbrand_any_privilege_variant_vdi_snapshot import UnbrandAnyPrivilegeVariantVdiSnapshot as UnbrandAnyPrivilegeVariantVdiSnapshot
+from xenorchestra_client.models.unbrand_any_privilege_variant_vdi_unmanaged import UnbrandAnyPrivilegeVariantVdiUnmanaged as UnbrandAnyPrivilegeVariantVdiUnmanaged
+from xenorchestra_client.models.unbrand_any_privilege_variant_vgpu import UnbrandAnyPrivilegeVariantVgpu as UnbrandAnyPrivilegeVariantVgpu
+from xenorchestra_client.models.unbrand_any_privilege_variant_vgpu_type import UnbrandAnyPrivilegeVariantVgpuType as UnbrandAnyPrivilegeVariantVgpuType
+from xenorchestra_client.models.unbrand_any_privilege_variant_vif import UnbrandAnyPrivilegeVariantVif as UnbrandAnyPrivilegeVariantVif
+from xenorchestra_client.models.unbrand_any_privilege_variant_vm import UnbrandAnyPrivilegeVariantVm as UnbrandAnyPrivilegeVariantVm
+from xenorchestra_client.models.unbrand_any_privilege_variant_vm_controller import UnbrandAnyPrivilegeVariantVmController as UnbrandAnyPrivilegeVariantVmController
+from xenorchestra_client.models.unbrand_any_privilege_variant_vm_snapshot import UnbrandAnyPrivilegeVariantVmSnapshot as UnbrandAnyPrivilegeVariantVmSnapshot
+from xenorchestra_client.models.unbrand_any_privilege_variant_vm_template import UnbrandAnyPrivilegeVariantVmTemplate as UnbrandAnyPrivilegeVariantVmTemplate
+from xenorchestra_client.models.unbrand_any_privilege_variant_vtpm import UnbrandAnyPrivilegeVariantVtpm as UnbrandAnyPrivilegeVariantVtpm
 from xenorchestra_client.models.unbrand_any_xo_backup_job import UnbrandAnyXoBackupJob as UnbrandAnyXoBackupJob
 from xenorchestra_client.models.unbrand_create_bonded_network_body import UnbrandCreateBondedNetworkBody as UnbrandCreateBondedNetworkBody
 from xenorchestra_client.models.unbrand_create_network_body import UnbrandCreateNetworkBody as UnbrandCreateNetworkBody
 from xenorchestra_client.models.unbrand_create_vm_body import UnbrandCreateVmBody as UnbrandCreateVmBody
 from xenorchestra_client.models.unbrand_create_vm_body_install import UnbrandCreateVmBodyInstall as UnbrandCreateVmBodyInstall
-from xenorchestra_client.models.unbrand_create_vm_body_install_any_of import UnbrandCreateVmBodyInstallAnyOf as UnbrandCreateVmBodyInstallAnyOf
-from xenorchestra_client.models.unbrand_create_vm_body_install_any_of1 import UnbrandCreateVmBodyInstallAnyOf1 as UnbrandCreateVmBodyInstallAnyOf1
+from xenorchestra_client.models.unbrand_create_vm_body_install_variant_cdrom import UnbrandCreateVmBodyInstallVariantCdrom as UnbrandCreateVmBodyInstallVariantCdrom
+from xenorchestra_client.models.unbrand_create_vm_body_install_variant_network import UnbrandCreateVmBodyInstallVariantNetwork as UnbrandCreateVmBodyInstallVariantNetwork
 from xenorchestra_client.models.unbrand_create_vm_body_vdis_inner import UnbrandCreateVmBodyVdisInner as UnbrandCreateVmBodyVdisInner
 from xenorchestra_client.models.unbrand_create_vm_body_vdis_inner_any_of import UnbrandCreateVmBodyVdisInnerAnyOf as UnbrandCreateVmBodyVdisInnerAnyOf
 from xenorchestra_client.models.unbrand_create_vm_body_vdis_inner_any_of1 import UnbrandCreateVmBodyVdisInnerAnyOf1 as UnbrandCreateVmBodyVdisInnerAnyOf1
@@ -971,81 +1011,81 @@ from xenorchestra_client.models.unbrand_create_vm_body_vifs_inner_any_of1 import
 from xenorchestra_client.models.unbrand_parameters_xo_app_at_create_remote91093 import UnbrandParametersXoAppAtCreateRemote91093 as UnbrandParametersXoAppAtCreateRemote91093
 from xenorchestra_client.models.unbrand_parameters_xo_app_at_update_remote91193 import UnbrandParametersXoAppAtUpdateRemote91193 as UnbrandParametersXoAppAtUpdateRemote91193
 from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id import UnbrandSafeOmitAnyPrivilegeId as UnbrandSafeOmitAnyPrivilegeId
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of import UnbrandSafeOmitAnyPrivilegeIdAnyOf as UnbrandSafeOmitAnyPrivilegeIdAnyOf
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of1 import UnbrandSafeOmitAnyPrivilegeIdAnyOf1 as UnbrandSafeOmitAnyPrivilegeIdAnyOf1
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of10 import UnbrandSafeOmitAnyPrivilegeIdAnyOf10 as UnbrandSafeOmitAnyPrivilegeIdAnyOf10
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of11 import UnbrandSafeOmitAnyPrivilegeIdAnyOf11 as UnbrandSafeOmitAnyPrivilegeIdAnyOf11
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of12 import UnbrandSafeOmitAnyPrivilegeIdAnyOf12 as UnbrandSafeOmitAnyPrivilegeIdAnyOf12
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of13 import UnbrandSafeOmitAnyPrivilegeIdAnyOf13 as UnbrandSafeOmitAnyPrivilegeIdAnyOf13
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of14 import UnbrandSafeOmitAnyPrivilegeIdAnyOf14 as UnbrandSafeOmitAnyPrivilegeIdAnyOf14
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of15 import UnbrandSafeOmitAnyPrivilegeIdAnyOf15 as UnbrandSafeOmitAnyPrivilegeIdAnyOf15
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of16 import UnbrandSafeOmitAnyPrivilegeIdAnyOf16 as UnbrandSafeOmitAnyPrivilegeIdAnyOf16
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of17 import UnbrandSafeOmitAnyPrivilegeIdAnyOf17 as UnbrandSafeOmitAnyPrivilegeIdAnyOf17
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of18 import UnbrandSafeOmitAnyPrivilegeIdAnyOf18 as UnbrandSafeOmitAnyPrivilegeIdAnyOf18
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of19 import UnbrandSafeOmitAnyPrivilegeIdAnyOf19 as UnbrandSafeOmitAnyPrivilegeIdAnyOf19
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of2 import UnbrandSafeOmitAnyPrivilegeIdAnyOf2 as UnbrandSafeOmitAnyPrivilegeIdAnyOf2
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of20 import UnbrandSafeOmitAnyPrivilegeIdAnyOf20 as UnbrandSafeOmitAnyPrivilegeIdAnyOf20
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of21 import UnbrandSafeOmitAnyPrivilegeIdAnyOf21 as UnbrandSafeOmitAnyPrivilegeIdAnyOf21
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of22 import UnbrandSafeOmitAnyPrivilegeIdAnyOf22 as UnbrandSafeOmitAnyPrivilegeIdAnyOf22
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of23 import UnbrandSafeOmitAnyPrivilegeIdAnyOf23 as UnbrandSafeOmitAnyPrivilegeIdAnyOf23
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of24 import UnbrandSafeOmitAnyPrivilegeIdAnyOf24 as UnbrandSafeOmitAnyPrivilegeIdAnyOf24
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of25 import UnbrandSafeOmitAnyPrivilegeIdAnyOf25 as UnbrandSafeOmitAnyPrivilegeIdAnyOf25
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of26 import UnbrandSafeOmitAnyPrivilegeIdAnyOf26 as UnbrandSafeOmitAnyPrivilegeIdAnyOf26
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of27 import UnbrandSafeOmitAnyPrivilegeIdAnyOf27 as UnbrandSafeOmitAnyPrivilegeIdAnyOf27
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of28 import UnbrandSafeOmitAnyPrivilegeIdAnyOf28 as UnbrandSafeOmitAnyPrivilegeIdAnyOf28
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of29 import UnbrandSafeOmitAnyPrivilegeIdAnyOf29 as UnbrandSafeOmitAnyPrivilegeIdAnyOf29
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of3 import UnbrandSafeOmitAnyPrivilegeIdAnyOf3 as UnbrandSafeOmitAnyPrivilegeIdAnyOf3
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of30 import UnbrandSafeOmitAnyPrivilegeIdAnyOf30 as UnbrandSafeOmitAnyPrivilegeIdAnyOf30
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of31 import UnbrandSafeOmitAnyPrivilegeIdAnyOf31 as UnbrandSafeOmitAnyPrivilegeIdAnyOf31
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of32 import UnbrandSafeOmitAnyPrivilegeIdAnyOf32 as UnbrandSafeOmitAnyPrivilegeIdAnyOf32
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of33 import UnbrandSafeOmitAnyPrivilegeIdAnyOf33 as UnbrandSafeOmitAnyPrivilegeIdAnyOf33
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of34 import UnbrandSafeOmitAnyPrivilegeIdAnyOf34 as UnbrandSafeOmitAnyPrivilegeIdAnyOf34
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of35 import UnbrandSafeOmitAnyPrivilegeIdAnyOf35 as UnbrandSafeOmitAnyPrivilegeIdAnyOf35
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of36 import UnbrandSafeOmitAnyPrivilegeIdAnyOf36 as UnbrandSafeOmitAnyPrivilegeIdAnyOf36
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of4 import UnbrandSafeOmitAnyPrivilegeIdAnyOf4 as UnbrandSafeOmitAnyPrivilegeIdAnyOf4
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of5 import UnbrandSafeOmitAnyPrivilegeIdAnyOf5 as UnbrandSafeOmitAnyPrivilegeIdAnyOf5
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of6 import UnbrandSafeOmitAnyPrivilegeIdAnyOf6 as UnbrandSafeOmitAnyPrivilegeIdAnyOf6
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of7 import UnbrandSafeOmitAnyPrivilegeIdAnyOf7 as UnbrandSafeOmitAnyPrivilegeIdAnyOf7
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of8 import UnbrandSafeOmitAnyPrivilegeIdAnyOf8 as UnbrandSafeOmitAnyPrivilegeIdAnyOf8
-from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_any_of9 import UnbrandSafeOmitAnyPrivilegeIdAnyOf9 as UnbrandSafeOmitAnyPrivilegeIdAnyOf9
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_acl_privilege import UnbrandSafeOmitAnyPrivilegeIdVariantAclPrivilege as UnbrandSafeOmitAnyPrivilegeIdVariantAclPrivilege
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_acl_role import UnbrandSafeOmitAnyPrivilegeIdVariantAclRole as UnbrandSafeOmitAnyPrivilegeIdVariantAclRole
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_alarm import UnbrandSafeOmitAnyPrivilegeIdVariantAlarm as UnbrandSafeOmitAnyPrivilegeIdVariantAlarm
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_backup_archive import UnbrandSafeOmitAnyPrivilegeIdVariantBackupArchive as UnbrandSafeOmitAnyPrivilegeIdVariantBackupArchive
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_backup_job import UnbrandSafeOmitAnyPrivilegeIdVariantBackupJob as UnbrandSafeOmitAnyPrivilegeIdVariantBackupJob
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_backup_log import UnbrandSafeOmitAnyPrivilegeIdVariantBackupLog as UnbrandSafeOmitAnyPrivilegeIdVariantBackupLog
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_backup_repository import UnbrandSafeOmitAnyPrivilegeIdVariantBackupRepository as UnbrandSafeOmitAnyPrivilegeIdVariantBackupRepository
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_gpu_group import UnbrandSafeOmitAnyPrivilegeIdVariantGpuGroup as UnbrandSafeOmitAnyPrivilegeIdVariantGpuGroup
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_group import UnbrandSafeOmitAnyPrivilegeIdVariantGroup as UnbrandSafeOmitAnyPrivilegeIdVariantGroup
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_host import UnbrandSafeOmitAnyPrivilegeIdVariantHost as UnbrandSafeOmitAnyPrivilegeIdVariantHost
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_message import UnbrandSafeOmitAnyPrivilegeIdVariantMessage as UnbrandSafeOmitAnyPrivilegeIdVariantMessage
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_network import UnbrandSafeOmitAnyPrivilegeIdVariantNetwork as UnbrandSafeOmitAnyPrivilegeIdVariantNetwork
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_pbd import UnbrandSafeOmitAnyPrivilegeIdVariantPbd as UnbrandSafeOmitAnyPrivilegeIdVariantPbd
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_pci import UnbrandSafeOmitAnyPrivilegeIdVariantPci as UnbrandSafeOmitAnyPrivilegeIdVariantPci
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_pgpu import UnbrandSafeOmitAnyPrivilegeIdVariantPgpu as UnbrandSafeOmitAnyPrivilegeIdVariantPgpu
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_pif import UnbrandSafeOmitAnyPrivilegeIdVariantPif as UnbrandSafeOmitAnyPrivilegeIdVariantPif
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_pool import UnbrandSafeOmitAnyPrivilegeIdVariantPool as UnbrandSafeOmitAnyPrivilegeIdVariantPool
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_proxy import UnbrandSafeOmitAnyPrivilegeIdVariantProxy as UnbrandSafeOmitAnyPrivilegeIdVariantProxy
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_restore_log import UnbrandSafeOmitAnyPrivilegeIdVariantRestoreLog as UnbrandSafeOmitAnyPrivilegeIdVariantRestoreLog
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_schedule import UnbrandSafeOmitAnyPrivilegeIdVariantSchedule as UnbrandSafeOmitAnyPrivilegeIdVariantSchedule
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_server import UnbrandSafeOmitAnyPrivilegeIdVariantServer as UnbrandSafeOmitAnyPrivilegeIdVariantServer
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_sm import UnbrandSafeOmitAnyPrivilegeIdVariantSm as UnbrandSafeOmitAnyPrivilegeIdVariantSm
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_sr import UnbrandSafeOmitAnyPrivilegeIdVariantSr as UnbrandSafeOmitAnyPrivilegeIdVariantSr
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_task import UnbrandSafeOmitAnyPrivilegeIdVariantTask as UnbrandSafeOmitAnyPrivilegeIdVariantTask
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_user import UnbrandSafeOmitAnyPrivilegeIdVariantUser as UnbrandSafeOmitAnyPrivilegeIdVariantUser
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_vbd import UnbrandSafeOmitAnyPrivilegeIdVariantVbd as UnbrandSafeOmitAnyPrivilegeIdVariantVbd
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_vdi import UnbrandSafeOmitAnyPrivilegeIdVariantVdi as UnbrandSafeOmitAnyPrivilegeIdVariantVdi
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_vdi_snapshot import UnbrandSafeOmitAnyPrivilegeIdVariantVdiSnapshot as UnbrandSafeOmitAnyPrivilegeIdVariantVdiSnapshot
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_vdi_unmanaged import UnbrandSafeOmitAnyPrivilegeIdVariantVdiUnmanaged as UnbrandSafeOmitAnyPrivilegeIdVariantVdiUnmanaged
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_vgpu import UnbrandSafeOmitAnyPrivilegeIdVariantVgpu as UnbrandSafeOmitAnyPrivilegeIdVariantVgpu
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_vgpu_type import UnbrandSafeOmitAnyPrivilegeIdVariantVgpuType as UnbrandSafeOmitAnyPrivilegeIdVariantVgpuType
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_vif import UnbrandSafeOmitAnyPrivilegeIdVariantVif as UnbrandSafeOmitAnyPrivilegeIdVariantVif
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_vm import UnbrandSafeOmitAnyPrivilegeIdVariantVm as UnbrandSafeOmitAnyPrivilegeIdVariantVm
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_vm_controller import UnbrandSafeOmitAnyPrivilegeIdVariantVmController as UnbrandSafeOmitAnyPrivilegeIdVariantVmController
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_vm_snapshot import UnbrandSafeOmitAnyPrivilegeIdVariantVmSnapshot as UnbrandSafeOmitAnyPrivilegeIdVariantVmSnapshot
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_vm_template import UnbrandSafeOmitAnyPrivilegeIdVariantVmTemplate as UnbrandSafeOmitAnyPrivilegeIdVariantVmTemplate
+from xenorchestra_client.models.unbrand_safe_omit_any_privilege_id_variant_vtpm import UnbrandSafeOmitAnyPrivilegeIdVariantVtpm as UnbrandSafeOmitAnyPrivilegeIdVariantVtpm
 from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleId as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleId
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of1 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf1 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf1
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of10 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf10 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf10
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of11 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf11 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf11
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of12 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf12 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf12
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of13 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf13 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf13
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of14 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf14 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf14
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of15 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf15 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf15
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of16 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf16 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf16
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of17 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf17 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf17
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of18 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf18 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf18
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of19 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf19 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf19
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of2 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf2 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf2
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of20 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf20 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf20
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of21 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf21 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf21
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of22 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf22 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf22
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of23 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf23 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf23
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of24 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf24 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf24
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of25 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf25 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf25
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of26 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf26 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf26
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of27 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf27 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf27
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of28 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf28 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf28
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of29 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf29 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf29
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of3 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf3 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf3
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of30 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf30 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf30
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of31 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf31 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf31
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of32 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf32 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf32
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of33 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf33 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf33
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of34 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf34 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf34
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of35 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf35 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf35
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of36 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf36 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf36
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of4 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf4 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf4
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of5 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf5 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf5
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of6 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf6 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf6
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of7 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf7 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf7
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of8 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf8 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf8
-from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_any_of9 import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf9 as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdAnyOf9
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_acl_privilege import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantAclPrivilege as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantAclPrivilege
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_acl_role import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantAclRole as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantAclRole
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_alarm import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantAlarm as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantAlarm
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_backup_archive import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantBackupArchive as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantBackupArchive
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_backup_job import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantBackupJob as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantBackupJob
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_backup_log import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantBackupLog as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantBackupLog
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_backup_repository import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantBackupRepository as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantBackupRepository
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_gpu_group import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantGpuGroup as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantGpuGroup
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_group import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantGroup as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantGroup
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_host import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantHost as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantHost
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_message import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantMessage as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantMessage
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_network import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantNetwork as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantNetwork
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_pbd import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantPbd as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantPbd
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_pci import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantPci as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantPci
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_pgpu import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantPgpu as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantPgpu
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_pif import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantPif as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantPif
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_pool import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantPool as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantPool
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_proxy import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantProxy as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantProxy
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_restore_log import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantRestoreLog as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantRestoreLog
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_schedule import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantSchedule as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantSchedule
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_server import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantServer as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantServer
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_sm import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantSm as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantSm
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_sr import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantSr as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantSr
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_task import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantTask as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantTask
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_user import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantUser as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantUser
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_vbd import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVbd as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVbd
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_vdi import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVdi as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVdi
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_vdi_snapshot import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVdiSnapshot as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVdiSnapshot
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_vdi_unmanaged import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVdiUnmanaged as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVdiUnmanaged
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_vgpu import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVgpu as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVgpu
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_vgpu_type import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVgpuType as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVgpuType
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_vif import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVif as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVif
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_vm import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVm as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVm
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_vm_controller import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVmController as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVmController
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_vm_snapshot import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVmSnapshot as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVmSnapshot
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_vm_template import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVmTemplate as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVmTemplate
+from xenorchestra_client.models.unbrand_safe_omit_partial_any_privilege_id_or_role_id_variant_vtpm import UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVtpm as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVtpm
 from xenorchestra_client.models.unbrand_unbranded_xo_metadata_backup_job import UnbrandUnbrandedXoMetadataBackupJob as UnbrandUnbrandedXoMetadataBackupJob
 from xenorchestra_client.models.unbrand_unbranded_xo_mirror_backup_job import UnbrandUnbrandedXoMirrorBackupJob as UnbrandUnbrandedXoMirrorBackupJob
 from xenorchestra_client.models.unbrand_unbranded_xo_vm_backup_job import UnbrandUnbrandedXoVmBackupJob as UnbrandUnbrandedXoVmBackupJob
@@ -1109,7 +1149,47 @@ from xenorchestra_client.models.vditype import VDITYPE as VDITYPE
 from xenorchestra_client.models.viflockingmode import VIFLOCKINGMODE as VIFLOCKINGMODE
 from xenorchestra_client.models.vmpowerstate import VMPOWERSTATE as VMPOWERSTATE
 from xenorchestra_client.models.with_href_partial_unbrand_any_privilege import WithHrefPartialUnbrandAnyPrivilege as WithHrefPartialUnbrandAnyPrivilege
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_acl_privilege import WithHrefPartialUnbrandAnyPrivilegeVariantAclPrivilege as WithHrefPartialUnbrandAnyPrivilegeVariantAclPrivilege
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_acl_role import WithHrefPartialUnbrandAnyPrivilegeVariantAclRole as WithHrefPartialUnbrandAnyPrivilegeVariantAclRole
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_alarm import WithHrefPartialUnbrandAnyPrivilegeVariantAlarm as WithHrefPartialUnbrandAnyPrivilegeVariantAlarm
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_backup_archive import WithHrefPartialUnbrandAnyPrivilegeVariantBackupArchive as WithHrefPartialUnbrandAnyPrivilegeVariantBackupArchive
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_backup_job import WithHrefPartialUnbrandAnyPrivilegeVariantBackupJob as WithHrefPartialUnbrandAnyPrivilegeVariantBackupJob
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_backup_log import WithHrefPartialUnbrandAnyPrivilegeVariantBackupLog as WithHrefPartialUnbrandAnyPrivilegeVariantBackupLog
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_backup_repository import WithHrefPartialUnbrandAnyPrivilegeVariantBackupRepository as WithHrefPartialUnbrandAnyPrivilegeVariantBackupRepository
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_gpu_group import WithHrefPartialUnbrandAnyPrivilegeVariantGpuGroup as WithHrefPartialUnbrandAnyPrivilegeVariantGpuGroup
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_group import WithHrefPartialUnbrandAnyPrivilegeVariantGroup as WithHrefPartialUnbrandAnyPrivilegeVariantGroup
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_host import WithHrefPartialUnbrandAnyPrivilegeVariantHost as WithHrefPartialUnbrandAnyPrivilegeVariantHost
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_message import WithHrefPartialUnbrandAnyPrivilegeVariantMessage as WithHrefPartialUnbrandAnyPrivilegeVariantMessage
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_network import WithHrefPartialUnbrandAnyPrivilegeVariantNetwork as WithHrefPartialUnbrandAnyPrivilegeVariantNetwork
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_pbd import WithHrefPartialUnbrandAnyPrivilegeVariantPbd as WithHrefPartialUnbrandAnyPrivilegeVariantPbd
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_pci import WithHrefPartialUnbrandAnyPrivilegeVariantPci as WithHrefPartialUnbrandAnyPrivilegeVariantPci
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_pgpu import WithHrefPartialUnbrandAnyPrivilegeVariantPgpu as WithHrefPartialUnbrandAnyPrivilegeVariantPgpu
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_pif import WithHrefPartialUnbrandAnyPrivilegeVariantPif as WithHrefPartialUnbrandAnyPrivilegeVariantPif
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_pool import WithHrefPartialUnbrandAnyPrivilegeVariantPool as WithHrefPartialUnbrandAnyPrivilegeVariantPool
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_proxy import WithHrefPartialUnbrandAnyPrivilegeVariantProxy as WithHrefPartialUnbrandAnyPrivilegeVariantProxy
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_restore_log import WithHrefPartialUnbrandAnyPrivilegeVariantRestoreLog as WithHrefPartialUnbrandAnyPrivilegeVariantRestoreLog
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_schedule import WithHrefPartialUnbrandAnyPrivilegeVariantSchedule as WithHrefPartialUnbrandAnyPrivilegeVariantSchedule
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_server import WithHrefPartialUnbrandAnyPrivilegeVariantServer as WithHrefPartialUnbrandAnyPrivilegeVariantServer
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_sm import WithHrefPartialUnbrandAnyPrivilegeVariantSm as WithHrefPartialUnbrandAnyPrivilegeVariantSm
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_sr import WithHrefPartialUnbrandAnyPrivilegeVariantSr as WithHrefPartialUnbrandAnyPrivilegeVariantSr
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_task import WithHrefPartialUnbrandAnyPrivilegeVariantTask as WithHrefPartialUnbrandAnyPrivilegeVariantTask
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_user import WithHrefPartialUnbrandAnyPrivilegeVariantUser as WithHrefPartialUnbrandAnyPrivilegeVariantUser
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_vbd import WithHrefPartialUnbrandAnyPrivilegeVariantVbd as WithHrefPartialUnbrandAnyPrivilegeVariantVbd
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_vdi import WithHrefPartialUnbrandAnyPrivilegeVariantVdi as WithHrefPartialUnbrandAnyPrivilegeVariantVdi
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_vdi_snapshot import WithHrefPartialUnbrandAnyPrivilegeVariantVdiSnapshot as WithHrefPartialUnbrandAnyPrivilegeVariantVdiSnapshot
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_vdi_unmanaged import WithHrefPartialUnbrandAnyPrivilegeVariantVdiUnmanaged as WithHrefPartialUnbrandAnyPrivilegeVariantVdiUnmanaged
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_vgpu import WithHrefPartialUnbrandAnyPrivilegeVariantVgpu as WithHrefPartialUnbrandAnyPrivilegeVariantVgpu
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_vgpu_type import WithHrefPartialUnbrandAnyPrivilegeVariantVgpuType as WithHrefPartialUnbrandAnyPrivilegeVariantVgpuType
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_vif import WithHrefPartialUnbrandAnyPrivilegeVariantVif as WithHrefPartialUnbrandAnyPrivilegeVariantVif
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_vm import WithHrefPartialUnbrandAnyPrivilegeVariantVm as WithHrefPartialUnbrandAnyPrivilegeVariantVm
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_vm_controller import WithHrefPartialUnbrandAnyPrivilegeVariantVmController as WithHrefPartialUnbrandAnyPrivilegeVariantVmController
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_vm_snapshot import WithHrefPartialUnbrandAnyPrivilegeVariantVmSnapshot as WithHrefPartialUnbrandAnyPrivilegeVariantVmSnapshot
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_vm_template import WithHrefPartialUnbrandAnyPrivilegeVariantVmTemplate as WithHrefPartialUnbrandAnyPrivilegeVariantVmTemplate
+from xenorchestra_client.models.with_href_partial_unbrand_any_privilege_variant_vtpm import WithHrefPartialUnbrandAnyPrivilegeVariantVtpm as WithHrefPartialUnbrandAnyPrivilegeVariantVtpm
 from xenorchestra_client.models.with_href_partial_unbrand_any_xo_backup_job import WithHrefPartialUnbrandAnyXoBackupJob as WithHrefPartialUnbrandAnyXoBackupJob
+from xenorchestra_client.models.with_href_partial_unbrand_any_xo_backup_job_variant_backup import WithHrefPartialUnbrandAnyXoBackupJobVariantBackup as WithHrefPartialUnbrandAnyXoBackupJobVariantBackup
+from xenorchestra_client.models.with_href_partial_unbrand_any_xo_backup_job_variant_metadata_backup import WithHrefPartialUnbrandAnyXoBackupJobVariantMetadataBackup as WithHrefPartialUnbrandAnyXoBackupJobVariantMetadataBackup
+from xenorchestra_client.models.with_href_partial_unbrand_any_xo_backup_job_variant_mirror_backup import WithHrefPartialUnbrandAnyXoBackupJobVariantMirrorBackup as WithHrefPartialUnbrandAnyXoBackupJobVariantMirrorBackup
 from xenorchestra_client.models.with_href_partial_unbrand_exclude_xo_acl_role_is_template_true import WithHrefPartialUnbrandExcludeXoAclRoleIsTemplateTrue as WithHrefPartialUnbrandExcludeXoAclRoleIsTemplateTrue
 from xenorchestra_client.models.with_href_partial_unbrand_xo_acl_role import WithHrefPartialUnbrandXoAclRole as WithHrefPartialUnbrandXoAclRole
 from xenorchestra_client.models.with_href_partial_unbrand_xo_alarm import WithHrefPartialUnbrandXoAlarm as WithHrefPartialUnbrandXoAlarm

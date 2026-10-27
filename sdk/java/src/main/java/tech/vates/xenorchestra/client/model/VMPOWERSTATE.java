@@ -28,22 +28,19 @@ import com.fasterxml.jackson.annotation.JsonValue;
 /**
  * Gets or Sets VM_POWER_STATE
  */
-public enum VMPOWERSTATE {
-  
-  HALTED("Halted"),
-  
-  PAUSED("Paused"),
-  
-  RUNNING("Running"),
-  
-  SUSPENDED("Suspended"),
-  
-  UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
+public final class VMPOWERSTATE {
+    public static final VMPOWERSTATE HALTED = new VMPOWERSTATE("Halted");
+    public static final VMPOWERSTATE PAUSED = new VMPOWERSTATE("Paused");
+    public static final VMPOWERSTATE RUNNING = new VMPOWERSTATE("Running");
+    public static final VMPOWERSTATE SUSPENDED = new VMPOWERSTATE("Suspended");
+    @JsonCreator public static VMPOWERSTATE fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static VMPOWERSTATE[] values() { return new VMPOWERSTATE[] {HALTED, PAUSED, RUNNING, SUSPENDED}; }
+    @Override public boolean equals(Object other) { return other instanceof VMPOWERSTATE && value.equals(((VMPOWERSTATE) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-  private String value;
-
-  VMPOWERSTATE(String value) {
-    this.value = value;
+  private VMPOWERSTATE(String value) {
+    this.value = java.util.Objects.requireNonNull(value);
   }
 
   @JsonValue
@@ -56,14 +53,14 @@ public enum VMPOWERSTATE {
     return String.valueOf(value);
   }
 
-  @JsonCreator
+  
   public static VMPOWERSTATE fromValue(String value) {
     for (VMPOWERSTATE b : VMPOWERSTATE.values()) {
       if (b.value.equals(value)) {
         return b;
       }
     }
-    return UNKNOWN_DEFAULT_OPEN_API;
+    return new VMPOWERSTATE(value);
   }
 
   /**
@@ -81,4 +78,5 @@ public enum VMPOWERSTATE {
   }
 
 }
+
 

@@ -19,7 +19,7 @@ import json
 
 from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr, field_validator
 from typing import Any, ClassVar, Dict, List, Optional
-from xenorchestra_client.models.partial_unbrand_any_xo_backup_job_any_of1_settings import PartialUnbrandAnyXoBackupJobAnyOf1Settings
+from xenorchestra_client.models.partial_unbrand_any_xo_backup_job_variant_metadata_backup_settings import PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings
 from typing import Optional, Set
 from typing_extensions import Self
 
@@ -32,7 +32,7 @@ class WithHrefPartialUnbrandXoMetadataBackupJob(BaseModel):
     pools: Optional[Any] = None
     proxy: Optional[StrictStr] = None
     remotes: Optional[Any] = None
-    settings: Optional[PartialUnbrandAnyXoBackupJobAnyOf1Settings] = None
+    settings: Optional[PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings] = None
     type: Optional[StrictStr] = None
     user_id: Optional[StrictStr] = Field(default=None, alias="userId")
     xo_metadata: Optional[StrictBool] = Field(default=None, alias="xoMetadata")
@@ -45,8 +45,6 @@ class WithHrefPartialUnbrandXoMetadataBackupJob(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['metadataBackup']):
-            raise ValueError("must be one of enum values ('metadataBackup')")
         return value
 
     model_config = ConfigDict(
@@ -118,7 +116,7 @@ class WithHrefPartialUnbrandXoMetadataBackupJob(BaseModel):
             "pools": obj.get("pools"),
             "proxy": obj.get("proxy"),
             "remotes": obj.get("remotes"),
-            "settings": PartialUnbrandAnyXoBackupJobAnyOf1Settings.from_dict(obj["settings"]) if obj.get("settings") is not None else None,
+            "settings": PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings.from_dict(obj["settings"]) if obj.get("settings") is not None else None,
             "type": obj.get("type"),
             "userId": obj.get("userId"),
             "xoMetadata": obj.get("xoMetadata"),

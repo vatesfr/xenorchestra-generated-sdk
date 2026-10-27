@@ -432,9 +432,13 @@ class WithHrefPartialUnbrandXoPgpuTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'PGPU')
   static const WithHrefPartialUnbrandXoPgpuTypeEnum PGPU =
       _$withHrefPartialUnbrandXoPgpuTypeEnum_PGPU;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const WithHrefPartialUnbrandXoPgpuTypeEnum unknownDefaultOpenApi =
+      _$withHrefPartialUnbrandXoPgpuTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<WithHrefPartialUnbrandXoPgpuTypeEnum> get serializer =>
-      _$withHrefPartialUnbrandXoPgpuTypeEnumSerializer;
+      _OpenWithHrefPartialUnbrandXoPgpuTypeEnumSerializer();
 
   const WithHrefPartialUnbrandXoPgpuTypeEnum._(String name) : super(name);
 
@@ -442,4 +446,48 @@ class WithHrefPartialUnbrandXoPgpuTypeEnum extends EnumClass {
       _$withHrefPartialUnbrandXoPgpuTypeEnumValues;
   static WithHrefPartialUnbrandXoPgpuTypeEnum valueOf(String name) =>
       _$withHrefPartialUnbrandXoPgpuTypeEnumValueOf(name);
+
+  static WithHrefPartialUnbrandXoPgpuTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'PGPU':
+        return PGPU;
+      default:
+        return WithHrefPartialUnbrandXoPgpuTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, PGPU)) return r'PGPU';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is WithHrefPartialUnbrandXoPgpuTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenWithHrefPartialUnbrandXoPgpuTypeEnumSerializer
+    implements PrimitiveSerializer<WithHrefPartialUnbrandXoPgpuTypeEnum> {
+  @override
+  final Iterable<Type> types = const [WithHrefPartialUnbrandXoPgpuTypeEnum];
+  @override
+  final String wireName = 'WithHrefPartialUnbrandXoPgpuTypeEnum';
+  @override
+  Object serialize(
+          Serializers serializers, WithHrefPartialUnbrandXoPgpuTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  WithHrefPartialUnbrandXoPgpuTypeEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for WithHrefPartialUnbrandXoPgpuTypeEnum');
+    return WithHrefPartialUnbrandXoPgpuTypeEnum.fromValue(serialized);
+  }
 }

@@ -346,9 +346,13 @@ class UnbrandXoTaskStatusEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'success')
   static const UnbrandXoTaskStatusEnum success =
       _$unbrandXoTaskStatusEnum_success;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UnbrandXoTaskStatusEnum unknownDefaultOpenApi =
+      _$unbrandXoTaskStatusEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UnbrandXoTaskStatusEnum> get serializer =>
-      _$unbrandXoTaskStatusEnumSerializer;
+      _OpenUnbrandXoTaskStatusEnumSerializer();
 
   const UnbrandXoTaskStatusEnum._(String name) : super(name);
 
@@ -356,4 +360,55 @@ class UnbrandXoTaskStatusEnum extends EnumClass {
       _$unbrandXoTaskStatusEnumValues;
   static UnbrandXoTaskStatusEnum valueOf(String name) =>
       _$unbrandXoTaskStatusEnumValueOf(name);
+
+  static UnbrandXoTaskStatusEnum fromValue(String value) {
+    switch (value) {
+      case r'failure':
+        return failure;
+      case r'interrupted':
+        return interrupted;
+      case r'pending':
+        return pending;
+      case r'success':
+        return success;
+      default:
+        return UnbrandXoTaskStatusEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, failure)) return r'failure';
+    if (identical(this, interrupted)) return r'interrupted';
+    if (identical(this, pending)) return r'pending';
+    if (identical(this, success)) return r'success';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UnbrandXoTaskStatusEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUnbrandXoTaskStatusEnumSerializer
+    implements PrimitiveSerializer<UnbrandXoTaskStatusEnum> {
+  @override
+  final Iterable<Type> types = const [UnbrandXoTaskStatusEnum];
+  @override
+  final String wireName = 'UnbrandXoTaskStatusEnum';
+  @override
+  Object serialize(Serializers serializers, UnbrandXoTaskStatusEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UnbrandXoTaskStatusEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError('Expected a string for UnbrandXoTaskStatusEnum');
+    return UnbrandXoTaskStatusEnum.fromValue(serialized);
+  }
 }

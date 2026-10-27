@@ -2,56 +2,45 @@
 
 # WithHrefPartialUnbrandAnyXoBackupJob
 
+## anyOf schemas
+* [WithHrefPartialUnbrandAnyXoBackupJobVariantBackup](WithHrefPartialUnbrandAnyXoBackupJobVariantBackup.md)
+* [WithHrefPartialUnbrandAnyXoBackupJobVariantMetadataBackup](WithHrefPartialUnbrandAnyXoBackupJobVariantMetadataBackup.md)
+* [WithHrefPartialUnbrandAnyXoBackupJobVariantMirrorBackup](WithHrefPartialUnbrandAnyXoBackupJobVariantMirrorBackup.md)
 
-## Properties
+## Example
+```java
+// Import classes:
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyXoBackupJob;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyXoBackupJobVariantBackup;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyXoBackupJobVariantMetadataBackup;
+import tech.vates.xenorchestra.client.model.WithHrefPartialUnbrandAnyXoBackupJobVariantMirrorBackup;
 
-| Name | Type | Description | Notes |
-|------------ | ------------- | ------------- | -------------|
-|**compression** | [**CompressionEnum**](#CompressionEnum) |  |  [optional] |
-|**id** | **String** |  |  [optional] |
-|**mode** | [**ModeEnum**](#ModeEnum) |  |  [optional] |
-|**name** | **String** |  |  [optional] |
-|**proxy** | **String** |  |  [optional] |
-|**remotes** | **Object** |  |  [optional] |
-|**settings** | [**PartialUnbrandAnyXoBackupJobAnyOf2Settings**](PartialUnbrandAnyXoBackupJobAnyOf2Settings.md) |  |  [optional] |
-|**srs** | **Object** |  |  [optional] |
-|**type** | [**TypeEnum**](#TypeEnum) |  |  [optional] |
-|**vms** | **Object** |  |  [optional] |
-|**pools** | **Object** |  |  [optional] |
-|**userId** | **String** |  |  [optional] |
-|**xoMetadata** | **Boolean** |  |  [optional] |
-|**sourceRemote** | **String** |  |  [optional] |
-|**href** | **String** |  |  |
+public class Example {
+    public static void main(String[] args) {
+        WithHrefPartialUnbrandAnyXoBackupJob exampleWithHrefPartialUnbrandAnyXoBackupJob = new WithHrefPartialUnbrandAnyXoBackupJob();
 
+        // create a new WithHrefPartialUnbrandAnyXoBackupJobVariantBackup
+        WithHrefPartialUnbrandAnyXoBackupJobVariantBackup exampleWithHrefPartialUnbrandAnyXoBackupJobVariantBackup = new WithHrefPartialUnbrandAnyXoBackupJobVariantBackup();
+        // set WithHrefPartialUnbrandAnyXoBackupJob to WithHrefPartialUnbrandAnyXoBackupJobVariantBackup
+        exampleWithHrefPartialUnbrandAnyXoBackupJob.setActualInstance(exampleWithHrefPartialUnbrandAnyXoBackupJobVariantBackup);
+        // to get back the WithHrefPartialUnbrandAnyXoBackupJobVariantBackup set earlier
+        WithHrefPartialUnbrandAnyXoBackupJobVariantBackup testWithHrefPartialUnbrandAnyXoBackupJobVariantBackup = (WithHrefPartialUnbrandAnyXoBackupJobVariantBackup) exampleWithHrefPartialUnbrandAnyXoBackupJob.getActualInstance();
 
+        // create a new WithHrefPartialUnbrandAnyXoBackupJobVariantMetadataBackup
+        WithHrefPartialUnbrandAnyXoBackupJobVariantMetadataBackup exampleWithHrefPartialUnbrandAnyXoBackupJobVariantMetadataBackup = new WithHrefPartialUnbrandAnyXoBackupJobVariantMetadataBackup();
+        // set WithHrefPartialUnbrandAnyXoBackupJob to WithHrefPartialUnbrandAnyXoBackupJobVariantMetadataBackup
+        exampleWithHrefPartialUnbrandAnyXoBackupJob.setActualInstance(exampleWithHrefPartialUnbrandAnyXoBackupJobVariantMetadataBackup);
+        // to get back the WithHrefPartialUnbrandAnyXoBackupJobVariantMetadataBackup set earlier
+        WithHrefPartialUnbrandAnyXoBackupJobVariantMetadataBackup testWithHrefPartialUnbrandAnyXoBackupJobVariantMetadataBackup = (WithHrefPartialUnbrandAnyXoBackupJobVariantMetadataBackup) exampleWithHrefPartialUnbrandAnyXoBackupJob.getActualInstance();
 
-## Enum: CompressionEnum
-
-| Name | Value |
-|---- | -----|
-| EMPTY | &quot;&quot; |
-| ZSTD | &quot;zstd&quot; |
-| NATIVE | &quot;native&quot; |
-| UNKNOWN_DEFAULT_OPEN_API | &quot;unknown_default_open_api&quot; |
-
-
-
-## Enum: ModeEnum
-
-| Name | Value |
-|---- | -----|
-| FULL | &quot;full&quot; |
-| DELTA | &quot;delta&quot; |
-| UNKNOWN_DEFAULT_OPEN_API | &quot;unknown_default_open_api&quot; |
-
-
-
-## Enum: TypeEnum
-
-| Name | Value |
-|---- | -----|
-| MIRROR_BACKUP | &quot;mirrorBackup&quot; |
-| UNKNOWN_DEFAULT_OPEN_API | &quot;unknown_default_open_api&quot; |
-
+        // create a new WithHrefPartialUnbrandAnyXoBackupJobVariantMirrorBackup
+        WithHrefPartialUnbrandAnyXoBackupJobVariantMirrorBackup exampleWithHrefPartialUnbrandAnyXoBackupJobVariantMirrorBackup = new WithHrefPartialUnbrandAnyXoBackupJobVariantMirrorBackup();
+        // set WithHrefPartialUnbrandAnyXoBackupJob to WithHrefPartialUnbrandAnyXoBackupJobVariantMirrorBackup
+        exampleWithHrefPartialUnbrandAnyXoBackupJob.setActualInstance(exampleWithHrefPartialUnbrandAnyXoBackupJobVariantMirrorBackup);
+        // to get back the WithHrefPartialUnbrandAnyXoBackupJobVariantMirrorBackup set earlier
+        WithHrefPartialUnbrandAnyXoBackupJobVariantMirrorBackup testWithHrefPartialUnbrandAnyXoBackupJobVariantMirrorBackup = (WithHrefPartialUnbrandAnyXoBackupJobVariantMirrorBackup) exampleWithHrefPartialUnbrandAnyXoBackupJob.getActualInstance();
+    }
+}
+```
 
 

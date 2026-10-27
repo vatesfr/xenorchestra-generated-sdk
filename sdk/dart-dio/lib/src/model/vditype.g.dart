@@ -17,6 +17,8 @@ const VDITYPE _$redoLog = const VDITYPE._('redoLog');
 const VDITYPE _$rrd = const VDITYPE._('rrd');
 const VDITYPE _$system = const VDITYPE._('system');
 const VDITYPE _$user = const VDITYPE._('user');
+const VDITYPE _$unknownDefaultOpenApi =
+    const VDITYPE._('unknownDefaultOpenApi');
 
 VDITYPE _$valueOf(String name) {
   switch (name) {
@@ -42,6 +44,8 @@ VDITYPE _$valueOf(String name) {
       return _$system;
     case 'user':
       return _$user;
+    case 'unknownDefaultOpenApi':
+      return _$unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -59,6 +63,7 @@ final BuiltSet<VDITYPE> _$values = BuiltSet<VDITYPE>(const <VDITYPE>[
   _$rrd,
   _$system,
   _$user,
+  _$unknownDefaultOpenApi,
 ]);
 
 class _$VDITYPEMeta {
@@ -74,6 +79,7 @@ class _$VDITYPEMeta {
   VDITYPE get rrd => _$rrd;
   VDITYPE get system => _$system;
   VDITYPE get user => _$user;
+  VDITYPE get unknownDefaultOpenApi => _$unknownDefaultOpenApi;
   VDITYPE valueOf(String name) => _$valueOf(name);
   BuiltSet<VDITYPE> get values => _$values;
 }
@@ -81,53 +87,6 @@ class _$VDITYPEMeta {
 abstract class _$VDITYPEMixin {
   // ignore: non_constant_identifier_names
   _$VDITYPEMeta get VDITYPE => const _$VDITYPEMeta();
-}
-
-Serializer<VDITYPE> _$vDITYPESerializer = _$VDITYPESerializer();
-
-class _$VDITYPESerializer implements PrimitiveSerializer<VDITYPE> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'metadata': 'metadata',
-    'suspend': 'suspend',
-    'cbtMetadata': 'cbt_metadata',
-    'crashdump': 'crashdump',
-    'ephemeral': 'ephemeral',
-    'haStatefile': 'ha_statefile',
-    'pvsCache': 'pvs_cache',
-    'redoLog': 'redo_log',
-    'rrd': 'rrd',
-    'system': 'system',
-    'user': 'user',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'metadata': 'metadata',
-    'suspend': 'suspend',
-    'cbt_metadata': 'cbtMetadata',
-    'crashdump': 'crashdump',
-    'ephemeral': 'ephemeral',
-    'ha_statefile': 'haStatefile',
-    'pvs_cache': 'pvsCache',
-    'redo_log': 'redoLog',
-    'rrd': 'rrd',
-    'system': 'system',
-    'user': 'user',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[VDITYPE];
-  @override
-  final String wireName = 'VDITYPE';
-
-  @override
-  Object serialize(Serializers serializers, VDITYPE object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  VDITYPE deserialize(Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      VDITYPE.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
 }
 
 // ignore_for_file: deprecated_member_use_from_same_package,type=lint

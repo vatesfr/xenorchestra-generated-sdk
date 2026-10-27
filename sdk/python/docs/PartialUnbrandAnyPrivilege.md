@@ -1,6 +1,5 @@
 # PartialUnbrandAnyPrivilege
 
-Make all properties in T optional
 
 ## Properties
 

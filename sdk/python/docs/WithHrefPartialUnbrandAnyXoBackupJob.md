@@ -6,12 +6,13 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **compression** | **str** |  | [optional] 
+**href** | **str** |  | 
 **id** | **str** |  | [optional] 
 **mode** | **str** |  | [optional] 
 **name** | **str** |  | [optional] 
 **proxy** | **str** |  | [optional] 
 **remotes** | **object** |  | [optional] 
-**settings** | [**PartialUnbrandAnyXoBackupJobAnyOf2Settings**](PartialUnbrandAnyXoBackupJobAnyOf2Settings.md) |  | [optional] 
+**settings** | [**PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettings**](PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettings.md) |  | [optional] 
 **srs** | **object** |  | [optional] 
 **type** | **str** |  | [optional] 
 **vms** | **object** |  | [optional] 
@@ -19,7 +20,6 @@ Name | Type | Description | Notes
 **user_id** | **str** |  | [optional] 
 **xo_metadata** | **bool** |  | [optional] 
 **source_remote** | **str** |  | [optional] 
-**href** | **str** |  | 
 
 ## Example
 

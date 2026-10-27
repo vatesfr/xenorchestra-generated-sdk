@@ -34,8 +34,6 @@ class PartialUnbrandXoAlarmObject(BaseModel):
     @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['pool', 'VBD', 'host', 'VIF', 'VTPM', 'VM-snapshot', 'SR', 'VM', 'VM-template', 'message', 'vgpu', 'gpuGroup', 'network', 'PBD', 'PCI', 'PGPU', 'PIF', 'VDI', 'VDI-snapshot', 'VDI-unmanaged', 'vgpuType', 'VM-controller', 'SM', 'unknown']):
-            raise ValueError("must be one of enum values ('pool', 'VBD', 'host', 'VIF', 'VTPM', 'VM-snapshot', 'SR', 'VM', 'VM-template', 'message', 'vgpu', 'gpuGroup', 'network', 'PBD', 'PCI', 'PGPU', 'PIF', 'VDI', 'VDI-snapshot', 'VDI-unmanaged', 'vgpuType', 'VM-controller', 'SM', 'unknown')")
         return value
 
     model_config = ConfigDict(

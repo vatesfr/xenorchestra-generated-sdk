@@ -11,6 +11,9 @@ const UnbrandXoVmBackupArchiveModeEnum _$unbrandXoVmBackupArchiveModeEnum_full =
 const UnbrandXoVmBackupArchiveModeEnum
     _$unbrandXoVmBackupArchiveModeEnum_delta =
     const UnbrandXoVmBackupArchiveModeEnum._('delta');
+const UnbrandXoVmBackupArchiveModeEnum
+    _$unbrandXoVmBackupArchiveModeEnum_unknownDefaultOpenApi =
+    const UnbrandXoVmBackupArchiveModeEnum._('unknownDefaultOpenApi');
 
 UnbrandXoVmBackupArchiveModeEnum _$unbrandXoVmBackupArchiveModeEnumValueOf(
     String name) {
@@ -19,6 +22,8 @@ UnbrandXoVmBackupArchiveModeEnum _$unbrandXoVmBackupArchiveModeEnumValueOf(
       return _$unbrandXoVmBackupArchiveModeEnum_full;
     case 'delta':
       return _$unbrandXoVmBackupArchiveModeEnum_delta;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandXoVmBackupArchiveModeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -29,17 +34,23 @@ final BuiltSet<UnbrandXoVmBackupArchiveModeEnum>
         UnbrandXoVmBackupArchiveModeEnum>(const <UnbrandXoVmBackupArchiveModeEnum>[
   _$unbrandXoVmBackupArchiveModeEnum_full,
   _$unbrandXoVmBackupArchiveModeEnum_delta,
+  _$unbrandXoVmBackupArchiveModeEnum_unknownDefaultOpenApi,
 ]);
 
 const UnbrandXoVmBackupArchiveTypeEnum
     _$unbrandXoVmBackupArchiveTypeEnum_xoVmBackup =
     const UnbrandXoVmBackupArchiveTypeEnum._('xoVmBackup');
+const UnbrandXoVmBackupArchiveTypeEnum
+    _$unbrandXoVmBackupArchiveTypeEnum_unknownDefaultOpenApi =
+    const UnbrandXoVmBackupArchiveTypeEnum._('unknownDefaultOpenApi');
 
 UnbrandXoVmBackupArchiveTypeEnum _$unbrandXoVmBackupArchiveTypeEnumValueOf(
     String name) {
   switch (name) {
     case 'xoVmBackup':
       return _$unbrandXoVmBackupArchiveTypeEnum_xoVmBackup;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandXoVmBackupArchiveTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -49,72 +60,8 @@ final BuiltSet<UnbrandXoVmBackupArchiveTypeEnum>
     _$unbrandXoVmBackupArchiveTypeEnumValues = BuiltSet<
         UnbrandXoVmBackupArchiveTypeEnum>(const <UnbrandXoVmBackupArchiveTypeEnum>[
   _$unbrandXoVmBackupArchiveTypeEnum_xoVmBackup,
+  _$unbrandXoVmBackupArchiveTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<UnbrandXoVmBackupArchiveModeEnum>
-    _$unbrandXoVmBackupArchiveModeEnumSerializer =
-    _$UnbrandXoVmBackupArchiveModeEnumSerializer();
-Serializer<UnbrandXoVmBackupArchiveTypeEnum>
-    _$unbrandXoVmBackupArchiveTypeEnumSerializer =
-    _$UnbrandXoVmBackupArchiveTypeEnumSerializer();
-
-class _$UnbrandXoVmBackupArchiveModeEnumSerializer
-    implements PrimitiveSerializer<UnbrandXoVmBackupArchiveModeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'full': 'full',
-    'delta': 'delta',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'full': 'full',
-    'delta': 'delta',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[UnbrandXoVmBackupArchiveModeEnum];
-  @override
-  final String wireName = 'UnbrandXoVmBackupArchiveModeEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers, UnbrandXoVmBackupArchiveModeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandXoVmBackupArchiveModeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandXoVmBackupArchiveModeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
-
-class _$UnbrandXoVmBackupArchiveTypeEnumSerializer
-    implements PrimitiveSerializer<UnbrandXoVmBackupArchiveTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'xoVmBackup': 'xo-vm-backup',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'xo-vm-backup': 'xoVmBackup',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[UnbrandXoVmBackupArchiveTypeEnum];
-  @override
-  final String wireName = 'UnbrandXoVmBackupArchiveTypeEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers, UnbrandXoVmBackupArchiveTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandXoVmBackupArchiveTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandXoVmBackupArchiveTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$UnbrandXoVmBackupArchive extends UnbrandXoVmBackupArchive {
   @override

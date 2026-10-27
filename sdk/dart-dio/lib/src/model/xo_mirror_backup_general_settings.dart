@@ -271,10 +271,15 @@ class XoMirrorBackupGeneralSettingsBackupReportTplEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'compactMjml')
   static const XoMirrorBackupGeneralSettingsBackupReportTplEnum compactMjml =
       _$xoMirrorBackupGeneralSettingsBackupReportTplEnum_compactMjml;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const XoMirrorBackupGeneralSettingsBackupReportTplEnum
+      unknownDefaultOpenApi =
+      _$xoMirrorBackupGeneralSettingsBackupReportTplEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<XoMirrorBackupGeneralSettingsBackupReportTplEnum>
       get serializer =>
-          _$xoMirrorBackupGeneralSettingsBackupReportTplEnumSerializer;
+          _OpenXoMirrorBackupGeneralSettingsBackupReportTplEnumSerializer();
 
   const XoMirrorBackupGeneralSettingsBackupReportTplEnum._(String name)
       : super(name);
@@ -284,15 +289,71 @@ class XoMirrorBackupGeneralSettingsBackupReportTplEnum extends EnumClass {
   static XoMirrorBackupGeneralSettingsBackupReportTplEnum valueOf(
           String name) =>
       _$xoMirrorBackupGeneralSettingsBackupReportTplEnumValueOf(name);
+
+  static XoMirrorBackupGeneralSettingsBackupReportTplEnum fromValue(
+      String value) {
+    switch (value) {
+      case r'compactMjml':
+        return compactMjml;
+      default:
+        return XoMirrorBackupGeneralSettingsBackupReportTplEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, compactMjml)) return r'compactMjml';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is XoMirrorBackupGeneralSettingsBackupReportTplEnum &&
+      value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenXoMirrorBackupGeneralSettingsBackupReportTplEnumSerializer
+    implements
+        PrimitiveSerializer<XoMirrorBackupGeneralSettingsBackupReportTplEnum> {
+  @override
+  final Iterable<Type> types = const [
+    XoMirrorBackupGeneralSettingsBackupReportTplEnum
+  ];
+  @override
+  final String wireName = 'XoMirrorBackupGeneralSettingsBackupReportTplEnum';
+  @override
+  Object serialize(Serializers serializers,
+          XoMirrorBackupGeneralSettingsBackupReportTplEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  XoMirrorBackupGeneralSettingsBackupReportTplEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for XoMirrorBackupGeneralSettingsBackupReportTplEnum');
+    return XoMirrorBackupGeneralSettingsBackupReportTplEnum.fromValue(
+        serialized);
+  }
 }
 
 class XoMirrorBackupGeneralSettingsReportWhenEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'failure')
   static const XoMirrorBackupGeneralSettingsReportWhenEnum failure =
       _$xoMirrorBackupGeneralSettingsReportWhenEnum_failure;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const XoMirrorBackupGeneralSettingsReportWhenEnum
+      unknownDefaultOpenApi =
+      _$xoMirrorBackupGeneralSettingsReportWhenEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<XoMirrorBackupGeneralSettingsReportWhenEnum>
-      get serializer => _$xoMirrorBackupGeneralSettingsReportWhenEnumSerializer;
+      get serializer =>
+          _OpenXoMirrorBackupGeneralSettingsReportWhenEnumSerializer();
 
   const XoMirrorBackupGeneralSettingsReportWhenEnum._(String name)
       : super(name);
@@ -301,4 +362,52 @@ class XoMirrorBackupGeneralSettingsReportWhenEnum extends EnumClass {
       _$xoMirrorBackupGeneralSettingsReportWhenEnumValues;
   static XoMirrorBackupGeneralSettingsReportWhenEnum valueOf(String name) =>
       _$xoMirrorBackupGeneralSettingsReportWhenEnumValueOf(name);
+
+  static XoMirrorBackupGeneralSettingsReportWhenEnum fromValue(String value) {
+    switch (value) {
+      case r'failure':
+        return failure;
+      default:
+        return XoMirrorBackupGeneralSettingsReportWhenEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, failure)) return r'failure';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is XoMirrorBackupGeneralSettingsReportWhenEnum &&
+      value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenXoMirrorBackupGeneralSettingsReportWhenEnumSerializer
+    implements
+        PrimitiveSerializer<XoMirrorBackupGeneralSettingsReportWhenEnum> {
+  @override
+  final Iterable<Type> types = const [
+    XoMirrorBackupGeneralSettingsReportWhenEnum
+  ];
+  @override
+  final String wireName = 'XoMirrorBackupGeneralSettingsReportWhenEnum';
+  @override
+  Object serialize(Serializers serializers,
+          XoMirrorBackupGeneralSettingsReportWhenEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  XoMirrorBackupGeneralSettingsReportWhenEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for XoMirrorBackupGeneralSettingsReportWhenEnum');
+    return XoMirrorBackupGeneralSettingsReportWhenEnum.fromValue(serialized);
+  }
 }

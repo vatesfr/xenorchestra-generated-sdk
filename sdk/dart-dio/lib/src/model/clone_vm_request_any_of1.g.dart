@@ -10,6 +10,9 @@ const CloneVmRequestAnyOf1CompressEnum _$cloneVmRequestAnyOf1CompressEnum_gzip =
     const CloneVmRequestAnyOf1CompressEnum._('gzip');
 const CloneVmRequestAnyOf1CompressEnum _$cloneVmRequestAnyOf1CompressEnum_zstd =
     const CloneVmRequestAnyOf1CompressEnum._('zstd');
+const CloneVmRequestAnyOf1CompressEnum
+    _$cloneVmRequestAnyOf1CompressEnum_unknownDefaultOpenApi =
+    const CloneVmRequestAnyOf1CompressEnum._('unknownDefaultOpenApi');
 
 CloneVmRequestAnyOf1CompressEnum _$cloneVmRequestAnyOf1CompressEnumValueOf(
     String name) {
@@ -18,6 +21,8 @@ CloneVmRequestAnyOf1CompressEnum _$cloneVmRequestAnyOf1CompressEnumValueOf(
       return _$cloneVmRequestAnyOf1CompressEnum_gzip;
     case 'zstd':
       return _$cloneVmRequestAnyOf1CompressEnum_zstd;
+    case 'unknownDefaultOpenApi':
+      return _$cloneVmRequestAnyOf1CompressEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -28,41 +33,8 @@ final BuiltSet<CloneVmRequestAnyOf1CompressEnum>
         CloneVmRequestAnyOf1CompressEnum>(const <CloneVmRequestAnyOf1CompressEnum>[
   _$cloneVmRequestAnyOf1CompressEnum_gzip,
   _$cloneVmRequestAnyOf1CompressEnum_zstd,
+  _$cloneVmRequestAnyOf1CompressEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<CloneVmRequestAnyOf1CompressEnum>
-    _$cloneVmRequestAnyOf1CompressEnumSerializer =
-    _$CloneVmRequestAnyOf1CompressEnumSerializer();
-
-class _$CloneVmRequestAnyOf1CompressEnumSerializer
-    implements PrimitiveSerializer<CloneVmRequestAnyOf1CompressEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'gzip': 'gzip',
-    'zstd': 'zstd',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'gzip': 'gzip',
-    'zstd': 'zstd',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[CloneVmRequestAnyOf1CompressEnum];
-  @override
-  final String wireName = 'CloneVmRequestAnyOf1CompressEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers, CloneVmRequestAnyOf1CompressEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  CloneVmRequestAnyOf1CompressEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      CloneVmRequestAnyOf1CompressEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$CloneVmRequestAnyOf1 extends CloneVmRequestAnyOf1 {
   @override

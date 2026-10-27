@@ -8,11 +8,15 @@ part of 'unbrand_xo_pif.dart';
 
 const UnbrandXoPifTypeEnum _$unbrandXoPifTypeEnum_PIF =
     const UnbrandXoPifTypeEnum._('PIF');
+const UnbrandXoPifTypeEnum _$unbrandXoPifTypeEnum_unknownDefaultOpenApi =
+    const UnbrandXoPifTypeEnum._('unknownDefaultOpenApi');
 
 UnbrandXoPifTypeEnum _$unbrandXoPifTypeEnumValueOf(String name) {
   switch (name) {
     case 'PIF':
       return _$unbrandXoPifTypeEnum_PIF;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandXoPifTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -21,36 +25,8 @@ UnbrandXoPifTypeEnum _$unbrandXoPifTypeEnumValueOf(String name) {
 final BuiltSet<UnbrandXoPifTypeEnum> _$unbrandXoPifTypeEnumValues =
     BuiltSet<UnbrandXoPifTypeEnum>(const <UnbrandXoPifTypeEnum>[
   _$unbrandXoPifTypeEnum_PIF,
+  _$unbrandXoPifTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<UnbrandXoPifTypeEnum> _$unbrandXoPifTypeEnumSerializer =
-    _$UnbrandXoPifTypeEnumSerializer();
-
-class _$UnbrandXoPifTypeEnumSerializer
-    implements PrimitiveSerializer<UnbrandXoPifTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'PIF': 'PIF',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'PIF': 'PIF',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[UnbrandXoPifTypeEnum];
-  @override
-  final String wireName = 'UnbrandXoPifTypeEnum';
-
-  @override
-  Object serialize(Serializers serializers, UnbrandXoPifTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandXoPifTypeEnum deserialize(Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandXoPifTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$UnbrandXoPif extends UnbrandXoPif {
   @override

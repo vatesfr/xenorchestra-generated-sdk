@@ -3,8 +3,8 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:xenorchestra_dart_sdk/src/model/partial_unbrand_xo_metadata_backup_job_settings.dart';
 import 'package:built_collection/built_collection.dart';
+import 'package:xenorchestra_dart_sdk/src/model/partial_unbrand_any_xo_backup_job_variant_metadata_backup_settings.dart';
 import 'package:built_value/json_object.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -44,7 +44,7 @@ abstract class UnbrandUnbrandedXoMetadataBackupJob
   JsonObject? get remotes;
 
   @BuiltValueField(wireName: r'settings')
-  PartialUnbrandXoMetadataBackupJobSettings get settings;
+  PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings get settings;
 
   @BuiltValueField(wireName: r'type')
   UnbrandUnbrandedXoMetadataBackupJobTypeEnum get type;
@@ -122,7 +122,8 @@ class _$UnbrandUnbrandedXoMetadataBackupJobSerializer
     yield r'settings';
     yield serializers.serialize(
       object.settings,
-      specifiedType: const FullType(PartialUnbrandXoMetadataBackupJobSettings),
+      specifiedType: const FullType(
+          PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings),
     );
     yield r'type';
     yield serializers.serialize(
@@ -207,9 +208,9 @@ class _$UnbrandUnbrandedXoMetadataBackupJobSerializer
         case r'settings':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType:
-                const FullType(PartialUnbrandXoMetadataBackupJobSettings),
-          ) as PartialUnbrandXoMetadataBackupJobSettings;
+            specifiedType: const FullType(
+                PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings),
+          ) as PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings;
           result.settings.replace(valueDes);
           break;
         case r'type':
@@ -267,9 +268,15 @@ class UnbrandUnbrandedXoMetadataBackupJobTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'metadataBackup')
   static const UnbrandUnbrandedXoMetadataBackupJobTypeEnum metadataBackup =
       _$unbrandUnbrandedXoMetadataBackupJobTypeEnum_metadataBackup;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UnbrandUnbrandedXoMetadataBackupJobTypeEnum
+      unknownDefaultOpenApi =
+      _$unbrandUnbrandedXoMetadataBackupJobTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UnbrandUnbrandedXoMetadataBackupJobTypeEnum>
-      get serializer => _$unbrandUnbrandedXoMetadataBackupJobTypeEnumSerializer;
+      get serializer =>
+          _OpenUnbrandUnbrandedXoMetadataBackupJobTypeEnumSerializer();
 
   const UnbrandUnbrandedXoMetadataBackupJobTypeEnum._(String name)
       : super(name);
@@ -278,4 +285,52 @@ class UnbrandUnbrandedXoMetadataBackupJobTypeEnum extends EnumClass {
       _$unbrandUnbrandedXoMetadataBackupJobTypeEnumValues;
   static UnbrandUnbrandedXoMetadataBackupJobTypeEnum valueOf(String name) =>
       _$unbrandUnbrandedXoMetadataBackupJobTypeEnumValueOf(name);
+
+  static UnbrandUnbrandedXoMetadataBackupJobTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'metadataBackup':
+        return metadataBackup;
+      default:
+        return UnbrandUnbrandedXoMetadataBackupJobTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, metadataBackup)) return r'metadataBackup';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UnbrandUnbrandedXoMetadataBackupJobTypeEnum &&
+      value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUnbrandUnbrandedXoMetadataBackupJobTypeEnumSerializer
+    implements
+        PrimitiveSerializer<UnbrandUnbrandedXoMetadataBackupJobTypeEnum> {
+  @override
+  final Iterable<Type> types = const [
+    UnbrandUnbrandedXoMetadataBackupJobTypeEnum
+  ];
+  @override
+  final String wireName = 'UnbrandUnbrandedXoMetadataBackupJobTypeEnum';
+  @override
+  Object serialize(Serializers serializers,
+          UnbrandUnbrandedXoMetadataBackupJobTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UnbrandUnbrandedXoMetadataBackupJobTypeEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for UnbrandUnbrandedXoMetadataBackupJobTypeEnum');
+    return UnbrandUnbrandedXoMetadataBackupJobTypeEnum.fromValue(serialized);
+  }
 }

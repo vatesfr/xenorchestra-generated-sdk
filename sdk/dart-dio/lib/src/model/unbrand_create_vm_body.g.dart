@@ -15,6 +15,9 @@ const UnbrandCreateVmBodyHighAvailabilityEnum
 const UnbrandCreateVmBodyHighAvailabilityEnum
     _$unbrandCreateVmBodyHighAvailabilityEnum_restart =
     const UnbrandCreateVmBodyHighAvailabilityEnum._('restart');
+const UnbrandCreateVmBodyHighAvailabilityEnum
+    _$unbrandCreateVmBodyHighAvailabilityEnum_unknownDefaultOpenApi =
+    const UnbrandCreateVmBodyHighAvailabilityEnum._('unknownDefaultOpenApi');
 
 UnbrandCreateVmBodyHighAvailabilityEnum
     _$unbrandCreateVmBodyHighAvailabilityEnumValueOf(String name) {
@@ -25,6 +28,8 @@ UnbrandCreateVmBodyHighAvailabilityEnum
       return _$unbrandCreateVmBodyHighAvailabilityEnum_bestEffort;
     case 'restart':
       return _$unbrandCreateVmBodyHighAvailabilityEnum_restart;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandCreateVmBodyHighAvailabilityEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -36,6 +41,7 @@ final BuiltSet<UnbrandCreateVmBodyHighAvailabilityEnum>
   _$unbrandCreateVmBodyHighAvailabilityEnum_empty,
   _$unbrandCreateVmBodyHighAvailabilityEnum_bestEffort,
   _$unbrandCreateVmBodyHighAvailabilityEnum_restart,
+  _$unbrandCreateVmBodyHighAvailabilityEnum_unknownDefaultOpenApi,
 ]);
 
 const UnbrandCreateVmBodyHvmBootFirmwareEnum
@@ -44,6 +50,9 @@ const UnbrandCreateVmBodyHvmBootFirmwareEnum
 const UnbrandCreateVmBodyHvmBootFirmwareEnum
     _$unbrandCreateVmBodyHvmBootFirmwareEnum_bios =
     const UnbrandCreateVmBodyHvmBootFirmwareEnum._('bios');
+const UnbrandCreateVmBodyHvmBootFirmwareEnum
+    _$unbrandCreateVmBodyHvmBootFirmwareEnum_unknownDefaultOpenApi =
+    const UnbrandCreateVmBodyHvmBootFirmwareEnum._('unknownDefaultOpenApi');
 
 UnbrandCreateVmBodyHvmBootFirmwareEnum
     _$unbrandCreateVmBodyHvmBootFirmwareEnumValueOf(String name) {
@@ -52,6 +61,8 @@ UnbrandCreateVmBodyHvmBootFirmwareEnum
       return _$unbrandCreateVmBodyHvmBootFirmwareEnum_uefi;
     case 'bios':
       return _$unbrandCreateVmBodyHvmBootFirmwareEnum_bios;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandCreateVmBodyHvmBootFirmwareEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -62,80 +73,8 @@ final BuiltSet<UnbrandCreateVmBodyHvmBootFirmwareEnum>
         UnbrandCreateVmBodyHvmBootFirmwareEnum>(const <UnbrandCreateVmBodyHvmBootFirmwareEnum>[
   _$unbrandCreateVmBodyHvmBootFirmwareEnum_uefi,
   _$unbrandCreateVmBodyHvmBootFirmwareEnum_bios,
+  _$unbrandCreateVmBodyHvmBootFirmwareEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<UnbrandCreateVmBodyHighAvailabilityEnum>
-    _$unbrandCreateVmBodyHighAvailabilityEnumSerializer =
-    _$UnbrandCreateVmBodyHighAvailabilityEnumSerializer();
-Serializer<UnbrandCreateVmBodyHvmBootFirmwareEnum>
-    _$unbrandCreateVmBodyHvmBootFirmwareEnumSerializer =
-    _$UnbrandCreateVmBodyHvmBootFirmwareEnumSerializer();
-
-class _$UnbrandCreateVmBodyHighAvailabilityEnumSerializer
-    implements PrimitiveSerializer<UnbrandCreateVmBodyHighAvailabilityEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'empty': '',
-    'bestEffort': 'best-effort',
-    'restart': 'restart',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    '': 'empty',
-    'best-effort': 'bestEffort',
-    'restart': 'restart',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    UnbrandCreateVmBodyHighAvailabilityEnum
-  ];
-  @override
-  final String wireName = 'UnbrandCreateVmBodyHighAvailabilityEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          UnbrandCreateVmBodyHighAvailabilityEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandCreateVmBodyHighAvailabilityEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandCreateVmBodyHighAvailabilityEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
-
-class _$UnbrandCreateVmBodyHvmBootFirmwareEnumSerializer
-    implements PrimitiveSerializer<UnbrandCreateVmBodyHvmBootFirmwareEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'uefi': 'uefi',
-    'bios': 'bios',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'uefi': 'uefi',
-    'bios': 'bios',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    UnbrandCreateVmBodyHvmBootFirmwareEnum
-  ];
-  @override
-  final String wireName = 'UnbrandCreateVmBodyHvmBootFirmwareEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          UnbrandCreateVmBodyHvmBootFirmwareEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandCreateVmBodyHvmBootFirmwareEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandCreateVmBodyHvmBootFirmwareEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$UnbrandCreateVmBody extends UnbrandCreateVmBody {
   @override

@@ -50,19 +50,18 @@ public class CreateSrBody {
   /**
    * Gets or Sets contentType
    */
-  public enum ContentTypeEnum {
-    USER(String.valueOf("user")),
-    
-    ISO(String.valueOf("iso")),
-    
-    DISK(String.valueOf("disk")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+  public static final class ContentTypeEnum {
+    public static final ContentTypeEnum USER = new ContentTypeEnum("user");
+    public static final ContentTypeEnum ISO = new ContentTypeEnum("iso");
+    public static final ContentTypeEnum DISK = new ContentTypeEnum("disk");
+    @JsonCreator public static ContentTypeEnum fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static ContentTypeEnum[] values() { return new ContentTypeEnum[] {USER, ISO, DISK}; }
+    @Override public boolean equals(Object other) { return other instanceof ContentTypeEnum && value.equals(((ContentTypeEnum) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-    private String value;
-
-    ContentTypeEnum(String value) {
-      this.value = value;
+    private ContentTypeEnum(String value) {
+      this.value = java.util.Objects.requireNonNull(value);
     }
 
     @JsonValue
@@ -75,16 +74,17 @@ public class CreateSrBody {
       return String.valueOf(value);
     }
 
-    @JsonCreator
+    
     public static ContentTypeEnum fromValue(String value) {
       for (ContentTypeEnum b : ContentTypeEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      return new ContentTypeEnum(value);
     }
   }
+
 
   public static final String JSON_PROPERTY_CONTENT_TYPE = "content_type";
   @javax.annotation.Nullable
@@ -109,53 +109,35 @@ public class CreateSrBody {
   /**
    * Gets or Sets srType
    */
-  public enum SrTypeEnum {
-    CEPHFS(String.valueOf("cephfs")),
-    
-    DUMMY(String.valueOf("dummy")),
-    
-    EXT(String.valueOf("ext")),
-    
-    FILE(String.valueOf("file")),
-    
-    GLUSTERFS(String.valueOf("glusterfs")),
-    
-    HBA(String.valueOf("hba")),
-    
-    ISO(String.valueOf("iso")),
-    
-    LARGEBLOCK(String.valueOf("largeblock")),
-    
-    LINSTOR(String.valueOf("linstor")),
-    
-    LVM(String.valueOf("lvm")),
-    
-    LVMOFCOE(String.valueOf("lvmofcoe")),
-    
-    LVMOHBA(String.valueOf("lvmohba")),
-    
-    LVMOISCSI(String.valueOf("lvmoiscsi")),
-    
-    MOOSEFS(String.valueOf("moosefs")),
-    
-    NFS(String.valueOf("nfs")),
-    
-    SHM(String.valueOf("shm")),
-    
-    SMB(String.valueOf("smb")),
-    
-    UDEV(String.valueOf("udev")),
-    
-    XFS(String.valueOf("xfs")),
-    
-    ZFS(String.valueOf("zfs")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+  public static final class SrTypeEnum {
+    public static final SrTypeEnum CEPHFS = new SrTypeEnum("cephfs");
+    public static final SrTypeEnum DUMMY = new SrTypeEnum("dummy");
+    public static final SrTypeEnum EXT = new SrTypeEnum("ext");
+    public static final SrTypeEnum FILE = new SrTypeEnum("file");
+    public static final SrTypeEnum GLUSTERFS = new SrTypeEnum("glusterfs");
+    public static final SrTypeEnum HBA = new SrTypeEnum("hba");
+    public static final SrTypeEnum ISO = new SrTypeEnum("iso");
+    public static final SrTypeEnum LARGEBLOCK = new SrTypeEnum("largeblock");
+    public static final SrTypeEnum LINSTOR = new SrTypeEnum("linstor");
+    public static final SrTypeEnum LVM = new SrTypeEnum("lvm");
+    public static final SrTypeEnum LVMOFCOE = new SrTypeEnum("lvmofcoe");
+    public static final SrTypeEnum LVMOHBA = new SrTypeEnum("lvmohba");
+    public static final SrTypeEnum LVMOISCSI = new SrTypeEnum("lvmoiscsi");
+    public static final SrTypeEnum MOOSEFS = new SrTypeEnum("moosefs");
+    public static final SrTypeEnum NFS = new SrTypeEnum("nfs");
+    public static final SrTypeEnum SHM = new SrTypeEnum("shm");
+    public static final SrTypeEnum SMB = new SrTypeEnum("smb");
+    public static final SrTypeEnum UDEV = new SrTypeEnum("udev");
+    public static final SrTypeEnum XFS = new SrTypeEnum("xfs");
+    public static final SrTypeEnum ZFS = new SrTypeEnum("zfs");
+    @JsonCreator public static SrTypeEnum fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static SrTypeEnum[] values() { return new SrTypeEnum[] {CEPHFS, DUMMY, EXT, FILE, GLUSTERFS, HBA, ISO, LARGEBLOCK, LINSTOR, LVM, LVMOFCOE, LVMOHBA, LVMOISCSI, MOOSEFS, NFS, SHM, SMB, UDEV, XFS, ZFS}; }
+    @Override public boolean equals(Object other) { return other instanceof SrTypeEnum && value.equals(((SrTypeEnum) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-    private String value;
-
-    SrTypeEnum(String value) {
-      this.value = value;
+    private SrTypeEnum(String value) {
+      this.value = java.util.Objects.requireNonNull(value);
     }
 
     @JsonValue
@@ -168,16 +150,17 @@ public class CreateSrBody {
       return String.valueOf(value);
     }
 
-    @JsonCreator
+    
     public static SrTypeEnum fromValue(String value) {
       for (SrTypeEnum b : SrTypeEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      return new SrTypeEnum(value);
     }
   }
+
 
   public static final String JSON_PROPERTY_SR_TYPE = "SR_type";
   @javax.annotation.Nonnull

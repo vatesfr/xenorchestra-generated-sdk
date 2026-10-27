@@ -42,17 +42,17 @@ public class CloneVmRequestAnyOf1 {
   /**
    * Gets or Sets compress
    */
-  public enum CompressEnum {
-    GZIP(String.valueOf("gzip")),
-    
-    ZSTD(String.valueOf("zstd")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+  public static final class CompressEnum {
+    public static final CompressEnum GZIP = new CompressEnum("gzip");
+    public static final CompressEnum ZSTD = new CompressEnum("zstd");
+    @JsonCreator public static CompressEnum fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static CompressEnum[] values() { return new CompressEnum[] {GZIP, ZSTD}; }
+    @Override public boolean equals(Object other) { return other instanceof CompressEnum && value.equals(((CompressEnum) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-    private String value;
-
-    CompressEnum(String value) {
-      this.value = value;
+    private CompressEnum(String value) {
+      this.value = java.util.Objects.requireNonNull(value);
     }
 
     @JsonValue
@@ -65,16 +65,17 @@ public class CloneVmRequestAnyOf1 {
       return String.valueOf(value);
     }
 
-    @JsonCreator
+    
     public static CompressEnum fromValue(String value) {
       for (CompressEnum b : CompressEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      return new CompressEnum(value);
     }
   }
+
 
   public static final String JSON_PROPERTY_COMPRESS = "compress";
   @javax.annotation.Nullable

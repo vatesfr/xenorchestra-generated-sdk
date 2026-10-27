@@ -46,6 +46,8 @@ const UnbrandXoSrSRTypeEnum _$unbrandXoSrSRTypeEnum_xfs =
     const UnbrandXoSrSRTypeEnum._('xfs');
 const UnbrandXoSrSRTypeEnum _$unbrandXoSrSRTypeEnum_zfs =
     const UnbrandXoSrSRTypeEnum._('zfs');
+const UnbrandXoSrSRTypeEnum _$unbrandXoSrSRTypeEnum_unknownDefaultOpenApi =
+    const UnbrandXoSrSRTypeEnum._('unknownDefaultOpenApi');
 
 UnbrandXoSrSRTypeEnum _$unbrandXoSrSRTypeEnumValueOf(String name) {
   switch (name) {
@@ -89,6 +91,8 @@ UnbrandXoSrSRTypeEnum _$unbrandXoSrSRTypeEnumValueOf(String name) {
       return _$unbrandXoSrSRTypeEnum_xfs;
     case 'zfs':
       return _$unbrandXoSrSRTypeEnum_zfs;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandXoSrSRTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -116,6 +120,7 @@ final BuiltSet<UnbrandXoSrSRTypeEnum> _$unbrandXoSrSRTypeEnumValues =
   _$unbrandXoSrSRTypeEnum_udev,
   _$unbrandXoSrSRTypeEnum_xfs,
   _$unbrandXoSrSRTypeEnum_zfs,
+  _$unbrandXoSrSRTypeEnum_unknownDefaultOpenApi,
 ]);
 
 const UnbrandXoSrAllocationStrategyEnum
@@ -127,6 +132,9 @@ const UnbrandXoSrAllocationStrategyEnum
 const UnbrandXoSrAllocationStrategyEnum
     _$unbrandXoSrAllocationStrategyEnum_thick =
     const UnbrandXoSrAllocationStrategyEnum._('thick');
+const UnbrandXoSrAllocationStrategyEnum
+    _$unbrandXoSrAllocationStrategyEnum_unknownDefaultOpenApi =
+    const UnbrandXoSrAllocationStrategyEnum._('unknownDefaultOpenApi');
 
 UnbrandXoSrAllocationStrategyEnum _$unbrandXoSrAllocationStrategyEnumValueOf(
     String name) {
@@ -137,6 +145,8 @@ UnbrandXoSrAllocationStrategyEnum _$unbrandXoSrAllocationStrategyEnumValueOf(
       return _$unbrandXoSrAllocationStrategyEnum_thin;
     case 'thick':
       return _$unbrandXoSrAllocationStrategyEnum_thick;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandXoSrAllocationStrategyEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -148,6 +158,7 @@ final BuiltSet<UnbrandXoSrAllocationStrategyEnum>
   _$unbrandXoSrAllocationStrategyEnum_unknown,
   _$unbrandXoSrAllocationStrategyEnum_thin,
   _$unbrandXoSrAllocationStrategyEnum_thick,
+  _$unbrandXoSrAllocationStrategyEnum_unknownDefaultOpenApi,
 ]);
 
 const UnbrandXoSrContentTypeEnum _$unbrandXoSrContentTypeEnum_user =
@@ -156,6 +167,9 @@ const UnbrandXoSrContentTypeEnum _$unbrandXoSrContentTypeEnum_iso =
     const UnbrandXoSrContentTypeEnum._('iso');
 const UnbrandXoSrContentTypeEnum _$unbrandXoSrContentTypeEnum_disk =
     const UnbrandXoSrContentTypeEnum._('disk');
+const UnbrandXoSrContentTypeEnum
+    _$unbrandXoSrContentTypeEnum_unknownDefaultOpenApi =
+    const UnbrandXoSrContentTypeEnum._('unknownDefaultOpenApi');
 
 UnbrandXoSrContentTypeEnum _$unbrandXoSrContentTypeEnumValueOf(String name) {
   switch (name) {
@@ -165,6 +179,8 @@ UnbrandXoSrContentTypeEnum _$unbrandXoSrContentTypeEnumValueOf(String name) {
       return _$unbrandXoSrContentTypeEnum_iso;
     case 'disk':
       return _$unbrandXoSrContentTypeEnum_disk;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandXoSrContentTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -175,15 +191,20 @@ final BuiltSet<UnbrandXoSrContentTypeEnum> _$unbrandXoSrContentTypeEnumValues =
   _$unbrandXoSrContentTypeEnum_user,
   _$unbrandXoSrContentTypeEnum_iso,
   _$unbrandXoSrContentTypeEnum_disk,
+  _$unbrandXoSrContentTypeEnum_unknownDefaultOpenApi,
 ]);
 
 const UnbrandXoSrTypeEnum _$unbrandXoSrTypeEnum_SR =
     const UnbrandXoSrTypeEnum._('SR');
+const UnbrandXoSrTypeEnum _$unbrandXoSrTypeEnum_unknownDefaultOpenApi =
+    const UnbrandXoSrTypeEnum._('unknownDefaultOpenApi');
 
 UnbrandXoSrTypeEnum _$unbrandXoSrTypeEnumValueOf(String name) {
   switch (name) {
     case 'SR':
       return _$unbrandXoSrTypeEnum_SR;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandXoSrTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -192,170 +213,8 @@ UnbrandXoSrTypeEnum _$unbrandXoSrTypeEnumValueOf(String name) {
 final BuiltSet<UnbrandXoSrTypeEnum> _$unbrandXoSrTypeEnumValues =
     BuiltSet<UnbrandXoSrTypeEnum>(const <UnbrandXoSrTypeEnum>[
   _$unbrandXoSrTypeEnum_SR,
+  _$unbrandXoSrTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<UnbrandXoSrSRTypeEnum> _$unbrandXoSrSRTypeEnumSerializer =
-    _$UnbrandXoSrSRTypeEnumSerializer();
-Serializer<UnbrandXoSrAllocationStrategyEnum>
-    _$unbrandXoSrAllocationStrategyEnumSerializer =
-    _$UnbrandXoSrAllocationStrategyEnumSerializer();
-Serializer<UnbrandXoSrContentTypeEnum> _$unbrandXoSrContentTypeEnumSerializer =
-    _$UnbrandXoSrContentTypeEnumSerializer();
-Serializer<UnbrandXoSrTypeEnum> _$unbrandXoSrTypeEnumSerializer =
-    _$UnbrandXoSrTypeEnumSerializer();
-
-class _$UnbrandXoSrSRTypeEnumSerializer
-    implements PrimitiveSerializer<UnbrandXoSrSRTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'iso': 'iso',
-    'cephfs': 'cephfs',
-    'dummy': 'dummy',
-    'ext': 'ext',
-    'file': 'file',
-    'glusterfs': 'glusterfs',
-    'hba': 'hba',
-    'largeblock': 'largeblock',
-    'linstor': 'linstor',
-    'lvm': 'lvm',
-    'lvmofcoe': 'lvmofcoe',
-    'lvmohba': 'lvmohba',
-    'lvmoiscsi': 'lvmoiscsi',
-    'moosefs': 'moosefs',
-    'nfs': 'nfs',
-    'shm': 'shm',
-    'smb': 'smb',
-    'udev': 'udev',
-    'xfs': 'xfs',
-    'zfs': 'zfs',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'iso': 'iso',
-    'cephfs': 'cephfs',
-    'dummy': 'dummy',
-    'ext': 'ext',
-    'file': 'file',
-    'glusterfs': 'glusterfs',
-    'hba': 'hba',
-    'largeblock': 'largeblock',
-    'linstor': 'linstor',
-    'lvm': 'lvm',
-    'lvmofcoe': 'lvmofcoe',
-    'lvmohba': 'lvmohba',
-    'lvmoiscsi': 'lvmoiscsi',
-    'moosefs': 'moosefs',
-    'nfs': 'nfs',
-    'shm': 'shm',
-    'smb': 'smb',
-    'udev': 'udev',
-    'xfs': 'xfs',
-    'zfs': 'zfs',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[UnbrandXoSrSRTypeEnum];
-  @override
-  final String wireName = 'UnbrandXoSrSRTypeEnum';
-
-  @override
-  Object serialize(Serializers serializers, UnbrandXoSrSRTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandXoSrSRTypeEnum deserialize(Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandXoSrSRTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
-
-class _$UnbrandXoSrAllocationStrategyEnumSerializer
-    implements PrimitiveSerializer<UnbrandXoSrAllocationStrategyEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'unknown': 'unknown',
-    'thin': 'thin',
-    'thick': 'thick',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'unknown': 'unknown',
-    'thin': 'thin',
-    'thick': 'thick',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[UnbrandXoSrAllocationStrategyEnum];
-  @override
-  final String wireName = 'UnbrandXoSrAllocationStrategyEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers, UnbrandXoSrAllocationStrategyEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandXoSrAllocationStrategyEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandXoSrAllocationStrategyEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
-
-class _$UnbrandXoSrContentTypeEnumSerializer
-    implements PrimitiveSerializer<UnbrandXoSrContentTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'user': 'user',
-    'iso': 'iso',
-    'disk': 'disk',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'user': 'user',
-    'iso': 'iso',
-    'disk': 'disk',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[UnbrandXoSrContentTypeEnum];
-  @override
-  final String wireName = 'UnbrandXoSrContentTypeEnum';
-
-  @override
-  Object serialize(Serializers serializers, UnbrandXoSrContentTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandXoSrContentTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandXoSrContentTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
-
-class _$UnbrandXoSrTypeEnumSerializer
-    implements PrimitiveSerializer<UnbrandXoSrTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'SR': 'SR',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'SR': 'SR',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[UnbrandXoSrTypeEnum];
-  @override
-  final String wireName = 'UnbrandXoSrTypeEnum';
-
-  @override
-  Object serialize(Serializers serializers, UnbrandXoSrTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandXoSrTypeEnum deserialize(Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandXoSrTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$UnbrandXoSr extends UnbrandXoSr {
   @override

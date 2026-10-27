@@ -9,12 +9,17 @@ part of 'partial_unbrand_xo_backup_log.dart';
 const PartialUnbrandXoBackupLogMessageEnum
     _$partialUnbrandXoBackupLogMessageEnum_backup =
     const PartialUnbrandXoBackupLogMessageEnum._('backup');
+const PartialUnbrandXoBackupLogMessageEnum
+    _$partialUnbrandXoBackupLogMessageEnum_unknownDefaultOpenApi =
+    const PartialUnbrandXoBackupLogMessageEnum._('unknownDefaultOpenApi');
 
 PartialUnbrandXoBackupLogMessageEnum
     _$partialUnbrandXoBackupLogMessageEnumValueOf(String name) {
   switch (name) {
     case 'backup':
       return _$partialUnbrandXoBackupLogMessageEnum_backup;
+    case 'unknownDefaultOpenApi':
+      return _$partialUnbrandXoBackupLogMessageEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -24,6 +29,7 @@ final BuiltSet<PartialUnbrandXoBackupLogMessageEnum>
     _$partialUnbrandXoBackupLogMessageEnumValues = BuiltSet<
         PartialUnbrandXoBackupLogMessageEnum>(const <PartialUnbrandXoBackupLogMessageEnum>[
   _$partialUnbrandXoBackupLogMessageEnum_backup,
+  _$partialUnbrandXoBackupLogMessageEnum_unknownDefaultOpenApi,
 ]);
 
 const PartialUnbrandXoBackupLogStatusEnum
@@ -41,6 +47,9 @@ const PartialUnbrandXoBackupLogStatusEnum
 const PartialUnbrandXoBackupLogStatusEnum
     _$partialUnbrandXoBackupLogStatusEnum_skipped =
     const PartialUnbrandXoBackupLogStatusEnum._('skipped');
+const PartialUnbrandXoBackupLogStatusEnum
+    _$partialUnbrandXoBackupLogStatusEnum_unknownDefaultOpenApi =
+    const PartialUnbrandXoBackupLogStatusEnum._('unknownDefaultOpenApi');
 
 PartialUnbrandXoBackupLogStatusEnum
     _$partialUnbrandXoBackupLogStatusEnumValueOf(String name) {
@@ -55,6 +64,8 @@ PartialUnbrandXoBackupLogStatusEnum
       return _$partialUnbrandXoBackupLogStatusEnum_success;
     case 'skipped':
       return _$partialUnbrandXoBackupLogStatusEnum_skipped;
+    case 'unknownDefaultOpenApi':
+      return _$partialUnbrandXoBackupLogStatusEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -68,82 +79,8 @@ final BuiltSet<PartialUnbrandXoBackupLogStatusEnum>
   _$partialUnbrandXoBackupLogStatusEnum_pending,
   _$partialUnbrandXoBackupLogStatusEnum_success,
   _$partialUnbrandXoBackupLogStatusEnum_skipped,
+  _$partialUnbrandXoBackupLogStatusEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<PartialUnbrandXoBackupLogMessageEnum>
-    _$partialUnbrandXoBackupLogMessageEnumSerializer =
-    _$PartialUnbrandXoBackupLogMessageEnumSerializer();
-Serializer<PartialUnbrandXoBackupLogStatusEnum>
-    _$partialUnbrandXoBackupLogStatusEnumSerializer =
-    _$PartialUnbrandXoBackupLogStatusEnumSerializer();
-
-class _$PartialUnbrandXoBackupLogMessageEnumSerializer
-    implements PrimitiveSerializer<PartialUnbrandXoBackupLogMessageEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'backup': 'backup',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'backup': 'backup',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    PartialUnbrandXoBackupLogMessageEnum
-  ];
-  @override
-  final String wireName = 'PartialUnbrandXoBackupLogMessageEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers, PartialUnbrandXoBackupLogMessageEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  PartialUnbrandXoBackupLogMessageEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      PartialUnbrandXoBackupLogMessageEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
-
-class _$PartialUnbrandXoBackupLogStatusEnumSerializer
-    implements PrimitiveSerializer<PartialUnbrandXoBackupLogStatusEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'failure': 'failure',
-    'interrupted': 'interrupted',
-    'pending': 'pending',
-    'success': 'success',
-    'skipped': 'skipped',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'failure': 'failure',
-    'interrupted': 'interrupted',
-    'pending': 'pending',
-    'success': 'success',
-    'skipped': 'skipped',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    PartialUnbrandXoBackupLogStatusEnum
-  ];
-  @override
-  final String wireName = 'PartialUnbrandXoBackupLogStatusEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers, PartialUnbrandXoBackupLogStatusEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  PartialUnbrandXoBackupLogStatusEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      PartialUnbrandXoBackupLogStatusEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$PartialUnbrandXoBackupLog extends PartialUnbrandXoBackupLog {
   @override

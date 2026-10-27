@@ -306,9 +306,13 @@ class WithHrefPartialUnbrandedXoAlarmTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'message')
   static const WithHrefPartialUnbrandedXoAlarmTypeEnum message =
       _$withHrefPartialUnbrandedXoAlarmTypeEnum_message;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const WithHrefPartialUnbrandedXoAlarmTypeEnum unknownDefaultOpenApi =
+      _$withHrefPartialUnbrandedXoAlarmTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<WithHrefPartialUnbrandedXoAlarmTypeEnum> get serializer =>
-      _$withHrefPartialUnbrandedXoAlarmTypeEnumSerializer;
+      _OpenWithHrefPartialUnbrandedXoAlarmTypeEnumSerializer();
 
   const WithHrefPartialUnbrandedXoAlarmTypeEnum._(String name) : super(name);
 
@@ -316,4 +320,48 @@ class WithHrefPartialUnbrandedXoAlarmTypeEnum extends EnumClass {
       _$withHrefPartialUnbrandedXoAlarmTypeEnumValues;
   static WithHrefPartialUnbrandedXoAlarmTypeEnum valueOf(String name) =>
       _$withHrefPartialUnbrandedXoAlarmTypeEnumValueOf(name);
+
+  static WithHrefPartialUnbrandedXoAlarmTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'message':
+        return message;
+      default:
+        return WithHrefPartialUnbrandedXoAlarmTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, message)) return r'message';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is WithHrefPartialUnbrandedXoAlarmTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenWithHrefPartialUnbrandedXoAlarmTypeEnumSerializer
+    implements PrimitiveSerializer<WithHrefPartialUnbrandedXoAlarmTypeEnum> {
+  @override
+  final Iterable<Type> types = const [WithHrefPartialUnbrandedXoAlarmTypeEnum];
+  @override
+  final String wireName = 'WithHrefPartialUnbrandedXoAlarmTypeEnum';
+  @override
+  Object serialize(Serializers serializers,
+          WithHrefPartialUnbrandedXoAlarmTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  WithHrefPartialUnbrandedXoAlarmTypeEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for WithHrefPartialUnbrandedXoAlarmTypeEnum');
+    return WithHrefPartialUnbrandedXoAlarmTypeEnum.fromValue(serialized);
+  }
 }

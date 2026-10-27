@@ -380,9 +380,13 @@ class _$UnbrandXoPgpuSerializer implements PrimitiveSerializer<UnbrandXoPgpu> {
 class UnbrandXoPgpuTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'PGPU')
   static const UnbrandXoPgpuTypeEnum PGPU = _$unbrandXoPgpuTypeEnum_PGPU;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UnbrandXoPgpuTypeEnum unknownDefaultOpenApi =
+      _$unbrandXoPgpuTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UnbrandXoPgpuTypeEnum> get serializer =>
-      _$unbrandXoPgpuTypeEnumSerializer;
+      _OpenUnbrandXoPgpuTypeEnumSerializer();
 
   const UnbrandXoPgpuTypeEnum._(String name) : super(name);
 
@@ -390,4 +394,45 @@ class UnbrandXoPgpuTypeEnum extends EnumClass {
       _$unbrandXoPgpuTypeEnumValues;
   static UnbrandXoPgpuTypeEnum valueOf(String name) =>
       _$unbrandXoPgpuTypeEnumValueOf(name);
+
+  static UnbrandXoPgpuTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'PGPU':
+        return PGPU;
+      default:
+        return UnbrandXoPgpuTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, PGPU)) return r'PGPU';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UnbrandXoPgpuTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUnbrandXoPgpuTypeEnumSerializer
+    implements PrimitiveSerializer<UnbrandXoPgpuTypeEnum> {
+  @override
+  final Iterable<Type> types = const [UnbrandXoPgpuTypeEnum];
+  @override
+  final String wireName = 'UnbrandXoPgpuTypeEnum';
+  @override
+  Object serialize(Serializers serializers, UnbrandXoPgpuTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UnbrandXoPgpuTypeEnum deserialize(Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError('Expected a string for UnbrandXoPgpuTypeEnum');
+    return UnbrandXoPgpuTypeEnum.fromValue(serialized);
+  }
 }

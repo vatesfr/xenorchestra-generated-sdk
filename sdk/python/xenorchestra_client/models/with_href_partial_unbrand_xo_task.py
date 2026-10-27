@@ -51,8 +51,6 @@ class WithHrefPartialUnbrandXoTask(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['failure', 'interrupted', 'pending', 'success']):
-            raise ValueError("must be one of enum values ('failure', 'interrupted', 'pending', 'success')")
         return value
 
     model_config = ConfigDict(

@@ -37,7 +37,7 @@ void main() {
       // TODO
     });
 
-    // PartialUnbrandAnyXoBackupJobSettings settings
+    // PartialUnbrandAnyXoBackupJobVariantBackupSettings settings
     test('to test the property `settings`', () async {
       // TODO
     });

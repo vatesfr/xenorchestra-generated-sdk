@@ -191,9 +191,13 @@ class CreateSrBodySRTypeEnum extends EnumClass {
   static const CreateSrBodySRTypeEnum xfs = _$createSrBodySRTypeEnum_xfs;
   @BuiltValueEnumConst(wireName: r'zfs')
   static const CreateSrBodySRTypeEnum zfs = _$createSrBodySRTypeEnum_zfs;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const CreateSrBodySRTypeEnum unknownDefaultOpenApi =
+      _$createSrBodySRTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<CreateSrBodySRTypeEnum> get serializer =>
-      _$createSrBodySRTypeEnumSerializer;
+      _OpenCreateSrBodySRTypeEnumSerializer();
 
   const CreateSrBodySRTypeEnum._(String name) : super(name);
 
@@ -201,4 +205,102 @@ class CreateSrBodySRTypeEnum extends EnumClass {
       _$createSrBodySRTypeEnumValues;
   static CreateSrBodySRTypeEnum valueOf(String name) =>
       _$createSrBodySRTypeEnumValueOf(name);
+
+  static CreateSrBodySRTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'cephfs':
+        return cephfs;
+      case r'dummy':
+        return dummy;
+      case r'ext':
+        return ext;
+      case r'file':
+        return file;
+      case r'glusterfs':
+        return glusterfs;
+      case r'hba':
+        return hba;
+      case r'iso':
+        return iso;
+      case r'largeblock':
+        return largeblock;
+      case r'linstor':
+        return linstor;
+      case r'lvm':
+        return lvm;
+      case r'lvmofcoe':
+        return lvmofcoe;
+      case r'lvmohba':
+        return lvmohba;
+      case r'lvmoiscsi':
+        return lvmoiscsi;
+      case r'moosefs':
+        return moosefs;
+      case r'nfs':
+        return nfs;
+      case r'shm':
+        return shm;
+      case r'smb':
+        return smb;
+      case r'udev':
+        return udev;
+      case r'xfs':
+        return xfs;
+      case r'zfs':
+        return zfs;
+      default:
+        return CreateSrBodySRTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, cephfs)) return r'cephfs';
+    if (identical(this, dummy)) return r'dummy';
+    if (identical(this, ext)) return r'ext';
+    if (identical(this, file)) return r'file';
+    if (identical(this, glusterfs)) return r'glusterfs';
+    if (identical(this, hba)) return r'hba';
+    if (identical(this, iso)) return r'iso';
+    if (identical(this, largeblock)) return r'largeblock';
+    if (identical(this, linstor)) return r'linstor';
+    if (identical(this, lvm)) return r'lvm';
+    if (identical(this, lvmofcoe)) return r'lvmofcoe';
+    if (identical(this, lvmohba)) return r'lvmohba';
+    if (identical(this, lvmoiscsi)) return r'lvmoiscsi';
+    if (identical(this, moosefs)) return r'moosefs';
+    if (identical(this, nfs)) return r'nfs';
+    if (identical(this, shm)) return r'shm';
+    if (identical(this, smb)) return r'smb';
+    if (identical(this, udev)) return r'udev';
+    if (identical(this, xfs)) return r'xfs';
+    if (identical(this, zfs)) return r'zfs';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is CreateSrBodySRTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenCreateSrBodySRTypeEnumSerializer
+    implements PrimitiveSerializer<CreateSrBodySRTypeEnum> {
+  @override
+  final Iterable<Type> types = const [CreateSrBodySRTypeEnum];
+  @override
+  final String wireName = 'CreateSrBodySRTypeEnum';
+  @override
+  Object serialize(Serializers serializers, CreateSrBodySRTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  CreateSrBodySRTypeEnum deserialize(Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError('Expected a string for CreateSrBodySRTypeEnum');
+    return CreateSrBodySRTypeEnum.fromValue(serialized);
+  }
 }

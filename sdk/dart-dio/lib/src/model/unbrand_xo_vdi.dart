@@ -460,9 +460,13 @@ class _$UnbrandXoVdiSerializer implements PrimitiveSerializer<UnbrandXoVdi> {
 class UnbrandXoVdiTypeEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'VDI')
   static const UnbrandXoVdiTypeEnum VDI = _$unbrandXoVdiTypeEnum_VDI;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const UnbrandXoVdiTypeEnum unknownDefaultOpenApi =
+      _$unbrandXoVdiTypeEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<UnbrandXoVdiTypeEnum> get serializer =>
-      _$unbrandXoVdiTypeEnumSerializer;
+      _OpenUnbrandXoVdiTypeEnumSerializer();
 
   const UnbrandXoVdiTypeEnum._(String name) : super(name);
 
@@ -470,4 +474,45 @@ class UnbrandXoVdiTypeEnum extends EnumClass {
       _$unbrandXoVdiTypeEnumValues;
   static UnbrandXoVdiTypeEnum valueOf(String name) =>
       _$unbrandXoVdiTypeEnumValueOf(name);
+
+  static UnbrandXoVdiTypeEnum fromValue(String value) {
+    switch (value) {
+      case r'VDI':
+        return VDI;
+      default:
+        return UnbrandXoVdiTypeEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, VDI)) return r'VDI';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is UnbrandXoVdiTypeEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenUnbrandXoVdiTypeEnumSerializer
+    implements PrimitiveSerializer<UnbrandXoVdiTypeEnum> {
+  @override
+  final Iterable<Type> types = const [UnbrandXoVdiTypeEnum];
+  @override
+  final String wireName = 'UnbrandXoVdiTypeEnum';
+  @override
+  Object serialize(Serializers serializers, UnbrandXoVdiTypeEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  UnbrandXoVdiTypeEnum deserialize(Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError('Expected a string for UnbrandXoVdiTypeEnum');
+    return UnbrandXoVdiTypeEnum.fromValue(serialized);
+  }
 }

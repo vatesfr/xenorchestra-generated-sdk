@@ -9,12 +9,17 @@ part of 'with_href_partial_unbrand_xo_pgpu.dart';
 const WithHrefPartialUnbrandXoPgpuTypeEnum
     _$withHrefPartialUnbrandXoPgpuTypeEnum_PGPU =
     const WithHrefPartialUnbrandXoPgpuTypeEnum._('PGPU');
+const WithHrefPartialUnbrandXoPgpuTypeEnum
+    _$withHrefPartialUnbrandXoPgpuTypeEnum_unknownDefaultOpenApi =
+    const WithHrefPartialUnbrandXoPgpuTypeEnum._('unknownDefaultOpenApi');
 
 WithHrefPartialUnbrandXoPgpuTypeEnum
     _$withHrefPartialUnbrandXoPgpuTypeEnumValueOf(String name) {
   switch (name) {
     case 'PGPU':
       return _$withHrefPartialUnbrandXoPgpuTypeEnum_PGPU;
+    case 'unknownDefaultOpenApi':
+      return _$withHrefPartialUnbrandXoPgpuTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -24,41 +29,8 @@ final BuiltSet<WithHrefPartialUnbrandXoPgpuTypeEnum>
     _$withHrefPartialUnbrandXoPgpuTypeEnumValues = BuiltSet<
         WithHrefPartialUnbrandXoPgpuTypeEnum>(const <WithHrefPartialUnbrandXoPgpuTypeEnum>[
   _$withHrefPartialUnbrandXoPgpuTypeEnum_PGPU,
+  _$withHrefPartialUnbrandXoPgpuTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<WithHrefPartialUnbrandXoPgpuTypeEnum>
-    _$withHrefPartialUnbrandXoPgpuTypeEnumSerializer =
-    _$WithHrefPartialUnbrandXoPgpuTypeEnumSerializer();
-
-class _$WithHrefPartialUnbrandXoPgpuTypeEnumSerializer
-    implements PrimitiveSerializer<WithHrefPartialUnbrandXoPgpuTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'PGPU': 'PGPU',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'PGPU': 'PGPU',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    WithHrefPartialUnbrandXoPgpuTypeEnum
-  ];
-  @override
-  final String wireName = 'WithHrefPartialUnbrandXoPgpuTypeEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers, WithHrefPartialUnbrandXoPgpuTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  WithHrefPartialUnbrandXoPgpuTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      WithHrefPartialUnbrandXoPgpuTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$WithHrefPartialUnbrandXoPgpu extends WithHrefPartialUnbrandXoPgpu {
   @override

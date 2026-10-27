@@ -164,9 +164,13 @@ class PartialUnbrandXoRestoreLogMessageEnum extends EnumClass {
   @BuiltValueEnumConst(wireName: r'restore')
   static const PartialUnbrandXoRestoreLogMessageEnum restore =
       _$partialUnbrandXoRestoreLogMessageEnum_restore;
+  @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
+  static const PartialUnbrandXoRestoreLogMessageEnum unknownDefaultOpenApi =
+      _$partialUnbrandXoRestoreLogMessageEnum_unknownDefaultOpenApi;
 
+  @BuiltValueSerializer(custom: true)
   static Serializer<PartialUnbrandXoRestoreLogMessageEnum> get serializer =>
-      _$partialUnbrandXoRestoreLogMessageEnumSerializer;
+      _OpenPartialUnbrandXoRestoreLogMessageEnumSerializer();
 
   const PartialUnbrandXoRestoreLogMessageEnum._(String name) : super(name);
 
@@ -174,4 +178,48 @@ class PartialUnbrandXoRestoreLogMessageEnum extends EnumClass {
       _$partialUnbrandXoRestoreLogMessageEnumValues;
   static PartialUnbrandXoRestoreLogMessageEnum valueOf(String name) =>
       _$partialUnbrandXoRestoreLogMessageEnumValueOf(name);
+
+  static PartialUnbrandXoRestoreLogMessageEnum fromValue(String value) {
+    switch (value) {
+      case r'restore':
+        return restore;
+      default:
+        return PartialUnbrandXoRestoreLogMessageEnum._(value);
+    }
+  }
+
+  String get value {
+    if (identical(this, restore)) return r'restore';
+    if (identical(this, unknownDefaultOpenApi))
+      return r'unknown_default_open_api';
+    return name;
+  }
+
+  @override
+  bool operator ==(Object other) =>
+      other is PartialUnbrandXoRestoreLogMessageEnum && value == other.value;
+  @override
+  int get hashCode => value.hashCode;
+}
+
+class _OpenPartialUnbrandXoRestoreLogMessageEnumSerializer
+    implements PrimitiveSerializer<PartialUnbrandXoRestoreLogMessageEnum> {
+  @override
+  final Iterable<Type> types = const [PartialUnbrandXoRestoreLogMessageEnum];
+  @override
+  final String wireName = 'PartialUnbrandXoRestoreLogMessageEnum';
+  @override
+  Object serialize(
+          Serializers serializers, PartialUnbrandXoRestoreLogMessageEnum object,
+          {FullType specifiedType = FullType.unspecified}) =>
+      object.value;
+  @override
+  PartialUnbrandXoRestoreLogMessageEnum deserialize(
+      Serializers serializers, Object serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    if (serialized is! String)
+      throw ArgumentError(
+          'Expected a string for PartialUnbrandXoRestoreLogMessageEnum');
+    return PartialUnbrandXoRestoreLogMessageEnum.fromValue(serialized);
+  }
 }

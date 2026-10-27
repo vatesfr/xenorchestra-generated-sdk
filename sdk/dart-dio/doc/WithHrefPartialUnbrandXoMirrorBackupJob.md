@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **name** | **String** |  | [optional] 
 **proxy** | **String** |  | [optional] 
 **remotes** | [**JsonObject**](.md) |  | [optional] 
-**settings** | [**PartialUnbrandXoMirrorBackupJobSettings**](PartialUnbrandXoMirrorBackupJobSettings.md) |  | [optional] 
+**settings** | [**PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettings**](PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettings.md) |  | [optional] 
 **sourceRemote** | **String** |  | [optional] 
 **type** | **String** |  | [optional] 
 

@@ -15,6 +15,10 @@ const UnbrandUnbrandedXoVmBackupJobCompressionEnum
 const UnbrandUnbrandedXoVmBackupJobCompressionEnum
     _$unbrandUnbrandedXoVmBackupJobCompressionEnum_native_ =
     const UnbrandUnbrandedXoVmBackupJobCompressionEnum._('native_');
+const UnbrandUnbrandedXoVmBackupJobCompressionEnum
+    _$unbrandUnbrandedXoVmBackupJobCompressionEnum_unknownDefaultOpenApi =
+    const UnbrandUnbrandedXoVmBackupJobCompressionEnum._(
+        'unknownDefaultOpenApi');
 
 UnbrandUnbrandedXoVmBackupJobCompressionEnum
     _$unbrandUnbrandedXoVmBackupJobCompressionEnumValueOf(String name) {
@@ -25,6 +29,8 @@ UnbrandUnbrandedXoVmBackupJobCompressionEnum
       return _$unbrandUnbrandedXoVmBackupJobCompressionEnum_zstd;
     case 'native_':
       return _$unbrandUnbrandedXoVmBackupJobCompressionEnum_native_;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandUnbrandedXoVmBackupJobCompressionEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -36,6 +42,7 @@ final BuiltSet<UnbrandUnbrandedXoVmBackupJobCompressionEnum>
   _$unbrandUnbrandedXoVmBackupJobCompressionEnum_empty,
   _$unbrandUnbrandedXoVmBackupJobCompressionEnum_zstd,
   _$unbrandUnbrandedXoVmBackupJobCompressionEnum_native_,
+  _$unbrandUnbrandedXoVmBackupJobCompressionEnum_unknownDefaultOpenApi,
 ]);
 
 const UnbrandUnbrandedXoVmBackupJobModeEnum
@@ -44,6 +51,9 @@ const UnbrandUnbrandedXoVmBackupJobModeEnum
 const UnbrandUnbrandedXoVmBackupJobModeEnum
     _$unbrandUnbrandedXoVmBackupJobModeEnum_delta =
     const UnbrandUnbrandedXoVmBackupJobModeEnum._('delta');
+const UnbrandUnbrandedXoVmBackupJobModeEnum
+    _$unbrandUnbrandedXoVmBackupJobModeEnum_unknownDefaultOpenApi =
+    const UnbrandUnbrandedXoVmBackupJobModeEnum._('unknownDefaultOpenApi');
 
 UnbrandUnbrandedXoVmBackupJobModeEnum
     _$unbrandUnbrandedXoVmBackupJobModeEnumValueOf(String name) {
@@ -52,6 +62,8 @@ UnbrandUnbrandedXoVmBackupJobModeEnum
       return _$unbrandUnbrandedXoVmBackupJobModeEnum_full;
     case 'delta':
       return _$unbrandUnbrandedXoVmBackupJobModeEnum_delta;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandUnbrandedXoVmBackupJobModeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -62,17 +74,23 @@ final BuiltSet<UnbrandUnbrandedXoVmBackupJobModeEnum>
         UnbrandUnbrandedXoVmBackupJobModeEnum>(const <UnbrandUnbrandedXoVmBackupJobModeEnum>[
   _$unbrandUnbrandedXoVmBackupJobModeEnum_full,
   _$unbrandUnbrandedXoVmBackupJobModeEnum_delta,
+  _$unbrandUnbrandedXoVmBackupJobModeEnum_unknownDefaultOpenApi,
 ]);
 
 const UnbrandUnbrandedXoVmBackupJobTypeEnum
     _$unbrandUnbrandedXoVmBackupJobTypeEnum_backup =
     const UnbrandUnbrandedXoVmBackupJobTypeEnum._('backup');
+const UnbrandUnbrandedXoVmBackupJobTypeEnum
+    _$unbrandUnbrandedXoVmBackupJobTypeEnum_unknownDefaultOpenApi =
+    const UnbrandUnbrandedXoVmBackupJobTypeEnum._('unknownDefaultOpenApi');
 
 UnbrandUnbrandedXoVmBackupJobTypeEnum
     _$unbrandUnbrandedXoVmBackupJobTypeEnumValueOf(String name) {
   switch (name) {
     case 'backup':
       return _$unbrandUnbrandedXoVmBackupJobTypeEnum_backup;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandUnbrandedXoVmBackupJobTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -82,114 +100,8 @@ final BuiltSet<UnbrandUnbrandedXoVmBackupJobTypeEnum>
     _$unbrandUnbrandedXoVmBackupJobTypeEnumValues = BuiltSet<
         UnbrandUnbrandedXoVmBackupJobTypeEnum>(const <UnbrandUnbrandedXoVmBackupJobTypeEnum>[
   _$unbrandUnbrandedXoVmBackupJobTypeEnum_backup,
+  _$unbrandUnbrandedXoVmBackupJobTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<UnbrandUnbrandedXoVmBackupJobCompressionEnum>
-    _$unbrandUnbrandedXoVmBackupJobCompressionEnumSerializer =
-    _$UnbrandUnbrandedXoVmBackupJobCompressionEnumSerializer();
-Serializer<UnbrandUnbrandedXoVmBackupJobModeEnum>
-    _$unbrandUnbrandedXoVmBackupJobModeEnumSerializer =
-    _$UnbrandUnbrandedXoVmBackupJobModeEnumSerializer();
-Serializer<UnbrandUnbrandedXoVmBackupJobTypeEnum>
-    _$unbrandUnbrandedXoVmBackupJobTypeEnumSerializer =
-    _$UnbrandUnbrandedXoVmBackupJobTypeEnumSerializer();
-
-class _$UnbrandUnbrandedXoVmBackupJobCompressionEnumSerializer
-    implements
-        PrimitiveSerializer<UnbrandUnbrandedXoVmBackupJobCompressionEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'empty': '',
-    'zstd': 'zstd',
-    'native_': 'native',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    '': 'empty',
-    'zstd': 'zstd',
-    'native': 'native_',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    UnbrandUnbrandedXoVmBackupJobCompressionEnum
-  ];
-  @override
-  final String wireName = 'UnbrandUnbrandedXoVmBackupJobCompressionEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          UnbrandUnbrandedXoVmBackupJobCompressionEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandUnbrandedXoVmBackupJobCompressionEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandUnbrandedXoVmBackupJobCompressionEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
-
-class _$UnbrandUnbrandedXoVmBackupJobModeEnumSerializer
-    implements PrimitiveSerializer<UnbrandUnbrandedXoVmBackupJobModeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'full': 'full',
-    'delta': 'delta',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'full': 'full',
-    'delta': 'delta',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    UnbrandUnbrandedXoVmBackupJobModeEnum
-  ];
-  @override
-  final String wireName = 'UnbrandUnbrandedXoVmBackupJobModeEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers, UnbrandUnbrandedXoVmBackupJobModeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandUnbrandedXoVmBackupJobModeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandUnbrandedXoVmBackupJobModeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
-
-class _$UnbrandUnbrandedXoVmBackupJobTypeEnumSerializer
-    implements PrimitiveSerializer<UnbrandUnbrandedXoVmBackupJobTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'backup': 'backup',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'backup': 'backup',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    UnbrandUnbrandedXoVmBackupJobTypeEnum
-  ];
-  @override
-  final String wireName = 'UnbrandUnbrandedXoVmBackupJobTypeEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers, UnbrandUnbrandedXoVmBackupJobTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandUnbrandedXoVmBackupJobTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandUnbrandedXoVmBackupJobTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$UnbrandUnbrandedXoVmBackupJob extends UnbrandUnbrandedXoVmBackupJob {
   @override
@@ -205,7 +117,7 @@ class _$UnbrandUnbrandedXoVmBackupJob extends UnbrandUnbrandedXoVmBackupJob {
   @override
   final JsonObject? remotes;
   @override
-  final PartialUnbrandAnyXoBackupJobSettings settings;
+  final PartialUnbrandAnyXoBackupJobVariantBackupSettings settings;
   @override
   final JsonObject? srs;
   @override
@@ -320,10 +232,12 @@ class UnbrandUnbrandedXoVmBackupJobBuilder
   JsonObject? get remotes => _$this._remotes;
   set remotes(JsonObject? remotes) => _$this._remotes = remotes;
 
-  PartialUnbrandAnyXoBackupJobSettingsBuilder? _settings;
-  PartialUnbrandAnyXoBackupJobSettingsBuilder get settings =>
-      _$this._settings ??= PartialUnbrandAnyXoBackupJobSettingsBuilder();
-  set settings(PartialUnbrandAnyXoBackupJobSettingsBuilder? settings) =>
+  PartialUnbrandAnyXoBackupJobVariantBackupSettingsBuilder? _settings;
+  PartialUnbrandAnyXoBackupJobVariantBackupSettingsBuilder get settings =>
+      _$this._settings ??=
+          PartialUnbrandAnyXoBackupJobVariantBackupSettingsBuilder();
+  set settings(
+          PartialUnbrandAnyXoBackupJobVariantBackupSettingsBuilder? settings) =>
       _$this._settings = settings;
 
   JsonObject? _srs;

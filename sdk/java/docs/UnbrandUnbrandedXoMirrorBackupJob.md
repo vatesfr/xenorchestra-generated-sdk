@@ -12,7 +12,7 @@
 |**name** | **String** |  |  [optional] |
 |**proxy** | **String** |  |  [optional] |
 |**remotes** | **Object** |  |  |
-|**settings** | [**PartialUnbrandAnyXoBackupJobAnyOf2Settings**](PartialUnbrandAnyXoBackupJobAnyOf2Settings.md) |  |  |
+|**settings** | [**PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettings**](PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettings.md) |  |  |
 |**sourceRemote** | **String** |  |  |
 |**type** | [**TypeEnum**](#TypeEnum) |  |  |
 

@@ -103,8 +103,6 @@ class WithHrefPartialUnbrandXoVmController(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['', 'best-effort', 'restart']):
-            raise ValueError("must be one of enum values ('', 'best-effort', 'restart')")
         return value
 
     @field_validator('type')
@@ -113,8 +111,6 @@ class WithHrefPartialUnbrandXoVmController(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['VM-controller']):
-            raise ValueError("must be one of enum values ('VM-controller')")
         return value
 
     model_config = ConfigDict(

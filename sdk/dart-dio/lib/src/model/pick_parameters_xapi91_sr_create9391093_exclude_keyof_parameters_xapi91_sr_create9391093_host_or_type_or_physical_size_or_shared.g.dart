@@ -18,6 +18,10 @@ const PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate939
     _$pickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum_disk =
     const PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum
         ._('disk');
+const PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum
+    _$pickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum_unknownDefaultOpenApi =
+    const PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum
+        ._('unknownDefaultOpenApi');
 
 PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum
     _$pickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnumValueOf(
@@ -29,6 +33,8 @@ PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093Ho
       return _$pickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum_iso;
     case 'disk':
       return _$pickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum_disk;
+    case 'unknownDefaultOpenApi':
+      return _$pickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -42,52 +48,8 @@ final BuiltSet<
   _$pickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum_user,
   _$pickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum_iso,
   _$pickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum_disk,
+  _$pickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<
-        PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum>
-    _$pickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnumSerializer =
-    _$PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnumSerializer();
-
-class _$PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnumSerializer
-    implements
-        PrimitiveSerializer<
-            PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'user': 'user',
-    'iso': 'iso',
-    'disk': 'disk',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'user': 'user',
-    'iso': 'iso',
-    'disk': 'disk',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum
-  ];
-  @override
-  final String wireName =
-      'PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers,
-          PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum
-              object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum
-      deserialize(Serializers serializers, Object serialized,
-              {FullType specifiedType = FullType.unspecified}) =>
-          PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum
-              .valueOf(_fromWire[serialized] ??
-                  (serialized is String ? serialized : ''));
-}
 
 class _$PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrShared
     extends PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrShared {

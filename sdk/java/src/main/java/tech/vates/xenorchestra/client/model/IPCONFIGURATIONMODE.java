@@ -28,20 +28,18 @@ import com.fasterxml.jackson.annotation.JsonValue;
 /**
  * Gets or Sets IP_CONFIGURATION_MODE
  */
-public enum IPCONFIGURATIONMODE {
-  
-  DHCP("DHCP"),
-  
-  NONE("None"),
-  
-  STATIC("Static"),
-  
-  UNKNOWN_DEFAULT_OPEN_API("unknown_default_open_api");
+public final class IPCONFIGURATIONMODE {
+    public static final IPCONFIGURATIONMODE DHCP = new IPCONFIGURATIONMODE("DHCP");
+    public static final IPCONFIGURATIONMODE NONE = new IPCONFIGURATIONMODE("None");
+    public static final IPCONFIGURATIONMODE STATIC = new IPCONFIGURATIONMODE("Static");
+    @JsonCreator public static IPCONFIGURATIONMODE fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static IPCONFIGURATIONMODE[] values() { return new IPCONFIGURATIONMODE[] {DHCP, NONE, STATIC}; }
+    @Override public boolean equals(Object other) { return other instanceof IPCONFIGURATIONMODE && value.equals(((IPCONFIGURATIONMODE) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-  private String value;
-
-  IPCONFIGURATIONMODE(String value) {
-    this.value = value;
+  private IPCONFIGURATIONMODE(String value) {
+    this.value = java.util.Objects.requireNonNull(value);
   }
 
   @JsonValue
@@ -54,14 +52,14 @@ public enum IPCONFIGURATIONMODE {
     return String.valueOf(value);
   }
 
-  @JsonCreator
+  
   public static IPCONFIGURATIONMODE fromValue(String value) {
     for (IPCONFIGURATIONMODE b : IPCONFIGURATIONMODE.values()) {
       if (b.value.equals(value)) {
         return b;
       }
     }
-    return UNKNOWN_DEFAULT_OPEN_API;
+    return new IPCONFIGURATIONMODE(value);
   }
 
   /**
@@ -79,4 +77,5 @@ public enum IPCONFIGURATIONMODE {
   }
 
 }
+
 

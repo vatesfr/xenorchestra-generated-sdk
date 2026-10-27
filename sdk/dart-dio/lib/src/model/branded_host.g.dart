@@ -8,11 +8,16 @@ part of 'branded_host.dart';
 
 const BrandedHostUndefinedEnum _$brandedHostUndefinedEnum_host =
     const BrandedHostUndefinedEnum._('host');
+const BrandedHostUndefinedEnum
+    _$brandedHostUndefinedEnum_unknownDefaultOpenApi =
+    const BrandedHostUndefinedEnum._('unknownDefaultOpenApi');
 
 BrandedHostUndefinedEnum _$brandedHostUndefinedEnumValueOf(String name) {
   switch (name) {
     case 'host':
       return _$brandedHostUndefinedEnum_host;
+    case 'unknownDefaultOpenApi':
+      return _$brandedHostUndefinedEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -21,37 +26,8 @@ BrandedHostUndefinedEnum _$brandedHostUndefinedEnumValueOf(String name) {
 final BuiltSet<BrandedHostUndefinedEnum> _$brandedHostUndefinedEnumValues =
     BuiltSet<BrandedHostUndefinedEnum>(const <BrandedHostUndefinedEnum>[
   _$brandedHostUndefinedEnum_host,
+  _$brandedHostUndefinedEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<BrandedHostUndefinedEnum> _$brandedHostUndefinedEnumSerializer =
-    _$BrandedHostUndefinedEnumSerializer();
-
-class _$BrandedHostUndefinedEnumSerializer
-    implements PrimitiveSerializer<BrandedHostUndefinedEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'host': 'host',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'host': 'host',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[BrandedHostUndefinedEnum];
-  @override
-  final String wireName = 'BrandedHostUndefinedEnum';
-
-  @override
-  Object serialize(Serializers serializers, BrandedHostUndefinedEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  BrandedHostUndefinedEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      BrandedHostUndefinedEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$BrandedHost extends BrandedHost {
   @override

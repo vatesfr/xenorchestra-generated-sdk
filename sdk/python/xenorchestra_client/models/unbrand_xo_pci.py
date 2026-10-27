@@ -41,8 +41,6 @@ class UnbrandXoPci(BaseModel):
     @field_validator('type')
     def type_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(['PCI']):
-            raise ValueError("must be one of enum values ('PCI')")
         return value
 
     model_config = ConfigDict(

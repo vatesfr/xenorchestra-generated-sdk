@@ -74,8 +74,6 @@ class UpdateVmRequestBody(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['best-effort', 'restart', '']):
-            raise ValueError("must be one of enum values ('best-effort', 'restart', '')")
         return value
 
     @field_validator('uefi_mode')
@@ -84,8 +82,6 @@ class UpdateVmRequestBody(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['setup', 'user']):
-            raise ValueError("must be one of enum values ('setup', 'user')")
         return value
 
     @field_validator('vga')
@@ -94,8 +90,6 @@ class UpdateVmRequestBody(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['std', 'cirrus']):
-            raise ValueError("must be one of enum values ('std', 'cirrus')")
         return value
 
     @field_validator('videoram')
@@ -104,8 +98,8 @@ class UpdateVmRequestBody(BaseModel):
         if value is None:
             return value
 
-        if value not in set([1, 2, 4, 8, 16]):
-            raise ValueError("must be one of enum values (1, 2, 4, 8, 16)")
+        if value not in set([1, 2, 4, 8, 16, 11184809]):
+            raise ValueError("must be one of enum values (1, 2, 4, 8, 16, 11184809)")
         return value
 
     @field_validator('virtualization_mode')
@@ -114,8 +108,6 @@ class UpdateVmRequestBody(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['pv', 'hvm']):
-            raise ValueError("must be one of enum values ('pv', 'hvm')")
         return value
 
     model_config = ConfigDict(

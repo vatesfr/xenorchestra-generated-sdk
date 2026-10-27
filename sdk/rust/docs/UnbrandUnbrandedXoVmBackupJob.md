@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **name** | Option<**String**> |  | [optional]
 **proxy** | Option<**String**> |  | [optional]
 **remotes** | Option<[**serde_json::Value**](.md)> |  | [optional]
-**settings** | [**models::PartialUnbrandAnyXoBackupJobAnyOfSettings**](Partial_UnbrandAnyXoBackupJob__anyOf_settings.md) |  | 
+**settings** | [**models::PartialUnbrandAnyXoBackupJobVariantBackupSettings**](PartialUnbrandAnyXoBackupJobVariantBackup_settings.md) |  | 
 **srs** | Option<[**serde_json::Value**](.md)> |  | [optional]
 **r#type** | **String** |  | 
 **vms** | Option<[**serde_json::Value**](.md)> |  | 

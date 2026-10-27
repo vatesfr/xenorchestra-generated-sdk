@@ -1,0 +1,3268 @@
+[
+  {
+    "type": "PartialUnbrandAnyXoBackupJob",
+    "field": "type",
+    "required": false,
+    "commonRequired": [],
+    "commonFields": {},
+    "variants": [
+      {
+        "name": "Backup",
+        "value": "backup",
+        "type": "PartialUnbrandAnyXoBackupJobVariantBackup",
+        "required": null,
+        "fields": {
+          "compression": "string",
+          "id": "string",
+          "mode": "string",
+          "name": "string",
+          "proxy": "string",
+          "type": "string"
+        }
+      },
+      {
+        "name": "MetadataBackup",
+        "value": "metadataBackup",
+        "type": "PartialUnbrandAnyXoBackupJobVariantMetadataBackup",
+        "required": null,
+        "fields": {
+          "id": "string",
+          "name": "string",
+          "proxy": "string",
+          "type": "string",
+          "userId": "string",
+          "xoMetadata": "boolean"
+        }
+      },
+      {
+        "name": "MirrorBackup",
+        "value": "mirrorBackup",
+        "type": "PartialUnbrandAnyXoBackupJobVariantMirrorBackup",
+        "required": null,
+        "fields": {
+          "id": "string",
+          "mode": "string",
+          "name": "string",
+          "proxy": "string",
+          "sourceRemote": "string",
+          "type": "string"
+        }
+      }
+    ]
+  },
+  {
+    "type": "PartialUnbrandAnyPrivilege",
+    "field": "resource",
+    "required": false,
+    "commonRequired": [],
+    "commonFields": {},
+    "variants": [
+      {
+        "name": "AclPrivilege",
+        "value": "acl-privilege",
+        "type": "PartialUnbrandAnyPrivilegeVariantAclPrivilege",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "AclRole",
+        "value": "acl-role",
+        "type": "PartialUnbrandAnyPrivilegeVariantAclRole",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Alarm",
+        "value": "alarm",
+        "type": "PartialUnbrandAnyPrivilegeVariantAlarm",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "BackupArchive",
+        "value": "backup-archive",
+        "type": "PartialUnbrandAnyPrivilegeVariantBackupArchive",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "BackupJob",
+        "value": "backup-job",
+        "type": "PartialUnbrandAnyPrivilegeVariantBackupJob",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "BackupLog",
+        "value": "backup-log",
+        "type": "PartialUnbrandAnyPrivilegeVariantBackupLog",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "BackupRepository",
+        "value": "backup-repository",
+        "type": "PartialUnbrandAnyPrivilegeVariantBackupRepository",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Group",
+        "value": "group",
+        "type": "PartialUnbrandAnyPrivilegeVariantGroup",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "GpuGroup",
+        "value": "gpuGroup",
+        "type": "PartialUnbrandAnyPrivilegeVariantGpuGroup",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Host",
+        "value": "host",
+        "type": "PartialUnbrandAnyPrivilegeVariantHost",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Message",
+        "value": "message",
+        "type": "PartialUnbrandAnyPrivilegeVariantMessage",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Network",
+        "value": "network",
+        "type": "PartialUnbrandAnyPrivilegeVariantNetwork",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Pbd",
+        "value": "pbd",
+        "type": "PartialUnbrandAnyPrivilegeVariantPbd",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Pci",
+        "value": "pci",
+        "type": "PartialUnbrandAnyPrivilegeVariantPci",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Pgpu",
+        "value": "pgpu",
+        "type": "PartialUnbrandAnyPrivilegeVariantPgpu",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Pif",
+        "value": "pif",
+        "type": "PartialUnbrandAnyPrivilegeVariantPif",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Pool",
+        "value": "pool",
+        "type": "PartialUnbrandAnyPrivilegeVariantPool",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Proxy",
+        "value": "proxy",
+        "type": "PartialUnbrandAnyPrivilegeVariantProxy",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "RestoreLog",
+        "value": "restore-log",
+        "type": "PartialUnbrandAnyPrivilegeVariantRestoreLog",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Schedule",
+        "value": "schedule",
+        "type": "PartialUnbrandAnyPrivilegeVariantSchedule",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Server",
+        "value": "server",
+        "type": "PartialUnbrandAnyPrivilegeVariantServer",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Sm",
+        "value": "sm",
+        "type": "PartialUnbrandAnyPrivilegeVariantSm",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Sr",
+        "value": "sr",
+        "type": "PartialUnbrandAnyPrivilegeVariantSr",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Task",
+        "value": "task",
+        "type": "PartialUnbrandAnyPrivilegeVariantTask",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "User",
+        "value": "user",
+        "type": "PartialUnbrandAnyPrivilegeVariantUser",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Vbd",
+        "value": "vbd",
+        "type": "PartialUnbrandAnyPrivilegeVariantVbd",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "VdiSnapshot",
+        "value": "vdi-snapshot",
+        "type": "PartialUnbrandAnyPrivilegeVariantVdiSnapshot",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "VdiUnmanaged",
+        "value": "vdi-unmanaged",
+        "type": "PartialUnbrandAnyPrivilegeVariantVdiUnmanaged",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Vdi",
+        "value": "vdi",
+        "type": "PartialUnbrandAnyPrivilegeVariantVdi",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Vgpu",
+        "value": "vgpu",
+        "type": "PartialUnbrandAnyPrivilegeVariantVgpu",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "VgpuType",
+        "value": "vgpuType",
+        "type": "PartialUnbrandAnyPrivilegeVariantVgpuType",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Vif",
+        "value": "vif",
+        "type": "PartialUnbrandAnyPrivilegeVariantVif",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "VmController",
+        "value": "vm-controller",
+        "type": "PartialUnbrandAnyPrivilegeVariantVmController",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "VmSnapshot",
+        "value": "vm-snapshot",
+        "type": "PartialUnbrandAnyPrivilegeVariantVmSnapshot",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "VmTemplate",
+        "value": "vm-template",
+        "type": "PartialUnbrandAnyPrivilegeVariantVmTemplate",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Vm",
+        "value": "vm",
+        "type": "PartialUnbrandAnyPrivilegeVariantVm",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Vtpm",
+        "value": "vtpm",
+        "type": "PartialUnbrandAnyPrivilegeVariantVtpm",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      }
+    ]
+  },
+  {
+    "type": "UnbrandAnyXoBackupJob",
+    "field": "type",
+    "required": true,
+    "commonRequired": [],
+    "commonFields": {},
+    "variants": [
+      {
+        "name": "Backup",
+        "value": "backup",
+        "type": "UnbrandUnbrandedXoVmBackupJob",
+        "required": [
+          "id",
+          "type",
+          "mode",
+          "vms",
+          "settings"
+        ],
+        "fields": {
+          "compression": "string",
+          "id": "string",
+          "mode": "string",
+          "name": "string",
+          "proxy": "string",
+          "type": "string"
+        }
+      },
+      {
+        "name": "MetadataBackup",
+        "value": "metadataBackup",
+        "type": "UnbrandUnbrandedXoMetadataBackupJob",
+        "required": [
+          "id",
+          "type",
+          "userId",
+          "remotes",
+          "settings"
+        ],
+        "fields": {
+          "id": "string",
+          "name": "string",
+          "proxy": "string",
+          "type": "string",
+          "userId": "string",
+          "xoMetadata": "boolean"
+        }
+      },
+      {
+        "name": "MirrorBackup",
+        "value": "mirrorBackup",
+        "type": "UnbrandUnbrandedXoMirrorBackupJob",
+        "required": [
+          "id",
+          "type",
+          "mode",
+          "sourceRemote",
+          "remotes",
+          "settings"
+        ],
+        "fields": {
+          "id": "string",
+          "mode": "string",
+          "name": "string",
+          "proxy": "string",
+          "sourceRemote": "string",
+          "type": "string"
+        }
+      }
+    ]
+  },
+  {
+    "type": "UnbrandCreateVmBodyInstall",
+    "field": "method",
+    "required": true,
+    "commonRequired": [],
+    "commonFields": {},
+    "variants": [
+      {
+        "name": "Cdrom",
+        "value": "cdrom",
+        "type": "UnbrandCreateVmBodyInstallVariantCdrom",
+        "required": [
+          "repository",
+          "method"
+        ],
+        "fields": {
+          "method": "string",
+          "repository": "string"
+        }
+      },
+      {
+        "name": "Network",
+        "value": "network",
+        "type": "UnbrandCreateVmBodyInstallVariantNetwork",
+        "required": [
+          "repository",
+          "method"
+        ],
+        "fields": {
+          "method": "string",
+          "repository": "string"
+        }
+      }
+    ]
+  },
+  {
+    "type": "UnbrandAnyPrivilege",
+    "field": "resource",
+    "required": true,
+    "commonRequired": [],
+    "commonFields": {},
+    "variants": [
+      {
+        "name": "AclPrivilege",
+        "value": "acl-privilege",
+        "type": "UnbrandAnyPrivilegeVariantAclPrivilege",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "AclRole",
+        "value": "acl-role",
+        "type": "UnbrandAnyPrivilegeVariantAclRole",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Alarm",
+        "value": "alarm",
+        "type": "UnbrandAnyPrivilegeVariantAlarm",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "BackupArchive",
+        "value": "backup-archive",
+        "type": "UnbrandAnyPrivilegeVariantBackupArchive",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "BackupJob",
+        "value": "backup-job",
+        "type": "UnbrandAnyPrivilegeVariantBackupJob",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "BackupLog",
+        "value": "backup-log",
+        "type": "UnbrandAnyPrivilegeVariantBackupLog",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "BackupRepository",
+        "value": "backup-repository",
+        "type": "UnbrandAnyPrivilegeVariantBackupRepository",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Group",
+        "value": "group",
+        "type": "UnbrandAnyPrivilegeVariantGroup",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "GpuGroup",
+        "value": "gpuGroup",
+        "type": "UnbrandAnyPrivilegeVariantGpuGroup",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Host",
+        "value": "host",
+        "type": "UnbrandAnyPrivilegeVariantHost",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Message",
+        "value": "message",
+        "type": "UnbrandAnyPrivilegeVariantMessage",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Network",
+        "value": "network",
+        "type": "UnbrandAnyPrivilegeVariantNetwork",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Pbd",
+        "value": "pbd",
+        "type": "UnbrandAnyPrivilegeVariantPbd",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Pci",
+        "value": "pci",
+        "type": "UnbrandAnyPrivilegeVariantPci",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Pgpu",
+        "value": "pgpu",
+        "type": "UnbrandAnyPrivilegeVariantPgpu",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Pif",
+        "value": "pif",
+        "type": "UnbrandAnyPrivilegeVariantPif",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Pool",
+        "value": "pool",
+        "type": "UnbrandAnyPrivilegeVariantPool",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Proxy",
+        "value": "proxy",
+        "type": "UnbrandAnyPrivilegeVariantProxy",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "RestoreLog",
+        "value": "restore-log",
+        "type": "UnbrandAnyPrivilegeVariantRestoreLog",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Schedule",
+        "value": "schedule",
+        "type": "UnbrandAnyPrivilegeVariantSchedule",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Server",
+        "value": "server",
+        "type": "UnbrandAnyPrivilegeVariantServer",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Sm",
+        "value": "sm",
+        "type": "UnbrandAnyPrivilegeVariantSm",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Sr",
+        "value": "sr",
+        "type": "UnbrandAnyPrivilegeVariantSr",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Task",
+        "value": "task",
+        "type": "UnbrandAnyPrivilegeVariantTask",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "User",
+        "value": "user",
+        "type": "UnbrandAnyPrivilegeVariantUser",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Vbd",
+        "value": "vbd",
+        "type": "UnbrandAnyPrivilegeVariantVbd",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "VdiSnapshot",
+        "value": "vdi-snapshot",
+        "type": "UnbrandAnyPrivilegeVariantVdiSnapshot",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "VdiUnmanaged",
+        "value": "vdi-unmanaged",
+        "type": "UnbrandAnyPrivilegeVariantVdiUnmanaged",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Vdi",
+        "value": "vdi",
+        "type": "UnbrandAnyPrivilegeVariantVdi",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Vgpu",
+        "value": "vgpu",
+        "type": "UnbrandAnyPrivilegeVariantVgpu",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "VgpuType",
+        "value": "vgpuType",
+        "type": "UnbrandAnyPrivilegeVariantVgpuType",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Vif",
+        "value": "vif",
+        "type": "UnbrandAnyPrivilegeVariantVif",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "VmController",
+        "value": "vm-controller",
+        "type": "UnbrandAnyPrivilegeVariantVmController",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "VmSnapshot",
+        "value": "vm-snapshot",
+        "type": "UnbrandAnyPrivilegeVariantVmSnapshot",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "VmTemplate",
+        "value": "vm-template",
+        "type": "UnbrandAnyPrivilegeVariantVmTemplate",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Vm",
+        "value": "vm",
+        "type": "UnbrandAnyPrivilegeVariantVm",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Vtpm",
+        "value": "vtpm",
+        "type": "UnbrandAnyPrivilegeVariantVtpm",
+        "required": [
+          "id",
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      }
+    ]
+  },
+  {
+    "type": "UnbrandSafeOmitAnyPrivilegeId",
+    "field": "resource",
+    "required": true,
+    "commonRequired": [],
+    "commonFields": {},
+    "variants": [
+      {
+        "name": "AclPrivilege",
+        "value": "acl-privilege",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantAclPrivilege",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "AclRole",
+        "value": "acl-role",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantAclRole",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Alarm",
+        "value": "alarm",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantAlarm",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "BackupArchive",
+        "value": "backup-archive",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantBackupArchive",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "BackupJob",
+        "value": "backup-job",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantBackupJob",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "BackupLog",
+        "value": "backup-log",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantBackupLog",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "BackupRepository",
+        "value": "backup-repository",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantBackupRepository",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Group",
+        "value": "group",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantGroup",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "GpuGroup",
+        "value": "gpuGroup",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantGpuGroup",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Host",
+        "value": "host",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantHost",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Message",
+        "value": "message",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantMessage",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Network",
+        "value": "network",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantNetwork",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Pbd",
+        "value": "pbd",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantPbd",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Pci",
+        "value": "pci",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantPci",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Pgpu",
+        "value": "pgpu",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantPgpu",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Pif",
+        "value": "pif",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantPif",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Pool",
+        "value": "pool",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantPool",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Proxy",
+        "value": "proxy",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantProxy",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "RestoreLog",
+        "value": "restore-log",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantRestoreLog",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Schedule",
+        "value": "schedule",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantSchedule",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Server",
+        "value": "server",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantServer",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Sm",
+        "value": "sm",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantSm",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Sr",
+        "value": "sr",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantSr",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Task",
+        "value": "task",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantTask",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "User",
+        "value": "user",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantUser",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Vbd",
+        "value": "vbd",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantVbd",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "VdiSnapshot",
+        "value": "vdi-snapshot",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantVdiSnapshot",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "VdiUnmanaged",
+        "value": "vdi-unmanaged",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantVdiUnmanaged",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Vdi",
+        "value": "vdi",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantVdi",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Vgpu",
+        "value": "vgpu",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantVgpu",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "VgpuType",
+        "value": "vgpuType",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantVgpuType",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Vif",
+        "value": "vif",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantVif",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "VmController",
+        "value": "vm-controller",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantVmController",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "VmSnapshot",
+        "value": "vm-snapshot",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantVmSnapshot",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "VmTemplate",
+        "value": "vm-template",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantVmTemplate",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Vm",
+        "value": "vm",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantVm",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Vtpm",
+        "value": "vtpm",
+        "type": "UnbrandSafeOmitAnyPrivilegeIdVariantVtpm",
+        "required": [
+          "resource",
+          "action",
+          "effect",
+          "roleId"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      }
+    ]
+  },
+  {
+    "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleId",
+    "field": "resource",
+    "required": false,
+    "commonRequired": [],
+    "commonFields": {},
+    "variants": [
+      {
+        "name": "AclPrivilege",
+        "value": "acl-privilege",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantAclPrivilege",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "AclRole",
+        "value": "acl-role",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantAclRole",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Alarm",
+        "value": "alarm",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantAlarm",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "BackupArchive",
+        "value": "backup-archive",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantBackupArchive",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "BackupJob",
+        "value": "backup-job",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantBackupJob",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "BackupLog",
+        "value": "backup-log",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantBackupLog",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "BackupRepository",
+        "value": "backup-repository",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantBackupRepository",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Group",
+        "value": "group",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantGroup",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "GpuGroup",
+        "value": "gpuGroup",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantGpuGroup",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Host",
+        "value": "host",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantHost",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Message",
+        "value": "message",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantMessage",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Network",
+        "value": "network",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantNetwork",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Pbd",
+        "value": "pbd",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantPbd",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Pci",
+        "value": "pci",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantPci",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Pgpu",
+        "value": "pgpu",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantPgpu",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Pif",
+        "value": "pif",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantPif",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Pool",
+        "value": "pool",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantPool",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Proxy",
+        "value": "proxy",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantProxy",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "RestoreLog",
+        "value": "restore-log",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantRestoreLog",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Schedule",
+        "value": "schedule",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantSchedule",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Server",
+        "value": "server",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantServer",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Sm",
+        "value": "sm",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantSm",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Sr",
+        "value": "sr",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantSr",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Task",
+        "value": "task",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantTask",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "User",
+        "value": "user",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantUser",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Vbd",
+        "value": "vbd",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVbd",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "VdiSnapshot",
+        "value": "vdi-snapshot",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVdiSnapshot",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "VdiUnmanaged",
+        "value": "vdi-unmanaged",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVdiUnmanaged",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Vdi",
+        "value": "vdi",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVdi",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Vgpu",
+        "value": "vgpu",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVgpu",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "VgpuType",
+        "value": "vgpuType",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVgpuType",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Vif",
+        "value": "vif",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVif",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "VmController",
+        "value": "vm-controller",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVmController",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "VmSnapshot",
+        "value": "vm-snapshot",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVmSnapshot",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "VmTemplate",
+        "value": "vm-template",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVmTemplate",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Vm",
+        "value": "vm",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVm",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Vtpm",
+        "value": "vtpm",
+        "type": "UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVtpm",
+        "required": null,
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "resource": "string",
+          "selector": "string"
+        }
+      }
+    ]
+  },
+  {
+    "type": "WithHrefPartialUnbrandAnyXoBackupJob",
+    "field": "type",
+    "required": false,
+    "commonRequired": [
+      "href"
+    ],
+    "commonFields": {
+      "href": "string"
+    },
+    "variants": [
+      {
+        "name": "Backup",
+        "value": "backup",
+        "type": "WithHrefPartialUnbrandAnyXoBackupJobVariantBackup",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "compression": "string",
+          "href": "string",
+          "id": "string",
+          "mode": "string",
+          "name": "string",
+          "proxy": "string",
+          "type": "string"
+        }
+      },
+      {
+        "name": "MetadataBackup",
+        "value": "metadataBackup",
+        "type": "WithHrefPartialUnbrandAnyXoBackupJobVariantMetadataBackup",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "href": "string",
+          "id": "string",
+          "name": "string",
+          "proxy": "string",
+          "type": "string",
+          "userId": "string",
+          "xoMetadata": "boolean"
+        }
+      },
+      {
+        "name": "MirrorBackup",
+        "value": "mirrorBackup",
+        "type": "WithHrefPartialUnbrandAnyXoBackupJobVariantMirrorBackup",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "href": "string",
+          "id": "string",
+          "mode": "string",
+          "name": "string",
+          "proxy": "string",
+          "sourceRemote": "string",
+          "type": "string"
+        }
+      }
+    ]
+  },
+  {
+    "type": "WithHrefPartialUnbrandAnyPrivilege",
+    "field": "resource",
+    "required": false,
+    "commonRequired": [
+      "href"
+    ],
+    "commonFields": {
+      "href": "string"
+    },
+    "variants": [
+      {
+        "name": "AclPrivilege",
+        "value": "acl-privilege",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantAclPrivilege",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "AclRole",
+        "value": "acl-role",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantAclRole",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Alarm",
+        "value": "alarm",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantAlarm",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "BackupArchive",
+        "value": "backup-archive",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantBackupArchive",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "BackupJob",
+        "value": "backup-job",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantBackupJob",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "BackupLog",
+        "value": "backup-log",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantBackupLog",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "BackupRepository",
+        "value": "backup-repository",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantBackupRepository",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Group",
+        "value": "group",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantGroup",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "GpuGroup",
+        "value": "gpuGroup",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantGpuGroup",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Host",
+        "value": "host",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantHost",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Message",
+        "value": "message",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantMessage",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Network",
+        "value": "network",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantNetwork",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Pbd",
+        "value": "pbd",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantPbd",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Pci",
+        "value": "pci",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantPci",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Pgpu",
+        "value": "pgpu",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantPgpu",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Pif",
+        "value": "pif",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantPif",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Pool",
+        "value": "pool",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantPool",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Proxy",
+        "value": "proxy",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantProxy",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "RestoreLog",
+        "value": "restore-log",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantRestoreLog",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Schedule",
+        "value": "schedule",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantSchedule",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Server",
+        "value": "server",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantServer",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Sm",
+        "value": "sm",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantSm",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Sr",
+        "value": "sr",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantSr",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Task",
+        "value": "task",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantTask",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "User",
+        "value": "user",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantUser",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Vbd",
+        "value": "vbd",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantVbd",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "VdiSnapshot",
+        "value": "vdi-snapshot",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantVdiSnapshot",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "VdiUnmanaged",
+        "value": "vdi-unmanaged",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantVdiUnmanaged",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Vdi",
+        "value": "vdi",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantVdi",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Vgpu",
+        "value": "vgpu",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantVgpu",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "VgpuType",
+        "value": "vgpuType",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantVgpuType",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Vif",
+        "value": "vif",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantVif",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "VmController",
+        "value": "vm-controller",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantVmController",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "VmSnapshot",
+        "value": "vm-snapshot",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantVmSnapshot",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "VmTemplate",
+        "value": "vm-template",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantVmTemplate",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Vm",
+        "value": "vm",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantVm",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      },
+      {
+        "name": "Vtpm",
+        "value": "vtpm",
+        "type": "WithHrefPartialUnbrandAnyPrivilegeVariantVtpm",
+        "required": [
+          "href"
+        ],
+        "fields": {
+          "action": "string",
+          "effect": "string",
+          "href": "string",
+          "id": "string",
+          "resource": "string",
+          "roleId": "string",
+          "selector": "string"
+        }
+      }
+    ]
+  }
+]

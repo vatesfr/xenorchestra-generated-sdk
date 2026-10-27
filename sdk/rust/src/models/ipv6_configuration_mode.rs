@@ -12,26 +12,61 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 ///
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
 pub enum Ipv6ConfigurationMode {
-    #[serde(rename = "DHCP")]
     Dhcp,
-    #[serde(rename = "Autoconf")]
     Autoconf,
-    #[serde(rename = "None")]
     None,
-    #[serde(rename = "Static")]
     Static,
+    UnknownValue(String),
 }
-
-impl std::fmt::Display for Ipv6ConfigurationMode {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+impl Ipv6ConfigurationMode {
+    pub fn as_str(&self) -> &str {
         match self {
-            Self::Dhcp => write!(f, "DHCP"),
-            Self::Autoconf => write!(f, "Autoconf"),
-            Self::None => write!(f, "None"),
-            Self::Static => write!(f, "Static"),
+            Self::Dhcp => "DHCP",
+            Self::Autoconf => "Autoconf",
+            Self::None => "None",
+            Self::Static => "Static",
+            Self::UnknownValue(value) => value,
         }
+    }
+}
+impl From<String> for Ipv6ConfigurationMode {
+    fn from(value: String) -> Self {
+        match value.as_str() {
+            "DHCP" => Self::Dhcp,
+            "Autoconf" => Self::Autoconf,
+            "None" => Self::None,
+            "Static" => Self::Static,
+            _ => Self::UnknownValue(value),
+        }
+    }
+}
+impl From<&str> for Ipv6ConfigurationMode {
+    fn from(value: &str) -> Self {
+        Self::from(value.to_owned())
+    }
+}
+impl std::fmt::Display for Ipv6ConfigurationMode {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(self.as_str())
+    }
+}
+impl Serialize for Ipv6ConfigurationMode {
+    fn serialize<S: serde::Serializer>(
+        &self,
+        serializer: S,
+    ) -> std::result::Result<S::Ok, S::Error> {
+        serializer.serialize_str(self.as_str())
+    }
+}
+impl<'de> Deserialize<'de> for Ipv6ConfigurationMode {
+    fn deserialize<D: serde::Deserializer<'de>>(
+        deserializer: D,
+    ) -> std::result::Result<Self, D::Error> {
+        Ok(Self::from(
+            <std::string::String as Deserialize>::deserialize(deserializer)?,
+        ))
     }
 }
 

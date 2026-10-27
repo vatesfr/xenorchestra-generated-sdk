@@ -15,6 +15,9 @@ const UnbrandAnyXoBackupJobCompressionEnum
 const UnbrandAnyXoBackupJobCompressionEnum
     _$unbrandAnyXoBackupJobCompressionEnum_native_ =
     const UnbrandAnyXoBackupJobCompressionEnum._('native_');
+const UnbrandAnyXoBackupJobCompressionEnum
+    _$unbrandAnyXoBackupJobCompressionEnum_unknownDefaultOpenApi =
+    const UnbrandAnyXoBackupJobCompressionEnum._('unknownDefaultOpenApi');
 
 UnbrandAnyXoBackupJobCompressionEnum
     _$unbrandAnyXoBackupJobCompressionEnumValueOf(String name) {
@@ -25,6 +28,8 @@ UnbrandAnyXoBackupJobCompressionEnum
       return _$unbrandAnyXoBackupJobCompressionEnum_zstd;
     case 'native_':
       return _$unbrandAnyXoBackupJobCompressionEnum_native_;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandAnyXoBackupJobCompressionEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -36,12 +41,16 @@ final BuiltSet<UnbrandAnyXoBackupJobCompressionEnum>
   _$unbrandAnyXoBackupJobCompressionEnum_empty,
   _$unbrandAnyXoBackupJobCompressionEnum_zstd,
   _$unbrandAnyXoBackupJobCompressionEnum_native_,
+  _$unbrandAnyXoBackupJobCompressionEnum_unknownDefaultOpenApi,
 ]);
 
 const UnbrandAnyXoBackupJobModeEnum _$unbrandAnyXoBackupJobModeEnum_full =
     const UnbrandAnyXoBackupJobModeEnum._('full');
 const UnbrandAnyXoBackupJobModeEnum _$unbrandAnyXoBackupJobModeEnum_delta =
     const UnbrandAnyXoBackupJobModeEnum._('delta');
+const UnbrandAnyXoBackupJobModeEnum
+    _$unbrandAnyXoBackupJobModeEnum_unknownDefaultOpenApi =
+    const UnbrandAnyXoBackupJobModeEnum._('unknownDefaultOpenApi');
 
 UnbrandAnyXoBackupJobModeEnum _$unbrandAnyXoBackupJobModeEnumValueOf(
     String name) {
@@ -50,6 +59,8 @@ UnbrandAnyXoBackupJobModeEnum _$unbrandAnyXoBackupJobModeEnumValueOf(
       return _$unbrandAnyXoBackupJobModeEnum_full;
     case 'delta':
       return _$unbrandAnyXoBackupJobModeEnum_delta;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandAnyXoBackupJobModeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -60,6 +71,7 @@ final BuiltSet<UnbrandAnyXoBackupJobModeEnum>
         UnbrandAnyXoBackupJobModeEnum>(const <UnbrandAnyXoBackupJobModeEnum>[
   _$unbrandAnyXoBackupJobModeEnum_full,
   _$unbrandAnyXoBackupJobModeEnum_delta,
+  _$unbrandAnyXoBackupJobModeEnum_unknownDefaultOpenApi,
 ]);
 
 const UnbrandAnyXoBackupJobTypeEnum _$unbrandAnyXoBackupJobTypeEnum_backup =
@@ -70,6 +82,9 @@ const UnbrandAnyXoBackupJobTypeEnum
 const UnbrandAnyXoBackupJobTypeEnum
     _$unbrandAnyXoBackupJobTypeEnum_mirrorBackup =
     const UnbrandAnyXoBackupJobTypeEnum._('mirrorBackup');
+const UnbrandAnyXoBackupJobTypeEnum
+    _$unbrandAnyXoBackupJobTypeEnum_unknownDefaultOpenApi =
+    const UnbrandAnyXoBackupJobTypeEnum._('unknownDefaultOpenApi');
 
 UnbrandAnyXoBackupJobTypeEnum _$unbrandAnyXoBackupJobTypeEnumValueOf(
     String name) {
@@ -80,6 +95,8 @@ UnbrandAnyXoBackupJobTypeEnum _$unbrandAnyXoBackupJobTypeEnumValueOf(
       return _$unbrandAnyXoBackupJobTypeEnum_metadataBackup;
     case 'mirrorBackup':
       return _$unbrandAnyXoBackupJobTypeEnum_mirrorBackup;
+    case 'unknownDefaultOpenApi':
+      return _$unbrandAnyXoBackupJobTypeEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -91,113 +108,8 @@ final BuiltSet<UnbrandAnyXoBackupJobTypeEnum>
   _$unbrandAnyXoBackupJobTypeEnum_backup,
   _$unbrandAnyXoBackupJobTypeEnum_metadataBackup,
   _$unbrandAnyXoBackupJobTypeEnum_mirrorBackup,
+  _$unbrandAnyXoBackupJobTypeEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<UnbrandAnyXoBackupJobCompressionEnum>
-    _$unbrandAnyXoBackupJobCompressionEnumSerializer =
-    _$UnbrandAnyXoBackupJobCompressionEnumSerializer();
-Serializer<UnbrandAnyXoBackupJobModeEnum>
-    _$unbrandAnyXoBackupJobModeEnumSerializer =
-    _$UnbrandAnyXoBackupJobModeEnumSerializer();
-Serializer<UnbrandAnyXoBackupJobTypeEnum>
-    _$unbrandAnyXoBackupJobTypeEnumSerializer =
-    _$UnbrandAnyXoBackupJobTypeEnumSerializer();
-
-class _$UnbrandAnyXoBackupJobCompressionEnumSerializer
-    implements PrimitiveSerializer<UnbrandAnyXoBackupJobCompressionEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'empty': '',
-    'zstd': 'zstd',
-    'native_': 'native',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    '': 'empty',
-    'zstd': 'zstd',
-    'native': 'native_',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    UnbrandAnyXoBackupJobCompressionEnum
-  ];
-  @override
-  final String wireName = 'UnbrandAnyXoBackupJobCompressionEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers, UnbrandAnyXoBackupJobCompressionEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandAnyXoBackupJobCompressionEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandAnyXoBackupJobCompressionEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
-
-class _$UnbrandAnyXoBackupJobModeEnumSerializer
-    implements PrimitiveSerializer<UnbrandAnyXoBackupJobModeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'full': 'full',
-    'delta': 'delta',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'full': 'full',
-    'delta': 'delta',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[UnbrandAnyXoBackupJobModeEnum];
-  @override
-  final String wireName = 'UnbrandAnyXoBackupJobModeEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers, UnbrandAnyXoBackupJobModeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandAnyXoBackupJobModeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandAnyXoBackupJobModeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
-
-class _$UnbrandAnyXoBackupJobTypeEnumSerializer
-    implements PrimitiveSerializer<UnbrandAnyXoBackupJobTypeEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'backup': 'backup',
-    'metadataBackup': 'metadataBackup',
-    'mirrorBackup': 'mirrorBackup',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'backup': 'backup',
-    'metadataBackup': 'metadataBackup',
-    'mirrorBackup': 'mirrorBackup',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[UnbrandAnyXoBackupJobTypeEnum];
-  @override
-  final String wireName = 'UnbrandAnyXoBackupJobTypeEnum';
-
-  @override
-  Object serialize(
-          Serializers serializers, UnbrandAnyXoBackupJobTypeEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  UnbrandAnyXoBackupJobTypeEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      UnbrandAnyXoBackupJobTypeEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$UnbrandAnyXoBackupJob extends UnbrandAnyXoBackupJob {
   @override

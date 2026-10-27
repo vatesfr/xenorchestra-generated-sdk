@@ -9,12 +9,18 @@ part of 'xo_mirror_backup_general_settings.dart';
 const XoMirrorBackupGeneralSettingsBackupReportTplEnum
     _$xoMirrorBackupGeneralSettingsBackupReportTplEnum_compactMjml =
     const XoMirrorBackupGeneralSettingsBackupReportTplEnum._('compactMjml');
+const XoMirrorBackupGeneralSettingsBackupReportTplEnum
+    _$xoMirrorBackupGeneralSettingsBackupReportTplEnum_unknownDefaultOpenApi =
+    const XoMirrorBackupGeneralSettingsBackupReportTplEnum._(
+        'unknownDefaultOpenApi');
 
 XoMirrorBackupGeneralSettingsBackupReportTplEnum
     _$xoMirrorBackupGeneralSettingsBackupReportTplEnumValueOf(String name) {
   switch (name) {
     case 'compactMjml':
       return _$xoMirrorBackupGeneralSettingsBackupReportTplEnum_compactMjml;
+    case 'unknownDefaultOpenApi':
+      return _$xoMirrorBackupGeneralSettingsBackupReportTplEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -24,17 +30,24 @@ final BuiltSet<XoMirrorBackupGeneralSettingsBackupReportTplEnum>
     _$xoMirrorBackupGeneralSettingsBackupReportTplEnumValues = BuiltSet<
         XoMirrorBackupGeneralSettingsBackupReportTplEnum>(const <XoMirrorBackupGeneralSettingsBackupReportTplEnum>[
   _$xoMirrorBackupGeneralSettingsBackupReportTplEnum_compactMjml,
+  _$xoMirrorBackupGeneralSettingsBackupReportTplEnum_unknownDefaultOpenApi,
 ]);
 
 const XoMirrorBackupGeneralSettingsReportWhenEnum
     _$xoMirrorBackupGeneralSettingsReportWhenEnum_failure =
     const XoMirrorBackupGeneralSettingsReportWhenEnum._('failure');
+const XoMirrorBackupGeneralSettingsReportWhenEnum
+    _$xoMirrorBackupGeneralSettingsReportWhenEnum_unknownDefaultOpenApi =
+    const XoMirrorBackupGeneralSettingsReportWhenEnum._(
+        'unknownDefaultOpenApi');
 
 XoMirrorBackupGeneralSettingsReportWhenEnum
     _$xoMirrorBackupGeneralSettingsReportWhenEnumValueOf(String name) {
   switch (name) {
     case 'failure':
       return _$xoMirrorBackupGeneralSettingsReportWhenEnum_failure;
+    case 'unknownDefaultOpenApi':
+      return _$xoMirrorBackupGeneralSettingsReportWhenEnum_unknownDefaultOpenApi;
     default:
       throw ArgumentError(name);
   }
@@ -44,76 +57,8 @@ final BuiltSet<XoMirrorBackupGeneralSettingsReportWhenEnum>
     _$xoMirrorBackupGeneralSettingsReportWhenEnumValues = BuiltSet<
         XoMirrorBackupGeneralSettingsReportWhenEnum>(const <XoMirrorBackupGeneralSettingsReportWhenEnum>[
   _$xoMirrorBackupGeneralSettingsReportWhenEnum_failure,
+  _$xoMirrorBackupGeneralSettingsReportWhenEnum_unknownDefaultOpenApi,
 ]);
-
-Serializer<XoMirrorBackupGeneralSettingsBackupReportTplEnum>
-    _$xoMirrorBackupGeneralSettingsBackupReportTplEnumSerializer =
-    _$XoMirrorBackupGeneralSettingsBackupReportTplEnumSerializer();
-Serializer<XoMirrorBackupGeneralSettingsReportWhenEnum>
-    _$xoMirrorBackupGeneralSettingsReportWhenEnumSerializer =
-    _$XoMirrorBackupGeneralSettingsReportWhenEnumSerializer();
-
-class _$XoMirrorBackupGeneralSettingsBackupReportTplEnumSerializer
-    implements
-        PrimitiveSerializer<XoMirrorBackupGeneralSettingsBackupReportTplEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'compactMjml': 'compactMjml',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'compactMjml': 'compactMjml',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    XoMirrorBackupGeneralSettingsBackupReportTplEnum
-  ];
-  @override
-  final String wireName = 'XoMirrorBackupGeneralSettingsBackupReportTplEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          XoMirrorBackupGeneralSettingsBackupReportTplEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  XoMirrorBackupGeneralSettingsBackupReportTplEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      XoMirrorBackupGeneralSettingsBackupReportTplEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
-
-class _$XoMirrorBackupGeneralSettingsReportWhenEnumSerializer
-    implements
-        PrimitiveSerializer<XoMirrorBackupGeneralSettingsReportWhenEnum> {
-  static const Map<String, Object> _toWire = const <String, Object>{
-    'failure': 'failure',
-  };
-  static const Map<Object, String> _fromWire = const <Object, String>{
-    'failure': 'failure',
-  };
-
-  @override
-  final Iterable<Type> types = const <Type>[
-    XoMirrorBackupGeneralSettingsReportWhenEnum
-  ];
-  @override
-  final String wireName = 'XoMirrorBackupGeneralSettingsReportWhenEnum';
-
-  @override
-  Object serialize(Serializers serializers,
-          XoMirrorBackupGeneralSettingsReportWhenEnum object,
-          {FullType specifiedType = FullType.unspecified}) =>
-      _toWire[object.name] ?? object.name;
-
-  @override
-  XoMirrorBackupGeneralSettingsReportWhenEnum deserialize(
-          Serializers serializers, Object serialized,
-          {FullType specifiedType = FullType.unspecified}) =>
-      XoMirrorBackupGeneralSettingsReportWhenEnum.valueOf(
-          _fromWire[serialized] ?? (serialized is String ? serialized : ''));
-}
 
 class _$XoMirrorBackupGeneralSettings extends XoMirrorBackupGeneralSettings {
   @override

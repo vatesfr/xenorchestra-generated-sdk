@@ -136,19 +136,18 @@ public class UpdateVmRequestBody {
   /**
    * Gets or Sets highAvailability
    */
-  public enum HighAvailabilityEnum {
-    BEST_EFFORT(String.valueOf("best-effort")),
-    
-    RESTART(String.valueOf("restart")),
-    
-    EMPTY(String.valueOf("")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+  public static final class HighAvailabilityEnum {
+    public static final HighAvailabilityEnum BEST_EFFORT = new HighAvailabilityEnum("best-effort");
+    public static final HighAvailabilityEnum RESTART = new HighAvailabilityEnum("restart");
+    public static final HighAvailabilityEnum EMPTY = new HighAvailabilityEnum("");
+    @JsonCreator public static HighAvailabilityEnum fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static HighAvailabilityEnum[] values() { return new HighAvailabilityEnum[] {BEST_EFFORT, RESTART, EMPTY}; }
+    @Override public boolean equals(Object other) { return other instanceof HighAvailabilityEnum && value.equals(((HighAvailabilityEnum) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-    private String value;
-
-    HighAvailabilityEnum(String value) {
-      this.value = value;
+    private HighAvailabilityEnum(String value) {
+      this.value = java.util.Objects.requireNonNull(value);
     }
 
     @JsonValue
@@ -161,16 +160,17 @@ public class UpdateVmRequestBody {
       return String.valueOf(value);
     }
 
-    @JsonCreator
+    
     public static HighAvailabilityEnum fromValue(String value) {
       for (HighAvailabilityEnum b : HighAvailabilityEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      return new HighAvailabilityEnum(value);
     }
   }
+
 
   public static final String JSON_PROPERTY_HIGH_AVAILABILITY = "highAvailability";
   @javax.annotation.Nullable
@@ -238,17 +238,17 @@ public class UpdateVmRequestBody {
   /**
    * Gets or Sets uefiMode
    */
-  public enum UefiModeEnum {
-    SETUP(String.valueOf("setup")),
-    
-    USER(String.valueOf("user")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+  public static final class UefiModeEnum {
+    public static final UefiModeEnum SETUP = new UefiModeEnum("setup");
+    public static final UefiModeEnum USER = new UefiModeEnum("user");
+    @JsonCreator public static UefiModeEnum fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static UefiModeEnum[] values() { return new UefiModeEnum[] {SETUP, USER}; }
+    @Override public boolean equals(Object other) { return other instanceof UefiModeEnum && value.equals(((UefiModeEnum) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-    private String value;
-
-    UefiModeEnum(String value) {
-      this.value = value;
+    private UefiModeEnum(String value) {
+      this.value = java.util.Objects.requireNonNull(value);
     }
 
     @JsonValue
@@ -261,16 +261,17 @@ public class UpdateVmRequestBody {
       return String.valueOf(value);
     }
 
-    @JsonCreator
+    
     public static UefiModeEnum fromValue(String value) {
       for (UefiModeEnum b : UefiModeEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      return new UefiModeEnum(value);
     }
   }
+
 
   public static final String JSON_PROPERTY_UEFI_MODE = "uefiMode";
   @javax.annotation.Nullable
@@ -279,17 +280,17 @@ public class UpdateVmRequestBody {
   /**
    * Gets or Sets vga
    */
-  public enum VgaEnum {
-    STD(String.valueOf("std")),
-    
-    CIRRUS(String.valueOf("cirrus")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+  public static final class VgaEnum {
+    public static final VgaEnum STD = new VgaEnum("std");
+    public static final VgaEnum CIRRUS = new VgaEnum("cirrus");
+    @JsonCreator public static VgaEnum fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static VgaEnum[] values() { return new VgaEnum[] {STD, CIRRUS}; }
+    @Override public boolean equals(Object other) { return other instanceof VgaEnum && value.equals(((VgaEnum) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-    private String value;
-
-    VgaEnum(String value) {
-      this.value = value;
+    private VgaEnum(String value) {
+      this.value = java.util.Objects.requireNonNull(value);
     }
 
     @JsonValue
@@ -302,16 +303,17 @@ public class UpdateVmRequestBody {
       return String.valueOf(value);
     }
 
-    @JsonCreator
+    
     public static VgaEnum fromValue(String value) {
       for (VgaEnum b : VgaEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      return new VgaEnum(value);
     }
   }
+
 
   public static final String JSON_PROPERTY_VGA = "vga";
   @javax.annotation.Nullable
@@ -371,17 +373,17 @@ public class UpdateVmRequestBody {
   /**
    * Gets or Sets virtualizationMode
    */
-  public enum VirtualizationModeEnum {
-    PV(String.valueOf("pv")),
-    
-    HVM(String.valueOf("hvm")),
-    
-    UNKNOWN_DEFAULT_OPEN_API(String.valueOf("unknown_default_open_api"));
+  public static final class VirtualizationModeEnum {
+    public static final VirtualizationModeEnum PV = new VirtualizationModeEnum("pv");
+    public static final VirtualizationModeEnum HVM = new VirtualizationModeEnum("hvm");
+    @JsonCreator public static VirtualizationModeEnum fromJson(com.fasterxml.jackson.databind.JsonNode value) { if(!value.isTextual()) throw new IllegalArgumentException("Expected a string enum value"); return fromValue(value.textValue()); }
+    public static VirtualizationModeEnum[] values() { return new VirtualizationModeEnum[] {PV, HVM}; }
+    @Override public boolean equals(Object other) { return other instanceof VirtualizationModeEnum && value.equals(((VirtualizationModeEnum) other).value); }
+    @Override public int hashCode() { return value.hashCode(); }
+private final String value;
 
-    private String value;
-
-    VirtualizationModeEnum(String value) {
-      this.value = value;
+    private VirtualizationModeEnum(String value) {
+      this.value = java.util.Objects.requireNonNull(value);
     }
 
     @JsonValue
@@ -394,16 +396,17 @@ public class UpdateVmRequestBody {
       return String.valueOf(value);
     }
 
-    @JsonCreator
+    
     public static VirtualizationModeEnum fromValue(String value) {
       for (VirtualizationModeEnum b : VirtualizationModeEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
       }
-      return UNKNOWN_DEFAULT_OPEN_API;
+      return new VirtualizationModeEnum(value);
     }
   }
+
 
   public static final String JSON_PROPERTY_VIRTUALIZATION_MODE = "virtualizationMode";
   @javax.annotation.Nullable
