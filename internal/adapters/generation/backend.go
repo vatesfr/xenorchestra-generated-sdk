@@ -78,7 +78,13 @@ func (a *Adapter) Normalize(ctx context.Context, build common.Build, target comm
 		manifest := a.workspace.Join(build.ID, "sdk", string(target), "Cargo.toml")
 		return a.runner.Run(ctx, a.command("cargo", "fmt", "--manifest-path", manifest))
 	case common.Dart:
-		return a.runner.Run(ctx, a.command("dart", "format", a.workspace.Join(build.ID, "sdk", string(target), "lib")))
+		// pub get first so the formatter picks the language version from the
+		// pubspec, as the lint step does.
+		root := a.workspace.Join(build.ID, "sdk", string(target))
+		if err := a.runner.Run(ctx, a.commandIn(root, "dart", "pub", "get")); err != nil {
+			return err
+		}
+		return a.runner.Run(ctx, a.commandIn(root, "dart", "format", "lib"))
 	default:
 		return nil
 	}

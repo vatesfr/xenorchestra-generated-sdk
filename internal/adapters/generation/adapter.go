@@ -82,6 +82,12 @@ func New(configuration SDKGenerationConfiguration, runner process.ProcessRunnerA
 	}
 }
 
+func (s *Adapter) commandIn(dir, name string, args ...string) process.Command {
+	command := s.command(name, args...)
+	command.Dir = dir
+	return command
+}
+
 func (s *Adapter) command(name string, args ...string) process.Command {
 	return process.Command{
 		Name:   name,
