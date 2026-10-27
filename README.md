@@ -58,9 +58,15 @@ distributions before the trusted-publisher job receives an OIDC token.
 
 ## Reproducible generation
 
-The generated `sdk/` directory is an ephemeral artifact and is ignored by
-Git. Never edit it manually: every change must be expressed in `swagger.json`,
-in a programmable Go patch, or in the pinned generator configuration.
+The generated sources for all four clients in `sdk/` are versioned so they can
+be browsed and used from GitHub. Build outputs, dependencies and caches remain
+ignored. Never edit generated sources manually: express changes in
+`swagger.json`, a programmable Go patch, or the pinned generator configuration,
+then run `make generate` and commit the resulting SDK changes with them.
+
+The Dart SDK includes its generated Built Value serializers (`.g.dart`). Its
+committed `pubspec.lock` pins the dependencies used to generate these sources;
+library consumers continue to use their own dependency resolution.
 
 Generation is deterministic and idempotent. It takes place in a temporary
 directory, and `sdk/` is replaced only after all clients and patches have
@@ -77,8 +83,8 @@ The generation pipeline is:
    the target's per-language specification transform through the Go patch actor;
 2. generate Rust, Python, Dart/Dio and Java with the pinned OpenAPI Generator image;
 3. apply the language transformations through the same actor;
-4. apply deterministic formatting to the generated Rust and Dart sources;
-5. publish the resulting ephemeral `sdk/` directory.
+4. generate Dart serializers and apply deterministic formatting to Rust and Dart;
+5. replace `sdk/` with the completed outputs, ready to review and commit.
 
 Semantic corrections after generation are exclusively represented by patches;
 formatting is a mechanical, idempotent normalization step.

@@ -7,6 +7,13 @@ import (
 )
 
 func patchGeneratedDart(root string) error {
+	// Pin the source-generator dependencies used for the committed serializers.
+	// Consumers still resolve the library's dependencies with their own lockfile.
+	if err := replaceExactlyInFile(filepath.Join(root, ".gitignore"),
+		"# Don't commit pubspec lock file\n# (Library packages only! Remove pattern if developing an application package)\npubspec.lock",
+		"# Commit pubspec.lock to reproduce Built Value source generation.", 1); err != nil {
+		return fmt.Errorf("patch Dart dependency lockfile policy: %w", err)
+	}
 	// Dart String is not URI-escaped, so generated path parameters must be
 	// percent-encoded before being inserted into a URL path segment. Query
 	// parameters keep using encodeQueryParameter because dio escapes them

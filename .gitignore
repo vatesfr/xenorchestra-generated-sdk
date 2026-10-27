@@ -1,4 +1,9 @@
-/sdk/
+# SDK source code is versioned; ignore only local build environments and caches.
+/sdk/**/.venv/
+/sdk/**/.idea/
+/sdk/**/.gradle/
+/sdk/**/build/
+/sdk/**/dist/
 /.sdk-build.*
 /.sdk-first.*
 /.sdk-second.*

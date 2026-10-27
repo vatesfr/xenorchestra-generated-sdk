@@ -26,8 +26,6 @@ jobs:
         run: make test-sdk
       - name: Check reproducible generation
         run: make check-idempotence
-      - name: Generate SDKs
-        run: make generate
       - name: Lint all sources
         run: make lint
       - name: Test generated SDKs

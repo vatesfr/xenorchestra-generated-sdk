@@ -78,13 +78,31 @@ func (a *Adapter) Normalize(ctx context.Context, build common.Build, target comm
 		manifest := a.workspace.Join(build.ID, "sdk", string(target), "Cargo.toml")
 		return a.runner.Run(ctx, a.command("cargo", "fmt", "--manifest-path", manifest))
 	case common.Dart:
+		root := a.workspace.Join(build.ID, "sdk", string(target))
+		// Reuse the committed generator dependency resolution in a fresh build.
+		lockfile := a.workspace.Join(a.root, "sdk", string(target), "pubspec.lock")
+		if a.workspace.RegularFile(lockfile) {
+			if err := a.workspace.CopyFile(lockfile, a.workspace.Join(root, "pubspec.lock")); err != nil {
+				return err
+			}
+		}
 		// pub get first so the formatter picks the language version from the
 		// pubspec, as the lint step does.
-		root := a.workspace.Join(build.ID, "sdk", string(target))
 		if err := a.runner.Run(ctx, a.commandIn(root, "dart", "pub", "get")); err != nil {
 			return err
 		}
-		return a.runner.Run(ctx, a.commandIn(root, "dart", "format", "lib"))
+		if err := a.runner.Run(ctx, a.commandIn(root, "dart", "format", "lib")); err != nil {
+			return err
+		}
+		if err := a.runner.Run(ctx, a.commandIn(root, "dart", "run", "build_runner", "build")); err != nil {
+			return err
+		}
+		if err := a.runner.Run(ctx, a.commandIn(root, "dart", "format", "lib")); err != nil {
+			return err
+		}
+		// Compiler caches contain temporary paths and timestamps. Only the Dart
+		// sources and lockfile belong in published and compared build outputs.
+		return a.workspace.RemoveAll(a.workspace.Join(root, ".dart_tool"))
 	default:
 		return nil
 	}

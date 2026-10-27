@@ -1,0 +1,315 @@
+//
+// AUTO-GENERATED FILE, DO NOT MODIFY!
+//
+
+// ignore_for_file: unused_element
+import 'package:built_collection/built_collection.dart';
+import 'package:built_value/built_value.dart';
+import 'package:built_value/serializer.dart';
+
+part 'with_href_partial_unbrand_xo_pci.g.dart';
+
+/// WithHrefPartialUnbrandXoPci
+///
+/// Properties:
+/// * [dollarHost]
+/// * [dollarPool]
+/// * [dollarPoolId]
+/// * [xapiRef]
+/// * [className]
+/// * [deviceName]
+/// * [href]
+/// * [id]
+/// * [pciId]
+/// * [type]
+/// * [uuid]
+@BuiltValue()
+abstract class WithHrefPartialUnbrandXoPci
+    implements
+        Built<WithHrefPartialUnbrandXoPci, WithHrefPartialUnbrandXoPciBuilder> {
+  @BuiltValueField(wireName: r'$host')
+  String? get dollarHost;
+
+  @BuiltValueField(wireName: r'$pool')
+  String? get dollarPool;
+
+  @Deprecated('dollarPoolId has been deprecated')
+  @BuiltValueField(wireName: r'$poolId')
+  String? get dollarPoolId;
+
+  @BuiltValueField(wireName: r'_xapiRef')
+  String? get xapiRef;
+
+  @BuiltValueField(wireName: r'class_name')
+  String? get className;
+
+  @BuiltValueField(wireName: r'device_name')
+  String? get deviceName;
+
+  @BuiltValueField(wireName: r'href')
+  String get href;
+
+  @BuiltValueField(wireName: r'id')
+  String? get id;
+
+  @BuiltValueField(wireName: r'pci_id')
+  String? get pciId;
+
+  @BuiltValueField(wireName: r'type')
+  WithHrefPartialUnbrandXoPciTypeEnum? get type;
+  // enum typeEnum {  PCI,  };
+
+  @BuiltValueField(wireName: r'uuid')
+  String? get uuid;
+
+  WithHrefPartialUnbrandXoPci._();
+
+  factory WithHrefPartialUnbrandXoPci(
+          [void updates(WithHrefPartialUnbrandXoPciBuilder b)]) =
+      _$WithHrefPartialUnbrandXoPci;
+
+  @BuiltValueHook(initializeBuilder: true)
+  static void _defaults(WithHrefPartialUnbrandXoPciBuilder b) => b;
+
+  @BuiltValueSerializer(custom: true)
+  static Serializer<WithHrefPartialUnbrandXoPci> get serializer =>
+      _$WithHrefPartialUnbrandXoPciSerializer();
+}
+
+class _$WithHrefPartialUnbrandXoPciSerializer
+    implements PrimitiveSerializer<WithHrefPartialUnbrandXoPci> {
+  @override
+  final Iterable<Type> types = const [
+    WithHrefPartialUnbrandXoPci,
+    _$WithHrefPartialUnbrandXoPci
+  ];
+
+  @override
+  final String wireName = r'WithHrefPartialUnbrandXoPci';
+
+  Iterable<Object?> _serializeProperties(
+    Serializers serializers,
+    WithHrefPartialUnbrandXoPci object, {
+    FullType specifiedType = FullType.unspecified,
+  }) sync* {
+    if (object.dollarHost != null) {
+      yield r'$host';
+      yield serializers.serialize(
+        object.dollarHost,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.dollarPool != null) {
+      yield r'$pool';
+      yield serializers.serialize(
+        object.dollarPool,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.dollarPoolId != null) {
+      yield r'$poolId';
+      yield serializers.serialize(
+        object.dollarPoolId,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.xapiRef != null) {
+      yield r'_xapiRef';
+      yield serializers.serialize(
+        object.xapiRef,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.className != null) {
+      yield r'class_name';
+      yield serializers.serialize(
+        object.className,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.deviceName != null) {
+      yield r'device_name';
+      yield serializers.serialize(
+        object.deviceName,
+        specifiedType: const FullType(String),
+      );
+    }
+    yield r'href';
+    yield serializers.serialize(
+      object.href,
+      specifiedType: const FullType(String),
+    );
+    if (object.id != null) {
+      yield r'id';
+      yield serializers.serialize(
+        object.id,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.pciId != null) {
+      yield r'pci_id';
+      yield serializers.serialize(
+        object.pciId,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.type != null) {
+      yield r'type';
+      yield serializers.serialize(
+        object.type,
+        specifiedType: const FullType(WithHrefPartialUnbrandXoPciTypeEnum),
+      );
+    }
+    if (object.uuid != null) {
+      yield r'uuid';
+      yield serializers.serialize(
+        object.uuid,
+        specifiedType: const FullType(String),
+      );
+    }
+  }
+
+  @override
+  Object serialize(
+    Serializers serializers,
+    WithHrefPartialUnbrandXoPci object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    return _serializeProperties(serializers, object,
+            specifiedType: specifiedType)
+        .toList();
+  }
+
+  void _deserializeProperties(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+    required List<Object?> serializedList,
+    required WithHrefPartialUnbrandXoPciBuilder result,
+    required List<Object?> unhandled,
+  }) {
+    for (var i = 0; i < serializedList.length; i += 2) {
+      final key = serializedList[i] as String;
+      final value = serializedList[i + 1];
+      switch (key) {
+        case r'$host':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.dollarHost = valueDes;
+          break;
+        case r'$pool':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.dollarPool = valueDes;
+          break;
+        case r'$poolId':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.dollarPoolId = valueDes;
+          break;
+        case r'_xapiRef':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.xapiRef = valueDes;
+          break;
+        case r'class_name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.className = valueDes;
+          break;
+        case r'device_name':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.deviceName = valueDes;
+          break;
+        case r'href':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.href = valueDes;
+          break;
+        case r'id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.id = valueDes;
+          break;
+        case r'pci_id':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.pciId = valueDes;
+          break;
+        case r'type':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(WithHrefPartialUnbrandXoPciTypeEnum),
+          ) as WithHrefPartialUnbrandXoPciTypeEnum;
+          result.type = valueDes;
+          break;
+        case r'uuid':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.uuid = valueDes;
+          break;
+        default:
+          unhandled.add(key);
+          unhandled.add(value);
+          break;
+      }
+    }
+  }
+
+  @override
+  WithHrefPartialUnbrandXoPci deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = WithHrefPartialUnbrandXoPciBuilder();
+    final serializedList = (serialized as Iterable<Object?>).toList();
+    final unhandled = <Object?>[];
+    _deserializeProperties(
+      serializers,
+      serialized,
+      specifiedType: specifiedType,
+      serializedList: serializedList,
+      unhandled: unhandled,
+      result: result,
+    );
+    return result.build();
+  }
+}
+
+class WithHrefPartialUnbrandXoPciTypeEnum extends EnumClass {
+  @BuiltValueEnumConst(wireName: r'PCI')
+  static const WithHrefPartialUnbrandXoPciTypeEnum PCI =
+      _$withHrefPartialUnbrandXoPciTypeEnum_PCI;
+
+  static Serializer<WithHrefPartialUnbrandXoPciTypeEnum> get serializer =>
+      _$withHrefPartialUnbrandXoPciTypeEnumSerializer;
+
+  const WithHrefPartialUnbrandXoPciTypeEnum._(String name) : super(name);
+
+  static BuiltSet<WithHrefPartialUnbrandXoPciTypeEnum> get values =>
+      _$withHrefPartialUnbrandXoPciTypeEnumValues;
+  static WithHrefPartialUnbrandXoPciTypeEnum valueOf(String name) =>
+      _$withHrefPartialUnbrandXoPciTypeEnumValueOf(name);
+}

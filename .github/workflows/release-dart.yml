@@ -34,7 +34,9 @@ jobs:
         run: make test-sdk check-idempotence
       - name: Verify generated version
         working-directory: sdk/dart-dio
-        run: test "$(dart pub deps --json | jq -r '.root.version')" = "$DART_SDK_VERSION"
+        run: |
+          dart pub get
+          test "$(dart pub deps --json | jq -r '.packages[] | select(.kind == "root") | .version')" = "$DART_SDK_VERSION"
       - name: Test generated SDKs
         run: make lint-generated-sdks test-generated-sdks test-examples
       - name: Verify publishable package
