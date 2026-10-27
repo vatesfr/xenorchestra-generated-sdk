@@ -3,7 +3,9 @@ package generation
 import (
 	"bytes"
 	"context"
+	"encoding/json"
 	"fmt"
+	"os"
 	"strings"
 
 	"github.com/vatesfr/xenorchestra-generated-sdk/internal/actors/driven/patches"
@@ -44,10 +46,16 @@ func (a *Adapter) Generate(ctx context.Context, build common.Build, target commo
 	specification := a.workspace.Join(build.ID, "spec", string(target), "swagger.json")
 	output := a.workspace.Join(build.ID, "sdk", string(target))
 	var log bytes.Buffer
-	command := a.command("docker", "run", "--rm", "-v", a.root+":/local", a.generatorImage, "generate",
+	userArguments, err := a.generatorUserArguments(ctx)
+	if err != nil {
+		return err
+	}
+	arguments := append([]string{"run", "--rm"}, userArguments...)
+	arguments = append(arguments, "-v", a.root+":/local", a.generatorImage, "generate",
 		"-i", "/local/"+a.mustRelative(specification), "-g", definition.Generator,
 		"-o", "/local/"+a.mustRelative(output), "--additional-properties="+definition.GeneratorProperties,
 		"--skip-validate-spec")
+	command := a.command("docker", arguments...)
 	command.Stdout, command.Stderr = &log, &log
 	if err := a.runner.Run(ctx, command); err != nil {
 		lines := strings.Split(strings.TrimRight(log.String(), "\n"), "\n")
@@ -58,6 +66,32 @@ func (a *Adapter) Generate(ctx context.Context, build common.Build, target commo
 		return fmt.Errorf("generate %s SDK: %w", target, err)
 	}
 	return nil
+}
+
+// Keep bind-mounted outputs writable by the host process. Rootless Docker maps
+// container root to the daemon owner; a rootful daemon needs the host UID/GID.
+func (a *Adapter) generatorUserArguments(ctx context.Context) ([]string, error) {
+	uid, gid := os.Getuid(), os.Getgid()
+	if uid < 0 || gid < 0 {
+		// Windows Docker manages bind-mount permissions without Unix identities.
+		return nil, nil
+	}
+	var output, diagnostics bytes.Buffer
+	command := a.command("docker", "info", "--format", "{{json .SecurityOptions}}")
+	command.Stdout, command.Stderr = &output, &diagnostics
+	if err := a.runner.Run(ctx, command); err != nil {
+		return nil, fmt.Errorf("inspect Docker permissions: %w: %s", err, strings.TrimSpace(diagnostics.String()))
+	}
+	var options []string
+	if err := json.Unmarshal(output.Bytes(), &options); err != nil {
+		return nil, fmt.Errorf("read Docker security options: %w", err)
+	}
+	for _, option := range options {
+		if option == "name=rootless" {
+			return []string{"--user", "0:0"}, nil
+		}
+	}
+	return []string{"--user", fmt.Sprintf("%d:%d", uid, gid)}, nil
 }
 
 func (a *Adapter) Patch(_ context.Context, build common.Build, target common.SDKTarget) error {
