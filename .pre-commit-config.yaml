@@ -1,0 +1,22 @@
+# Fast checks only; generation, generated SDK lint and simulator tests run in CI.
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: 3e8a8703264a2f4a69428a0aa4dcb512790b2c8c # frozen: v6.0.0
+    hooks:
+      - id: check-yaml
+        files: ^\.github/
+
+  - repo: local
+    hooks:
+      - id: lint-sdk
+        name: make lint-sdk
+        entry: make lint-sdk
+        language: system
+        files: \.go$|^go\.(mod|sum)$
+        pass_filenames: false
+      - id: test-sdk
+        name: make test-sdk
+        entry: make test-sdk
+        language: system
+        files: ^(cmd|internal)/|^go\.(mod|sum)$
+        pass_filenames: false

@@ -192,6 +192,14 @@ version. See
 
 ## Lint
 
+A [pre-commit](https://pre-commit.com/) configuration runs the fast checks
+(`make lint-sdk`, `make test-sdk` and YAML validation of `.github/`) before each
+commit. Install it once per clone:
+
+```bash
+pre-commit install
+```
+
 Lint checks apply to the final, patched SDK as well as repository-maintained
 sources:
 
