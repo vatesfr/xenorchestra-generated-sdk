@@ -2,6 +2,7 @@ package patches
 
 import (
 	"fmt"
+	"os"
 	"path/filepath"
 	"regexp"
 )
@@ -87,6 +88,31 @@ func patchGeneratedDart(root string) error {
 	}
 	if err := replaceExactlyInFile(filepath.Join(root, "README.md"), "https://github.com/GIT_USER_ID/GIT_REPO_ID.git", "https://github.com/vatesfr/xenorchestra-generated-sdk.git", 1); err != nil {
 		return fmt.Errorf("patch Dart README: %w", err)
+	}
+	// dart pub publish fails on analyzer warnings; these only flag unused or
+	// duplicate declarations in the generated code.
+	if err := replaceExactlyInFile(filepath.Join(root, "analysis_options.yaml"),
+		"    deprecated_member_use_from_same_package: ignore\n",
+		"    deprecated_member_use_from_same_package: ignore\n"+
+			"    duplicate_import: ignore\n"+
+			"    unused_import: ignore\n"+
+			"    unused_element_parameter: ignore\n"+
+			"    unused_field: ignore\n", 1); err != nil {
+		return fmt.Errorf("patch Dart analysis options: %w", err)
+	}
+	// pub.dev requires a changelog entry for the published version; release
+	// notes live on GitHub.
+	pubspec, err := os.ReadFile(filepath.Join(root, "pubspec.yaml"))
+	if err != nil {
+		return err
+	}
+	version := regexp.MustCompile(`(?m)^version: (\S+)$`).FindSubmatch(pubspec)
+	if version == nil {
+		return fmt.Errorf("read Dart package version: version not found in pubspec.yaml")
+	}
+	changelog := fmt.Sprintf("# Changelog\n\n## %[1]s\n\nSee https://github.com/vatesfr/xenorchestra-generated-sdk/releases/tag/dart-v%[1]s.\n", version[1])
+	if err := writeGenerated(filepath.Join(root, "CHANGELOG.md"), changelog); err != nil {
+		return fmt.Errorf("write Dart changelog: %w", err)
 	}
 	return nil
 }
