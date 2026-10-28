@@ -160,8 +160,9 @@ class _$UnbrandXoPciSerializer implements PrimitiveSerializer<UnbrandXoPci> {
         case r'$host':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.dollarHost = valueDes;
           break;
         case r'$pool':

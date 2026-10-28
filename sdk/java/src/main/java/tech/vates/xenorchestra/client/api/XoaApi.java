@@ -47,15 +47,35 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class XoaApi {
+  /**
+   * Utility class for extending HttpRequest.Builder functionality.
+   */
+  private static class HttpRequestBuilderExtensions {
+    /**
+     * Adds additional headers to the provided HttpRequest.Builder. Useful for adding method/endpoint specific headers.
+     *
+     * @param builder the HttpRequest.Builder to which headers will be added
+     * @param headers a map of header names and values to add; may be null
+     * @return the same HttpRequest.Builder instance with the additional headers set
+     */
+    static HttpRequest.Builder withAdditionalHeaders(HttpRequest.Builder builder, Map<String, String> headers) {
+        if (headers != null) {
+            for (Map.Entry<String, String> entry : headers.entrySet()) {
+                builder.header(entry.getKey(), entry.getValue());
+            }
+        }
+        return builder;
+    }
+  }
   private final HttpClient memberVarHttpClient;
   private final ObjectMapper memberVarObjectMapper;
   private final String memberVarBaseUri;
   private final Consumer<HttpRequest.Builder> memberVarInterceptor;
   private final Duration memberVarReadTimeout;
   private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
-  private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
+  private final Consumer<HttpResponse<InputStream>> memberVarAsyncResponseInterceptor;
 
   public XoaApi() {
     this(Configuration.getDefaultApiClient());
@@ -71,8 +91,17 @@ public class XoaApi {
     memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
   }
 
+
   protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
-    String body = response.body() == null ? null : new String(response.body().readAllBytes());
+    InputStream responseBody = ApiClient.getResponseBody(response);
+    String body = null;
+    try {
+      body = responseBody == null ? null : new String(responseBody.readAllBytes());
+    } finally {
+      if (responseBody != null) {
+        responseBody.close();
+      }
+    }
     String message = formatExceptionMessage(operationId, response.statusCode(), body);
     return new ApiException(response.statusCode(), message, response.headers(), body);
   }
@@ -85,6 +114,57 @@ public class XoaApi {
   }
 
   /**
+   * Download file from the given response.
+   *
+   * @param response Response
+   * @return File
+   * @throws ApiException If fail to read file content from response and write to disk
+   */
+  public File downloadFileFromResponse(HttpResponse<InputStream> response, InputStream responseBody) throws ApiException {
+    if (responseBody == null) {
+      throw new ApiException(new IOException("Response body is empty"));
+    }
+    try {
+      File file = prepareDownloadFile(response);
+      java.nio.file.Files.copy(responseBody, file.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+      return file;
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+  }
+
+  /**
+   * <p>Prepare the file for download from the response.</p>
+   *
+   * @param response a {@link java.net.http.HttpResponse} object.
+   * @return a {@link java.io.File} object.
+   * @throws java.io.IOException if any.
+   */
+  private File prepareDownloadFile(HttpResponse<InputStream> response) throws IOException {
+    String filename = null;
+    java.util.Optional<String> contentDisposition = response.headers().firstValue("Content-Disposition");
+    if (contentDisposition.isPresent() && !"".equals(contentDisposition.get())) {
+      // Get filename from the Content-Disposition header.
+      java.util.regex.Pattern pattern = java.util.regex.Pattern.compile("filename=['\"]?([^'\"\\s]+)['\"]?");
+      java.util.regex.Matcher matcher = pattern.matcher(contentDisposition.get());
+      if (matcher.find())
+        filename = matcher.group(1);
+    }
+    File file = null;
+    if (filename != null) {
+      java.nio.file.Path tempDir = java.nio.file.Files.createTempDirectory("swagger-gen-native");
+      java.nio.file.Path filePath = java.nio.file.Files.createFile(tempDir.resolve(filename));
+      file = filePath.toFile();
+      tempDir.toFile().deleteOnExit();   // best effort cleanup
+      file.deleteOnExit(); // best effort cleanup
+    } else {
+      file = java.nio.file.Files.createTempFile("download-", "").toFile();
+      file.deleteOnExit(); // best effort cleanup
+    }
+    return file;
+  }
+
+  /**
    * 
    * 
    * @param ndjson  (optional)
@@ -92,7 +172,19 @@ public class XoaApi {
    * @throws ApiException if fails to make API call
    */
   public XoaDashboard getDashboard(@javax.annotation.Nullable Boolean ndjson) throws ApiException {
-    ApiResponse<XoaDashboard> localVarResponse = getDashboardWithHttpInfo(ndjson);
+    return getDashboard(ndjson, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param ndjson  (optional)
+   * @param headers Optional headers to include in the request
+   * @return XoaDashboard
+   * @throws ApiException if fails to make API call
+   */
+  public XoaDashboard getDashboard(@javax.annotation.Nullable Boolean ndjson, Map<String, String> headers) throws ApiException {
+    ApiResponse<XoaDashboard> localVarResponse = getDashboardWithHttpInfo(ndjson, headers);
     return localVarResponse.getData();
   }
 
@@ -104,7 +196,19 @@ public class XoaApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<XoaDashboard> getDashboardWithHttpInfo(@javax.annotation.Nullable Boolean ndjson) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getDashboardRequestBuilder(ndjson);
+    return getDashboardWithHttpInfo(ndjson, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param ndjson  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;XoaDashboard&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<XoaDashboard> getDashboardWithHttpInfo(@javax.annotation.Nullable Boolean ndjson, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getDashboardRequestBuilder(ndjson, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -112,11 +216,13 @@ public class XoaApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getDashboard", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<XoaDashboard>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -124,15 +230,21 @@ public class XoaApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        XoaDashboard responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<XoaDashboard>() {});
+        
 
         return new ApiResponse<XoaDashboard>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<XoaDashboard>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -143,7 +255,7 @@ public class XoaApi {
     }
   }
 
-  private HttpRequest.Builder getDashboardRequestBuilder(@javax.annotation.Nullable Boolean ndjson) throws ApiException {
+  private HttpRequest.Builder getDashboardRequestBuilder(@javax.annotation.Nullable Boolean ndjson, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -172,6 +284,8 @@ public class XoaApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -185,7 +299,18 @@ public class XoaApi {
    * @throws ApiException if fails to make API call
    */
   public XoGuiRoutes getGuiRoutes() throws ApiException {
-    ApiResponse<XoGuiRoutes> localVarResponse = getGuiRoutesWithHttpInfo();
+    return getGuiRoutes(null);
+  }
+
+  /**
+   * 
+   * 
+   * @param headers Optional headers to include in the request
+   * @return XoGuiRoutes
+   * @throws ApiException if fails to make API call
+   */
+  public XoGuiRoutes getGuiRoutes(Map<String, String> headers) throws ApiException {
+    ApiResponse<XoGuiRoutes> localVarResponse = getGuiRoutesWithHttpInfo(headers);
     return localVarResponse.getData();
   }
 
@@ -196,7 +321,18 @@ public class XoaApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<XoGuiRoutes> getGuiRoutesWithHttpInfo() throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getGuiRoutesRequestBuilder();
+    return getGuiRoutesWithHttpInfo(null);
+  }
+
+  /**
+   * 
+   * 
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;XoGuiRoutes&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<XoGuiRoutes> getGuiRoutesWithHttpInfo(Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getGuiRoutesRequestBuilder(headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -204,11 +340,13 @@ public class XoaApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getGuiRoutes", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<XoGuiRoutes>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -216,15 +354,21 @@ public class XoaApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        XoGuiRoutes responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<XoGuiRoutes>() {});
+        
 
         return new ApiResponse<XoGuiRoutes>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<XoGuiRoutes>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -235,7 +379,7 @@ public class XoaApi {
     }
   }
 
-  private HttpRequest.Builder getGuiRoutesRequestBuilder() throws ApiException {
+  private HttpRequest.Builder getGuiRoutesRequestBuilder(Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -249,6 +393,8 @@ public class XoaApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -262,7 +408,18 @@ public class XoaApi {
    * @throws ApiException if fails to make API call
    */
   public PingResponse ping() throws ApiException {
-    ApiResponse<PingResponse> localVarResponse = pingWithHttpInfo();
+    return ping(null);
+  }
+
+  /**
+   * 
+   * 
+   * @param headers Optional headers to include in the request
+   * @return PingResponse
+   * @throws ApiException if fails to make API call
+   */
+  public PingResponse ping(Map<String, String> headers) throws ApiException {
+    ApiResponse<PingResponse> localVarResponse = pingWithHttpInfo(headers);
     return localVarResponse.getData();
   }
 
@@ -273,7 +430,18 @@ public class XoaApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<PingResponse> pingWithHttpInfo() throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = pingRequestBuilder();
+    return pingWithHttpInfo(null);
+  }
+
+  /**
+   * 
+   * 
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;PingResponse&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PingResponse> pingWithHttpInfo(Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = pingRequestBuilder(headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -281,11 +449,13 @@ public class XoaApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("ping", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<PingResponse>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -293,15 +463,21 @@ public class XoaApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        PingResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PingResponse>() {});
+        
 
         return new ApiResponse<PingResponse>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PingResponse>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -312,7 +488,7 @@ public class XoaApi {
     }
   }
 
-  private HttpRequest.Builder pingRequestBuilder() throws ApiException {
+  private HttpRequest.Builder pingRequestBuilder(Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -326,6 +502,8 @@ public class XoaApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }

@@ -184,9 +184,10 @@ class _$UnbrandUnbrandedXoVmBackupJobSerializer
         case r'compression':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType:
-                const FullType(UnbrandUnbrandedXoVmBackupJobCompressionEnum),
-          ) as UnbrandUnbrandedXoVmBackupJobCompressionEnum;
+            specifiedType: const FullType.nullable(
+                UnbrandUnbrandedXoVmBackupJobCompressionEnum),
+          ) as UnbrandUnbrandedXoVmBackupJobCompressionEnum?;
+          if (valueDes == null) continue;
           result.compression = valueDes;
           break;
         case r'id':
@@ -207,15 +208,17 @@ class _$UnbrandUnbrandedXoVmBackupJobSerializer
         case r'name':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.name = valueDes;
           break;
         case r'proxy':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.proxy = valueDes;
           break;
         case r'remotes':

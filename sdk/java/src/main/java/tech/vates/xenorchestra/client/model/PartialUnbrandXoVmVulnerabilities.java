@@ -36,7 +36,7 @@ import tech.vates.xenorchestra.client.ApiClient;
 @JsonPropertyOrder({
   PartialUnbrandXoVmVulnerabilities.JSON_PROPERTY_XSA468
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PartialUnbrandXoVmVulnerabilities {
   public static final String JSON_PROPERTY_XSA468 = "xsa468";
   @javax.annotation.Nonnull
@@ -55,14 +55,14 @@ public class PartialUnbrandXoVmVulnerabilities {
    * @return xsa468
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_XSA468)
+  @JsonProperty(value = JSON_PROPERTY_XSA468, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public PartialUnbrandXoVmVulnerabilitiesXsa468 getXsa468() {
     return xsa468;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_XSA468)
+  @JsonProperty(value = JSON_PROPERTY_XSA468, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setXsa468(@javax.annotation.Nonnull PartialUnbrandXoVmVulnerabilitiesXsa468 xsa468) {
     this.xsa468 = xsa468;
@@ -103,10 +103,7 @@ public class PartialUnbrandXoVmVulnerabilities {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**

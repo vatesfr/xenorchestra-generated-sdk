@@ -100,7 +100,7 @@ public class Example {
 
 ## getPifWithHttpInfo
 
-> ApiResponse<UnbrandXoPif> getPif getPifWithHttpInfo(id)
+> ApiResponse<UnbrandXoPif> getPifWithHttpInfo(id)
 
 
 
@@ -275,7 +275,7 @@ public class Example {
 
 ## getPifAlarmsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getPifAlarms getPifAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getPifAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -459,7 +459,7 @@ public class Example {
 
 ## getPifMessagesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoMessage> getPifMessages getPifMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoMessage> getPifMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -643,7 +643,7 @@ public class Example {
 
 ## getPifTasksWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoTask> getPifTasks getPifTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoTask> getPifTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -824,7 +824,7 @@ public class Example {
 
 ## getPifsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandedXoPif> getPifs getPifsWithHttpInfo(fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandedXoPif> getPifsWithHttpInfo(fields, ndjson, markdown, filter, limit)
 
 
 

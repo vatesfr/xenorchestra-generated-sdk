@@ -11,9 +11,9 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// PickCreateVdiParams91093PeriodExcludeKeyofCreateVdiParams91093PeriodSrOrOtherConfig : From T, pick a set of properties whose keys are in the union K
+/// PickCreateVdiParams91093ExcludeKeyofCreateVdiParams91093SrOrOtherConfig : From T, pick a set of properties whose keys are in the union K
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct PickCreateVdiParams91093PeriodExcludeKeyofCreateVdiParams91093PeriodSrOrOtherConfig {
+pub struct PickCreateVdiParams91093ExcludeKeyofCreateVdiParams91093SrOrOtherConfig {
     #[serde(rename = "name_description", skip_serializing_if = "Option::is_none")]
     pub name_description: Option<String>,
     #[serde(rename = "name_label", skip_serializing_if = "Option::is_none")]
@@ -33,12 +33,12 @@ pub struct PickCreateVdiParams91093PeriodExcludeKeyofCreateVdiParams91093PeriodS
     pub xenstore_data: Option<serde_json::Value>,
 }
 
-impl PickCreateVdiParams91093PeriodExcludeKeyofCreateVdiParams91093PeriodSrOrOtherConfig {
+impl PickCreateVdiParams91093ExcludeKeyofCreateVdiParams91093SrOrOtherConfig {
     /// From T, pick a set of properties whose keys are in the union K
     pub fn new(
         virtual_size: f64,
-    ) -> PickCreateVdiParams91093PeriodExcludeKeyofCreateVdiParams91093PeriodSrOrOtherConfig {
-        PickCreateVdiParams91093PeriodExcludeKeyofCreateVdiParams91093PeriodSrOrOtherConfig {
+    ) -> PickCreateVdiParams91093ExcludeKeyofCreateVdiParams91093SrOrOtherConfig {
+        PickCreateVdiParams91093ExcludeKeyofCreateVdiParams91093SrOrOtherConfig {
             name_description: None,
             name_label: None,
             read_only: None,

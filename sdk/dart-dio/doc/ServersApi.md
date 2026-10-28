@@ -42,7 +42,7 @@ final InsertableXoServer insertableXoServer = {"allowUnauthorized":true,"host":"
 try {
     final response = api.addServer(insertableXoServer);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling ServersApi->addServer: $e\n');
 }
 ```
@@ -93,7 +93,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.connectServer(id, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling ServersApi->connectServer: $e\n');
 }
 ```
@@ -143,7 +143,7 @@ final String id = f07ab729-c0e8-721c-45ec-f11276377030; // String |
 
 try {
     api.deleteServer(id);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling ServersApi->deleteServer: $e\n');
 }
 ```
@@ -194,7 +194,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.disconnectServer(id, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling ServersApi->disconnectServer: $e\n');
 }
 ```
@@ -245,7 +245,7 @@ final String id = f07ab729-c0e8-721c-45ec-f11276377030; // String |
 try {
     final response = api.getServer(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling ServersApi->getServer: $e\n');
 }
 ```
@@ -300,7 +300,7 @@ final double limit = 42; // double |
 try {
     final response = api.getServerTasks(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling ServersApi->getServerTasks: $e\n');
 }
 ```
@@ -359,7 +359,7 @@ final double limit = 42; // double |
 try {
     final response = api.getServers(fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling ServersApi->getServers: $e\n');
 }
 ```

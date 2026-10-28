@@ -137,7 +137,7 @@ public class Example {
 
 ## addHostWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> addHost addHostWithHttpInfo(id, addHostRequest, sync)
+> ApiResponse<CreateActionReturnTypeVoid> addHostWithHttpInfo(id, addHostRequest, sync)
 
 
 
@@ -317,7 +317,7 @@ public class Example {
 
 ## createBondedNetworkWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> createBondedNetwork createBondedNetworkWithHttpInfo(id, unbrandCreateBondedNetworkBody, sync)
+> ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> createBondedNetworkWithHttpInfo(id, unbrandCreateBondedNetworkBody, sync)
 
 
 
@@ -497,7 +497,7 @@ public class Example {
 
 ## createInternalNetworkWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> createInternalNetwork createInternalNetworkWithHttpInfo(id, body, sync)
+> ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> createInternalNetworkWithHttpInfo(id, body, sync)
 
 
 
@@ -677,7 +677,7 @@ public class Example {
 
 ## createNetworkWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> createNetwork createNetworkWithHttpInfo(id, unbrandCreateNetworkBody, sync)
+> ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> createNetworkWithHttpInfo(id, unbrandCreateNetworkBody, sync)
 
 
 
@@ -856,7 +856,7 @@ public class Example {
 
 ## createVmWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeIdUnbrandXoVm91Id93> createVm createVmWithHttpInfo(id, unbrandCreateVmBody, sync)
+> ApiResponse<CreateActionReturnTypeIdUnbrandXoVm91Id93> createVmWithHttpInfo(id, unbrandCreateVmBody, sync)
 
 
 
@@ -1029,7 +1029,7 @@ null (empty response body)
 
 ## deletePoolTagWithHttpInfo
 
-> ApiResponse<Void> deletePoolTag deletePoolTagWithHttpInfo(id, tag)
+> ApiResponse<Void> deletePoolTagWithHttpInfo(id, tag)
 
 
 
@@ -1199,7 +1199,7 @@ public class Example {
 
 ## emergencyShutdownWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> emergencyShutdown emergencyShutdownWithHttpInfo(id, sync)
+> ApiResponse<CreateActionReturnTypeVoid> emergencyShutdownWithHttpInfo(id, sync)
 
 
 
@@ -1368,7 +1368,7 @@ public class Example {
 
 ## getPoolWithHttpInfo
 
-> ApiResponse<UnbrandXoPool> getPool getPoolWithHttpInfo(id)
+> ApiResponse<UnbrandXoPool> getPoolWithHttpInfo(id)
 
 
 
@@ -1543,7 +1543,7 @@ public class Example {
 
 ## getPoolAlarmsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getPoolAlarms getPoolAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getPoolAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1720,7 +1720,7 @@ public class Example {
 
 ## getPoolDashboardWithHttpInfo
 
-> ApiResponse<PoolDashboard> getPoolDashboard getPoolDashboardWithHttpInfo(id, ndjson)
+> ApiResponse<PoolDashboard> getPoolDashboardWithHttpInfo(id, ndjson)
 
 
 
@@ -1897,7 +1897,7 @@ public class Example {
 
 ## getPoolMessagesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoMessage> getPoolMessages getPoolMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoMessage> getPoolMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -2072,7 +2072,7 @@ public class Example {
 
 ## getPoolMissingPatchesWithHttpInfo
 
-> ApiResponse<GetMissingPatches200Response> getPoolMissingPatches getPoolMissingPatchesWithHttpInfo(id)
+> ApiResponse<GetMissingPatches200Response> getPoolMissingPatchesWithHttpInfo(id)
 
 
 
@@ -2247,7 +2247,7 @@ public class Example {
 
 ## getPoolTasksWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoTask> getPoolTasks getPoolTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoTask> getPoolTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -2428,7 +2428,7 @@ public class Example {
 
 ## getPoolsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoPool> getPools getPoolsWithHttpInfo(fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoPool> getPoolsWithHttpInfo(fields, ndjson, markdown, filter, limit)
 
 
 
@@ -2603,7 +2603,7 @@ public class Example {
 
 ## getStatsWithHttpInfo
 
-> ApiResponse<Map<String, RecordXoHostAtIdXapiHostStatsOrErrorRecordStringUnknownValue>> getStats getStatsWithHttpInfo(id, granularity)
+> ApiResponse<Map<String, RecordXoHostAtIdXapiHostStatsOrErrorRecordStringUnknownValue>> getStatsWithHttpInfo(id, granularity)
 
 
 
@@ -2777,7 +2777,7 @@ public class Example {
 
 ## importVmWithHttpInfo
 
-> ApiResponse<CreateAclV2Privilege201Response> importVm importVmWithHttpInfo(id, body, sr)
+> ApiResponse<CreateAclV2Privilege201Response> importVmWithHttpInfo(id, body, sr)
 
 
 
@@ -2955,7 +2955,7 @@ public class Example {
 
 ## managementReconfigureWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> managementReconfigure managementReconfigureWithHttpInfo(id, managementReconfigureRequest1, sync)
+> ApiResponse<CreateActionReturnTypeVoid> managementReconfigureWithHttpInfo(id, managementReconfigureRequest1, sync)
 
 
 
@@ -3129,7 +3129,7 @@ null (empty response body)
 
 ## putPoolTagWithHttpInfo
 
-> ApiResponse<Void> putPoolTag putPoolTagWithHttpInfo(id, tag)
+> ApiResponse<Void> putPoolTagWithHttpInfo(id, tag)
 
 
 
@@ -3302,7 +3302,7 @@ public class Example {
 
 ## rollingRebootWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> rollingReboot rollingRebootWithHttpInfo(id, sync, rollingRebootRequest)
+> ApiResponse<CreateActionReturnTypeVoid> rollingRebootWithHttpInfo(id, sync, rollingRebootRequest)
 
 
 
@@ -3480,7 +3480,7 @@ public class Example {
 
 ## rollingUpdateWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> rollingUpdate rollingUpdateWithHttpInfo(id, sync, rollingRebootRequest)
+> ApiResponse<CreateActionReturnTypeVoid> rollingUpdateWithHttpInfo(id, sync, rollingRebootRequest)
 
 
 

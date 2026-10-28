@@ -35,7 +35,7 @@ import tech.vates.xenorchestra.client.ApiClient;
 @JsonPropertyOrder({
   PartialUnbrandXoPbdDeviceConfigAnyOf1.JSON_PROPERTY_LOCATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PartialUnbrandXoPbdDeviceConfigAnyOf1 {
   public static final String JSON_PROPERTY_LOCATION = "location";
   @javax.annotation.Nonnull
@@ -54,14 +54,14 @@ public class PartialUnbrandXoPbdDeviceConfigAnyOf1 {
    * @return location
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_LOCATION)
+  @JsonProperty(value = JSON_PROPERTY_LOCATION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getLocation() {
     return location;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_LOCATION)
+  @JsonProperty(value = JSON_PROPERTY_LOCATION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setLocation(@javax.annotation.Nonnull String location) {
     this.location = location;
@@ -102,10 +102,7 @@ public class PartialUnbrandXoPbdDeviceConfigAnyOf1 {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -142,7 +139,7 @@ public class PartialUnbrandXoPbdDeviceConfigAnyOf1 {
 
     // add `location` to the URL query string
     if (getLocation() != null) {
-      joiner.add(String.format("%slocation%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLocation()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%slocation%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLocation()))));
     }
 
     return joiner.toString();

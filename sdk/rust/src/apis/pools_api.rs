@@ -12,6 +12,8 @@ use super::{configuration, ContentType, Error};
 use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
+use tokio::fs::File as TokioFile;
+use tokio_util::codec::{BytesCodec, FramedRead};
 
 /// struct for typed errors of method [`add_host`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -251,20 +253,20 @@ pub async fn add_host(
     sync: Option<bool>,
 ) -> Result<models::CreateActionReturnTypeVoid, Error<AddHostError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_add_host_request = add_host_request;
-    let p_sync = sync;
+    let p_path_id = id;
+    let p_body_add_host_request = add_host_request;
+    let p_query_sync = sync;
 
     let uri_str = format!(
         "{}/pools/{id}/actions/add_host",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -279,7 +281,7 @@ pub async fn add_host(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.json(&p_add_host_request);
+    req_builder = req_builder.json(&p_body_add_host_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -319,20 +321,20 @@ pub async fn create_bonded_network(
 ) -> Result<models::CreateActionReturnTypeIdUnbrandXoNetwork91Id93, Error<CreateBondedNetworkError>>
 {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_unbrand_create_bonded_network_body = unbrand_create_bonded_network_body;
-    let p_sync = sync;
+    let p_path_id = id;
+    let p_body_unbrand_create_bonded_network_body = unbrand_create_bonded_network_body;
+    let p_query_sync = sync;
 
     let uri_str = format!(
         "{}/pools/{id}/actions/create_bonded_network",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -347,7 +349,7 @@ pub async fn create_bonded_network(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.json(&p_unbrand_create_bonded_network_body);
+    req_builder = req_builder.json(&p_body_unbrand_create_bonded_network_body);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -387,20 +389,20 @@ pub async fn create_internal_network(
 ) -> Result<models::CreateActionReturnTypeIdUnbrandXoNetwork91Id93, Error<CreateInternalNetworkError>>
 {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_body = body;
-    let p_sync = sync;
+    let p_path_id = id;
+    let p_body_body = body;
+    let p_query_sync = sync;
 
     let uri_str = format!(
         "{}/pools/{id}/actions/create_internal_network",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -415,7 +417,7 @@ pub async fn create_internal_network(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.json(&p_body);
+    req_builder = req_builder.json(&p_body_body);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -454,20 +456,20 @@ pub async fn create_network(
     sync: Option<bool>,
 ) -> Result<models::CreateActionReturnTypeIdUnbrandXoNetwork91Id93, Error<CreateNetworkError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_unbrand_create_network_body = unbrand_create_network_body;
-    let p_sync = sync;
+    let p_path_id = id;
+    let p_body_unbrand_create_network_body = unbrand_create_network_body;
+    let p_query_sync = sync;
 
     let uri_str = format!(
         "{}/pools/{id}/actions/create_network",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -482,7 +484,7 @@ pub async fn create_network(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.json(&p_unbrand_create_network_body);
+    req_builder = req_builder.json(&p_body_unbrand_create_network_body);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -521,20 +523,20 @@ pub async fn create_vm(
     sync: Option<bool>,
 ) -> Result<models::CreateActionReturnTypeIdUnbrandXoVm91Id93, Error<CreateVmError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_unbrand_create_vm_body = unbrand_create_vm_body;
-    let p_sync = sync;
+    let p_path_id = id;
+    let p_body_unbrand_create_vm_body = unbrand_create_vm_body;
+    let p_query_sync = sync;
 
     let uri_str = format!(
         "{}/pools/{id}/actions/create_vm",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -549,7 +551,7 @@ pub async fn create_vm(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.json(&p_unbrand_create_vm_body);
+    req_builder = req_builder.json(&p_body_unbrand_create_vm_body);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -587,14 +589,14 @@ pub async fn delete_pool_tag(
     tag: &str,
 ) -> Result<(), Error<DeletePoolTagError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_tag = tag;
+    let p_path_id = id;
+    let p_path_tag = tag;
 
     let uri_str = format!(
         "{}/pools/{id}/tags/{tag}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id),
-        tag = crate::apis::urlencode(p_tag)
+        id = crate::apis::urlencode(p_path_id),
+        tag = crate::apis::urlencode(p_path_tag)
     );
     let mut req_builder = configuration
         .client
@@ -638,19 +640,19 @@ pub async fn emergency_shutdown(
     sync: Option<bool>,
 ) -> Result<models::CreateActionReturnTypeVoid, Error<EmergencyShutdownError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_sync = sync;
+    let p_path_id = id;
+    let p_query_sync = sync;
 
     let uri_str = format!(
         "{}/pools/{id}/actions/emergency_shutdown",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -701,12 +703,12 @@ pub async fn get_pool(
     id: &str,
 ) -> Result<models::UnbrandXoPool, Error<GetPoolError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
     let uri_str = format!(
         "{}/pools/{id}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -763,33 +765,33 @@ pub async fn get_pool_alarms(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoAlarm, Error<GetPoolAlarmsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/pools/{id}/alarms",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -841,17 +843,17 @@ pub async fn get_pool_dashboard(
     ndjson: Option<bool>,
 ) -> Result<models::PoolDashboard, Error<GetPoolDashboardError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_ndjson = ndjson;
+    let p_path_id = id;
+    let p_query_ndjson = ndjson;
 
     let uri_str = format!(
         "{}/pools/{id}/dashboard",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -907,33 +909,33 @@ pub async fn get_pool_messages(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoMessage, Error<GetPoolMessagesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/pools/{id}/messages",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -984,12 +986,12 @@ pub async fn get_pool_missing_patches(
     id: &str,
 ) -> Result<models::GetMissingPatches200Response, Error<GetPoolMissingPatchesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
     let uri_str = format!(
         "{}/pools/{id}/missing_patches",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1046,33 +1048,33 @@ pub async fn get_pool_tasks(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoTask, Error<GetPoolTasksError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/pools/{id}/tasks",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1127,28 +1129,28 @@ pub async fn get_pools(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoPool, Error<GetPoolsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!("{}/pools", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1206,17 +1208,17 @@ pub async fn get_stats(
     Error<GetStatsError>,
 > {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_granularity = granularity;
+    let p_path_id = id;
+    let p_query_granularity = granularity;
 
     let uri_str = format!(
         "{}/pools/{id}/stats",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_granularity {
+    if let Some(ref param_value) = p_query_granularity {
         req_builder = req_builder.query(&[("granularity", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1269,20 +1271,20 @@ pub async fn import_vm(
     sr: Option<&str>,
 ) -> Result<models::CreateAclV2Privilege201Response, Error<ImportVmError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_body = body;
-    let p_sr = sr;
+    let p_path_id = id;
+    let p_body_body = body;
+    let p_query_sr = sr;
 
     let uri_str = format!(
         "{}/pools/{id}/vms",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sr {
+    if let Some(ref param_value) = p_query_sr {
         req_builder = req_builder.query(&[("sr", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1297,7 +1299,9 @@ pub async fn import_vm(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.body(std::fs::read(p_body)?);
+    let file = TokioFile::open(p_body_body).await?;
+    let stream = FramedRead::new(file, BytesCodec::new());
+    req_builder = req_builder.body(reqwest::Body::wrap_stream(stream));
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1336,20 +1340,20 @@ pub async fn management_reconfigure(
     sync: Option<bool>,
 ) -> Result<models::CreateActionReturnTypeVoid, Error<ManagementReconfigureError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_management_reconfigure_request1 = management_reconfigure_request1;
-    let p_sync = sync;
+    let p_path_id = id;
+    let p_body_management_reconfigure_request1 = management_reconfigure_request1;
+    let p_query_sync = sync;
 
     let uri_str = format!(
         "{}/pools/{id}/actions/management_reconfigure",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1364,7 +1368,7 @@ pub async fn management_reconfigure(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.json(&p_management_reconfigure_request1);
+    req_builder = req_builder.json(&p_body_management_reconfigure_request1);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1402,14 +1406,14 @@ pub async fn put_pool_tag(
     tag: &str,
 ) -> Result<(), Error<PutPoolTagError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_tag = tag;
+    let p_path_id = id;
+    let p_path_tag = tag;
 
     let uri_str = format!(
         "{}/pools/{id}/tags/{tag}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id),
-        tag = crate::apis::urlencode(p_tag)
+        id = crate::apis::urlencode(p_path_id),
+        tag = crate::apis::urlencode(p_path_tag)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -1452,20 +1456,20 @@ pub async fn rolling_reboot(
     rolling_reboot_request: Option<models::RollingRebootRequest>,
 ) -> Result<models::CreateActionReturnTypeVoid, Error<RollingRebootError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_sync = sync;
-    let p_rolling_reboot_request = rolling_reboot_request;
+    let p_path_id = id;
+    let p_query_sync = sync;
+    let p_body_rolling_reboot_request = rolling_reboot_request;
 
     let uri_str = format!(
         "{}/pools/{id}/actions/rolling_reboot",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1480,7 +1484,7 @@ pub async fn rolling_reboot(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.json(&p_rolling_reboot_request);
+    req_builder = req_builder.json(&p_body_rolling_reboot_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1519,20 +1523,20 @@ pub async fn rolling_update(
     rolling_reboot_request: Option<models::RollingRebootRequest>,
 ) -> Result<models::CreateActionReturnTypeVoid, Error<RollingUpdateError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_sync = sync;
-    let p_rolling_reboot_request = rolling_reboot_request;
+    let p_path_id = id;
+    let p_query_sync = sync;
+    let p_body_rolling_reboot_request = rolling_reboot_request;
 
     let uri_str = format!(
         "{}/pools/{id}/actions/rolling_update",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1547,7 +1551,7 @@ pub async fn rolling_update(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.json(&p_rolling_reboot_request);
+    req_builder = req_builder.json(&p_body_rolling_reboot_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;

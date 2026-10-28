@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **_xapi_ref** | **String** |  | 
 **attached** | **bool** |  | 
 **bond_master** | Option<**String**> |  | [optional]
-**bond_slaves** | Option<[**Vec<models::BrandedPif>**](Branded_PIF_.md)> |  | [optional]
+**bond_slaves** | Option<[**Vec<models::BrandedPif>**](BrandedPIF.md)> |  | [optional]
 **carrier** | **bool** |  | 
 **device** | **String** |  | 
 **device_name** | Option<**String**> |  | [optional]
@@ -21,18 +21,18 @@ Name | Type | Description | Notes
 **id** | **String** |  | 
 **ip** | **String** |  | 
 **ipv6** | **Vec<String>** |  | 
-**ipv6_mode** | [**models::Ipv6ConfigurationMode**](IPV6_CONFIGURATION_MODE.md) |  | 
+**ipv6_mode** | [**models::Ipv6ConfigurationMode**](IPV6CONFIGURATIONMODE.md) |  | 
 **is_bond_master** | **bool** |  | 
 **is_bond_slave** | **bool** |  | 
 **mac** | **String** |  | 
 **management** | **bool** |  | 
-**mode** | [**models::IpConfigurationMode**](IP_CONFIGURATION_MODE.md) |  | 
+**mode** | [**models::IpConfigurationMode**](IPCONFIGURATIONMODE.md) |  | 
 **mtu** | **f64** |  | 
 **netmask** | **String** |  | 
 **physical** | **bool** |  | 
-**primary_address_type** | [**models::PrimaryAddressType**](PRIMARY_ADDRESS_TYPE.md) |  | 
+**primary_address_type** | [**models::PrimaryAddressType**](PRIMARYADDRESSTYPE.md) |  | 
 **speed** | Option<**f64**> |  | [optional]
-**r#type** | **String** |  | 
+**r#type** | **Type** |  (enum: PIF) | 
 **uuid** | **String** |  | 
 **vlan** | **f64** |  | 
 

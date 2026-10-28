@@ -46,7 +46,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.connectVif(id, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VifsApi->connectVif: $e\n');
 }
 ```
@@ -97,7 +97,7 @@ final CreateVifBody createVifBody = {"networkId":"6b6ca0f5-6611-0636-4b0a-1fb1c1
 try {
     final response = api.createVif(createVifBody);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VifsApi->createVif: $e\n');
 }
 ```
@@ -146,7 +146,7 @@ final String id = 6b6ca0f5-6611-0636-4b0a-1fb1c1e96414; // String |
 
 try {
     api.destroyVif(id);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VifsApi->destroyVif: $e\n');
 }
 ```
@@ -197,7 +197,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.disconnectVif(id, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VifsApi->disconnectVif: $e\n');
 }
 ```
@@ -248,7 +248,7 @@ final String id = f028c5d4-578a-332c-394e-087aaca32dd3; // String |
 try {
     final response = api.getVif(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VifsApi->getVif: $e\n');
 }
 ```
@@ -303,7 +303,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVifAlarms(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VifsApi->getVifAlarms: $e\n');
 }
 ```
@@ -363,7 +363,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVifMessages(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VifsApi->getVifMessages: $e\n');
 }
 ```
@@ -423,7 +423,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVifTasks(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VifsApi->getVifTasks: $e\n');
 }
 ```
@@ -482,7 +482,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVifs(fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VifsApi->getVifs: $e\n');
 }
 ```
@@ -536,7 +536,7 @@ final UpdateVifRequestBody updateVifRequestBody = {"allowedIpv4Addresses":["192.
 
 try {
     api.updateVif(id, updateVifRequestBody);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VifsApi->updateVif: $e\n');
 }
 ```

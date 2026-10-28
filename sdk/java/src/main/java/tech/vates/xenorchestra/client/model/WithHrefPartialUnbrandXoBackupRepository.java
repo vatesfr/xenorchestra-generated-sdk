@@ -48,7 +48,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   WithHrefPartialUnbrandXoBackupRepository.JSON_PROPERTY_URL,
   WithHrefPartialUnbrandXoBackupRepository.JSON_PROPERTY_HREF
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class WithHrefPartialUnbrandXoBackupRepository {
   public static final String JSON_PROPERTY_BENCHMARKS = "benchmarks";
   @javax.annotation.Nullable
@@ -107,14 +107,14 @@ public class WithHrefPartialUnbrandXoBackupRepository {
    * @return benchmarks
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_BENCHMARKS)
+  @JsonProperty(value = JSON_PROPERTY_BENCHMARKS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<PartialUnbrandXoBackupRepositoryBenchmarksInner> getBenchmarks() {
     return benchmarks;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_BENCHMARKS)
+  @JsonProperty(value = JSON_PROPERTY_BENCHMARKS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBenchmarks(@javax.annotation.Nullable List<PartialUnbrandXoBackupRepositoryBenchmarksInner> benchmarks) {
     this.benchmarks = benchmarks;
@@ -131,14 +131,14 @@ public class WithHrefPartialUnbrandXoBackupRepository {
    * @return enabled
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ENABLED)
+  @JsonProperty(value = JSON_PROPERTY_ENABLED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getEnabled() {
     return enabled;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ENABLED)
+  @JsonProperty(value = JSON_PROPERTY_ENABLED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEnabled(@javax.annotation.Nullable Boolean enabled) {
     this.enabled = enabled;
@@ -163,14 +163,14 @@ public class WithHrefPartialUnbrandXoBackupRepository {
    * @return error
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ERROR)
+  @JsonProperty(value = JSON_PROPERTY_ERROR, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, Object> getError() {
     return error;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ERROR)
+  @JsonProperty(value = JSON_PROPERTY_ERROR, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setError(@javax.annotation.Nullable Map<String, Object> error) {
     this.error = error;
@@ -187,14 +187,14 @@ public class WithHrefPartialUnbrandXoBackupRepository {
    * @return id
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
@@ -211,14 +211,14 @@ public class WithHrefPartialUnbrandXoBackupRepository {
    * @return name
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getName() {
     return name;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
@@ -235,14 +235,14 @@ public class WithHrefPartialUnbrandXoBackupRepository {
    * @return options
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_OPTIONS)
+  @JsonProperty(value = JSON_PROPERTY_OPTIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getOptions() {
     return options;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_OPTIONS)
+  @JsonProperty(value = JSON_PROPERTY_OPTIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOptions(@javax.annotation.Nullable String options) {
     this.options = options;
@@ -259,14 +259,14 @@ public class WithHrefPartialUnbrandXoBackupRepository {
    * @return proxy
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PROXY)
+  @JsonProperty(value = JSON_PROPERTY_PROXY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getProxy() {
     return proxy;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PROXY)
+  @JsonProperty(value = JSON_PROPERTY_PROXY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setProxy(@javax.annotation.Nullable String proxy) {
     this.proxy = proxy;
@@ -283,14 +283,14 @@ public class WithHrefPartialUnbrandXoBackupRepository {
    * @return url
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_URL)
+  @JsonProperty(value = JSON_PROPERTY_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getUrl() {
     return url;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_URL)
+  @JsonProperty(value = JSON_PROPERTY_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUrl(@javax.annotation.Nullable String url) {
     this.url = url;
@@ -307,14 +307,14 @@ public class WithHrefPartialUnbrandXoBackupRepository {
    * @return href
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_HREF)
+  @JsonProperty(value = JSON_PROPERTY_HREF, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getHref() {
     return href;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_HREF)
+  @JsonProperty(value = JSON_PROPERTY_HREF, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setHref(@javax.annotation.Nonnull String href) {
     this.href = href;
@@ -371,10 +371,7 @@ public class WithHrefPartialUnbrandXoBackupRepository {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -413,54 +410,54 @@ public class WithHrefPartialUnbrandXoBackupRepository {
     if (getBenchmarks() != null) {
       for (int i = 0; i < getBenchmarks().size(); i++) {
         if (getBenchmarks().get(i) != null) {
-          joiner.add(getBenchmarks().get(i).toUrlQueryString(String.format("%sbenchmarks%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+          joiner.add(getBenchmarks().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sbenchmarks%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
     }
 
     // add `enabled` to the URL query string
     if (getEnabled() != null) {
-      joiner.add(String.format("%senabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEnabled()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%senabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEnabled()))));
     }
 
     // add `error` to the URL query string
     if (getError() != null) {
       for (String _key : getError().keySet()) {
-        joiner.add(String.format("%serror%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%serror%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getError().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getError().get(_key)))));
       }
     }
 
     // add `id` to the URL query string
     if (getId() != null) {
-      joiner.add(String.format("%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
     }
 
     // add `name` to the URL query string
     if (getName() != null) {
-      joiner.add(String.format("%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
     }
 
     // add `options` to the URL query string
     if (getOptions() != null) {
-      joiner.add(String.format("%soptions%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOptions()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%soptions%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOptions()))));
     }
 
     // add `proxy` to the URL query string
     if (getProxy() != null) {
-      joiner.add(String.format("%sproxy%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProxy()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sproxy%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProxy()))));
     }
 
     // add `url` to the URL query string
     if (getUrl() != null) {
-      joiner.add(String.format("%surl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUrl()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%surl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUrl()))));
     }
 
     // add `href` to the URL query string
     if (getHref() != null) {
-      joiner.add(String.format("%shref%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHref()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%shref%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHref()))));
     }
 
     return joiner.toString();

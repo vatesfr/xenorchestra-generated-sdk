@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**action** | **String** |  | 
-**effect** | **String** |  | 
-**resource** | **String** |  | 
+**action** | **Action** |  (enum: export, update, *, delete, read, update:tags, instantiate) | 
+**effect** | **Effect** |  (enum: allow, deny) | 
+**resource** | **Resource** |  (enum: vm-template) | 
 **role_id** | **String** |  | 
 **selector** | Option<**String**> |  | [optional]
 

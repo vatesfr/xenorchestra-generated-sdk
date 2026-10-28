@@ -120,7 +120,7 @@ public class Example {
 
 ## getAlarmWithHttpInfo
 
-> ApiResponse<UnbrandXoAlarm> getAlarm getAlarmWithHttpInfo(id)
+> ApiResponse<UnbrandXoAlarm> getAlarmWithHttpInfo(id)
 
 
 
@@ -292,7 +292,7 @@ public class Example {
 
 ## getAlarmsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandedXoAlarm> getAlarms getAlarmsWithHttpInfo(fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandedXoAlarm> getAlarmsWithHttpInfo(fields, ndjson, markdown, filter, limit)
 
 
 
@@ -473,7 +473,7 @@ public class Example {
 
 ## getHostAlarmsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getHostAlarms getHostAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getHostAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -657,7 +657,7 @@ public class Example {
 
 ## getNetworkAlarmsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getNetworkAlarms getNetworkAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getNetworkAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -841,7 +841,7 @@ public class Example {
 
 ## getPifAlarmsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getPifAlarms getPifAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getPifAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1025,7 +1025,7 @@ public class Example {
 
 ## getPoolAlarmsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getPoolAlarms getPoolAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getPoolAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1209,7 +1209,7 @@ public class Example {
 
 ## getSrAlarmsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getSrAlarms getSrAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getSrAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1393,7 +1393,7 @@ public class Example {
 
 ## getVbdAlarmsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVbdAlarms getVbdAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVbdAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1577,7 +1577,7 @@ public class Example {
 
 ## getVdiAlarmsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVdiAlarms getVdiAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVdiAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1761,7 +1761,7 @@ public class Example {
 
 ## getVdiSnapshotAlarmsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVdiSnapshotAlarms getVdiSnapshotAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVdiSnapshotAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1945,7 +1945,7 @@ public class Example {
 
 ## getVifAlarmsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVifAlarms getVifAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVifAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -2129,7 +2129,7 @@ public class Example {
 
 ## getVmAlarmsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVmAlarms getVmAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVmAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -2313,7 +2313,7 @@ public class Example {
 
 ## getVmControllerAlarmsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVmControllerAlarms getVmControllerAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVmControllerAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -2497,7 +2497,7 @@ public class Example {
 
 ## getVmSnapshotAlarmsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVmSnapshotAlarms getVmSnapshotAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVmSnapshotAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -2681,7 +2681,7 @@ public class Example {
 
 ## getVmTemplateAlarmsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVmTemplateAlarms getVmTemplateAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVmTemplateAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 

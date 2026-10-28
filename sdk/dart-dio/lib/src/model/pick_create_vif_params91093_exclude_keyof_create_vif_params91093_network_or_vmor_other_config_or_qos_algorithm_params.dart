@@ -168,50 +168,59 @@ class _$PickCreateVifParams91093ExcludeKeyofCreateVifParams91093NetworkOrVMOrOth
         case r'MTU':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.MTU = valueDes;
           break;
         case r'currently_attached':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.currentlyAttached = valueDes;
           break;
         case r'device':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.device = valueDes;
           break;
         case r'ipv4_allowed':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
+            specifiedType:
+                const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
           result.ipv4Allowed.replace(valueDes);
           break;
         case r'ipv6_allowed':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
+            specifiedType:
+                const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
           result.ipv6Allowed.replace(valueDes);
           break;
         case r'locking_mode':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(VIFLOCKINGMODE),
-          ) as VIFLOCKINGMODE;
+            specifiedType: const FullType.nullable(VIFLOCKINGMODE),
+          ) as VIFLOCKINGMODE?;
+          if (valueDes == null) continue;
           result.lockingMode = valueDes;
           break;
         case r'qos_algorithm_type':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.qosAlgorithmType = valueDes;
           break;
         default:

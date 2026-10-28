@@ -37,7 +37,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   UnbrandVmDashboardAtBackupsInfo91Replication93AnyOf.JSON_PROPERTY_SR,
   UnbrandVmDashboardAtBackupsInfo91Replication93AnyOf.JSON_PROPERTY_TIMESTAMP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class UnbrandVmDashboardAtBackupsInfo91Replication93AnyOf {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -64,14 +64,14 @@ public class UnbrandVmDashboardAtBackupsInfo91Replication93AnyOf {
    * @return id
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
@@ -88,14 +88,14 @@ public class UnbrandVmDashboardAtBackupsInfo91Replication93AnyOf {
    * @return sr
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SR)
+  @JsonProperty(value = JSON_PROPERTY_SR, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getSr() {
     return sr;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SR)
+  @JsonProperty(value = JSON_PROPERTY_SR, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSr(@javax.annotation.Nullable String sr) {
     this.sr = sr;
@@ -112,14 +112,14 @@ public class UnbrandVmDashboardAtBackupsInfo91Replication93AnyOf {
    * @return timestamp
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_TIMESTAMP)
+  @JsonProperty(value = JSON_PROPERTY_TIMESTAMP, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getTimestamp() {
     return timestamp;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TIMESTAMP)
+  @JsonProperty(value = JSON_PROPERTY_TIMESTAMP, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setTimestamp(@javax.annotation.Nonnull Double timestamp) {
     this.timestamp = timestamp;
@@ -164,10 +164,7 @@ public class UnbrandVmDashboardAtBackupsInfo91Replication93AnyOf {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -204,17 +201,17 @@ public class UnbrandVmDashboardAtBackupsInfo91Replication93AnyOf {
 
     // add `id` to the URL query string
     if (getId() != null) {
-      joiner.add(String.format("%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
     }
 
     // add `sr` to the URL query string
     if (getSr() != null) {
-      joiner.add(String.format("%ssr%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSr()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssr%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSr()))));
     }
 
     // add `timestamp` to the URL query string
     if (getTimestamp() != null) {
-      joiner.add(String.format("%stimestamp%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTimestamp()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%stimestamp%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTimestamp()))));
     }
 
     return joiner.toString();

@@ -51,12 +51,12 @@ pub async fn get_schedule(
     id: &str,
 ) -> Result<models::UnbrandXoSchedule, Error<GetScheduleError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
     let uri_str = format!(
         "{}/schedules/{id}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -112,28 +112,28 @@ pub async fn get_schedules(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoSchedule, Error<GetSchedulesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!("{}/schedules", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -185,19 +185,19 @@ pub async fn run_schedule(
     sync: Option<bool>,
 ) -> Result<models::CreateActionReturnTypeVoid, Error<RunScheduleError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_sync = sync;
+    let p_path_id = id;
+    let p_query_sync = sync;
 
     let uri_str = format!(
         "{}/schedules/{id}/actions/run",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {

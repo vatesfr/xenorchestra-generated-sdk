@@ -41,12 +41,12 @@ pub async fn get_dashboard(
     ndjson: Option<bool>,
 ) -> Result<models::XoaDashboard, Error<GetDashboardError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_ndjson = ndjson;
+    let p_query_ndjson = ndjson;
 
     let uri_str = format!("{}/dashboard", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {

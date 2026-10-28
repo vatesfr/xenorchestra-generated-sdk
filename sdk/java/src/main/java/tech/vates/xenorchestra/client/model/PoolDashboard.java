@@ -45,7 +45,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PoolDashboard.JSON_PROPERTY_SRS,
   PoolDashboard.JSON_PROPERTY_VMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PoolDashboard {
   public static final String JSON_PROPERTY_ALARMS = "alarms";
   @javax.annotation.Nonnull
@@ -88,14 +88,14 @@ public class PoolDashboard {
    * @return alarms
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ALARMS)
+  @JsonProperty(value = JSON_PROPERTY_ALARMS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<String> getAlarms() {
     return alarms;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ALARMS)
+  @JsonProperty(value = JSON_PROPERTY_ALARMS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setAlarms(@javax.annotation.Nonnull List<String> alarms) {
     this.alarms = alarms;
@@ -112,14 +112,14 @@ public class PoolDashboard {
    * @return cpuProvisioning
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_CPU_PROVISIONING)
+  @JsonProperty(value = JSON_PROPERTY_CPU_PROVISIONING, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public PoolDashboardCpuProvisioning getCpuProvisioning() {
     return cpuProvisioning;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CPU_PROVISIONING)
+  @JsonProperty(value = JSON_PROPERTY_CPU_PROVISIONING, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCpuProvisioning(@javax.annotation.Nonnull PoolDashboardCpuProvisioning cpuProvisioning) {
     this.cpuProvisioning = cpuProvisioning;
@@ -136,14 +136,14 @@ public class PoolDashboard {
    * @return hosts
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_HOSTS)
+  @JsonProperty(value = JSON_PROPERTY_HOSTS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public PoolDashboardHosts getHosts() {
     return hosts;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_HOSTS)
+  @JsonProperty(value = JSON_PROPERTY_HOSTS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setHosts(@javax.annotation.Nonnull PoolDashboardHosts hosts) {
     this.hosts = hosts;
@@ -160,14 +160,14 @@ public class PoolDashboard {
    * @return srs
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_SRS)
+  @JsonProperty(value = JSON_PROPERTY_SRS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public PoolDashboardSrs getSrs() {
     return srs;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SRS)
+  @JsonProperty(value = JSON_PROPERTY_SRS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSrs(@javax.annotation.Nonnull PoolDashboardSrs srs) {
     this.srs = srs;
@@ -184,14 +184,14 @@ public class PoolDashboard {
    * @return vms
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_VMS)
+  @JsonProperty(value = JSON_PROPERTY_VMS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public PoolDashboardVms getVms() {
     return vms;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_VMS)
+  @JsonProperty(value = JSON_PROPERTY_VMS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setVms(@javax.annotation.Nonnull PoolDashboardVms vms) {
     this.vms = vms;
@@ -240,10 +240,7 @@ public class PoolDashboard {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -281,8 +278,8 @@ public class PoolDashboard {
     // add `alarms` to the URL query string
     if (getAlarms() != null) {
       for (int i = 0; i < getAlarms().size(); i++) {
-        joiner.add(String.format("%salarms%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%salarms%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getAlarms().get(i)))));
       }
     }

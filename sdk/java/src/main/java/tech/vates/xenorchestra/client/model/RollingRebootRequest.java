@@ -35,7 +35,7 @@ import tech.vates.xenorchestra.client.ApiClient;
 @JsonPropertyOrder({
   RollingRebootRequest.JSON_PROPERTY_SHUTDOWN_PINNED_VMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class RollingRebootRequest {
   public static final String JSON_PROPERTY_SHUTDOWN_PINNED_VMS = "shutdownPinnedVms";
   @javax.annotation.Nullable
@@ -54,14 +54,14 @@ public class RollingRebootRequest {
    * @return shutdownPinnedVms
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SHUTDOWN_PINNED_VMS)
+  @JsonProperty(value = JSON_PROPERTY_SHUTDOWN_PINNED_VMS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getShutdownPinnedVms() {
     return shutdownPinnedVms;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SHUTDOWN_PINNED_VMS)
+  @JsonProperty(value = JSON_PROPERTY_SHUTDOWN_PINNED_VMS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setShutdownPinnedVms(@javax.annotation.Nullable Boolean shutdownPinnedVms) {
     this.shutdownPinnedVms = shutdownPinnedVms;
@@ -102,10 +102,7 @@ public class RollingRebootRequest {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -142,7 +139,7 @@ public class RollingRebootRequest {
 
     // add `shutdownPinnedVms` to the URL query string
     if (getShutdownPinnedVms() != null) {
-      joiner.add(String.format("%sshutdownPinnedVms%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getShutdownPinnedVms()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sshutdownPinnedVms%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getShutdownPinnedVms()))));
     }
 
     return joiner.toString();

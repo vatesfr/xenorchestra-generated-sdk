@@ -106,12 +106,12 @@ pub async fn get_backup_job(
     id: &str,
 ) -> Result<models::UnbrandAnyXoBackupJob, Error<GetBackupJobError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
     let uri_str = format!(
         "{}/backup-jobs/{id}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -167,28 +167,28 @@ pub async fn get_backup_jobs(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandAnyXoBackupJob, Error<GetBackupJobsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!("{}/backup-jobs", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -233,17 +233,18 @@ pub async fn get_backup_jobs(
     }
 }
 
+#[deprecated]
 pub async fn get_metadata_backup_job(
     configuration: &configuration::Configuration,
     id: &str,
 ) -> Result<models::UnbrandUnbrandedXoMetadataBackupJob, Error<GetMetadataBackupJobError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
     let uri_str = format!(
         "{}/backup/jobs/metadata/{id}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -290,6 +291,7 @@ pub async fn get_metadata_backup_job(
 }
 
 /// Returns all metadata backup jobs that match the following privilege: - resource: backup-job, action: read
+#[deprecated]
 pub async fn get_metadata_backup_jobs(
     configuration: &configuration::Configuration,
     fields: Option<&str>,
@@ -300,28 +302,28 @@ pub async fn get_metadata_backup_jobs(
 ) -> Result<models::SendObjectsPartialUnbrandXoMetadataBackupJob, Error<GetMetadataBackupJobsError>>
 {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!("{}/backup/jobs/metadata", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -366,17 +368,18 @@ pub async fn get_metadata_backup_jobs(
     }
 }
 
+#[deprecated]
 pub async fn get_mirror_backup_job(
     configuration: &configuration::Configuration,
     id: &str,
 ) -> Result<models::UnbrandUnbrandedXoMirrorBackupJob, Error<GetMirrorBackupJobError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
     let uri_str = format!(
         "{}/backup/jobs/mirror/{id}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -423,6 +426,7 @@ pub async fn get_mirror_backup_job(
 }
 
 /// Returns all mirror backup jobs that match the following privilege: - resource: backup-job, action: read
+#[deprecated]
 pub async fn get_mirror_backup_jobs(
     configuration: &configuration::Configuration,
     fields: Option<&str>,
@@ -432,28 +436,28 @@ pub async fn get_mirror_backup_jobs(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoMirrorBackupJob, Error<GetMirrorBackupJobsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!("{}/backup/jobs/mirror", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -498,17 +502,18 @@ pub async fn get_mirror_backup_jobs(
     }
 }
 
+#[deprecated]
 pub async fn get_vm_backup_job(
     configuration: &configuration::Configuration,
     id: &str,
 ) -> Result<models::UnbrandUnbrandedXoVmBackupJob, Error<GetVmBackupJobError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
     let uri_str = format!(
         "{}/backup/jobs/vm/{id}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -555,6 +560,7 @@ pub async fn get_vm_backup_job(
 }
 
 /// Returns all VM backup jobs that match the following privilege: - resource: backup-job, action: read
+#[deprecated]
 pub async fn get_vm_backup_jobs(
     configuration: &configuration::Configuration,
     fields: Option<&str>,
@@ -564,28 +570,28 @@ pub async fn get_vm_backup_jobs(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoVmBackupJob, Error<GetVmBackupJobsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!("{}/backup/jobs/vm", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -641,33 +647,33 @@ pub async fn vm_get_vm_backup_jobs(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoVmBackupJob, Error<VmGetVmBackupJobsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vms/{id}/backup-jobs",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {

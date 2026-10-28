@@ -61,7 +61,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   UnbrandCreateVmBody.JSON_PROPERTY_VGPU_TYPE,
   UnbrandCreateVmBody.JSON_PROPERTY_VIFS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class UnbrandCreateVmBody {
   public static final String JSON_PROPERTY_AFFINITY = "affinity";
   @javax.annotation.Nullable
@@ -241,14 +241,14 @@ private final String value;
    * @return affinity
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_AFFINITY)
+  @JsonProperty(value = JSON_PROPERTY_AFFINITY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getAffinity() {
     return affinity;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_AFFINITY)
+  @JsonProperty(value = JSON_PROPERTY_AFFINITY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAffinity(@javax.annotation.Nullable String affinity) {
     this.affinity = affinity;
@@ -265,14 +265,14 @@ private final String value;
    * @return autoPoweron
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_AUTO_POWERON)
+  @JsonProperty(value = JSON_PROPERTY_AUTO_POWERON, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getAutoPoweron() {
     return autoPoweron;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_AUTO_POWERON)
+  @JsonProperty(value = JSON_PROPERTY_AUTO_POWERON, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAutoPoweron(@javax.annotation.Nullable Boolean autoPoweron) {
     this.autoPoweron = autoPoweron;
@@ -289,14 +289,14 @@ private final String value;
    * @return boot
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_BOOT)
+  @JsonProperty(value = JSON_PROPERTY_BOOT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getBoot() {
     return boot;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_BOOT)
+  @JsonProperty(value = JSON_PROPERTY_BOOT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBoot(@javax.annotation.Nullable Boolean boot) {
     this.boot = boot;
@@ -313,14 +313,14 @@ private final String value;
    * @return clone
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CLONE)
+  @JsonProperty(value = JSON_PROPERTY_CLONE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getClone() {
     return clone;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CLONE)
+  @JsonProperty(value = JSON_PROPERTY_CLONE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setClone(@javax.annotation.Nullable Boolean clone) {
     this.clone = clone;
@@ -337,14 +337,14 @@ private final String value;
    * @return cloudConfig
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CLOUD_CONFIG)
+  @JsonProperty(value = JSON_PROPERTY_CLOUD_CONFIG, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getCloudConfig() {
     return cloudConfig;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CLOUD_CONFIG)
+  @JsonProperty(value = JSON_PROPERTY_CLOUD_CONFIG, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCloudConfig(@javax.annotation.Nullable String cloudConfig) {
     this.cloudConfig = cloudConfig;
@@ -361,14 +361,14 @@ private final String value;
    * @return copyHostBiosStrings
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_COPY_HOST_BIOS_STRINGS)
+  @JsonProperty(value = JSON_PROPERTY_COPY_HOST_BIOS_STRINGS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getCopyHostBiosStrings() {
     return copyHostBiosStrings;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_COPY_HOST_BIOS_STRINGS)
+  @JsonProperty(value = JSON_PROPERTY_COPY_HOST_BIOS_STRINGS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCopyHostBiosStrings(@javax.annotation.Nullable Boolean copyHostBiosStrings) {
     this.copyHostBiosStrings = copyHostBiosStrings;
@@ -385,14 +385,14 @@ private final String value;
    * @return cpus
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CPUS)
+  @JsonProperty(value = JSON_PROPERTY_CPUS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getCpus() {
     return cpus;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CPUS)
+  @JsonProperty(value = JSON_PROPERTY_CPUS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCpus(@javax.annotation.Nullable Double cpus) {
     this.cpus = cpus;
@@ -409,14 +409,14 @@ private final String value;
    * @return createVtpm
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CREATE_VTPM)
+  @JsonProperty(value = JSON_PROPERTY_CREATE_VTPM, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getCreateVtpm() {
     return createVtpm;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CREATE_VTPM)
+  @JsonProperty(value = JSON_PROPERTY_CREATE_VTPM, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreateVtpm(@javax.annotation.Nullable Boolean createVtpm) {
     this.createVtpm = createVtpm;
@@ -433,14 +433,14 @@ private final String value;
    * @return destroyCloudConfigVdi
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DESTROY_CLOUD_CONFIG_VDI)
+  @JsonProperty(value = JSON_PROPERTY_DESTROY_CLOUD_CONFIG_VDI, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getDestroyCloudConfigVdi() {
     return destroyCloudConfigVdi;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DESTROY_CLOUD_CONFIG_VDI)
+  @JsonProperty(value = JSON_PROPERTY_DESTROY_CLOUD_CONFIG_VDI, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDestroyCloudConfigVdi(@javax.annotation.Nullable Boolean destroyCloudConfigVdi) {
     this.destroyCloudConfigVdi = destroyCloudConfigVdi;
@@ -457,14 +457,14 @@ private final String value;
    * @return gpuGroup
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_GPU_GROUP)
+  @JsonProperty(value = JSON_PROPERTY_GPU_GROUP, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getGpuGroup() {
     return gpuGroup;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_GPU_GROUP)
+  @JsonProperty(value = JSON_PROPERTY_GPU_GROUP, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGpuGroup(@javax.annotation.Nullable String gpuGroup) {
     this.gpuGroup = gpuGroup;
@@ -481,14 +481,14 @@ private final String value;
    * @return highAvailability
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_HIGH_AVAILABILITY)
+  @JsonProperty(value = JSON_PROPERTY_HIGH_AVAILABILITY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public HighAvailabilityEnum getHighAvailability() {
     return highAvailability;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_HIGH_AVAILABILITY)
+  @JsonProperty(value = JSON_PROPERTY_HIGH_AVAILABILITY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHighAvailability(@javax.annotation.Nullable HighAvailabilityEnum highAvailability) {
     this.highAvailability = highAvailability;
@@ -505,14 +505,14 @@ private final String value;
    * @return hvmBootFirmware
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_HVM_BOOT_FIRMWARE)
+  @JsonProperty(value = JSON_PROPERTY_HVM_BOOT_FIRMWARE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public HvmBootFirmwareEnum getHvmBootFirmware() {
     return hvmBootFirmware;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_HVM_BOOT_FIRMWARE)
+  @JsonProperty(value = JSON_PROPERTY_HVM_BOOT_FIRMWARE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHvmBootFirmware(@javax.annotation.Nullable HvmBootFirmwareEnum hvmBootFirmware) {
     this.hvmBootFirmware = hvmBootFirmware;
@@ -529,14 +529,14 @@ private final String value;
    * @return install
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_INSTALL)
+  @JsonProperty(value = JSON_PROPERTY_INSTALL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public UnbrandCreateVmBodyInstall getInstall() {
     return install;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_INSTALL)
+  @JsonProperty(value = JSON_PROPERTY_INSTALL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInstall(@javax.annotation.Nullable UnbrandCreateVmBodyInstall install) {
     this.install = install;
@@ -553,14 +553,14 @@ private final String value;
    * @return memory
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_MEMORY)
+  @JsonProperty(value = JSON_PROPERTY_MEMORY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getMemory() {
     return memory;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MEMORY)
+  @JsonProperty(value = JSON_PROPERTY_MEMORY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMemory(@javax.annotation.Nullable Double memory) {
     this.memory = memory;
@@ -577,14 +577,14 @@ private final String value;
    * @return nameDescription
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_NAME_DESCRIPTION)
+  @JsonProperty(value = JSON_PROPERTY_NAME_DESCRIPTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getNameDescription() {
     return nameDescription;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME_DESCRIPTION)
+  @JsonProperty(value = JSON_PROPERTY_NAME_DESCRIPTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNameDescription(@javax.annotation.Nullable String nameDescription) {
     this.nameDescription = nameDescription;
@@ -601,14 +601,14 @@ private final String value;
    * @return nameLabel
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_NAME_LABEL)
+  @JsonProperty(value = JSON_PROPERTY_NAME_LABEL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getNameLabel() {
     return nameLabel;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME_LABEL)
+  @JsonProperty(value = JSON_PROPERTY_NAME_LABEL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setNameLabel(@javax.annotation.Nonnull String nameLabel) {
     this.nameLabel = nameLabel;
@@ -625,14 +625,14 @@ private final String value;
    * @return networkConfig
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_NETWORK_CONFIG)
+  @JsonProperty(value = JSON_PROPERTY_NETWORK_CONFIG, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getNetworkConfig() {
     return networkConfig;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NETWORK_CONFIG)
+  @JsonProperty(value = JSON_PROPERTY_NETWORK_CONFIG, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNetworkConfig(@javax.annotation.Nullable String networkConfig) {
     this.networkConfig = networkConfig;
@@ -649,14 +649,14 @@ private final String value;
    * @return secureBoot
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SECURE_BOOT)
+  @JsonProperty(value = JSON_PROPERTY_SECURE_BOOT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getSecureBoot() {
     return secureBoot;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SECURE_BOOT)
+  @JsonProperty(value = JSON_PROPERTY_SECURE_BOOT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSecureBoot(@javax.annotation.Nullable Boolean secureBoot) {
     this.secureBoot = secureBoot;
@@ -673,14 +673,14 @@ private final String value;
    * @return template
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_TEMPLATE)
+  @JsonProperty(value = JSON_PROPERTY_TEMPLATE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getTemplate() {
     return template;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TEMPLATE)
+  @JsonProperty(value = JSON_PROPERTY_TEMPLATE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setTemplate(@javax.annotation.Nonnull String template) {
     this.template = template;
@@ -705,14 +705,14 @@ private final String value;
    * @return vdis
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_VDIS)
+  @JsonProperty(value = JSON_PROPERTY_VDIS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<UnbrandCreateVmBodyVdisInner> getVdis() {
     return vdis;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_VDIS)
+  @JsonProperty(value = JSON_PROPERTY_VDIS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVdis(@javax.annotation.Nullable List<UnbrandCreateVmBodyVdisInner> vdis) {
     this.vdis = vdis;
@@ -729,14 +729,14 @@ private final String value;
    * @return vgpuType
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_VGPU_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_VGPU_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getVgpuType() {
     return vgpuType;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_VGPU_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_VGPU_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVgpuType(@javax.annotation.Nullable String vgpuType) {
     this.vgpuType = vgpuType;
@@ -761,14 +761,14 @@ private final String value;
    * @return vifs
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_VIFS)
+  @JsonProperty(value = JSON_PROPERTY_VIFS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<UnbrandCreateVmBodyVifsInner> getVifs() {
     return vifs;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_VIFS)
+  @JsonProperty(value = JSON_PROPERTY_VIFS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVifs(@javax.annotation.Nullable List<UnbrandCreateVmBodyVifsInner> vifs) {
     this.vifs = vifs;
@@ -851,10 +851,7 @@ private final String value;
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -891,62 +888,62 @@ private final String value;
 
     // add `affinity` to the URL query string
     if (getAffinity() != null) {
-      joiner.add(String.format("%saffinity%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAffinity()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%saffinity%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAffinity()))));
     }
 
     // add `autoPoweron` to the URL query string
     if (getAutoPoweron() != null) {
-      joiner.add(String.format("%sautoPoweron%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAutoPoweron()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sautoPoweron%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAutoPoweron()))));
     }
 
     // add `boot` to the URL query string
     if (getBoot() != null) {
-      joiner.add(String.format("%sboot%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBoot()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sboot%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBoot()))));
     }
 
     // add `clone` to the URL query string
     if (getClone() != null) {
-      joiner.add(String.format("%sclone%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getClone()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sclone%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getClone()))));
     }
 
     // add `cloud_config` to the URL query string
     if (getCloudConfig() != null) {
-      joiner.add(String.format("%scloud_config%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCloudConfig()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%scloud_config%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCloudConfig()))));
     }
 
     // add `copyHostBiosStrings` to the URL query string
     if (getCopyHostBiosStrings() != null) {
-      joiner.add(String.format("%scopyHostBiosStrings%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCopyHostBiosStrings()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%scopyHostBiosStrings%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCopyHostBiosStrings()))));
     }
 
     // add `cpus` to the URL query string
     if (getCpus() != null) {
-      joiner.add(String.format("%scpus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCpus()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%scpus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCpus()))));
     }
 
     // add `createVtpm` to the URL query string
     if (getCreateVtpm() != null) {
-      joiner.add(String.format("%screateVtpm%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCreateVtpm()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%screateVtpm%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCreateVtpm()))));
     }
 
     // add `destroy_cloud_config_vdi` to the URL query string
     if (getDestroyCloudConfigVdi() != null) {
-      joiner.add(String.format("%sdestroy_cloud_config_vdi%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDestroyCloudConfigVdi()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdestroy_cloud_config_vdi%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDestroyCloudConfigVdi()))));
     }
 
     // add `gpuGroup` to the URL query string
     if (getGpuGroup() != null) {
-      joiner.add(String.format("%sgpuGroup%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGpuGroup()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sgpuGroup%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGpuGroup()))));
     }
 
     // add `high_availability` to the URL query string
     if (getHighAvailability() != null) {
-      joiner.add(String.format("%shigh_availability%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHighAvailability()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%shigh_availability%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHighAvailability()))));
     }
 
     // add `hvmBootFirmware` to the URL query string
     if (getHvmBootFirmware() != null) {
-      joiner.add(String.format("%shvmBootFirmware%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHvmBootFirmware()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%shvmBootFirmware%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHvmBootFirmware()))));
     }
 
     // add `install` to the URL query string
@@ -956,55 +953,55 @@ private final String value;
 
     // add `memory` to the URL query string
     if (getMemory() != null) {
-      joiner.add(String.format("%smemory%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMemory()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%smemory%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMemory()))));
     }
 
     // add `name_description` to the URL query string
     if (getNameDescription() != null) {
-      joiner.add(String.format("%sname_description%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameDescription()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname_description%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameDescription()))));
     }
 
     // add `name_label` to the URL query string
     if (getNameLabel() != null) {
-      joiner.add(String.format("%sname_label%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameLabel()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname_label%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameLabel()))));
     }
 
     // add `network_config` to the URL query string
     if (getNetworkConfig() != null) {
-      joiner.add(String.format("%snetwork_config%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNetworkConfig()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%snetwork_config%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNetworkConfig()))));
     }
 
     // add `secureBoot` to the URL query string
     if (getSecureBoot() != null) {
-      joiner.add(String.format("%ssecureBoot%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSecureBoot()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssecureBoot%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSecureBoot()))));
     }
 
     // add `template` to the URL query string
     if (getTemplate() != null) {
-      joiner.add(String.format("%stemplate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTemplate()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%stemplate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTemplate()))));
     }
 
     // add `vdis` to the URL query string
     if (getVdis() != null) {
       for (int i = 0; i < getVdis().size(); i++) {
         if (getVdis().get(i) != null) {
-          joiner.add(getVdis().get(i).toUrlQueryString(String.format("%svdis%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+          joiner.add(getVdis().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%svdis%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
     }
 
     // add `vgpuType` to the URL query string
     if (getVgpuType() != null) {
-      joiner.add(String.format("%svgpuType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVgpuType()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%svgpuType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVgpuType()))));
     }
 
     // add `vifs` to the URL query string
     if (getVifs() != null) {
       for (int i = 0; i < getVifs().size(); i++) {
         if (getVifs().get(i) != null) {
-          joiner.add(getVifs().get(i).toUrlQueryString(String.format("%svifs%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+          joiner.add(getVifs().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%svifs%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
     }

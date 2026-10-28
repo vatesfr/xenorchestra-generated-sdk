@@ -47,21 +47,6 @@ func patchGeneratedJava(root string) error {
 	if err := replacePatternAcrossFiles(sources, ".java", javaNumericEnumPattern, "$1", 6); err != nil {
 		return fmt.Errorf("patch Java numeric enums: %w", err)
 	}
-	// Schemas with both properties and additionalProperties extend HashMap.
-	// Jackson then deserializes them as plain maps and every typed getter
-	// returns null (task properties.objectId, backup logs, token client).
-	// Undeclared keys are still kept by the generated @JsonAnySetter.
-	models := filepath.Join(sources, "tech", "vates", "xenorchestra", "client", "model")
-	for _, replacement := range [][2]string{
-		{" extends HashMap<String, Object> {", " {"},
-		{" &&\n        super.equals(o);", ";"},
-		{"super.hashCode(), ", ""},
-		{"    sb.append(\"    \").append(toIndentedString(super.toString())).append(\"\\n\");\n", ""},
-	} {
-		if err := replaceExactlyAcrossFiles(models, ".java", replacement[0], replacement[1], 9); err != nil {
-			return fmt.Errorf("patch Java map-based models: %w", err)
-		}
-	}
 	// The native library generates no authentication code at all. Xen
 	// Orchestra accepts exactly one of the authenticationToken cookie or HTTP
 	// basic credentials, so each helper replaces the request interceptor.

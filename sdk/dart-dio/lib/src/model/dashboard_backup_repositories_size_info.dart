@@ -98,17 +98,19 @@ class _$DashboardBackupRepositoriesSizeInfoSerializer
         case r'other':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType:
-                const FullType(DashboardBackupRepositoriesSizeInfoOther),
-          ) as DashboardBackupRepositoriesSizeInfoOther;
+            specifiedType: const FullType.nullable(
+                DashboardBackupRepositoriesSizeInfoOther),
+          ) as DashboardBackupRepositoriesSizeInfoOther?;
+          if (valueDes == null) continue;
           result.other.replace(valueDes);
           break;
         case r's3':
           final valueDes = serializers.deserialize(
             value,
             specifiedType:
-                const FullType(DashboardBackupRepositoriesSizeInfoS3),
-          ) as DashboardBackupRepositoriesSizeInfoS3;
+                const FullType.nullable(DashboardBackupRepositoriesSizeInfoS3),
+          ) as DashboardBackupRepositoriesSizeInfoS3?;
+          if (valueDes == null) continue;
           result.s3.replace(valueDes);
           break;
         default:

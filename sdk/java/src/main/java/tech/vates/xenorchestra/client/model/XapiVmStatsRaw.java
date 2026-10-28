@@ -60,7 +60,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   XapiVmStatsRaw.JSON_PROPERTY_VIFS,
   XapiVmStatsRaw.JSON_PROPERTY_XVDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class XapiVmStatsRaw {
   public static final String JSON_PROPERTY_CPU_USAGE = "cpuUsage";
   @javax.annotation.Nullable
@@ -159,14 +159,14 @@ public class XapiVmStatsRaw {
    * @return cpuUsage
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CPU_USAGE)
+  @JsonProperty(value = JSON_PROPERTY_CPU_USAGE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<Double> getCpuUsage() {
     return cpuUsage;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CPU_USAGE)
+  @JsonProperty(value = JSON_PROPERTY_CPU_USAGE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCpuUsage(@javax.annotation.Nullable List<Double> cpuUsage) {
     this.cpuUsage = cpuUsage;
@@ -191,14 +191,14 @@ public class XapiVmStatsRaw {
    * @return cpus
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CPUS)
+  @JsonProperty(value = JSON_PROPERTY_CPUS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, List<Double>> getCpus() {
     return cpus;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CPUS)
+  @JsonProperty(value = JSON_PROPERTY_CPUS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCpus(@javax.annotation.Nullable Map<String, List<Double>> cpus) {
     this.cpus = cpus;
@@ -215,14 +215,14 @@ public class XapiVmStatsRaw {
    * @return iops
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_IOPS)
+  @JsonProperty(value = JSON_PROPERTY_IOPS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public XapiHostStatsRawIoThroughput getIops() {
     return iops;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_IOPS)
+  @JsonProperty(value = JSON_PROPERTY_IOPS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIops(@javax.annotation.Nullable XapiHostStatsRawIoThroughput iops) {
     this.iops = iops;
@@ -247,14 +247,14 @@ public class XapiVmStatsRaw {
    * @return memory
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_MEMORY)
+  @JsonProperty(value = JSON_PROPERTY_MEMORY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<Double> getMemory() {
     return memory;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MEMORY)
+  @JsonProperty(value = JSON_PROPERTY_MEMORY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMemory(@javax.annotation.Nullable List<Double> memory) {
     this.memory = memory;
@@ -279,14 +279,14 @@ public class XapiVmStatsRaw {
    * @return memoryFree
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_MEMORY_FREE)
+  @JsonProperty(value = JSON_PROPERTY_MEMORY_FREE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<Double> getMemoryFree() {
     return memoryFree;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MEMORY_FREE)
+  @JsonProperty(value = JSON_PROPERTY_MEMORY_FREE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMemoryFree(@javax.annotation.Nullable List<Double> memoryFree) {
     this.memoryFree = memoryFree;
@@ -311,14 +311,14 @@ public class XapiVmStatsRaw {
    * @return memoryTarget
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_MEMORY_TARGET)
+  @JsonProperty(value = JSON_PROPERTY_MEMORY_TARGET, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<Double> getMemoryTarget() {
     return memoryTarget;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MEMORY_TARGET)
+  @JsonProperty(value = JSON_PROPERTY_MEMORY_TARGET, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMemoryTarget(@javax.annotation.Nullable List<Double> memoryTarget) {
     this.memoryTarget = memoryTarget;
@@ -343,14 +343,14 @@ public class XapiVmStatsRaw {
    * @return runstateBlocked
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_RUNSTATE_BLOCKED)
+  @JsonProperty(value = JSON_PROPERTY_RUNSTATE_BLOCKED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<Double> getRunstateBlocked() {
     return runstateBlocked;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_RUNSTATE_BLOCKED)
+  @JsonProperty(value = JSON_PROPERTY_RUNSTATE_BLOCKED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRunstateBlocked(@javax.annotation.Nullable List<Double> runstateBlocked) {
     this.runstateBlocked = runstateBlocked;
@@ -375,14 +375,14 @@ public class XapiVmStatsRaw {
    * @return runstateConcurrencyHazard
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_RUNSTATE_CONCURRENCY_HAZARD)
+  @JsonProperty(value = JSON_PROPERTY_RUNSTATE_CONCURRENCY_HAZARD, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<Double> getRunstateConcurrencyHazard() {
     return runstateConcurrencyHazard;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_RUNSTATE_CONCURRENCY_HAZARD)
+  @JsonProperty(value = JSON_PROPERTY_RUNSTATE_CONCURRENCY_HAZARD, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRunstateConcurrencyHazard(@javax.annotation.Nullable List<Double> runstateConcurrencyHazard) {
     this.runstateConcurrencyHazard = runstateConcurrencyHazard;
@@ -407,14 +407,14 @@ public class XapiVmStatsRaw {
    * @return runstateFullContention
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_RUNSTATE_FULL_CONTENTION)
+  @JsonProperty(value = JSON_PROPERTY_RUNSTATE_FULL_CONTENTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<Double> getRunstateFullContention() {
     return runstateFullContention;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_RUNSTATE_FULL_CONTENTION)
+  @JsonProperty(value = JSON_PROPERTY_RUNSTATE_FULL_CONTENTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRunstateFullContention(@javax.annotation.Nullable List<Double> runstateFullContention) {
     this.runstateFullContention = runstateFullContention;
@@ -439,14 +439,14 @@ public class XapiVmStatsRaw {
    * @return runstateFullrun
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_RUNSTATE_FULLRUN)
+  @JsonProperty(value = JSON_PROPERTY_RUNSTATE_FULLRUN, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<Double> getRunstateFullrun() {
     return runstateFullrun;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_RUNSTATE_FULLRUN)
+  @JsonProperty(value = JSON_PROPERTY_RUNSTATE_FULLRUN, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRunstateFullrun(@javax.annotation.Nullable List<Double> runstateFullrun) {
     this.runstateFullrun = runstateFullrun;
@@ -471,14 +471,14 @@ public class XapiVmStatsRaw {
    * @return runstatePartialContention
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_RUNSTATE_PARTIAL_CONTENTION)
+  @JsonProperty(value = JSON_PROPERTY_RUNSTATE_PARTIAL_CONTENTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<Double> getRunstatePartialContention() {
     return runstatePartialContention;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_RUNSTATE_PARTIAL_CONTENTION)
+  @JsonProperty(value = JSON_PROPERTY_RUNSTATE_PARTIAL_CONTENTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRunstatePartialContention(@javax.annotation.Nullable List<Double> runstatePartialContention) {
     this.runstatePartialContention = runstatePartialContention;
@@ -503,14 +503,14 @@ public class XapiVmStatsRaw {
    * @return runstatePartialRun
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_RUNSTATE_PARTIAL_RUN)
+  @JsonProperty(value = JSON_PROPERTY_RUNSTATE_PARTIAL_RUN, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<Double> getRunstatePartialRun() {
     return runstatePartialRun;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_RUNSTATE_PARTIAL_RUN)
+  @JsonProperty(value = JSON_PROPERTY_RUNSTATE_PARTIAL_RUN, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRunstatePartialRun(@javax.annotation.Nullable List<Double> runstatePartialRun) {
     this.runstatePartialRun = runstatePartialRun;
@@ -535,14 +535,14 @@ public class XapiVmStatsRaw {
    * @return vbdAvgquSz
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_VBD_AVGQU_SZ)
+  @JsonProperty(value = JSON_PROPERTY_VBD_AVGQU_SZ, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, List<Double>> getVbdAvgquSz() {
     return vbdAvgquSz;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_VBD_AVGQU_SZ)
+  @JsonProperty(value = JSON_PROPERTY_VBD_AVGQU_SZ, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVbdAvgquSz(@javax.annotation.Nullable Map<String, List<Double>> vbdAvgquSz) {
     this.vbdAvgquSz = vbdAvgquSz;
@@ -567,14 +567,14 @@ public class XapiVmStatsRaw {
    * @return vbdInflight
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_VBD_INFLIGHT)
+  @JsonProperty(value = JSON_PROPERTY_VBD_INFLIGHT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, List<Double>> getVbdInflight() {
     return vbdInflight;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_VBD_INFLIGHT)
+  @JsonProperty(value = JSON_PROPERTY_VBD_INFLIGHT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVbdInflight(@javax.annotation.Nullable Map<String, List<Double>> vbdInflight) {
     this.vbdInflight = vbdInflight;
@@ -599,14 +599,14 @@ public class XapiVmStatsRaw {
    * @return vbdIowait
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_VBD_IOWAIT)
+  @JsonProperty(value = JSON_PROPERTY_VBD_IOWAIT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, List<Double>> getVbdIowait() {
     return vbdIowait;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_VBD_IOWAIT)
+  @JsonProperty(value = JSON_PROPERTY_VBD_IOWAIT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVbdIowait(@javax.annotation.Nullable Map<String, List<Double>> vbdIowait) {
     this.vbdIowait = vbdIowait;
@@ -623,14 +623,14 @@ public class XapiVmStatsRaw {
    * @return vbdLatency
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_VBD_LATENCY)
+  @JsonProperty(value = JSON_PROPERTY_VBD_LATENCY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public XapiHostStatsRawIoThroughput getVbdLatency() {
     return vbdLatency;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_VBD_LATENCY)
+  @JsonProperty(value = JSON_PROPERTY_VBD_LATENCY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVbdLatency(@javax.annotation.Nullable XapiHostStatsRawIoThroughput vbdLatency) {
     this.vbdLatency = vbdLatency;
@@ -647,14 +647,14 @@ public class XapiVmStatsRaw {
    * @return vifErrors
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_VIF_ERRORS)
+  @JsonProperty(value = JSON_PROPERTY_VIF_ERRORS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public XapiHostStatsRawPifs getVifErrors() {
     return vifErrors;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_VIF_ERRORS)
+  @JsonProperty(value = JSON_PROPERTY_VIF_ERRORS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVifErrors(@javax.annotation.Nullable XapiHostStatsRawPifs vifErrors) {
     this.vifErrors = vifErrors;
@@ -671,14 +671,14 @@ public class XapiVmStatsRaw {
    * @return vifs
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_VIFS)
+  @JsonProperty(value = JSON_PROPERTY_VIFS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public XapiHostStatsRawPifs getVifs() {
     return vifs;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_VIFS)
+  @JsonProperty(value = JSON_PROPERTY_VIFS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVifs(@javax.annotation.Nullable XapiHostStatsRawPifs vifs) {
     this.vifs = vifs;
@@ -695,14 +695,14 @@ public class XapiVmStatsRaw {
    * @return xvds
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_XVDS)
+  @JsonProperty(value = JSON_PROPERTY_XVDS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public XapiVmStatsRawXvds getXvds() {
     return xvds;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_XVDS)
+  @JsonProperty(value = JSON_PROPERTY_XVDS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setXvds(@javax.annotation.Nullable XapiVmStatsRawXvds xvds) {
     this.xvds = xvds;
@@ -779,10 +779,7 @@ public class XapiVmStatsRaw {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -820,8 +817,8 @@ public class XapiVmStatsRaw {
     // add `cpuUsage` to the URL query string
     if (getCpuUsage() != null) {
       for (int i = 0; i < getCpuUsage().size(); i++) {
-        joiner.add(String.format("%scpuUsage%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%scpuUsage%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getCpuUsage().get(i)))));
       }
     }
@@ -829,8 +826,8 @@ public class XapiVmStatsRaw {
     // add `cpus` to the URL query string
     if (getCpus() != null) {
       for (String _key : getCpus().keySet()) {
-        joiner.add(String.format("%scpus%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%scpus%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getCpus().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getCpus().get(_key)))));
       }
     }
@@ -843,8 +840,8 @@ public class XapiVmStatsRaw {
     // add `memory` to the URL query string
     if (getMemory() != null) {
       for (int i = 0; i < getMemory().size(); i++) {
-        joiner.add(String.format("%smemory%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%smemory%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getMemory().get(i)))));
       }
     }
@@ -852,8 +849,8 @@ public class XapiVmStatsRaw {
     // add `memoryFree` to the URL query string
     if (getMemoryFree() != null) {
       for (int i = 0; i < getMemoryFree().size(); i++) {
-        joiner.add(String.format("%smemoryFree%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%smemoryFree%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getMemoryFree().get(i)))));
       }
     }
@@ -861,8 +858,8 @@ public class XapiVmStatsRaw {
     // add `memoryTarget` to the URL query string
     if (getMemoryTarget() != null) {
       for (int i = 0; i < getMemoryTarget().size(); i++) {
-        joiner.add(String.format("%smemoryTarget%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%smemoryTarget%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getMemoryTarget().get(i)))));
       }
     }
@@ -870,8 +867,8 @@ public class XapiVmStatsRaw {
     // add `runstateBlocked` to the URL query string
     if (getRunstateBlocked() != null) {
       for (int i = 0; i < getRunstateBlocked().size(); i++) {
-        joiner.add(String.format("%srunstateBlocked%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%srunstateBlocked%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getRunstateBlocked().get(i)))));
       }
     }
@@ -879,8 +876,8 @@ public class XapiVmStatsRaw {
     // add `runstateConcurrencyHazard` to the URL query string
     if (getRunstateConcurrencyHazard() != null) {
       for (int i = 0; i < getRunstateConcurrencyHazard().size(); i++) {
-        joiner.add(String.format("%srunstateConcurrencyHazard%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%srunstateConcurrencyHazard%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getRunstateConcurrencyHazard().get(i)))));
       }
     }
@@ -888,8 +885,8 @@ public class XapiVmStatsRaw {
     // add `runstateFullContention` to the URL query string
     if (getRunstateFullContention() != null) {
       for (int i = 0; i < getRunstateFullContention().size(); i++) {
-        joiner.add(String.format("%srunstateFullContention%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%srunstateFullContention%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getRunstateFullContention().get(i)))));
       }
     }
@@ -897,8 +894,8 @@ public class XapiVmStatsRaw {
     // add `runstateFullrun` to the URL query string
     if (getRunstateFullrun() != null) {
       for (int i = 0; i < getRunstateFullrun().size(); i++) {
-        joiner.add(String.format("%srunstateFullrun%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%srunstateFullrun%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getRunstateFullrun().get(i)))));
       }
     }
@@ -906,8 +903,8 @@ public class XapiVmStatsRaw {
     // add `runstatePartialContention` to the URL query string
     if (getRunstatePartialContention() != null) {
       for (int i = 0; i < getRunstatePartialContention().size(); i++) {
-        joiner.add(String.format("%srunstatePartialContention%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%srunstatePartialContention%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getRunstatePartialContention().get(i)))));
       }
     }
@@ -915,8 +912,8 @@ public class XapiVmStatsRaw {
     // add `runstatePartialRun` to the URL query string
     if (getRunstatePartialRun() != null) {
       for (int i = 0; i < getRunstatePartialRun().size(); i++) {
-        joiner.add(String.format("%srunstatePartialRun%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%srunstatePartialRun%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getRunstatePartialRun().get(i)))));
       }
     }
@@ -924,8 +921,8 @@ public class XapiVmStatsRaw {
     // add `vbdAvgquSz` to the URL query string
     if (getVbdAvgquSz() != null) {
       for (String _key : getVbdAvgquSz().keySet()) {
-        joiner.add(String.format("%svbdAvgquSz%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%svbdAvgquSz%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getVbdAvgquSz().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getVbdAvgquSz().get(_key)))));
       }
     }
@@ -933,8 +930,8 @@ public class XapiVmStatsRaw {
     // add `vbdInflight` to the URL query string
     if (getVbdInflight() != null) {
       for (String _key : getVbdInflight().keySet()) {
-        joiner.add(String.format("%svbdInflight%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%svbdInflight%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getVbdInflight().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getVbdInflight().get(_key)))));
       }
     }
@@ -942,8 +939,8 @@ public class XapiVmStatsRaw {
     // add `vbdIowait` to the URL query string
     if (getVbdIowait() != null) {
       for (String _key : getVbdIowait().keySet()) {
-        joiner.add(String.format("%svbdIowait%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%svbdIowait%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getVbdIowait().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getVbdIowait().get(_key)))));
       }
     }

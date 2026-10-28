@@ -36,7 +36,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PartialUnbrandXoHostCpus.JSON_PROPERTY_CORES,
   PartialUnbrandXoHostCpus.JSON_PROPERTY_SOCKETS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PartialUnbrandXoHostCpus {
   public static final String JSON_PROPERTY_CORES = "cores";
   @javax.annotation.Nullable
@@ -59,14 +59,14 @@ public class PartialUnbrandXoHostCpus {
    * @return cores
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CORES)
+  @JsonProperty(value = JSON_PROPERTY_CORES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getCores() {
     return cores;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CORES)
+  @JsonProperty(value = JSON_PROPERTY_CORES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCores(@javax.annotation.Nullable Double cores) {
     this.cores = cores;
@@ -83,14 +83,14 @@ public class PartialUnbrandXoHostCpus {
    * @return sockets
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SOCKETS)
+  @JsonProperty(value = JSON_PROPERTY_SOCKETS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getSockets() {
     return sockets;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SOCKETS)
+  @JsonProperty(value = JSON_PROPERTY_SOCKETS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSockets(@javax.annotation.Nullable Double sockets) {
     this.sockets = sockets;
@@ -133,10 +133,7 @@ public class PartialUnbrandXoHostCpus {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -173,12 +170,12 @@ public class PartialUnbrandXoHostCpus {
 
     // add `cores` to the URL query string
     if (getCores() != null) {
-      joiner.add(String.format("%scores%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCores()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%scores%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCores()))));
     }
 
     // add `sockets` to the URL query string
     if (getSockets() != null) {
-      joiner.add(String.format("%ssockets%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSockets()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssockets%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSockets()))));
     }
 
     return joiner.toString();

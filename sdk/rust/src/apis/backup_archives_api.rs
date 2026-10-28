@@ -40,12 +40,12 @@ pub async fn get_backup_archive(
     id: &str,
 ) -> Result<models::UnbrandXoVmBackupArchive, Error<GetBackupArchiveError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
     let uri_str = format!(
         "{}/backup-archives/{id}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -102,17 +102,17 @@ pub async fn get_backup_archives(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoVmBackupArchive, Error<GetBackupArchivesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_backup_repository = backup_repository;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_query_backup_repository = backup_repository;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!("{}/backup-archives", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_backup_repository {
+    if let Some(ref param_value) = p_query_backup_repository {
         req_builder = match "multi" {
             "multi" => req_builder.query(
                 &param_value
@@ -131,19 +131,19 @@ pub async fn get_backup_archives(
             )]),
         };
     }
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {

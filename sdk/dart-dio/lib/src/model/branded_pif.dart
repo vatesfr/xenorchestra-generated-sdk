@@ -77,8 +77,9 @@ class _$BrandedPIFSerializer implements PrimitiveSerializer<BrandedPIF> {
         case r'undefined':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BrandedPIFUndefinedEnum),
-          ) as BrandedPIFUndefinedEnum;
+            specifiedType: const FullType.nullable(BrandedPIFUndefinedEnum),
+          ) as BrandedPIFUndefinedEnum?;
+          if (valueDes == null) continue;
           result.undefined = valueDes;
           break;
         default:

@@ -35,7 +35,7 @@ import tech.vates.xenorchestra.client.ApiClient;
 @JsonPropertyOrder({
   ReturnTypeXoAppAtPingRemote.JSON_PROPERTY_SUCCESS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class ReturnTypeXoAppAtPingRemote {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nonnull
@@ -54,14 +54,14 @@ public class ReturnTypeXoAppAtPingRemote {
    * @return success
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_SUCCESS)
+  @JsonProperty(value = JSON_PROPERTY_SUCCESS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Boolean getSuccess() {
     return success;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SUCCESS)
+  @JsonProperty(value = JSON_PROPERTY_SUCCESS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSuccess(@javax.annotation.Nonnull Boolean success) {
     this.success = success;
@@ -102,10 +102,7 @@ public class ReturnTypeXoAppAtPingRemote {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -142,7 +139,7 @@ public class ReturnTypeXoAppAtPingRemote {
 
     // add `success` to the URL query string
     if (getSuccess() != null) {
-      joiner.add(String.format("%ssuccess%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSuccess()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssuccess%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSuccess()))));
     }
 
     return joiner.toString();

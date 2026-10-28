@@ -148,22 +148,26 @@ class _$UnbrandXoAuthenticationTokenSerializer
         case r'client':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(UnbrandXoAuthenticationTokenClient),
-          ) as UnbrandXoAuthenticationTokenClient;
+            specifiedType:
+                const FullType.nullable(UnbrandXoAuthenticationTokenClient),
+          ) as UnbrandXoAuthenticationTokenClient?;
+          if (valueDes == null) continue;
           result.client.replace(valueDes);
           break;
         case r'created_at':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.createdAt = valueDes;
           break;
         case r'description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.description = valueDes;
           break;
         case r'expiration':
@@ -183,8 +187,9 @@ class _$UnbrandXoAuthenticationTokenSerializer
         case r'last_uses':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.lastUses = valueDes;
           break;
         case r'user_id':

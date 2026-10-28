@@ -39,7 +39,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   XoaDashboardPoolsStatus.JSON_PROPERTY_UNKNOWN,
   XoaDashboardPoolsStatus.JSON_PROPERTY_UNREACHABLE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class XoaDashboardPoolsStatus {
   public static final String JSON_PROPERTY_CONNECTED = "connected";
   @javax.annotation.Nonnull
@@ -74,14 +74,14 @@ public class XoaDashboardPoolsStatus {
    * @return connected
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_CONNECTED)
+  @JsonProperty(value = JSON_PROPERTY_CONNECTED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getConnected() {
     return connected;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CONNECTED)
+  @JsonProperty(value = JSON_PROPERTY_CONNECTED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setConnected(@javax.annotation.Nonnull Double connected) {
     this.connected = connected;
@@ -98,14 +98,14 @@ public class XoaDashboardPoolsStatus {
    * @return disconnected
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_DISCONNECTED)
+  @JsonProperty(value = JSON_PROPERTY_DISCONNECTED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getDisconnected() {
     return disconnected;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DISCONNECTED)
+  @JsonProperty(value = JSON_PROPERTY_DISCONNECTED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDisconnected(@javax.annotation.Nonnull Double disconnected) {
     this.disconnected = disconnected;
@@ -122,14 +122,14 @@ public class XoaDashboardPoolsStatus {
    * @return total
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_TOTAL)
+  @JsonProperty(value = JSON_PROPERTY_TOTAL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getTotal() {
     return total;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TOTAL)
+  @JsonProperty(value = JSON_PROPERTY_TOTAL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setTotal(@javax.annotation.Nonnull Double total) {
     this.total = total;
@@ -146,14 +146,14 @@ public class XoaDashboardPoolsStatus {
    * @return unknown
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_UNKNOWN)
+  @JsonProperty(value = JSON_PROPERTY_UNKNOWN, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getUnknown() {
     return unknown;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_UNKNOWN)
+  @JsonProperty(value = JSON_PROPERTY_UNKNOWN, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUnknown(@javax.annotation.Nonnull Double unknown) {
     this.unknown = unknown;
@@ -170,14 +170,14 @@ public class XoaDashboardPoolsStatus {
    * @return unreachable
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_UNREACHABLE)
+  @JsonProperty(value = JSON_PROPERTY_UNREACHABLE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getUnreachable() {
     return unreachable;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_UNREACHABLE)
+  @JsonProperty(value = JSON_PROPERTY_UNREACHABLE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUnreachable(@javax.annotation.Nonnull Double unreachable) {
     this.unreachable = unreachable;
@@ -226,10 +226,7 @@ public class XoaDashboardPoolsStatus {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -266,27 +263,27 @@ public class XoaDashboardPoolsStatus {
 
     // add `connected` to the URL query string
     if (getConnected() != null) {
-      joiner.add(String.format("%sconnected%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getConnected()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sconnected%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getConnected()))));
     }
 
     // add `disconnected` to the URL query string
     if (getDisconnected() != null) {
-      joiner.add(String.format("%sdisconnected%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDisconnected()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdisconnected%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDisconnected()))));
     }
 
     // add `total` to the URL query string
     if (getTotal() != null) {
-      joiner.add(String.format("%stotal%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTotal()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%stotal%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTotal()))));
     }
 
     // add `unknown` to the URL query string
     if (getUnknown() != null) {
-      joiner.add(String.format("%sunknown%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUnknown()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sunknown%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUnknown()))));
     }
 
     // add `unreachable` to the URL query string
     if (getUnreachable() != null) {
-      joiner.add(String.format("%sunreachable%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUnreachable()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sunreachable%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUnreachable()))));
     }
 
     return joiner.toString();

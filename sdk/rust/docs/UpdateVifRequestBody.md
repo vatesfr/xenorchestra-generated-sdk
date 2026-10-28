@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**locking_mode** | Option<[**models::VifLockingMode**](VIF_LOCKING_MODE.md)> |  | [optional]
+**locking_mode** | Option<[**models::VifLockingMode**](VIFLOCKINGMODE.md)> |  | [optional]
 **rate_limit** | Option<**f64**> |  | [optional]
 **tx_checksumming** | Option<**bool**> |  | [optional]
 **allowed_ipv4_addresses** | Option<**Vec<String>**> |  | [optional]

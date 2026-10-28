@@ -50,15 +50,35 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class ServersApi {
+  /**
+   * Utility class for extending HttpRequest.Builder functionality.
+   */
+  private static class HttpRequestBuilderExtensions {
+    /**
+     * Adds additional headers to the provided HttpRequest.Builder. Useful for adding method/endpoint specific headers.
+     *
+     * @param builder the HttpRequest.Builder to which headers will be added
+     * @param headers a map of header names and values to add; may be null
+     * @return the same HttpRequest.Builder instance with the additional headers set
+     */
+    static HttpRequest.Builder withAdditionalHeaders(HttpRequest.Builder builder, Map<String, String> headers) {
+        if (headers != null) {
+            for (Map.Entry<String, String> entry : headers.entrySet()) {
+                builder.header(entry.getKey(), entry.getValue());
+            }
+        }
+        return builder;
+    }
+  }
   private final HttpClient memberVarHttpClient;
   private final ObjectMapper memberVarObjectMapper;
   private final String memberVarBaseUri;
   private final Consumer<HttpRequest.Builder> memberVarInterceptor;
   private final Duration memberVarReadTimeout;
   private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
-  private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
+  private final Consumer<HttpResponse<InputStream>> memberVarAsyncResponseInterceptor;
 
   public ServersApi() {
     this(Configuration.getDefaultApiClient());
@@ -74,8 +94,17 @@ public class ServersApi {
     memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
   }
 
+
   protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
-    String body = response.body() == null ? null : new String(response.body().readAllBytes());
+    InputStream responseBody = ApiClient.getResponseBody(response);
+    String body = null;
+    try {
+      body = responseBody == null ? null : new String(responseBody.readAllBytes());
+    } finally {
+      if (responseBody != null) {
+        responseBody.close();
+      }
+    }
     String message = formatExceptionMessage(operationId, response.statusCode(), body);
     return new ApiException(response.statusCode(), message, response.headers(), body);
   }
@@ -88,6 +117,57 @@ public class ServersApi {
   }
 
   /**
+   * Download file from the given response.
+   *
+   * @param response Response
+   * @return File
+   * @throws ApiException If fail to read file content from response and write to disk
+   */
+  public File downloadFileFromResponse(HttpResponse<InputStream> response, InputStream responseBody) throws ApiException {
+    if (responseBody == null) {
+      throw new ApiException(new IOException("Response body is empty"));
+    }
+    try {
+      File file = prepareDownloadFile(response);
+      java.nio.file.Files.copy(responseBody, file.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+      return file;
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+  }
+
+  /**
+   * <p>Prepare the file for download from the response.</p>
+   *
+   * @param response a {@link java.net.http.HttpResponse} object.
+   * @return a {@link java.io.File} object.
+   * @throws java.io.IOException if any.
+   */
+  private File prepareDownloadFile(HttpResponse<InputStream> response) throws IOException {
+    String filename = null;
+    java.util.Optional<String> contentDisposition = response.headers().firstValue("Content-Disposition");
+    if (contentDisposition.isPresent() && !"".equals(contentDisposition.get())) {
+      // Get filename from the Content-Disposition header.
+      java.util.regex.Pattern pattern = java.util.regex.Pattern.compile("filename=['\"]?([^'\"\\s]+)['\"]?");
+      java.util.regex.Matcher matcher = pattern.matcher(contentDisposition.get());
+      if (matcher.find())
+        filename = matcher.group(1);
+    }
+    File file = null;
+    if (filename != null) {
+      java.nio.file.Path tempDir = java.nio.file.Files.createTempDirectory("swagger-gen-native");
+      java.nio.file.Path filePath = java.nio.file.Files.createFile(tempDir.resolve(filename));
+      file = filePath.toFile();
+      tempDir.toFile().deleteOnExit();   // best effort cleanup
+      file.deleteOnExit(); // best effort cleanup
+    } else {
+      file = java.nio.file.Files.createTempFile("download-", "").toFile();
+      file.deleteOnExit(); // best effort cleanup
+    }
+    return file;
+  }
+
+  /**
    * 
    * Required privilege: - resource: server, action: create
    * @param insertableXoServer  (required)
@@ -95,7 +175,19 @@ public class ServersApi {
    * @throws ApiException if fails to make API call
    */
   public CreateAclV2Privilege201Response addServer(@javax.annotation.Nonnull InsertableXoServer insertableXoServer) throws ApiException {
-    ApiResponse<CreateAclV2Privilege201Response> localVarResponse = addServerWithHttpInfo(insertableXoServer);
+    return addServer(insertableXoServer, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: server, action: create
+   * @param insertableXoServer  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateAclV2Privilege201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateAclV2Privilege201Response addServer(@javax.annotation.Nonnull InsertableXoServer insertableXoServer, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateAclV2Privilege201Response> localVarResponse = addServerWithHttpInfo(insertableXoServer, headers);
     return localVarResponse.getData();
   }
 
@@ -107,7 +199,19 @@ public class ServersApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateAclV2Privilege201Response> addServerWithHttpInfo(@javax.annotation.Nonnull InsertableXoServer insertableXoServer) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = addServerRequestBuilder(insertableXoServer);
+    return addServerWithHttpInfo(insertableXoServer, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: server, action: create
+   * @param insertableXoServer  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateAclV2Privilege201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateAclV2Privilege201Response> addServerWithHttpInfo(@javax.annotation.Nonnull InsertableXoServer insertableXoServer, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = addServerRequestBuilder(insertableXoServer, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -115,11 +219,13 @@ public class ServersApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("addServer", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateAclV2Privilege201Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -127,15 +233,21 @@ public class ServersApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateAclV2Privilege201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateAclV2Privilege201Response>() {});
+        
 
         return new ApiResponse<CreateAclV2Privilege201Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateAclV2Privilege201Response>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -146,7 +258,7 @@ public class ServersApi {
     }
   }
 
-  private HttpRequest.Builder addServerRequestBuilder(@javax.annotation.Nonnull InsertableXoServer insertableXoServer) throws ApiException {
+  private HttpRequest.Builder addServerRequestBuilder(@javax.annotation.Nonnull InsertableXoServer insertableXoServer, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'insertableXoServer' is set
     if (insertableXoServer == null) {
       throw new ApiException(400, "Missing the required parameter 'insertableXoServer' when calling addServer");
@@ -170,6 +282,8 @@ public class ServersApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -185,7 +299,20 @@ public class ServersApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeVoid connectServer(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = connectServerWithHttpInfo(id, sync);
+    return connectServer(id, sync, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: server, action: connect
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeVoid
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeVoid connectServer(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = connectServerWithHttpInfo(id, sync, headers);
     return localVarResponse.getData();
   }
 
@@ -198,7 +325,20 @@ public class ServersApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeVoid> connectServerWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = connectServerRequestBuilder(id, sync);
+    return connectServerWithHttpInfo(id, sync, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: server, action: connect
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeVoid&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeVoid> connectServerWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = connectServerRequestBuilder(id, sync, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -206,11 +346,13 @@ public class ServersApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("connectServer", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeVoid>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -218,15 +360,21 @@ public class ServersApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeVoid responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeVoid>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -237,7 +385,7 @@ public class ServersApi {
     }
   }
 
-  private HttpRequest.Builder connectServerRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
+  private HttpRequest.Builder connectServerRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling connectServer");
@@ -271,6 +419,8 @@ public class ServersApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -284,7 +434,18 @@ public class ServersApi {
    * @throws ApiException if fails to make API call
    */
   public void deleteServer(@javax.annotation.Nonnull String id) throws ApiException {
-    deleteServerWithHttpInfo(id);
+    deleteServer(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: server, action: delete
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteServer(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    deleteServerWithHttpInfo(id, headers);
   }
 
   /**
@@ -295,7 +456,19 @@ public class ServersApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> deleteServerWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = deleteServerRequestBuilder(id);
+    return deleteServerWithHttpInfo(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: server, action: delete
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteServerWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteServerRequestBuilder(id, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -303,9 +476,14 @@ public class ServersApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("deleteServer", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -313,11 +491,9 @@ public class ServersApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -328,7 +504,7 @@ public class ServersApi {
     }
   }
 
-  private HttpRequest.Builder deleteServerRequestBuilder(@javax.annotation.Nonnull String id) throws ApiException {
+  private HttpRequest.Builder deleteServerRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling deleteServer");
@@ -347,6 +523,8 @@ public class ServersApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -362,7 +540,20 @@ public class ServersApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeVoid disconnectServer(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = disconnectServerWithHttpInfo(id, sync);
+    return disconnectServer(id, sync, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: server, action: disconnect
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeVoid
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeVoid disconnectServer(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = disconnectServerWithHttpInfo(id, sync, headers);
     return localVarResponse.getData();
   }
 
@@ -375,7 +566,20 @@ public class ServersApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeVoid> disconnectServerWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = disconnectServerRequestBuilder(id, sync);
+    return disconnectServerWithHttpInfo(id, sync, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: server, action: disconnect
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeVoid&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeVoid> disconnectServerWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = disconnectServerRequestBuilder(id, sync, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -383,11 +587,13 @@ public class ServersApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("disconnectServer", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeVoid>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -395,15 +601,21 @@ public class ServersApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeVoid responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeVoid>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -414,7 +626,7 @@ public class ServersApi {
     }
   }
 
-  private HttpRequest.Builder disconnectServerRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
+  private HttpRequest.Builder disconnectServerRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling disconnectServer");
@@ -448,6 +660,8 @@ public class ServersApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -462,7 +676,19 @@ public class ServersApi {
    * @throws ApiException if fails to make API call
    */
   public UnbrandXoServer getServer(@javax.annotation.Nonnull String id) throws ApiException {
-    ApiResponse<UnbrandXoServer> localVarResponse = getServerWithHttpInfo(id);
+    return getServer(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: server, action: read
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return UnbrandXoServer
+   * @throws ApiException if fails to make API call
+   */
+  public UnbrandXoServer getServer(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<UnbrandXoServer> localVarResponse = getServerWithHttpInfo(id, headers);
     return localVarResponse.getData();
   }
 
@@ -474,7 +700,19 @@ public class ServersApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<UnbrandXoServer> getServerWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getServerRequestBuilder(id);
+    return getServerWithHttpInfo(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: server, action: read
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UnbrandXoServer&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UnbrandXoServer> getServerWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getServerRequestBuilder(id, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -482,11 +720,13 @@ public class ServersApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getServer", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<UnbrandXoServer>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -494,15 +734,21 @@ public class ServersApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UnbrandXoServer responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnbrandXoServer>() {});
+        
 
         return new ApiResponse<UnbrandXoServer>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnbrandXoServer>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -513,7 +759,7 @@ public class ServersApi {
     }
   }
 
-  private HttpRequest.Builder getServerRequestBuilder(@javax.annotation.Nonnull String id) throws ApiException {
+  private HttpRequest.Builder getServerRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getServer");
@@ -532,6 +778,8 @@ public class ServersApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -551,7 +799,24 @@ public class ServersApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoTask getServerTasks(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoTask> localVarResponse = getServerTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getServerTasks(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all tasks that match the following privilege: - resource: task, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoTask
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoTask getServerTasks(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoTask> localVarResponse = getServerTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -568,7 +833,24 @@ public class ServersApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoTask> getServerTasksWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getServerTasksRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getServerTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all tasks that match the following privilege: - resource: task, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoTask&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoTask> getServerTasksWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getServerTasksRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -576,11 +858,13 @@ public class ServersApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getServerTasks", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoTask>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -588,15 +872,21 @@ public class ServersApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoTask responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoTask>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoTask>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoTask>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -607,7 +897,7 @@ public class ServersApi {
     }
   }
 
-  private HttpRequest.Builder getServerTasksRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getServerTasksRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getServerTasks");
@@ -649,6 +939,8 @@ public class ServersApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -667,7 +959,23 @@ public class ServersApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoServer getServers(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoServer> localVarResponse = getServersWithHttpInfo(fields, ndjson, markdown, filter, limit);
+    return getServers(fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all servers that match the following privilege: - resource: server, action: read
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoServer
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoServer getServers(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoServer> localVarResponse = getServersWithHttpInfo(fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -683,7 +991,23 @@ public class ServersApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoServer> getServersWithHttpInfo(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getServersRequestBuilder(fields, ndjson, markdown, filter, limit);
+    return getServersWithHttpInfo(fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all servers that match the following privilege: - resource: server, action: read
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoServer&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoServer> getServersWithHttpInfo(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getServersRequestBuilder(fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -691,11 +1015,13 @@ public class ServersApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getServers", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoServer>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -703,15 +1029,21 @@ public class ServersApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoServer responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoServer>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoServer>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoServer>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -722,7 +1054,7 @@ public class ServersApi {
     }
   }
 
-  private HttpRequest.Builder getServersRequestBuilder(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getServersRequestBuilder(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -759,6 +1091,8 @@ public class ServersApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }

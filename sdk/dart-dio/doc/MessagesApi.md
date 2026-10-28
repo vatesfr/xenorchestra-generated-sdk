@@ -55,7 +55,7 @@ final double limit = 42; // double |
 try {
     final response = api.getHostMessages(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling MessagesApi->getHostMessages: $e\n');
 }
 ```
@@ -110,7 +110,7 @@ final String id = f775eaeb-abe5-94e0-9682-14c37c3a1dfe; // String |
 try {
     final response = api.getMessage(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling MessagesApi->getMessage: $e\n');
 }
 ```
@@ -164,7 +164,7 @@ final double limit = 42; // double |
 try {
     final response = api.getMessages(fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling MessagesApi->getMessages: $e\n');
 }
 ```
@@ -223,7 +223,7 @@ final double limit = 42; // double |
 try {
     final response = api.getNetworkMessages(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling MessagesApi->getNetworkMessages: $e\n');
 }
 ```
@@ -283,7 +283,7 @@ final double limit = 42; // double |
 try {
     final response = api.getPifMessages(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling MessagesApi->getPifMessages: $e\n');
 }
 ```
@@ -343,7 +343,7 @@ final double limit = 42; // double |
 try {
     final response = api.getPoolMessages(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling MessagesApi->getPoolMessages: $e\n');
 }
 ```
@@ -403,7 +403,7 @@ final double limit = 42; // double |
 try {
     final response = api.getSrMessages(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling MessagesApi->getSrMessages: $e\n');
 }
 ```
@@ -463,7 +463,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVbdMessages(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling MessagesApi->getVbdMessages: $e\n');
 }
 ```
@@ -523,7 +523,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVdiMessages(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling MessagesApi->getVdiMessages: $e\n');
 }
 ```
@@ -583,7 +583,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVdiSnapshotMessages(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling MessagesApi->getVdiSnapshotMessages: $e\n');
 }
 ```
@@ -643,7 +643,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVifMessages(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling MessagesApi->getVifMessages: $e\n');
 }
 ```
@@ -703,7 +703,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmControllerMessages(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling MessagesApi->getVmControllerMessages: $e\n');
 }
 ```
@@ -763,7 +763,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmMessages(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling MessagesApi->getVmMessages: $e\n');
 }
 ```
@@ -823,7 +823,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmSnapshotsMessages(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling MessagesApi->getVmSnapshotsMessages: $e\n');
 }
 ```
@@ -883,7 +883,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmTemplateMessages(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling MessagesApi->getVmTemplateMessages: $e\n');
 }
 ```

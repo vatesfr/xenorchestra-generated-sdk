@@ -43,7 +43,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   UnbrandedVmDashboardBackupsInfo.JSON_PROPERTY_REPLICATION,
   UnbrandedVmDashboardBackupsInfo.JSON_PROPERTY_VM_PROTECTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class UnbrandedVmDashboardBackupsInfo {
   public static final String JSON_PROPERTY_BACKUP_ARCHIVES = "backupArchives";
   @javax.annotation.Nonnull
@@ -121,14 +121,14 @@ private final String value;
    * @return backupArchives
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_BACKUP_ARCHIVES)
+  @JsonProperty(value = JSON_PROPERTY_BACKUP_ARCHIVES, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<UnbrandVmDashboardBackupArchive> getBackupArchives() {
     return backupArchives;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_BACKUP_ARCHIVES)
+  @JsonProperty(value = JSON_PROPERTY_BACKUP_ARCHIVES, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setBackupArchives(@javax.annotation.Nonnull List<UnbrandVmDashboardBackupArchive> backupArchives) {
     this.backupArchives = backupArchives;
@@ -153,14 +153,14 @@ private final String value;
    * @return lastRuns
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_LAST_RUNS)
+  @JsonProperty(value = JSON_PROPERTY_LAST_RUNS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<UnbrandVmDashboardRun> getLastRuns() {
     return lastRuns;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_LAST_RUNS)
+  @JsonProperty(value = JSON_PROPERTY_LAST_RUNS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setLastRuns(@javax.annotation.Nonnull List<UnbrandVmDashboardRun> lastRuns) {
     this.lastRuns = lastRuns;
@@ -177,14 +177,14 @@ private final String value;
    * @return replication
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_REPLICATION)
+  @JsonProperty(value = JSON_PROPERTY_REPLICATION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public UnbrandVmDashboardAtBackupsInfo91Replication93 getReplication() {
     return replication;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_REPLICATION)
+  @JsonProperty(value = JSON_PROPERTY_REPLICATION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setReplication(@javax.annotation.Nonnull UnbrandVmDashboardAtBackupsInfo91Replication93 replication) {
     this.replication = replication;
@@ -201,14 +201,14 @@ private final String value;
    * @return vmProtection
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_VM_PROTECTION)
+  @JsonProperty(value = JSON_PROPERTY_VM_PROTECTION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public VmProtectionEnum getVmProtection() {
     return vmProtection;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_VM_PROTECTION)
+  @JsonProperty(value = JSON_PROPERTY_VM_PROTECTION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setVmProtection(@javax.annotation.Nonnull VmProtectionEnum vmProtection) {
     this.vmProtection = vmProtection;
@@ -255,10 +255,7 @@ private final String value;
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -297,8 +294,8 @@ private final String value;
     if (getBackupArchives() != null) {
       for (int i = 0; i < getBackupArchives().size(); i++) {
         if (getBackupArchives().get(i) != null) {
-          joiner.add(getBackupArchives().get(i).toUrlQueryString(String.format("%sbackupArchives%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+          joiner.add(getBackupArchives().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sbackupArchives%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
     }
@@ -307,8 +304,8 @@ private final String value;
     if (getLastRuns() != null) {
       for (int i = 0; i < getLastRuns().size(); i++) {
         if (getLastRuns().get(i) != null) {
-          joiner.add(getLastRuns().get(i).toUrlQueryString(String.format("%slastRuns%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+          joiner.add(getLastRuns().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%slastRuns%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
     }
@@ -320,7 +317,7 @@ private final String value;
 
     // add `vmProtection` to the URL query string
     if (getVmProtection() != null) {
-      joiner.add(String.format("%svmProtection%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVmProtection()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%svmProtection%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVmProtection()))));
     }
 
     return joiner.toString();

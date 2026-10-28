@@ -94,7 +94,7 @@ public class Example {
 
 ## getPgpuWithHttpInfo
 
-> ApiResponse<UnbrandXoPgpu> getPgpu getPgpuWithHttpInfo(id)
+> ApiResponse<UnbrandXoPgpu> getPgpuWithHttpInfo(id)
 
 
 
@@ -266,7 +266,7 @@ public class Example {
 
 ## getPgpusWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoPgpu> getPgpus getPgpusWithHttpInfo(fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoPgpu> getPgpusWithHttpInfo(fields, ndjson, markdown, filter, limit)
 
 
 

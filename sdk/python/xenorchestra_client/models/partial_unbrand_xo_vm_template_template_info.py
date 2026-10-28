@@ -22,6 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from xenorchestra_client.models.partial_unbrand_xo_vm_template_template_info_disks_inner import PartialUnbrandXoVmTemplateTemplateInfoDisksInner
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class PartialUnbrandXoVmTemplateTemplateInfo(BaseModel):
     """
@@ -34,7 +35,8 @@ class PartialUnbrandXoVmTemplateTemplateInfo(BaseModel):
     __properties: ClassVar[List[str]] = ["arch", "disks", "install_methods", "install_repository"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -46,8 +48,7 @@ class PartialUnbrandXoVmTemplateTemplateInfo(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
@@ -76,8 +77,7 @@ class PartialUnbrandXoVmTemplateTemplateInfo(BaseModel):
         _items = []
         if self.disks:
             for _item_disks in self.disks:
-                if _item_disks:
-                    _items.append(_item_disks.to_dict())
+                _items.append(_item_disks.to_dict() if _item_disks is not None else None)
             _dict['disks'] = _items
         return _dict
 

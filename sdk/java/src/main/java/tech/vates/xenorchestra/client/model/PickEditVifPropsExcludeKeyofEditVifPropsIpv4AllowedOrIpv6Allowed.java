@@ -42,7 +42,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PickEditVifPropsExcludeKeyofEditVifPropsIpv4AllowedOrIpv6Allowed.JSON_PROPERTY_RATE_LIMIT,
   PickEditVifPropsExcludeKeyofEditVifPropsIpv4AllowedOrIpv6Allowed.JSON_PROPERTY_TX_CHECKSUMMING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PickEditVifPropsExcludeKeyofEditVifPropsIpv4AllowedOrIpv6Allowed {
   public static final String JSON_PROPERTY_LOCKING_MODE = "lockingMode";
   @javax.annotation.Nullable
@@ -68,14 +68,14 @@ public class PickEditVifPropsExcludeKeyofEditVifPropsIpv4AllowedOrIpv6Allowed {
    * @return lockingMode
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_LOCKING_MODE)
+  @JsonProperty(value = JSON_PROPERTY_LOCKING_MODE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public VIFLOCKINGMODE getLockingMode() {
     return lockingMode;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_LOCKING_MODE)
+  @JsonProperty(value = JSON_PROPERTY_LOCKING_MODE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLockingMode(@javax.annotation.Nullable VIFLOCKINGMODE lockingMode) {
     this.lockingMode = lockingMode;
@@ -97,7 +97,7 @@ public class PickEditVifPropsExcludeKeyofEditVifPropsIpv4AllowedOrIpv6Allowed {
         return rateLimit.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_RATE_LIMIT)
+  @JsonProperty(value = JSON_PROPERTY_RATE_LIMIT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<Double> getRateLimit_JsonNullable() {
@@ -124,14 +124,14 @@ public class PickEditVifPropsExcludeKeyofEditVifPropsIpv4AllowedOrIpv6Allowed {
    * @return txChecksumming
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TX_CHECKSUMMING)
+  @JsonProperty(value = JSON_PROPERTY_TX_CHECKSUMMING, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getTxChecksumming() {
     return txChecksumming;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TX_CHECKSUMMING)
+  @JsonProperty(value = JSON_PROPERTY_TX_CHECKSUMMING, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTxChecksumming(@javax.annotation.Nullable Boolean txChecksumming) {
     this.txChecksumming = txChecksumming;
@@ -187,10 +187,7 @@ public class PickEditVifPropsExcludeKeyofEditVifPropsIpv4AllowedOrIpv6Allowed {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -227,17 +224,17 @@ public class PickEditVifPropsExcludeKeyofEditVifPropsIpv4AllowedOrIpv6Allowed {
 
     // add `lockingMode` to the URL query string
     if (getLockingMode() != null) {
-      joiner.add(String.format("%slockingMode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLockingMode()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%slockingMode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLockingMode()))));
     }
 
     // add `rateLimit` to the URL query string
     if (getRateLimit() != null) {
-      joiner.add(String.format("%srateLimit%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRateLimit()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%srateLimit%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRateLimit()))));
     }
 
     // add `txChecksumming` to the URL query string
     if (getTxChecksumming() != null) {
-      joiner.add(String.format("%stxChecksumming%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTxChecksumming()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%stxChecksumming%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTxChecksumming()))));
     }
 
     return joiner.toString();

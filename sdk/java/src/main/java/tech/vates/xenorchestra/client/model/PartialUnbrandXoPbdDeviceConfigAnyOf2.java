@@ -37,7 +37,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PartialUnbrandXoPbdDeviceConfigAnyOf2.JSON_PROPERTY_LOCATION,
   PartialUnbrandXoPbdDeviceConfigAnyOf2.JSON_PROPERTY_PATH
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PartialUnbrandXoPbdDeviceConfigAnyOf2 {
   public static final String JSON_PROPERTY_LEGACY_MODE = "legacy_mode";
   @javax.annotation.Nonnull
@@ -64,14 +64,14 @@ public class PartialUnbrandXoPbdDeviceConfigAnyOf2 {
    * @return legacyMode
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_LEGACY_MODE)
+  @JsonProperty(value = JSON_PROPERTY_LEGACY_MODE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getLegacyMode() {
     return legacyMode;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_LEGACY_MODE)
+  @JsonProperty(value = JSON_PROPERTY_LEGACY_MODE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setLegacyMode(@javax.annotation.Nonnull String legacyMode) {
     this.legacyMode = legacyMode;
@@ -88,14 +88,14 @@ public class PartialUnbrandXoPbdDeviceConfigAnyOf2 {
    * @return location
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_LOCATION)
+  @JsonProperty(value = JSON_PROPERTY_LOCATION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getLocation() {
     return location;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_LOCATION)
+  @JsonProperty(value = JSON_PROPERTY_LOCATION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setLocation(@javax.annotation.Nonnull String location) {
     this.location = location;
@@ -112,14 +112,14 @@ public class PartialUnbrandXoPbdDeviceConfigAnyOf2 {
    * @return path
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_PATH)
+  @JsonProperty(value = JSON_PROPERTY_PATH, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getPath() {
     return path;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PATH)
+  @JsonProperty(value = JSON_PROPERTY_PATH, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setPath(@javax.annotation.Nonnull String path) {
     this.path = path;
@@ -164,10 +164,7 @@ public class PartialUnbrandXoPbdDeviceConfigAnyOf2 {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -204,17 +201,17 @@ public class PartialUnbrandXoPbdDeviceConfigAnyOf2 {
 
     // add `legacy_mode` to the URL query string
     if (getLegacyMode() != null) {
-      joiner.add(String.format("%slegacy_mode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLegacyMode()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%slegacy_mode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLegacyMode()))));
     }
 
     // add `location` to the URL query string
     if (getLocation() != null) {
-      joiner.add(String.format("%slocation%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLocation()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%slocation%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLocation()))));
     }
 
     // add `path` to the URL query string
     if (getPath() != null) {
-      joiner.add(String.format("%spath%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPath()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%spath%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPath()))));
     }
 
     return joiner.toString();

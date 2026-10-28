@@ -168,30 +168,34 @@ class _$PartialUnbrandXoMirrorBackupJobSerializer
         case r'id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'mode':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType:
-                const FullType(PartialUnbrandXoMirrorBackupJobModeEnum),
-          ) as PartialUnbrandXoMirrorBackupJobModeEnum;
+            specifiedType: const FullType.nullable(
+                PartialUnbrandXoMirrorBackupJobModeEnum),
+          ) as PartialUnbrandXoMirrorBackupJobModeEnum?;
+          if (valueDes == null) continue;
           result.mode = valueDes;
           break;
         case r'name':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.name = valueDes;
           break;
         case r'proxy':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.proxy = valueDes;
           break;
         case r'remotes':
@@ -205,24 +209,27 @@ class _$PartialUnbrandXoMirrorBackupJobSerializer
         case r'settings':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(
+            specifiedType: const FullType.nullable(
                 PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettings),
-          ) as PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettings;
+          ) as PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettings?;
+          if (valueDes == null) continue;
           result.settings.replace(valueDes);
           break;
         case r'sourceRemote':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.sourceRemote = valueDes;
           break;
         case r'type':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType:
-                const FullType(PartialUnbrandXoMirrorBackupJobTypeEnum),
-          ) as PartialUnbrandXoMirrorBackupJobTypeEnum;
+            specifiedType: const FullType.nullable(
+                PartialUnbrandXoMirrorBackupJobTypeEnum),
+          ) as PartialUnbrandXoMirrorBackupJobTypeEnum?;
+          if (valueDes == null) continue;
           result.type = valueDes;
           break;
         default:

@@ -37,7 +37,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PartialUnbrandXoVmControllerXentoolsAnyOf.JSON_PROPERTY_MINOR,
   PartialUnbrandXoVmControllerXentoolsAnyOf.JSON_PROPERTY_VERSION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PartialUnbrandXoVmControllerXentoolsAnyOf {
   public static final String JSON_PROPERTY_MAJOR = "major";
   @javax.annotation.Nullable
@@ -64,14 +64,14 @@ public class PartialUnbrandXoVmControllerXentoolsAnyOf {
    * @return major
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_MAJOR)
+  @JsonProperty(value = JSON_PROPERTY_MAJOR, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getMajor() {
     return major;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MAJOR)
+  @JsonProperty(value = JSON_PROPERTY_MAJOR, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setMajor(@javax.annotation.Nullable Double major) {
     this.major = major;
@@ -88,14 +88,14 @@ public class PartialUnbrandXoVmControllerXentoolsAnyOf {
    * @return minor
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_MINOR)
+  @JsonProperty(value = JSON_PROPERTY_MINOR, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getMinor() {
     return minor;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MINOR)
+  @JsonProperty(value = JSON_PROPERTY_MINOR, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setMinor(@javax.annotation.Nullable Double minor) {
     this.minor = minor;
@@ -112,14 +112,14 @@ public class PartialUnbrandXoVmControllerXentoolsAnyOf {
    * @return version
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_VERSION)
+  @JsonProperty(value = JSON_PROPERTY_VERSION, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getVersion() {
     return version;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_VERSION)
+  @JsonProperty(value = JSON_PROPERTY_VERSION, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setVersion(@javax.annotation.Nullable String version) {
     this.version = version;
@@ -164,10 +164,7 @@ public class PartialUnbrandXoVmControllerXentoolsAnyOf {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -204,17 +201,17 @@ public class PartialUnbrandXoVmControllerXentoolsAnyOf {
 
     // add `major` to the URL query string
     if (getMajor() != null) {
-      joiner.add(String.format("%smajor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMajor()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%smajor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMajor()))));
     }
 
     // add `minor` to the URL query string
     if (getMinor() != null) {
-      joiner.add(String.format("%sminor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMinor()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sminor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMinor()))));
     }
 
     // add `version` to the URL query string
     if (getVersion() != null) {
-      joiner.add(String.format("%sversion%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVersion()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sversion%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVersion()))));
     }
 
     return joiner.toString();

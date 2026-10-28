@@ -204,15 +204,17 @@ class _$WithHrefPartialUnbrandAnyXoBackupJobVariantMetadataBackupSerializer
         case r'id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'name':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.name = valueDes;
           break;
         case r'pools':
@@ -226,8 +228,9 @@ class _$WithHrefPartialUnbrandAnyXoBackupJobVariantMetadataBackupSerializer
         case r'proxy':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.proxy = valueDes;
           break;
         case r'remotes':
@@ -241,31 +244,35 @@ class _$WithHrefPartialUnbrandAnyXoBackupJobVariantMetadataBackupSerializer
         case r'settings':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(
+            specifiedType: const FullType.nullable(
                 PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings),
-          ) as PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings;
+          ) as PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings?;
+          if (valueDes == null) continue;
           result.settings.replace(valueDes);
           break;
         case r'type':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(
+            specifiedType: const FullType.nullable(
                 WithHrefPartialUnbrandAnyXoBackupJobVariantMetadataBackupTypeEnum),
-          ) as WithHrefPartialUnbrandAnyXoBackupJobVariantMetadataBackupTypeEnum;
+          ) as WithHrefPartialUnbrandAnyXoBackupJobVariantMetadataBackupTypeEnum?;
+          if (valueDes == null) continue;
           result.type = valueDes;
           break;
         case r'userId':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.userId = valueDes;
           break;
         case r'xoMetadata':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.xoMetadata = valueDes;
           break;
         default:

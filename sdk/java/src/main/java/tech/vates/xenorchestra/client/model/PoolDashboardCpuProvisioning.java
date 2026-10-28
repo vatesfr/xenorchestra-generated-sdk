@@ -37,7 +37,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PoolDashboardCpuProvisioning.JSON_PROPERTY_PERCENT,
   PoolDashboardCpuProvisioning.JSON_PROPERTY_TOTAL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PoolDashboardCpuProvisioning {
   public static final String JSON_PROPERTY_ASSIGNED = "assigned";
   @javax.annotation.Nonnull
@@ -64,14 +64,14 @@ public class PoolDashboardCpuProvisioning {
    * @return assigned
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ASSIGNED)
+  @JsonProperty(value = JSON_PROPERTY_ASSIGNED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getAssigned() {
     return assigned;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ASSIGNED)
+  @JsonProperty(value = JSON_PROPERTY_ASSIGNED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setAssigned(@javax.annotation.Nonnull Double assigned) {
     this.assigned = assigned;
@@ -88,14 +88,14 @@ public class PoolDashboardCpuProvisioning {
    * @return percent
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_PERCENT)
+  @JsonProperty(value = JSON_PROPERTY_PERCENT, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getPercent() {
     return percent;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PERCENT)
+  @JsonProperty(value = JSON_PROPERTY_PERCENT, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setPercent(@javax.annotation.Nonnull Double percent) {
     this.percent = percent;
@@ -112,14 +112,14 @@ public class PoolDashboardCpuProvisioning {
    * @return total
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_TOTAL)
+  @JsonProperty(value = JSON_PROPERTY_TOTAL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getTotal() {
     return total;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TOTAL)
+  @JsonProperty(value = JSON_PROPERTY_TOTAL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setTotal(@javax.annotation.Nonnull Double total) {
     this.total = total;
@@ -164,10 +164,7 @@ public class PoolDashboardCpuProvisioning {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -204,17 +201,17 @@ public class PoolDashboardCpuProvisioning {
 
     // add `assigned` to the URL query string
     if (getAssigned() != null) {
-      joiner.add(String.format("%sassigned%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAssigned()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sassigned%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAssigned()))));
     }
 
     // add `percent` to the URL query string
     if (getPercent() != null) {
-      joiner.add(String.format("%spercent%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPercent()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%spercent%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPercent()))));
     }
 
     // add `total` to the URL query string
     if (getTotal() != null) {
-      joiner.add(String.format("%stotal%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTotal()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%stotal%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTotal()))));
     }
 
     return joiner.toString();

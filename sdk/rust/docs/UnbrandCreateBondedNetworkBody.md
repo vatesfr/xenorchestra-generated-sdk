@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**bond_mode** | [**models::BondMode**](BOND_MODE.md) |  | 
+**bond_mode** | [**models::BondMode**](BONDMODE.md) |  | 
 **description** | Option<**String**> |  | [optional]
 **mtu** | Option<**f64**> |  | [optional][default to 1500]
 **name** | **String** |  | 

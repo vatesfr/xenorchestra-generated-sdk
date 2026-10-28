@@ -77,8 +77,9 @@ class _$BrandedHostSerializer implements PrimitiveSerializer<BrandedHost> {
         case r'undefined':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BrandedHostUndefinedEnum),
-          ) as BrandedHostUndefinedEnum;
+            specifiedType: const FullType.nullable(BrandedHostUndefinedEnum),
+          ) as BrandedHostUndefinedEnum?;
+          if (valueDes == null) continue;
           result.undefined = valueDes;
           break;
         default:

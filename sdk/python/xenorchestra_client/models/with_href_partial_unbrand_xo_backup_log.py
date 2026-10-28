@@ -23,6 +23,7 @@ from xenorchestra_client.models.partial_unbrand_xo_backup_log_infos_inner import
 from xenorchestra_client.models.xo_task import XoTask
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class WithHrefPartialUnbrandXoBackupLog(BaseModel):
     """
@@ -56,7 +57,8 @@ class WithHrefPartialUnbrandXoBackupLog(BaseModel):
         return value
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -68,8 +70,7 @@ class WithHrefPartialUnbrandXoBackupLog(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
@@ -98,15 +99,13 @@ class WithHrefPartialUnbrandXoBackupLog(BaseModel):
         _items = []
         if self.infos:
             for _item_infos in self.infos:
-                if _item_infos:
-                    _items.append(_item_infos.to_dict())
+                _items.append(_item_infos.to_dict() if _item_infos is not None else None)
             _dict['infos'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in tasks (list)
         _items = []
         if self.tasks:
             for _item_tasks in self.tasks:
-                if _item_tasks:
-                    _items.append(_item_tasks.to_dict())
+                _items.append(_item_tasks.to_dict() if _item_tasks is not None else None)
             _dict['tasks'] = _items
         return _dict
 

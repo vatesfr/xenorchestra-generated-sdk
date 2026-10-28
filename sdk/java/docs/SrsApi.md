@@ -119,7 +119,7 @@ public class Example {
 
 ## createSrWithHttpInfo
 
-> ApiResponse<CreateAclV2Privilege201Response> createSr createSrWithHttpInfo(createSrBody)
+> ApiResponse<CreateAclV2Privilege201Response> createSrWithHttpInfo(createSrBody)
 
 
 
@@ -287,7 +287,7 @@ null (empty response body)
 
 ## deleteSrWithHttpInfo
 
-> ApiResponse<Void> deleteSr deleteSrWithHttpInfo(id)
+> ApiResponse<Void> deleteSrWithHttpInfo(id)
 
 
 
@@ -453,7 +453,7 @@ null (empty response body)
 
 ## deleteSrTagWithHttpInfo
 
-> ApiResponse<Void> deleteSrTag deleteSrTagWithHttpInfo(id, tag)
+> ApiResponse<Void> deleteSrTagWithHttpInfo(id, tag)
 
 
 
@@ -625,7 +625,7 @@ public class Example {
 
 ## forgetSrWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> forgetSr forgetSrWithHttpInfo(id, sync)
+> ApiResponse<CreateActionReturnTypeVoid> forgetSrWithHttpInfo(id, sync)
 
 
 
@@ -796,7 +796,7 @@ public class Example {
 
 ## getSrWithHttpInfo
 
-> ApiResponse<UnbrandXoSr> getSr getSrWithHttpInfo(id)
+> ApiResponse<UnbrandXoSr> getSrWithHttpInfo(id)
 
 
 
@@ -971,7 +971,7 @@ public class Example {
 
 ## getSrAlarmsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getSrAlarms getSrAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getSrAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1155,7 +1155,7 @@ public class Example {
 
 ## getSrMessagesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoMessage> getSrMessages getSrMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoMessage> getSrMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1339,7 +1339,7 @@ public class Example {
 
 ## getSrTasksWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoTask> getSrTasks getSrTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoTask> getSrTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1520,7 +1520,7 @@ public class Example {
 
 ## getSrsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoSr> getSrs getSrsWithHttpInfo(fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoSr> getSrsWithHttpInfo(fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1693,7 +1693,7 @@ null (empty response body)
 
 ## putSrTagWithHttpInfo
 
-> ApiResponse<Void> putSrTag putSrTagWithHttpInfo(id, tag)
+> ApiResponse<Void> putSrTagWithHttpInfo(id, tag)
 
 
 
@@ -1865,7 +1865,7 @@ public class Example {
 
 ## reclaimSpaceSrWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> reclaimSpaceSr reclaimSpaceSrWithHttpInfo(id, sync)
+> ApiResponse<CreateActionReturnTypeVoid> reclaimSpaceSrWithHttpInfo(id, sync)
 
 
 
@@ -2041,7 +2041,7 @@ public class Example {
 
 ## scanSrWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> scanSr scanSrWithHttpInfo(id, sync)
+> ApiResponse<CreateActionReturnTypeVoid> scanSrWithHttpInfo(id, sync)
 
 
 
@@ -2220,7 +2220,7 @@ public class Example {
 
 ## srImportVdiWithHttpInfo
 
-> ApiResponse<CreateAclV2Privilege201Response> srImportVdi srImportVdiWithHttpInfo(id, body, nameLabel, nameDescription, raw)
+> ApiResponse<CreateAclV2Privilege201Response> srImportVdiWithHttpInfo(id, body, nameLabel, nameDescription, raw)
 
 
 

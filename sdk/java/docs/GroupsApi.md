@@ -115,7 +115,7 @@ null (empty response body)
 
 ## addUserToGroupWithHttpInfo
 
-> ApiResponse<Void> addUserToGroup addUserToGroupWithHttpInfo(id, userId)
+> ApiResponse<Void> addUserToGroupWithHttpInfo(id, userId)
 
 
 
@@ -283,7 +283,7 @@ public class Example {
 
 ## createGroupWithHttpInfo
 
-> ApiResponse<CreateAclV2Privilege201Response> createGroup createGroupWithHttpInfo(createGroupRequest)
+> ApiResponse<CreateAclV2Privilege201Response> createGroupWithHttpInfo(createGroupRequest)
 
 
 
@@ -449,7 +449,7 @@ null (empty response body)
 
 ## deleteGroupWithHttpInfo
 
-> ApiResponse<Void> deleteGroup deleteGroupWithHttpInfo(id)
+> ApiResponse<Void> deleteGroupWithHttpInfo(id)
 
 
 
@@ -623,7 +623,7 @@ public class Example {
 
 ## getAclRoleGroupsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoGroup> getAclRoleGroups getAclRoleGroupsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoGroup> getAclRoleGroupsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -798,7 +798,7 @@ public class Example {
 
 ## getGroupWithHttpInfo
 
-> ApiResponse<UnbrandXoGroup> getGroup getGroupWithHttpInfo(id)
+> ApiResponse<UnbrandXoGroup> getGroupWithHttpInfo(id)
 
 
 
@@ -973,7 +973,7 @@ public class Example {
 
 ## getGroupAclRolesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandExcludeXoAclRoleIsTemplateTrue> getGroupAclRoles getGroupAclRolesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandExcludeXoAclRoleIsTemplateTrue> getGroupAclRolesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1157,7 +1157,7 @@ public class Example {
 
 ## getGroupTasksWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoTask> getGroupTasks getGroupTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoTask> getGroupTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1341,7 +1341,7 @@ public class Example {
 
 ## getGroupUsersWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoUser> getGroupUsers getGroupUsersWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoUser> getGroupUsersWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1522,7 +1522,7 @@ public class Example {
 
 ## getGroupsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoGroup> getGroups getGroupsWithHttpInfo(fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoGroup> getGroupsWithHttpInfo(fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1703,7 +1703,7 @@ public class Example {
 
 ## getUserGroupsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoGroup> getUserGroups getUserGroupsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoGroup> getUserGroupsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1879,7 +1879,7 @@ null (empty response body)
 
 ## removeUserFromGroupWithHttpInfo
 
-> ApiResponse<Void> removeUserFromGroup removeUserFromGroupWithHttpInfo(id, userId)
+> ApiResponse<Void> removeUserFromGroupWithHttpInfo(id, userId)
 
 
 
@@ -2048,7 +2048,7 @@ null (empty response body)
 
 ## updateGroupWithHttpInfo
 
-> ApiResponse<Void> updateGroup updateGroupWithHttpInfo(id, updateGroupRequestBody)
+> ApiResponse<Void> updateGroupWithHttpInfo(id, updateGroupRequestBody)
 
 
 

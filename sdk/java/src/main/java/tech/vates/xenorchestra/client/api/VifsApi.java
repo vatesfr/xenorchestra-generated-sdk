@@ -53,15 +53,35 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class VifsApi {
+  /**
+   * Utility class for extending HttpRequest.Builder functionality.
+   */
+  private static class HttpRequestBuilderExtensions {
+    /**
+     * Adds additional headers to the provided HttpRequest.Builder. Useful for adding method/endpoint specific headers.
+     *
+     * @param builder the HttpRequest.Builder to which headers will be added
+     * @param headers a map of header names and values to add; may be null
+     * @return the same HttpRequest.Builder instance with the additional headers set
+     */
+    static HttpRequest.Builder withAdditionalHeaders(HttpRequest.Builder builder, Map<String, String> headers) {
+        if (headers != null) {
+            for (Map.Entry<String, String> entry : headers.entrySet()) {
+                builder.header(entry.getKey(), entry.getValue());
+            }
+        }
+        return builder;
+    }
+  }
   private final HttpClient memberVarHttpClient;
   private final ObjectMapper memberVarObjectMapper;
   private final String memberVarBaseUri;
   private final Consumer<HttpRequest.Builder> memberVarInterceptor;
   private final Duration memberVarReadTimeout;
   private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
-  private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
+  private final Consumer<HttpResponse<InputStream>> memberVarAsyncResponseInterceptor;
 
   public VifsApi() {
     this(Configuration.getDefaultApiClient());
@@ -77,8 +97,17 @@ public class VifsApi {
     memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
   }
 
+
   protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
-    String body = response.body() == null ? null : new String(response.body().readAllBytes());
+    InputStream responseBody = ApiClient.getResponseBody(response);
+    String body = null;
+    try {
+      body = responseBody == null ? null : new String(responseBody.readAllBytes());
+    } finally {
+      if (responseBody != null) {
+        responseBody.close();
+      }
+    }
     String message = formatExceptionMessage(operationId, response.statusCode(), body);
     return new ApiException(response.statusCode(), message, response.headers(), body);
   }
@@ -91,6 +120,57 @@ public class VifsApi {
   }
 
   /**
+   * Download file from the given response.
+   *
+   * @param response Response
+   * @return File
+   * @throws ApiException If fail to read file content from response and write to disk
+   */
+  public File downloadFileFromResponse(HttpResponse<InputStream> response, InputStream responseBody) throws ApiException {
+    if (responseBody == null) {
+      throw new ApiException(new IOException("Response body is empty"));
+    }
+    try {
+      File file = prepareDownloadFile(response);
+      java.nio.file.Files.copy(responseBody, file.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+      return file;
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+  }
+
+  /**
+   * <p>Prepare the file for download from the response.</p>
+   *
+   * @param response a {@link java.net.http.HttpResponse} object.
+   * @return a {@link java.io.File} object.
+   * @throws java.io.IOException if any.
+   */
+  private File prepareDownloadFile(HttpResponse<InputStream> response) throws IOException {
+    String filename = null;
+    java.util.Optional<String> contentDisposition = response.headers().firstValue("Content-Disposition");
+    if (contentDisposition.isPresent() && !"".equals(contentDisposition.get())) {
+      // Get filename from the Content-Disposition header.
+      java.util.regex.Pattern pattern = java.util.regex.Pattern.compile("filename=['\"]?([^'\"\\s]+)['\"]?");
+      java.util.regex.Matcher matcher = pattern.matcher(contentDisposition.get());
+      if (matcher.find())
+        filename = matcher.group(1);
+    }
+    File file = null;
+    if (filename != null) {
+      java.nio.file.Path tempDir = java.nio.file.Files.createTempDirectory("swagger-gen-native");
+      java.nio.file.Path filePath = java.nio.file.Files.createFile(tempDir.resolve(filename));
+      file = filePath.toFile();
+      tempDir.toFile().deleteOnExit();   // best effort cleanup
+      file.deleteOnExit(); // best effort cleanup
+    } else {
+      file = java.nio.file.Files.createTempFile("download-", "").toFile();
+      file.deleteOnExit(); // best effort cleanup
+    }
+    return file;
+  }
+
+  /**
    * 
    * Hotplug the VIF, dynamically attaching it to the running VM Requires PV drivers to be installed on the VM  Required privilege: - resource: vif, action: connect
    * @param id  (required)
@@ -99,7 +179,20 @@ public class VifsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeVoid connectVif(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = connectVifWithHttpInfo(id, sync);
+    return connectVif(id, sync, null);
+  }
+
+  /**
+   * 
+   * Hotplug the VIF, dynamically attaching it to the running VM Requires PV drivers to be installed on the VM  Required privilege: - resource: vif, action: connect
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeVoid
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeVoid connectVif(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = connectVifWithHttpInfo(id, sync, headers);
     return localVarResponse.getData();
   }
 
@@ -112,7 +205,20 @@ public class VifsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeVoid> connectVifWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = connectVifRequestBuilder(id, sync);
+    return connectVifWithHttpInfo(id, sync, null);
+  }
+
+  /**
+   * 
+   * Hotplug the VIF, dynamically attaching it to the running VM Requires PV drivers to be installed on the VM  Required privilege: - resource: vif, action: connect
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeVoid&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeVoid> connectVifWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = connectVifRequestBuilder(id, sync, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -120,11 +226,13 @@ public class VifsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("connectVif", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeVoid>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -132,15 +240,21 @@ public class VifsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeVoid responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeVoid>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -151,7 +265,7 @@ public class VifsApi {
     }
   }
 
-  private HttpRequest.Builder connectVifRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
+  private HttpRequest.Builder connectVifRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling connectVif");
@@ -185,6 +299,8 @@ public class VifsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -199,7 +315,19 @@ public class VifsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateAclV2Privilege201Response createVif(@javax.annotation.Nonnull CreateVifBody createVifBody) throws ApiException {
-    ApiResponse<CreateAclV2Privilege201Response> localVarResponse = createVifWithHttpInfo(createVifBody);
+    return createVif(createVifBody, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vif, action: create
+   * @param createVifBody  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateAclV2Privilege201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateAclV2Privilege201Response createVif(@javax.annotation.Nonnull CreateVifBody createVifBody, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateAclV2Privilege201Response> localVarResponse = createVifWithHttpInfo(createVifBody, headers);
     return localVarResponse.getData();
   }
 
@@ -211,7 +339,19 @@ public class VifsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateAclV2Privilege201Response> createVifWithHttpInfo(@javax.annotation.Nonnull CreateVifBody createVifBody) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createVifRequestBuilder(createVifBody);
+    return createVifWithHttpInfo(createVifBody, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vif, action: create
+   * @param createVifBody  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateAclV2Privilege201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateAclV2Privilege201Response> createVifWithHttpInfo(@javax.annotation.Nonnull CreateVifBody createVifBody, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createVifRequestBuilder(createVifBody, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -219,11 +359,13 @@ public class VifsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("createVif", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateAclV2Privilege201Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -231,15 +373,21 @@ public class VifsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateAclV2Privilege201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateAclV2Privilege201Response>() {});
+        
 
         return new ApiResponse<CreateAclV2Privilege201Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateAclV2Privilege201Response>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -250,7 +398,7 @@ public class VifsApi {
     }
   }
 
-  private HttpRequest.Builder createVifRequestBuilder(@javax.annotation.Nonnull CreateVifBody createVifBody) throws ApiException {
+  private HttpRequest.Builder createVifRequestBuilder(@javax.annotation.Nonnull CreateVifBody createVifBody, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'createVifBody' is set
     if (createVifBody == null) {
       throw new ApiException(400, "Missing the required parameter 'createVifBody' when calling createVif");
@@ -274,6 +422,8 @@ public class VifsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -287,7 +437,18 @@ public class VifsApi {
    * @throws ApiException if fails to make API call
    */
   public void destroyVif(@javax.annotation.Nonnull String id) throws ApiException {
-    destroyVifWithHttpInfo(id);
+    destroyVif(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vif, action: delete
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void destroyVif(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    destroyVifWithHttpInfo(id, headers);
   }
 
   /**
@@ -298,7 +459,19 @@ public class VifsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> destroyVifWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = destroyVifRequestBuilder(id);
+    return destroyVifWithHttpInfo(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vif, action: delete
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> destroyVifWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = destroyVifRequestBuilder(id, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -306,9 +479,14 @@ public class VifsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("destroyVif", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -316,11 +494,9 @@ public class VifsApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -331,7 +507,7 @@ public class VifsApi {
     }
   }
 
-  private HttpRequest.Builder destroyVifRequestBuilder(@javax.annotation.Nonnull String id) throws ApiException {
+  private HttpRequest.Builder destroyVifRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling destroyVif");
@@ -350,6 +526,8 @@ public class VifsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -365,7 +543,20 @@ public class VifsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeVoid disconnectVif(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = disconnectVifWithHttpInfo(id, sync);
+    return disconnectVif(id, sync, null);
+  }
+
+  /**
+   * 
+   * Hot-unplug the VIF, dynamically detaching it from the running VM Requires PV drivers to be installed on the VM  Required privilege: - resource: vif, action: disconnect
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeVoid
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeVoid disconnectVif(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = disconnectVifWithHttpInfo(id, sync, headers);
     return localVarResponse.getData();
   }
 
@@ -378,7 +569,20 @@ public class VifsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeVoid> disconnectVifWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = disconnectVifRequestBuilder(id, sync);
+    return disconnectVifWithHttpInfo(id, sync, null);
+  }
+
+  /**
+   * 
+   * Hot-unplug the VIF, dynamically detaching it from the running VM Requires PV drivers to be installed on the VM  Required privilege: - resource: vif, action: disconnect
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeVoid&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeVoid> disconnectVifWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = disconnectVifRequestBuilder(id, sync, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -386,11 +590,13 @@ public class VifsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("disconnectVif", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeVoid>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -398,15 +604,21 @@ public class VifsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeVoid responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeVoid>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -417,7 +629,7 @@ public class VifsApi {
     }
   }
 
-  private HttpRequest.Builder disconnectVifRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
+  private HttpRequest.Builder disconnectVifRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling disconnectVif");
@@ -451,6 +663,8 @@ public class VifsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -465,7 +679,19 @@ public class VifsApi {
    * @throws ApiException if fails to make API call
    */
   public UnbrandXoVif getVif(@javax.annotation.Nonnull String id) throws ApiException {
-    ApiResponse<UnbrandXoVif> localVarResponse = getVifWithHttpInfo(id);
+    return getVif(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vif, action: read
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return UnbrandXoVif
+   * @throws ApiException if fails to make API call
+   */
+  public UnbrandXoVif getVif(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<UnbrandXoVif> localVarResponse = getVifWithHttpInfo(id, headers);
     return localVarResponse.getData();
   }
 
@@ -477,7 +703,19 @@ public class VifsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<UnbrandXoVif> getVifWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVifRequestBuilder(id);
+    return getVifWithHttpInfo(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vif, action: read
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UnbrandXoVif&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UnbrandXoVif> getVifWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVifRequestBuilder(id, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -485,11 +723,13 @@ public class VifsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVif", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<UnbrandXoVif>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -497,15 +737,21 @@ public class VifsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UnbrandXoVif responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnbrandXoVif>() {});
+        
 
         return new ApiResponse<UnbrandXoVif>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnbrandXoVif>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -516,7 +762,7 @@ public class VifsApi {
     }
   }
 
-  private HttpRequest.Builder getVifRequestBuilder(@javax.annotation.Nonnull String id) throws ApiException {
+  private HttpRequest.Builder getVifRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVif");
@@ -535,6 +781,8 @@ public class VifsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -554,7 +802,24 @@ public class VifsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoAlarm getVifAlarms(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoAlarm> localVarResponse = getVifAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getVifAlarms(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all alarms that match the following privilege: - resource: alarm, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoAlarm
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoAlarm getVifAlarms(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoAlarm> localVarResponse = getVifAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -571,7 +836,24 @@ public class VifsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVifAlarmsWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVifAlarmsRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getVifAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all alarms that match the following privilege: - resource: alarm, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoAlarm&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVifAlarmsWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVifAlarmsRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -579,11 +861,13 @@ public class VifsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVifAlarms", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoAlarm>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -591,15 +875,21 @@ public class VifsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoAlarm responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoAlarm>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoAlarm>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoAlarm>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -610,7 +900,7 @@ public class VifsApi {
     }
   }
 
-  private HttpRequest.Builder getVifAlarmsRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVifAlarmsRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVifAlarms");
@@ -652,6 +942,8 @@ public class VifsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -671,7 +963,24 @@ public class VifsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoMessage getVifMessages(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoMessage> localVarResponse = getVifMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getVifMessages(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all messages that match the following privilege: - resource: message, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoMessage
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoMessage getVifMessages(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoMessage> localVarResponse = getVifMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -688,7 +997,24 @@ public class VifsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoMessage> getVifMessagesWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVifMessagesRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getVifMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all messages that match the following privilege: - resource: message, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoMessage&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoMessage> getVifMessagesWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVifMessagesRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -696,11 +1022,13 @@ public class VifsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVifMessages", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoMessage>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -708,15 +1036,21 @@ public class VifsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoMessage responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoMessage>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoMessage>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoMessage>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -727,7 +1061,7 @@ public class VifsApi {
     }
   }
 
-  private HttpRequest.Builder getVifMessagesRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVifMessagesRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVifMessages");
@@ -769,6 +1103,8 @@ public class VifsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -788,7 +1124,24 @@ public class VifsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoTask getVifTasks(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoTask> localVarResponse = getVifTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getVifTasks(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all tasks that match the following privilege: - resource: task, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoTask
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoTask getVifTasks(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoTask> localVarResponse = getVifTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -805,7 +1158,24 @@ public class VifsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoTask> getVifTasksWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVifTasksRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getVifTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all tasks that match the following privilege: - resource: task, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoTask&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoTask> getVifTasksWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVifTasksRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -813,11 +1183,13 @@ public class VifsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVifTasks", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoTask>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -825,15 +1197,21 @@ public class VifsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoTask responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoTask>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoTask>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoTask>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -844,7 +1222,7 @@ public class VifsApi {
     }
   }
 
-  private HttpRequest.Builder getVifTasksRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVifTasksRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVifTasks");
@@ -886,6 +1264,8 @@ public class VifsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -904,7 +1284,23 @@ public class VifsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandedXoVif getVifs(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandedXoVif> localVarResponse = getVifsWithHttpInfo(fields, ndjson, markdown, filter, limit);
+    return getVifs(fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all VIFs that match the following privilege: - resource: vif, action: read
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandedXoVif
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandedXoVif getVifs(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandedXoVif> localVarResponse = getVifsWithHttpInfo(fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -920,7 +1316,23 @@ public class VifsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandedXoVif> getVifsWithHttpInfo(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVifsRequestBuilder(fields, ndjson, markdown, filter, limit);
+    return getVifsWithHttpInfo(fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all VIFs that match the following privilege: - resource: vif, action: read
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandedXoVif&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandedXoVif> getVifsWithHttpInfo(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVifsRequestBuilder(fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -928,11 +1340,13 @@ public class VifsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVifs", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandedXoVif>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -940,15 +1354,21 @@ public class VifsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandedXoVif responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandedXoVif>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandedXoVif>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandedXoVif>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -959,7 +1379,7 @@ public class VifsApi {
     }
   }
 
-  private HttpRequest.Builder getVifsRequestBuilder(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVifsRequestBuilder(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -996,6 +1416,8 @@ public class VifsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1010,7 +1432,19 @@ public class VifsApi {
    * @throws ApiException if fails to make API call
    */
   public void updateVif(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateVifRequestBody updateVifRequestBody) throws ApiException {
-    updateVifWithHttpInfo(id, updateVifRequestBody);
+    updateVif(id, updateVifRequestBody, null);
+  }
+
+  /**
+   * 
+   * Partial update of a VIF: only the fields present in the body are modified. Setting the allowed IPs to a non-empty list switches the locking mode to &#x60;locked&#x60;. &#x60;rateLimit&#x60; is expressed in kB/s (kilobytes per second).  Required privilege per field provided in the body: - resource: vif, action: update:&amp;lt;field&amp;gt;
+   * @param id  (required)
+   * @param updateVifRequestBody  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void updateVif(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateVifRequestBody updateVifRequestBody, Map<String, String> headers) throws ApiException {
+    updateVifWithHttpInfo(id, updateVifRequestBody, headers);
   }
 
   /**
@@ -1022,7 +1456,20 @@ public class VifsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> updateVifWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateVifRequestBody updateVifRequestBody) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = updateVifRequestBuilder(id, updateVifRequestBody);
+    return updateVifWithHttpInfo(id, updateVifRequestBody, null);
+  }
+
+  /**
+   * 
+   * Partial update of a VIF: only the fields present in the body are modified. Setting the allowed IPs to a non-empty list switches the locking mode to &#x60;locked&#x60;. &#x60;rateLimit&#x60; is expressed in kB/s (kilobytes per second).  Required privilege per field provided in the body: - resource: vif, action: update:&amp;lt;field&amp;gt;
+   * @param id  (required)
+   * @param updateVifRequestBody  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> updateVifWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateVifRequestBody updateVifRequestBody, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateVifRequestBuilder(id, updateVifRequestBody, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1030,9 +1477,14 @@ public class VifsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("updateVif", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -1040,11 +1492,9 @@ public class VifsApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1055,7 +1505,7 @@ public class VifsApi {
     }
   }
 
-  private HttpRequest.Builder updateVifRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateVifRequestBody updateVifRequestBody) throws ApiException {
+  private HttpRequest.Builder updateVifRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateVifRequestBody updateVifRequestBody, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling updateVif");
@@ -1084,6 +1534,8 @@ public class VifsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }

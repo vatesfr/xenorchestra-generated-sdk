@@ -39,7 +39,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   XoVmBackupJobGeneralSettingsAllOfLongTermRetention.JSON_PROPERTY_WEEKLY,
   XoVmBackupJobGeneralSettingsAllOfLongTermRetention.JSON_PROPERTY_YEARLY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class XoVmBackupJobGeneralSettingsAllOfLongTermRetention {
   public static final String JSON_PROPERTY_DAILY = "daily";
   @javax.annotation.Nullable
@@ -70,14 +70,14 @@ public class XoVmBackupJobGeneralSettingsAllOfLongTermRetention {
    * @return daily
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DAILY)
+  @JsonProperty(value = JSON_PROPERTY_DAILY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public XoVmBackupJobGeneralSettingsAllOfLongTermRetentionDaily getDaily() {
     return daily;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DAILY)
+  @JsonProperty(value = JSON_PROPERTY_DAILY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDaily(@javax.annotation.Nullable XoVmBackupJobGeneralSettingsAllOfLongTermRetentionDaily daily) {
     this.daily = daily;
@@ -94,14 +94,14 @@ public class XoVmBackupJobGeneralSettingsAllOfLongTermRetention {
    * @return monthly
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_MONTHLY)
+  @JsonProperty(value = JSON_PROPERTY_MONTHLY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public XoVmBackupJobGeneralSettingsAllOfLongTermRetentionDaily getMonthly() {
     return monthly;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MONTHLY)
+  @JsonProperty(value = JSON_PROPERTY_MONTHLY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMonthly(@javax.annotation.Nullable XoVmBackupJobGeneralSettingsAllOfLongTermRetentionDaily monthly) {
     this.monthly = monthly;
@@ -118,14 +118,14 @@ public class XoVmBackupJobGeneralSettingsAllOfLongTermRetention {
    * @return weekly
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_WEEKLY)
+  @JsonProperty(value = JSON_PROPERTY_WEEKLY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public XoVmBackupJobGeneralSettingsAllOfLongTermRetentionDaily getWeekly() {
     return weekly;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_WEEKLY)
+  @JsonProperty(value = JSON_PROPERTY_WEEKLY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setWeekly(@javax.annotation.Nullable XoVmBackupJobGeneralSettingsAllOfLongTermRetentionDaily weekly) {
     this.weekly = weekly;
@@ -142,14 +142,14 @@ public class XoVmBackupJobGeneralSettingsAllOfLongTermRetention {
    * @return yearly
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_YEARLY)
+  @JsonProperty(value = JSON_PROPERTY_YEARLY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public XoVmBackupJobGeneralSettingsAllOfLongTermRetentionDaily getYearly() {
     return yearly;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_YEARLY)
+  @JsonProperty(value = JSON_PROPERTY_YEARLY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setYearly(@javax.annotation.Nullable XoVmBackupJobGeneralSettingsAllOfLongTermRetentionDaily yearly) {
     this.yearly = yearly;
@@ -196,10 +196,7 @@ public class XoVmBackupJobGeneralSettingsAllOfLongTermRetention {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**

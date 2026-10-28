@@ -43,7 +43,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   IsMaybeExpiredDashboardBackupsInfo.JSON_PROPERTY_VMS_PROTECTION,
   IsMaybeExpiredDashboardBackupsInfo.JSON_PROPERTY_IS_EXPIRED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class IsMaybeExpiredDashboardBackupsInfo {
   public static final String JSON_PROPERTY_ISSUES = "issues";
   @javax.annotation.Nonnull
@@ -82,14 +82,14 @@ public class IsMaybeExpiredDashboardBackupsInfo {
    * @return issues
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ISSUES)
+  @JsonProperty(value = JSON_PROPERTY_ISSUES, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<DashboardBackupsInfoIssuesInner> getIssues() {
     return issues;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ISSUES)
+  @JsonProperty(value = JSON_PROPERTY_ISSUES, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setIssues(@javax.annotation.Nonnull List<DashboardBackupsInfoIssuesInner> issues) {
     this.issues = issues;
@@ -106,14 +106,14 @@ public class IsMaybeExpiredDashboardBackupsInfo {
    * @return jobs
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_JOBS)
+  @JsonProperty(value = JSON_PROPERTY_JOBS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public DashboardBackupsInfoJobs getJobs() {
     return jobs;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_JOBS)
+  @JsonProperty(value = JSON_PROPERTY_JOBS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setJobs(@javax.annotation.Nonnull DashboardBackupsInfoJobs jobs) {
     this.jobs = jobs;
@@ -130,14 +130,14 @@ public class IsMaybeExpiredDashboardBackupsInfo {
    * @return vmsProtection
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_VMS_PROTECTION)
+  @JsonProperty(value = JSON_PROPERTY_VMS_PROTECTION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public DashboardBackupsInfoVmsProtection getVmsProtection() {
     return vmsProtection;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_VMS_PROTECTION)
+  @JsonProperty(value = JSON_PROPERTY_VMS_PROTECTION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setVmsProtection(@javax.annotation.Nonnull DashboardBackupsInfoVmsProtection vmsProtection) {
     this.vmsProtection = vmsProtection;
@@ -154,14 +154,14 @@ public class IsMaybeExpiredDashboardBackupsInfo {
    * @return isExpired
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_IS_EXPIRED)
+  @JsonProperty(value = JSON_PROPERTY_IS_EXPIRED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getIsExpired() {
     return isExpired;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_IS_EXPIRED)
+  @JsonProperty(value = JSON_PROPERTY_IS_EXPIRED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIsExpired(@javax.annotation.Nullable Boolean isExpired) {
     this.isExpired = isExpired;
@@ -208,10 +208,7 @@ public class IsMaybeExpiredDashboardBackupsInfo {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -250,8 +247,8 @@ public class IsMaybeExpiredDashboardBackupsInfo {
     if (getIssues() != null) {
       for (int i = 0; i < getIssues().size(); i++) {
         if (getIssues().get(i) != null) {
-          joiner.add(getIssues().get(i).toUrlQueryString(String.format("%sissues%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+          joiner.add(getIssues().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sissues%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
     }
@@ -268,7 +265,7 @@ public class IsMaybeExpiredDashboardBackupsInfo {
 
     // add `isExpired` to the URL query string
     if (getIsExpired() != null) {
-      joiner.add(String.format("%sisExpired%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsExpired()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sisExpired%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsExpired()))));
     }
 
     return joiner.toString();

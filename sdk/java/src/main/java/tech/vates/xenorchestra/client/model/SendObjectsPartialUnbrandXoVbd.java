@@ -32,13 +32,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
@@ -46,7 +46,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import tech.vates.xenorchestra.client.ApiClient;
 import tech.vates.xenorchestra.client.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 @JsonDeserialize(using=SendObjectsPartialUnbrandXoVbd.SendObjectsPartialUnbrandXoVbdDeserializer.class)
 @JsonSerialize(using = SendObjectsPartialUnbrandXoVbd.SendObjectsPartialUnbrandXoVbdSerializer.class)
 public class SendObjectsPartialUnbrandXoVbd extends AbstractOpenApiSchema {
@@ -78,7 +78,7 @@ public class SendObjectsPartialUnbrandXoVbd extends AbstractOpenApiSchema {
 
         @Override
         public SendObjectsPartialUnbrandXoVbd deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
-            JsonNode tree = jp.readValueAsTree();
+            JsonNode tree = ctxt.readTree(jp);
 
             Object deserialized = null;
             // deserialize List<String>
@@ -125,7 +125,7 @@ public class SendObjectsPartialUnbrandXoVbd extends AbstractOpenApiSchema {
                 log.log(Level.FINER, "Input data does not match 'SendObjectsPartialUnbrandXoVbd'", e);
             }
 
-            throw new IOException(String.format("Failed deserialization for SendObjectsPartialUnbrandXoVbd: no match found"));
+            throw new IOException("Failed deserialization for SendObjectsPartialUnbrandXoVbd: no match found");
         }
 
         /**

@@ -38,7 +38,7 @@ import tech.vates.xenorchestra.client.ApiClient;
 @JsonPropertyOrder({
   PoolDashboardSrs.JSON_PROPERTY_TOP_FIVE_USAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PoolDashboardSrs {
   public static final String JSON_PROPERTY_TOP_FIVE_USAGE = "topFiveUsage";
   @javax.annotation.Nonnull
@@ -65,14 +65,14 @@ public class PoolDashboardSrs {
    * @return topFiveUsage
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_TOP_FIVE_USAGE)
+  @JsonProperty(value = JSON_PROPERTY_TOP_FIVE_USAGE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<PoolDashboardSrsTopFiveUsageInner> getTopFiveUsage() {
     return topFiveUsage;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TOP_FIVE_USAGE)
+  @JsonProperty(value = JSON_PROPERTY_TOP_FIVE_USAGE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setTopFiveUsage(@javax.annotation.Nonnull List<PoolDashboardSrsTopFiveUsageInner> topFiveUsage) {
     this.topFiveUsage = topFiveUsage;
@@ -113,10 +113,7 @@ public class PoolDashboardSrs {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -155,8 +152,8 @@ public class PoolDashboardSrs {
     if (getTopFiveUsage() != null) {
       for (int i = 0; i < getTopFiveUsage().size(); i++) {
         if (getTopFiveUsage().get(i) != null) {
-          joiner.add(getTopFiveUsage().get(i).toUrlQueryString(String.format("%stopFiveUsage%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+          joiner.add(getTopFiveUsage().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%stopFiveUsage%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
     }

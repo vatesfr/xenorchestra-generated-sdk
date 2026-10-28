@@ -43,7 +43,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   WithHrefPartialUnbrandXoGroup.JSON_PROPERTY_USERS,
   WithHrefPartialUnbrandXoGroup.JSON_PROPERTY_HREF
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class WithHrefPartialUnbrandXoGroup {
   public static final String JSON_PROPERTY_ACL_ROLE_IDS = "aclRoleIds";
   @javax.annotation.Nullable
@@ -94,14 +94,14 @@ public class WithHrefPartialUnbrandXoGroup {
    * @return aclRoleIds
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ACL_ROLE_IDS)
+  @JsonProperty(value = JSON_PROPERTY_ACL_ROLE_IDS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getAclRoleIds() {
     return aclRoleIds;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ACL_ROLE_IDS)
+  @JsonProperty(value = JSON_PROPERTY_ACL_ROLE_IDS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAclRoleIds(@javax.annotation.Nullable List<String> aclRoleIds) {
     this.aclRoleIds = aclRoleIds;
@@ -118,14 +118,14 @@ public class WithHrefPartialUnbrandXoGroup {
    * @return id
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
@@ -142,14 +142,14 @@ public class WithHrefPartialUnbrandXoGroup {
    * @return name
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getName() {
     return name;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
@@ -166,14 +166,14 @@ public class WithHrefPartialUnbrandXoGroup {
    * @return provider
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PROVIDER)
+  @JsonProperty(value = JSON_PROPERTY_PROVIDER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getProvider() {
     return provider;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PROVIDER)
+  @JsonProperty(value = JSON_PROPERTY_PROVIDER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setProvider(@javax.annotation.Nullable String provider) {
     this.provider = provider;
@@ -190,14 +190,14 @@ public class WithHrefPartialUnbrandXoGroup {
    * @return providerGroupId
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PROVIDER_GROUP_ID)
+  @JsonProperty(value = JSON_PROPERTY_PROVIDER_GROUP_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getProviderGroupId() {
     return providerGroupId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PROVIDER_GROUP_ID)
+  @JsonProperty(value = JSON_PROPERTY_PROVIDER_GROUP_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setProviderGroupId(@javax.annotation.Nullable String providerGroupId) {
     this.providerGroupId = providerGroupId;
@@ -222,14 +222,14 @@ public class WithHrefPartialUnbrandXoGroup {
    * @return users
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_USERS)
+  @JsonProperty(value = JSON_PROPERTY_USERS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getUsers() {
     return users;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_USERS)
+  @JsonProperty(value = JSON_PROPERTY_USERS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUsers(@javax.annotation.Nullable List<String> users) {
     this.users = users;
@@ -246,14 +246,14 @@ public class WithHrefPartialUnbrandXoGroup {
    * @return href
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_HREF)
+  @JsonProperty(value = JSON_PROPERTY_HREF, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getHref() {
     return href;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_HREF)
+  @JsonProperty(value = JSON_PROPERTY_HREF, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setHref(@javax.annotation.Nonnull String href) {
     this.href = href;
@@ -306,10 +306,7 @@ public class WithHrefPartialUnbrandXoGroup {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -347,44 +344,44 @@ public class WithHrefPartialUnbrandXoGroup {
     // add `aclRoleIds` to the URL query string
     if (getAclRoleIds() != null) {
       for (int i = 0; i < getAclRoleIds().size(); i++) {
-        joiner.add(String.format("%saclRoleIds%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%saclRoleIds%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getAclRoleIds().get(i)))));
       }
     }
 
     // add `id` to the URL query string
     if (getId() != null) {
-      joiner.add(String.format("%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
     }
 
     // add `name` to the URL query string
     if (getName() != null) {
-      joiner.add(String.format("%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
     }
 
     // add `provider` to the URL query string
     if (getProvider() != null) {
-      joiner.add(String.format("%sprovider%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProvider()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sprovider%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProvider()))));
     }
 
     // add `providerGroupId` to the URL query string
     if (getProviderGroupId() != null) {
-      joiner.add(String.format("%sproviderGroupId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProviderGroupId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sproviderGroupId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProviderGroupId()))));
     }
 
     // add `users` to the URL query string
     if (getUsers() != null) {
       for (int i = 0; i < getUsers().size(); i++) {
-        joiner.add(String.format("%susers%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%susers%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getUsers().get(i)))));
       }
     }
 
     // add `href` to the URL query string
     if (getHref() != null) {
-      joiner.add(String.format("%shref%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHref()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%shref%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHref()))));
     }
 
     return joiner.toString();

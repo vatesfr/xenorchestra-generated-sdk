@@ -62,7 +62,7 @@ final CreateVdiBody createVdiBody = {"name_label":"test VDI","srId":"c4284e12-37
 try {
     final response = api.createVdi(createVdiBody);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VdisApi->createVdi: $e\n');
 }
 ```
@@ -111,7 +111,7 @@ final String id = c77f9955-c1d2-4b39-aa1c-73cdb2dacb7e; // String |
 
 try {
     api.deleteVdi(id);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VdisApi->deleteVdi: $e\n');
 }
 ```
@@ -160,7 +160,7 @@ final String id = d2727772-735b-478f-b6f9-11e7db56dfd0; // String |
 
 try {
     api.deleteVdiSnapshot(id);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VdisApi->deleteVdiSnapshot: $e\n');
 }
 ```
@@ -210,7 +210,7 @@ final String tag = from-rest-api; // String |
 
 try {
     api.deleteVdiSnapshotTag(id, tag);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VdisApi->deleteVdiSnapshotTag: $e\n');
 }
 ```
@@ -261,7 +261,7 @@ final String tag = from-rest-api; // String |
 
 try {
     api.deleteVdiTag(id, tag);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VdisApi->deleteVdiTag: $e\n');
 }
 ```
@@ -313,7 +313,7 @@ final ExcludeSUPPORTEDVDIFORMATQcow2 format = ; // ExcludeSUPPORTEDVDIFORMATQcow
 try {
     final response = api.exportVdiContent(id, format);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VdisApi->exportVdiContent: $e\n');
 }
 ```
@@ -365,7 +365,7 @@ final ExcludeSUPPORTEDVDIFORMATQcow2 format = ; // ExcludeSUPPORTEDVDIFORMATQcow
 try {
     final response = api.exportVdiSnapshotContent(id, format);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VdisApi->exportVdiSnapshotContent: $e\n');
 }
 ```
@@ -416,7 +416,7 @@ final String id = c77f9955-c1d2-4b39-aa1c-73cdb2dacb7e; // String |
 try {
     final response = api.getVdi(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VdisApi->getVdi: $e\n');
 }
 ```
@@ -471,7 +471,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVdiAlarms(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VdisApi->getVdiAlarms: $e\n');
 }
 ```
@@ -531,7 +531,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVdiMessages(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VdisApi->getVdiMessages: $e\n');
 }
 ```
@@ -586,7 +586,7 @@ final String id = d2727772-735b-478f-b6f9-11e7db56dfd0; // String |
 try {
     final response = api.getVdiSnapshot(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VdisApi->getVdiSnapshot: $e\n');
 }
 ```
@@ -641,7 +641,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVdiSnapshotAlarms(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VdisApi->getVdiSnapshotAlarms: $e\n');
 }
 ```
@@ -701,7 +701,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVdiSnapshotMessages(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VdisApi->getVdiSnapshotMessages: $e\n');
 }
 ```
@@ -761,7 +761,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVdiSnapshotTasks(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VdisApi->getVdiSnapshotTasks: $e\n');
 }
 ```
@@ -820,7 +820,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVdiSnapshots(fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VdisApi->getVdiSnapshots: $e\n');
 }
 ```
@@ -879,7 +879,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVdiTasks(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VdisApi->getVdiTasks: $e\n');
 }
 ```
@@ -938,7 +938,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVdis(fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VdisApi->getVdis: $e\n');
 }
 ```
@@ -997,7 +997,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmControllerVdis(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VdisApi->getVmControllerVdis: $e\n');
 }
 ```
@@ -1057,7 +1057,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmSnapshotVdis(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VdisApi->getVmSnapshotVdis: $e\n');
 }
 ```
@@ -1117,7 +1117,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmTemplateVdis(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VdisApi->getVmTemplateVdis: $e\n');
 }
 ```
@@ -1177,7 +1177,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmVdis(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VdisApi->getVmVdis: $e\n');
 }
 ```
@@ -1233,7 +1233,7 @@ final MultipartFile body = BINARY_DATA_HERE; // MultipartFile |
 
 try {
     api.importVdiContent(id, format, body);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VdisApi->importVdiContent: $e\n');
 }
 ```
@@ -1286,7 +1286,7 @@ final bool sync_ = true; // bool |
 
 try {
     api.migrateVdi(id, migrateVdiRequest, sync_);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VdisApi->migrateVdi: $e\n');
 }
 ```
@@ -1338,7 +1338,7 @@ final String tag = from-rest-api; // String |
 
 try {
     api.putVdiSnapshotTag(id, tag);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VdisApi->putVdiSnapshotTag: $e\n');
 }
 ```
@@ -1389,7 +1389,7 @@ final String tag = from-rest-api; // String |
 
 try {
     api.putVdiTag(id, tag);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VdisApi->putVdiTag: $e\n');
 }
 ```
@@ -1444,7 +1444,7 @@ final bool raw = true; // bool |
 try {
     final response = api.srImportVdi(id, body, nameLabel, nameDescription, raw);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VdisApi->srImportVdi: $e\n');
 }
 ```
@@ -1498,7 +1498,7 @@ final UpdateVdiRequestBody updateVdiRequestBody = {"name_description":"system di
 
 try {
     api.updateVdi(id, updateVdiRequestBody);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VdisApi->updateVdi: $e\n');
 }
 ```

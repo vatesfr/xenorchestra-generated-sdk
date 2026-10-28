@@ -11,9 +11,9 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// PartialUnbrandExcludeXoAclRolePeriodIsTemplateTrue : Make all properties in T optional
+/// PartialUnbrandExcludeXoAclRoleIsTemplateTrue : Make all properties in T optional
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct PartialUnbrandExcludeXoAclRolePeriodIsTemplateTrue {
+pub struct PartialUnbrandExcludeXoAclRoleIsTemplateTrue {
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
     #[serde(rename = "groupIds", skip_serializing_if = "Option::is_none")]
@@ -28,10 +28,10 @@ pub struct PartialUnbrandExcludeXoAclRolePeriodIsTemplateTrue {
     pub user_ids: Option<Vec<String>>,
 }
 
-impl PartialUnbrandExcludeXoAclRolePeriodIsTemplateTrue {
+impl PartialUnbrandExcludeXoAclRoleIsTemplateTrue {
     /// Make all properties in T optional
-    pub fn new() -> PartialUnbrandExcludeXoAclRolePeriodIsTemplateTrue {
-        PartialUnbrandExcludeXoAclRolePeriodIsTemplateTrue {
+    pub fn new() -> PartialUnbrandExcludeXoAclRoleIsTemplateTrue {
+        PartialUnbrandExcludeXoAclRoleIsTemplateTrue {
             description: None,
             group_ids: None,
             id: None,

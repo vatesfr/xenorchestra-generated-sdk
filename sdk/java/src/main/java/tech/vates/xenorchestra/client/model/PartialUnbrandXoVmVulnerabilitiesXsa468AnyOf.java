@@ -37,7 +37,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PartialUnbrandXoVmVulnerabilitiesXsa468AnyOf.JSON_PROPERTY_REASON,
   PartialUnbrandXoVmVulnerabilitiesXsa468AnyOf.JSON_PROPERTY_VERSION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PartialUnbrandXoVmVulnerabilitiesXsa468AnyOf {
   public static final String JSON_PROPERTY_DRIVER = "driver";
   @javax.annotation.Nullable
@@ -64,14 +64,14 @@ public class PartialUnbrandXoVmVulnerabilitiesXsa468AnyOf {
    * @return driver
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DRIVER)
+  @JsonProperty(value = JSON_PROPERTY_DRIVER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getDriver() {
     return driver;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DRIVER)
+  @JsonProperty(value = JSON_PROPERTY_DRIVER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDriver(@javax.annotation.Nullable String driver) {
     this.driver = driver;
@@ -88,14 +88,14 @@ public class PartialUnbrandXoVmVulnerabilitiesXsa468AnyOf {
    * @return reason
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_REASON)
+  @JsonProperty(value = JSON_PROPERTY_REASON, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getReason() {
     return reason;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_REASON)
+  @JsonProperty(value = JSON_PROPERTY_REASON, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setReason(@javax.annotation.Nonnull String reason) {
     this.reason = reason;
@@ -112,14 +112,14 @@ public class PartialUnbrandXoVmVulnerabilitiesXsa468AnyOf {
    * @return version
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_VERSION)
+  @JsonProperty(value = JSON_PROPERTY_VERSION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getVersion() {
     return version;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_VERSION)
+  @JsonProperty(value = JSON_PROPERTY_VERSION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVersion(@javax.annotation.Nullable String version) {
     this.version = version;
@@ -164,10 +164,7 @@ public class PartialUnbrandXoVmVulnerabilitiesXsa468AnyOf {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -204,17 +201,17 @@ public class PartialUnbrandXoVmVulnerabilitiesXsa468AnyOf {
 
     // add `driver` to the URL query string
     if (getDriver() != null) {
-      joiner.add(String.format("%sdriver%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDriver()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdriver%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDriver()))));
     }
 
     // add `reason` to the URL query string
     if (getReason() != null) {
-      joiner.add(String.format("%sreason%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReason()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sreason%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReason()))));
     }
 
     // add `version` to the URL query string
     if (getVersion() != null) {
-      joiner.add(String.format("%sversion%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVersion()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sversion%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVersion()))));
     }
 
     return joiner.toString();

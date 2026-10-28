@@ -48,7 +48,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.createBondedNetwork(id, unbrandCreateBondedNetworkBody, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling NetworksApi->createBondedNetwork: $e\n');
 }
 ```
@@ -102,7 +102,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.createInternalNetwork(id, body, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling NetworksApi->createInternalNetwork: $e\n');
 }
 ```
@@ -156,7 +156,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.createNetwork(id, unbrandCreateNetworkBody, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling NetworksApi->createNetwork: $e\n');
 }
 ```
@@ -207,7 +207,7 @@ final String id = 9fe12ca3-d75d-cfb0-492e-cfd2bc6c568f; // String |
 
 try {
     api.deleteNetwork(id);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling NetworksApi->deleteNetwork: $e\n');
 }
 ```
@@ -257,7 +257,7 @@ final String tag = from-rest-api; // String |
 
 try {
     api.deleteNetworkTag(id, tag);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling NetworksApi->deleteNetworkTag: $e\n');
 }
 ```
@@ -308,7 +308,7 @@ final String id = 9fe12ca3-d75d-cfb0-492e-cfd2bc6c568f; // String |
 try {
     final response = api.getNetwork(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling NetworksApi->getNetwork: $e\n');
 }
 ```
@@ -363,7 +363,7 @@ final double limit = 42; // double |
 try {
     final response = api.getNetworkAlarms(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling NetworksApi->getNetworkAlarms: $e\n');
 }
 ```
@@ -423,7 +423,7 @@ final double limit = 42; // double |
 try {
     final response = api.getNetworkMessages(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling NetworksApi->getNetworkMessages: $e\n');
 }
 ```
@@ -483,7 +483,7 @@ final double limit = 42; // double |
 try {
     final response = api.getNetworkTasks(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling NetworksApi->getNetworkTasks: $e\n');
 }
 ```
@@ -542,7 +542,7 @@ final double limit = 42; // double |
 try {
     final response = api.getNetworks(fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling NetworksApi->getNetworks: $e\n');
 }
 ```
@@ -596,7 +596,7 @@ final String tag = from-rest-api; // String |
 
 try {
     api.putNetworkTag(id, tag);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling NetworksApi->putNetworkTag: $e\n');
 }
 ```

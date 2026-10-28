@@ -1,4 +1,4 @@
-# PartialUnbrandExcludeXoAclRolePeriodIsTemplateTrue
+# PartialUnbrandExcludeXoAclRoleIsTemplateTrue
 
 ## Properties
 

@@ -332,8 +332,10 @@ class _$UnbrandXoSrSerializer implements PrimitiveSerializer<UnbrandXoSr> {
         case r'allocationStrategy':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(UnbrandXoSrAllocationStrategyEnum),
-          ) as UnbrandXoSrAllocationStrategyEnum;
+            specifiedType:
+                const FullType.nullable(UnbrandXoSrAllocationStrategyEnum),
+          ) as UnbrandXoSrAllocationStrategyEnum?;
+          if (valueDes == null) continue;
           result.allocationStrategy = valueDes;
           break;
         case r'content_type':

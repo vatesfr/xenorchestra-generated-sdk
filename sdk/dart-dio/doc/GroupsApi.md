@@ -47,7 +47,7 @@ final String userId = 722d17b9-699b-49d2-8193-be1ac573d3de; // String |
 
 try {
     api.addUserToGroup(id, userId);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling GroupsApi->addUserToGroup: $e\n');
 }
 ```
@@ -98,7 +98,7 @@ final CreateGroupRequest createGroupRequest = {"name":"new group"}; // CreateGro
 try {
     final response = api.createGroup(createGroupRequest);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling GroupsApi->createGroup: $e\n');
 }
 ```
@@ -147,7 +147,7 @@ final String id = 7d98fee4-3357-41a7-ac3f-9124212badb7; // String |
 
 try {
     api.deleteGroup(id);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling GroupsApi->deleteGroup: $e\n');
 }
 ```
@@ -202,7 +202,7 @@ final double limit = 42; // double |
 try {
     final response = api.getAclRoleGroups(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling GroupsApi->getAclRoleGroups: $e\n');
 }
 ```
@@ -257,7 +257,7 @@ final String id = 7d98fee4-3357-41a7-ac3f-9124212badb7; // String |
 try {
     final response = api.getGroup(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling GroupsApi->getGroup: $e\n');
 }
 ```
@@ -312,7 +312,7 @@ final double limit = 42; // double |
 try {
     final response = api.getGroupAclRoles(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling GroupsApi->getGroupAclRoles: $e\n');
 }
 ```
@@ -372,7 +372,7 @@ final double limit = 42; // double |
 try {
     final response = api.getGroupTasks(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling GroupsApi->getGroupTasks: $e\n');
 }
 ```
@@ -432,7 +432,7 @@ final double limit = 42; // double |
 try {
     final response = api.getGroupUsers(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling GroupsApi->getGroupUsers: $e\n');
 }
 ```
@@ -491,7 +491,7 @@ final double limit = 42; // double |
 try {
     final response = api.getGroups(fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling GroupsApi->getGroups: $e\n');
 }
 ```
@@ -550,7 +550,7 @@ final double limit = 42; // double |
 try {
     final response = api.getUserGroups(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling GroupsApi->getUserGroups: $e\n');
 }
 ```
@@ -605,7 +605,7 @@ final String userId = 722d17b9-699b-49d2-8193-be1ac573d3de; // String |
 
 try {
     api.removeUserFromGroup(id, userId);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling GroupsApi->removeUserFromGroup: $e\n');
 }
 ```
@@ -656,7 +656,7 @@ final UpdateGroupRequestBody updateGroupRequestBody = {"name":"new group name"};
 
 try {
     api.updateGroup(id, updateGroupRequestBody);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling GroupsApi->updateGroup: $e\n');
 }
 ```

@@ -111,24 +111,27 @@ class _$PartialUnbrandXoRestoreLogSerializer
         case r'id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'infos':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(
+            specifiedType: const FullType.nullable(
                 BuiltList, [FullType(PartialUnbrandXoBackupLogInfosInner)]),
-          ) as BuiltList<PartialUnbrandXoBackupLogInfosInner>;
+          ) as BuiltList<PartialUnbrandXoBackupLogInfosInner>?;
+          if (valueDes == null) continue;
           result.infos.replace(valueDes);
           break;
         case r'message':
           final valueDes = serializers.deserialize(
             value,
             specifiedType:
-                const FullType(PartialUnbrandXoRestoreLogMessageEnum),
-          ) as PartialUnbrandXoRestoreLogMessageEnum;
+                const FullType.nullable(PartialUnbrandXoRestoreLogMessageEnum),
+          ) as PartialUnbrandXoRestoreLogMessageEnum?;
+          if (valueDes == null) continue;
           result.message = valueDes;
           break;
         default:

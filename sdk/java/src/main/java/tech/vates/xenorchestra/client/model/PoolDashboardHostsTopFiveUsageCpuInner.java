@@ -37,7 +37,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PoolDashboardHostsTopFiveUsageCpuInner.JSON_PROPERTY_NAME_LABEL,
   PoolDashboardHostsTopFiveUsageCpuInner.JSON_PROPERTY_PERCENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PoolDashboardHostsTopFiveUsageCpuInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -64,14 +64,14 @@ public class PoolDashboardHostsTopFiveUsageCpuInner {
    * @return id
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
@@ -88,14 +88,14 @@ public class PoolDashboardHostsTopFiveUsageCpuInner {
    * @return nameLabel
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_NAME_LABEL)
+  @JsonProperty(value = JSON_PROPERTY_NAME_LABEL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getNameLabel() {
     return nameLabel;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME_LABEL)
+  @JsonProperty(value = JSON_PROPERTY_NAME_LABEL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setNameLabel(@javax.annotation.Nonnull String nameLabel) {
     this.nameLabel = nameLabel;
@@ -112,14 +112,14 @@ public class PoolDashboardHostsTopFiveUsageCpuInner {
    * @return percent
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_PERCENT)
+  @JsonProperty(value = JSON_PROPERTY_PERCENT, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getPercent() {
     return percent;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PERCENT)
+  @JsonProperty(value = JSON_PROPERTY_PERCENT, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setPercent(@javax.annotation.Nonnull Double percent) {
     this.percent = percent;
@@ -164,10 +164,7 @@ public class PoolDashboardHostsTopFiveUsageCpuInner {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -204,17 +201,17 @@ public class PoolDashboardHostsTopFiveUsageCpuInner {
 
     // add `id` to the URL query string
     if (getId() != null) {
-      joiner.add(String.format("%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
     }
 
     // add `name_label` to the URL query string
     if (getNameLabel() != null) {
-      joiner.add(String.format("%sname_label%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameLabel()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname_label%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameLabel()))));
     }
 
     // add `percent` to the URL query string
     if (getPercent() != null) {
-      joiner.add(String.format("%spercent%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPercent()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%spercent%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPercent()))));
     }
 
     return joiner.toString();

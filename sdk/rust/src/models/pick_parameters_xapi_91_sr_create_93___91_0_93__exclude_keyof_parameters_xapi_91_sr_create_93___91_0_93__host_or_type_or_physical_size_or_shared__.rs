@@ -11,9 +11,9 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// PickParametersXapi91SrCreate9391093PeriodExcludeKeyofParametersXapi91SrCreate9391093PeriodHostOrTypeOrPhysicalSizeOrShared : From T, pick a set of properties whose keys are in the union K
+/// PickParametersXapi91SrCreate9391093ExcludeKeyofParametersXapi91SrCreate9391093HostOrTypeOrPhysicalSizeOrShared : From T, pick a set of properties whose keys are in the union K
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct PickParametersXapi91SrCreate9391093PeriodExcludeKeyofParametersXapi91SrCreate9391093PeriodHostOrTypeOrPhysicalSizeOrShared {
+pub struct PickParametersXapi91SrCreate9391093ExcludeKeyofParametersXapi91SrCreate9391093HostOrTypeOrPhysicalSizeOrShared {
     #[serde(rename = "content_type", skip_serializing_if = "Option::is_none")]
     pub content_type: Option<ContentType>,
     #[serde(rename = "device_config")]
@@ -26,10 +26,10 @@ pub struct PickParametersXapi91SrCreate9391093PeriodExcludeKeyofParametersXapi91
     pub sm_config: Option<std::collections::HashMap<String, String>>,
 }
 
-impl PickParametersXapi91SrCreate9391093PeriodExcludeKeyofParametersXapi91SrCreate9391093PeriodHostOrTypeOrPhysicalSizeOrShared {
+impl PickParametersXapi91SrCreate9391093ExcludeKeyofParametersXapi91SrCreate9391093HostOrTypeOrPhysicalSizeOrShared {
     /// From T, pick a set of properties whose keys are in the union K
-    pub fn new(device_config: models::PickParametersXapi91SrCreate9391093ExcludeKeyofParametersXapi91SrCreate9391093HostOrTypeOrPhysicalSizeOrSharedDeviceConfig, name_label: String) -> PickParametersXapi91SrCreate9391093PeriodExcludeKeyofParametersXapi91SrCreate9391093PeriodHostOrTypeOrPhysicalSizeOrShared {
-        PickParametersXapi91SrCreate9391093PeriodExcludeKeyofParametersXapi91SrCreate9391093PeriodHostOrTypeOrPhysicalSizeOrShared {
+    pub fn new(device_config: models::PickParametersXapi91SrCreate9391093ExcludeKeyofParametersXapi91SrCreate9391093HostOrTypeOrPhysicalSizeOrSharedDeviceConfig, name_label: String) -> PickParametersXapi91SrCreate9391093ExcludeKeyofParametersXapi91SrCreate9391093HostOrTypeOrPhysicalSizeOrShared {
+        PickParametersXapi91SrCreate9391093ExcludeKeyofParametersXapi91SrCreate9391093HostOrTypeOrPhysicalSizeOrShared {
             content_type: None,
             device_config: Box::new(device_config),
             name_description: None,

@@ -65,15 +65,35 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PoolsApi {
+  /**
+   * Utility class for extending HttpRequest.Builder functionality.
+   */
+  private static class HttpRequestBuilderExtensions {
+    /**
+     * Adds additional headers to the provided HttpRequest.Builder. Useful for adding method/endpoint specific headers.
+     *
+     * @param builder the HttpRequest.Builder to which headers will be added
+     * @param headers a map of header names and values to add; may be null
+     * @return the same HttpRequest.Builder instance with the additional headers set
+     */
+    static HttpRequest.Builder withAdditionalHeaders(HttpRequest.Builder builder, Map<String, String> headers) {
+        if (headers != null) {
+            for (Map.Entry<String, String> entry : headers.entrySet()) {
+                builder.header(entry.getKey(), entry.getValue());
+            }
+        }
+        return builder;
+    }
+  }
   private final HttpClient memberVarHttpClient;
   private final ObjectMapper memberVarObjectMapper;
   private final String memberVarBaseUri;
   private final Consumer<HttpRequest.Builder> memberVarInterceptor;
   private final Duration memberVarReadTimeout;
   private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
-  private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
+  private final Consumer<HttpResponse<InputStream>> memberVarAsyncResponseInterceptor;
 
   public PoolsApi() {
     this(Configuration.getDefaultApiClient());
@@ -89,8 +109,17 @@ public class PoolsApi {
     memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
   }
 
+
   protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
-    String body = response.body() == null ? null : new String(response.body().readAllBytes());
+    InputStream responseBody = ApiClient.getResponseBody(response);
+    String body = null;
+    try {
+      body = responseBody == null ? null : new String(responseBody.readAllBytes());
+    } finally {
+      if (responseBody != null) {
+        responseBody.close();
+      }
+    }
     String message = formatExceptionMessage(operationId, response.statusCode(), body);
     return new ApiException(response.statusCode(), message, response.headers(), body);
   }
@@ -103,6 +132,57 @@ public class PoolsApi {
   }
 
   /**
+   * Download file from the given response.
+   *
+   * @param response Response
+   * @return File
+   * @throws ApiException If fail to read file content from response and write to disk
+   */
+  public File downloadFileFromResponse(HttpResponse<InputStream> response, InputStream responseBody) throws ApiException {
+    if (responseBody == null) {
+      throw new ApiException(new IOException("Response body is empty"));
+    }
+    try {
+      File file = prepareDownloadFile(response);
+      java.nio.file.Files.copy(responseBody, file.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+      return file;
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+  }
+
+  /**
+   * <p>Prepare the file for download from the response.</p>
+   *
+   * @param response a {@link java.net.http.HttpResponse} object.
+   * @return a {@link java.io.File} object.
+   * @throws java.io.IOException if any.
+   */
+  private File prepareDownloadFile(HttpResponse<InputStream> response) throws IOException {
+    String filename = null;
+    java.util.Optional<String> contentDisposition = response.headers().firstValue("Content-Disposition");
+    if (contentDisposition.isPresent() && !"".equals(contentDisposition.get())) {
+      // Get filename from the Content-Disposition header.
+      java.util.regex.Pattern pattern = java.util.regex.Pattern.compile("filename=['\"]?([^'\"\\s]+)['\"]?");
+      java.util.regex.Matcher matcher = pattern.matcher(contentDisposition.get());
+      if (matcher.find())
+        filename = matcher.group(1);
+    }
+    File file = null;
+    if (filename != null) {
+      java.nio.file.Path tempDir = java.nio.file.Files.createTempDirectory("swagger-gen-native");
+      java.nio.file.Path filePath = java.nio.file.Files.createFile(tempDir.resolve(filename));
+      file = filePath.toFile();
+      tempDir.toFile().deleteOnExit();   // best effort cleanup
+      file.deleteOnExit(); // best effort cleanup
+    } else {
+      file = java.nio.file.Files.createTempFile("download-", "").toFile();
+      file.deleteOnExit(); // best effort cleanup
+    }
+    return file;
+  }
+
+  /**
    * 
    * Required privileges: - resource: pool, action: add-host - resource: host, action: join-pool  Add a host to the pool.
    * @param id  (required)
@@ -112,7 +192,21 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeVoid addHost(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull AddHostRequest addHostRequest, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = addHostWithHttpInfo(id, addHostRequest, sync);
+    return addHost(id, addHostRequest, sync, null);
+  }
+
+  /**
+   * 
+   * Required privileges: - resource: pool, action: add-host - resource: host, action: join-pool  Add a host to the pool.
+   * @param id  (required)
+   * @param addHostRequest  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeVoid
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeVoid addHost(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull AddHostRequest addHostRequest, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = addHostWithHttpInfo(id, addHostRequest, sync, headers);
     return localVarResponse.getData();
   }
 
@@ -126,7 +220,21 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeVoid> addHostWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull AddHostRequest addHostRequest, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = addHostRequestBuilder(id, addHostRequest, sync);
+    return addHostWithHttpInfo(id, addHostRequest, sync, null);
+  }
+
+  /**
+   * 
+   * Required privileges: - resource: pool, action: add-host - resource: host, action: join-pool  Add a host to the pool.
+   * @param id  (required)
+   * @param addHostRequest  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeVoid&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeVoid> addHostWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull AddHostRequest addHostRequest, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = addHostRequestBuilder(id, addHostRequest, sync, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -134,11 +242,13 @@ public class PoolsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("addHost", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeVoid>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -146,15 +256,21 @@ public class PoolsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeVoid responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeVoid>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -165,7 +281,7 @@ public class PoolsApi {
     }
   }
 
-  private HttpRequest.Builder addHostRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull AddHostRequest addHostRequest, @javax.annotation.Nullable Boolean sync) throws ApiException {
+  private HttpRequest.Builder addHostRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull AddHostRequest addHostRequest, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling addHost");
@@ -209,6 +325,8 @@ public class PoolsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -225,7 +343,21 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeIdUnbrandXoNetwork91Id93 createBondedNetwork(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateBondedNetworkBody unbrandCreateBondedNetworkBody, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> localVarResponse = createBondedNetworkWithHttpInfo(id, unbrandCreateBondedNetworkBody, sync);
+    return createBondedNetwork(id, unbrandCreateBondedNetworkBody, sync, null);
+  }
+
+  /**
+   * 
+   * Required privileges: - resource: pool, action: create:network - resource: network, action: create
+   * @param id  (required)
+   * @param unbrandCreateBondedNetworkBody  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeIdUnbrandXoNetwork91Id93
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeIdUnbrandXoNetwork91Id93 createBondedNetwork(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateBondedNetworkBody unbrandCreateBondedNetworkBody, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> localVarResponse = createBondedNetworkWithHttpInfo(id, unbrandCreateBondedNetworkBody, sync, headers);
     return localVarResponse.getData();
   }
 
@@ -239,7 +371,21 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> createBondedNetworkWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateBondedNetworkBody unbrandCreateBondedNetworkBody, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createBondedNetworkRequestBuilder(id, unbrandCreateBondedNetworkBody, sync);
+    return createBondedNetworkWithHttpInfo(id, unbrandCreateBondedNetworkBody, sync, null);
+  }
+
+  /**
+   * 
+   * Required privileges: - resource: pool, action: create:network - resource: network, action: create
+   * @param id  (required)
+   * @param unbrandCreateBondedNetworkBody  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeIdUnbrandXoNetwork91Id93&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> createBondedNetworkWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateBondedNetworkBody unbrandCreateBondedNetworkBody, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createBondedNetworkRequestBuilder(id, unbrandCreateBondedNetworkBody, sync, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -247,11 +393,13 @@ public class PoolsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("createBondedNetwork", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -259,15 +407,21 @@ public class PoolsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeIdUnbrandXoNetwork91Id93 responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeIdUnbrandXoNetwork91Id93>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeIdUnbrandXoNetwork91Id93>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -278,7 +432,7 @@ public class PoolsApi {
     }
   }
 
-  private HttpRequest.Builder createBondedNetworkRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateBondedNetworkBody unbrandCreateBondedNetworkBody, @javax.annotation.Nullable Boolean sync) throws ApiException {
+  private HttpRequest.Builder createBondedNetworkRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateBondedNetworkBody unbrandCreateBondedNetworkBody, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling createBondedNetwork");
@@ -322,6 +476,8 @@ public class PoolsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -338,7 +494,21 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeIdUnbrandXoNetwork91Id93 createInternalNetwork(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull BaseCreateNetworkBody body, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> localVarResponse = createInternalNetworkWithHttpInfo(id, body, sync);
+    return createInternalNetwork(id, body, sync, null);
+  }
+
+  /**
+   * 
+   * Required privileges: - resource: pool, action: create:network - resource: network, action: create
+   * @param id  (required)
+   * @param body  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeIdUnbrandXoNetwork91Id93
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeIdUnbrandXoNetwork91Id93 createInternalNetwork(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull BaseCreateNetworkBody body, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> localVarResponse = createInternalNetworkWithHttpInfo(id, body, sync, headers);
     return localVarResponse.getData();
   }
 
@@ -352,7 +522,21 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> createInternalNetworkWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull BaseCreateNetworkBody body, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createInternalNetworkRequestBuilder(id, body, sync);
+    return createInternalNetworkWithHttpInfo(id, body, sync, null);
+  }
+
+  /**
+   * 
+   * Required privileges: - resource: pool, action: create:network - resource: network, action: create
+   * @param id  (required)
+   * @param body  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeIdUnbrandXoNetwork91Id93&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> createInternalNetworkWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull BaseCreateNetworkBody body, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createInternalNetworkRequestBuilder(id, body, sync, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -360,11 +544,13 @@ public class PoolsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("createInternalNetwork", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -372,15 +558,21 @@ public class PoolsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeIdUnbrandXoNetwork91Id93 responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeIdUnbrandXoNetwork91Id93>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeIdUnbrandXoNetwork91Id93>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -391,7 +583,7 @@ public class PoolsApi {
     }
   }
 
-  private HttpRequest.Builder createInternalNetworkRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull BaseCreateNetworkBody body, @javax.annotation.Nullable Boolean sync) throws ApiException {
+  private HttpRequest.Builder createInternalNetworkRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull BaseCreateNetworkBody body, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling createInternalNetwork");
@@ -435,6 +627,8 @@ public class PoolsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -451,7 +645,21 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeIdUnbrandXoNetwork91Id93 createNetwork(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateNetworkBody unbrandCreateNetworkBody, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> localVarResponse = createNetworkWithHttpInfo(id, unbrandCreateNetworkBody, sync);
+    return createNetwork(id, unbrandCreateNetworkBody, sync, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: pool, action: create:network - resource: network, action: create
+   * @param id  (required)
+   * @param unbrandCreateNetworkBody  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeIdUnbrandXoNetwork91Id93
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeIdUnbrandXoNetwork91Id93 createNetwork(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateNetworkBody unbrandCreateNetworkBody, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> localVarResponse = createNetworkWithHttpInfo(id, unbrandCreateNetworkBody, sync, headers);
     return localVarResponse.getData();
   }
 
@@ -465,7 +673,21 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> createNetworkWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateNetworkBody unbrandCreateNetworkBody, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createNetworkRequestBuilder(id, unbrandCreateNetworkBody, sync);
+    return createNetworkWithHttpInfo(id, unbrandCreateNetworkBody, sync, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: pool, action: create:network - resource: network, action: create
+   * @param id  (required)
+   * @param unbrandCreateNetworkBody  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeIdUnbrandXoNetwork91Id93&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> createNetworkWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateNetworkBody unbrandCreateNetworkBody, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createNetworkRequestBuilder(id, unbrandCreateNetworkBody, sync, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -473,11 +695,13 @@ public class PoolsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("createNetwork", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -485,15 +709,21 @@ public class PoolsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeIdUnbrandXoNetwork91Id93 responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeIdUnbrandXoNetwork91Id93>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeIdUnbrandXoNetwork91Id93>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -504,7 +734,7 @@ public class PoolsApi {
     }
   }
 
-  private HttpRequest.Builder createNetworkRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateNetworkBody unbrandCreateNetworkBody, @javax.annotation.Nullable Boolean sync) throws ApiException {
+  private HttpRequest.Builder createNetworkRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateNetworkBody unbrandCreateNetworkBody, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling createNetwork");
@@ -548,6 +778,8 @@ public class PoolsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -564,7 +796,21 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeIdUnbrandXoVm91Id93 createVm(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateVmBody unbrandCreateVmBody, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    ApiResponse<CreateActionReturnTypeIdUnbrandXoVm91Id93> localVarResponse = createVmWithHttpInfo(id, unbrandCreateVmBody, sync);
+    return createVm(id, unbrandCreateVmBody, sync, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: pool, action: create:vm - resource: vm-template, action: instantiate - resource: vdi, action: create (if vdis is passed) - resource: vdi, action: boot (if install.repository is passed) - resource: vif, action: create (if vifs is passed) - resource: host, action: allow-vm (if affinity is passed)
+   * @param id  (required)
+   * @param unbrandCreateVmBody  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeIdUnbrandXoVm91Id93
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeIdUnbrandXoVm91Id93 createVm(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateVmBody unbrandCreateVmBody, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeIdUnbrandXoVm91Id93> localVarResponse = createVmWithHttpInfo(id, unbrandCreateVmBody, sync, headers);
     return localVarResponse.getData();
   }
 
@@ -578,7 +824,21 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeIdUnbrandXoVm91Id93> createVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateVmBody unbrandCreateVmBody, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createVmRequestBuilder(id, unbrandCreateVmBody, sync);
+    return createVmWithHttpInfo(id, unbrandCreateVmBody, sync, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: pool, action: create:vm - resource: vm-template, action: instantiate - resource: vdi, action: create (if vdis is passed) - resource: vdi, action: boot (if install.repository is passed) - resource: vif, action: create (if vifs is passed) - resource: host, action: allow-vm (if affinity is passed)
+   * @param id  (required)
+   * @param unbrandCreateVmBody  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeIdUnbrandXoVm91Id93&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeIdUnbrandXoVm91Id93> createVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateVmBody unbrandCreateVmBody, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createVmRequestBuilder(id, unbrandCreateVmBody, sync, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -586,11 +846,13 @@ public class PoolsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("createVm", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeIdUnbrandXoVm91Id93>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -598,15 +860,21 @@ public class PoolsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeIdUnbrandXoVm91Id93 responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeIdUnbrandXoVm91Id93>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeIdUnbrandXoVm91Id93>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeIdUnbrandXoVm91Id93>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -617,7 +885,7 @@ public class PoolsApi {
     }
   }
 
-  private HttpRequest.Builder createVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateVmBody unbrandCreateVmBody, @javax.annotation.Nullable Boolean sync) throws ApiException {
+  private HttpRequest.Builder createVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateVmBody unbrandCreateVmBody, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling createVm");
@@ -661,6 +929,8 @@ public class PoolsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -675,7 +945,19 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public void deletePoolTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    deletePoolTagWithHttpInfo(id, tag);
+    deletePoolTag(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: pool, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void deletePoolTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    deletePoolTagWithHttpInfo(id, tag, headers);
   }
 
   /**
@@ -687,7 +969,20 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> deletePoolTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = deletePoolTagRequestBuilder(id, tag);
+    return deletePoolTagWithHttpInfo(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: pool, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deletePoolTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deletePoolTagRequestBuilder(id, tag, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -695,9 +990,14 @@ public class PoolsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("deletePoolTag", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -705,11 +1005,9 @@ public class PoolsApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -720,7 +1018,7 @@ public class PoolsApi {
     }
   }
 
-  private HttpRequest.Builder deletePoolTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
+  private HttpRequest.Builder deletePoolTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling deletePoolTag");
@@ -744,6 +1042,8 @@ public class PoolsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -759,7 +1059,20 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeVoid emergencyShutdown(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = emergencyShutdownWithHttpInfo(id, sync);
+    return emergencyShutdown(id, sync, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: pool, action: emergency-shutdown
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeVoid
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeVoid emergencyShutdown(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = emergencyShutdownWithHttpInfo(id, sync, headers);
     return localVarResponse.getData();
   }
 
@@ -772,7 +1085,20 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeVoid> emergencyShutdownWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = emergencyShutdownRequestBuilder(id, sync);
+    return emergencyShutdownWithHttpInfo(id, sync, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: pool, action: emergency-shutdown
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeVoid&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeVoid> emergencyShutdownWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = emergencyShutdownRequestBuilder(id, sync, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -780,11 +1106,13 @@ public class PoolsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("emergencyShutdown", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeVoid>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -792,15 +1120,21 @@ public class PoolsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeVoid responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeVoid>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -811,7 +1145,7 @@ public class PoolsApi {
     }
   }
 
-  private HttpRequest.Builder emergencyShutdownRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
+  private HttpRequest.Builder emergencyShutdownRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling emergencyShutdown");
@@ -845,6 +1179,8 @@ public class PoolsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -859,7 +1195,19 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public UnbrandXoPool getPool(@javax.annotation.Nonnull String id) throws ApiException {
-    ApiResponse<UnbrandXoPool> localVarResponse = getPoolWithHttpInfo(id);
+    return getPool(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: pool, action: read
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return UnbrandXoPool
+   * @throws ApiException if fails to make API call
+   */
+  public UnbrandXoPool getPool(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<UnbrandXoPool> localVarResponse = getPoolWithHttpInfo(id, headers);
     return localVarResponse.getData();
   }
 
@@ -871,7 +1219,19 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<UnbrandXoPool> getPoolWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getPoolRequestBuilder(id);
+    return getPoolWithHttpInfo(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: pool, action: read
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UnbrandXoPool&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UnbrandXoPool> getPoolWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getPoolRequestBuilder(id, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -879,11 +1239,13 @@ public class PoolsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getPool", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<UnbrandXoPool>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -891,15 +1253,21 @@ public class PoolsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UnbrandXoPool responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnbrandXoPool>() {});
+        
 
         return new ApiResponse<UnbrandXoPool>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnbrandXoPool>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -910,7 +1278,7 @@ public class PoolsApi {
     }
   }
 
-  private HttpRequest.Builder getPoolRequestBuilder(@javax.annotation.Nonnull String id) throws ApiException {
+  private HttpRequest.Builder getPoolRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getPool");
@@ -929,6 +1297,8 @@ public class PoolsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -948,7 +1318,24 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoAlarm getPoolAlarms(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoAlarm> localVarResponse = getPoolAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getPoolAlarms(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all alarms that match the following privilege: - resource: alarm, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoAlarm
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoAlarm getPoolAlarms(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoAlarm> localVarResponse = getPoolAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -965,7 +1352,24 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoAlarm> getPoolAlarmsWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getPoolAlarmsRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getPoolAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all alarms that match the following privilege: - resource: alarm, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoAlarm&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoAlarm> getPoolAlarmsWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getPoolAlarmsRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -973,11 +1377,13 @@ public class PoolsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getPoolAlarms", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoAlarm>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -985,15 +1391,21 @@ public class PoolsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoAlarm responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoAlarm>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoAlarm>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoAlarm>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1004,7 +1416,7 @@ public class PoolsApi {
     }
   }
 
-  private HttpRequest.Builder getPoolAlarmsRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getPoolAlarmsRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getPoolAlarms");
@@ -1046,6 +1458,8 @@ public class PoolsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1061,7 +1475,20 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public PoolDashboard getPoolDashboard(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean ndjson) throws ApiException {
-    ApiResponse<PoolDashboard> localVarResponse = getPoolDashboardWithHttpInfo(id, ndjson);
+    return getPoolDashboard(id, ndjson, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: pool, action: read
+   * @param id  (required)
+   * @param ndjson  (optional)
+   * @param headers Optional headers to include in the request
+   * @return PoolDashboard
+   * @throws ApiException if fails to make API call
+   */
+  public PoolDashboard getPoolDashboard(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean ndjson, Map<String, String> headers) throws ApiException {
+    ApiResponse<PoolDashboard> localVarResponse = getPoolDashboardWithHttpInfo(id, ndjson, headers);
     return localVarResponse.getData();
   }
 
@@ -1074,7 +1501,20 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<PoolDashboard> getPoolDashboardWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean ndjson) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getPoolDashboardRequestBuilder(id, ndjson);
+    return getPoolDashboardWithHttpInfo(id, ndjson, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: pool, action: read
+   * @param id  (required)
+   * @param ndjson  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;PoolDashboard&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PoolDashboard> getPoolDashboardWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean ndjson, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getPoolDashboardRequestBuilder(id, ndjson, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1082,11 +1522,13 @@ public class PoolsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getPoolDashboard", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<PoolDashboard>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1094,15 +1536,21 @@ public class PoolsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        PoolDashboard responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PoolDashboard>() {});
+        
 
         return new ApiResponse<PoolDashboard>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PoolDashboard>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1113,7 +1561,7 @@ public class PoolsApi {
     }
   }
 
-  private HttpRequest.Builder getPoolDashboardRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean ndjson) throws ApiException {
+  private HttpRequest.Builder getPoolDashboardRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean ndjson, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getPoolDashboard");
@@ -1147,6 +1595,8 @@ public class PoolsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1166,7 +1616,24 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoMessage getPoolMessages(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoMessage> localVarResponse = getPoolMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getPoolMessages(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all messages that match the following privilege: - resource: message, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoMessage
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoMessage getPoolMessages(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoMessage> localVarResponse = getPoolMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -1183,7 +1650,24 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoMessage> getPoolMessagesWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getPoolMessagesRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getPoolMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all messages that match the following privilege: - resource: message, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoMessage&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoMessage> getPoolMessagesWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getPoolMessagesRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1191,11 +1675,13 @@ public class PoolsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getPoolMessages", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoMessage>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1203,15 +1689,21 @@ public class PoolsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoMessage responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoMessage>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoMessage>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoMessage>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1222,7 +1714,7 @@ public class PoolsApi {
     }
   }
 
-  private HttpRequest.Builder getPoolMessagesRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getPoolMessagesRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getPoolMessages");
@@ -1264,6 +1756,8 @@ public class PoolsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1278,7 +1772,19 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public GetMissingPatches200Response getPoolMissingPatches(@javax.annotation.Nonnull String id) throws ApiException {
-    ApiResponse<GetMissingPatches200Response> localVarResponse = getPoolMissingPatchesWithHttpInfo(id);
+    return getPoolMissingPatches(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: pool, action: read
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return GetMissingPatches200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetMissingPatches200Response getPoolMissingPatches(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetMissingPatches200Response> localVarResponse = getPoolMissingPatchesWithHttpInfo(id, headers);
     return localVarResponse.getData();
   }
 
@@ -1290,7 +1796,19 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<GetMissingPatches200Response> getPoolMissingPatchesWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getPoolMissingPatchesRequestBuilder(id);
+    return getPoolMissingPatchesWithHttpInfo(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: pool, action: read
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetMissingPatches200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetMissingPatches200Response> getPoolMissingPatchesWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getPoolMissingPatchesRequestBuilder(id, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1298,11 +1816,13 @@ public class PoolsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getPoolMissingPatches", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<GetMissingPatches200Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1310,15 +1830,21 @@ public class PoolsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetMissingPatches200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetMissingPatches200Response>() {});
+        
 
         return new ApiResponse<GetMissingPatches200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetMissingPatches200Response>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1329,7 +1855,7 @@ public class PoolsApi {
     }
   }
 
-  private HttpRequest.Builder getPoolMissingPatchesRequestBuilder(@javax.annotation.Nonnull String id) throws ApiException {
+  private HttpRequest.Builder getPoolMissingPatchesRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getPoolMissingPatches");
@@ -1348,6 +1874,8 @@ public class PoolsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1367,7 +1895,24 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoTask getPoolTasks(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoTask> localVarResponse = getPoolTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getPoolTasks(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all tasks that match the following privilege: - resource: task, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoTask
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoTask getPoolTasks(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoTask> localVarResponse = getPoolTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -1384,7 +1929,24 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoTask> getPoolTasksWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getPoolTasksRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getPoolTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all tasks that match the following privilege: - resource: task, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoTask&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoTask> getPoolTasksWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getPoolTasksRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1392,11 +1954,13 @@ public class PoolsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getPoolTasks", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoTask>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1404,15 +1968,21 @@ public class PoolsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoTask responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoTask>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoTask>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoTask>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1423,7 +1993,7 @@ public class PoolsApi {
     }
   }
 
-  private HttpRequest.Builder getPoolTasksRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getPoolTasksRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getPoolTasks");
@@ -1465,6 +2035,8 @@ public class PoolsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1483,7 +2055,23 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoPool getPools(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoPool> localVarResponse = getPoolsWithHttpInfo(fields, ndjson, markdown, filter, limit);
+    return getPools(fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all pools that match the following privilege: - resource: pool, action: read
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoPool
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoPool getPools(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoPool> localVarResponse = getPoolsWithHttpInfo(fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -1499,7 +2087,23 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoPool> getPoolsWithHttpInfo(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getPoolsRequestBuilder(fields, ndjson, markdown, filter, limit);
+    return getPoolsWithHttpInfo(fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all pools that match the following privilege: - resource: pool, action: read
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoPool&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoPool> getPoolsWithHttpInfo(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getPoolsRequestBuilder(fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1507,11 +2111,13 @@ public class PoolsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getPools", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoPool>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1519,15 +2125,21 @@ public class PoolsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoPool responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoPool>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoPool>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoPool>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1538,7 +2150,7 @@ public class PoolsApi {
     }
   }
 
-  private HttpRequest.Builder getPoolsRequestBuilder(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getPoolsRequestBuilder(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -1575,6 +2187,8 @@ public class PoolsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1590,7 +2204,20 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public Map<String, RecordXoHostAtIdXapiHostStatsOrErrorRecordStringUnknownValue> getStats(@javax.annotation.Nonnull String id, @javax.annotation.Nullable XapiStatsGranularity granularity) throws ApiException {
-    ApiResponse<Map<String, RecordXoHostAtIdXapiHostStatsOrErrorRecordStringUnknownValue>> localVarResponse = getStatsWithHttpInfo(id, granularity);
+    return getStats(id, granularity, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: pool, action: read
+   * @param id  (required)
+   * @param granularity  (optional)
+   * @param headers Optional headers to include in the request
+   * @return Map&lt;String, RecordXoHostAtIdXapiHostStatsOrErrorRecordStringUnknownValue&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public Map<String, RecordXoHostAtIdXapiHostStatsOrErrorRecordStringUnknownValue> getStats(@javax.annotation.Nonnull String id, @javax.annotation.Nullable XapiStatsGranularity granularity, Map<String, String> headers) throws ApiException {
+    ApiResponse<Map<String, RecordXoHostAtIdXapiHostStatsOrErrorRecordStringUnknownValue>> localVarResponse = getStatsWithHttpInfo(id, granularity, headers);
     return localVarResponse.getData();
   }
 
@@ -1603,7 +2230,20 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Map<String, RecordXoHostAtIdXapiHostStatsOrErrorRecordStringUnknownValue>> getStatsWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable XapiStatsGranularity granularity) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getStatsRequestBuilder(id, granularity);
+    return getStatsWithHttpInfo(id, granularity, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: pool, action: read
+   * @param id  (required)
+   * @param granularity  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Map&lt;String, RecordXoHostAtIdXapiHostStatsOrErrorRecordStringUnknownValue&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Map<String, RecordXoHostAtIdXapiHostStatsOrErrorRecordStringUnknownValue>> getStatsWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable XapiStatsGranularity granularity, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getStatsRequestBuilder(id, granularity, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1611,11 +2251,13 @@ public class PoolsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getStats", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<Map<String, RecordXoHostAtIdXapiHostStatsOrErrorRecordStringUnknownValue>>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1623,15 +2265,21 @@ public class PoolsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        Map<String, RecordXoHostAtIdXapiHostStatsOrErrorRecordStringUnknownValue> responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<Map<String, RecordXoHostAtIdXapiHostStatsOrErrorRecordStringUnknownValue>>() {});
+        
 
         return new ApiResponse<Map<String, RecordXoHostAtIdXapiHostStatsOrErrorRecordStringUnknownValue>>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<Map<String, RecordXoHostAtIdXapiHostStatsOrErrorRecordStringUnknownValue>>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1642,7 +2290,7 @@ public class PoolsApi {
     }
   }
 
-  private HttpRequest.Builder getStatsRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable XapiStatsGranularity granularity) throws ApiException {
+  private HttpRequest.Builder getStatsRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable XapiStatsGranularity granularity, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getStats");
@@ -1676,6 +2324,8 @@ public class PoolsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1692,7 +2342,21 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateAclV2Privilege201Response importVm(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull File body, @javax.annotation.Nullable String sr) throws ApiException {
-    ApiResponse<CreateAclV2Privilege201Response> localVarResponse = importVmWithHttpInfo(id, body, sr);
+    return importVm(id, body, sr, null);
+  }
+
+  /**
+   * 
+   * Import an XVA VM into a pool  Required privilege: - resource: sr, action: import:vm
+   * @param id  (required)
+   * @param body  (required)
+   * @param sr  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateAclV2Privilege201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateAclV2Privilege201Response importVm(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull File body, @javax.annotation.Nullable String sr, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateAclV2Privilege201Response> localVarResponse = importVmWithHttpInfo(id, body, sr, headers);
     return localVarResponse.getData();
   }
 
@@ -1706,7 +2370,21 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateAclV2Privilege201Response> importVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull File body, @javax.annotation.Nullable String sr) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = importVmRequestBuilder(id, body, sr);
+    return importVmWithHttpInfo(id, body, sr, null);
+  }
+
+  /**
+   * 
+   * Import an XVA VM into a pool  Required privilege: - resource: sr, action: import:vm
+   * @param id  (required)
+   * @param body  (required)
+   * @param sr  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateAclV2Privilege201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateAclV2Privilege201Response> importVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull File body, @javax.annotation.Nullable String sr, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = importVmRequestBuilder(id, body, sr, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1714,11 +2392,13 @@ public class PoolsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("importVm", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateAclV2Privilege201Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1726,15 +2406,21 @@ public class PoolsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateAclV2Privilege201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateAclV2Privilege201Response>() {});
+        
 
         return new ApiResponse<CreateAclV2Privilege201Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateAclV2Privilege201Response>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1745,7 +2431,7 @@ public class PoolsApi {
     }
   }
 
-  private HttpRequest.Builder importVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull File body, @javax.annotation.Nullable String sr) throws ApiException {
+  private HttpRequest.Builder importVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull File body, @javax.annotation.Nullable String sr, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling importVm");
@@ -1789,6 +2475,8 @@ public class PoolsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1805,7 +2493,21 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeVoid managementReconfigure(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull ManagementReconfigureRequest1 managementReconfigureRequest1, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = managementReconfigureWithHttpInfo(id, managementReconfigureRequest1, sync);
+    return managementReconfigure(id, managementReconfigureRequest1, sync, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: pif, action: update:management  Reconfigure the management interface for all hosts in the pool to use the given network.  Each host in the pool will switch their management interface to a PIF on the specified network. The PIFs on the target network must already have IP addresses configured.
+   * @param id  (required)
+   * @param managementReconfigureRequest1  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeVoid
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeVoid managementReconfigure(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull ManagementReconfigureRequest1 managementReconfigureRequest1, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = managementReconfigureWithHttpInfo(id, managementReconfigureRequest1, sync, headers);
     return localVarResponse.getData();
   }
 
@@ -1819,7 +2521,21 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeVoid> managementReconfigureWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull ManagementReconfigureRequest1 managementReconfigureRequest1, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = managementReconfigureRequestBuilder(id, managementReconfigureRequest1, sync);
+    return managementReconfigureWithHttpInfo(id, managementReconfigureRequest1, sync, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: pif, action: update:management  Reconfigure the management interface for all hosts in the pool to use the given network.  Each host in the pool will switch their management interface to a PIF on the specified network. The PIFs on the target network must already have IP addresses configured.
+   * @param id  (required)
+   * @param managementReconfigureRequest1  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeVoid&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeVoid> managementReconfigureWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull ManagementReconfigureRequest1 managementReconfigureRequest1, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = managementReconfigureRequestBuilder(id, managementReconfigureRequest1, sync, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1827,11 +2543,13 @@ public class PoolsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("managementReconfigure", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeVoid>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1839,15 +2557,21 @@ public class PoolsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeVoid responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeVoid>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1858,7 +2582,7 @@ public class PoolsApi {
     }
   }
 
-  private HttpRequest.Builder managementReconfigureRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull ManagementReconfigureRequest1 managementReconfigureRequest1, @javax.annotation.Nullable Boolean sync) throws ApiException {
+  private HttpRequest.Builder managementReconfigureRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull ManagementReconfigureRequest1 managementReconfigureRequest1, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling managementReconfigure");
@@ -1902,6 +2626,8 @@ public class PoolsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1916,7 +2642,19 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public void putPoolTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    putPoolTagWithHttpInfo(id, tag);
+    putPoolTag(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: pool, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void putPoolTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    putPoolTagWithHttpInfo(id, tag, headers);
   }
 
   /**
@@ -1928,7 +2666,20 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> putPoolTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = putPoolTagRequestBuilder(id, tag);
+    return putPoolTagWithHttpInfo(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: pool, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> putPoolTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = putPoolTagRequestBuilder(id, tag, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1936,9 +2687,14 @@ public class PoolsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("putPoolTag", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -1946,11 +2702,9 @@ public class PoolsApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1961,7 +2715,7 @@ public class PoolsApi {
     }
   }
 
-  private HttpRequest.Builder putPoolTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
+  private HttpRequest.Builder putPoolTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling putPoolTag");
@@ -1985,6 +2739,8 @@ public class PoolsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -2001,7 +2757,21 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeVoid rollingReboot(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable RollingRebootRequest rollingRebootRequest) throws ApiException {
-    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = rollingRebootWithHttpInfo(id, sync, rollingRebootRequest);
+    return rollingReboot(id, sync, rollingRebootRequest, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: pool, action: rolling-reboot  Set &#x60;shutdownPinnedVms&#x60; to &#x60;true&#x60; to shut down VMs that cannot be migrated (PCI passthrough, vGPU, SR-IOV VIF) before their host reboots and start them again on it afterwards. Without it, such VMs make the action fail with an &#x60;incorrect state&#x60; error listing their UUIDs.
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param rollingRebootRequest  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeVoid
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeVoid rollingReboot(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable RollingRebootRequest rollingRebootRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = rollingRebootWithHttpInfo(id, sync, rollingRebootRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -2015,7 +2785,21 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeVoid> rollingRebootWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable RollingRebootRequest rollingRebootRequest) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = rollingRebootRequestBuilder(id, sync, rollingRebootRequest);
+    return rollingRebootWithHttpInfo(id, sync, rollingRebootRequest, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: pool, action: rolling-reboot  Set &#x60;shutdownPinnedVms&#x60; to &#x60;true&#x60; to shut down VMs that cannot be migrated (PCI passthrough, vGPU, SR-IOV VIF) before their host reboots and start them again on it afterwards. Without it, such VMs make the action fail with an &#x60;incorrect state&#x60; error listing their UUIDs.
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param rollingRebootRequest  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeVoid&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeVoid> rollingRebootWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable RollingRebootRequest rollingRebootRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = rollingRebootRequestBuilder(id, sync, rollingRebootRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2023,11 +2807,13 @@ public class PoolsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("rollingReboot", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeVoid>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -2035,15 +2821,21 @@ public class PoolsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeVoid responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeVoid>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -2054,7 +2846,7 @@ public class PoolsApi {
     }
   }
 
-  private HttpRequest.Builder rollingRebootRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable RollingRebootRequest rollingRebootRequest) throws ApiException {
+  private HttpRequest.Builder rollingRebootRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable RollingRebootRequest rollingRebootRequest, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling rollingReboot");
@@ -2094,6 +2886,8 @@ public class PoolsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -2110,7 +2904,21 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeVoid rollingUpdate(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable RollingRebootRequest rollingRebootRequest) throws ApiException {
-    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = rollingUpdateWithHttpInfo(id, sync, rollingRebootRequest);
+    return rollingUpdate(id, sync, rollingRebootRequest, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: pool, action: rolling-update  Set &#x60;shutdownPinnedVms&#x60; to &#x60;true&#x60; to shut down VMs that cannot be migrated (PCI passthrough, vGPU, SR-IOV VIF) before their host reboots and start them again on it afterwards. Without it, such VMs make the action fail with an &#x60;incorrect state&#x60; error listing their UUIDs.
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param rollingRebootRequest  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeVoid
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeVoid rollingUpdate(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable RollingRebootRequest rollingRebootRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = rollingUpdateWithHttpInfo(id, sync, rollingRebootRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -2124,7 +2932,21 @@ public class PoolsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeVoid> rollingUpdateWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable RollingRebootRequest rollingRebootRequest) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = rollingUpdateRequestBuilder(id, sync, rollingRebootRequest);
+    return rollingUpdateWithHttpInfo(id, sync, rollingRebootRequest, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: pool, action: rolling-update  Set &#x60;shutdownPinnedVms&#x60; to &#x60;true&#x60; to shut down VMs that cannot be migrated (PCI passthrough, vGPU, SR-IOV VIF) before their host reboots and start them again on it afterwards. Without it, such VMs make the action fail with an &#x60;incorrect state&#x60; error listing their UUIDs.
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param rollingRebootRequest  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeVoid&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeVoid> rollingUpdateWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable RollingRebootRequest rollingRebootRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = rollingUpdateRequestBuilder(id, sync, rollingRebootRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2132,11 +2954,13 @@ public class PoolsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("rollingUpdate", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeVoid>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -2144,15 +2968,21 @@ public class PoolsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeVoid responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeVoid>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -2163,7 +2993,7 @@ public class PoolsApi {
     }
   }
 
-  private HttpRequest.Builder rollingUpdateRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable RollingRebootRequest rollingRebootRequest) throws ApiException {
+  private HttpRequest.Builder rollingUpdateRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable RollingRebootRequest rollingRebootRequest, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling rollingUpdate");
@@ -2203,6 +3033,8 @@ public class PoolsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }

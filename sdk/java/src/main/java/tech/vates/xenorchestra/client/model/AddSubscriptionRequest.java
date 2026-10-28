@@ -38,7 +38,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   AddSubscriptionRequest.JSON_PROPERTY_COLLECTION,
   AddSubscriptionRequest.JSON_PROPERTY_FIELDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class AddSubscriptionRequest {
   public static final String JSON_PROPERTY_COLLECTION = "collection";
   @javax.annotation.Nonnull
@@ -61,14 +61,14 @@ public class AddSubscriptionRequest {
    * @return collection
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_COLLECTION)
+  @JsonProperty(value = JSON_PROPERTY_COLLECTION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public XoListenerType getCollection() {
     return collection;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_COLLECTION)
+  @JsonProperty(value = JSON_PROPERTY_COLLECTION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCollection(@javax.annotation.Nonnull XoListenerType collection) {
     this.collection = collection;
@@ -85,14 +85,14 @@ public class AddSubscriptionRequest {
    * @return fields
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_FIELDS)
+  @JsonProperty(value = JSON_PROPERTY_FIELDS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public AddSubscriptionRequestFields getFields() {
     return fields;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_FIELDS)
+  @JsonProperty(value = JSON_PROPERTY_FIELDS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFields(@javax.annotation.Nullable AddSubscriptionRequestFields fields) {
     this.fields = fields;
@@ -135,10 +135,7 @@ public class AddSubscriptionRequest {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -175,7 +172,7 @@ public class AddSubscriptionRequest {
 
     // add `collection` to the URL query string
     if (getCollection() != null) {
-      joiner.add(String.format("%scollection%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCollection()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%scollection%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCollection()))));
     }
 
     // add `fields` to the URL query string

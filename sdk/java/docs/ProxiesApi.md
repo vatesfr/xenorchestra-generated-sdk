@@ -100,7 +100,7 @@ public class Example {
 
 ## getProxiesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoProxy> getProxies getProxiesWithHttpInfo(fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoProxy> getProxiesWithHttpInfo(fields, ndjson, markdown, filter, limit)
 
 
 
@@ -272,7 +272,7 @@ public class Example {
 
 ## getProxyWithHttpInfo
 
-> ApiResponse<UnbrandXoProxy> getProxy getProxyWithHttpInfo(id)
+> ApiResponse<UnbrandXoProxy> getProxyWithHttpInfo(id)
 
 
 

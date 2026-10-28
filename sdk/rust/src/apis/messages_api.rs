@@ -174,33 +174,33 @@ pub async fn get_host_messages(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoMessage, Error<GetHostMessagesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/hosts/{id}/messages",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -251,12 +251,12 @@ pub async fn get_message(
     id: &str,
 ) -> Result<models::UnbrandXoMessage, Error<GetMessageError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
     let uri_str = format!(
         "{}/messages/{id}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -312,28 +312,28 @@ pub async fn get_messages(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandedXoMessage, Error<GetMessagesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!("{}/messages", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -389,33 +389,33 @@ pub async fn get_network_messages(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoMessage, Error<GetNetworkMessagesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/networks/{id}/messages",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -471,33 +471,33 @@ pub async fn get_pif_messages(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoMessage, Error<GetPifMessagesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/pifs/{id}/messages",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -553,33 +553,33 @@ pub async fn get_pool_messages(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoMessage, Error<GetPoolMessagesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/pools/{id}/messages",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -635,33 +635,33 @@ pub async fn get_sr_messages(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoMessage, Error<GetSrMessagesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/srs/{id}/messages",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -717,33 +717,33 @@ pub async fn get_vbd_messages(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoMessage, Error<GetVbdMessagesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vbds/{id}/messages",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -799,33 +799,33 @@ pub async fn get_vdi_messages(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoMessage, Error<GetVdiMessagesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vdis/{id}/messages",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -881,33 +881,33 @@ pub async fn get_vdi_snapshot_messages(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoMessage, Error<GetVdiSnapshotMessagesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vdi-snapshots/{id}/messages",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -963,33 +963,33 @@ pub async fn get_vif_messages(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoMessage, Error<GetVifMessagesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vifs/{id}/messages",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1045,33 +1045,33 @@ pub async fn get_vm_controller_messages(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoMessage, Error<GetVmControllerMessagesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vm-controllers/{id}/messages",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1127,33 +1127,33 @@ pub async fn get_vm_messages(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoMessage, Error<GetVmMessagesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vms/{id}/messages",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1209,33 +1209,33 @@ pub async fn get_vm_snapshots_messages(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoMessage, Error<GetVmSnapshotsMessagesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vm-snapshots/{id}/messages",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1291,33 +1291,33 @@ pub async fn get_vm_template_messages(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoMessage, Error<GetVmTemplateMessagesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vm-templates/{id}/messages",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {

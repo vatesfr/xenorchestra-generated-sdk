@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**action** | **String** |  | 
-**effect** | **String** |  | 
-**resource** | **String** |  | 
+**action** | **Action** |  (enum: update, *, read, update:management) | 
+**effect** | **Effect** |  (enum: allow, deny) | 
+**resource** | **Resource** |  (enum: pif) | 
 **role_id** | **String** |  | 
 **selector** | Option<**String**> |  | [optional]
 

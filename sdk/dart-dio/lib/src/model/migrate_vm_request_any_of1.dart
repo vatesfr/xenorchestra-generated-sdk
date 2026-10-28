@@ -135,31 +135,35 @@ class _$MigrateVmRequestAnyOf1Serializer
         case r'migrationNetworkId':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.migrationNetworkId = valueDes;
           break;
         case r'networkIdByVifId':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType:
-                const FullType(BuiltMap, [FullType(String), FullType(String)]),
-          ) as BuiltMap<String, String>;
+            specifiedType: const FullType.nullable(
+                BuiltMap, [FullType(String), FullType(String)]),
+          ) as BuiltMap<String, String>?;
+          if (valueDes == null) continue;
           result.networkIdByVifId.replace(valueDes);
           break;
         case r'srId':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.srId = valueDes;
           break;
         case r'srIdByVdiId':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType:
-                const FullType(BuiltMap, [FullType(String), FullType(String)]),
-          ) as BuiltMap<String, String>;
+            specifiedType: const FullType.nullable(
+                BuiltMap, [FullType(String), FullType(String)]),
+          ) as BuiltMap<String, String>?;
+          if (valueDes == null) continue;
           result.srIdByVdiId.replace(valueDes);
           break;
         default:

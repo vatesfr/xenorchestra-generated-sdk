@@ -38,7 +38,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   UpdateUserRequestBody.JSON_PROPERTY_PERMISSION,
   UpdateUserRequestBody.JSON_PROPERTY_PREFERENCES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class UpdateUserRequestBody {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
@@ -107,14 +107,14 @@ private final String value;
    * @return name
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getName() {
     return name;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
@@ -131,14 +131,14 @@ private final String value;
    * @return password
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PASSWORD)
+  @JsonProperty(value = JSON_PROPERTY_PASSWORD, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getPassword() {
     return password;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PASSWORD)
+  @JsonProperty(value = JSON_PROPERTY_PASSWORD, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPassword(@javax.annotation.Nullable String password) {
     this.password = password;
@@ -155,14 +155,14 @@ private final String value;
    * @return permission
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PERMISSION)
+  @JsonProperty(value = JSON_PROPERTY_PERMISSION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public PermissionEnum getPermission() {
     return permission;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PERMISSION)
+  @JsonProperty(value = JSON_PROPERTY_PERMISSION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPermission(@javax.annotation.Nullable PermissionEnum permission) {
     this.permission = permission;
@@ -179,14 +179,14 @@ private final String value;
    * @return preferences
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PREFERENCES)
+  @JsonProperty(value = JSON_PROPERTY_PREFERENCES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Object getPreferences() {
     return preferences;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PREFERENCES)
+  @JsonProperty(value = JSON_PROPERTY_PREFERENCES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPreferences(@javax.annotation.Nullable Object preferences) {
     this.preferences = preferences;
@@ -233,10 +233,7 @@ private final String value;
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -273,22 +270,22 @@ private final String value;
 
     // add `name` to the URL query string
     if (getName() != null) {
-      joiner.add(String.format("%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
     }
 
     // add `password` to the URL query string
     if (getPassword() != null) {
-      joiner.add(String.format("%spassword%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPassword()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%spassword%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPassword()))));
     }
 
     // add `permission` to the URL query string
     if (getPermission() != null) {
-      joiner.add(String.format("%spermission%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPermission()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%spermission%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPermission()))));
     }
 
     // add `preferences` to the URL query string
     if (getPreferences() != null) {
-      joiner.add(String.format("%spreferences%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPreferences()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%spreferences%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPreferences()))));
     }
 
     return joiner.toString();

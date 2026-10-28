@@ -11,9 +11,9 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// PickCreateVifParams91093PeriodExcludeKeyofCreateVifParams91093PeriodNetworkOrVmOrOtherConfigOrQosAlgorithmParams : From T, pick a set of properties whose keys are in the union K
+/// PickCreateVifParams91093ExcludeKeyofCreateVifParams91093NetworkOrVmOrOtherConfigOrQosAlgorithmParams : From T, pick a set of properties whose keys are in the union K
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct PickCreateVifParams91093PeriodExcludeKeyofCreateVifParams91093PeriodNetworkOrVmOrOtherConfigOrQosAlgorithmParams
+pub struct PickCreateVifParams91093ExcludeKeyofCreateVifParams91093NetworkOrVmOrOtherConfigOrQosAlgorithmParams
 {
     #[serde(rename = "MTU", skip_serializing_if = "Option::is_none")]
     pub mtu: Option<f64>,
@@ -31,10 +31,10 @@ pub struct PickCreateVifParams91093PeriodExcludeKeyofCreateVifParams91093PeriodN
     pub qos_algorithm_type: Option<String>,
 }
 
-impl PickCreateVifParams91093PeriodExcludeKeyofCreateVifParams91093PeriodNetworkOrVmOrOtherConfigOrQosAlgorithmParams {
+impl PickCreateVifParams91093ExcludeKeyofCreateVifParams91093NetworkOrVmOrOtherConfigOrQosAlgorithmParams {
     /// From T, pick a set of properties whose keys are in the union K
-    pub fn new() -> PickCreateVifParams91093PeriodExcludeKeyofCreateVifParams91093PeriodNetworkOrVmOrOtherConfigOrQosAlgorithmParams {
-        PickCreateVifParams91093PeriodExcludeKeyofCreateVifParams91093PeriodNetworkOrVmOrOtherConfigOrQosAlgorithmParams {
+    pub fn new() -> PickCreateVifParams91093ExcludeKeyofCreateVifParams91093NetworkOrVmOrOtherConfigOrQosAlgorithmParams {
+        PickCreateVifParams91093ExcludeKeyofCreateVifParams91093NetworkOrVmOrOtherConfigOrQosAlgorithmParams {
             mtu: None,
             currently_attached: None,
             device: None,

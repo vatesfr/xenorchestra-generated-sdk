@@ -31,7 +31,7 @@ final bool sync_ = true; // bool |
 
 try {
     api.pluginsSdnControllerNetworksIdActionsUpdateTrafficRulePost(id, pluginsSdnControllerNetworksIdActionsUpdateTrafficRulePostRequest, sync_);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling ExternalApi->pluginsSdnControllerNetworksIdActionsUpdateTrafficRulePost: $e\n');
 }
 ```
@@ -77,7 +77,7 @@ final bool sync_ = true; // bool |
 
 try {
     api.pluginsSdnControllerVifsIdActionsUpdateTrafficRulePost(id, pluginsSdnControllerVifsIdActionsUpdateTrafficRulePostRequest, sync_);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling ExternalApi->pluginsSdnControllerVifsIdActionsUpdateTrafficRulePost: $e\n');
 }
 ```

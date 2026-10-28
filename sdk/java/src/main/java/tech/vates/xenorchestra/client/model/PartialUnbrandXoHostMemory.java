@@ -37,7 +37,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PartialUnbrandXoHostMemory.JSON_PROPERTY_TOTAL,
   PartialUnbrandXoHostMemory.JSON_PROPERTY_USAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PartialUnbrandXoHostMemory {
   public static final String JSON_PROPERTY_SIZE = "size";
   @javax.annotation.Nonnull
@@ -64,14 +64,14 @@ public class PartialUnbrandXoHostMemory {
    * @return size
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonProperty(value = JSON_PROPERTY_SIZE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getSize() {
     return size;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonProperty(value = JSON_PROPERTY_SIZE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSize(@javax.annotation.Nonnull Double size) {
     this.size = size;
@@ -88,14 +88,14 @@ public class PartialUnbrandXoHostMemory {
    * @return total
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TOTAL)
+  @JsonProperty(value = JSON_PROPERTY_TOTAL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getTotal() {
     return total;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TOTAL)
+  @JsonProperty(value = JSON_PROPERTY_TOTAL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTotal(@javax.annotation.Nullable Double total) {
     this.total = total;
@@ -112,14 +112,14 @@ public class PartialUnbrandXoHostMemory {
    * @return usage
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_USAGE)
+  @JsonProperty(value = JSON_PROPERTY_USAGE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getUsage() {
     return usage;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_USAGE)
+  @JsonProperty(value = JSON_PROPERTY_USAGE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUsage(@javax.annotation.Nonnull Double usage) {
     this.usage = usage;
@@ -164,10 +164,7 @@ public class PartialUnbrandXoHostMemory {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -204,17 +201,17 @@ public class PartialUnbrandXoHostMemory {
 
     // add `size` to the URL query string
     if (getSize() != null) {
-      joiner.add(String.format("%ssize%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSize()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssize%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSize()))));
     }
 
     // add `total` to the URL query string
     if (getTotal() != null) {
-      joiner.add(String.format("%stotal%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTotal()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%stotal%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTotal()))));
     }
 
     // add `usage` to the URL query string
     if (getUsage() != null) {
-      joiner.add(String.format("%susage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUsage()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%susage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUsage()))));
     }
 
     return joiner.toString();

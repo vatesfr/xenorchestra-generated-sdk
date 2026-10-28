@@ -38,7 +38,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   SmartRebootHostRequest.JSON_PROPERTY_BYPASS_CURRENT_VM_CHECK,
   SmartRebootHostRequest.JSON_PROPERTY_BYPASS_VERSION_CHECK
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class SmartRebootHostRequest {
   public static final String JSON_PROPERTY_BYPASS_BACKUP_CHECK = "bypassBackupCheck";
   @javax.annotation.Nullable
@@ -69,14 +69,14 @@ public class SmartRebootHostRequest {
    * @return bypassBackupCheck
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_BYPASS_BACKUP_CHECK)
+  @JsonProperty(value = JSON_PROPERTY_BYPASS_BACKUP_CHECK, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getBypassBackupCheck() {
     return bypassBackupCheck;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_BYPASS_BACKUP_CHECK)
+  @JsonProperty(value = JSON_PROPERTY_BYPASS_BACKUP_CHECK, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBypassBackupCheck(@javax.annotation.Nullable Boolean bypassBackupCheck) {
     this.bypassBackupCheck = bypassBackupCheck;
@@ -93,14 +93,14 @@ public class SmartRebootHostRequest {
    * @return bypassBlockedSuspend
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_BYPASS_BLOCKED_SUSPEND)
+  @JsonProperty(value = JSON_PROPERTY_BYPASS_BLOCKED_SUSPEND, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getBypassBlockedSuspend() {
     return bypassBlockedSuspend;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_BYPASS_BLOCKED_SUSPEND)
+  @JsonProperty(value = JSON_PROPERTY_BYPASS_BLOCKED_SUSPEND, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBypassBlockedSuspend(@javax.annotation.Nullable Boolean bypassBlockedSuspend) {
     this.bypassBlockedSuspend = bypassBlockedSuspend;
@@ -117,14 +117,14 @@ public class SmartRebootHostRequest {
    * @return bypassCurrentVmCheck
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_BYPASS_CURRENT_VM_CHECK)
+  @JsonProperty(value = JSON_PROPERTY_BYPASS_CURRENT_VM_CHECK, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getBypassCurrentVmCheck() {
     return bypassCurrentVmCheck;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_BYPASS_CURRENT_VM_CHECK)
+  @JsonProperty(value = JSON_PROPERTY_BYPASS_CURRENT_VM_CHECK, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBypassCurrentVmCheck(@javax.annotation.Nullable Boolean bypassCurrentVmCheck) {
     this.bypassCurrentVmCheck = bypassCurrentVmCheck;
@@ -141,14 +141,14 @@ public class SmartRebootHostRequest {
    * @return bypassVersionCheck
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_BYPASS_VERSION_CHECK)
+  @JsonProperty(value = JSON_PROPERTY_BYPASS_VERSION_CHECK, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getBypassVersionCheck() {
     return bypassVersionCheck;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_BYPASS_VERSION_CHECK)
+  @JsonProperty(value = JSON_PROPERTY_BYPASS_VERSION_CHECK, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBypassVersionCheck(@javax.annotation.Nullable Boolean bypassVersionCheck) {
     this.bypassVersionCheck = bypassVersionCheck;
@@ -195,10 +195,7 @@ public class SmartRebootHostRequest {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -235,22 +232,22 @@ public class SmartRebootHostRequest {
 
     // add `bypassBackupCheck` to the URL query string
     if (getBypassBackupCheck() != null) {
-      joiner.add(String.format("%sbypassBackupCheck%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBypassBackupCheck()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbypassBackupCheck%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBypassBackupCheck()))));
     }
 
     // add `bypassBlockedSuspend` to the URL query string
     if (getBypassBlockedSuspend() != null) {
-      joiner.add(String.format("%sbypassBlockedSuspend%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBypassBlockedSuspend()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbypassBlockedSuspend%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBypassBlockedSuspend()))));
     }
 
     // add `bypassCurrentVmCheck` to the URL query string
     if (getBypassCurrentVmCheck() != null) {
-      joiner.add(String.format("%sbypassCurrentVmCheck%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBypassCurrentVmCheck()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbypassCurrentVmCheck%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBypassCurrentVmCheck()))));
     }
 
     // add `bypassVersionCheck` to the URL query string
     if (getBypassVersionCheck() != null) {
-      joiner.add(String.format("%sbypassVersionCheck%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBypassVersionCheck()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbypassVersionCheck%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBypassVersionCheck()))));
     }
 
     return joiner.toString();

@@ -335,8 +335,9 @@ class _$UnbrandXoNetworkSerializer
         case r'insecureNbd':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.insecureNbd = valueDes;
           break;
         case r'isBonded':
@@ -363,8 +364,9 @@ class _$UnbrandXoNetworkSerializer
         case r'nbd':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.nbd = valueDes;
           break;
         case r'other_config':

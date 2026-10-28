@@ -484,8 +484,9 @@ class _$UpdateVmRequestBodySerializer
         case r'PV_args':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.pVArgs = valueDes;
           break;
         case r'affinityHost':
@@ -499,16 +500,18 @@ class _$UpdateVmRequestBodySerializer
         case r'autoPoweron':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.autoPoweron = valueDes;
           break;
         case r'blockedOperations':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType:
-                const FullType(PartialRecordVMOPERATIONSBooleanOrStringOrNull),
-          ) as PartialRecordVMOPERATIONSBooleanOrStringOrNull;
+            specifiedType: const FullType.nullable(
+                PartialRecordVMOPERATIONSBooleanOrStringOrNull),
+          ) as PartialRecordVMOPERATIONSBooleanOrStringOrNull?;
+          if (valueDes == null) continue;
           result.blockedOperations.replace(valueDes);
           break;
         case r'coresPerSocket':
@@ -531,8 +534,10 @@ class _$UpdateVmRequestBodySerializer
         case r'cpuMask':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(double)]),
-          ) as BuiltList<double>;
+            specifiedType:
+                const FullType.nullable(BuiltList, [FullType(double)]),
+          ) as BuiltList<double>?;
+          if (valueDes == null) continue;
           result.cpuMask.replace(valueDes);
           break;
         case r'cpuWeight':
@@ -546,44 +551,51 @@ class _$UpdateVmRequestBodySerializer
         case r'cpus':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.cpus = valueDes;
           break;
         case r'cpusStaticMax':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(UpdateVmRequestBodyCpusStaticMax),
-          ) as UpdateVmRequestBodyCpusStaticMax;
+            specifiedType:
+                const FullType.nullable(UpdateVmRequestBodyCpusStaticMax),
+          ) as UpdateVmRequestBodyCpusStaticMax?;
+          if (valueDes == null) continue;
           result.cpusStaticMax.replace(valueDes);
           break;
         case r'creation':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(UpdateVmRequestBodyCreation),
-          ) as UpdateVmRequestBodyCreation;
+            specifiedType: const FullType.nullable(UpdateVmRequestBodyCreation),
+          ) as UpdateVmRequestBodyCreation?;
+          if (valueDes == null) continue;
           result.creation.replace(valueDes);
           break;
         case r'expNestedHvm':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.expNestedHvm = valueDes;
           break;
         case r'hasVendorDevice':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.hasVendorDevice = valueDes;
           break;
         case r'highAvailability':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType:
-                const FullType(UpdateVmRequestBodyHighAvailabilityEnum),
-          ) as UpdateVmRequestBodyHighAvailabilityEnum;
+            specifiedType: const FullType.nullable(
+                UpdateVmRequestBodyHighAvailabilityEnum),
+          ) as UpdateVmRequestBodyHighAvailabilityEnum?;
+          if (valueDes == null) continue;
           result.highAvailability = valueDes;
           break;
         case r'hvmBootFirmware':
@@ -597,50 +609,61 @@ class _$UpdateVmRequestBodySerializer
         case r'memory':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(UpdateVmRequestBodyCpusStaticMax),
-          ) as UpdateVmRequestBodyCpusStaticMax;
+            specifiedType:
+                const FullType.nullable(UpdateVmRequestBodyCpusStaticMax),
+          ) as UpdateVmRequestBodyCpusStaticMax?;
+          if (valueDes == null) continue;
           result.memory.replace(valueDes);
           break;
         case r'memoryMax':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(UpdateVmRequestBodyCpusStaticMax),
-          ) as UpdateVmRequestBodyCpusStaticMax;
+            specifiedType:
+                const FullType.nullable(UpdateVmRequestBodyCpusStaticMax),
+          ) as UpdateVmRequestBodyCpusStaticMax?;
+          if (valueDes == null) continue;
           result.memoryMax.replace(valueDes);
           break;
         case r'memoryMin':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(UpdateVmRequestBodyCpusStaticMax),
-          ) as UpdateVmRequestBodyCpusStaticMax;
+            specifiedType:
+                const FullType.nullable(UpdateVmRequestBodyCpusStaticMax),
+          ) as UpdateVmRequestBodyCpusStaticMax?;
+          if (valueDes == null) continue;
           result.memoryMin.replace(valueDes);
           break;
         case r'memoryStaticMax':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(UpdateVmRequestBodyCpusStaticMax),
-          ) as UpdateVmRequestBodyCpusStaticMax;
+            specifiedType:
+                const FullType.nullable(UpdateVmRequestBodyCpusStaticMax),
+          ) as UpdateVmRequestBodyCpusStaticMax?;
+          if (valueDes == null) continue;
           result.memoryStaticMax.replace(valueDes);
           break;
         case r'nameDescription':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.nameDescription = valueDes;
           break;
         case r'nameLabel':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.nameLabel = valueDes;
           break;
         case r'nestedVirt':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.nestedVirt = valueDes;
           break;
         case r'nicType':
@@ -670,22 +693,25 @@ class _$UpdateVmRequestBodySerializer
         case r'secureBoot':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.secureBoot = valueDes;
           break;
         case r'share':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.share = valueDes;
           break;
         case r'startDelay':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.startDelay = valueDes;
           break;
         case r'suspendSr':
@@ -699,52 +725,62 @@ class _$UpdateVmRequestBodySerializer
         case r'tags':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
+            specifiedType:
+                const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
           result.tags.replace(valueDes);
           break;
         case r'uefiMode':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(UpdateVmRequestBodyUefiModeEnum),
-          ) as UpdateVmRequestBodyUefiModeEnum;
+            specifiedType:
+                const FullType.nullable(UpdateVmRequestBodyUefiModeEnum),
+          ) as UpdateVmRequestBodyUefiModeEnum?;
+          if (valueDes == null) continue;
           result.uefiMode = valueDes;
           break;
         case r'vga':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(UpdateVmRequestBodyVgaEnum),
-          ) as UpdateVmRequestBodyVgaEnum;
+            specifiedType: const FullType.nullable(UpdateVmRequestBodyVgaEnum),
+          ) as UpdateVmRequestBodyVgaEnum?;
+          if (valueDes == null) continue;
           result.vga = valueDes;
           break;
         case r'videoram':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(UpdateVmRequestBodyVideoramEnum),
-          ) as UpdateVmRequestBodyVideoramEnum;
+            specifiedType:
+                const FullType.nullable(UpdateVmRequestBodyVideoramEnum),
+          ) as UpdateVmRequestBodyVideoramEnum?;
+          if (valueDes == null) continue;
           result.videoram = valueDes;
           break;
         case r'viridian':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.viridian = valueDes;
           break;
         case r'virtualizationMode':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType:
-                const FullType(UpdateVmRequestBodyVirtualizationModeEnum),
-          ) as UpdateVmRequestBodyVirtualizationModeEnum;
+            specifiedType: const FullType.nullable(
+                UpdateVmRequestBodyVirtualizationModeEnum),
+          ) as UpdateVmRequestBodyVirtualizationModeEnum?;
+          if (valueDes == null) continue;
           result.virtualizationMode = valueDes;
           break;
         case r'xenStoreData':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(
+            specifiedType: const FullType.nullable(
                 BuiltMap, [FullType(String), FullType.nullable(String)]),
-          ) as BuiltMap<String, String?>;
+          ) as BuiltMap<String, String?>?;
+          if (valueDes == null) continue;
           result.xenStoreData.replace(valueDes);
           break;
         default:

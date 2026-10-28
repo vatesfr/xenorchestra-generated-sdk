@@ -194,64 +194,73 @@ class _$PickUnbrandParametersXapi91VBDCreate9391093ExcludeKeyofUnbrandParameters
         case r'bootable':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.bootable = valueDes;
           break;
         case r'empty':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.empty = valueDes;
           break;
         case r'mode':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(VBDMODE),
-          ) as VBDMODE;
+            specifiedType: const FullType.nullable(VBDMODE),
+          ) as VBDMODE?;
+          if (valueDes == null) continue;
           result.mode = valueDes;
           break;
         case r'other_config':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.otherConfig = valueDes;
           break;
         case r'qos_algorithm_params':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.qosAlgorithmParams = valueDes;
           break;
         case r'qos_algorithm_type':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.qosAlgorithmType = valueDes;
           break;
         case r'type':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(VBDTYPE),
-          ) as VBDTYPE;
+            specifiedType: const FullType.nullable(VBDTYPE),
+          ) as VBDTYPE?;
+          if (valueDes == null) continue;
           result.type = valueDes;
           break;
         case r'unpluggable':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.unpluggable = valueDes;
           break;
         case r'userdevice':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.userdevice = valueDes;
           break;
         default:

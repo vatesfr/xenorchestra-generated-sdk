@@ -53,15 +53,35 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class NetworksApi {
+  /**
+   * Utility class for extending HttpRequest.Builder functionality.
+   */
+  private static class HttpRequestBuilderExtensions {
+    /**
+     * Adds additional headers to the provided HttpRequest.Builder. Useful for adding method/endpoint specific headers.
+     *
+     * @param builder the HttpRequest.Builder to which headers will be added
+     * @param headers a map of header names and values to add; may be null
+     * @return the same HttpRequest.Builder instance with the additional headers set
+     */
+    static HttpRequest.Builder withAdditionalHeaders(HttpRequest.Builder builder, Map<String, String> headers) {
+        if (headers != null) {
+            for (Map.Entry<String, String> entry : headers.entrySet()) {
+                builder.header(entry.getKey(), entry.getValue());
+            }
+        }
+        return builder;
+    }
+  }
   private final HttpClient memberVarHttpClient;
   private final ObjectMapper memberVarObjectMapper;
   private final String memberVarBaseUri;
   private final Consumer<HttpRequest.Builder> memberVarInterceptor;
   private final Duration memberVarReadTimeout;
   private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
-  private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
+  private final Consumer<HttpResponse<InputStream>> memberVarAsyncResponseInterceptor;
 
   public NetworksApi() {
     this(Configuration.getDefaultApiClient());
@@ -77,8 +97,17 @@ public class NetworksApi {
     memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
   }
 
+
   protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
-    String body = response.body() == null ? null : new String(response.body().readAllBytes());
+    InputStream responseBody = ApiClient.getResponseBody(response);
+    String body = null;
+    try {
+      body = responseBody == null ? null : new String(responseBody.readAllBytes());
+    } finally {
+      if (responseBody != null) {
+        responseBody.close();
+      }
+    }
     String message = formatExceptionMessage(operationId, response.statusCode(), body);
     return new ApiException(response.statusCode(), message, response.headers(), body);
   }
@@ -91,6 +120,57 @@ public class NetworksApi {
   }
 
   /**
+   * Download file from the given response.
+   *
+   * @param response Response
+   * @return File
+   * @throws ApiException If fail to read file content from response and write to disk
+   */
+  public File downloadFileFromResponse(HttpResponse<InputStream> response, InputStream responseBody) throws ApiException {
+    if (responseBody == null) {
+      throw new ApiException(new IOException("Response body is empty"));
+    }
+    try {
+      File file = prepareDownloadFile(response);
+      java.nio.file.Files.copy(responseBody, file.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+      return file;
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+  }
+
+  /**
+   * <p>Prepare the file for download from the response.</p>
+   *
+   * @param response a {@link java.net.http.HttpResponse} object.
+   * @return a {@link java.io.File} object.
+   * @throws java.io.IOException if any.
+   */
+  private File prepareDownloadFile(HttpResponse<InputStream> response) throws IOException {
+    String filename = null;
+    java.util.Optional<String> contentDisposition = response.headers().firstValue("Content-Disposition");
+    if (contentDisposition.isPresent() && !"".equals(contentDisposition.get())) {
+      // Get filename from the Content-Disposition header.
+      java.util.regex.Pattern pattern = java.util.regex.Pattern.compile("filename=['\"]?([^'\"\\s]+)['\"]?");
+      java.util.regex.Matcher matcher = pattern.matcher(contentDisposition.get());
+      if (matcher.find())
+        filename = matcher.group(1);
+    }
+    File file = null;
+    if (filename != null) {
+      java.nio.file.Path tempDir = java.nio.file.Files.createTempDirectory("swagger-gen-native");
+      java.nio.file.Path filePath = java.nio.file.Files.createFile(tempDir.resolve(filename));
+      file = filePath.toFile();
+      tempDir.toFile().deleteOnExit();   // best effort cleanup
+      file.deleteOnExit(); // best effort cleanup
+    } else {
+      file = java.nio.file.Files.createTempFile("download-", "").toFile();
+      file.deleteOnExit(); // best effort cleanup
+    }
+    return file;
+  }
+
+  /**
    * 
    * Required privileges: - resource: pool, action: create:network - resource: network, action: create
    * @param id  (required)
@@ -100,7 +180,21 @@ public class NetworksApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeIdUnbrandXoNetwork91Id93 createBondedNetwork(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateBondedNetworkBody unbrandCreateBondedNetworkBody, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> localVarResponse = createBondedNetworkWithHttpInfo(id, unbrandCreateBondedNetworkBody, sync);
+    return createBondedNetwork(id, unbrandCreateBondedNetworkBody, sync, null);
+  }
+
+  /**
+   * 
+   * Required privileges: - resource: pool, action: create:network - resource: network, action: create
+   * @param id  (required)
+   * @param unbrandCreateBondedNetworkBody  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeIdUnbrandXoNetwork91Id93
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeIdUnbrandXoNetwork91Id93 createBondedNetwork(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateBondedNetworkBody unbrandCreateBondedNetworkBody, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> localVarResponse = createBondedNetworkWithHttpInfo(id, unbrandCreateBondedNetworkBody, sync, headers);
     return localVarResponse.getData();
   }
 
@@ -114,7 +208,21 @@ public class NetworksApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> createBondedNetworkWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateBondedNetworkBody unbrandCreateBondedNetworkBody, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createBondedNetworkRequestBuilder(id, unbrandCreateBondedNetworkBody, sync);
+    return createBondedNetworkWithHttpInfo(id, unbrandCreateBondedNetworkBody, sync, null);
+  }
+
+  /**
+   * 
+   * Required privileges: - resource: pool, action: create:network - resource: network, action: create
+   * @param id  (required)
+   * @param unbrandCreateBondedNetworkBody  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeIdUnbrandXoNetwork91Id93&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> createBondedNetworkWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateBondedNetworkBody unbrandCreateBondedNetworkBody, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createBondedNetworkRequestBuilder(id, unbrandCreateBondedNetworkBody, sync, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -122,11 +230,13 @@ public class NetworksApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("createBondedNetwork", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -134,15 +244,21 @@ public class NetworksApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeIdUnbrandXoNetwork91Id93 responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeIdUnbrandXoNetwork91Id93>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeIdUnbrandXoNetwork91Id93>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -153,7 +269,7 @@ public class NetworksApi {
     }
   }
 
-  private HttpRequest.Builder createBondedNetworkRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateBondedNetworkBody unbrandCreateBondedNetworkBody, @javax.annotation.Nullable Boolean sync) throws ApiException {
+  private HttpRequest.Builder createBondedNetworkRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateBondedNetworkBody unbrandCreateBondedNetworkBody, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling createBondedNetwork");
@@ -197,6 +313,8 @@ public class NetworksApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -213,7 +331,21 @@ public class NetworksApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeIdUnbrandXoNetwork91Id93 createInternalNetwork(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull BaseCreateNetworkBody body, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> localVarResponse = createInternalNetworkWithHttpInfo(id, body, sync);
+    return createInternalNetwork(id, body, sync, null);
+  }
+
+  /**
+   * 
+   * Required privileges: - resource: pool, action: create:network - resource: network, action: create
+   * @param id  (required)
+   * @param body  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeIdUnbrandXoNetwork91Id93
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeIdUnbrandXoNetwork91Id93 createInternalNetwork(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull BaseCreateNetworkBody body, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> localVarResponse = createInternalNetworkWithHttpInfo(id, body, sync, headers);
     return localVarResponse.getData();
   }
 
@@ -227,7 +359,21 @@ public class NetworksApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> createInternalNetworkWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull BaseCreateNetworkBody body, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createInternalNetworkRequestBuilder(id, body, sync);
+    return createInternalNetworkWithHttpInfo(id, body, sync, null);
+  }
+
+  /**
+   * 
+   * Required privileges: - resource: pool, action: create:network - resource: network, action: create
+   * @param id  (required)
+   * @param body  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeIdUnbrandXoNetwork91Id93&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> createInternalNetworkWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull BaseCreateNetworkBody body, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createInternalNetworkRequestBuilder(id, body, sync, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -235,11 +381,13 @@ public class NetworksApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("createInternalNetwork", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -247,15 +395,21 @@ public class NetworksApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeIdUnbrandXoNetwork91Id93 responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeIdUnbrandXoNetwork91Id93>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeIdUnbrandXoNetwork91Id93>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -266,7 +420,7 @@ public class NetworksApi {
     }
   }
 
-  private HttpRequest.Builder createInternalNetworkRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull BaseCreateNetworkBody body, @javax.annotation.Nullable Boolean sync) throws ApiException {
+  private HttpRequest.Builder createInternalNetworkRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull BaseCreateNetworkBody body, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling createInternalNetwork");
@@ -310,6 +464,8 @@ public class NetworksApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -326,7 +482,21 @@ public class NetworksApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeIdUnbrandXoNetwork91Id93 createNetwork(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateNetworkBody unbrandCreateNetworkBody, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> localVarResponse = createNetworkWithHttpInfo(id, unbrandCreateNetworkBody, sync);
+    return createNetwork(id, unbrandCreateNetworkBody, sync, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: pool, action: create:network - resource: network, action: create
+   * @param id  (required)
+   * @param unbrandCreateNetworkBody  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeIdUnbrandXoNetwork91Id93
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeIdUnbrandXoNetwork91Id93 createNetwork(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateNetworkBody unbrandCreateNetworkBody, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> localVarResponse = createNetworkWithHttpInfo(id, unbrandCreateNetworkBody, sync, headers);
     return localVarResponse.getData();
   }
 
@@ -340,7 +510,21 @@ public class NetworksApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> createNetworkWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateNetworkBody unbrandCreateNetworkBody, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createNetworkRequestBuilder(id, unbrandCreateNetworkBody, sync);
+    return createNetworkWithHttpInfo(id, unbrandCreateNetworkBody, sync, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: pool, action: create:network - resource: network, action: create
+   * @param id  (required)
+   * @param unbrandCreateNetworkBody  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeIdUnbrandXoNetwork91Id93&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> createNetworkWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateNetworkBody unbrandCreateNetworkBody, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createNetworkRequestBuilder(id, unbrandCreateNetworkBody, sync, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -348,11 +532,13 @@ public class NetworksApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("createNetwork", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -360,15 +546,21 @@ public class NetworksApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeIdUnbrandXoNetwork91Id93 responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeIdUnbrandXoNetwork91Id93>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeIdUnbrandXoNetwork91Id93>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -379,7 +571,7 @@ public class NetworksApi {
     }
   }
 
-  private HttpRequest.Builder createNetworkRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateNetworkBody unbrandCreateNetworkBody, @javax.annotation.Nullable Boolean sync) throws ApiException {
+  private HttpRequest.Builder createNetworkRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateNetworkBody unbrandCreateNetworkBody, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling createNetwork");
@@ -423,6 +615,8 @@ public class NetworksApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -436,7 +630,18 @@ public class NetworksApi {
    * @throws ApiException if fails to make API call
    */
   public void deleteNetwork(@javax.annotation.Nonnull String id) throws ApiException {
-    deleteNetworkWithHttpInfo(id);
+    deleteNetwork(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: network, action: delete
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteNetwork(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    deleteNetworkWithHttpInfo(id, headers);
   }
 
   /**
@@ -447,7 +652,19 @@ public class NetworksApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> deleteNetworkWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = deleteNetworkRequestBuilder(id);
+    return deleteNetworkWithHttpInfo(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: network, action: delete
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteNetworkWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteNetworkRequestBuilder(id, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -455,9 +672,14 @@ public class NetworksApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("deleteNetwork", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -465,11 +687,9 @@ public class NetworksApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -480,7 +700,7 @@ public class NetworksApi {
     }
   }
 
-  private HttpRequest.Builder deleteNetworkRequestBuilder(@javax.annotation.Nonnull String id) throws ApiException {
+  private HttpRequest.Builder deleteNetworkRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling deleteNetwork");
@@ -499,6 +719,8 @@ public class NetworksApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -513,7 +735,19 @@ public class NetworksApi {
    * @throws ApiException if fails to make API call
    */
   public void deleteNetworkTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    deleteNetworkTagWithHttpInfo(id, tag);
+    deleteNetworkTag(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: network, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteNetworkTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    deleteNetworkTagWithHttpInfo(id, tag, headers);
   }
 
   /**
@@ -525,7 +759,20 @@ public class NetworksApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> deleteNetworkTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = deleteNetworkTagRequestBuilder(id, tag);
+    return deleteNetworkTagWithHttpInfo(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: network, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteNetworkTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteNetworkTagRequestBuilder(id, tag, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -533,9 +780,14 @@ public class NetworksApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("deleteNetworkTag", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -543,11 +795,9 @@ public class NetworksApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -558,7 +808,7 @@ public class NetworksApi {
     }
   }
 
-  private HttpRequest.Builder deleteNetworkTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
+  private HttpRequest.Builder deleteNetworkTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling deleteNetworkTag");
@@ -582,6 +832,8 @@ public class NetworksApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -596,7 +848,19 @@ public class NetworksApi {
    * @throws ApiException if fails to make API call
    */
   public UnbrandXoNetwork getNetwork(@javax.annotation.Nonnull String id) throws ApiException {
-    ApiResponse<UnbrandXoNetwork> localVarResponse = getNetworkWithHttpInfo(id);
+    return getNetwork(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: network, action: read
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return UnbrandXoNetwork
+   * @throws ApiException if fails to make API call
+   */
+  public UnbrandXoNetwork getNetwork(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<UnbrandXoNetwork> localVarResponse = getNetworkWithHttpInfo(id, headers);
     return localVarResponse.getData();
   }
 
@@ -608,7 +872,19 @@ public class NetworksApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<UnbrandXoNetwork> getNetworkWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getNetworkRequestBuilder(id);
+    return getNetworkWithHttpInfo(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: network, action: read
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UnbrandXoNetwork&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UnbrandXoNetwork> getNetworkWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getNetworkRequestBuilder(id, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -616,11 +892,13 @@ public class NetworksApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getNetwork", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<UnbrandXoNetwork>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -628,15 +906,21 @@ public class NetworksApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UnbrandXoNetwork responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnbrandXoNetwork>() {});
+        
 
         return new ApiResponse<UnbrandXoNetwork>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnbrandXoNetwork>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -647,7 +931,7 @@ public class NetworksApi {
     }
   }
 
-  private HttpRequest.Builder getNetworkRequestBuilder(@javax.annotation.Nonnull String id) throws ApiException {
+  private HttpRequest.Builder getNetworkRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getNetwork");
@@ -666,6 +950,8 @@ public class NetworksApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -685,7 +971,24 @@ public class NetworksApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoAlarm getNetworkAlarms(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoAlarm> localVarResponse = getNetworkAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getNetworkAlarms(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all alarms that match the following privilege: - resource: alarm, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoAlarm
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoAlarm getNetworkAlarms(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoAlarm> localVarResponse = getNetworkAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -702,7 +1005,24 @@ public class NetworksApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoAlarm> getNetworkAlarmsWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getNetworkAlarmsRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getNetworkAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all alarms that match the following privilege: - resource: alarm, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoAlarm&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoAlarm> getNetworkAlarmsWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getNetworkAlarmsRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -710,11 +1030,13 @@ public class NetworksApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getNetworkAlarms", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoAlarm>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -722,15 +1044,21 @@ public class NetworksApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoAlarm responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoAlarm>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoAlarm>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoAlarm>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -741,7 +1069,7 @@ public class NetworksApi {
     }
   }
 
-  private HttpRequest.Builder getNetworkAlarmsRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getNetworkAlarmsRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getNetworkAlarms");
@@ -783,6 +1111,8 @@ public class NetworksApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -802,7 +1132,24 @@ public class NetworksApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoMessage getNetworkMessages(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoMessage> localVarResponse = getNetworkMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getNetworkMessages(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all messages that match the following privilege: - resource: message, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoMessage
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoMessage getNetworkMessages(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoMessage> localVarResponse = getNetworkMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -819,7 +1166,24 @@ public class NetworksApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoMessage> getNetworkMessagesWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getNetworkMessagesRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getNetworkMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all messages that match the following privilege: - resource: message, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoMessage&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoMessage> getNetworkMessagesWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getNetworkMessagesRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -827,11 +1191,13 @@ public class NetworksApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getNetworkMessages", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoMessage>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -839,15 +1205,21 @@ public class NetworksApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoMessage responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoMessage>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoMessage>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoMessage>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -858,7 +1230,7 @@ public class NetworksApi {
     }
   }
 
-  private HttpRequest.Builder getNetworkMessagesRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getNetworkMessagesRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getNetworkMessages");
@@ -900,6 +1272,8 @@ public class NetworksApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -919,7 +1293,24 @@ public class NetworksApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoTask getNetworkTasks(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoTask> localVarResponse = getNetworkTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getNetworkTasks(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all tasks that match the following privilege: - resource: task, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoTask
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoTask getNetworkTasks(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoTask> localVarResponse = getNetworkTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -936,7 +1327,24 @@ public class NetworksApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoTask> getNetworkTasksWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getNetworkTasksRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getNetworkTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all tasks that match the following privilege: - resource: task, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoTask&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoTask> getNetworkTasksWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getNetworkTasksRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -944,11 +1352,13 @@ public class NetworksApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getNetworkTasks", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoTask>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -956,15 +1366,21 @@ public class NetworksApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoTask responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoTask>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoTask>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoTask>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -975,7 +1391,7 @@ public class NetworksApi {
     }
   }
 
-  private HttpRequest.Builder getNetworkTasksRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getNetworkTasksRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getNetworkTasks");
@@ -1017,6 +1433,8 @@ public class NetworksApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1035,7 +1453,23 @@ public class NetworksApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoNetwork getNetworks(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoNetwork> localVarResponse = getNetworksWithHttpInfo(fields, ndjson, markdown, filter, limit);
+    return getNetworks(fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all networks that match the following privilege: - resource: network, action: read
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoNetwork
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoNetwork getNetworks(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoNetwork> localVarResponse = getNetworksWithHttpInfo(fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -1051,7 +1485,23 @@ public class NetworksApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoNetwork> getNetworksWithHttpInfo(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getNetworksRequestBuilder(fields, ndjson, markdown, filter, limit);
+    return getNetworksWithHttpInfo(fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all networks that match the following privilege: - resource: network, action: read
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoNetwork&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoNetwork> getNetworksWithHttpInfo(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getNetworksRequestBuilder(fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1059,11 +1509,13 @@ public class NetworksApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getNetworks", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoNetwork>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1071,15 +1523,21 @@ public class NetworksApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoNetwork responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoNetwork>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoNetwork>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoNetwork>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1090,7 +1548,7 @@ public class NetworksApi {
     }
   }
 
-  private HttpRequest.Builder getNetworksRequestBuilder(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getNetworksRequestBuilder(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -1127,6 +1585,8 @@ public class NetworksApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1141,7 +1601,19 @@ public class NetworksApi {
    * @throws ApiException if fails to make API call
    */
   public void putNetworkTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    putNetworkTagWithHttpInfo(id, tag);
+    putNetworkTag(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: network, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void putNetworkTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    putNetworkTagWithHttpInfo(id, tag, headers);
   }
 
   /**
@@ -1153,7 +1625,20 @@ public class NetworksApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> putNetworkTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = putNetworkTagRequestBuilder(id, tag);
+    return putNetworkTagWithHttpInfo(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: network, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> putNetworkTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = putNetworkTagRequestBuilder(id, tag, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1161,9 +1646,14 @@ public class NetworksApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("putNetworkTag", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -1171,11 +1661,9 @@ public class NetworksApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1186,7 +1674,7 @@ public class NetworksApi {
     }
   }
 
-  private HttpRequest.Builder putNetworkTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
+  private HttpRequest.Builder putNetworkTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling putNetworkTag");
@@ -1210,6 +1698,8 @@ public class NetworksApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }

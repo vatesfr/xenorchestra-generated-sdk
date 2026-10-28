@@ -55,15 +55,35 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class UsersApi {
+  /**
+   * Utility class for extending HttpRequest.Builder functionality.
+   */
+  private static class HttpRequestBuilderExtensions {
+    /**
+     * Adds additional headers to the provided HttpRequest.Builder. Useful for adding method/endpoint specific headers.
+     *
+     * @param builder the HttpRequest.Builder to which headers will be added
+     * @param headers a map of header names and values to add; may be null
+     * @return the same HttpRequest.Builder instance with the additional headers set
+     */
+    static HttpRequest.Builder withAdditionalHeaders(HttpRequest.Builder builder, Map<String, String> headers) {
+        if (headers != null) {
+            for (Map.Entry<String, String> entry : headers.entrySet()) {
+                builder.header(entry.getKey(), entry.getValue());
+            }
+        }
+        return builder;
+    }
+  }
   private final HttpClient memberVarHttpClient;
   private final ObjectMapper memberVarObjectMapper;
   private final String memberVarBaseUri;
   private final Consumer<HttpRequest.Builder> memberVarInterceptor;
   private final Duration memberVarReadTimeout;
   private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
-  private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
+  private final Consumer<HttpResponse<InputStream>> memberVarAsyncResponseInterceptor;
 
   public UsersApi() {
     this(Configuration.getDefaultApiClient());
@@ -79,8 +99,17 @@ public class UsersApi {
     memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
   }
 
+
   protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
-    String body = response.body() == null ? null : new String(response.body().readAllBytes());
+    InputStream responseBody = ApiClient.getResponseBody(response);
+    String body = null;
+    try {
+      body = responseBody == null ? null : new String(responseBody.readAllBytes());
+    } finally {
+      if (responseBody != null) {
+        responseBody.close();
+      }
+    }
     String message = formatExceptionMessage(operationId, response.statusCode(), body);
     return new ApiException(response.statusCode(), message, response.headers(), body);
   }
@@ -93,6 +122,57 @@ public class UsersApi {
   }
 
   /**
+   * Download file from the given response.
+   *
+   * @param response Response
+   * @return File
+   * @throws ApiException If fail to read file content from response and write to disk
+   */
+  public File downloadFileFromResponse(HttpResponse<InputStream> response, InputStream responseBody) throws ApiException {
+    if (responseBody == null) {
+      throw new ApiException(new IOException("Response body is empty"));
+    }
+    try {
+      File file = prepareDownloadFile(response);
+      java.nio.file.Files.copy(responseBody, file.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+      return file;
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+  }
+
+  /**
+   * <p>Prepare the file for download from the response.</p>
+   *
+   * @param response a {@link java.net.http.HttpResponse} object.
+   * @return a {@link java.io.File} object.
+   * @throws java.io.IOException if any.
+   */
+  private File prepareDownloadFile(HttpResponse<InputStream> response) throws IOException {
+    String filename = null;
+    java.util.Optional<String> contentDisposition = response.headers().firstValue("Content-Disposition");
+    if (contentDisposition.isPresent() && !"".equals(contentDisposition.get())) {
+      // Get filename from the Content-Disposition header.
+      java.util.regex.Pattern pattern = java.util.regex.Pattern.compile("filename=['\"]?([^'\"\\s]+)['\"]?");
+      java.util.regex.Matcher matcher = pattern.matcher(contentDisposition.get());
+      if (matcher.find())
+        filename = matcher.group(1);
+    }
+    File file = null;
+    if (filename != null) {
+      java.nio.file.Path tempDir = java.nio.file.Files.createTempDirectory("swagger-gen-native");
+      java.nio.file.Path filePath = java.nio.file.Files.createFile(tempDir.resolve(filename));
+      file = filePath.toFile();
+      tempDir.toFile().deleteOnExit();   // best effort cleanup
+      file.deleteOnExit(); // best effort cleanup
+    } else {
+      file = java.nio.file.Files.createTempFile("download-", "").toFile();
+      file.deleteOnExit(); // best effort cleanup
+    }
+    return file;
+  }
+
+  /**
    * 
    * Required privilege: - resource: user, action: create
    * @param createUserRequest  (required)
@@ -100,7 +180,19 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public CreateAclV2Privilege201Response createUser(@javax.annotation.Nonnull CreateUserRequest createUserRequest) throws ApiException {
-    ApiResponse<CreateAclV2Privilege201Response> localVarResponse = createUserWithHttpInfo(createUserRequest);
+    return createUser(createUserRequest, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: user, action: create
+   * @param createUserRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateAclV2Privilege201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateAclV2Privilege201Response createUser(@javax.annotation.Nonnull CreateUserRequest createUserRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateAclV2Privilege201Response> localVarResponse = createUserWithHttpInfo(createUserRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -112,7 +204,19 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateAclV2Privilege201Response> createUserWithHttpInfo(@javax.annotation.Nonnull CreateUserRequest createUserRequest) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createUserRequestBuilder(createUserRequest);
+    return createUserWithHttpInfo(createUserRequest, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: user, action: create
+   * @param createUserRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateAclV2Privilege201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateAclV2Privilege201Response> createUserWithHttpInfo(@javax.annotation.Nonnull CreateUserRequest createUserRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createUserRequestBuilder(createUserRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -120,11 +224,13 @@ public class UsersApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("createUser", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateAclV2Privilege201Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -132,15 +238,21 @@ public class UsersApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateAclV2Privilege201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateAclV2Privilege201Response>() {});
+        
 
         return new ApiResponse<CreateAclV2Privilege201Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateAclV2Privilege201Response>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -151,7 +263,7 @@ public class UsersApi {
     }
   }
 
-  private HttpRequest.Builder createUserRequestBuilder(@javax.annotation.Nonnull CreateUserRequest createUserRequest) throws ApiException {
+  private HttpRequest.Builder createUserRequestBuilder(@javax.annotation.Nonnull CreateUserRequest createUserRequest, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'createUserRequest' is set
     if (createUserRequest == null) {
       throw new ApiException(400, "Missing the required parameter 'createUserRequest' when calling createUser");
@@ -175,6 +287,8 @@ public class UsersApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -188,7 +302,18 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public void deleteUser(@javax.annotation.Nonnull String id) throws ApiException {
-    deleteUserWithHttpInfo(id);
+    deleteUser(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: user, action: delete
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteUser(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    deleteUserWithHttpInfo(id, headers);
   }
 
   /**
@@ -199,7 +324,19 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> deleteUserWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = deleteUserRequestBuilder(id);
+    return deleteUserWithHttpInfo(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: user, action: delete
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteUserWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteUserRequestBuilder(id, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -207,9 +344,14 @@ public class UsersApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("deleteUser", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -217,11 +359,9 @@ public class UsersApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -232,7 +372,7 @@ public class UsersApi {
     }
   }
 
-  private HttpRequest.Builder deleteUserRequestBuilder(@javax.annotation.Nonnull String id) throws ApiException {
+  private HttpRequest.Builder deleteUserRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling deleteUser");
@@ -251,6 +391,8 @@ public class UsersApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -270,7 +412,24 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoUser getAclRoleUsers(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoUser> localVarResponse = getAclRoleUsersWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getAclRoleUsers(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all users that match the following privilege: - resource: user, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoUser
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoUser getAclRoleUsers(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoUser> localVarResponse = getAclRoleUsersWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -287,7 +446,24 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoUser> getAclRoleUsersWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getAclRoleUsersRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getAclRoleUsersWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all users that match the following privilege: - resource: user, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoUser&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoUser> getAclRoleUsersWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAclRoleUsersRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -295,11 +471,13 @@ public class UsersApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getAclRoleUsers", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoUser>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -307,15 +485,21 @@ public class UsersApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoUser responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoUser>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoUser>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoUser>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -326,7 +510,7 @@ public class UsersApi {
     }
   }
 
-  private HttpRequest.Builder getAclRoleUsersRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getAclRoleUsersRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getAclRoleUsers");
@@ -368,6 +552,8 @@ public class UsersApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -384,7 +570,21 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public List<UnbrandXoAuthenticationToken> getAuthenticationTokens(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<List<UnbrandXoAuthenticationToken>> localVarResponse = getAuthenticationTokensWithHttpInfo(id, filter, limit);
+    return getAuthenticationTokens(id, filter, limit, null);
+  }
+
+  /**
+   * 
+   * You can only see your own authentication tokens
+   * @param id  (required)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return List&lt;UnbrandXoAuthenticationToken&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public List<UnbrandXoAuthenticationToken> getAuthenticationTokens(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<List<UnbrandXoAuthenticationToken>> localVarResponse = getAuthenticationTokensWithHttpInfo(id, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -398,7 +598,21 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<List<UnbrandXoAuthenticationToken>> getAuthenticationTokensWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getAuthenticationTokensRequestBuilder(id, filter, limit);
+    return getAuthenticationTokensWithHttpInfo(id, filter, limit, null);
+  }
+
+  /**
+   * 
+   * You can only see your own authentication tokens
+   * @param id  (required)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;List&lt;UnbrandXoAuthenticationToken&gt;&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<List<UnbrandXoAuthenticationToken>> getAuthenticationTokensWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAuthenticationTokensRequestBuilder(id, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -406,11 +620,13 @@ public class UsersApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getAuthenticationTokens", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<List<UnbrandXoAuthenticationToken>>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -418,15 +634,21 @@ public class UsersApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        List<UnbrandXoAuthenticationToken> responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<List<UnbrandXoAuthenticationToken>>() {});
+        
 
         return new ApiResponse<List<UnbrandXoAuthenticationToken>>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<List<UnbrandXoAuthenticationToken>>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -437,7 +659,7 @@ public class UsersApi {
     }
   }
 
-  private HttpRequest.Builder getAuthenticationTokensRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getAuthenticationTokensRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getAuthenticationTokens");
@@ -473,6 +695,8 @@ public class UsersApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -492,7 +716,24 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoUser getGroupUsers(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoUser> localVarResponse = getGroupUsersWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getGroupUsers(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all users that match the following privilege: - resource: user, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoUser
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoUser getGroupUsers(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoUser> localVarResponse = getGroupUsersWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -509,7 +750,24 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoUser> getGroupUsersWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getGroupUsersRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getGroupUsersWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all users that match the following privilege: - resource: user, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoUser&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoUser> getGroupUsersWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getGroupUsersRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -517,11 +775,13 @@ public class UsersApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getGroupUsers", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoUser>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -529,15 +789,21 @@ public class UsersApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoUser responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoUser>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoUser>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoUser>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -548,7 +814,7 @@ public class UsersApi {
     }
   }
 
-  private HttpRequest.Builder getGroupUsersRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getGroupUsersRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getGroupUsers");
@@ -590,6 +856,8 @@ public class UsersApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -604,7 +872,19 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public UnbrandXoUser getUser(@javax.annotation.Nonnull String id) throws ApiException {
-    ApiResponse<UnbrandXoUser> localVarResponse = getUserWithHttpInfo(id);
+    return getUser(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: user, action: read (if not self)
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return UnbrandXoUser
+   * @throws ApiException if fails to make API call
+   */
+  public UnbrandXoUser getUser(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<UnbrandXoUser> localVarResponse = getUserWithHttpInfo(id, headers);
     return localVarResponse.getData();
   }
 
@@ -616,7 +896,19 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<UnbrandXoUser> getUserWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getUserRequestBuilder(id);
+    return getUserWithHttpInfo(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: user, action: read (if not self)
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UnbrandXoUser&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UnbrandXoUser> getUserWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getUserRequestBuilder(id, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -624,11 +916,13 @@ public class UsersApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getUser", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<UnbrandXoUser>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -636,15 +930,21 @@ public class UsersApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UnbrandXoUser responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnbrandXoUser>() {});
+        
 
         return new ApiResponse<UnbrandXoUser>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnbrandXoUser>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -655,7 +955,7 @@ public class UsersApi {
     }
   }
 
-  private HttpRequest.Builder getUserRequestBuilder(@javax.annotation.Nonnull String id) throws ApiException {
+  private HttpRequest.Builder getUserRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getUser");
@@ -674,6 +974,8 @@ public class UsersApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -693,7 +995,24 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoGroup getUserGroups(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoGroup> localVarResponse = getUserGroupsWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getUserGroups(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all groups that match the following privilege: - resource: group, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoGroup
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoGroup getUserGroups(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoGroup> localVarResponse = getUserGroupsWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -710,7 +1029,24 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoGroup> getUserGroupsWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getUserGroupsRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getUserGroupsWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all groups that match the following privilege: - resource: group, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoGroup&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoGroup> getUserGroupsWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getUserGroupsRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -718,11 +1054,13 @@ public class UsersApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getUserGroups", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoGroup>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -730,15 +1068,21 @@ public class UsersApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoGroup responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoGroup>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoGroup>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoGroup>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -749,7 +1093,7 @@ public class UsersApi {
     }
   }
 
-  private HttpRequest.Builder getUserGroupsRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getUserGroupsRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getUserGroups");
@@ -791,6 +1135,8 @@ public class UsersApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -809,7 +1155,23 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandAnyPrivilege getUserPrivileges(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandAnyPrivilege> localVarResponse = getUserPrivilegesWithHttpInfo(id, fields, ndjson, filter, limit);
+    return getUserPrivileges(id, fields, ndjson, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all ACL privileges that match the following privilege: - resource: acl-privilege, action: read (if not self)
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandAnyPrivilege
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandAnyPrivilege getUserPrivileges(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandAnyPrivilege> localVarResponse = getUserPrivilegesWithHttpInfo(id, fields, ndjson, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -825,7 +1187,23 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandAnyPrivilege> getUserPrivilegesWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getUserPrivilegesRequestBuilder(id, fields, ndjson, filter, limit);
+    return getUserPrivilegesWithHttpInfo(id, fields, ndjson, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all ACL privileges that match the following privilege: - resource: acl-privilege, action: read (if not self)
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandAnyPrivilege&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandAnyPrivilege> getUserPrivilegesWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getUserPrivilegesRequestBuilder(id, fields, ndjson, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -833,11 +1211,13 @@ public class UsersApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getUserPrivileges", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandAnyPrivilege>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -845,15 +1225,21 @@ public class UsersApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandAnyPrivilege responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandAnyPrivilege>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandAnyPrivilege>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandAnyPrivilege>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -864,7 +1250,7 @@ public class UsersApi {
     }
   }
 
-  private HttpRequest.Builder getUserPrivilegesRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getUserPrivilegesRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getUserPrivileges");
@@ -904,6 +1290,8 @@ public class UsersApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -923,7 +1311,24 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoTask getUserTasks(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoTask> localVarResponse = getUserTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getUserTasks(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all tasks that match the following privilege: - resource: task, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoTask
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoTask getUserTasks(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoTask> localVarResponse = getUserTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -940,7 +1345,24 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoTask> getUserTasksWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getUserTasksRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getUserTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all tasks that match the following privilege: - resource: task, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoTask&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoTask> getUserTasksWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getUserTasksRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -948,11 +1370,13 @@ public class UsersApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getUserTasks", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoTask>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -960,15 +1384,21 @@ public class UsersApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoTask responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoTask>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoTask>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoTask>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -979,7 +1409,7 @@ public class UsersApi {
     }
   }
 
-  private HttpRequest.Builder getUserTasksRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getUserTasksRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getUserTasks");
@@ -1021,6 +1451,8 @@ public class UsersApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1039,7 +1471,23 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoUser getUsers(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoUser> localVarResponse = getUsersWithHttpInfo(fields, ndjson, markdown, filter, limit);
+    return getUsers(fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all users that match the following privilege: - resource: user, action: read
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoUser
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoUser getUsers(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoUser> localVarResponse = getUsersWithHttpInfo(fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -1055,7 +1503,23 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoUser> getUsersWithHttpInfo(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getUsersRequestBuilder(fields, ndjson, markdown, filter, limit);
+    return getUsersWithHttpInfo(fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all users that match the following privilege: - resource: user, action: read
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoUser&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoUser> getUsersWithHttpInfo(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getUsersRequestBuilder(fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1063,11 +1527,13 @@ public class UsersApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getUsers", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoUser>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1075,15 +1541,21 @@ public class UsersApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoUser responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoUser>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoUser>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoUser>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1094,7 +1566,7 @@ public class UsersApi {
     }
   }
 
-  private HttpRequest.Builder getUsersRequestBuilder(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getUsersRequestBuilder(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -1131,6 +1603,8 @@ public class UsersApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1146,7 +1620,20 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public PostDeprecatedAuthenticationTokens201Response postAuthenticationTokens(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull PostDeprecatedAuthenticationTokensRequest postDeprecatedAuthenticationTokensRequest) throws ApiException {
-    ApiResponse<PostDeprecatedAuthenticationTokens201Response> localVarResponse = postAuthenticationTokensWithHttpInfo(id, postDeprecatedAuthenticationTokensRequest);
+    return postAuthenticationTokens(id, postDeprecatedAuthenticationTokensRequest, null);
+  }
+
+  /**
+   * 
+   * You can only create authentication token for yourself
+   * @param id  (required)
+   * @param postDeprecatedAuthenticationTokensRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return PostDeprecatedAuthenticationTokens201Response
+   * @throws ApiException if fails to make API call
+   */
+  public PostDeprecatedAuthenticationTokens201Response postAuthenticationTokens(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull PostDeprecatedAuthenticationTokensRequest postDeprecatedAuthenticationTokensRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<PostDeprecatedAuthenticationTokens201Response> localVarResponse = postAuthenticationTokensWithHttpInfo(id, postDeprecatedAuthenticationTokensRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -1159,7 +1646,20 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<PostDeprecatedAuthenticationTokens201Response> postAuthenticationTokensWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull PostDeprecatedAuthenticationTokensRequest postDeprecatedAuthenticationTokensRequest) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = postAuthenticationTokensRequestBuilder(id, postDeprecatedAuthenticationTokensRequest);
+    return postAuthenticationTokensWithHttpInfo(id, postDeprecatedAuthenticationTokensRequest, null);
+  }
+
+  /**
+   * 
+   * You can only create authentication token for yourself
+   * @param id  (required)
+   * @param postDeprecatedAuthenticationTokensRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;PostDeprecatedAuthenticationTokens201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PostDeprecatedAuthenticationTokens201Response> postAuthenticationTokensWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull PostDeprecatedAuthenticationTokensRequest postDeprecatedAuthenticationTokensRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = postAuthenticationTokensRequestBuilder(id, postDeprecatedAuthenticationTokensRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1167,11 +1667,13 @@ public class UsersApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("postAuthenticationTokens", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<PostDeprecatedAuthenticationTokens201Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1179,15 +1681,21 @@ public class UsersApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        PostDeprecatedAuthenticationTokens201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PostDeprecatedAuthenticationTokens201Response>() {});
+        
 
         return new ApiResponse<PostDeprecatedAuthenticationTokens201Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PostDeprecatedAuthenticationTokens201Response>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1198,7 +1706,7 @@ public class UsersApi {
     }
   }
 
-  private HttpRequest.Builder postAuthenticationTokensRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull PostDeprecatedAuthenticationTokensRequest postDeprecatedAuthenticationTokensRequest) throws ApiException {
+  private HttpRequest.Builder postAuthenticationTokensRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull PostDeprecatedAuthenticationTokensRequest postDeprecatedAuthenticationTokensRequest, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling postAuthenticationTokens");
@@ -1227,6 +1735,8 @@ public class UsersApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1243,7 +1753,21 @@ public class UsersApi {
    */
   @Deprecated
   public PostDeprecatedAuthenticationTokens201Response postDeprecatedAuthenticationTokens(@javax.annotation.Nonnull PostDeprecatedAuthenticationTokensRequest postDeprecatedAuthenticationTokensRequest) throws ApiException {
-    ApiResponse<PostDeprecatedAuthenticationTokens201Response> localVarResponse = postDeprecatedAuthenticationTokensWithHttpInfo(postDeprecatedAuthenticationTokensRequest);
+    return postDeprecatedAuthenticationTokens(postDeprecatedAuthenticationTokensRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param postDeprecatedAuthenticationTokensRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return PostDeprecatedAuthenticationTokens201Response
+   * @throws ApiException if fails to make API call
+   * @deprecated
+   */
+  @Deprecated
+  public PostDeprecatedAuthenticationTokens201Response postDeprecatedAuthenticationTokens(@javax.annotation.Nonnull PostDeprecatedAuthenticationTokensRequest postDeprecatedAuthenticationTokensRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<PostDeprecatedAuthenticationTokens201Response> localVarResponse = postDeprecatedAuthenticationTokensWithHttpInfo(postDeprecatedAuthenticationTokensRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -1257,7 +1781,21 @@ public class UsersApi {
    */
   @Deprecated
   public ApiResponse<PostDeprecatedAuthenticationTokens201Response> postDeprecatedAuthenticationTokensWithHttpInfo(@javax.annotation.Nonnull PostDeprecatedAuthenticationTokensRequest postDeprecatedAuthenticationTokensRequest) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = postDeprecatedAuthenticationTokensRequestBuilder(postDeprecatedAuthenticationTokensRequest);
+    return postDeprecatedAuthenticationTokensWithHttpInfo(postDeprecatedAuthenticationTokensRequest, null);
+  }
+
+  /**
+   * 
+   * 
+   * @param postDeprecatedAuthenticationTokensRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;PostDeprecatedAuthenticationTokens201Response&gt;
+   * @throws ApiException if fails to make API call
+   * @deprecated
+   */
+  @Deprecated
+  public ApiResponse<PostDeprecatedAuthenticationTokens201Response> postDeprecatedAuthenticationTokensWithHttpInfo(@javax.annotation.Nonnull PostDeprecatedAuthenticationTokensRequest postDeprecatedAuthenticationTokensRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = postDeprecatedAuthenticationTokensRequestBuilder(postDeprecatedAuthenticationTokensRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1265,11 +1803,13 @@ public class UsersApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("postDeprecatedAuthenticationTokens", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<PostDeprecatedAuthenticationTokens201Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1277,15 +1817,21 @@ public class UsersApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        PostDeprecatedAuthenticationTokens201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PostDeprecatedAuthenticationTokens201Response>() {});
+        
 
         return new ApiResponse<PostDeprecatedAuthenticationTokens201Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PostDeprecatedAuthenticationTokens201Response>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1296,7 +1842,7 @@ public class UsersApi {
     }
   }
 
-  private HttpRequest.Builder postDeprecatedAuthenticationTokensRequestBuilder(@javax.annotation.Nonnull PostDeprecatedAuthenticationTokensRequest postDeprecatedAuthenticationTokensRequest) throws ApiException {
+  private HttpRequest.Builder postDeprecatedAuthenticationTokensRequestBuilder(@javax.annotation.Nonnull PostDeprecatedAuthenticationTokensRequest postDeprecatedAuthenticationTokensRequest, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'postDeprecatedAuthenticationTokensRequest' is set
     if (postDeprecatedAuthenticationTokensRequest == null) {
       throw new ApiException(400, "Missing the required parameter 'postDeprecatedAuthenticationTokensRequest' when calling postDeprecatedAuthenticationTokens");
@@ -1320,6 +1866,8 @@ public class UsersApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1334,7 +1882,19 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public void updateUser(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateUserRequestBody updateUserRequestBody) throws ApiException {
-    updateUserWithHttpInfo(id, updateUserRequestBody);
+    updateUser(id, updateUserRequestBody, null);
+  }
+
+  /**
+   * 
+   * You cannot change your own &#x60;permission&#x60; (even with the right privilege)  Required privileges: - resource: user, action: update (grants all fields) - resource: user, action: update:name (if name is passed) - resource: user, action: update:password (if password is passed) - resource: user, action: update:permission (if permission is passed) - resource: user, action: update:preferences (if preferences is passed)
+   * @param id  (required)
+   * @param updateUserRequestBody  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void updateUser(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateUserRequestBody updateUserRequestBody, Map<String, String> headers) throws ApiException {
+    updateUserWithHttpInfo(id, updateUserRequestBody, headers);
   }
 
   /**
@@ -1346,7 +1906,20 @@ public class UsersApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> updateUserWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateUserRequestBody updateUserRequestBody) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = updateUserRequestBuilder(id, updateUserRequestBody);
+    return updateUserWithHttpInfo(id, updateUserRequestBody, null);
+  }
+
+  /**
+   * 
+   * You cannot change your own &#x60;permission&#x60; (even with the right privilege)  Required privileges: - resource: user, action: update (grants all fields) - resource: user, action: update:name (if name is passed) - resource: user, action: update:password (if password is passed) - resource: user, action: update:permission (if permission is passed) - resource: user, action: update:preferences (if preferences is passed)
+   * @param id  (required)
+   * @param updateUserRequestBody  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> updateUserWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateUserRequestBody updateUserRequestBody, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateUserRequestBuilder(id, updateUserRequestBody, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1354,9 +1927,14 @@ public class UsersApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("updateUser", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -1364,11 +1942,9 @@ public class UsersApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1379,7 +1955,7 @@ public class UsersApi {
     }
   }
 
-  private HttpRequest.Builder updateUserRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateUserRequestBody updateUserRequestBody) throws ApiException {
+  private HttpRequest.Builder updateUserRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateUserRequestBody updateUserRequestBody, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling updateUser");
@@ -1408,6 +1984,8 @@ public class UsersApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }

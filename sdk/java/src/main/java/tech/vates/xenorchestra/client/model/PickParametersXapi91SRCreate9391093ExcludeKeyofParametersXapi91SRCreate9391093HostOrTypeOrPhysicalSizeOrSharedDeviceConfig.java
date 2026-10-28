@@ -49,7 +49,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedDeviceConfig.JSON_PROPERTY_TARGET_I_Q_N,
   PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedDeviceConfig.JSON_PROPERTY_USERNAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedDeviceConfig {
   public static final String JSON_PROPERTY_SC_S_IID = "SCSIid";
   @javax.annotation.Nullable
@@ -120,14 +120,14 @@ public class PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCr
    * @return scSIid
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SC_S_IID)
+  @JsonProperty(value = JSON_PROPERTY_SC_S_IID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getScSIid() {
     return scSIid;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SC_S_IID)
+  @JsonProperty(value = JSON_PROPERTY_SC_S_IID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setScSIid(@javax.annotation.Nullable String scSIid) {
     this.scSIid = scSIid;
@@ -144,14 +144,14 @@ public class PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCr
    * @return chappassword
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CHAPPASSWORD)
+  @JsonProperty(value = JSON_PROPERTY_CHAPPASSWORD, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getChappassword() {
     return chappassword;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CHAPPASSWORD)
+  @JsonProperty(value = JSON_PROPERTY_CHAPPASSWORD, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setChappassword(@javax.annotation.Nullable String chappassword) {
     this.chappassword = chappassword;
@@ -168,14 +168,14 @@ public class PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCr
    * @return chapuser
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CHAPUSER)
+  @JsonProperty(value = JSON_PROPERTY_CHAPUSER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getChapuser() {
     return chapuser;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CHAPUSER)
+  @JsonProperty(value = JSON_PROPERTY_CHAPUSER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setChapuser(@javax.annotation.Nullable String chapuser) {
     this.chapuser = chapuser;
@@ -192,14 +192,14 @@ public class PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCr
    * @return device
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DEVICE)
+  @JsonProperty(value = JSON_PROPERTY_DEVICE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getDevice() {
     return device;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DEVICE)
+  @JsonProperty(value = JSON_PROPERTY_DEVICE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDevice(@javax.annotation.Nullable String device) {
     this.device = device;
@@ -216,14 +216,14 @@ public class PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCr
    * @return legacyMode
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_LEGACY_MODE)
+  @JsonProperty(value = JSON_PROPERTY_LEGACY_MODE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getLegacyMode() {
     return legacyMode;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_LEGACY_MODE)
+  @JsonProperty(value = JSON_PROPERTY_LEGACY_MODE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLegacyMode(@javax.annotation.Nullable String legacyMode) {
     this.legacyMode = legacyMode;
@@ -240,14 +240,14 @@ public class PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCr
    * @return location
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_LOCATION)
+  @JsonProperty(value = JSON_PROPERTY_LOCATION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getLocation() {
     return location;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_LOCATION)
+  @JsonProperty(value = JSON_PROPERTY_LOCATION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLocation(@javax.annotation.Nullable String location) {
     this.location = location;
@@ -264,14 +264,14 @@ public class PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCr
    * @return nfsversion
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_NFSVERSION)
+  @JsonProperty(value = JSON_PROPERTY_NFSVERSION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getNfsversion() {
     return nfsversion;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NFSVERSION)
+  @JsonProperty(value = JSON_PROPERTY_NFSVERSION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNfsversion(@javax.annotation.Nullable String nfsversion) {
     this.nfsversion = nfsversion;
@@ -288,14 +288,14 @@ public class PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCr
    * @return options
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_OPTIONS)
+  @JsonProperty(value = JSON_PROPERTY_OPTIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getOptions() {
     return options;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_OPTIONS)
+  @JsonProperty(value = JSON_PROPERTY_OPTIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOptions(@javax.annotation.Nullable String options) {
     this.options = options;
@@ -312,14 +312,14 @@ public class PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCr
    * @return password
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PASSWORD)
+  @JsonProperty(value = JSON_PROPERTY_PASSWORD, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getPassword() {
     return password;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PASSWORD)
+  @JsonProperty(value = JSON_PROPERTY_PASSWORD, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPassword(@javax.annotation.Nullable String password) {
     this.password = password;
@@ -336,14 +336,14 @@ public class PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCr
    * @return server
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SERVER)
+  @JsonProperty(value = JSON_PROPERTY_SERVER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getServer() {
     return server;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SERVER)
+  @JsonProperty(value = JSON_PROPERTY_SERVER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setServer(@javax.annotation.Nullable String server) {
     this.server = server;
@@ -360,14 +360,14 @@ public class PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCr
    * @return serverpath
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SERVERPATH)
+  @JsonProperty(value = JSON_PROPERTY_SERVERPATH, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getServerpath() {
     return serverpath;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SERVERPATH)
+  @JsonProperty(value = JSON_PROPERTY_SERVERPATH, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setServerpath(@javax.annotation.Nullable String serverpath) {
     this.serverpath = serverpath;
@@ -384,14 +384,14 @@ public class PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCr
    * @return target
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TARGET)
+  @JsonProperty(value = JSON_PROPERTY_TARGET, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getTarget() {
     return target;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TARGET)
+  @JsonProperty(value = JSON_PROPERTY_TARGET, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTarget(@javax.annotation.Nullable String target) {
     this.target = target;
@@ -408,14 +408,14 @@ public class PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCr
    * @return targetIQN
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TARGET_I_Q_N)
+  @JsonProperty(value = JSON_PROPERTY_TARGET_I_Q_N, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getTargetIQN() {
     return targetIQN;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TARGET_I_Q_N)
+  @JsonProperty(value = JSON_PROPERTY_TARGET_I_Q_N, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTargetIQN(@javax.annotation.Nullable String targetIQN) {
     this.targetIQN = targetIQN;
@@ -432,14 +432,14 @@ public class PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCr
    * @return username
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_USERNAME)
+  @JsonProperty(value = JSON_PROPERTY_USERNAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getUsername() {
     return username;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_USERNAME)
+  @JsonProperty(value = JSON_PROPERTY_USERNAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUsername(@javax.annotation.Nullable String username) {
     this.username = username;
@@ -506,10 +506,7 @@ public class PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCr
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -546,72 +543,72 @@ public class PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCr
 
     // add `SCSIid` to the URL query string
     if (getScSIid() != null) {
-      joiner.add(String.format("%sSCSIid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getScSIid()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sSCSIid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getScSIid()))));
     }
 
     // add `chappassword` to the URL query string
     if (getChappassword() != null) {
-      joiner.add(String.format("%schappassword%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getChappassword()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%schappassword%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getChappassword()))));
     }
 
     // add `chapuser` to the URL query string
     if (getChapuser() != null) {
-      joiner.add(String.format("%schapuser%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getChapuser()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%schapuser%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getChapuser()))));
     }
 
     // add `device` to the URL query string
     if (getDevice() != null) {
-      joiner.add(String.format("%sdevice%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDevice()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdevice%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDevice()))));
     }
 
     // add `legacy_mode` to the URL query string
     if (getLegacyMode() != null) {
-      joiner.add(String.format("%slegacy_mode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLegacyMode()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%slegacy_mode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLegacyMode()))));
     }
 
     // add `location` to the URL query string
     if (getLocation() != null) {
-      joiner.add(String.format("%slocation%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLocation()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%slocation%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLocation()))));
     }
 
     // add `nfsversion` to the URL query string
     if (getNfsversion() != null) {
-      joiner.add(String.format("%snfsversion%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNfsversion()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%snfsversion%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNfsversion()))));
     }
 
     // add `options` to the URL query string
     if (getOptions() != null) {
-      joiner.add(String.format("%soptions%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOptions()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%soptions%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOptions()))));
     }
 
     // add `password` to the URL query string
     if (getPassword() != null) {
-      joiner.add(String.format("%spassword%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPassword()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%spassword%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPassword()))));
     }
 
     // add `server` to the URL query string
     if (getServer() != null) {
-      joiner.add(String.format("%sserver%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getServer()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sserver%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getServer()))));
     }
 
     // add `serverpath` to the URL query string
     if (getServerpath() != null) {
-      joiner.add(String.format("%sserverpath%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getServerpath()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sserverpath%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getServerpath()))));
     }
 
     // add `target` to the URL query string
     if (getTarget() != null) {
-      joiner.add(String.format("%starget%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTarget()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%starget%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTarget()))));
     }
 
     // add `targetIQN` to the URL query string
     if (getTargetIQN() != null) {
-      joiner.add(String.format("%stargetIQN%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTargetIQN()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%stargetIQN%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTargetIQN()))));
     }
 
     // add `username` to the URL query string
     if (getUsername() != null) {
-      joiner.add(String.format("%susername%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUsername()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%susername%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUsername()))));
     }
 
     return joiner.toString();

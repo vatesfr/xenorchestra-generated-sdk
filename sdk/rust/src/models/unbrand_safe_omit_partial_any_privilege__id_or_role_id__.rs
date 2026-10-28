@@ -1,7 +1,7 @@
 // Generated from the specification's discriminated object union.
 use serde::{Deserialize, Serialize};
 #[derive(Clone, Debug, PartialEq)]
-pub enum UnbrandSafeOmitPartialAnyPrivilegePeriodIdOrRoleId {
+pub enum UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleId {
     AclPrivilege(Box<super::UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantAclPrivilege>),
     AclRole(Box<super::UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantAclRole>),
     Alarm(Box<super::UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantAlarm>),
@@ -43,12 +43,12 @@ pub enum UnbrandSafeOmitPartialAnyPrivilegePeriodIdOrRoleId {
     Vtpm(Box<super::UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVtpm>),
     Unknown(serde_json::Value),
 }
-impl Default for UnbrandSafeOmitPartialAnyPrivilegePeriodIdOrRoleId {
+impl Default for UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleId {
     fn default() -> Self {
         Self::Unknown(serde_json::json!({}))
     }
 }
-impl Serialize for UnbrandSafeOmitPartialAnyPrivilegePeriodIdOrRoleId {
+impl Serialize for UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleId {
     fn serialize<S: serde::Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
         match self {
             Self::AclPrivilege(value) => value.serialize(serializer),
@@ -92,7 +92,7 @@ impl Serialize for UnbrandSafeOmitPartialAnyPrivilegePeriodIdOrRoleId {
         }
     }
 }
-impl<'de> Deserialize<'de> for UnbrandSafeOmitPartialAnyPrivilegePeriodIdOrRoleId {
+impl<'de> Deserialize<'de> for UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleId {
     fn deserialize<D: serde::Deserializer<'de>>(deserializer: D) -> Result<Self, D::Error> {
         let value = serde_json::Value::deserialize(deserializer)?;
         let object = value

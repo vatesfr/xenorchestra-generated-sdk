@@ -54,7 +54,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   UnbrandXoPgpu.JSON_PROPERTY_UUID,
   UnbrandXoPgpu.JSON_PROPERTY_VGPUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class UnbrandXoPgpu {
   public static final String JSON_PROPERTY_$_HOST = "$host";
   @javax.annotation.Nonnull
@@ -174,14 +174,14 @@ private final String value;
    * @return $host
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_$_HOST)
+  @JsonProperty(value = JSON_PROPERTY_$_HOST, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String get$Host() {
     return $host;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_$_HOST)
+  @JsonProperty(value = JSON_PROPERTY_$_HOST, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void set$Host(@javax.annotation.Nonnull String $host) {
     this.$host = $host;
@@ -198,14 +198,14 @@ private final String value;
    * @return $pool
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_$_POOL)
+  @JsonProperty(value = JSON_PROPERTY_$_POOL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String get$Pool() {
     return $pool;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_$_POOL)
+  @JsonProperty(value = JSON_PROPERTY_$_POOL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void set$Pool(@javax.annotation.Nonnull String $pool) {
     this.$pool = $pool;
@@ -224,14 +224,14 @@ private final String value;
    */
   @Deprecated
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_$_POOL_ID)
+  @JsonProperty(value = JSON_PROPERTY_$_POOL_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String get$PoolId() {
     return $poolId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_$_POOL_ID)
+  @JsonProperty(value = JSON_PROPERTY_$_POOL_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void set$PoolId(@javax.annotation.Nonnull String $poolId) {
     this.$poolId = $poolId;
@@ -256,14 +256,14 @@ private final String value;
    * @return $vgpus
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_$_VGPUS)
+  @JsonProperty(value = JSON_PROPERTY_$_VGPUS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<String> get$Vgpus() {
     return $vgpus;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_$_VGPUS)
+  @JsonProperty(value = JSON_PROPERTY_$_VGPUS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void set$Vgpus(@javax.annotation.Nonnull List<String> $vgpus) {
     this.$vgpus = $vgpus;
@@ -280,14 +280,14 @@ private final String value;
    * @return xapiRef
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_XAPI_REF)
+  @JsonProperty(value = JSON_PROPERTY_XAPI_REF, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getXapiRef() {
     return xapiRef;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_XAPI_REF)
+  @JsonProperty(value = JSON_PROPERTY_XAPI_REF, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setXapiRef(@javax.annotation.Nonnull String xapiRef) {
     this.xapiRef = xapiRef;
@@ -304,14 +304,14 @@ private final String value;
    * @return dom0Access
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_DOM0_ACCESS)
+  @JsonProperty(value = JSON_PROPERTY_DOM0_ACCESS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public PGPUDOM0ACCESS getDom0Access() {
     return dom0Access;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DOM0_ACCESS)
+  @JsonProperty(value = JSON_PROPERTY_DOM0_ACCESS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDom0Access(@javax.annotation.Nonnull PGPUDOM0ACCESS dom0Access) {
     this.dom0Access = dom0Access;
@@ -336,14 +336,14 @@ private final String value;
    * @return enabledVgpuTypes
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ENABLED_VGPU_TYPES)
+  @JsonProperty(value = JSON_PROPERTY_ENABLED_VGPU_TYPES, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<String> getEnabledVgpuTypes() {
     return enabledVgpuTypes;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ENABLED_VGPU_TYPES)
+  @JsonProperty(value = JSON_PROPERTY_ENABLED_VGPU_TYPES, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setEnabledVgpuTypes(@javax.annotation.Nonnull List<String> enabledVgpuTypes) {
     this.enabledVgpuTypes = enabledVgpuTypes;
@@ -360,14 +360,14 @@ private final String value;
    * @return gpuGroup
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_GPU_GROUP)
+  @JsonProperty(value = JSON_PROPERTY_GPU_GROUP, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getGpuGroup() {
     return gpuGroup;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_GPU_GROUP)
+  @JsonProperty(value = JSON_PROPERTY_GPU_GROUP, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGpuGroup(@javax.annotation.Nullable String gpuGroup) {
     this.gpuGroup = gpuGroup;
@@ -384,14 +384,14 @@ private final String value;
    * @return host
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_HOST)
+  @JsonProperty(value = JSON_PROPERTY_HOST, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getHost() {
     return host;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_HOST)
+  @JsonProperty(value = JSON_PROPERTY_HOST, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setHost(@javax.annotation.Nonnull String host) {
     this.host = host;
@@ -408,14 +408,14 @@ private final String value;
    * @return id
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
@@ -432,14 +432,14 @@ private final String value;
    * @return isSystemDisplayDevice
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_IS_SYSTEM_DISPLAY_DEVICE)
+  @JsonProperty(value = JSON_PROPERTY_IS_SYSTEM_DISPLAY_DEVICE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Boolean getIsSystemDisplayDevice() {
     return isSystemDisplayDevice;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_IS_SYSTEM_DISPLAY_DEVICE)
+  @JsonProperty(value = JSON_PROPERTY_IS_SYSTEM_DISPLAY_DEVICE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setIsSystemDisplayDevice(@javax.annotation.Nonnull Boolean isSystemDisplayDevice) {
     this.isSystemDisplayDevice = isSystemDisplayDevice;
@@ -456,14 +456,14 @@ private final String value;
    * @return pci
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PCI)
+  @JsonProperty(value = JSON_PROPERTY_PCI, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getPci() {
     return pci;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PCI)
+  @JsonProperty(value = JSON_PROPERTY_PCI, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPci(@javax.annotation.Nullable String pci) {
     this.pci = pci;
@@ -482,14 +482,14 @@ private final String value;
    */
   @Deprecated
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SUPPORTED_VGPU_MAX_CAPCITIES)
+  @JsonProperty(value = JSON_PROPERTY_SUPPORTED_VGPU_MAX_CAPCITIES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getSupportedVgpuMaxCapcities() {
     return supportedVgpuMaxCapcities;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SUPPORTED_VGPU_MAX_CAPCITIES)
+  @JsonProperty(value = JSON_PROPERTY_SUPPORTED_VGPU_MAX_CAPCITIES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSupportedVgpuMaxCapcities(@javax.annotation.Nullable String supportedVgpuMaxCapcities) {
     this.supportedVgpuMaxCapcities = supportedVgpuMaxCapcities;
@@ -514,14 +514,14 @@ private final String value;
    * @return supportedVgpuTypes
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_SUPPORTED_VGPU_TYPES)
+  @JsonProperty(value = JSON_PROPERTY_SUPPORTED_VGPU_TYPES, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<String> getSupportedVgpuTypes() {
     return supportedVgpuTypes;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SUPPORTED_VGPU_TYPES)
+  @JsonProperty(value = JSON_PROPERTY_SUPPORTED_VGPU_TYPES, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSupportedVgpuTypes(@javax.annotation.Nonnull List<String> supportedVgpuTypes) {
     this.supportedVgpuTypes = supportedVgpuTypes;
@@ -538,14 +538,14 @@ private final String value;
    * @return type
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public TypeEnum getType() {
     return type;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setType(@javax.annotation.Nonnull TypeEnum type) {
     this.type = type;
@@ -562,14 +562,14 @@ private final String value;
    * @return uuid
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_UUID)
+  @JsonProperty(value = JSON_PROPERTY_UUID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getUuid() {
     return uuid;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_UUID)
+  @JsonProperty(value = JSON_PROPERTY_UUID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUuid(@javax.annotation.Nonnull String uuid) {
     this.uuid = uuid;
@@ -594,14 +594,14 @@ private final String value;
    * @return vgpus
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_VGPUS)
+  @JsonProperty(value = JSON_PROPERTY_VGPUS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<String> getVgpus() {
     return vgpus;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_VGPUS)
+  @JsonProperty(value = JSON_PROPERTY_VGPUS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setVgpus(@javax.annotation.Nonnull List<String> vgpus) {
     this.vgpus = vgpus;
@@ -674,10 +674,7 @@ private final String value;
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -714,101 +711,101 @@ private final String value;
 
     // add `$host` to the URL query string
     if (get$Host() != null) {
-      joiner.add(String.format("%s$host%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$Host()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%s$host%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$Host()))));
     }
 
     // add `$pool` to the URL query string
     if (get$Pool() != null) {
-      joiner.add(String.format("%s$pool%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$Pool()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%s$pool%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$Pool()))));
     }
 
     // add `$poolId` to the URL query string
     if (get$PoolId() != null) {
-      joiner.add(String.format("%s$poolId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$PoolId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%s$poolId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$PoolId()))));
     }
 
     // add `$vgpus` to the URL query string
     if (get$Vgpus() != null) {
       for (int i = 0; i < get$Vgpus().size(); i++) {
-        joiner.add(String.format("%s$vgpus%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%s$vgpus%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(get$Vgpus().get(i)))));
       }
     }
 
     // add `_xapiRef` to the URL query string
     if (getXapiRef() != null) {
-      joiner.add(String.format("%s_xapiRef%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getXapiRef()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%s_xapiRef%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getXapiRef()))));
     }
 
     // add `dom0Access` to the URL query string
     if (getDom0Access() != null) {
-      joiner.add(String.format("%sdom0Access%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDom0Access()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdom0Access%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDom0Access()))));
     }
 
     // add `enabledVgpuTypes` to the URL query string
     if (getEnabledVgpuTypes() != null) {
       for (int i = 0; i < getEnabledVgpuTypes().size(); i++) {
-        joiner.add(String.format("%senabledVgpuTypes%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%senabledVgpuTypes%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getEnabledVgpuTypes().get(i)))));
       }
     }
 
     // add `gpuGroup` to the URL query string
     if (getGpuGroup() != null) {
-      joiner.add(String.format("%sgpuGroup%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGpuGroup()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sgpuGroup%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGpuGroup()))));
     }
 
     // add `host` to the URL query string
     if (getHost() != null) {
-      joiner.add(String.format("%shost%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHost()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%shost%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHost()))));
     }
 
     // add `id` to the URL query string
     if (getId() != null) {
-      joiner.add(String.format("%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
     }
 
     // add `isSystemDisplayDevice` to the URL query string
     if (getIsSystemDisplayDevice() != null) {
-      joiner.add(String.format("%sisSystemDisplayDevice%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsSystemDisplayDevice()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sisSystemDisplayDevice%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsSystemDisplayDevice()))));
     }
 
     // add `pci` to the URL query string
     if (getPci() != null) {
-      joiner.add(String.format("%spci%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPci()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%spci%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPci()))));
     }
 
     // add `supportedVgpuMaxCapcities` to the URL query string
     if (getSupportedVgpuMaxCapcities() != null) {
-      joiner.add(String.format("%ssupportedVgpuMaxCapcities%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSupportedVgpuMaxCapcities()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssupportedVgpuMaxCapcities%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSupportedVgpuMaxCapcities()))));
     }
 
     // add `supportedVgpuTypes` to the URL query string
     if (getSupportedVgpuTypes() != null) {
       for (int i = 0; i < getSupportedVgpuTypes().size(); i++) {
-        joiner.add(String.format("%ssupportedVgpuTypes%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%ssupportedVgpuTypes%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getSupportedVgpuTypes().get(i)))));
       }
     }
 
     // add `type` to the URL query string
     if (getType() != null) {
-      joiner.add(String.format("%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
     }
 
     // add `uuid` to the URL query string
     if (getUuid() != null) {
-      joiner.add(String.format("%suuid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUuid()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%suuid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUuid()))));
     }
 
     // add `vgpus` to the URL query string
     if (getVgpus() != null) {
       for (int i = 0; i < getVgpus().size(); i++) {
-        joiner.add(String.format("%svgpus%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%svgpus%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getVgpus().get(i)))));
       }
     }

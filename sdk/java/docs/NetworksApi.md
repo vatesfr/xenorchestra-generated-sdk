@@ -119,7 +119,7 @@ public class Example {
 
 ## createBondedNetworkWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> createBondedNetwork createBondedNetworkWithHttpInfo(id, unbrandCreateBondedNetworkBody, sync)
+> ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> createBondedNetworkWithHttpInfo(id, unbrandCreateBondedNetworkBody, sync)
 
 
 
@@ -299,7 +299,7 @@ public class Example {
 
 ## createInternalNetworkWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> createInternalNetwork createInternalNetworkWithHttpInfo(id, body, sync)
+> ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> createInternalNetworkWithHttpInfo(id, body, sync)
 
 
 
@@ -479,7 +479,7 @@ public class Example {
 
 ## createNetworkWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> createNetwork createNetworkWithHttpInfo(id, unbrandCreateNetworkBody, sync)
+> ApiResponse<CreateActionReturnTypeIdUnbrandXoNetwork91Id93> createNetworkWithHttpInfo(id, unbrandCreateNetworkBody, sync)
 
 
 
@@ -651,7 +651,7 @@ null (empty response body)
 
 ## deleteNetworkWithHttpInfo
 
-> ApiResponse<Void> deleteNetwork deleteNetworkWithHttpInfo(id)
+> ApiResponse<Void> deleteNetworkWithHttpInfo(id)
 
 
 
@@ -817,7 +817,7 @@ null (empty response body)
 
 ## deleteNetworkTagWithHttpInfo
 
-> ApiResponse<Void> deleteNetworkTag deleteNetworkTagWithHttpInfo(id, tag)
+> ApiResponse<Void> deleteNetworkTagWithHttpInfo(id, tag)
 
 
 
@@ -984,7 +984,7 @@ public class Example {
 
 ## getNetworkWithHttpInfo
 
-> ApiResponse<UnbrandXoNetwork> getNetwork getNetworkWithHttpInfo(id)
+> ApiResponse<UnbrandXoNetwork> getNetworkWithHttpInfo(id)
 
 
 
@@ -1159,7 +1159,7 @@ public class Example {
 
 ## getNetworkAlarmsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getNetworkAlarms getNetworkAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getNetworkAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1343,7 +1343,7 @@ public class Example {
 
 ## getNetworkMessagesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoMessage> getNetworkMessages getNetworkMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoMessage> getNetworkMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1527,7 +1527,7 @@ public class Example {
 
 ## getNetworkTasksWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoTask> getNetworkTasks getNetworkTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoTask> getNetworkTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1708,7 +1708,7 @@ public class Example {
 
 ## getNetworksWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoNetwork> getNetworks getNetworksWithHttpInfo(fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoNetwork> getNetworksWithHttpInfo(fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1881,7 +1881,7 @@ null (empty response body)
 
 ## putNetworkTagWithHttpInfo
 
-> ApiResponse<Void> putNetworkTag putNetworkTagWithHttpInfo(id, tag)
+> ApiResponse<Void> putNetworkTagWithHttpInfo(id, tag)
 
 
 

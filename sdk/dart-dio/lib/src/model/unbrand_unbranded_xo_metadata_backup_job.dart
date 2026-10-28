@@ -178,8 +178,9 @@ class _$UnbrandUnbrandedXoMetadataBackupJobSerializer
         case r'name':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.name = valueDes;
           break;
         case r'pools':
@@ -193,8 +194,9 @@ class _$UnbrandUnbrandedXoMetadataBackupJobSerializer
         case r'proxy':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.proxy = valueDes;
           break;
         case r'remotes':
@@ -231,8 +233,9 @@ class _$UnbrandUnbrandedXoMetadataBackupJobSerializer
         case r'xoMetadata':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.xoMetadata = valueDes;
           break;
         default:

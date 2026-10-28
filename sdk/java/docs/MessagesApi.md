@@ -129,7 +129,7 @@ public class Example {
 
 ## getHostMessagesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoMessage> getHostMessages getHostMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoMessage> getHostMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -304,7 +304,7 @@ public class Example {
 
 ## getMessageWithHttpInfo
 
-> ApiResponse<UnbrandXoMessage> getMessage getMessageWithHttpInfo(id)
+> ApiResponse<UnbrandXoMessage> getMessageWithHttpInfo(id)
 
 
 
@@ -476,7 +476,7 @@ public class Example {
 
 ## getMessagesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandedXoMessage> getMessages getMessagesWithHttpInfo(fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandedXoMessage> getMessagesWithHttpInfo(fields, ndjson, markdown, filter, limit)
 
 
 
@@ -657,7 +657,7 @@ public class Example {
 
 ## getNetworkMessagesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoMessage> getNetworkMessages getNetworkMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoMessage> getNetworkMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -841,7 +841,7 @@ public class Example {
 
 ## getPifMessagesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoMessage> getPifMessages getPifMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoMessage> getPifMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1025,7 +1025,7 @@ public class Example {
 
 ## getPoolMessagesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoMessage> getPoolMessages getPoolMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoMessage> getPoolMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1209,7 +1209,7 @@ public class Example {
 
 ## getSrMessagesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoMessage> getSrMessages getSrMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoMessage> getSrMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1393,7 +1393,7 @@ public class Example {
 
 ## getVbdMessagesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoMessage> getVbdMessages getVbdMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoMessage> getVbdMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1577,7 +1577,7 @@ public class Example {
 
 ## getVdiMessagesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoMessage> getVdiMessages getVdiMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoMessage> getVdiMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1761,7 +1761,7 @@ public class Example {
 
 ## getVdiSnapshotMessagesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoMessage> getVdiSnapshotMessages getVdiSnapshotMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoMessage> getVdiSnapshotMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1945,7 +1945,7 @@ public class Example {
 
 ## getVifMessagesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoMessage> getVifMessages getVifMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoMessage> getVifMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -2129,7 +2129,7 @@ public class Example {
 
 ## getVmControllerMessagesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoMessage> getVmControllerMessages getVmControllerMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoMessage> getVmControllerMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -2313,7 +2313,7 @@ public class Example {
 
 ## getVmMessagesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoMessage> getVmMessages getVmMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoMessage> getVmMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -2497,7 +2497,7 @@ public class Example {
 
 ## getVmSnapshotsMessagesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoMessage> getVmSnapshotsMessages getVmSnapshotsMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoMessage> getVmSnapshotsMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -2681,7 +2681,7 @@ public class Example {
 
 ## getVmTemplateMessagesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoMessage> getVmTemplateMessages getVmTemplateMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoMessage> getVmTemplateMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 

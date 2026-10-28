@@ -404,15 +404,18 @@ class _$UnbrandXoPifSerializer implements PrimitiveSerializer<UnbrandXoPif> {
         case r'bondMaster':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.bondMaster = valueDes;
           break;
         case r'bondSlaves':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(BrandedPIF)]),
-          ) as BuiltList<BrandedPIF>;
+            specifiedType:
+                const FullType.nullable(BuiltList, [FullType(BrandedPIF)]),
+          ) as BuiltList<BrandedPIF>?;
+          if (valueDes == null) continue;
           result.bondSlaves.replace(valueDes);
           break;
         case r'carrier':
@@ -432,8 +435,9 @@ class _$UnbrandXoPifSerializer implements PrimitiveSerializer<UnbrandXoPif> {
         case r'deviceName':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.deviceName = valueDes;
           break;
         case r'disallowUnplug':
@@ -551,8 +555,9 @@ class _$UnbrandXoPifSerializer implements PrimitiveSerializer<UnbrandXoPif> {
         case r'speed':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.speed = valueDes;
           break;
         case r'type':

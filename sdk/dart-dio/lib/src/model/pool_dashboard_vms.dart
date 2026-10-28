@@ -97,8 +97,10 @@ class _$PoolDashboardVmsSerializer
         case r'topFiveUsage':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(PoolDashboardVmsTopFiveUsage),
-          ) as PoolDashboardVmsTopFiveUsage;
+            specifiedType:
+                const FullType.nullable(PoolDashboardVmsTopFiveUsage),
+          ) as PoolDashboardVmsTopFiveUsage?;
+          if (valueDes == null) continue;
           result.topFiveUsage.replace(valueDes);
           break;
         default:

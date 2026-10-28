@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**action** | **String** |  | 
-**effect** | **String** |  | 
-**resource** | **String** |  | 
+**action** | **Action** |  (enum: forget, update, *, create, read, update:name, benchmark, update:enabled, update:options, update:proxy, update:url) | 
+**effect** | **Effect** |  (enum: allow, deny) | 
+**resource** | **Resource** |  (enum: backup-repository) | 
 **role_id** | **String** |  | 
 **selector** | Option<**String**> |  | [optional]
 

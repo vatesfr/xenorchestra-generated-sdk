@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **id** | Option<**String**> |  | [optional]
 **name** | Option<**String**> |  | [optional]
 **time** | Option<**f64**> |  | [optional]
-**r#type** | Option<**String**> |  | [optional]
+**r#type** | Option<**Type**> |  (enum: message) | [optional]
 **uuid** | Option<**String**> |  | [optional]
 **href** | **String** |  | 
 

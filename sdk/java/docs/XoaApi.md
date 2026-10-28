@@ -92,7 +92,7 @@ public class Example {
 
 ## getDashboardWithHttpInfo
 
-> ApiResponse<XoaDashboard> getDashboard getDashboardWithHttpInfo(ndjson)
+> ApiResponse<XoaDashboard> getDashboardWithHttpInfo(ndjson)
 
 
 
@@ -232,7 +232,7 @@ No authorization required
 
 ## getGuiRoutesWithHttpInfo
 
-> ApiResponse<XoGuiRoutes> getGuiRoutes getGuiRoutesWithHttpInfo()
+> ApiResponse<XoGuiRoutes> getGuiRoutesWithHttpInfo()
 
 
 
@@ -354,7 +354,7 @@ No authorization required
 
 ## pingWithHttpInfo
 
-> ApiResponse<PingResponse> ping pingWithHttpInfo()
+> ApiResponse<PingResponse> pingWithHttpInfo()
 
 
 

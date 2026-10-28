@@ -4,7 +4,7 @@
 
 - API version: 0.37.0
 
-- Generator version: 7.14.0
+- Generator version: 7.26.0
 
 REST API to manage your XOA
 

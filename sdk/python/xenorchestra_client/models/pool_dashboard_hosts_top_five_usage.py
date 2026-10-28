@@ -23,6 +23,7 @@ from xenorchestra_client.models.pool_dashboard_hosts_top_five_usage_cpu_inner im
 from xenorchestra_client.models.pool_dashboard_hosts_top_five_usage_ram_inner import PoolDashboardHostsTopFiveUsageRamInner
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class PoolDashboardHostsTopFiveUsage(BaseModel):
     """
@@ -33,7 +34,8 @@ class PoolDashboardHostsTopFiveUsage(BaseModel):
     __properties: ClassVar[List[str]] = ["cpu", "ram"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -45,8 +47,7 @@ class PoolDashboardHostsTopFiveUsage(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
@@ -75,15 +76,13 @@ class PoolDashboardHostsTopFiveUsage(BaseModel):
         _items = []
         if self.cpu:
             for _item_cpu in self.cpu:
-                if _item_cpu:
-                    _items.append(_item_cpu.to_dict())
+                _items.append(_item_cpu.to_dict() if _item_cpu is not None else None)
             _dict['cpu'] = _items
         # override the default output from pydantic by calling `to_dict()` of each item in ram (list)
         _items = []
         if self.ram:
             for _item_ram in self.ram:
-                if _item_ram:
-                    _items.append(_item_ram.to_dict())
+                _items.append(_item_ram.to_dict() if _item_ram is not None else None)
             _dict['ram'] = _items
         return _dict
 

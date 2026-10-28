@@ -50,7 +50,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   WithHrefPartialUnbrandAnyXoBackupJobVariantBackup.JSON_PROPERTY_TYPE,
   WithHrefPartialUnbrandAnyXoBackupJobVariantBackup.JSON_PROPERTY_VMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class WithHrefPartialUnbrandAnyXoBackupJobVariantBackup {
   /**
    * Gets or Sets compression
@@ -220,14 +220,14 @@ private final String value;
    * @return compression
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_COMPRESSION)
+  @JsonProperty(value = JSON_PROPERTY_COMPRESSION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public CompressionEnum getCompression() {
     return compression;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_COMPRESSION)
+  @JsonProperty(value = JSON_PROPERTY_COMPRESSION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCompression(@javax.annotation.Nullable CompressionEnum compression) {
     this.compression = compression;
@@ -244,14 +244,14 @@ private final String value;
    * @return href
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_HREF)
+  @JsonProperty(value = JSON_PROPERTY_HREF, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getHref() {
     return href;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_HREF)
+  @JsonProperty(value = JSON_PROPERTY_HREF, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setHref(@javax.annotation.Nonnull String href) {
     this.href = href;
@@ -268,14 +268,14 @@ private final String value;
    * @return id
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
@@ -292,14 +292,14 @@ private final String value;
    * @return mode
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_MODE)
+  @JsonProperty(value = JSON_PROPERTY_MODE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public ModeEnum getMode() {
     return mode;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MODE)
+  @JsonProperty(value = JSON_PROPERTY_MODE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMode(@javax.annotation.Nullable ModeEnum mode) {
     this.mode = mode;
@@ -316,14 +316,14 @@ private final String value;
    * @return name
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getName() {
     return name;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
@@ -340,14 +340,14 @@ private final String value;
    * @return proxy
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PROXY)
+  @JsonProperty(value = JSON_PROPERTY_PROXY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getProxy() {
     return proxy;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PROXY)
+  @JsonProperty(value = JSON_PROPERTY_PROXY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setProxy(@javax.annotation.Nullable String proxy) {
     this.proxy = proxy;
@@ -369,7 +369,7 @@ private final String value;
         return remotes.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_REMOTES)
+  @JsonProperty(value = JSON_PROPERTY_REMOTES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<Object> getRemotes_JsonNullable() {
@@ -396,14 +396,14 @@ private final String value;
    * @return settings
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SETTINGS)
+  @JsonProperty(value = JSON_PROPERTY_SETTINGS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public PartialUnbrandAnyXoBackupJobVariantBackupSettings getSettings() {
     return settings;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SETTINGS)
+  @JsonProperty(value = JSON_PROPERTY_SETTINGS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSettings(@javax.annotation.Nullable PartialUnbrandAnyXoBackupJobVariantBackupSettings settings) {
     this.settings = settings;
@@ -425,7 +425,7 @@ private final String value;
         return srs.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_SRS)
+  @JsonProperty(value = JSON_PROPERTY_SRS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<Object> getSrs_JsonNullable() {
@@ -452,14 +452,14 @@ private final String value;
    * @return type
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public TypeEnum getType() {
     return type;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setType(@javax.annotation.Nullable TypeEnum type) {
     this.type = type;
@@ -481,7 +481,7 @@ private final String value;
         return vms.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_VMS)
+  @JsonProperty(value = JSON_PROPERTY_VMS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<Object> getVms_JsonNullable() {
@@ -563,10 +563,7 @@ private final String value;
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -603,37 +600,37 @@ private final String value;
 
     // add `compression` to the URL query string
     if (getCompression() != null) {
-      joiner.add(String.format("%scompression%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCompression()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%scompression%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCompression()))));
     }
 
     // add `href` to the URL query string
     if (getHref() != null) {
-      joiner.add(String.format("%shref%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHref()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%shref%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHref()))));
     }
 
     // add `id` to the URL query string
     if (getId() != null) {
-      joiner.add(String.format("%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
     }
 
     // add `mode` to the URL query string
     if (getMode() != null) {
-      joiner.add(String.format("%smode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMode()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%smode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMode()))));
     }
 
     // add `name` to the URL query string
     if (getName() != null) {
-      joiner.add(String.format("%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
     }
 
     // add `proxy` to the URL query string
     if (getProxy() != null) {
-      joiner.add(String.format("%sproxy%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProxy()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sproxy%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProxy()))));
     }
 
     // add `remotes` to the URL query string
     if (getRemotes() != null) {
-      joiner.add(String.format("%sremotes%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRemotes()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sremotes%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRemotes()))));
     }
 
     // add `settings` to the URL query string
@@ -643,17 +640,17 @@ private final String value;
 
     // add `srs` to the URL query string
     if (getSrs() != null) {
-      joiner.add(String.format("%ssrs%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSrs()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssrs%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSrs()))));
     }
 
     // add `type` to the URL query string
     if (getType() != null) {
-      joiner.add(String.format("%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
     }
 
     // add `vms` to the URL query string
     if (getVms() != null) {
-      joiner.add(String.format("%svms%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVms()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%svms%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVms()))));
     }
 
     return joiner.toString();

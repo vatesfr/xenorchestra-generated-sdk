@@ -116,7 +116,7 @@ public class Example {
 
 ## createUserWithHttpInfo
 
-> ApiResponse<CreateAclV2Privilege201Response> createUser createUserWithHttpInfo(createUserRequest)
+> ApiResponse<CreateAclV2Privilege201Response> createUserWithHttpInfo(createUserRequest)
 
 
 
@@ -281,7 +281,7 @@ null (empty response body)
 
 ## deleteUserWithHttpInfo
 
-> ApiResponse<Void> deleteUser deleteUserWithHttpInfo(id)
+> ApiResponse<Void> deleteUserWithHttpInfo(id)
 
 
 
@@ -455,7 +455,7 @@ public class Example {
 
 ## getAclRoleUsersWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoUser> getAclRoleUsers getAclRoleUsersWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoUser> getAclRoleUsersWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -634,7 +634,7 @@ public class Example {
 
 ## getAuthenticationTokensWithHttpInfo
 
-> ApiResponse<List<UnbrandXoAuthenticationToken>> getAuthenticationTokens getAuthenticationTokensWithHttpInfo(id, filter, limit)
+> ApiResponse<List<UnbrandXoAuthenticationToken>> getAuthenticationTokensWithHttpInfo(id, filter, limit)
 
 
 
@@ -813,7 +813,7 @@ public class Example {
 
 ## getGroupUsersWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoUser> getGroupUsers getGroupUsersWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoUser> getGroupUsersWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -988,7 +988,7 @@ public class Example {
 
 ## getUserWithHttpInfo
 
-> ApiResponse<UnbrandXoUser> getUser getUserWithHttpInfo(id)
+> ApiResponse<UnbrandXoUser> getUserWithHttpInfo(id)
 
 
 
@@ -1163,7 +1163,7 @@ public class Example {
 
 ## getUserGroupsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoGroup> getUserGroups getUserGroupsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoGroup> getUserGroupsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1345,7 +1345,7 @@ public class Example {
 
 ## getUserPrivilegesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandAnyPrivilege> getUserPrivileges getUserPrivilegesWithHttpInfo(id, fields, ndjson, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandAnyPrivilege> getUserPrivilegesWithHttpInfo(id, fields, ndjson, filter, limit)
 
 
 
@@ -1527,7 +1527,7 @@ public class Example {
 
 ## getUserTasksWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoTask> getUserTasks getUserTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoTask> getUserTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1708,7 +1708,7 @@ public class Example {
 
 ## getUsersWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoUser> getUsers getUsersWithHttpInfo(fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoUser> getUsersWithHttpInfo(fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1882,7 +1882,7 @@ public class Example {
 
 ## postAuthenticationTokensWithHttpInfo
 
-> ApiResponse<PostDeprecatedAuthenticationTokens201Response> postAuthenticationTokens postAuthenticationTokensWithHttpInfo(id, postDeprecatedAuthenticationTokensRequest)
+> ApiResponse<PostDeprecatedAuthenticationTokens201Response> postAuthenticationTokensWithHttpInfo(id, postDeprecatedAuthenticationTokensRequest)
 
 
 
@@ -2047,7 +2047,7 @@ public class Example {
 
 ## postDeprecatedAuthenticationTokensWithHttpInfo
 
-> ApiResponse<PostDeprecatedAuthenticationTokens201Response> postDeprecatedAuthenticationTokens postDeprecatedAuthenticationTokensWithHttpInfo(postDeprecatedAuthenticationTokensRequest)
+> ApiResponse<PostDeprecatedAuthenticationTokens201Response> postDeprecatedAuthenticationTokensWithHttpInfo(postDeprecatedAuthenticationTokensRequest)
 
 
 
@@ -2212,7 +2212,7 @@ null (empty response body)
 
 ## updateUserWithHttpInfo
 
-> ApiResponse<Void> updateUser updateUserWithHttpInfo(id, updateUserRequestBody)
+> ApiResponse<Void> updateUserWithHttpInfo(id, updateUserRequestBody)
 
 
 

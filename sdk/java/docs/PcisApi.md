@@ -94,7 +94,7 @@ public class Example {
 
 ## getPciWithHttpInfo
 
-> ApiResponse<UnbrandXoPci> getPci getPciWithHttpInfo(id)
+> ApiResponse<UnbrandXoPci> getPciWithHttpInfo(id)
 
 
 
@@ -266,7 +266,7 @@ public class Example {
 
 ## getPcisWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoPci> getPcis getPcisWithHttpInfo(fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoPci> getPcisWithHttpInfo(fields, ndjson, markdown, filter, limit)
 
 
 

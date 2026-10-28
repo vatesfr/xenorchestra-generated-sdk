@@ -39,7 +39,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PoolDashboardVmsTopFiveUsageRamInner.JSON_PROPERTY_NAME_LABEL,
   PoolDashboardVmsTopFiveUsageRamInner.JSON_PROPERTY_PERCENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PoolDashboardVmsTopFiveUsageRamInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -74,14 +74,14 @@ public class PoolDashboardVmsTopFiveUsageRamInner {
    * @return id
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
@@ -98,14 +98,14 @@ public class PoolDashboardVmsTopFiveUsageRamInner {
    * @return memory
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_MEMORY)
+  @JsonProperty(value = JSON_PROPERTY_MEMORY, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getMemory() {
     return memory;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MEMORY)
+  @JsonProperty(value = JSON_PROPERTY_MEMORY, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setMemory(@javax.annotation.Nonnull Double memory) {
     this.memory = memory;
@@ -122,14 +122,14 @@ public class PoolDashboardVmsTopFiveUsageRamInner {
    * @return memoryFree
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_MEMORY_FREE)
+  @JsonProperty(value = JSON_PROPERTY_MEMORY_FREE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getMemoryFree() {
     return memoryFree;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MEMORY_FREE)
+  @JsonProperty(value = JSON_PROPERTY_MEMORY_FREE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setMemoryFree(@javax.annotation.Nonnull Double memoryFree) {
     this.memoryFree = memoryFree;
@@ -146,14 +146,14 @@ public class PoolDashboardVmsTopFiveUsageRamInner {
    * @return nameLabel
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_NAME_LABEL)
+  @JsonProperty(value = JSON_PROPERTY_NAME_LABEL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getNameLabel() {
     return nameLabel;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME_LABEL)
+  @JsonProperty(value = JSON_PROPERTY_NAME_LABEL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setNameLabel(@javax.annotation.Nonnull String nameLabel) {
     this.nameLabel = nameLabel;
@@ -170,14 +170,14 @@ public class PoolDashboardVmsTopFiveUsageRamInner {
    * @return percent
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_PERCENT)
+  @JsonProperty(value = JSON_PROPERTY_PERCENT, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getPercent() {
     return percent;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PERCENT)
+  @JsonProperty(value = JSON_PROPERTY_PERCENT, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setPercent(@javax.annotation.Nonnull Double percent) {
     this.percent = percent;
@@ -226,10 +226,7 @@ public class PoolDashboardVmsTopFiveUsageRamInner {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -266,27 +263,27 @@ public class PoolDashboardVmsTopFiveUsageRamInner {
 
     // add `id` to the URL query string
     if (getId() != null) {
-      joiner.add(String.format("%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
     }
 
     // add `memory` to the URL query string
     if (getMemory() != null) {
-      joiner.add(String.format("%smemory%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMemory()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%smemory%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMemory()))));
     }
 
     // add `memoryFree` to the URL query string
     if (getMemoryFree() != null) {
-      joiner.add(String.format("%smemoryFree%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMemoryFree()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%smemoryFree%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMemoryFree()))));
     }
 
     // add `name_label` to the URL query string
     if (getNameLabel() != null) {
-      joiner.add(String.format("%sname_label%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameLabel()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname_label%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameLabel()))));
     }
 
     // add `percent` to the URL query string
     if (getPercent() != null) {
-      joiner.add(String.format("%spercent%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPercent()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%spercent%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPercent()))));
     }
 
     return joiner.toString();

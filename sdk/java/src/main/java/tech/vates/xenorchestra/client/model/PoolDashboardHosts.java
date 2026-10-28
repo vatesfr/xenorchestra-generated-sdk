@@ -40,7 +40,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PoolDashboardHosts.JSON_PROPERTY_STATUS,
   PoolDashboardHosts.JSON_PROPERTY_TOP_FIVE_USAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PoolDashboardHosts {
   public static final String JSON_PROPERTY_MISSING_PATCHES = "missingPatches";
   @javax.annotation.Nonnull
@@ -67,14 +67,14 @@ public class PoolDashboardHosts {
    * @return missingPatches
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_MISSING_PATCHES)
+  @JsonProperty(value = JSON_PROPERTY_MISSING_PATCHES, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public PoolDashboardHostsMissingPatches getMissingPatches() {
     return missingPatches;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MISSING_PATCHES)
+  @JsonProperty(value = JSON_PROPERTY_MISSING_PATCHES, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setMissingPatches(@javax.annotation.Nonnull PoolDashboardHostsMissingPatches missingPatches) {
     this.missingPatches = missingPatches;
@@ -91,14 +91,14 @@ public class PoolDashboardHosts {
    * @return status
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_STATUS)
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public PoolDashboardHostsStatus getStatus() {
     return status;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_STATUS)
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setStatus(@javax.annotation.Nonnull PoolDashboardHostsStatus status) {
     this.status = status;
@@ -115,14 +115,14 @@ public class PoolDashboardHosts {
    * @return topFiveUsage
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_TOP_FIVE_USAGE)
+  @JsonProperty(value = JSON_PROPERTY_TOP_FIVE_USAGE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public PoolDashboardHostsTopFiveUsage getTopFiveUsage() {
     return topFiveUsage;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TOP_FIVE_USAGE)
+  @JsonProperty(value = JSON_PROPERTY_TOP_FIVE_USAGE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setTopFiveUsage(@javax.annotation.Nonnull PoolDashboardHostsTopFiveUsage topFiveUsage) {
     this.topFiveUsage = topFiveUsage;
@@ -167,10 +167,7 @@ public class PoolDashboardHosts {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**

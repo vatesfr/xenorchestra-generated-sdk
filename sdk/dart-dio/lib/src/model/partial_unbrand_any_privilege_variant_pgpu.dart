@@ -147,46 +147,52 @@ class _$PartialUnbrandAnyPrivilegeVariantPgpuSerializer
         case r'action':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType:
-                const FullType(PartialUnbrandAnyPrivilegeVariantPgpuActionEnum),
-          ) as PartialUnbrandAnyPrivilegeVariantPgpuActionEnum;
+            specifiedType: const FullType.nullable(
+                PartialUnbrandAnyPrivilegeVariantPgpuActionEnum),
+          ) as PartialUnbrandAnyPrivilegeVariantPgpuActionEnum?;
+          if (valueDes == null) continue;
           result.action = valueDes;
           break;
         case r'effect':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType:
-                const FullType(PartialUnbrandAnyPrivilegeVariantPgpuEffectEnum),
-          ) as PartialUnbrandAnyPrivilegeVariantPgpuEffectEnum;
+            specifiedType: const FullType.nullable(
+                PartialUnbrandAnyPrivilegeVariantPgpuEffectEnum),
+          ) as PartialUnbrandAnyPrivilegeVariantPgpuEffectEnum?;
+          if (valueDes == null) continue;
           result.effect = valueDes;
           break;
         case r'id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'resource':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(
+            specifiedType: const FullType.nullable(
                 PartialUnbrandAnyPrivilegeVariantPgpuResourceEnum),
-          ) as PartialUnbrandAnyPrivilegeVariantPgpuResourceEnum;
+          ) as PartialUnbrandAnyPrivilegeVariantPgpuResourceEnum?;
+          if (valueDes == null) continue;
           result.resource = valueDes;
           break;
         case r'roleId':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.roleId = valueDes;
           break;
         case r'selector':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.selector = valueDes;
           break;
         default:

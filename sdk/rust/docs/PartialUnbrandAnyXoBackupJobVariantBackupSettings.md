@@ -4,14 +4,14 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**backup_report_tpl** | Option<**String**> |  | [optional]
+**backup_report_tpl** | Option<**BackupReportTpl**> |  (enum: compactMjml, mjml) | [optional]
 **hide_successful_items** | Option<**bool**> |  | [optional]
 **report_recipients** | Option<**Vec<String>**> |  | [optional]
-**report_when** | Option<**String**> |  | [optional]
+**report_when** | Option<**ReportWhen**> |  (enum: always, error, failure, never) | [optional]
 **cbt_destroy_snapshot_data** | Option<**bool**> |  | [optional]
 **checkpoint_snapshot** | Option<**bool**> |  | [optional]
 **concurrency** | Option<**f64**> |  | [optional]
-**long_term_retention** | Option<[**models::XoVmBackupJobGeneralSettingsAllOfLongTermRetention**](XoVmBackupJobGeneralSettings_allOf_longTermRetention.md)> |  | [optional]
+**long_term_retention** | Option<[**models::XoVmBackupJobGeneralSettingsAllOfLongTermRetention**](XoVmBackupJobGeneralSettingsAllOfLongTermRetention.md)> |  | [optional]
 **max_export_rate** | Option<**f64**> |  | [optional]
 **merge_backups_synchronously** | Option<**bool**> |  | [optional]
 **n_retries_vm_backup_failures** | Option<**f64**> |  | [optional]

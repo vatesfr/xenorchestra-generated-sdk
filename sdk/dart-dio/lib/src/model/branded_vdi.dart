@@ -77,8 +77,9 @@ class _$BrandedVDISerializer implements PrimitiveSerializer<BrandedVDI> {
         case r'undefined':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BrandedVDIUndefinedEnum),
-          ) as BrandedVDIUndefinedEnum;
+            specifiedType: const FullType.nullable(BrandedVDIUndefinedEnum),
+          ) as BrandedVDIUndefinedEnum?;
+          if (valueDes == null) continue;
           result.undefined = valueDes;
           break;
         default:

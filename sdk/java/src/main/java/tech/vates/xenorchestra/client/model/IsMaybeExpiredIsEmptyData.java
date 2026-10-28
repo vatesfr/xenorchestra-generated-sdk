@@ -36,7 +36,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   IsMaybeExpiredIsEmptyData.JSON_PROPERTY_IS_EMPTY,
   IsMaybeExpiredIsEmptyData.JSON_PROPERTY_IS_EXPIRED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class IsMaybeExpiredIsEmptyData {
   public static final String JSON_PROPERTY_IS_EMPTY = "isEmpty";
   @javax.annotation.Nonnull
@@ -59,14 +59,14 @@ public class IsMaybeExpiredIsEmptyData {
    * @return isEmpty
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_IS_EMPTY)
+  @JsonProperty(value = JSON_PROPERTY_IS_EMPTY, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Boolean getIsEmpty() {
     return isEmpty;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_IS_EMPTY)
+  @JsonProperty(value = JSON_PROPERTY_IS_EMPTY, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setIsEmpty(@javax.annotation.Nonnull Boolean isEmpty) {
     this.isEmpty = isEmpty;
@@ -83,14 +83,14 @@ public class IsMaybeExpiredIsEmptyData {
    * @return isExpired
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_IS_EXPIRED)
+  @JsonProperty(value = JSON_PROPERTY_IS_EXPIRED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getIsExpired() {
     return isExpired;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_IS_EXPIRED)
+  @JsonProperty(value = JSON_PROPERTY_IS_EXPIRED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIsExpired(@javax.annotation.Nullable Boolean isExpired) {
     this.isExpired = isExpired;
@@ -133,10 +133,7 @@ public class IsMaybeExpiredIsEmptyData {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -173,12 +170,12 @@ public class IsMaybeExpiredIsEmptyData {
 
     // add `isEmpty` to the URL query string
     if (getIsEmpty() != null) {
-      joiner.add(String.format("%sisEmpty%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsEmpty()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sisEmpty%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsEmpty()))));
     }
 
     // add `isExpired` to the URL query string
     if (getIsExpired() != null) {
-      joiner.add(String.format("%sisExpired%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsExpired()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sisExpired%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsExpired()))));
     }
 
     return joiner.toString();

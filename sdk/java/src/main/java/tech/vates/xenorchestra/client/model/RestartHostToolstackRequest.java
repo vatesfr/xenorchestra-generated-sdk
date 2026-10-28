@@ -35,7 +35,7 @@ import tech.vates.xenorchestra.client.ApiClient;
 @JsonPropertyOrder({
   RestartHostToolstackRequest.JSON_PROPERTY_BYPASS_BACKUP_CHECK
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class RestartHostToolstackRequest {
   public static final String JSON_PROPERTY_BYPASS_BACKUP_CHECK = "bypassBackupCheck";
   @javax.annotation.Nullable
@@ -54,14 +54,14 @@ public class RestartHostToolstackRequest {
    * @return bypassBackupCheck
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_BYPASS_BACKUP_CHECK)
+  @JsonProperty(value = JSON_PROPERTY_BYPASS_BACKUP_CHECK, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getBypassBackupCheck() {
     return bypassBackupCheck;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_BYPASS_BACKUP_CHECK)
+  @JsonProperty(value = JSON_PROPERTY_BYPASS_BACKUP_CHECK, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBypassBackupCheck(@javax.annotation.Nullable Boolean bypassBackupCheck) {
     this.bypassBackupCheck = bypassBackupCheck;
@@ -102,10 +102,7 @@ public class RestartHostToolstackRequest {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -142,7 +139,7 @@ public class RestartHostToolstackRequest {
 
     // add `bypassBackupCheck` to the URL query string
     if (getBypassBackupCheck() != null) {
-      joiner.add(String.format("%sbypassBackupCheck%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBypassBackupCheck()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbypassBackupCheck%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBypassBackupCheck()))));
     }
 
     return joiner.toString();

@@ -38,7 +38,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   UnbrandVmDashboardBackupArchive.JSON_PROPERTY_SIZE,
   UnbrandVmDashboardBackupArchive.JSON_PROPERTY_TIMESTAMP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class UnbrandVmDashboardBackupArchive {
   public static final String JSON_PROPERTY_BACKUP_REPOSITORY = "backupRepository";
   @javax.annotation.Nonnull
@@ -69,14 +69,14 @@ public class UnbrandVmDashboardBackupArchive {
    * @return backupRepository
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_BACKUP_REPOSITORY)
+  @JsonProperty(value = JSON_PROPERTY_BACKUP_REPOSITORY, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getBackupRepository() {
     return backupRepository;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_BACKUP_REPOSITORY)
+  @JsonProperty(value = JSON_PROPERTY_BACKUP_REPOSITORY, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setBackupRepository(@javax.annotation.Nonnull String backupRepository) {
     this.backupRepository = backupRepository;
@@ -93,14 +93,14 @@ public class UnbrandVmDashboardBackupArchive {
    * @return id
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
@@ -117,14 +117,14 @@ public class UnbrandVmDashboardBackupArchive {
    * @return size
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonProperty(value = JSON_PROPERTY_SIZE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getSize() {
     return size;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonProperty(value = JSON_PROPERTY_SIZE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSize(@javax.annotation.Nonnull Double size) {
     this.size = size;
@@ -141,14 +141,14 @@ public class UnbrandVmDashboardBackupArchive {
    * @return timestamp
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_TIMESTAMP)
+  @JsonProperty(value = JSON_PROPERTY_TIMESTAMP, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getTimestamp() {
     return timestamp;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TIMESTAMP)
+  @JsonProperty(value = JSON_PROPERTY_TIMESTAMP, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setTimestamp(@javax.annotation.Nonnull Double timestamp) {
     this.timestamp = timestamp;
@@ -195,10 +195,7 @@ public class UnbrandVmDashboardBackupArchive {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -235,22 +232,22 @@ public class UnbrandVmDashboardBackupArchive {
 
     // add `backupRepository` to the URL query string
     if (getBackupRepository() != null) {
-      joiner.add(String.format("%sbackupRepository%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBackupRepository()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbackupRepository%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBackupRepository()))));
     }
 
     // add `id` to the URL query string
     if (getId() != null) {
-      joiner.add(String.format("%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
     }
 
     // add `size` to the URL query string
     if (getSize() != null) {
-      joiner.add(String.format("%ssize%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSize()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssize%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSize()))));
     }
 
     // add `timestamp` to the URL query string
     if (getTimestamp() != null) {
-      joiner.add(String.format("%stimestamp%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTimestamp()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%stimestamp%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTimestamp()))));
     }
 
     return joiner.toString();

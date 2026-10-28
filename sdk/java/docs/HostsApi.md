@@ -142,7 +142,7 @@ public class Example {
 
 ## cleanRebootHostWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> cleanRebootHost cleanRebootHostWithHttpInfo(id, sync, cleanRebootHostRequest)
+> ApiResponse<CreateActionReturnTypeVoid> cleanRebootHostWithHttpInfo(id, sync, cleanRebootHostRequest)
 
 
 
@@ -320,7 +320,7 @@ public class Example {
 
 ## cleanShutdownHostWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> cleanShutdownHost cleanShutdownHostWithHttpInfo(id, sync, cleanShutdownHostRequest)
+> ApiResponse<CreateActionReturnTypeVoid> cleanShutdownHostWithHttpInfo(id, sync, cleanShutdownHostRequest)
 
 
 
@@ -493,7 +493,7 @@ null (empty response body)
 
 ## deleteHostTagWithHttpInfo
 
-> ApiResponse<Void> deleteHostTag deleteHostTagWithHttpInfo(id, tag)
+> ApiResponse<Void> deleteHostTagWithHttpInfo(id, tag)
 
 
 
@@ -664,7 +664,7 @@ public class Example {
 
 ## detachHostWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> detachHost detachHostWithHttpInfo(id, sync)
+> ApiResponse<CreateActionReturnTypeVoid> detachHostWithHttpInfo(id, sync)
 
 
 
@@ -841,7 +841,7 @@ public class Example {
 
 ## disableWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> disable disableWithHttpInfo(id, sync, disableRequest)
+> ApiResponse<CreateActionReturnTypeVoid> disableWithHttpInfo(id, sync, disableRequest)
 
 
 
@@ -1018,7 +1018,7 @@ public class Example {
 
 ## emergencyShutdownHostWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> emergencyShutdownHost emergencyShutdownHostWithHttpInfo(id, sync)
+> ApiResponse<CreateActionReturnTypeVoid> emergencyShutdownHostWithHttpInfo(id, sync)
 
 
 
@@ -1192,7 +1192,7 @@ public class Example {
 
 ## enableWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> enable enableWithHttpInfo(id, sync)
+> ApiResponse<CreateActionReturnTypeVoid> enableWithHttpInfo(id, sync)
 
 
 
@@ -1367,7 +1367,7 @@ public class Example {
 
 ## forgetHostWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> forgetHost forgetHostWithHttpInfo(id, sync)
+> ApiResponse<CreateActionReturnTypeVoid> forgetHostWithHttpInfo(id, sync)
 
 
 
@@ -1538,7 +1538,7 @@ null (empty response body)
 
 ## getAuditLogWithHttpInfo
 
-> ApiResponse<Void> getAuditLog getAuditLogWithHttpInfo(id)
+> ApiResponse<Void> getAuditLogWithHttpInfo(id)
 
 
 
@@ -1704,7 +1704,7 @@ public class Example {
 
 ## getHostWithHttpInfo
 
-> ApiResponse<UnbrandXoHost> getHost getHostWithHttpInfo(id)
+> ApiResponse<UnbrandXoHost> getHostWithHttpInfo(id)
 
 
 
@@ -1879,7 +1879,7 @@ public class Example {
 
 ## getHostAlarmsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getHostAlarms getHostAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getHostAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -2054,7 +2054,7 @@ null (empty response body)
 
 ## getHostLogsWithHttpInfo
 
-> ApiResponse<Void> getHostLogs getHostLogsWithHttpInfo(id)
+> ApiResponse<Void> getHostLogsWithHttpInfo(id)
 
 
 
@@ -2229,7 +2229,7 @@ public class Example {
 
 ## getHostMessagesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoMessage> getHostMessages getHostMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoMessage> getHostMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -2408,7 +2408,7 @@ public class Example {
 
 ## getHostStatsWithHttpInfo
 
-> ApiResponse<XapiStatsResponseXapiHostStatsRaw> getHostStats getHostStatsWithHttpInfo(id, granularity)
+> ApiResponse<XapiStatsResponseXapiHostStatsRaw> getHostStatsWithHttpInfo(id, granularity)
 
 
 
@@ -2587,7 +2587,7 @@ public class Example {
 
 ## getHostTasksWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoTask> getHostTasks getHostTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoTask> getHostTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -2768,7 +2768,7 @@ public class Example {
 
 ## getHostsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoHost> getHosts getHostsWithHttpInfo(fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoHost> getHostsWithHttpInfo(fields, ndjson, markdown, filter, limit)
 
 
 
@@ -2940,7 +2940,7 @@ public class Example {
 
 ## getMissingPatchesWithHttpInfo
 
-> ApiResponse<GetMissingPatches200Response> getMissingPatches getMissingPatchesWithHttpInfo(id)
+> ApiResponse<GetMissingPatches200Response> getMissingPatchesWithHttpInfo(id)
 
 
 
@@ -3107,7 +3107,7 @@ public class Example {
 
 ## gethostSmtWithHttpInfo
 
-> ApiResponse<GethostSmt200Response> gethostSmt gethostSmtWithHttpInfo(id)
+> ApiResponse<GethostSmt200Response> gethostSmtWithHttpInfo(id)
 
 
 
@@ -3281,7 +3281,7 @@ public class Example {
 
 ## managementReconfigureWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> managementReconfigure managementReconfigureWithHttpInfo(id, managementReconfigureRequest, sync)
+> ApiResponse<CreateActionReturnTypeVoid> managementReconfigureWithHttpInfo(id, managementReconfigureRequest, sync)
 
 
 
@@ -3455,7 +3455,7 @@ null (empty response body)
 
 ## putHostTagWithHttpInfo
 
-> ApiResponse<Void> putHostTag putHostTagWithHttpInfo(id, tag)
+> ApiResponse<Void> putHostTagWithHttpInfo(id, tag)
 
 
 
@@ -3628,7 +3628,7 @@ public class Example {
 
 ## restartHostToolstackWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> restartHostToolstack restartHostToolstackWithHttpInfo(id, sync, restartHostToolstackRequest)
+> ApiResponse<CreateActionReturnTypeVoid> restartHostToolstackWithHttpInfo(id, sync, restartHostToolstackRequest)
 
 
 
@@ -3806,7 +3806,7 @@ public class Example {
 
 ## smartRebootHostWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> smartRebootHost smartRebootHostWithHttpInfo(id, sync, smartRebootHostRequest)
+> ApiResponse<CreateActionReturnTypeVoid> smartRebootHostWithHttpInfo(id, sync, smartRebootHostRequest)
 
 
 
@@ -3982,7 +3982,7 @@ public class Example {
 
 ## startHostWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> startHost startHostWithHttpInfo(id, sync)
+> ApiResponse<CreateActionReturnTypeVoid> startHostWithHttpInfo(id, sync)
 
 
 

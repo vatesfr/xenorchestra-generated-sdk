@@ -37,7 +37,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   DashboardBackupsInfoVmsProtection.JSON_PROPERTY_PROTECTED,
   DashboardBackupsInfoVmsProtection.JSON_PROPERTY_UNPROTECTED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class DashboardBackupsInfoVmsProtection {
   public static final String JSON_PROPERTY_NOT_IN_JOB = "notInJob";
   @javax.annotation.Nonnull
@@ -64,14 +64,14 @@ public class DashboardBackupsInfoVmsProtection {
    * @return notInJob
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_NOT_IN_JOB)
+  @JsonProperty(value = JSON_PROPERTY_NOT_IN_JOB, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getNotInJob() {
     return notInJob;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NOT_IN_JOB)
+  @JsonProperty(value = JSON_PROPERTY_NOT_IN_JOB, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setNotInJob(@javax.annotation.Nonnull Double notInJob) {
     this.notInJob = notInJob;
@@ -88,14 +88,14 @@ public class DashboardBackupsInfoVmsProtection {
    * @return _protected
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_PROTECTED)
+  @JsonProperty(value = JSON_PROPERTY_PROTECTED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getProtected() {
     return _protected;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PROTECTED)
+  @JsonProperty(value = JSON_PROPERTY_PROTECTED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setProtected(@javax.annotation.Nonnull Double _protected) {
     this._protected = _protected;
@@ -112,14 +112,14 @@ public class DashboardBackupsInfoVmsProtection {
    * @return unprotected
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_UNPROTECTED)
+  @JsonProperty(value = JSON_PROPERTY_UNPROTECTED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getUnprotected() {
     return unprotected;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_UNPROTECTED)
+  @JsonProperty(value = JSON_PROPERTY_UNPROTECTED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUnprotected(@javax.annotation.Nonnull Double unprotected) {
     this.unprotected = unprotected;
@@ -164,10 +164,7 @@ public class DashboardBackupsInfoVmsProtection {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -204,17 +201,17 @@ public class DashboardBackupsInfoVmsProtection {
 
     // add `notInJob` to the URL query string
     if (getNotInJob() != null) {
-      joiner.add(String.format("%snotInJob%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNotInJob()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%snotInJob%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNotInJob()))));
     }
 
     // add `protected` to the URL query string
     if (getProtected() != null) {
-      joiner.add(String.format("%sprotected%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProtected()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sprotected%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProtected()))));
     }
 
     // add `unprotected` to the URL query string
     if (getUnprotected() != null) {
-      joiner.add(String.format("%sunprotected%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUnprotected()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sunprotected%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUnprotected()))));
     }
 
     return joiner.toString();

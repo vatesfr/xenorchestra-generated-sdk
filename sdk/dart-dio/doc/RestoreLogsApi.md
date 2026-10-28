@@ -37,7 +37,7 @@ final String id = 1758180544428; // String |
 try {
     final response = api.getDeprecatedRestoreLog(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling RestoreLogsApi->getDeprecatedRestoreLog: $e\n');
 }
 ```
@@ -91,7 +91,7 @@ final double limit = 42; // double |
 try {
     final response = api.getDeprecatedRestoreLogs(fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling RestoreLogsApi->getDeprecatedRestoreLogs: $e\n');
 }
 ```
@@ -145,7 +145,7 @@ final String id = 1758180544428; // String |
 try {
     final response = api.getRestoreLog(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling RestoreLogsApi->getRestoreLog: $e\n');
 }
 ```
@@ -199,7 +199,7 @@ final double limit = 42; // double |
 try {
     final response = api.getRestoreLogs(fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling RestoreLogsApi->getRestoreLogs: $e\n');
 }
 ```

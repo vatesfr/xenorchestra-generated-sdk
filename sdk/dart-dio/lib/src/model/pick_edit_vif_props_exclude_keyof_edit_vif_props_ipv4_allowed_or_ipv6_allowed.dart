@@ -120,8 +120,9 @@ class _$PickEditVifPropsExcludeKeyofEditVifPropsIpv4AllowedOrIpv6AllowedSerializ
         case r'lockingMode':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(VIFLOCKINGMODE),
-          ) as VIFLOCKINGMODE;
+            specifiedType: const FullType.nullable(VIFLOCKINGMODE),
+          ) as VIFLOCKINGMODE?;
+          if (valueDes == null) continue;
           result.lockingMode = valueDes;
           break;
         case r'rateLimit':
@@ -135,8 +136,9 @@ class _$PickEditVifPropsExcludeKeyofEditVifPropsIpv4AllowedOrIpv6AllowedSerializ
         case r'txChecksumming':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.txChecksumming = valueDes;
           break;
         default:

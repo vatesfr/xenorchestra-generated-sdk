@@ -58,15 +58,35 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class VdisApi {
+  /**
+   * Utility class for extending HttpRequest.Builder functionality.
+   */
+  private static class HttpRequestBuilderExtensions {
+    /**
+     * Adds additional headers to the provided HttpRequest.Builder. Useful for adding method/endpoint specific headers.
+     *
+     * @param builder the HttpRequest.Builder to which headers will be added
+     * @param headers a map of header names and values to add; may be null
+     * @return the same HttpRequest.Builder instance with the additional headers set
+     */
+    static HttpRequest.Builder withAdditionalHeaders(HttpRequest.Builder builder, Map<String, String> headers) {
+        if (headers != null) {
+            for (Map.Entry<String, String> entry : headers.entrySet()) {
+                builder.header(entry.getKey(), entry.getValue());
+            }
+        }
+        return builder;
+    }
+  }
   private final HttpClient memberVarHttpClient;
   private final ObjectMapper memberVarObjectMapper;
   private final String memberVarBaseUri;
   private final Consumer<HttpRequest.Builder> memberVarInterceptor;
   private final Duration memberVarReadTimeout;
   private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
-  private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
+  private final Consumer<HttpResponse<InputStream>> memberVarAsyncResponseInterceptor;
 
   public VdisApi() {
     this(Configuration.getDefaultApiClient());
@@ -82,8 +102,17 @@ public class VdisApi {
     memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
   }
 
+
   protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
-    String body = response.body() == null ? null : new String(response.body().readAllBytes());
+    InputStream responseBody = ApiClient.getResponseBody(response);
+    String body = null;
+    try {
+      body = responseBody == null ? null : new String(responseBody.readAllBytes());
+    } finally {
+      if (responseBody != null) {
+        responseBody.close();
+      }
+    }
     String message = formatExceptionMessage(operationId, response.statusCode(), body);
     return new ApiException(response.statusCode(), message, response.headers(), body);
   }
@@ -96,6 +125,57 @@ public class VdisApi {
   }
 
   /**
+   * Download file from the given response.
+   *
+   * @param response Response
+   * @return File
+   * @throws ApiException If fail to read file content from response and write to disk
+   */
+  public File downloadFileFromResponse(HttpResponse<InputStream> response, InputStream responseBody) throws ApiException {
+    if (responseBody == null) {
+      throw new ApiException(new IOException("Response body is empty"));
+    }
+    try {
+      File file = prepareDownloadFile(response);
+      java.nio.file.Files.copy(responseBody, file.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+      return file;
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+  }
+
+  /**
+   * <p>Prepare the file for download from the response.</p>
+   *
+   * @param response a {@link java.net.http.HttpResponse} object.
+   * @return a {@link java.io.File} object.
+   * @throws java.io.IOException if any.
+   */
+  private File prepareDownloadFile(HttpResponse<InputStream> response) throws IOException {
+    String filename = null;
+    java.util.Optional<String> contentDisposition = response.headers().firstValue("Content-Disposition");
+    if (contentDisposition.isPresent() && !"".equals(contentDisposition.get())) {
+      // Get filename from the Content-Disposition header.
+      java.util.regex.Pattern pattern = java.util.regex.Pattern.compile("filename=['\"]?([^'\"\\s]+)['\"]?");
+      java.util.regex.Matcher matcher = pattern.matcher(contentDisposition.get());
+      if (matcher.find())
+        filename = matcher.group(1);
+    }
+    File file = null;
+    if (filename != null) {
+      java.nio.file.Path tempDir = java.nio.file.Files.createTempDirectory("swagger-gen-native");
+      java.nio.file.Path filePath = java.nio.file.Files.createFile(tempDir.resolve(filename));
+      file = filePath.toFile();
+      tempDir.toFile().deleteOnExit();   // best effort cleanup
+      file.deleteOnExit(); // best effort cleanup
+    } else {
+      file = java.nio.file.Files.createTempFile("download-", "").toFile();
+      file.deleteOnExit(); // best effort cleanup
+    }
+    return file;
+  }
+
+  /**
    * 
    * Create an empty VDI.  Required privileges: - resource: sr, action: import:vdi (on the target SR) - resource: vdi, action: create
    * @param createVdiBody  (required)
@@ -103,7 +183,19 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public CreateAclV2Privilege201Response createVdi(@javax.annotation.Nonnull CreateVdiBody createVdiBody) throws ApiException {
-    ApiResponse<CreateAclV2Privilege201Response> localVarResponse = createVdiWithHttpInfo(createVdiBody);
+    return createVdi(createVdiBody, null);
+  }
+
+  /**
+   * 
+   * Create an empty VDI.  Required privileges: - resource: sr, action: import:vdi (on the target SR) - resource: vdi, action: create
+   * @param createVdiBody  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateAclV2Privilege201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateAclV2Privilege201Response createVdi(@javax.annotation.Nonnull CreateVdiBody createVdiBody, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateAclV2Privilege201Response> localVarResponse = createVdiWithHttpInfo(createVdiBody, headers);
     return localVarResponse.getData();
   }
 
@@ -115,7 +207,19 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateAclV2Privilege201Response> createVdiWithHttpInfo(@javax.annotation.Nonnull CreateVdiBody createVdiBody) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createVdiRequestBuilder(createVdiBody);
+    return createVdiWithHttpInfo(createVdiBody, null);
+  }
+
+  /**
+   * 
+   * Create an empty VDI.  Required privileges: - resource: sr, action: import:vdi (on the target SR) - resource: vdi, action: create
+   * @param createVdiBody  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateAclV2Privilege201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateAclV2Privilege201Response> createVdiWithHttpInfo(@javax.annotation.Nonnull CreateVdiBody createVdiBody, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createVdiRequestBuilder(createVdiBody, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -123,11 +227,13 @@ public class VdisApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("createVdi", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateAclV2Privilege201Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -135,15 +241,21 @@ public class VdisApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateAclV2Privilege201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateAclV2Privilege201Response>() {});
+        
 
         return new ApiResponse<CreateAclV2Privilege201Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateAclV2Privilege201Response>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -154,7 +266,7 @@ public class VdisApi {
     }
   }
 
-  private HttpRequest.Builder createVdiRequestBuilder(@javax.annotation.Nonnull CreateVdiBody createVdiBody) throws ApiException {
+  private HttpRequest.Builder createVdiRequestBuilder(@javax.annotation.Nonnull CreateVdiBody createVdiBody, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'createVdiBody' is set
     if (createVdiBody == null) {
       throw new ApiException(400, "Missing the required parameter 'createVdiBody' when calling createVdi");
@@ -178,6 +290,8 @@ public class VdisApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -191,7 +305,18 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public void deleteVdi(@javax.annotation.Nonnull String id) throws ApiException {
-    deleteVdiWithHttpInfo(id);
+    deleteVdi(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vdi, action: delete
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteVdi(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    deleteVdiWithHttpInfo(id, headers);
   }
 
   /**
@@ -202,7 +327,19 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> deleteVdiWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = deleteVdiRequestBuilder(id);
+    return deleteVdiWithHttpInfo(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vdi, action: delete
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteVdiWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteVdiRequestBuilder(id, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -210,9 +347,14 @@ public class VdisApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("deleteVdi", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -220,11 +362,9 @@ public class VdisApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -235,7 +375,7 @@ public class VdisApi {
     }
   }
 
-  private HttpRequest.Builder deleteVdiRequestBuilder(@javax.annotation.Nonnull String id) throws ApiException {
+  private HttpRequest.Builder deleteVdiRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling deleteVdi");
@@ -254,6 +394,8 @@ public class VdisApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -267,7 +409,18 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public void deleteVdiSnapshot(@javax.annotation.Nonnull String id) throws ApiException {
-    deleteVdiSnapshotWithHttpInfo(id);
+    deleteVdiSnapshot(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vdi-snapshot, action: delete
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteVdiSnapshot(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    deleteVdiSnapshotWithHttpInfo(id, headers);
   }
 
   /**
@@ -278,7 +431,19 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> deleteVdiSnapshotWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = deleteVdiSnapshotRequestBuilder(id);
+    return deleteVdiSnapshotWithHttpInfo(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vdi-snapshot, action: delete
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteVdiSnapshotWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteVdiSnapshotRequestBuilder(id, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -286,9 +451,14 @@ public class VdisApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("deleteVdiSnapshot", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -296,11 +466,9 @@ public class VdisApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -311,7 +479,7 @@ public class VdisApi {
     }
   }
 
-  private HttpRequest.Builder deleteVdiSnapshotRequestBuilder(@javax.annotation.Nonnull String id) throws ApiException {
+  private HttpRequest.Builder deleteVdiSnapshotRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling deleteVdiSnapshot");
@@ -330,6 +498,8 @@ public class VdisApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -344,7 +514,19 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public void deleteVdiSnapshotTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    deleteVdiSnapshotTagWithHttpInfo(id, tag);
+    deleteVdiSnapshotTag(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vdi-snapshot, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteVdiSnapshotTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    deleteVdiSnapshotTagWithHttpInfo(id, tag, headers);
   }
 
   /**
@@ -356,7 +538,20 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> deleteVdiSnapshotTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = deleteVdiSnapshotTagRequestBuilder(id, tag);
+    return deleteVdiSnapshotTagWithHttpInfo(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vdi-snapshot, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteVdiSnapshotTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteVdiSnapshotTagRequestBuilder(id, tag, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -364,9 +559,14 @@ public class VdisApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("deleteVdiSnapshotTag", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -374,11 +574,9 @@ public class VdisApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -389,7 +587,7 @@ public class VdisApi {
     }
   }
 
-  private HttpRequest.Builder deleteVdiSnapshotTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
+  private HttpRequest.Builder deleteVdiSnapshotTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling deleteVdiSnapshotTag");
@@ -413,6 +611,8 @@ public class VdisApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -427,7 +627,19 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public void deleteVdiTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    deleteVdiTagWithHttpInfo(id, tag);
+    deleteVdiTag(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vdi, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteVdiTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    deleteVdiTagWithHttpInfo(id, tag, headers);
   }
 
   /**
@@ -439,7 +651,20 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> deleteVdiTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = deleteVdiTagRequestBuilder(id, tag);
+    return deleteVdiTagWithHttpInfo(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vdi, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteVdiTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteVdiTagRequestBuilder(id, tag, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -447,9 +672,14 @@ public class VdisApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("deleteVdiTag", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -457,11 +687,9 @@ public class VdisApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -472,7 +700,7 @@ public class VdisApi {
     }
   }
 
-  private HttpRequest.Builder deleteVdiTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
+  private HttpRequest.Builder deleteVdiTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling deleteVdiTag");
@@ -496,6 +724,8 @@ public class VdisApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -511,7 +741,20 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public byte[] exportVdiContent(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull ExcludeSUPPORTEDVDIFORMATQcow2 format) throws ApiException {
-    ApiResponse<byte[]> localVarResponse = exportVdiContentWithHttpInfo(id, format);
+    return exportVdiContent(id, format, null);
+  }
+
+  /**
+   * 
+   *  Export VDI content  Required privilege: - resource: vdi, action: export-content
+   * @param id  (required)
+   * @param format  (required)
+   * @param headers Optional headers to include in the request
+   * @return byte[]
+   * @throws ApiException if fails to make API call
+   */
+  public byte[] exportVdiContent(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull ExcludeSUPPORTEDVDIFORMATQcow2 format, Map<String, String> headers) throws ApiException {
+    ApiResponse<byte[]> localVarResponse = exportVdiContentWithHttpInfo(id, format, headers);
     return localVarResponse.getData();
   }
 
@@ -524,7 +767,20 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<byte[]> exportVdiContentWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull ExcludeSUPPORTEDVDIFORMATQcow2 format) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportVdiContentRequestBuilder(id, format);
+    return exportVdiContentWithHttpInfo(id, format, null);
+  }
+
+  /**
+   * 
+   *  Export VDI content  Required privilege: - resource: vdi, action: export-content
+   * @param id  (required)
+   * @param format  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;byte[]&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<byte[]> exportVdiContentWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull ExcludeSUPPORTEDVDIFORMATQcow2 format, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = exportVdiContentRequestBuilder(id, format, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -532,11 +788,13 @@ public class VdisApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("exportVdiContent", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<byte[]>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -544,15 +802,21 @@ public class VdisApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        byte[] responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<byte[]>() {});
+        
 
         return new ApiResponse<byte[]>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<byte[]>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -563,7 +827,7 @@ public class VdisApi {
     }
   }
 
-  private HttpRequest.Builder exportVdiContentRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull ExcludeSUPPORTEDVDIFORMATQcow2 format) throws ApiException {
+  private HttpRequest.Builder exportVdiContentRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull ExcludeSUPPORTEDVDIFORMATQcow2 format, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling exportVdiContent");
@@ -587,6 +851,8 @@ public class VdisApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -602,7 +868,20 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public byte[] exportVdiSnapshotContent(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull ExcludeSUPPORTEDVDIFORMATQcow2 format) throws ApiException {
-    ApiResponse<byte[]> localVarResponse = exportVdiSnapshotContentWithHttpInfo(id, format);
+    return exportVdiSnapshotContent(id, format, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vdi-snapshot, action: export  Export VDI-snapshot content
+   * @param id  (required)
+   * @param format  (required)
+   * @param headers Optional headers to include in the request
+   * @return byte[]
+   * @throws ApiException if fails to make API call
+   */
+  public byte[] exportVdiSnapshotContent(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull ExcludeSUPPORTEDVDIFORMATQcow2 format, Map<String, String> headers) throws ApiException {
+    ApiResponse<byte[]> localVarResponse = exportVdiSnapshotContentWithHttpInfo(id, format, headers);
     return localVarResponse.getData();
   }
 
@@ -615,7 +894,20 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<byte[]> exportVdiSnapshotContentWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull ExcludeSUPPORTEDVDIFORMATQcow2 format) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportVdiSnapshotContentRequestBuilder(id, format);
+    return exportVdiSnapshotContentWithHttpInfo(id, format, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vdi-snapshot, action: export  Export VDI-snapshot content
+   * @param id  (required)
+   * @param format  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;byte[]&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<byte[]> exportVdiSnapshotContentWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull ExcludeSUPPORTEDVDIFORMATQcow2 format, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = exportVdiSnapshotContentRequestBuilder(id, format, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -623,11 +915,13 @@ public class VdisApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("exportVdiSnapshotContent", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<byte[]>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -635,15 +929,21 @@ public class VdisApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        byte[] responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<byte[]>() {});
+        
 
         return new ApiResponse<byte[]>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<byte[]>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -654,7 +954,7 @@ public class VdisApi {
     }
   }
 
-  private HttpRequest.Builder exportVdiSnapshotContentRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull ExcludeSUPPORTEDVDIFORMATQcow2 format) throws ApiException {
+  private HttpRequest.Builder exportVdiSnapshotContentRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull ExcludeSUPPORTEDVDIFORMATQcow2 format, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling exportVdiSnapshotContent");
@@ -678,6 +978,8 @@ public class VdisApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -692,7 +994,19 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public UnbrandXoVdi getVdi(@javax.annotation.Nonnull String id) throws ApiException {
-    ApiResponse<UnbrandXoVdi> localVarResponse = getVdiWithHttpInfo(id);
+    return getVdi(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vdi, action: read
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return UnbrandXoVdi
+   * @throws ApiException if fails to make API call
+   */
+  public UnbrandXoVdi getVdi(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<UnbrandXoVdi> localVarResponse = getVdiWithHttpInfo(id, headers);
     return localVarResponse.getData();
   }
 
@@ -704,7 +1018,19 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<UnbrandXoVdi> getVdiWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVdiRequestBuilder(id);
+    return getVdiWithHttpInfo(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vdi, action: read
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UnbrandXoVdi&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UnbrandXoVdi> getVdiWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVdiRequestBuilder(id, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -712,11 +1038,13 @@ public class VdisApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVdi", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<UnbrandXoVdi>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -724,15 +1052,21 @@ public class VdisApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UnbrandXoVdi responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnbrandXoVdi>() {});
+        
 
         return new ApiResponse<UnbrandXoVdi>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnbrandXoVdi>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -743,7 +1077,7 @@ public class VdisApi {
     }
   }
 
-  private HttpRequest.Builder getVdiRequestBuilder(@javax.annotation.Nonnull String id) throws ApiException {
+  private HttpRequest.Builder getVdiRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVdi");
@@ -762,6 +1096,8 @@ public class VdisApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -781,7 +1117,24 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoAlarm getVdiAlarms(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoAlarm> localVarResponse = getVdiAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getVdiAlarms(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all alarms that match the following privilege: - resource: alarm, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoAlarm
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoAlarm getVdiAlarms(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoAlarm> localVarResponse = getVdiAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -798,7 +1151,24 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVdiAlarmsWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVdiAlarmsRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getVdiAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all alarms that match the following privilege: - resource: alarm, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoAlarm&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVdiAlarmsWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVdiAlarmsRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -806,11 +1176,13 @@ public class VdisApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVdiAlarms", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoAlarm>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -818,15 +1190,21 @@ public class VdisApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoAlarm responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoAlarm>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoAlarm>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoAlarm>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -837,7 +1215,7 @@ public class VdisApi {
     }
   }
 
-  private HttpRequest.Builder getVdiAlarmsRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVdiAlarmsRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVdiAlarms");
@@ -879,6 +1257,8 @@ public class VdisApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -898,7 +1278,24 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoMessage getVdiMessages(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoMessage> localVarResponse = getVdiMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getVdiMessages(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all messages that match the following privilege: - resource: message, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoMessage
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoMessage getVdiMessages(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoMessage> localVarResponse = getVdiMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -915,7 +1312,24 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoMessage> getVdiMessagesWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVdiMessagesRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getVdiMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all messages that match the following privilege: - resource: message, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoMessage&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoMessage> getVdiMessagesWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVdiMessagesRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -923,11 +1337,13 @@ public class VdisApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVdiMessages", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoMessage>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -935,15 +1351,21 @@ public class VdisApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoMessage responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoMessage>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoMessage>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoMessage>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -954,7 +1376,7 @@ public class VdisApi {
     }
   }
 
-  private HttpRequest.Builder getVdiMessagesRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVdiMessagesRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVdiMessages");
@@ -996,6 +1418,8 @@ public class VdisApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1010,7 +1434,19 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public UnbrandXoVdiSnapshot getVdiSnapshot(@javax.annotation.Nonnull String id) throws ApiException {
-    ApiResponse<UnbrandXoVdiSnapshot> localVarResponse = getVdiSnapshotWithHttpInfo(id);
+    return getVdiSnapshot(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vdi-snapshot, action: read
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return UnbrandXoVdiSnapshot
+   * @throws ApiException if fails to make API call
+   */
+  public UnbrandXoVdiSnapshot getVdiSnapshot(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<UnbrandXoVdiSnapshot> localVarResponse = getVdiSnapshotWithHttpInfo(id, headers);
     return localVarResponse.getData();
   }
 
@@ -1022,7 +1458,19 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<UnbrandXoVdiSnapshot> getVdiSnapshotWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVdiSnapshotRequestBuilder(id);
+    return getVdiSnapshotWithHttpInfo(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vdi-snapshot, action: read
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UnbrandXoVdiSnapshot&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UnbrandXoVdiSnapshot> getVdiSnapshotWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVdiSnapshotRequestBuilder(id, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1030,11 +1478,13 @@ public class VdisApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVdiSnapshot", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<UnbrandXoVdiSnapshot>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1042,15 +1492,21 @@ public class VdisApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UnbrandXoVdiSnapshot responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnbrandXoVdiSnapshot>() {});
+        
 
         return new ApiResponse<UnbrandXoVdiSnapshot>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnbrandXoVdiSnapshot>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1061,7 +1517,7 @@ public class VdisApi {
     }
   }
 
-  private HttpRequest.Builder getVdiSnapshotRequestBuilder(@javax.annotation.Nonnull String id) throws ApiException {
+  private HttpRequest.Builder getVdiSnapshotRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVdiSnapshot");
@@ -1080,6 +1536,8 @@ public class VdisApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1099,7 +1557,24 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoAlarm getVdiSnapshotAlarms(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoAlarm> localVarResponse = getVdiSnapshotAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getVdiSnapshotAlarms(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all alarms that match the following privilege: - resource: alarm, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoAlarm
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoAlarm getVdiSnapshotAlarms(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoAlarm> localVarResponse = getVdiSnapshotAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -1116,7 +1591,24 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVdiSnapshotAlarmsWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVdiSnapshotAlarmsRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getVdiSnapshotAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all alarms that match the following privilege: - resource: alarm, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoAlarm&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVdiSnapshotAlarmsWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVdiSnapshotAlarmsRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1124,11 +1616,13 @@ public class VdisApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVdiSnapshotAlarms", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoAlarm>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1136,15 +1630,21 @@ public class VdisApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoAlarm responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoAlarm>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoAlarm>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoAlarm>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1155,7 +1655,7 @@ public class VdisApi {
     }
   }
 
-  private HttpRequest.Builder getVdiSnapshotAlarmsRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVdiSnapshotAlarmsRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVdiSnapshotAlarms");
@@ -1197,6 +1697,8 @@ public class VdisApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1216,7 +1718,24 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoMessage getVdiSnapshotMessages(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoMessage> localVarResponse = getVdiSnapshotMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getVdiSnapshotMessages(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all messages that match the following privilege: - resource: message, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoMessage
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoMessage getVdiSnapshotMessages(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoMessage> localVarResponse = getVdiSnapshotMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -1233,7 +1752,24 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoMessage> getVdiSnapshotMessagesWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVdiSnapshotMessagesRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getVdiSnapshotMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all messages that match the following privilege: - resource: message, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoMessage&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoMessage> getVdiSnapshotMessagesWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVdiSnapshotMessagesRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1241,11 +1777,13 @@ public class VdisApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVdiSnapshotMessages", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoMessage>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1253,15 +1791,21 @@ public class VdisApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoMessage responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoMessage>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoMessage>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoMessage>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1272,7 +1816,7 @@ public class VdisApi {
     }
   }
 
-  private HttpRequest.Builder getVdiSnapshotMessagesRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVdiSnapshotMessagesRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVdiSnapshotMessages");
@@ -1314,6 +1858,8 @@ public class VdisApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1333,7 +1879,24 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoTask getVdiSnapshotTasks(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoTask> localVarResponse = getVdiSnapshotTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getVdiSnapshotTasks(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all tasks that match the following privilege: - resource: task, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoTask
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoTask getVdiSnapshotTasks(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoTask> localVarResponse = getVdiSnapshotTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -1350,7 +1913,24 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoTask> getVdiSnapshotTasksWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVdiSnapshotTasksRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getVdiSnapshotTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all tasks that match the following privilege: - resource: task, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoTask&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoTask> getVdiSnapshotTasksWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVdiSnapshotTasksRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1358,11 +1938,13 @@ public class VdisApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVdiSnapshotTasks", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoTask>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1370,15 +1952,21 @@ public class VdisApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoTask responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoTask>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoTask>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoTask>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1389,7 +1977,7 @@ public class VdisApi {
     }
   }
 
-  private HttpRequest.Builder getVdiSnapshotTasksRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVdiSnapshotTasksRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVdiSnapshotTasks");
@@ -1431,6 +2019,8 @@ public class VdisApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1449,7 +2039,23 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoVdiSnapshot getVdiSnapshots(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoVdiSnapshot> localVarResponse = getVdiSnapshotsWithHttpInfo(fields, ndjson, markdown, filter, limit);
+    return getVdiSnapshots(fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all VDI snapshots that match the following privilege: - resource: vdi-snapshot, action: read
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoVdiSnapshot
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoVdiSnapshot getVdiSnapshots(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoVdiSnapshot> localVarResponse = getVdiSnapshotsWithHttpInfo(fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -1465,7 +2071,23 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoVdiSnapshot> getVdiSnapshotsWithHttpInfo(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVdiSnapshotsRequestBuilder(fields, ndjson, markdown, filter, limit);
+    return getVdiSnapshotsWithHttpInfo(fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all VDI snapshots that match the following privilege: - resource: vdi-snapshot, action: read
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoVdiSnapshot&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoVdiSnapshot> getVdiSnapshotsWithHttpInfo(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVdiSnapshotsRequestBuilder(fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1473,11 +2095,13 @@ public class VdisApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVdiSnapshots", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoVdiSnapshot>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1485,15 +2109,21 @@ public class VdisApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoVdiSnapshot responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoVdiSnapshot>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoVdiSnapshot>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoVdiSnapshot>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1504,7 +2134,7 @@ public class VdisApi {
     }
   }
 
-  private HttpRequest.Builder getVdiSnapshotsRequestBuilder(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVdiSnapshotsRequestBuilder(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -1541,6 +2171,8 @@ public class VdisApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1560,7 +2192,24 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoTask getVdiTasks(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoTask> localVarResponse = getVdiTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getVdiTasks(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all tasks that match the following privilege: - resource: task, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoTask
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoTask getVdiTasks(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoTask> localVarResponse = getVdiTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -1577,7 +2226,24 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoTask> getVdiTasksWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVdiTasksRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getVdiTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all tasks that match the following privilege: - resource: task, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoTask&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoTask> getVdiTasksWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVdiTasksRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1585,11 +2251,13 @@ public class VdisApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVdiTasks", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoTask>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1597,15 +2265,21 @@ public class VdisApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoTask responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoTask>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoTask>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoTask>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1616,7 +2290,7 @@ public class VdisApi {
     }
   }
 
-  private HttpRequest.Builder getVdiTasksRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVdiTasksRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVdiTasks");
@@ -1658,6 +2332,8 @@ public class VdisApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1676,7 +2352,23 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoVdi getVdis(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoVdi> localVarResponse = getVdisWithHttpInfo(fields, ndjson, markdown, filter, limit);
+    return getVdis(fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all VDIs that match the following privilege: - resource: vdi, action: read
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoVdi
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoVdi getVdis(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoVdi> localVarResponse = getVdisWithHttpInfo(fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -1692,7 +2384,23 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoVdi> getVdisWithHttpInfo(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVdisRequestBuilder(fields, ndjson, markdown, filter, limit);
+    return getVdisWithHttpInfo(fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all VDIs that match the following privilege: - resource: vdi, action: read
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoVdi&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoVdi> getVdisWithHttpInfo(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVdisRequestBuilder(fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1700,11 +2408,13 @@ public class VdisApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVdis", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoVdi>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1712,15 +2422,21 @@ public class VdisApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoVdi responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoVdi>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoVdi>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoVdi>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1731,7 +2447,7 @@ public class VdisApi {
     }
   }
 
-  private HttpRequest.Builder getVdisRequestBuilder(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVdisRequestBuilder(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -1768,6 +2484,8 @@ public class VdisApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1787,7 +2505,24 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoVdi getVmControllerVdis(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoVdi> localVarResponse = getVmControllerVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getVmControllerVdis(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all VDIs that match the following privilege: - resource: vdi, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoVdi
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoVdi getVmControllerVdis(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoVdi> localVarResponse = getVmControllerVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -1804,7 +2539,24 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoVdi> getVmControllerVdisWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVmControllerVdisRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getVmControllerVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all VDIs that match the following privilege: - resource: vdi, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoVdi&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoVdi> getVmControllerVdisWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVmControllerVdisRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1812,11 +2564,13 @@ public class VdisApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVmControllerVdis", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoVdi>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1824,15 +2578,21 @@ public class VdisApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoVdi responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoVdi>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoVdi>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoVdi>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1843,7 +2603,7 @@ public class VdisApi {
     }
   }
 
-  private HttpRequest.Builder getVmControllerVdisRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVmControllerVdisRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVmControllerVdis");
@@ -1885,6 +2645,8 @@ public class VdisApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1904,7 +2666,24 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoVdiSnapshot getVmSnapshotVdis(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoVdiSnapshot> localVarResponse = getVmSnapshotVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getVmSnapshotVdis(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all VDIs that match the following privilege: - resource: vdi, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoVdiSnapshot
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoVdiSnapshot getVmSnapshotVdis(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoVdiSnapshot> localVarResponse = getVmSnapshotVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -1921,7 +2700,24 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoVdiSnapshot> getVmSnapshotVdisWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVmSnapshotVdisRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getVmSnapshotVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all VDIs that match the following privilege: - resource: vdi, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoVdiSnapshot&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoVdiSnapshot> getVmSnapshotVdisWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVmSnapshotVdisRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1929,11 +2725,13 @@ public class VdisApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVmSnapshotVdis", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoVdiSnapshot>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1941,15 +2739,21 @@ public class VdisApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoVdiSnapshot responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoVdiSnapshot>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoVdiSnapshot>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoVdiSnapshot>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1960,7 +2764,7 @@ public class VdisApi {
     }
   }
 
-  private HttpRequest.Builder getVmSnapshotVdisRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVmSnapshotVdisRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVmSnapshotVdis");
@@ -2002,6 +2806,8 @@ public class VdisApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -2021,7 +2827,24 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoVdi getVmTemplateVdis(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoVdi> localVarResponse = getVmTemplateVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getVmTemplateVdis(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all VDIs that match the following privilege: - resource: vdi, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoVdi
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoVdi getVmTemplateVdis(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoVdi> localVarResponse = getVmTemplateVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -2038,7 +2861,24 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoVdi> getVmTemplateVdisWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVmTemplateVdisRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getVmTemplateVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all VDIs that match the following privilege: - resource: vdi, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoVdi&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoVdi> getVmTemplateVdisWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVmTemplateVdisRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2046,11 +2886,13 @@ public class VdisApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVmTemplateVdis", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoVdi>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -2058,15 +2900,21 @@ public class VdisApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoVdi responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoVdi>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoVdi>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoVdi>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -2077,7 +2925,7 @@ public class VdisApi {
     }
   }
 
-  private HttpRequest.Builder getVmTemplateVdisRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVmTemplateVdisRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVmTemplateVdis");
@@ -2119,6 +2967,8 @@ public class VdisApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -2138,7 +2988,24 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoVdi getVmVdis(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoVdi> localVarResponse = getVmVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getVmVdis(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all VDIs that match the following privilege: - resource: vdi, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoVdi
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoVdi getVmVdis(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoVdi> localVarResponse = getVmVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -2155,7 +3022,24 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoVdi> getVmVdisWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVmVdisRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getVmVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all VDIs that match the following privilege: - resource: vdi, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoVdi&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoVdi> getVmVdisWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVmVdisRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2163,11 +3047,13 @@ public class VdisApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVmVdis", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoVdi>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -2175,15 +3061,21 @@ public class VdisApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoVdi responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoVdi>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoVdi>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoVdi>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -2194,7 +3086,7 @@ public class VdisApi {
     }
   }
 
-  private HttpRequest.Builder getVmVdisRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVmVdisRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVmVdis");
@@ -2236,6 +3128,8 @@ public class VdisApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -2251,7 +3145,20 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public void importVdiContent(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull ExcludeSUPPORTEDVDIFORMATQcow2 format, @javax.annotation.Nonnull File body) throws ApiException {
-    importVdiContentWithHttpInfo(id, format, body);
+    importVdiContent(id, format, body, null);
+  }
+
+  /**
+   * 
+   *  Import VDI content  Required privilege: - resource: vdi, action: import-content
+   * @param id  (required)
+   * @param format  (required)
+   * @param body  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void importVdiContent(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull ExcludeSUPPORTEDVDIFORMATQcow2 format, @javax.annotation.Nonnull File body, Map<String, String> headers) throws ApiException {
+    importVdiContentWithHttpInfo(id, format, body, headers);
   }
 
   /**
@@ -2264,7 +3171,21 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> importVdiContentWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull ExcludeSUPPORTEDVDIFORMATQcow2 format, @javax.annotation.Nonnull File body) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = importVdiContentRequestBuilder(id, format, body);
+    return importVdiContentWithHttpInfo(id, format, body, null);
+  }
+
+  /**
+   * 
+   *  Import VDI content  Required privilege: - resource: vdi, action: import-content
+   * @param id  (required)
+   * @param format  (required)
+   * @param body  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> importVdiContentWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull ExcludeSUPPORTEDVDIFORMATQcow2 format, @javax.annotation.Nonnull File body, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = importVdiContentRequestBuilder(id, format, body, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2272,9 +3193,14 @@ public class VdisApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("importVdiContent", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -2282,11 +3208,9 @@ public class VdisApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -2297,7 +3221,7 @@ public class VdisApi {
     }
   }
 
-  private HttpRequest.Builder importVdiContentRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull ExcludeSUPPORTEDVDIFORMATQcow2 format, @javax.annotation.Nonnull File body) throws ApiException {
+  private HttpRequest.Builder importVdiContentRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull ExcludeSUPPORTEDVDIFORMATQcow2 format, @javax.annotation.Nonnull File body, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling importVdiContent");
@@ -2331,6 +3255,8 @@ public class VdisApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -2346,7 +3272,20 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public void migrateVdi(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull MigrateVdiRequest migrateVdiRequest, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    migrateVdiWithHttpInfo(id, migrateVdiRequest, sync);
+    migrateVdi(id, migrateVdiRequest, sync, null);
+  }
+
+  /**
+   * 
+   * Migrate a VDI to another SR.  Required privileges: - resource: vdi, action: migrate-send - resource: sr, action: migrate-receive (on the target SR)  Note: After migration, the VDI will have a new ID. The new ID is returned in the response.
+   * @param id  (required)
+   * @param migrateVdiRequest  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void migrateVdi(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull MigrateVdiRequest migrateVdiRequest, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    migrateVdiWithHttpInfo(id, migrateVdiRequest, sync, headers);
   }
 
   /**
@@ -2359,7 +3298,21 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> migrateVdiWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull MigrateVdiRequest migrateVdiRequest, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = migrateVdiRequestBuilder(id, migrateVdiRequest, sync);
+    return migrateVdiWithHttpInfo(id, migrateVdiRequest, sync, null);
+  }
+
+  /**
+   * 
+   * Migrate a VDI to another SR.  Required privileges: - resource: vdi, action: migrate-send - resource: sr, action: migrate-receive (on the target SR)  Note: After migration, the VDI will have a new ID. The new ID is returned in the response.
+   * @param id  (required)
+   * @param migrateVdiRequest  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> migrateVdiWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull MigrateVdiRequest migrateVdiRequest, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = migrateVdiRequestBuilder(id, migrateVdiRequest, sync, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2367,9 +3320,14 @@ public class VdisApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("migrateVdi", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -2377,11 +3335,9 @@ public class VdisApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -2392,7 +3348,7 @@ public class VdisApi {
     }
   }
 
-  private HttpRequest.Builder migrateVdiRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull MigrateVdiRequest migrateVdiRequest, @javax.annotation.Nullable Boolean sync) throws ApiException {
+  private HttpRequest.Builder migrateVdiRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull MigrateVdiRequest migrateVdiRequest, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling migrateVdi");
@@ -2436,6 +3392,8 @@ public class VdisApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -2450,7 +3408,19 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public void putVdiSnapshotTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    putVdiSnapshotTagWithHttpInfo(id, tag);
+    putVdiSnapshotTag(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vdi-snapshot, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void putVdiSnapshotTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    putVdiSnapshotTagWithHttpInfo(id, tag, headers);
   }
 
   /**
@@ -2462,7 +3432,20 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> putVdiSnapshotTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = putVdiSnapshotTagRequestBuilder(id, tag);
+    return putVdiSnapshotTagWithHttpInfo(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vdi-snapshot, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> putVdiSnapshotTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = putVdiSnapshotTagRequestBuilder(id, tag, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2470,9 +3453,14 @@ public class VdisApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("putVdiSnapshotTag", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -2480,11 +3468,9 @@ public class VdisApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -2495,7 +3481,7 @@ public class VdisApi {
     }
   }
 
-  private HttpRequest.Builder putVdiSnapshotTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
+  private HttpRequest.Builder putVdiSnapshotTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling putVdiSnapshotTag");
@@ -2519,6 +3505,8 @@ public class VdisApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -2533,7 +3521,19 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public void putVdiTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    putVdiTagWithHttpInfo(id, tag);
+    putVdiTag(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vdi, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void putVdiTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    putVdiTagWithHttpInfo(id, tag, headers);
   }
 
   /**
@@ -2545,7 +3545,20 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> putVdiTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = putVdiTagRequestBuilder(id, tag);
+    return putVdiTagWithHttpInfo(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vdi, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> putVdiTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = putVdiTagRequestBuilder(id, tag, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2553,9 +3566,14 @@ public class VdisApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("putVdiTag", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -2563,11 +3581,9 @@ public class VdisApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -2578,7 +3594,7 @@ public class VdisApi {
     }
   }
 
-  private HttpRequest.Builder putVdiTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
+  private HttpRequest.Builder putVdiTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling putVdiTag");
@@ -2602,6 +3618,8 @@ public class VdisApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -2620,7 +3638,23 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public CreateAclV2Privilege201Response srImportVdi(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull File body, @javax.annotation.Nullable String nameLabel, @javax.annotation.Nullable String nameDescription, @javax.annotation.Nullable Boolean raw) throws ApiException {
-    ApiResponse<CreateAclV2Privilege201Response> localVarResponse = srImportVdiWithHttpInfo(id, body, nameLabel, nameDescription, raw);
+    return srImportVdi(id, body, nameLabel, nameDescription, raw, null);
+  }
+
+  /**
+   * 
+   * Import an exported VDI  Required privilege: - resource: sr, action: import:vdi
+   * @param id  (required)
+   * @param body  (required)
+   * @param nameLabel  (optional)
+   * @param nameDescription  (optional)
+   * @param raw  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateAclV2Privilege201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateAclV2Privilege201Response srImportVdi(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull File body, @javax.annotation.Nullable String nameLabel, @javax.annotation.Nullable String nameDescription, @javax.annotation.Nullable Boolean raw, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateAclV2Privilege201Response> localVarResponse = srImportVdiWithHttpInfo(id, body, nameLabel, nameDescription, raw, headers);
     return localVarResponse.getData();
   }
 
@@ -2636,7 +3670,23 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateAclV2Privilege201Response> srImportVdiWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull File body, @javax.annotation.Nullable String nameLabel, @javax.annotation.Nullable String nameDescription, @javax.annotation.Nullable Boolean raw) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = srImportVdiRequestBuilder(id, body, nameLabel, nameDescription, raw);
+    return srImportVdiWithHttpInfo(id, body, nameLabel, nameDescription, raw, null);
+  }
+
+  /**
+   * 
+   * Import an exported VDI  Required privilege: - resource: sr, action: import:vdi
+   * @param id  (required)
+   * @param body  (required)
+   * @param nameLabel  (optional)
+   * @param nameDescription  (optional)
+   * @param raw  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateAclV2Privilege201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateAclV2Privilege201Response> srImportVdiWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull File body, @javax.annotation.Nullable String nameLabel, @javax.annotation.Nullable String nameDescription, @javax.annotation.Nullable Boolean raw, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = srImportVdiRequestBuilder(id, body, nameLabel, nameDescription, raw, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2644,11 +3694,13 @@ public class VdisApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("srImportVdi", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateAclV2Privilege201Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -2656,15 +3708,21 @@ public class VdisApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateAclV2Privilege201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateAclV2Privilege201Response>() {});
+        
 
         return new ApiResponse<CreateAclV2Privilege201Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateAclV2Privilege201Response>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -2675,7 +3733,7 @@ public class VdisApi {
     }
   }
 
-  private HttpRequest.Builder srImportVdiRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull File body, @javax.annotation.Nullable String nameLabel, @javax.annotation.Nullable String nameDescription, @javax.annotation.Nullable Boolean raw) throws ApiException {
+  private HttpRequest.Builder srImportVdiRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull File body, @javax.annotation.Nullable String nameLabel, @javax.annotation.Nullable String nameDescription, @javax.annotation.Nullable Boolean raw, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling srImportVdi");
@@ -2723,6 +3781,8 @@ public class VdisApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -2737,7 +3797,19 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public void updateVdi(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateVdiRequestBody updateVdiRequestBody) throws ApiException {
-    updateVdiWithHttpInfo(id, updateVdiRequestBody);
+    updateVdi(id, updateVdiRequestBody, null);
+  }
+
+  /**
+   * 
+   * Partial update of a VDI. Only the fields present in the body are modified; everything else is left untouched.  Operations are applied sequentially: if one fails, previously applied changes are not rolled back.  &#x60;size&#x60; is expressed in bytes and can only be increased: a VDI cannot be shrunk.  Required privilege per field provided in the body: - resource: vdi, action: update:&amp;lt;field&amp;gt;
+   * @param id  (required)
+   * @param updateVdiRequestBody  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void updateVdi(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateVdiRequestBody updateVdiRequestBody, Map<String, String> headers) throws ApiException {
+    updateVdiWithHttpInfo(id, updateVdiRequestBody, headers);
   }
 
   /**
@@ -2749,7 +3821,20 @@ public class VdisApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> updateVdiWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateVdiRequestBody updateVdiRequestBody) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = updateVdiRequestBuilder(id, updateVdiRequestBody);
+    return updateVdiWithHttpInfo(id, updateVdiRequestBody, null);
+  }
+
+  /**
+   * 
+   * Partial update of a VDI. Only the fields present in the body are modified; everything else is left untouched.  Operations are applied sequentially: if one fails, previously applied changes are not rolled back.  &#x60;size&#x60; is expressed in bytes and can only be increased: a VDI cannot be shrunk.  Required privilege per field provided in the body: - resource: vdi, action: update:&amp;lt;field&amp;gt;
+   * @param id  (required)
+   * @param updateVdiRequestBody  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> updateVdiWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateVdiRequestBody updateVdiRequestBody, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateVdiRequestBuilder(id, updateVdiRequestBody, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2757,9 +3842,14 @@ public class VdisApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("updateVdi", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -2767,11 +3857,9 @@ public class VdisApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -2782,7 +3870,7 @@ public class VdisApi {
     }
   }
 
-  private HttpRequest.Builder updateVdiRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateVdiRequestBody updateVdiRequestBody) throws ApiException {
+  private HttpRequest.Builder updateVdiRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateVdiRequestBody updateVdiRequestBody, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling updateVdi");
@@ -2811,6 +3899,8 @@ public class VdisApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }

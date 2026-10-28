@@ -57,7 +57,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.addHost(id, addHostRequest, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PoolsApi->addHost: $e\n');
 }
 ```
@@ -111,7 +111,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.createBondedNetwork(id, unbrandCreateBondedNetworkBody, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PoolsApi->createBondedNetwork: $e\n');
 }
 ```
@@ -165,7 +165,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.createInternalNetwork(id, body, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PoolsApi->createInternalNetwork: $e\n');
 }
 ```
@@ -219,7 +219,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.createNetwork(id, unbrandCreateNetworkBody, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PoolsApi->createNetwork: $e\n');
 }
 ```
@@ -273,7 +273,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.createVm(id, unbrandCreateVmBody, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PoolsApi->createVm: $e\n');
 }
 ```
@@ -325,7 +325,7 @@ final String tag = from-rest-api; // String |
 
 try {
     api.deletePoolTag(id, tag);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PoolsApi->deletePoolTag: $e\n');
 }
 ```
@@ -377,7 +377,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.emergencyShutdown(id, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PoolsApi->emergencyShutdown: $e\n');
 }
 ```
@@ -428,7 +428,7 @@ final String id = 355ee47d-ff4c-4924-3db2-fd86ae629676; // String |
 try {
     final response = api.getPool(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PoolsApi->getPool: $e\n');
 }
 ```
@@ -483,7 +483,7 @@ final double limit = 42; // double |
 try {
     final response = api.getPoolAlarms(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PoolsApi->getPoolAlarms: $e\n');
 }
 ```
@@ -539,7 +539,7 @@ final bool ndjson = true; // bool |
 try {
     final response = api.getPoolDashboard(id, ndjson);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PoolsApi->getPoolDashboard: $e\n');
 }
 ```
@@ -595,7 +595,7 @@ final double limit = 42; // double |
 try {
     final response = api.getPoolMessages(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PoolsApi->getPoolMessages: $e\n');
 }
 ```
@@ -650,7 +650,7 @@ final String id = 355ee47d-ff4c-4924-3db2-fd86ae629676; // String |
 try {
     final response = api.getPoolMissingPatches(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PoolsApi->getPoolMissingPatches: $e\n');
 }
 ```
@@ -705,7 +705,7 @@ final double limit = 42; // double |
 try {
     final response = api.getPoolTasks(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PoolsApi->getPoolTasks: $e\n');
 }
 ```
@@ -764,7 +764,7 @@ final double limit = 42; // double |
 try {
     final response = api.getPools(fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PoolsApi->getPools: $e\n');
 }
 ```
@@ -819,7 +819,7 @@ final XapiStatsGranularity granularity = ; // XapiStatsGranularity |
 try {
     final response = api.getStats(id, granularity);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PoolsApi->getStats: $e\n');
 }
 ```
@@ -872,7 +872,7 @@ final String sr = c787b75c-3e0d-70fa-d0c3-cbfd382d7e33; // String |
 try {
     final response = api.importVm(id, body, sr);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PoolsApi->importVm: $e\n');
 }
 ```
@@ -926,7 +926,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.managementReconfigure(id, managementReconfigureRequest1, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PoolsApi->managementReconfigure: $e\n');
 }
 ```
@@ -978,7 +978,7 @@ final String tag = from-rest-api; // String |
 
 try {
     api.putPoolTag(id, tag);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PoolsApi->putPoolTag: $e\n');
 }
 ```
@@ -1031,7 +1031,7 @@ final RollingRebootRequest rollingRebootRequest = {"shutdownPinnedVms":true}; //
 try {
     final response = api.rollingReboot(id, sync_, rollingRebootRequest);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PoolsApi->rollingReboot: $e\n');
 }
 ```
@@ -1085,7 +1085,7 @@ final RollingRebootRequest rollingRebootRequest = {"shutdownPinnedVms":true}; //
 try {
     final response = api.rollingUpdate(id, sync_, rollingRebootRequest);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PoolsApi->rollingUpdate: $e\n');
 }
 ```

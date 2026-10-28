@@ -95,15 +95,17 @@ class _$PartialUnbrandXoHostCpusSerializer
         case r'cores':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.cores = valueDes;
           break;
         case r'sockets':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.sockets = valueDes;
           break;
         default:

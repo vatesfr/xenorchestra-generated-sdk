@@ -119,29 +119,34 @@ class _$UpdateUserRequestBodySerializer
         case r'name':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.name = valueDes;
           break;
         case r'password':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.password = valueDes;
           break;
         case r'permission':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(UpdateUserRequestBodyPermissionEnum),
-          ) as UpdateUserRequestBodyPermissionEnum;
+            specifiedType:
+                const FullType.nullable(UpdateUserRequestBodyPermissionEnum),
+          ) as UpdateUserRequestBodyPermissionEnum?;
+          if (valueDes == null) continue;
           result.permission = valueDes;
           break;
         case r'preferences':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.preferences = valueDes;
           break;
         default:

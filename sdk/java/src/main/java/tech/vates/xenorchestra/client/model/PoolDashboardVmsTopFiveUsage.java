@@ -41,7 +41,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PoolDashboardVmsTopFiveUsage.JSON_PROPERTY_IS_EXPIRED,
   PoolDashboardVmsTopFiveUsage.JSON_PROPERTY_RAM
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PoolDashboardVmsTopFiveUsage {
   public static final String JSON_PROPERTY_CPU = "cpu";
   @javax.annotation.Nonnull
@@ -76,14 +76,14 @@ public class PoolDashboardVmsTopFiveUsage {
    * @return cpu
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_CPU)
+  @JsonProperty(value = JSON_PROPERTY_CPU, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<PoolDashboardHostsTopFiveUsageCpuInner> getCpu() {
     return cpu;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CPU)
+  @JsonProperty(value = JSON_PROPERTY_CPU, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCpu(@javax.annotation.Nonnull List<PoolDashboardHostsTopFiveUsageCpuInner> cpu) {
     this.cpu = cpu;
@@ -100,14 +100,14 @@ public class PoolDashboardVmsTopFiveUsage {
    * @return isExpired
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_IS_EXPIRED)
+  @JsonProperty(value = JSON_PROPERTY_IS_EXPIRED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getIsExpired() {
     return isExpired;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_IS_EXPIRED)
+  @JsonProperty(value = JSON_PROPERTY_IS_EXPIRED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIsExpired(@javax.annotation.Nullable Boolean isExpired) {
     this.isExpired = isExpired;
@@ -132,14 +132,14 @@ public class PoolDashboardVmsTopFiveUsage {
    * @return ram
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_RAM)
+  @JsonProperty(value = JSON_PROPERTY_RAM, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<PoolDashboardVmsTopFiveUsageRamInner> getRam() {
     return ram;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_RAM)
+  @JsonProperty(value = JSON_PROPERTY_RAM, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setRam(@javax.annotation.Nonnull List<PoolDashboardVmsTopFiveUsageRamInner> ram) {
     this.ram = ram;
@@ -184,10 +184,7 @@ public class PoolDashboardVmsTopFiveUsage {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -226,23 +223,23 @@ public class PoolDashboardVmsTopFiveUsage {
     if (getCpu() != null) {
       for (int i = 0; i < getCpu().size(); i++) {
         if (getCpu().get(i) != null) {
-          joiner.add(getCpu().get(i).toUrlQueryString(String.format("%scpu%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+          joiner.add(getCpu().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%scpu%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
     }
 
     // add `isExpired` to the URL query string
     if (getIsExpired() != null) {
-      joiner.add(String.format("%sisExpired%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsExpired()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sisExpired%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsExpired()))));
     }
 
     // add `ram` to the URL query string
     if (getRam() != null) {
       for (int i = 0; i < getRam().size(); i++) {
         if (getRam().get(i) != null) {
-          joiner.add(getRam().get(i).toUrlQueryString(String.format("%sram%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+          joiner.add(getRam().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sram%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
     }

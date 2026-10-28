@@ -22,6 +22,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from xenorchestra_client.models.partial_record_vmoperations_boolean_or_string_or_null_assert_operation_valid import PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class PartialRecordVMOPERATIONSBooleanOrStringOrNull(BaseModel):
     """
@@ -79,7 +80,8 @@ class PartialRecordVMOPERATIONSBooleanOrStringOrNull(BaseModel):
     __properties: ClassVar[List[str]] = ["assert_operation_valid", "awaiting_memory_live", "call_plugin", "changing_NVRAM", "changing_VCPUs", "changing_VCPUs_live", "changing_dynamic_range", "changing_memory_limits", "changing_memory_live", "changing_shadow_memory", "changing_shadow_memory_live", "changing_static_range", "checkpoint", "clean_reboot", "clean_shutdown", "clone", "copy", "create_template", "create_vtpm", "csvm", "data_source_op", "destroy", "export", "get_boot_record", "hard_reboot", "hard_shutdown", "import", "make_into_template", "metadata_export", "migrate_send", "pause", "pool_migrate", "power_state_reset", "provision", "query_services", "resume", "resume_on", "revert", "reverting", "send_sysrq", "send_trigger", "shutdown", "snapshot", "snapshot_with_quiesce", "start", "start_on", "suspend", "unpause", "update_allowed_operations"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -91,8 +93,7 @@ class PartialRecordVMOPERATIONSBooleanOrStringOrNull(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

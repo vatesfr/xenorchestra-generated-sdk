@@ -117,8 +117,9 @@ class _$PartialUnbrandXoVmTemplateTemplateInfoSerializer
         case r'arch':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.arch = valueDes;
           break;
         case r'disks':
@@ -139,8 +140,9 @@ class _$PartialUnbrandXoVmTemplateTemplateInfoSerializer
         case r'install_repository':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.installRepository = valueDes;
           break;
         default:

@@ -46,7 +46,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PartialUnbrandXoHostSupplementalPacksAnyOfInner.JSON_PROPERTY_VDI,
   PartialUnbrandXoHostSupplementalPacksAnyOfInner.JSON_PROPERTY_VERSION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PartialUnbrandXoHostSupplementalPacksAnyOfInner {
   public static final String JSON_PROPERTY_AUTHOR = "author";
   @javax.annotation.Nonnull
@@ -93,14 +93,14 @@ public class PartialUnbrandXoHostSupplementalPacksAnyOfInner {
    * @return author
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_AUTHOR)
+  @JsonProperty(value = JSON_PROPERTY_AUTHOR, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getAuthor() {
     return author;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_AUTHOR)
+  @JsonProperty(value = JSON_PROPERTY_AUTHOR, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setAuthor(@javax.annotation.Nonnull String author) {
     this.author = author;
@@ -117,14 +117,14 @@ public class PartialUnbrandXoHostSupplementalPacksAnyOfInner {
    * @return description
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getDescription() {
     return description;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDescription(@javax.annotation.Nonnull String description) {
     this.description = description;
@@ -141,14 +141,14 @@ public class PartialUnbrandXoHostSupplementalPacksAnyOfInner {
    * @return guidance
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_GUIDANCE)
+  @JsonProperty(value = JSON_PROPERTY_GUIDANCE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getGuidance() {
     return guidance;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_GUIDANCE)
+  @JsonProperty(value = JSON_PROPERTY_GUIDANCE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setGuidance(@javax.annotation.Nonnull String guidance) {
     this.guidance = guidance;
@@ -173,14 +173,14 @@ public class PartialUnbrandXoHostSupplementalPacksAnyOfInner {
    * @return hosts
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_HOSTS)
+  @JsonProperty(value = JSON_PROPERTY_HOSTS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<BrandedHost> getHosts() {
     return hosts;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_HOSTS)
+  @JsonProperty(value = JSON_PROPERTY_HOSTS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setHosts(@javax.annotation.Nonnull List<BrandedHost> hosts) {
     this.hosts = hosts;
@@ -197,14 +197,14 @@ public class PartialUnbrandXoHostSupplementalPacksAnyOfInner {
    * @return name
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getName() {
     return name;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setName(@javax.annotation.Nonnull String name) {
     this.name = name;
@@ -221,14 +221,14 @@ public class PartialUnbrandXoHostSupplementalPacksAnyOfInner {
    * @return size
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonProperty(value = JSON_PROPERTY_SIZE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getSize() {
     return size;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonProperty(value = JSON_PROPERTY_SIZE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSize(@javax.annotation.Nonnull Double size) {
     this.size = size;
@@ -245,14 +245,14 @@ public class PartialUnbrandXoHostSupplementalPacksAnyOfInner {
    * @return vdi
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_VDI)
+  @JsonProperty(value = JSON_PROPERTY_VDI, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public BrandedVDI getVdi() {
     return vdi;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_VDI)
+  @JsonProperty(value = JSON_PROPERTY_VDI, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setVdi(@javax.annotation.Nonnull BrandedVDI vdi) {
     this.vdi = vdi;
@@ -269,14 +269,14 @@ public class PartialUnbrandXoHostSupplementalPacksAnyOfInner {
    * @return version
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_VERSION)
+  @JsonProperty(value = JSON_PROPERTY_VERSION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getVersion() {
     return version;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_VERSION)
+  @JsonProperty(value = JSON_PROPERTY_VERSION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setVersion(@javax.annotation.Nonnull String version) {
     this.version = version;
@@ -331,10 +331,7 @@ public class PartialUnbrandXoHostSupplementalPacksAnyOfInner {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -371,37 +368,37 @@ public class PartialUnbrandXoHostSupplementalPacksAnyOfInner {
 
     // add `author` to the URL query string
     if (getAuthor() != null) {
-      joiner.add(String.format("%sauthor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAuthor()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sauthor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAuthor()))));
     }
 
     // add `description` to the URL query string
     if (getDescription() != null) {
-      joiner.add(String.format("%sdescription%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDescription()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdescription%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDescription()))));
     }
 
     // add `guidance` to the URL query string
     if (getGuidance() != null) {
-      joiner.add(String.format("%sguidance%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGuidance()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sguidance%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGuidance()))));
     }
 
     // add `hosts` to the URL query string
     if (getHosts() != null) {
       for (int i = 0; i < getHosts().size(); i++) {
         if (getHosts().get(i) != null) {
-          joiner.add(getHosts().get(i).toUrlQueryString(String.format("%shosts%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+          joiner.add(getHosts().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%shosts%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
     }
 
     // add `name` to the URL query string
     if (getName() != null) {
-      joiner.add(String.format("%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
     }
 
     // add `size` to the URL query string
     if (getSize() != null) {
-      joiner.add(String.format("%ssize%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSize()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssize%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSize()))));
     }
 
     // add `vdi` to the URL query string
@@ -411,7 +408,7 @@ public class PartialUnbrandXoHostSupplementalPacksAnyOfInner {
 
     // add `version` to the URL query string
     if (getVersion() != null) {
-      joiner.add(String.format("%sversion%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVersion()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sversion%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVersion()))));
     }
 
     return joiner.toString();

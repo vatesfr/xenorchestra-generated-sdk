@@ -298,155 +298,176 @@ class _$XapiVmStatsRawSerializer
           final valueDes = serializers.deserialize(
             value,
             specifiedType:
-                const FullType(BuiltList, [FullType.nullable(double)]),
-          ) as BuiltList<double?>;
+                const FullType.nullable(BuiltList, [FullType.nullable(double)]),
+          ) as BuiltList<double?>?;
+          if (valueDes == null) continue;
           result.cpuUsage.replace(valueDes);
           break;
         case r'cpus':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltMap, [
+            specifiedType: const FullType.nullable(BuiltMap, [
               FullType(String),
               FullType(BuiltList, [FullType.nullable(double)])
             ]),
-          ) as BuiltMap<String, BuiltList<double?>>;
+          ) as BuiltMap<String, BuiltList<double?>>?;
+          if (valueDes == null) continue;
           result.cpus.replace(valueDes);
           break;
         case r'iops':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(XapiHostStatsRawIoThroughput),
-          ) as XapiHostStatsRawIoThroughput;
+            specifiedType:
+                const FullType.nullable(XapiHostStatsRawIoThroughput),
+          ) as XapiHostStatsRawIoThroughput?;
+          if (valueDes == null) continue;
           result.iops.replace(valueDes);
           break;
         case r'memory':
           final valueDes = serializers.deserialize(
             value,
             specifiedType:
-                const FullType(BuiltList, [FullType.nullable(double)]),
-          ) as BuiltList<double?>;
+                const FullType.nullable(BuiltList, [FullType.nullable(double)]),
+          ) as BuiltList<double?>?;
+          if (valueDes == null) continue;
           result.memory.replace(valueDes);
           break;
         case r'memoryFree':
           final valueDes = serializers.deserialize(
             value,
             specifiedType:
-                const FullType(BuiltList, [FullType.nullable(double)]),
-          ) as BuiltList<double?>;
+                const FullType.nullable(BuiltList, [FullType.nullable(double)]),
+          ) as BuiltList<double?>?;
+          if (valueDes == null) continue;
           result.memoryFree.replace(valueDes);
           break;
         case r'memoryTarget':
           final valueDes = serializers.deserialize(
             value,
             specifiedType:
-                const FullType(BuiltList, [FullType.nullable(double)]),
-          ) as BuiltList<double?>;
+                const FullType.nullable(BuiltList, [FullType.nullable(double)]),
+          ) as BuiltList<double?>?;
+          if (valueDes == null) continue;
           result.memoryTarget.replace(valueDes);
           break;
         case r'runstateBlocked':
           final valueDes = serializers.deserialize(
             value,
             specifiedType:
-                const FullType(BuiltList, [FullType.nullable(double)]),
-          ) as BuiltList<double?>;
+                const FullType.nullable(BuiltList, [FullType.nullable(double)]),
+          ) as BuiltList<double?>?;
+          if (valueDes == null) continue;
           result.runstateBlocked.replace(valueDes);
           break;
         case r'runstateConcurrencyHazard':
           final valueDes = serializers.deserialize(
             value,
             specifiedType:
-                const FullType(BuiltList, [FullType.nullable(double)]),
-          ) as BuiltList<double?>;
+                const FullType.nullable(BuiltList, [FullType.nullable(double)]),
+          ) as BuiltList<double?>?;
+          if (valueDes == null) continue;
           result.runstateConcurrencyHazard.replace(valueDes);
           break;
         case r'runstateFullContention':
           final valueDes = serializers.deserialize(
             value,
             specifiedType:
-                const FullType(BuiltList, [FullType.nullable(double)]),
-          ) as BuiltList<double?>;
+                const FullType.nullable(BuiltList, [FullType.nullable(double)]),
+          ) as BuiltList<double?>?;
+          if (valueDes == null) continue;
           result.runstateFullContention.replace(valueDes);
           break;
         case r'runstateFullrun':
           final valueDes = serializers.deserialize(
             value,
             specifiedType:
-                const FullType(BuiltList, [FullType.nullable(double)]),
-          ) as BuiltList<double?>;
+                const FullType.nullable(BuiltList, [FullType.nullable(double)]),
+          ) as BuiltList<double?>?;
+          if (valueDes == null) continue;
           result.runstateFullrun.replace(valueDes);
           break;
         case r'runstatePartialContention':
           final valueDes = serializers.deserialize(
             value,
             specifiedType:
-                const FullType(BuiltList, [FullType.nullable(double)]),
-          ) as BuiltList<double?>;
+                const FullType.nullable(BuiltList, [FullType.nullable(double)]),
+          ) as BuiltList<double?>?;
+          if (valueDes == null) continue;
           result.runstatePartialContention.replace(valueDes);
           break;
         case r'runstatePartialRun':
           final valueDes = serializers.deserialize(
             value,
             specifiedType:
-                const FullType(BuiltList, [FullType.nullable(double)]),
-          ) as BuiltList<double?>;
+                const FullType.nullable(BuiltList, [FullType.nullable(double)]),
+          ) as BuiltList<double?>?;
+          if (valueDes == null) continue;
           result.runstatePartialRun.replace(valueDes);
           break;
         case r'vbdAvgquSz':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltMap, [
+            specifiedType: const FullType.nullable(BuiltMap, [
               FullType(String),
               FullType(BuiltList, [FullType.nullable(double)])
             ]),
-          ) as BuiltMap<String, BuiltList<double?>>;
+          ) as BuiltMap<String, BuiltList<double?>>?;
+          if (valueDes == null) continue;
           result.vbdAvgquSz.replace(valueDes);
           break;
         case r'vbdInflight':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltMap, [
+            specifiedType: const FullType.nullable(BuiltMap, [
               FullType(String),
               FullType(BuiltList, [FullType.nullable(double)])
             ]),
-          ) as BuiltMap<String, BuiltList<double?>>;
+          ) as BuiltMap<String, BuiltList<double?>>?;
+          if (valueDes == null) continue;
           result.vbdInflight.replace(valueDes);
           break;
         case r'vbdIowait':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltMap, [
+            specifiedType: const FullType.nullable(BuiltMap, [
               FullType(String),
               FullType(BuiltList, [FullType.nullable(double)])
             ]),
-          ) as BuiltMap<String, BuiltList<double?>>;
+          ) as BuiltMap<String, BuiltList<double?>>?;
+          if (valueDes == null) continue;
           result.vbdIowait.replace(valueDes);
           break;
         case r'vbdLatency':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(XapiHostStatsRawIoThroughput),
-          ) as XapiHostStatsRawIoThroughput;
+            specifiedType:
+                const FullType.nullable(XapiHostStatsRawIoThroughput),
+          ) as XapiHostStatsRawIoThroughput?;
+          if (valueDes == null) continue;
           result.vbdLatency.replace(valueDes);
           break;
         case r'vifErrors':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(XapiHostStatsRawPifs),
-          ) as XapiHostStatsRawPifs;
+            specifiedType: const FullType.nullable(XapiHostStatsRawPifs),
+          ) as XapiHostStatsRawPifs?;
+          if (valueDes == null) continue;
           result.vifErrors.replace(valueDes);
           break;
         case r'vifs':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(XapiHostStatsRawPifs),
-          ) as XapiHostStatsRawPifs;
+            specifiedType: const FullType.nullable(XapiHostStatsRawPifs),
+          ) as XapiHostStatsRawPifs?;
+          if (valueDes == null) continue;
           result.vifs.replace(valueDes);
           break;
         case r'xvds':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(XapiVmStatsRawXvds),
-          ) as XapiVmStatsRawXvds;
+            specifiedType: const FullType.nullable(XapiVmStatsRawXvds),
+          ) as XapiVmStatsRawXvds?;
+          if (valueDes == null) continue;
           result.xvds.replace(valueDes);
           break;
         default:

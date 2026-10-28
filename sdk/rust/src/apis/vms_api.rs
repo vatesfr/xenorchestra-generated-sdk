@@ -12,6 +12,8 @@ use super::{configuration, ContentType, Error};
 use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
+use tokio::fs::File as TokioFile;
+use tokio_util::codec::{BytesCodec, FramedRead};
 
 /// struct for typed errors of method [`add_data_source`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -671,14 +673,14 @@ pub async fn add_data_source(
     data_source: &str,
 ) -> Result<(), Error<AddDataSourceError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_data_source = data_source;
+    let p_path_id = id;
+    let p_path_data_source = data_source;
 
     let uri_str = format!(
         "{}/vms/{id}/stats/data_source/{data_source}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id),
-        data_source = crate::apis::urlencode(p_data_source)
+        id = crate::apis::urlencode(p_path_id),
+        data_source = crate::apis::urlencode(p_path_data_source)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -720,19 +722,19 @@ pub async fn clean_reboot_vm(
     sync: Option<bool>,
 ) -> Result<models::CreateActionReturnTypeVoid, Error<CleanRebootVmError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_sync = sync;
+    let p_path_id = id;
+    let p_query_sync = sync;
 
     let uri_str = format!(
         "{}/vms/{id}/actions/clean_reboot",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -784,19 +786,19 @@ pub async fn clean_shutdown_vm(
     sync: Option<bool>,
 ) -> Result<models::CreateActionReturnTypeVoid, Error<CleanShutdownVmError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_sync = sync;
+    let p_path_id = id;
+    let p_query_sync = sync;
 
     let uri_str = format!(
         "{}/vms/{id}/actions/clean_shutdown",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -849,20 +851,20 @@ pub async fn clone_vm(
     clone_vm_request: Option<models::CloneVmRequest>,
 ) -> Result<(), Error<CloneVmError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_sync = sync;
-    let p_clone_vm_request = clone_vm_request;
+    let p_path_id = id;
+    let p_query_sync = sync;
+    let p_body_clone_vm_request = clone_vm_request;
 
     let uri_str = format!(
         "{}/vms/{id}/actions/clone",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -877,7 +879,7 @@ pub async fn clone_vm(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.json(&p_clone_vm_request);
+    req_builder = req_builder.json(&p_body_clone_vm_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -905,20 +907,20 @@ pub async fn create_vm(
     sync: Option<bool>,
 ) -> Result<models::CreateActionReturnTypeIdUnbrandXoVm91Id93, Error<CreateVmError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_unbrand_create_vm_body = unbrand_create_vm_body;
-    let p_sync = sync;
+    let p_path_id = id;
+    let p_body_unbrand_create_vm_body = unbrand_create_vm_body;
+    let p_query_sync = sync;
 
     let uri_str = format!(
         "{}/pools/{id}/actions/create_vm",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -933,7 +935,7 @@ pub async fn create_vm(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.json(&p_unbrand_create_vm_body);
+    req_builder = req_builder.json(&p_body_unbrand_create_vm_body);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -971,14 +973,14 @@ pub async fn delete_data_source(
     data_source: &str,
 ) -> Result<(), Error<DeleteDataSourceError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_data_source = data_source;
+    let p_path_id = id;
+    let p_path_data_source = data_source;
 
     let uri_str = format!(
         "{}/vms/{id}/stats/data_source/{data_source}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id),
-        data_source = crate::apis::urlencode(p_data_source)
+        id = crate::apis::urlencode(p_path_id),
+        data_source = crate::apis::urlencode(p_path_data_source)
     );
     let mut req_builder = configuration
         .client
@@ -1021,12 +1023,12 @@ pub async fn delete_vm(
     id: &str,
 ) -> Result<(), Error<DeleteVmError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
     let uri_str = format!(
         "{}/vms/{id}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
@@ -1070,14 +1072,14 @@ pub async fn delete_vm_controller_tag(
     tag: &str,
 ) -> Result<(), Error<DeleteVmControllerTagError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_tag = tag;
+    let p_path_id = id;
+    let p_path_tag = tag;
 
     let uri_str = format!(
         "{}/vm-controllers/{id}/tags/{tag}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id),
-        tag = crate::apis::urlencode(p_tag)
+        id = crate::apis::urlencode(p_path_id),
+        tag = crate::apis::urlencode(p_path_tag)
     );
     let mut req_builder = configuration
         .client
@@ -1120,12 +1122,12 @@ pub async fn delete_vm_snapshot(
     id: &str,
 ) -> Result<(), Error<DeleteVmSnapshotError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
     let uri_str = format!(
         "{}/vm-snapshots/{id}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
@@ -1169,14 +1171,14 @@ pub async fn delete_vm_snapshot_tag(
     tag: &str,
 ) -> Result<(), Error<DeleteVmSnapshotTagError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_tag = tag;
+    let p_path_id = id;
+    let p_path_tag = tag;
 
     let uri_str = format!(
         "{}/vm-snapshots/{id}/tags/{tag}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id),
-        tag = crate::apis::urlencode(p_tag)
+        id = crate::apis::urlencode(p_path_id),
+        tag = crate::apis::urlencode(p_path_tag)
     );
     let mut req_builder = configuration
         .client
@@ -1220,14 +1222,14 @@ pub async fn delete_vm_tag(
     tag: &str,
 ) -> Result<(), Error<DeleteVmTagError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_tag = tag;
+    let p_path_id = id;
+    let p_path_tag = tag;
 
     let uri_str = format!(
         "{}/vms/{id}/tags/{tag}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id),
-        tag = crate::apis::urlencode(p_tag)
+        id = crate::apis::urlencode(p_path_id),
+        tag = crate::apis::urlencode(p_path_tag)
     );
     let mut req_builder = configuration
         .client
@@ -1270,12 +1272,12 @@ pub async fn delete_vm_template(
     id: &str,
 ) -> Result<(), Error<DeleteVmTemplateError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
     let uri_str = format!(
         "{}/vm-templates/{id}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
@@ -1319,14 +1321,14 @@ pub async fn delete_vm_template_tag(
     tag: &str,
 ) -> Result<(), Error<DeleteVmTemplateTagError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_tag = tag;
+    let p_path_id = id;
+    let p_path_tag = tag;
 
     let uri_str = format!(
         "{}/vm-templates/{id}/tags/{tag}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id),
-        tag = crate::apis::urlencode(p_tag)
+        id = crate::apis::urlencode(p_path_id),
+        tag = crate::apis::urlencode(p_path_tag)
     );
     let mut req_builder = configuration
         .client
@@ -1371,20 +1373,20 @@ pub async fn export_vm(
     compress: Option<&str>,
 ) -> Result<String, Error<ExportVmError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_format = format;
-    let p_compress = compress;
+    let p_path_id = id;
+    let p_path_format = format;
+    let p_query_compress = compress;
 
     let uri_str = format!(
         "{}/vms/{id}.{format}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id),
-        format = crate::apis::urlencode(p_format)
+        id = crate::apis::urlencode(p_path_id),
+        format = crate::apis::urlencode(p_path_format)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_compress {
-        req_builder = req_builder.query(&[("compress", &param_value.to_string())]);
+    if let Some(ref param_value) = p_query_compress {
+        req_builder = req_builder.query(&[("compress", &serde_json::to_string(param_value)?)]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
@@ -1436,20 +1438,20 @@ pub async fn export_vm_snapshot(
     compress: Option<&str>,
 ) -> Result<String, Error<ExportVmSnapshotError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_format = format;
-    let p_compress = compress;
+    let p_path_id = id;
+    let p_path_format = format;
+    let p_query_compress = compress;
 
     let uri_str = format!(
         "{}/vm-snapshots/{id}.{format}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id),
-        format = crate::apis::urlencode(p_format)
+        id = crate::apis::urlencode(p_path_id),
+        format = crate::apis::urlencode(p_path_format)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_compress {
-        req_builder = req_builder.query(&[("compress", &param_value.to_string())]);
+    if let Some(ref param_value) = p_query_compress {
+        req_builder = req_builder.query(&[("compress", &serde_json::to_string(param_value)?)]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
@@ -1501,20 +1503,20 @@ pub async fn export_vm_template(
     compress: Option<&str>,
 ) -> Result<String, Error<ExportVmTemplateError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_format = format;
-    let p_compress = compress;
+    let p_path_id = id;
+    let p_path_format = format;
+    let p_query_compress = compress;
 
     let uri_str = format!(
         "{}/vm-templates/{id}.{format}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id),
-        format = crate::apis::urlencode(p_format)
+        id = crate::apis::urlencode(p_path_id),
+        format = crate::apis::urlencode(p_path_format)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_compress {
-        req_builder = req_builder.query(&[("compress", &param_value.to_string())]);
+    if let Some(ref param_value) = p_query_compress {
+        req_builder = req_builder.query(&[("compress", &serde_json::to_string(param_value)?)]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
@@ -1564,12 +1566,12 @@ pub async fn get_vm(
     id: &str,
 ) -> Result<models::UnbrandXoVm, Error<GetVmError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
     let uri_str = format!(
         "{}/vms/{id}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1626,33 +1628,33 @@ pub async fn get_vm_alarms(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoAlarm, Error<GetVmAlarmsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vms/{id}/alarms",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1703,12 +1705,12 @@ pub async fn get_vm_controller(
     id: &str,
 ) -> Result<models::UnbrandXoVmController, Error<GetVmControllerError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
     let uri_str = format!(
         "{}/vm-controllers/{id}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1765,33 +1767,33 @@ pub async fn get_vm_controller_alarms(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoAlarm, Error<GetVmControllerAlarmsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vm-controllers/{id}/alarms",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1847,33 +1849,33 @@ pub async fn get_vm_controller_messages(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoMessage, Error<GetVmControllerMessagesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vm-controllers/{id}/messages",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1929,33 +1931,33 @@ pub async fn get_vm_controller_tasks(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoTask, Error<GetVmControllerTasksError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vm-controllers/{id}/tasks",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2011,33 +2013,33 @@ pub async fn get_vm_controller_vdis(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoVdi, Error<GetVmControllerVdisError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vm-controllers/{id}/vdis",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2092,28 +2094,28 @@ pub async fn get_vm_controllers(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoVmController, Error<GetVmControllersError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!("{}/vm-controllers", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2165,17 +2167,17 @@ pub async fn get_vm_dashboard(
     ndjson: Option<bool>,
 ) -> Result<models::UnbrandedVmDashboard, Error<GetVmDashboardError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_ndjson = ndjson;
+    let p_path_id = id;
+    let p_query_ndjson = ndjson;
 
     let uri_str = format!(
         "{}/vms/{id}/dashboard",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2231,33 +2233,33 @@ pub async fn get_vm_messages(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoMessage, Error<GetVmMessagesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vms/{id}/messages",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2308,12 +2310,12 @@ pub async fn get_vm_snapshot(
     id: &str,
 ) -> Result<models::UnbrandXoVmSnapshot, Error<GetVmSnapshotError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
     let uri_str = format!(
         "{}/vm-snapshots/{id}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2370,33 +2372,33 @@ pub async fn get_vm_snapshot_alarms(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoAlarm, Error<GetVmSnapshotAlarmsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vm-snapshots/{id}/alarms",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2452,33 +2454,33 @@ pub async fn get_vm_snapshot_tasks(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoTask, Error<GetVmSnapshotTasksError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vm-snapshots/{id}/tasks",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2534,33 +2536,33 @@ pub async fn get_vm_snapshot_vdis(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoVdiSnapshot, Error<GetVmSnapshotVdisError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vm-snapshots/{id}/vdis",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2615,28 +2617,28 @@ pub async fn get_vm_snapshots(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoVmSnapshot, Error<GetVmSnapshotsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!("{}/vm-snapshots", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2692,33 +2694,33 @@ pub async fn get_vm_snapshots_messages(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoMessage, Error<GetVmSnapshotsMessagesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vm-snapshots/{id}/messages",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2770,17 +2772,17 @@ pub async fn get_vm_stats(
     granularity: Option<models::XapiStatsGranularity>,
 ) -> Result<models::XapiStatsResponseXapiVmStatsRaw, Error<GetVmStatsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_granularity = granularity;
+    let p_path_id = id;
+    let p_query_granularity = granularity;
 
     let uri_str = format!(
         "{}/vms/{id}/stats",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_granularity {
+    if let Some(ref param_value) = p_query_granularity {
         req_builder = req_builder.query(&[("granularity", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2836,33 +2838,33 @@ pub async fn get_vm_tasks(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoTask, Error<GetVmTasksError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vms/{id}/tasks",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2913,12 +2915,12 @@ pub async fn get_vm_template(
     id: &str,
 ) -> Result<models::UnbrandXoVmTemplate, Error<GetVmTemplateError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
     let uri_str = format!(
         "{}/vm-templates/{id}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -2975,33 +2977,33 @@ pub async fn get_vm_template_alarms(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoAlarm, Error<GetVmTemplateAlarmsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vm-templates/{id}/alarms",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3057,33 +3059,33 @@ pub async fn get_vm_template_messages(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoMessage, Error<GetVmTemplateMessagesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vm-templates/{id}/messages",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3139,33 +3141,33 @@ pub async fn get_vm_template_tasks(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoTask, Error<GetVmTemplateTasksError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vm-templates/{id}/tasks",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3221,33 +3223,33 @@ pub async fn get_vm_template_vdis(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoVdi, Error<GetVmTemplateVdisError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vm-templates/{id}/vdis",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3302,28 +3304,28 @@ pub async fn get_vm_templates(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoVmTemplate, Error<GetVmTemplatesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!("{}/vm-templates", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3379,33 +3381,33 @@ pub async fn get_vm_vdis(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoVdi, Error<GetVmVdisError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vms/{id}/vdis",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3460,28 +3462,28 @@ pub async fn get_vms(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoVm, Error<GetVmsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!("{}/vms", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3533,19 +3535,19 @@ pub async fn hard_reboot_vm(
     sync: Option<bool>,
 ) -> Result<models::CreateActionReturnTypeVoid, Error<HardRebootVmError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_sync = sync;
+    let p_path_id = id;
+    let p_query_sync = sync;
 
     let uri_str = format!(
         "{}/vms/{id}/actions/hard_reboot",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3597,19 +3599,19 @@ pub async fn hard_shutdown_vm(
     sync: Option<bool>,
 ) -> Result<models::CreateActionReturnTypeVoid, Error<HardShutdownVmError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_sync = sync;
+    let p_path_id = id;
+    let p_query_sync = sync;
 
     let uri_str = format!(
         "{}/vms/{id}/actions/hard_shutdown",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3662,20 +3664,20 @@ pub async fn import_vm(
     sr: Option<&str>,
 ) -> Result<models::CreateAclV2Privilege201Response, Error<ImportVmError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_body = body;
-    let p_sr = sr;
+    let p_path_id = id;
+    let p_body_body = body;
+    let p_query_sr = sr;
 
     let uri_str = format!(
         "{}/pools/{id}/vms",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sr {
+    if let Some(ref param_value) = p_query_sr {
         req_builder = req_builder.query(&[("sr", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3690,7 +3692,9 @@ pub async fn import_vm(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.body(std::fs::read(p_body)?);
+    let file = TokioFile::open(p_body_body).await?;
+    let stream = FramedRead::new(file, BytesCodec::new());
+    req_builder = req_builder.body(reqwest::Body::wrap_stream(stream));
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3729,20 +3733,20 @@ pub async fn migrate_vm(
     sync: Option<bool>,
 ) -> Result<models::CreateActionReturnTypeVoid, Error<MigrateVmError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_migrate_vm_request = migrate_vm_request;
-    let p_sync = sync;
+    let p_path_id = id;
+    let p_body_migrate_vm_request = migrate_vm_request;
+    let p_query_sync = sync;
 
     let uri_str = format!(
         "{}/vms/{id}/actions/migrate",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3757,7 +3761,7 @@ pub async fn migrate_vm(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.json(&p_migrate_vm_request);
+    req_builder = req_builder.json(&p_body_migrate_vm_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -3795,19 +3799,19 @@ pub async fn pause_vm(
     sync: Option<bool>,
 ) -> Result<models::CreateActionReturnTypeVoid, Error<PauseVmError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_sync = sync;
+    let p_path_id = id;
+    let p_query_sync = sync;
 
     let uri_str = format!(
         "{}/vms/{id}/actions/pause",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -3859,14 +3863,14 @@ pub async fn put_vm_controller_tag(
     tag: &str,
 ) -> Result<(), Error<PutVmControllerTagError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_tag = tag;
+    let p_path_id = id;
+    let p_path_tag = tag;
 
     let uri_str = format!(
         "{}/vm-controllers/{id}/tags/{tag}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id),
-        tag = crate::apis::urlencode(p_tag)
+        id = crate::apis::urlencode(p_path_id),
+        tag = crate::apis::urlencode(p_path_tag)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -3908,14 +3912,14 @@ pub async fn put_vm_snapshot_tag(
     tag: &str,
 ) -> Result<(), Error<PutVmSnapshotTagError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_tag = tag;
+    let p_path_id = id;
+    let p_path_tag = tag;
 
     let uri_str = format!(
         "{}/vm-snapshots/{id}/tags/{tag}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id),
-        tag = crate::apis::urlencode(p_tag)
+        id = crate::apis::urlencode(p_path_id),
+        tag = crate::apis::urlencode(p_path_tag)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -3957,14 +3961,14 @@ pub async fn put_vm_tag(
     tag: &str,
 ) -> Result<(), Error<PutVmTagError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_tag = tag;
+    let p_path_id = id;
+    let p_path_tag = tag;
 
     let uri_str = format!(
         "{}/vms/{id}/tags/{tag}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id),
-        tag = crate::apis::urlencode(p_tag)
+        id = crate::apis::urlencode(p_path_id),
+        tag = crate::apis::urlencode(p_path_tag)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -4006,14 +4010,14 @@ pub async fn put_vm_template_tag(
     tag: &str,
 ) -> Result<(), Error<PutVmTemplateTagError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_tag = tag;
+    let p_path_id = id;
+    let p_path_tag = tag;
 
     let uri_str = format!(
         "{}/vm-templates/{id}/tags/{tag}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id),
-        tag = crate::apis::urlencode(p_tag)
+        id = crate::apis::urlencode(p_path_id),
+        tag = crate::apis::urlencode(p_path_tag)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -4055,19 +4059,19 @@ pub async fn resume_vm(
     sync: Option<bool>,
 ) -> Result<models::CreateActionReturnTypeVoid, Error<ResumeVmError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_sync = sync;
+    let p_path_id = id;
+    let p_query_sync = sync;
 
     let uri_str = format!(
         "{}/vms/{id}/actions/resume",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4120,20 +4124,20 @@ pub async fn revert_snapshot_vm(
     sync: Option<bool>,
 ) -> Result<models::CreateActionReturnTypeVoid, Error<RevertSnapshotVmError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_revert_snapshot_vm_request = revert_snapshot_vm_request;
-    let p_sync = sync;
+    let p_path_id = id;
+    let p_body_revert_snapshot_vm_request = revert_snapshot_vm_request;
+    let p_query_sync = sync;
 
     let uri_str = format!(
         "{}/vms/{id}/actions/revert_snapshot",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4148,7 +4152,7 @@ pub async fn revert_snapshot_vm(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.json(&p_revert_snapshot_vm_request);
+    req_builder = req_builder.json(&p_body_revert_snapshot_vm_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4187,20 +4191,20 @@ pub async fn snapshot_vm(
     snapshot_vm_request: Option<models::SnapshotVmRequest>,
 ) -> Result<(), Error<SnapshotVmError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_sync = sync;
-    let p_snapshot_vm_request = snapshot_vm_request;
+    let p_path_id = id;
+    let p_query_sync = sync;
+    let p_body_snapshot_vm_request = snapshot_vm_request;
 
     let uri_str = format!(
         "{}/vms/{id}/actions/snapshot",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4215,7 +4219,7 @@ pub async fn snapshot_vm(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.json(&p_snapshot_vm_request);
+    req_builder = req_builder.json(&p_body_snapshot_vm_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4243,20 +4247,20 @@ pub async fn start_vm(
     start_vm_request: Option<models::StartVmRequest>,
 ) -> Result<models::CreateActionReturnTypeVoid, Error<StartVmError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_sync = sync;
-    let p_start_vm_request = start_vm_request;
+    let p_path_id = id;
+    let p_query_sync = sync;
+    let p_body_start_vm_request = start_vm_request;
 
     let uri_str = format!(
         "{}/vms/{id}/actions/start",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4271,7 +4275,7 @@ pub async fn start_vm(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.json(&p_start_vm_request);
+    req_builder = req_builder.json(&p_body_start_vm_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4309,19 +4313,19 @@ pub async fn suspend_vm(
     sync: Option<bool>,
 ) -> Result<models::CreateActionReturnTypeVoid, Error<SuspendVmError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_sync = sync;
+    let p_path_id = id;
+    let p_query_sync = sync;
 
     let uri_str = format!(
         "{}/vms/{id}/actions/suspend",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4373,19 +4377,19 @@ pub async fn unpause_vm(
     sync: Option<bool>,
 ) -> Result<models::CreateActionReturnTypeVoid, Error<UnpauseVmError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_sync = sync;
+    let p_path_id = id;
+    let p_query_sync = sync;
 
     let uri_str = format!(
         "{}/vms/{id}/actions/unpause",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -4437,13 +4441,13 @@ pub async fn update_vm(
     update_vm_request_body: models::UpdateVmRequestBody,
 ) -> Result<(), Error<UpdateVmError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_update_vm_request_body = update_vm_request_body;
+    let p_path_id = id;
+    let p_body_update_vm_request_body = update_vm_request_body;
 
     let uri_str = format!(
         "{}/vms/{id}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
@@ -4461,7 +4465,7 @@ pub async fn update_vm(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.json(&p_update_vm_request_body);
+    req_builder = req_builder.json(&p_body_update_vm_request_body);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -4492,33 +4496,33 @@ pub async fn vm_get_vm_backup_jobs(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoVmBackupJob, Error<VmGetVmBackupJobsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vms/{id}/backup-jobs",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {

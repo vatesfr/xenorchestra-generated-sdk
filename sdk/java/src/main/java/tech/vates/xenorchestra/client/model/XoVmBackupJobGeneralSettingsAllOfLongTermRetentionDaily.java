@@ -38,7 +38,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   XoVmBackupJobGeneralSettingsAllOfLongTermRetentionDaily.JSON_PROPERTY_RETENTION,
   XoVmBackupJobGeneralSettingsAllOfLongTermRetentionDaily.JSON_PROPERTY_SETTINGS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class XoVmBackupJobGeneralSettingsAllOfLongTermRetentionDaily {
   public static final String JSON_PROPERTY_RETENTION = "retention";
   @javax.annotation.Nonnull
@@ -61,14 +61,14 @@ public class XoVmBackupJobGeneralSettingsAllOfLongTermRetentionDaily {
    * @return retention
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_RETENTION)
+  @JsonProperty(value = JSON_PROPERTY_RETENTION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getRetention() {
     return retention;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_RETENTION)
+  @JsonProperty(value = JSON_PROPERTY_RETENTION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setRetention(@javax.annotation.Nonnull Double retention) {
     this.retention = retention;
@@ -93,14 +93,14 @@ public class XoVmBackupJobGeneralSettingsAllOfLongTermRetentionDaily {
    * @return settings
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_SETTINGS)
+  @JsonProperty(value = JSON_PROPERTY_SETTINGS, required = true)
   @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.ALWAYS)
   public Map<String, Object> getSettings() {
     return settings;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SETTINGS)
+  @JsonProperty(value = JSON_PROPERTY_SETTINGS, required = true)
   @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.ALWAYS)
   public void setSettings(@javax.annotation.Nonnull Map<String, Object> settings) {
     this.settings = settings;
@@ -143,10 +143,7 @@ public class XoVmBackupJobGeneralSettingsAllOfLongTermRetentionDaily {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -183,14 +180,14 @@ public class XoVmBackupJobGeneralSettingsAllOfLongTermRetentionDaily {
 
     // add `retention` to the URL query string
     if (getRetention() != null) {
-      joiner.add(String.format("%sretention%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRetention()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sretention%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRetention()))));
     }
 
     // add `settings` to the URL query string
     if (getSettings() != null) {
       for (String _key : getSettings().keySet()) {
-        joiner.add(String.format("%ssettings%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%ssettings%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getSettings().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getSettings().get(_key)))));
       }
     }

@@ -422,218 +422,252 @@ class _$PartialUnbrandedXoPifSerializer
         case r'$host':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.dollarHost = valueDes;
           break;
         case r'$network':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.dollarNetwork = valueDes;
           break;
         case r'$pool':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.dollarPool = valueDes;
           break;
         case r'$poolId':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.dollarPoolId = valueDes;
           break;
         case r'_xapiRef':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.xapiRef = valueDes;
           break;
         case r'attached':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.attached = valueDes;
           break;
         case r'bondMaster':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.bondMaster = valueDes;
           break;
         case r'bondSlaves':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(BrandedPIF)]),
-          ) as BuiltList<BrandedPIF>;
+            specifiedType:
+                const FullType.nullable(BuiltList, [FullType(BrandedPIF)]),
+          ) as BuiltList<BrandedPIF>?;
+          if (valueDes == null) continue;
           result.bondSlaves.replace(valueDes);
           break;
         case r'carrier':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.carrier = valueDes;
           break;
         case r'device':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.device = valueDes;
           break;
         case r'deviceName':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.deviceName = valueDes;
           break;
         case r'disallowUnplug':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.disallowUnplug = valueDes;
           break;
         case r'dns':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.dns = valueDes;
           break;
         case r'gateway':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.gateway = valueDes;
           break;
         case r'id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'ip':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.ip = valueDes;
           break;
         case r'ipv6':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
+            specifiedType:
+                const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
           result.ipv6.replace(valueDes);
           break;
         case r'ipv6Mode':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(IPV6CONFIGURATIONMODE),
-          ) as IPV6CONFIGURATIONMODE;
+            specifiedType: const FullType.nullable(IPV6CONFIGURATIONMODE),
+          ) as IPV6CONFIGURATIONMODE?;
+          if (valueDes == null) continue;
           result.ipv6Mode = valueDes;
           break;
         case r'isBondMaster':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.isBondMaster = valueDes;
           break;
         case r'isBondSlave':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.isBondSlave = valueDes;
           break;
         case r'mac':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.mac = valueDes;
           break;
         case r'management':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.management = valueDes;
           break;
         case r'mode':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(IPCONFIGURATIONMODE),
-          ) as IPCONFIGURATIONMODE;
+            specifiedType: const FullType.nullable(IPCONFIGURATIONMODE),
+          ) as IPCONFIGURATIONMODE?;
+          if (valueDes == null) continue;
           result.mode = valueDes;
           break;
         case r'mtu':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.mtu = valueDes;
           break;
         case r'netmask':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.netmask = valueDes;
           break;
         case r'physical':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.physical = valueDes;
           break;
         case r'primaryAddressType':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(PRIMARYADDRESSTYPE),
-          ) as PRIMARYADDRESSTYPE;
+            specifiedType: const FullType.nullable(PRIMARYADDRESSTYPE),
+          ) as PRIMARYADDRESSTYPE?;
+          if (valueDes == null) continue;
           result.primaryAddressType = valueDes;
           break;
         case r'speed':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.speed = valueDes;
           break;
         case r'type':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(PartialUnbrandedXoPifTypeEnum),
-          ) as PartialUnbrandedXoPifTypeEnum;
+            specifiedType:
+                const FullType.nullable(PartialUnbrandedXoPifTypeEnum),
+          ) as PartialUnbrandedXoPifTypeEnum?;
+          if (valueDes == null) continue;
           result.type = valueDes;
           break;
         case r'uuid':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.uuid = valueDes;
           break;
         case r'vlan':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.vlan = valueDes;
           break;
         default:

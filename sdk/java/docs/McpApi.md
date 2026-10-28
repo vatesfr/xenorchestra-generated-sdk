@@ -73,7 +73,7 @@ No authorization required
 
 ## getMcpStatusWithHttpInfo
 
-> ApiResponse<McpStatus> getMcpStatus getMcpStatusWithHttpInfo()
+> ApiResponse<McpStatus> getMcpStatusWithHttpInfo()
 
 
 

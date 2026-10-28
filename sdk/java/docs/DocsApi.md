@@ -71,7 +71,7 @@ No authorization required
 
 ## swaggerSpecWithHttpInfo
 
-> ApiResponse<Void> swaggerSpec swaggerSpecWithHttpInfo()
+> ApiResponse<Void> swaggerSpecWithHttpInfo()
 
 
 

@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**action** | **String** |  | 
-**effect** | **String** |  | 
-**resource** | **String** |  | 
+**action** | **Action** |  (enum: boot, update, *, create, delete, read, update:tags, export-content, import-content, migrate-send, update:name_description, update:name_label, update:size) | 
+**effect** | **Effect** |  (enum: allow, deny) | 
+**resource** | **Resource** |  (enum: vdi) | 
 **role_id** | **String** |  | 
 **selector** | Option<**String**> |  | [optional]
 

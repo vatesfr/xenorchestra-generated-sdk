@@ -36,7 +36,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   CloneVmRequestAnyOf.JSON_PROPERTY_FAST,
   CloneVmRequestAnyOf.JSON_PROPERTY_NAME_LABEL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class CloneVmRequestAnyOf {
   public static final String JSON_PROPERTY_FAST = "fast";
   @javax.annotation.Nullable
@@ -59,14 +59,14 @@ public class CloneVmRequestAnyOf {
    * @return fast
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_FAST)
+  @JsonProperty(value = JSON_PROPERTY_FAST, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getFast() {
     return fast;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_FAST)
+  @JsonProperty(value = JSON_PROPERTY_FAST, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setFast(@javax.annotation.Nullable Boolean fast) {
     this.fast = fast;
@@ -83,14 +83,14 @@ public class CloneVmRequestAnyOf {
    * @return nameLabel
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_NAME_LABEL)
+  @JsonProperty(value = JSON_PROPERTY_NAME_LABEL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getNameLabel() {
     return nameLabel;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME_LABEL)
+  @JsonProperty(value = JSON_PROPERTY_NAME_LABEL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNameLabel(@javax.annotation.Nullable String nameLabel) {
     this.nameLabel = nameLabel;
@@ -133,10 +133,7 @@ public class CloneVmRequestAnyOf {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -173,12 +170,12 @@ public class CloneVmRequestAnyOf {
 
     // add `fast` to the URL query string
     if (getFast() != null) {
-      joiner.add(String.format("%sfast%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFast()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sfast%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFast()))));
     }
 
     // add `name_label` to the URL query string
     if (getNameLabel() != null) {
-      joiner.add(String.format("%sname_label%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameLabel()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname_label%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameLabel()))));
     }
 
     return joiner.toString();

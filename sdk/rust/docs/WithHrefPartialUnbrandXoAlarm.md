@@ -7,12 +7,12 @@ Name | Type | Description | Notes
 **dollar_pool** | Option<**String**> |  | [optional]
 **dollar_pool_id** | Option<**String**> |  | [optional]
 **_xapi_ref** | Option<**String**> |  | [optional]
-**body** | Option<[**models::PartialUnbrandXoAlarmBody**](Partial_Unbrand_XoAlarm___body.md)> |  | [optional]
+**body** | Option<[**models::PartialUnbrandXoAlarmBody**](PartialUnbrandXoAlarmBody.md)> |  | [optional]
 **id** | Option<**String**> |  | [optional]
 **name** | Option<**String**> |  | [optional]
-**object** | Option<[**models::PartialUnbrandXoAlarmObject**](Partial_Unbrand_XoAlarm___object.md)> |  | [optional]
+**object** | Option<[**models::PartialUnbrandXoAlarmObject**](PartialUnbrandXoAlarmObject.md)> |  | [optional]
 **time** | Option<**f64**> |  | [optional]
-**r#type** | Option<**String**> |  | [optional]
+**r#type** | Option<**Type**> |  (enum: message) | [optional]
 **uuid** | Option<**String**> |  | [optional]
 **href** | **String** |  | 
 

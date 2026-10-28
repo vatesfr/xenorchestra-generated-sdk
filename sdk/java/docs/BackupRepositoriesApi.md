@@ -108,7 +108,7 @@ null (empty response body)
 
 ## benchmarkBackupRepositoryWithHttpInfo
 
-> ApiResponse<Void> benchmarkBackupRepository benchmarkBackupRepositoryWithHttpInfo(id, sync)
+> ApiResponse<Void> benchmarkBackupRepositoryWithHttpInfo(id, sync)
 
 
 
@@ -278,7 +278,7 @@ public class Example {
 
 ## createBackupRepositoryWithHttpInfo
 
-> ApiResponse<CreateAclV2Privilege201Response> createBackupRepository createBackupRepositoryWithHttpInfo(unbrandParametersXoAppAtCreateRemote91093)
+> ApiResponse<CreateAclV2Privilege201Response> createBackupRepositoryWithHttpInfo(unbrandParametersXoAppAtCreateRemote91093)
 
 
 
@@ -446,7 +446,7 @@ public class Example {
 
 ## forgetBackupRepositoryWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> forgetBackupRepository forgetBackupRepositoryWithHttpInfo(id, sync)
+> ApiResponse<CreateActionReturnTypeVoid> forgetBackupRepositoryWithHttpInfo(id, sync)
 
 
 
@@ -614,7 +614,7 @@ public class Example {
 
 ## getBackupRepositoryHealthWithHttpInfo
 
-> ApiResponse<ReturnTypeXoAppAtPingRemote> getBackupRepositoryHealth getBackupRepositoryHealthWithHttpInfo(id)
+> ApiResponse<ReturnTypeXoAppAtPingRemote> getBackupRepositoryHealthWithHttpInfo(id)
 
 
 
@@ -786,7 +786,7 @@ public class Example {
 
 ## getRepositoriesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoBackupRepository> getRepositories getRepositoriesWithHttpInfo(fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoBackupRepository> getRepositoriesWithHttpInfo(fields, ndjson, markdown, filter, limit)
 
 
 
@@ -958,7 +958,7 @@ public class Example {
 
 ## getRepositoryWithHttpInfo
 
-> ApiResponse<UnbrandXoBackupRepository> getRepository getRepositoryWithHttpInfo(id)
+> ApiResponse<UnbrandXoBackupRepository> getRepositoryWithHttpInfo(id)
 
 
 
@@ -1126,7 +1126,7 @@ null (empty response body)
 
 ## updateBackupRepositoryWithHttpInfo
 
-> ApiResponse<Void> updateBackupRepository updateBackupRepositoryWithHttpInfo(id, unbrandParametersXoAppAtUpdateRemote91193)
+> ApiResponse<Void> updateBackupRepositoryWithHttpInfo(id, unbrandParametersXoAppAtUpdateRemote91193)
 
 
 

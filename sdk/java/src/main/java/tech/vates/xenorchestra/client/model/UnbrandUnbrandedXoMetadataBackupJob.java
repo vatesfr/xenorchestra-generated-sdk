@@ -48,7 +48,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   UnbrandUnbrandedXoMetadataBackupJob.JSON_PROPERTY_USER_ID,
   UnbrandUnbrandedXoMetadataBackupJob.JSON_PROPERTY_XO_METADATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class UnbrandUnbrandedXoMetadataBackupJob {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -135,14 +135,14 @@ private final String value;
    * @return id
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
@@ -159,14 +159,14 @@ private final String value;
    * @return name
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getName() {
     return name;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
@@ -188,7 +188,7 @@ private final String value;
         return pools.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_POOLS)
+  @JsonProperty(value = JSON_PROPERTY_POOLS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<Object> getPools_JsonNullable() {
@@ -215,14 +215,14 @@ private final String value;
    * @return proxy
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PROXY)
+  @JsonProperty(value = JSON_PROPERTY_PROXY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getProxy() {
     return proxy;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PROXY)
+  @JsonProperty(value = JSON_PROPERTY_PROXY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setProxy(@javax.annotation.Nullable String proxy) {
     this.proxy = proxy;
@@ -239,14 +239,14 @@ private final String value;
    * @return remotes
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_REMOTES)
+  @JsonProperty(value = JSON_PROPERTY_REMOTES, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Object getRemotes() {
     return remotes;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_REMOTES)
+  @JsonProperty(value = JSON_PROPERTY_REMOTES, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setRemotes(@javax.annotation.Nullable Object remotes) {
     this.remotes = remotes;
@@ -263,14 +263,14 @@ private final String value;
    * @return settings
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_SETTINGS)
+  @JsonProperty(value = JSON_PROPERTY_SETTINGS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings getSettings() {
     return settings;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SETTINGS)
+  @JsonProperty(value = JSON_PROPERTY_SETTINGS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSettings(@javax.annotation.Nonnull PartialUnbrandAnyXoBackupJobVariantMetadataBackupSettings settings) {
     this.settings = settings;
@@ -287,14 +287,14 @@ private final String value;
    * @return type
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public TypeEnum getType() {
     return type;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setType(@javax.annotation.Nonnull TypeEnum type) {
     this.type = type;
@@ -311,14 +311,14 @@ private final String value;
    * @return userId
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_USER_ID)
+  @JsonProperty(value = JSON_PROPERTY_USER_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getUserId() {
     return userId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_USER_ID)
+  @JsonProperty(value = JSON_PROPERTY_USER_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUserId(@javax.annotation.Nonnull String userId) {
     this.userId = userId;
@@ -335,14 +335,14 @@ private final String value;
    * @return xoMetadata
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_XO_METADATA)
+  @JsonProperty(value = JSON_PROPERTY_XO_METADATA, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getXoMetadata() {
     return xoMetadata;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_XO_METADATA)
+  @JsonProperty(value = JSON_PROPERTY_XO_METADATA, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setXoMetadata(@javax.annotation.Nullable Boolean xoMetadata) {
     this.xoMetadata = xoMetadata;
@@ -410,10 +410,7 @@ private final String value;
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -450,27 +447,27 @@ private final String value;
 
     // add `id` to the URL query string
     if (getId() != null) {
-      joiner.add(String.format("%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
     }
 
     // add `name` to the URL query string
     if (getName() != null) {
-      joiner.add(String.format("%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
     }
 
     // add `pools` to the URL query string
     if (getPools() != null) {
-      joiner.add(String.format("%spools%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPools()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%spools%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPools()))));
     }
 
     // add `proxy` to the URL query string
     if (getProxy() != null) {
-      joiner.add(String.format("%sproxy%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProxy()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sproxy%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProxy()))));
     }
 
     // add `remotes` to the URL query string
     if (getRemotes() != null) {
-      joiner.add(String.format("%sremotes%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRemotes()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sremotes%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRemotes()))));
     }
 
     // add `settings` to the URL query string
@@ -480,17 +477,17 @@ private final String value;
 
     // add `type` to the URL query string
     if (getType() != null) {
-      joiner.add(String.format("%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
     }
 
     // add `userId` to the URL query string
     if (getUserId() != null) {
-      joiner.add(String.format("%suserId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUserId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%suserId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUserId()))));
     }
 
     // add `xoMetadata` to the URL query string
     if (getXoMetadata() != null) {
-      joiner.add(String.format("%sxoMetadata%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getXoMetadata()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sxoMetadata%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getXoMetadata()))));
     }
 
     return joiner.toString();

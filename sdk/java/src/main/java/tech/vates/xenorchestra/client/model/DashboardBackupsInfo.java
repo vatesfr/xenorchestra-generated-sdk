@@ -42,7 +42,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   DashboardBackupsInfo.JSON_PROPERTY_JOBS,
   DashboardBackupsInfo.JSON_PROPERTY_VMS_PROTECTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class DashboardBackupsInfo {
   public static final String JSON_PROPERTY_ISSUES = "issues";
   @javax.annotation.Nonnull
@@ -77,14 +77,14 @@ public class DashboardBackupsInfo {
    * @return issues
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ISSUES)
+  @JsonProperty(value = JSON_PROPERTY_ISSUES, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<DashboardBackupsInfoIssuesInner> getIssues() {
     return issues;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ISSUES)
+  @JsonProperty(value = JSON_PROPERTY_ISSUES, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setIssues(@javax.annotation.Nonnull List<DashboardBackupsInfoIssuesInner> issues) {
     this.issues = issues;
@@ -101,14 +101,14 @@ public class DashboardBackupsInfo {
    * @return jobs
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_JOBS)
+  @JsonProperty(value = JSON_PROPERTY_JOBS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public DashboardBackupsInfoJobs getJobs() {
     return jobs;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_JOBS)
+  @JsonProperty(value = JSON_PROPERTY_JOBS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setJobs(@javax.annotation.Nonnull DashboardBackupsInfoJobs jobs) {
     this.jobs = jobs;
@@ -125,14 +125,14 @@ public class DashboardBackupsInfo {
    * @return vmsProtection
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_VMS_PROTECTION)
+  @JsonProperty(value = JSON_PROPERTY_VMS_PROTECTION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public DashboardBackupsInfoVmsProtection getVmsProtection() {
     return vmsProtection;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_VMS_PROTECTION)
+  @JsonProperty(value = JSON_PROPERTY_VMS_PROTECTION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setVmsProtection(@javax.annotation.Nonnull DashboardBackupsInfoVmsProtection vmsProtection) {
     this.vmsProtection = vmsProtection;
@@ -177,10 +177,7 @@ public class DashboardBackupsInfo {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -219,8 +216,8 @@ public class DashboardBackupsInfo {
     if (getIssues() != null) {
       for (int i = 0; i < getIssues().size(); i++) {
         if (getIssues().get(i) != null) {
-          joiner.add(getIssues().get(i).toUrlQueryString(String.format("%sissues%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+          joiner.add(getIssues().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sissues%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
     }

@@ -198,78 +198,90 @@ class _$PartialUnbrandXoPbdSerializer
         case r'$pool':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.dollarPool = valueDes;
           break;
         case r'$poolId':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.dollarPoolId = valueDes;
           break;
         case r'SR':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.SR = valueDes;
           break;
         case r'_xapiRef':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.xapiRef = valueDes;
           break;
         case r'attached':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.attached = valueDes;
           break;
         case r'device_config':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(PartialUnbrandXoPbdDeviceConfig),
-          ) as PartialUnbrandXoPbdDeviceConfig;
+            specifiedType:
+                const FullType.nullable(PartialUnbrandXoPbdDeviceConfig),
+          ) as PartialUnbrandXoPbdDeviceConfig?;
+          if (valueDes == null) continue;
           result.deviceConfig.replace(valueDes);
           break;
         case r'host':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.host = valueDes;
           break;
         case r'id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'otherConfig':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.otherConfig = valueDes;
           break;
         case r'type':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(PartialUnbrandXoPbdTypeEnum),
-          ) as PartialUnbrandXoPbdTypeEnum;
+            specifiedType: const FullType.nullable(PartialUnbrandXoPbdTypeEnum),
+          ) as PartialUnbrandXoPbdTypeEnum?;
+          if (valueDes == null) continue;
           result.type = valueDes;
           break;
         case r'uuid':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.uuid = valueDes;
           break;
         default:

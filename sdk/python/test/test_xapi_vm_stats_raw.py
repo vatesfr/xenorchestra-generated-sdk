@@ -140,7 +140,11 @@ class TestXapiVmStatsRaw(unittest.TestCase):
                             1.337
                             ]
                         }, 
-                    w = , )
+                    w = {
+                        'key' : [
+                            1.337
+                            ]
+                        }, )
             )
         else:
             return XapiVmStatsRaw(

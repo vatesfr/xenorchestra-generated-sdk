@@ -318,108 +318,123 @@ class _$UnbrandCreateVmBodySerializer
         case r'affinity':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.affinity = valueDes;
           break;
         case r'autoPoweron':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.autoPoweron = valueDes;
           break;
         case r'boot':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.boot = valueDes;
           break;
         case r'clone':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.clone = valueDes;
           break;
         case r'cloud_config':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.cloudConfig = valueDes;
           break;
         case r'copyHostBiosStrings':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.copyHostBiosStrings = valueDes;
           break;
         case r'cpus':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.cpus = valueDes;
           break;
         case r'createVtpm':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.createVtpm = valueDes;
           break;
         case r'destroy_cloud_config_vdi':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.destroyCloudConfigVdi = valueDes;
           break;
         case r'gpuGroup':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.gpuGroup = valueDes;
           break;
         case r'high_availability':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType:
-                const FullType(UnbrandCreateVmBodyHighAvailabilityEnum),
-          ) as UnbrandCreateVmBodyHighAvailabilityEnum;
+            specifiedType: const FullType.nullable(
+                UnbrandCreateVmBodyHighAvailabilityEnum),
+          ) as UnbrandCreateVmBodyHighAvailabilityEnum?;
+          if (valueDes == null) continue;
           result.highAvailability = valueDes;
           break;
         case r'hvmBootFirmware':
           final valueDes = serializers.deserialize(
             value,
             specifiedType:
-                const FullType(UnbrandCreateVmBodyHvmBootFirmwareEnum),
-          ) as UnbrandCreateVmBodyHvmBootFirmwareEnum;
+                const FullType.nullable(UnbrandCreateVmBodyHvmBootFirmwareEnum),
+          ) as UnbrandCreateVmBodyHvmBootFirmwareEnum?;
+          if (valueDes == null) continue;
           result.hvmBootFirmware = valueDes;
           break;
         case r'install':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(UnbrandCreateVmBodyInstall),
-          ) as UnbrandCreateVmBodyInstall;
+            specifiedType: const FullType.nullable(UnbrandCreateVmBodyInstall),
+          ) as UnbrandCreateVmBodyInstall?;
+          if (valueDes == null) continue;
           result.install.replace(valueDes);
           break;
         case r'memory':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.memory = valueDes;
           break;
         case r'name_description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.nameDescription = valueDes;
           break;
         case r'name_label':
@@ -432,15 +447,17 @@ class _$UnbrandCreateVmBodySerializer
         case r'network_config':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.networkConfig = valueDes;
           break;
         case r'secureBoot':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.secureBoot = valueDes;
           break;
         case r'template':
@@ -453,24 +470,27 @@ class _$UnbrandCreateVmBodySerializer
         case r'vdis':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(
+            specifiedType: const FullType.nullable(
                 BuiltList, [FullType(UnbrandCreateVmBodyVdisInner)]),
-          ) as BuiltList<UnbrandCreateVmBodyVdisInner>;
+          ) as BuiltList<UnbrandCreateVmBodyVdisInner>?;
+          if (valueDes == null) continue;
           result.vdis.replace(valueDes);
           break;
         case r'vgpuType':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.vgpuType = valueDes;
           break;
         case r'vifs':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(
+            specifiedType: const FullType.nullable(
                 BuiltList, [FullType(UnbrandCreateVmBodyVifsInner)]),
-          ) as BuiltList<UnbrandCreateVmBodyVifsInner>;
+          ) as BuiltList<UnbrandCreateVmBodyVifsInner>?;
+          if (valueDes == null) continue;
           result.vifs.replace(valueDes);
           break;
         default:

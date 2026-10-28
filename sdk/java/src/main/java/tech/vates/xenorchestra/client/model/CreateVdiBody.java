@@ -50,7 +50,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   CreateVdiBody.JSON_PROPERTY_SR_ID,
   CreateVdiBody.JSON_PROPERTY_SM_CONFIG
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class CreateVdiBody {
   public static final String JSON_PROPERTY_NAME_DESCRIPTION = "name_description";
   @javax.annotation.Nullable
@@ -109,14 +109,14 @@ public class CreateVdiBody {
    * @return nameDescription
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_NAME_DESCRIPTION)
+  @JsonProperty(value = JSON_PROPERTY_NAME_DESCRIPTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getNameDescription() {
     return nameDescription;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME_DESCRIPTION)
+  @JsonProperty(value = JSON_PROPERTY_NAME_DESCRIPTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNameDescription(@javax.annotation.Nullable String nameDescription) {
     this.nameDescription = nameDescription;
@@ -133,14 +133,14 @@ public class CreateVdiBody {
    * @return nameLabel
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_NAME_LABEL)
+  @JsonProperty(value = JSON_PROPERTY_NAME_LABEL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getNameLabel() {
     return nameLabel;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME_LABEL)
+  @JsonProperty(value = JSON_PROPERTY_NAME_LABEL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNameLabel(@javax.annotation.Nullable String nameLabel) {
     this.nameLabel = nameLabel;
@@ -157,14 +157,14 @@ public class CreateVdiBody {
    * @return readOnly
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_READ_ONLY)
+  @JsonProperty(value = JSON_PROPERTY_READ_ONLY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getReadOnly() {
     return readOnly;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_READ_ONLY)
+  @JsonProperty(value = JSON_PROPERTY_READ_ONLY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setReadOnly(@javax.annotation.Nullable Boolean readOnly) {
     this.readOnly = readOnly;
@@ -181,14 +181,14 @@ public class CreateVdiBody {
    * @return sharable
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SHARABLE)
+  @JsonProperty(value = JSON_PROPERTY_SHARABLE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getSharable() {
     return sharable;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SHARABLE)
+  @JsonProperty(value = JSON_PROPERTY_SHARABLE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSharable(@javax.annotation.Nullable Boolean sharable) {
     this.sharable = sharable;
@@ -213,14 +213,14 @@ public class CreateVdiBody {
    * @return tags
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TAGS)
+  @JsonProperty(value = JSON_PROPERTY_TAGS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getTags() {
     return tags;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TAGS)
+  @JsonProperty(value = JSON_PROPERTY_TAGS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTags(@javax.annotation.Nullable List<String> tags) {
     this.tags = tags;
@@ -237,14 +237,14 @@ public class CreateVdiBody {
    * @return type
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public VDITYPE getType() {
     return type;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setType(@javax.annotation.Nullable VDITYPE type) {
     this.type = type;
@@ -261,14 +261,14 @@ public class CreateVdiBody {
    * @return virtualSize
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_VIRTUAL_SIZE)
+  @JsonProperty(value = JSON_PROPERTY_VIRTUAL_SIZE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getVirtualSize() {
     return virtualSize;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_VIRTUAL_SIZE)
+  @JsonProperty(value = JSON_PROPERTY_VIRTUAL_SIZE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setVirtualSize(@javax.annotation.Nonnull Double virtualSize) {
     this.virtualSize = virtualSize;
@@ -285,14 +285,14 @@ public class CreateVdiBody {
    * @return xenstoreData
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_XENSTORE_DATA)
+  @JsonProperty(value = JSON_PROPERTY_XENSTORE_DATA, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Object getXenstoreData() {
     return xenstoreData;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_XENSTORE_DATA)
+  @JsonProperty(value = JSON_PROPERTY_XENSTORE_DATA, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setXenstoreData(@javax.annotation.Nullable Object xenstoreData) {
     this.xenstoreData = xenstoreData;
@@ -317,14 +317,14 @@ public class CreateVdiBody {
    * @return otherConfig
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_OTHER_CONFIG)
+  @JsonProperty(value = JSON_PROPERTY_OTHER_CONFIG, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, String> getOtherConfig() {
     return otherConfig;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_OTHER_CONFIG)
+  @JsonProperty(value = JSON_PROPERTY_OTHER_CONFIG, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOtherConfig(@javax.annotation.Nullable Map<String, String> otherConfig) {
     this.otherConfig = otherConfig;
@@ -341,14 +341,14 @@ public class CreateVdiBody {
    * @return srId
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_SR_ID)
+  @JsonProperty(value = JSON_PROPERTY_SR_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getSrId() {
     return srId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SR_ID)
+  @JsonProperty(value = JSON_PROPERTY_SR_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSrId(@javax.annotation.Nonnull String srId) {
     this.srId = srId;
@@ -365,14 +365,14 @@ public class CreateVdiBody {
    * @return smConfig
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SM_CONFIG)
+  @JsonProperty(value = JSON_PROPERTY_SM_CONFIG, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Object getSmConfig() {
     return smConfig;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SM_CONFIG)
+  @JsonProperty(value = JSON_PROPERTY_SM_CONFIG, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSmConfig(@javax.annotation.Nullable Object smConfig) {
     this.smConfig = smConfig;
@@ -433,10 +433,7 @@ public class CreateVdiBody {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -473,65 +470,65 @@ public class CreateVdiBody {
 
     // add `name_description` to the URL query string
     if (getNameDescription() != null) {
-      joiner.add(String.format("%sname_description%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameDescription()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname_description%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameDescription()))));
     }
 
     // add `name_label` to the URL query string
     if (getNameLabel() != null) {
-      joiner.add(String.format("%sname_label%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameLabel()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname_label%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameLabel()))));
     }
 
     // add `read_only` to the URL query string
     if (getReadOnly() != null) {
-      joiner.add(String.format("%sread_only%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReadOnly()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sread_only%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReadOnly()))));
     }
 
     // add `sharable` to the URL query string
     if (getSharable() != null) {
-      joiner.add(String.format("%ssharable%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSharable()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssharable%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSharable()))));
     }
 
     // add `tags` to the URL query string
     if (getTags() != null) {
       for (int i = 0; i < getTags().size(); i++) {
-        joiner.add(String.format("%stags%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%stags%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getTags().get(i)))));
       }
     }
 
     // add `type` to the URL query string
     if (getType() != null) {
-      joiner.add(String.format("%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
     }
 
     // add `virtual_size` to the URL query string
     if (getVirtualSize() != null) {
-      joiner.add(String.format("%svirtual_size%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVirtualSize()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%svirtual_size%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVirtualSize()))));
     }
 
     // add `xenstore_data` to the URL query string
     if (getXenstoreData() != null) {
-      joiner.add(String.format("%sxenstore_data%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getXenstoreData()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sxenstore_data%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getXenstoreData()))));
     }
 
     // add `other_config` to the URL query string
     if (getOtherConfig() != null) {
       for (String _key : getOtherConfig().keySet()) {
-        joiner.add(String.format("%sother_config%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%sother_config%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getOtherConfig().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getOtherConfig().get(_key)))));
       }
     }
 
     // add `srId` to the URL query string
     if (getSrId() != null) {
-      joiner.add(String.format("%ssrId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSrId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssrId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSrId()))));
     }
 
     // add `sm_config` to the URL query string
     if (getSmConfig() != null) {
-      joiner.add(String.format("%ssm_config%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSmConfig()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssm_config%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSmConfig()))));
     }
 
     return joiner.toString();

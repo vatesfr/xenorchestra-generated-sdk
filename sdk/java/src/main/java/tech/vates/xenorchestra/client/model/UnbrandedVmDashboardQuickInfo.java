@@ -63,7 +63,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   UnbrandedVmDashboardQuickInfo.JSON_PROPERTY_VIRTUALIZATION_MODE,
   UnbrandedVmDashboardQuickInfo.JSON_PROPERTY_CREATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class UnbrandedVmDashboardQuickInfo {
   public static final String JSON_PROPERTY_$_POOL = "$pool";
   @javax.annotation.Nonnull
@@ -145,14 +145,14 @@ public class UnbrandedVmDashboardQuickInfo {
    * @return $pool
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_$_POOL)
+  @JsonProperty(value = JSON_PROPERTY_$_POOL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String get$Pool() {
     return $pool;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_$_POOL)
+  @JsonProperty(value = JSON_PROPERTY_$_POOL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void set$Pool(@javax.annotation.Nonnull String $pool) {
     this.$pool = $pool;
@@ -169,14 +169,14 @@ public class UnbrandedVmDashboardQuickInfo {
    * @return cpUs
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_CP_US)
+  @JsonProperty(value = JSON_PROPERTY_CP_US, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public PickUnbrandVmDashboardAtQuickInfoExcludeKeyofUnbrandVmDashboardAtQuickInfoCreationCPUs getCpUs() {
     return cpUs;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CP_US)
+  @JsonProperty(value = JSON_PROPERTY_CP_US, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCpUs(@javax.annotation.Nonnull PickUnbrandVmDashboardAtQuickInfoExcludeKeyofUnbrandVmDashboardAtQuickInfoCreationCPUs cpUs) {
     this.cpUs = cpUs;
@@ -193,14 +193,14 @@ public class UnbrandedVmDashboardQuickInfo {
    * @return host
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_HOST)
+  @JsonProperty(value = JSON_PROPERTY_HOST, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getHost() {
     return host;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_HOST)
+  @JsonProperty(value = JSON_PROPERTY_HOST, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHost(@javax.annotation.Nullable String host) {
     this.host = host;
@@ -217,14 +217,14 @@ public class UnbrandedVmDashboardQuickInfo {
    * @return id
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
@@ -241,14 +241,14 @@ public class UnbrandedVmDashboardQuickInfo {
    * @return mainIpAddress
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_MAIN_IP_ADDRESS)
+  @JsonProperty(value = JSON_PROPERTY_MAIN_IP_ADDRESS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getMainIpAddress() {
     return mainIpAddress;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MAIN_IP_ADDRESS)
+  @JsonProperty(value = JSON_PROPERTY_MAIN_IP_ADDRESS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMainIpAddress(@javax.annotation.Nullable String mainIpAddress) {
     this.mainIpAddress = mainIpAddress;
@@ -265,14 +265,14 @@ public class UnbrandedVmDashboardQuickInfo {
    * @return memory
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_MEMORY)
+  @JsonProperty(value = JSON_PROPERTY_MEMORY, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public PickUnbrandVmDashboardAtQuickInfoExcludeKeyofUnbrandVmDashboardAtQuickInfoCreationMemory getMemory() {
     return memory;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MEMORY)
+  @JsonProperty(value = JSON_PROPERTY_MEMORY, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setMemory(@javax.annotation.Nonnull PickUnbrandVmDashboardAtQuickInfoExcludeKeyofUnbrandVmDashboardAtQuickInfoCreationMemory memory) {
     this.memory = memory;
@@ -289,14 +289,14 @@ public class UnbrandedVmDashboardQuickInfo {
    * @return nameDescription
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_NAME_DESCRIPTION)
+  @JsonProperty(value = JSON_PROPERTY_NAME_DESCRIPTION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getNameDescription() {
     return nameDescription;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME_DESCRIPTION)
+  @JsonProperty(value = JSON_PROPERTY_NAME_DESCRIPTION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setNameDescription(@javax.annotation.Nonnull String nameDescription) {
     this.nameDescription = nameDescription;
@@ -313,14 +313,14 @@ public class UnbrandedVmDashboardQuickInfo {
    * @return osVersion
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_OS_VERSION)
+  @JsonProperty(value = JSON_PROPERTY_OS_VERSION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public PickUnbrandVmDashboardAtQuickInfoExcludeKeyofUnbrandVmDashboardAtQuickInfoCreationOsVersion getOsVersion() {
     return osVersion;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_OS_VERSION)
+  @JsonProperty(value = JSON_PROPERTY_OS_VERSION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setOsVersion(@javax.annotation.Nonnull PickUnbrandVmDashboardAtQuickInfoExcludeKeyofUnbrandVmDashboardAtQuickInfoCreationOsVersion osVersion) {
     this.osVersion = osVersion;
@@ -337,14 +337,14 @@ public class UnbrandedVmDashboardQuickInfo {
    * @return powerState
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_POWER_STATE)
+  @JsonProperty(value = JSON_PROPERTY_POWER_STATE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public VMPOWERSTATE getPowerState() {
     return powerState;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_POWER_STATE)
+  @JsonProperty(value = JSON_PROPERTY_POWER_STATE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setPowerState(@javax.annotation.Nonnull VMPOWERSTATE powerState) {
     this.powerState = powerState;
@@ -361,14 +361,14 @@ public class UnbrandedVmDashboardQuickInfo {
    * @return pvDriversDetected
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_PV_DRIVERS_DETECTED)
+  @JsonProperty(value = JSON_PROPERTY_PV_DRIVERS_DETECTED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Boolean getPvDriversDetected() {
     return pvDriversDetected;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PV_DRIVERS_DETECTED)
+  @JsonProperty(value = JSON_PROPERTY_PV_DRIVERS_DETECTED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setPvDriversDetected(@javax.annotation.Nonnull Boolean pvDriversDetected) {
     this.pvDriversDetected = pvDriversDetected;
@@ -385,14 +385,14 @@ public class UnbrandedVmDashboardQuickInfo {
    * @return pvDriversUpToDate
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PV_DRIVERS_UP_TO_DATE)
+  @JsonProperty(value = JSON_PROPERTY_PV_DRIVERS_UP_TO_DATE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getPvDriversUpToDate() {
     return pvDriversUpToDate;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PV_DRIVERS_UP_TO_DATE)
+  @JsonProperty(value = JSON_PROPERTY_PV_DRIVERS_UP_TO_DATE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPvDriversUpToDate(@javax.annotation.Nullable Boolean pvDriversUpToDate) {
     this.pvDriversUpToDate = pvDriversUpToDate;
@@ -409,14 +409,14 @@ public class UnbrandedVmDashboardQuickInfo {
    * @return pvDriversVersion
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PV_DRIVERS_VERSION)
+  @JsonProperty(value = JSON_PROPERTY_PV_DRIVERS_VERSION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getPvDriversVersion() {
     return pvDriversVersion;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PV_DRIVERS_VERSION)
+  @JsonProperty(value = JSON_PROPERTY_PV_DRIVERS_VERSION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPvDriversVersion(@javax.annotation.Nullable String pvDriversVersion) {
     this.pvDriversVersion = pvDriversVersion;
@@ -438,7 +438,7 @@ public class UnbrandedVmDashboardQuickInfo {
         return startTime.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_START_TIME)
+  @JsonProperty(value = JSON_PROPERTY_START_TIME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<Double> getStartTime_JsonNullable() {
@@ -473,14 +473,14 @@ public class UnbrandedVmDashboardQuickInfo {
    * @return tags
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_TAGS)
+  @JsonProperty(value = JSON_PROPERTY_TAGS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<String> getTags() {
     return tags;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TAGS)
+  @JsonProperty(value = JSON_PROPERTY_TAGS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setTags(@javax.annotation.Nonnull List<String> tags) {
     this.tags = tags;
@@ -497,14 +497,14 @@ public class UnbrandedVmDashboardQuickInfo {
    * @return uuid
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_UUID)
+  @JsonProperty(value = JSON_PROPERTY_UUID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getUuid() {
     return uuid;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_UUID)
+  @JsonProperty(value = JSON_PROPERTY_UUID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUuid(@javax.annotation.Nonnull String uuid) {
     this.uuid = uuid;
@@ -521,14 +521,14 @@ public class UnbrandedVmDashboardQuickInfo {
    * @return virtualizationMode
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_VIRTUALIZATION_MODE)
+  @JsonProperty(value = JSON_PROPERTY_VIRTUALIZATION_MODE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public DOMAINTYPE getVirtualizationMode() {
     return virtualizationMode;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_VIRTUALIZATION_MODE)
+  @JsonProperty(value = JSON_PROPERTY_VIRTUALIZATION_MODE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setVirtualizationMode(@javax.annotation.Nonnull DOMAINTYPE virtualizationMode) {
     this.virtualizationMode = virtualizationMode;
@@ -545,14 +545,14 @@ public class UnbrandedVmDashboardQuickInfo {
    * @return creation
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_CREATION)
+  @JsonProperty(value = JSON_PROPERTY_CREATION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public UnbrandVmDashboardAtQuickInfo91Creation93 getCreation() {
     return creation;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CREATION)
+  @JsonProperty(value = JSON_PROPERTY_CREATION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCreation(@javax.annotation.Nonnull UnbrandVmDashboardAtQuickInfo91Creation93 creation) {
     this.creation = creation;
@@ -636,10 +636,7 @@ public class UnbrandedVmDashboardQuickInfo {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -676,7 +673,7 @@ public class UnbrandedVmDashboardQuickInfo {
 
     // add `$pool` to the URL query string
     if (get$Pool() != null) {
-      joiner.add(String.format("%s$pool%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$Pool()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%s$pool%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$Pool()))));
     }
 
     // add `CPUs` to the URL query string
@@ -686,17 +683,17 @@ public class UnbrandedVmDashboardQuickInfo {
 
     // add `host` to the URL query string
     if (getHost() != null) {
-      joiner.add(String.format("%shost%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHost()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%shost%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHost()))));
     }
 
     // add `id` to the URL query string
     if (getId() != null) {
-      joiner.add(String.format("%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
     }
 
     // add `mainIpAddress` to the URL query string
     if (getMainIpAddress() != null) {
-      joiner.add(String.format("%smainIpAddress%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMainIpAddress()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%smainIpAddress%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMainIpAddress()))));
     }
 
     // add `memory` to the URL query string
@@ -706,7 +703,7 @@ public class UnbrandedVmDashboardQuickInfo {
 
     // add `name_description` to the URL query string
     if (getNameDescription() != null) {
-      joiner.add(String.format("%sname_description%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameDescription()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname_description%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameDescription()))));
     }
 
     // add `os_version` to the URL query string
@@ -716,46 +713,46 @@ public class UnbrandedVmDashboardQuickInfo {
 
     // add `power_state` to the URL query string
     if (getPowerState() != null) {
-      joiner.add(String.format("%spower_state%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPowerState()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%spower_state%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPowerState()))));
     }
 
     // add `pvDriversDetected` to the URL query string
     if (getPvDriversDetected() != null) {
-      joiner.add(String.format("%spvDriversDetected%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPvDriversDetected()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%spvDriversDetected%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPvDriversDetected()))));
     }
 
     // add `pvDriversUpToDate` to the URL query string
     if (getPvDriversUpToDate() != null) {
-      joiner.add(String.format("%spvDriversUpToDate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPvDriversUpToDate()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%spvDriversUpToDate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPvDriversUpToDate()))));
     }
 
     // add `pvDriversVersion` to the URL query string
     if (getPvDriversVersion() != null) {
-      joiner.add(String.format("%spvDriversVersion%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPvDriversVersion()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%spvDriversVersion%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPvDriversVersion()))));
     }
 
     // add `startTime` to the URL query string
     if (getStartTime() != null) {
-      joiner.add(String.format("%sstartTime%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStartTime()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sstartTime%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStartTime()))));
     }
 
     // add `tags` to the URL query string
     if (getTags() != null) {
       for (int i = 0; i < getTags().size(); i++) {
-        joiner.add(String.format("%stags%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%stags%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getTags().get(i)))));
       }
     }
 
     // add `uuid` to the URL query string
     if (getUuid() != null) {
-      joiner.add(String.format("%suuid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUuid()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%suuid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUuid()))));
     }
 
     // add `virtualizationMode` to the URL query string
     if (getVirtualizationMode() != null) {
-      joiner.add(String.format("%svirtualizationMode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVirtualizationMode()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%svirtualizationMode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVirtualizationMode()))));
     }
 
     // add `creation` to the URL query string

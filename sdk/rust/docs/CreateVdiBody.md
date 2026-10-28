@@ -9,12 +9,12 @@ Name | Type | Description | Notes
 **read_only** | Option<**bool**> |  | [optional]
 **sharable** | Option<**bool**> |  | [optional]
 **tags** | Option<**Vec<String>**> |  | [optional]
-**r#type** | Option<[**models::VdiType**](VDI_TYPE.md)> |  | [optional]
+**r#type** | Option<[**models::VdiType**](VDITYPE.md)> |  | [optional]
 **virtual_size** | **f64** |  | 
-**xenstore_data** | Option<[**serde_json::Value**](.md)> | Construct a type with a set of properties K of type T | [optional]
+**xenstore_data** | Option<**serde_json::Value**> | Construct a type with a set of properties K of type T | [optional]
 **other_config** | Option<**std::collections::HashMap<String, String>**> |  | [optional]
 **sr_id** | **String** |  | 
-**sm_config** | Option<[**serde_json::Value**](.md)> | Construct a type with a set of properties K of type T | [optional]
+**sm_config** | Option<**serde_json::Value**> | Construct a type with a set of properties K of type T | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

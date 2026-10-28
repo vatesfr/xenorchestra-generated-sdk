@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **is_cd_drive** | Option<**bool**> |  | [optional]
 **position** | Option<**String**> |  | [optional]
 **read_only** | Option<**bool**> |  | [optional]
-**r#type** | Option<**String**> |  | [optional]
+**r#type** | Option<**Type**> |  (enum: VBD) | [optional]
 **uuid** | Option<**String**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

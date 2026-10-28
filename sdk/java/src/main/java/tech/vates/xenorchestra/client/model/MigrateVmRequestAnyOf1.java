@@ -41,7 +41,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   MigrateVmRequestAnyOf1.JSON_PROPERTY_SR_ID,
   MigrateVmRequestAnyOf1.JSON_PROPERTY_SR_ID_BY_VDI_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class MigrateVmRequestAnyOf1 {
   public static final String JSON_PROPERTY_HOST_ID = "hostId";
   @javax.annotation.Nonnull
@@ -76,14 +76,14 @@ public class MigrateVmRequestAnyOf1 {
    * @return hostId
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_HOST_ID)
+  @JsonProperty(value = JSON_PROPERTY_HOST_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getHostId() {
     return hostId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_HOST_ID)
+  @JsonProperty(value = JSON_PROPERTY_HOST_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setHostId(@javax.annotation.Nonnull String hostId) {
     this.hostId = hostId;
@@ -100,14 +100,14 @@ public class MigrateVmRequestAnyOf1 {
    * @return migrationNetworkId
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_MIGRATION_NETWORK_ID)
+  @JsonProperty(value = JSON_PROPERTY_MIGRATION_NETWORK_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getMigrationNetworkId() {
     return migrationNetworkId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MIGRATION_NETWORK_ID)
+  @JsonProperty(value = JSON_PROPERTY_MIGRATION_NETWORK_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMigrationNetworkId(@javax.annotation.Nullable String migrationNetworkId) {
     this.migrationNetworkId = migrationNetworkId;
@@ -132,14 +132,14 @@ public class MigrateVmRequestAnyOf1 {
    * @return networkIdByVifId
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_NETWORK_ID_BY_VIF_ID)
+  @JsonProperty(value = JSON_PROPERTY_NETWORK_ID_BY_VIF_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, String> getNetworkIdByVifId() {
     return networkIdByVifId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NETWORK_ID_BY_VIF_ID)
+  @JsonProperty(value = JSON_PROPERTY_NETWORK_ID_BY_VIF_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNetworkIdByVifId(@javax.annotation.Nullable Map<String, String> networkIdByVifId) {
     this.networkIdByVifId = networkIdByVifId;
@@ -156,14 +156,14 @@ public class MigrateVmRequestAnyOf1 {
    * @return srId
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SR_ID)
+  @JsonProperty(value = JSON_PROPERTY_SR_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getSrId() {
     return srId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SR_ID)
+  @JsonProperty(value = JSON_PROPERTY_SR_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSrId(@javax.annotation.Nullable String srId) {
     this.srId = srId;
@@ -188,14 +188,14 @@ public class MigrateVmRequestAnyOf1 {
    * @return srIdByVdiId
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SR_ID_BY_VDI_ID)
+  @JsonProperty(value = JSON_PROPERTY_SR_ID_BY_VDI_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, String> getSrIdByVdiId() {
     return srIdByVdiId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SR_ID_BY_VDI_ID)
+  @JsonProperty(value = JSON_PROPERTY_SR_ID_BY_VDI_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSrIdByVdiId(@javax.annotation.Nullable Map<String, String> srIdByVdiId) {
     this.srIdByVdiId = srIdByVdiId;
@@ -244,10 +244,7 @@ public class MigrateVmRequestAnyOf1 {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -284,33 +281,33 @@ public class MigrateVmRequestAnyOf1 {
 
     // add `hostId` to the URL query string
     if (getHostId() != null) {
-      joiner.add(String.format("%shostId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHostId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%shostId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHostId()))));
     }
 
     // add `migrationNetworkId` to the URL query string
     if (getMigrationNetworkId() != null) {
-      joiner.add(String.format("%smigrationNetworkId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMigrationNetworkId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%smigrationNetworkId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMigrationNetworkId()))));
     }
 
     // add `networkIdByVifId` to the URL query string
     if (getNetworkIdByVifId() != null) {
       for (String _key : getNetworkIdByVifId().keySet()) {
-        joiner.add(String.format("%snetworkIdByVifId%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%snetworkIdByVifId%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getNetworkIdByVifId().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getNetworkIdByVifId().get(_key)))));
       }
     }
 
     // add `srId` to the URL query string
     if (getSrId() != null) {
-      joiner.add(String.format("%ssrId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSrId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssrId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSrId()))));
     }
 
     // add `srIdByVdiId` to the URL query string
     if (getSrIdByVdiId() != null) {
       for (String _key : getSrIdByVdiId().keySet()) {
-        joiner.add(String.format("%ssrIdByVdiId%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%ssrIdByVdiId%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getSrIdByVdiId().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getSrIdByVdiId().get(_key)))));
       }
     }

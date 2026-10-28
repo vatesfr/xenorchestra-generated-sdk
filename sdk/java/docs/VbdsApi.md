@@ -112,7 +112,7 @@ public class Example {
 
 ## connectVbdWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> connectVbd connectVbdWithHttpInfo(id, sync)
+> ApiResponse<CreateActionReturnTypeVoid> connectVbdWithHttpInfo(id, sync)
 
 
 
@@ -283,7 +283,7 @@ public class Example {
 
 ## createVbdWithHttpInfo
 
-> ApiResponse<CreateAclV2Privilege201Response> createVbd createVbdWithHttpInfo(createVbdRequest)
+> ApiResponse<CreateAclV2Privilege201Response> createVbdWithHttpInfo(createVbdRequest)
 
 
 
@@ -449,7 +449,7 @@ null (empty response body)
 
 ## deleteVbdWithHttpInfo
 
-> ApiResponse<Void> deleteVbd deleteVbdWithHttpInfo(id)
+> ApiResponse<Void> deleteVbdWithHttpInfo(id)
 
 
 
@@ -618,7 +618,7 @@ public class Example {
 
 ## disconnectVbdWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> disconnectVbd disconnectVbdWithHttpInfo(id, sync)
+> ApiResponse<CreateActionReturnTypeVoid> disconnectVbdWithHttpInfo(id, sync)
 
 
 
@@ -788,7 +788,7 @@ public class Example {
 
 ## getVbdWithHttpInfo
 
-> ApiResponse<UnbrandXoVbd> getVbd getVbdWithHttpInfo(id)
+> ApiResponse<UnbrandXoVbd> getVbdWithHttpInfo(id)
 
 
 
@@ -963,7 +963,7 @@ public class Example {
 
 ## getVbdAlarmsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVbdAlarms getVbdAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVbdAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1147,7 +1147,7 @@ public class Example {
 
 ## getVbdMessagesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoMessage> getVbdMessages getVbdMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoMessage> getVbdMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1331,7 +1331,7 @@ public class Example {
 
 ## getVbdTasksWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoTask> getVbdTasks getVbdTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoTask> getVbdTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1512,7 +1512,7 @@ public class Example {
 
 ## getVbdsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoVbd> getVbds getVbdsWithHttpInfo(fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoVbd> getVbdsWithHttpInfo(fields, ndjson, markdown, filter, limit)
 
 
 

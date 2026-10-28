@@ -36,7 +36,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PartialUnbrandXoPbdDeviceConfigAnyOf4.JSON_PROPERTY_SERVER,
   PartialUnbrandXoPbdDeviceConfigAnyOf4.JSON_PROPERTY_SERVERPATH
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PartialUnbrandXoPbdDeviceConfigAnyOf4 {
   public static final String JSON_PROPERTY_SERVER = "server";
   @javax.annotation.Nonnull
@@ -59,14 +59,14 @@ public class PartialUnbrandXoPbdDeviceConfigAnyOf4 {
    * @return server
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_SERVER)
+  @JsonProperty(value = JSON_PROPERTY_SERVER, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getServer() {
     return server;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SERVER)
+  @JsonProperty(value = JSON_PROPERTY_SERVER, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setServer(@javax.annotation.Nonnull String server) {
     this.server = server;
@@ -83,14 +83,14 @@ public class PartialUnbrandXoPbdDeviceConfigAnyOf4 {
    * @return serverpath
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_SERVERPATH)
+  @JsonProperty(value = JSON_PROPERTY_SERVERPATH, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getServerpath() {
     return serverpath;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SERVERPATH)
+  @JsonProperty(value = JSON_PROPERTY_SERVERPATH, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setServerpath(@javax.annotation.Nonnull String serverpath) {
     this.serverpath = serverpath;
@@ -133,10 +133,7 @@ public class PartialUnbrandXoPbdDeviceConfigAnyOf4 {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -173,12 +170,12 @@ public class PartialUnbrandXoPbdDeviceConfigAnyOf4 {
 
     // add `server` to the URL query string
     if (getServer() != null) {
-      joiner.add(String.format("%sserver%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getServer()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sserver%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getServer()))));
     }
 
     // add `serverpath` to the URL query string
     if (getServerpath() != null) {
-      joiner.add(String.format("%sserverpath%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getServerpath()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sserverpath%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getServerpath()))));
     }
 
     return joiner.toString();

@@ -1,4 +1,4 @@
-# ExcludeSupportedVdiFormatPeriodQcow2
+# ExcludeSupportedVdiFormatQcow2
 
 ## Enum Variants
 

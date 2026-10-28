@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**error** | Option<[**serde_json::Value**](.md)> |  | 
+**error** | Option<**serde_json::Value**> |  | 
 **file** | **String** |  | 
 **step** | **String** |  | 
 **success** | **bool** |  | 

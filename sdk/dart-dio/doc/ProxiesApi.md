@@ -41,7 +41,7 @@ final double limit = 42; // double |
 try {
     final response = api.getProxies(fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling ProxiesApi->getProxies: $e\n');
 }
 ```
@@ -95,7 +95,7 @@ final String id = e625ea0c-a876-405a-b838-109d762efe88; // String |
 try {
     final response = api.getProxy(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling ProxiesApi->getProxy: $e\n');
 }
 ```

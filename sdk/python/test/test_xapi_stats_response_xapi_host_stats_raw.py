@@ -49,18 +49,58 @@ class TestXapiStatsResponseXapiHostStatsRaw(unittest.TestCase):
                                 1.337
                                 ]
                             }, 
-                        w = , ), 
+                        w = {
+                            'key' : [
+                                1.337
+                                ]
+                            }, ), 
                     iops = xenorchestra_client.models.xapi_host_stats_raw_io_throughput.XapiHostStatsRaw_ioThroughput(
-                        r = , 
-                        w = , ), 
-                    iowait = , 
-                    latency = , 
-                    load = , 
-                    memory = , 
-                    memory_free = , 
+                        r = {
+                            'key' : [
+                                1.337
+                                ]
+                            }, 
+                        w = {
+                            'key' : [
+                                1.337
+                                ]
+                            }, ), 
+                    iowait = {
+                        'key' : [
+                            1.337
+                            ]
+                        }, 
+                    latency = xenorchestra_client.models.xapi_host_stats_raw_io_throughput.XapiHostStatsRaw_ioThroughput(
+                        r = {
+                            'key' : [
+                                1.337
+                                ]
+                            }, 
+                        w = {
+                            'key' : [
+                                1.337
+                                ]
+                            }, ), 
+                    load = [
+                        1.337
+                        ], 
+                    memory = [
+                        1.337
+                        ], 
+                    memory_free = [
+                        1.337
+                        ], 
                     pifs = xenorchestra_client.models.xapi_host_stats_raw_pifs.XapiHostStatsRaw_pifs(
-                        rx = , 
-                        tx = , ), )
+                        rx = {
+                            'key' : [
+                                1.337
+                                ]
+                            }, 
+                        tx = {
+                            'key' : [
+                                1.337
+                                ]
+                            }, ), )
             )
         else:
             return XapiStatsResponseXapiHostStatsRaw(
@@ -78,18 +118,58 @@ class TestXapiStatsResponseXapiHostStatsRaw(unittest.TestCase):
                                 1.337
                                 ]
                             }, 
-                        w = , ), 
+                        w = {
+                            'key' : [
+                                1.337
+                                ]
+                            }, ), 
                     iops = xenorchestra_client.models.xapi_host_stats_raw_io_throughput.XapiHostStatsRaw_ioThroughput(
-                        r = , 
-                        w = , ), 
-                    iowait = , 
-                    latency = , 
-                    load = , 
-                    memory = , 
-                    memory_free = , 
+                        r = {
+                            'key' : [
+                                1.337
+                                ]
+                            }, 
+                        w = {
+                            'key' : [
+                                1.337
+                                ]
+                            }, ), 
+                    iowait = {
+                        'key' : [
+                            1.337
+                            ]
+                        }, 
+                    latency = xenorchestra_client.models.xapi_host_stats_raw_io_throughput.XapiHostStatsRaw_ioThroughput(
+                        r = {
+                            'key' : [
+                                1.337
+                                ]
+                            }, 
+                        w = {
+                            'key' : [
+                                1.337
+                                ]
+                            }, ), 
+                    load = [
+                        1.337
+                        ], 
+                    memory = [
+                        1.337
+                        ], 
+                    memory_free = [
+                        1.337
+                        ], 
                     pifs = xenorchestra_client.models.xapi_host_stats_raw_pifs.XapiHostStatsRaw_pifs(
-                        rx = , 
-                        tx = , ), ),
+                        rx = {
+                            'key' : [
+                                1.337
+                                ]
+                            }, 
+                        tx = {
+                            'key' : [
+                                1.337
+                                ]
+                            }, ), ),
         )
         """
 

@@ -113,8 +113,10 @@ class _$CreateUserRequestSerializer
         case r'permission':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(CreateUserRequestPermissionEnum),
-          ) as CreateUserRequestPermissionEnum;
+            specifiedType:
+                const FullType.nullable(CreateUserRequestPermissionEnum),
+          ) as CreateUserRequestPermissionEnum?;
+          if (valueDes == null) continue;
           result.permission = valueDes;
           break;
         default:

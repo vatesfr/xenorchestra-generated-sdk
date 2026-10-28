@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**compress** | Option<**String**> |  | [optional]
+**compress** | Option<**Compress**> |  (enum: gzip, zstd) | [optional]
 **name_label** | Option<**String**> |  | [optional]
 **sr_id** | Option<**String**> |  | [optional]
 

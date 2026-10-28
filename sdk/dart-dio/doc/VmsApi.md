@@ -94,7 +94,7 @@ final String dataSource = cpu0; // String |
 
 try {
     api.addDataSource(id, dataSource);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->addDataSource: $e\n');
 }
 ```
@@ -146,7 +146,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.cleanRebootVm(id, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->cleanRebootVm: $e\n');
 }
 ```
@@ -198,7 +198,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.cleanShutdownVm(id, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->cleanShutdownVm: $e\n');
 }
 ```
@@ -250,7 +250,7 @@ final CloneVmRequest cloneVmRequest = {"fast":true,"name_label":"cloned_vm"}; //
 
 try {
     api.cloneVm(id, sync_, cloneVmRequest);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->cloneVm: $e\n');
 }
 ```
@@ -304,7 +304,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.createVm(id, unbrandCreateVmBody, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->createVm: $e\n');
 }
 ```
@@ -356,7 +356,7 @@ final String dataSource = cpu0; // String |
 
 try {
     api.deleteDataSource(id, dataSource);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->deleteDataSource: $e\n');
 }
 ```
@@ -406,7 +406,7 @@ final String id = f07ab729-c0e8-721c-45ec-f11276377030; // String |
 
 try {
     api.deleteVm(id);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->deleteVm: $e\n');
 }
 ```
@@ -456,7 +456,7 @@ final String tag = from-rest-api; // String |
 
 try {
     api.deleteVmControllerTag(id, tag);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->deleteVmControllerTag: $e\n');
 }
 ```
@@ -506,7 +506,7 @@ final String id = d68fca2c-41e6-be87-d790-105c1642a090; // String |
 
 try {
     api.deleteVmSnapshot(id);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->deleteVmSnapshot: $e\n');
 }
 ```
@@ -556,7 +556,7 @@ final String tag = from-rest-api; // String |
 
 try {
     api.deleteVmSnapshotTag(id, tag);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->deleteVmSnapshotTag: $e\n');
 }
 ```
@@ -607,7 +607,7 @@ final String tag = from-rest-api; // String |
 
 try {
     api.deleteVmTag(id, tag);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->deleteVmTag: $e\n');
 }
 ```
@@ -657,7 +657,7 @@ final String id = 6d50ba76-0f11-1ff1-4f6a-b502afc31b8e; // String |
 
 try {
     api.deleteVmTemplate(id);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->deleteVmTemplate: $e\n');
 }
 ```
@@ -707,7 +707,7 @@ final String tag = from-rest-api; // String |
 
 try {
     api.deleteVmTemplateTag(id, tag);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->deleteVmTemplateTag: $e\n');
 }
 ```
@@ -760,7 +760,7 @@ final JsonObject compress = ; // JsonObject |
 try {
     final response = api.exportVm(id, format, compress);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->exportVm: $e\n');
 }
 ```
@@ -814,7 +814,7 @@ final JsonObject compress = ; // JsonObject |
 try {
     final response = api.exportVmSnapshot(id, format, compress);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->exportVmSnapshot: $e\n');
 }
 ```
@@ -868,7 +868,7 @@ final JsonObject compress = ; // JsonObject |
 try {
     final response = api.exportVmTemplate(id, format, compress);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->exportVmTemplate: $e\n');
 }
 ```
@@ -920,7 +920,7 @@ final String id = f07ab729-c0e8-721c-45ec-f11276377030; // String |
 try {
     final response = api.getVm(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->getVm: $e\n');
 }
 ```
@@ -975,7 +975,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmAlarms(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->getVmAlarms: $e\n');
 }
 ```
@@ -1030,7 +1030,7 @@ final String id = 9b4775bd-9493-490a-9afa-f786a44caa4f; // String |
 try {
     final response = api.getVmController(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->getVmController: $e\n');
 }
 ```
@@ -1085,7 +1085,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmControllerAlarms(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->getVmControllerAlarms: $e\n');
 }
 ```
@@ -1145,7 +1145,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmControllerMessages(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->getVmControllerMessages: $e\n');
 }
 ```
@@ -1205,7 +1205,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmControllerTasks(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->getVmControllerTasks: $e\n');
 }
 ```
@@ -1265,7 +1265,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmControllerVdis(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->getVmControllerVdis: $e\n');
 }
 ```
@@ -1324,7 +1324,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmControllers(fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->getVmControllers: $e\n');
 }
 ```
@@ -1379,7 +1379,7 @@ final bool ndjson = true; // bool |
 try {
     final response = api.getVmDashboard(id, ndjson);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->getVmDashboard: $e\n');
 }
 ```
@@ -1435,7 +1435,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmMessages(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->getVmMessages: $e\n');
 }
 ```
@@ -1490,7 +1490,7 @@ final String id = d68fca2c-41e6-be87-d790-105c1642a090; // String |
 try {
     final response = api.getVmSnapshot(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->getVmSnapshot: $e\n');
 }
 ```
@@ -1545,7 +1545,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmSnapshotAlarms(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->getVmSnapshotAlarms: $e\n');
 }
 ```
@@ -1605,7 +1605,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmSnapshotTasks(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->getVmSnapshotTasks: $e\n');
 }
 ```
@@ -1665,7 +1665,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmSnapshotVdis(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->getVmSnapshotVdis: $e\n');
 }
 ```
@@ -1724,7 +1724,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmSnapshots(fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->getVmSnapshots: $e\n');
 }
 ```
@@ -1783,7 +1783,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmSnapshotsMessages(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->getVmSnapshotsMessages: $e\n');
 }
 ```
@@ -1839,7 +1839,7 @@ final XapiStatsGranularity granularity = ; // XapiStatsGranularity |
 try {
     final response = api.getVmStats(id, granularity);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->getVmStats: $e\n');
 }
 ```
@@ -1895,7 +1895,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmTasks(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->getVmTasks: $e\n');
 }
 ```
@@ -1950,7 +1950,7 @@ final String id = b7569d99-30f8-178a-7d94-801de3e29b5b-f873abe0-b138-4995-8f6f-4
 try {
     final response = api.getVmTemplate(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->getVmTemplate: $e\n');
 }
 ```
@@ -2005,7 +2005,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmTemplateAlarms(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->getVmTemplateAlarms: $e\n');
 }
 ```
@@ -2065,7 +2065,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmTemplateMessages(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->getVmTemplateMessages: $e\n');
 }
 ```
@@ -2125,7 +2125,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmTemplateTasks(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->getVmTemplateTasks: $e\n');
 }
 ```
@@ -2185,7 +2185,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmTemplateVdis(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->getVmTemplateVdis: $e\n');
 }
 ```
@@ -2244,7 +2244,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmTemplates(fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->getVmTemplates: $e\n');
 }
 ```
@@ -2303,7 +2303,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmVdis(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->getVmVdis: $e\n');
 }
 ```
@@ -2362,7 +2362,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVms(fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->getVms: $e\n');
 }
 ```
@@ -2417,7 +2417,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.hardRebootVm(id, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->hardRebootVm: $e\n');
 }
 ```
@@ -2469,7 +2469,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.hardShutdownVm(id, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->hardShutdownVm: $e\n');
 }
 ```
@@ -2522,7 +2522,7 @@ final String sr = c787b75c-3e0d-70fa-d0c3-cbfd382d7e33; // String |
 try {
     final response = api.importVm(id, body, sr);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->importVm: $e\n');
 }
 ```
@@ -2576,7 +2576,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.migrateVm(id, migrateVmRequest, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->migrateVm: $e\n');
 }
 ```
@@ -2629,7 +2629,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.pauseVm(id, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->pauseVm: $e\n');
 }
 ```
@@ -2680,7 +2680,7 @@ final String tag = from-rest-api; // String |
 
 try {
     api.putVmControllerTag(id, tag);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->putVmControllerTag: $e\n');
 }
 ```
@@ -2731,7 +2731,7 @@ final String tag = from-rest-api; // String |
 
 try {
     api.putVmSnapshotTag(id, tag);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->putVmSnapshotTag: $e\n');
 }
 ```
@@ -2782,7 +2782,7 @@ final String tag = from-rest-api; // String |
 
 try {
     api.putVmTag(id, tag);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->putVmTag: $e\n');
 }
 ```
@@ -2833,7 +2833,7 @@ final String tag = from-rest-api; // String |
 
 try {
     api.putVmTemplateTag(id, tag);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->putVmTemplateTag: $e\n');
 }
 ```
@@ -2885,7 +2885,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.resumeVm(id, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->resumeVm: $e\n');
 }
 ```
@@ -2938,7 +2938,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.revertSnapshotVm(id, revertSnapshotVmRequest, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->revertSnapshotVm: $e\n');
 }
 ```
@@ -2991,7 +2991,7 @@ final SnapshotVmRequest snapshotVmRequest = {"name_label":"my_awesome_snapshot"}
 
 try {
     api.snapshotVm(id, sync_, snapshotVmRequest);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->snapshotVm: $e\n');
 }
 ```
@@ -3045,7 +3045,7 @@ final StartVmRequest startVmRequest = {"hostId":"b61a5c92-700e-4966-a13b-00633f0
 try {
     final response = api.startVm(id, sync_, startVmRequest);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->startVm: $e\n');
 }
 ```
@@ -3098,7 +3098,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.suspendVm(id, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->suspendVm: $e\n');
 }
 ```
@@ -3150,7 +3150,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.unpauseVm(id, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->unpauseVm: $e\n');
 }
 ```
@@ -3201,7 +3201,7 @@ final UpdateVmRequestBody updateVmRequestBody = {"nameDescription":"Production w
 
 try {
     api.updateVm(id, updateVmRequestBody);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->updateVm: $e\n');
 }
 ```
@@ -3257,7 +3257,7 @@ final double limit = 42; // double |
 try {
     final response = api.vmGetVmBackupJobs(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VmsApi->vmGetVmBackupJobs: $e\n');
 }
 ```

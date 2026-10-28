@@ -8,7 +8,7 @@ void main() {
 
   group(XapiHostStatsRaw, () {
     // Construct a type with a set of properties K of type T
-    // BuiltMap<String, BuiltList<double>> cpus
+    // BuiltMap<String, BuiltList<double?>> cpus
     test('to test the property `cpus`', () async {
       // TODO
     });
@@ -24,7 +24,7 @@ void main() {
     });
 
     // Construct a type with a set of properties K of type T
-    // BuiltMap<String, BuiltList<double>> iowait
+    // BuiltMap<String, BuiltList<double?>> iowait
     test('to test the property `iowait`', () async {
       // TODO
     });
@@ -34,17 +34,17 @@ void main() {
       // TODO
     });
 
-    // BuiltList<double> load
+    // BuiltList<double?> load
     test('to test the property `load`', () async {
       // TODO
     });
 
-    // BuiltList<double> memory
+    // BuiltList<double?> memory
     test('to test the property `memory`', () async {
       // TODO
     });
 
-    // BuiltList<double> memoryFree
+    // BuiltList<double?> memoryFree
     test('to test the property `memoryFree`', () async {
       // TODO
     });

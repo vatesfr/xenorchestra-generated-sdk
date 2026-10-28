@@ -37,7 +37,7 @@ final String id = 838335fa-ee21-15e1-760a-a37a3a4ef1db; // String |
 try {
     final response = api.getPgpu(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PgpusApi->getPgpu: $e\n');
 }
 ```
@@ -91,7 +91,7 @@ final double limit = 42; // double |
 try {
     final response = api.getPgpus(fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PgpusApi->getPgpus: $e\n');
 }
 ```

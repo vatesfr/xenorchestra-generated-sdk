@@ -37,7 +37,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   XcpPatchesChangelog.JSON_PROPERTY_DATE,
   XcpPatchesChangelog.JSON_PROPERTY_DESCRIPTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class XcpPatchesChangelog {
   public static final String JSON_PROPERTY_AUTHOR = "author";
   @javax.annotation.Nonnull
@@ -64,14 +64,14 @@ public class XcpPatchesChangelog {
    * @return author
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_AUTHOR)
+  @JsonProperty(value = JSON_PROPERTY_AUTHOR, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getAuthor() {
     return author;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_AUTHOR)
+  @JsonProperty(value = JSON_PROPERTY_AUTHOR, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setAuthor(@javax.annotation.Nonnull String author) {
     this.author = author;
@@ -88,14 +88,14 @@ public class XcpPatchesChangelog {
    * @return date
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_DATE)
+  @JsonProperty(value = JSON_PROPERTY_DATE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getDate() {
     return date;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DATE)
+  @JsonProperty(value = JSON_PROPERTY_DATE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDate(@javax.annotation.Nonnull Double date) {
     this.date = date;
@@ -112,14 +112,14 @@ public class XcpPatchesChangelog {
    * @return description
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getDescription() {
     return description;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDescription(@javax.annotation.Nonnull String description) {
     this.description = description;
@@ -164,10 +164,7 @@ public class XcpPatchesChangelog {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -204,17 +201,17 @@ public class XcpPatchesChangelog {
 
     // add `author` to the URL query string
     if (getAuthor() != null) {
-      joiner.add(String.format("%sauthor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAuthor()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sauthor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAuthor()))));
     }
 
     // add `date` to the URL query string
     if (getDate() != null) {
-      joiner.add(String.format("%sdate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDate()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDate()))));
     }
 
     // add `description` to the URL query string
     if (getDescription() != null) {
-      joiner.add(String.format("%sdescription%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDescription()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdescription%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDescription()))));
     }
 
     return joiner.toString();

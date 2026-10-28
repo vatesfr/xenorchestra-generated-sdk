@@ -71,7 +71,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   UnbrandXoPif.JSON_PROPERTY_UUID,
   UnbrandXoPif.JSON_PROPERTY_VLAN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class UnbrandXoPif {
   public static final String JSON_PROPERTY_$_HOST = "$host";
   @javax.annotation.Nonnull
@@ -247,14 +247,14 @@ private final String value;
    * @return $host
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_$_HOST)
+  @JsonProperty(value = JSON_PROPERTY_$_HOST, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String get$Host() {
     return $host;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_$_HOST)
+  @JsonProperty(value = JSON_PROPERTY_$_HOST, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void set$Host(@javax.annotation.Nonnull String $host) {
     this.$host = $host;
@@ -271,14 +271,14 @@ private final String value;
    * @return $network
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_$_NETWORK)
+  @JsonProperty(value = JSON_PROPERTY_$_NETWORK, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String get$Network() {
     return $network;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_$_NETWORK)
+  @JsonProperty(value = JSON_PROPERTY_$_NETWORK, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void set$Network(@javax.annotation.Nonnull String $network) {
     this.$network = $network;
@@ -295,14 +295,14 @@ private final String value;
    * @return $pool
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_$_POOL)
+  @JsonProperty(value = JSON_PROPERTY_$_POOL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String get$Pool() {
     return $pool;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_$_POOL)
+  @JsonProperty(value = JSON_PROPERTY_$_POOL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void set$Pool(@javax.annotation.Nonnull String $pool) {
     this.$pool = $pool;
@@ -321,14 +321,14 @@ private final String value;
    */
   @Deprecated
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_$_POOL_ID)
+  @JsonProperty(value = JSON_PROPERTY_$_POOL_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String get$PoolId() {
     return $poolId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_$_POOL_ID)
+  @JsonProperty(value = JSON_PROPERTY_$_POOL_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void set$PoolId(@javax.annotation.Nonnull String $poolId) {
     this.$poolId = $poolId;
@@ -345,14 +345,14 @@ private final String value;
    * @return xapiRef
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_XAPI_REF)
+  @JsonProperty(value = JSON_PROPERTY_XAPI_REF, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getXapiRef() {
     return xapiRef;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_XAPI_REF)
+  @JsonProperty(value = JSON_PROPERTY_XAPI_REF, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setXapiRef(@javax.annotation.Nonnull String xapiRef) {
     this.xapiRef = xapiRef;
@@ -369,14 +369,14 @@ private final String value;
    * @return attached
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ATTACHED)
+  @JsonProperty(value = JSON_PROPERTY_ATTACHED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Boolean getAttached() {
     return attached;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ATTACHED)
+  @JsonProperty(value = JSON_PROPERTY_ATTACHED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setAttached(@javax.annotation.Nonnull Boolean attached) {
     this.attached = attached;
@@ -393,14 +393,14 @@ private final String value;
    * @return bondMaster
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_BOND_MASTER)
+  @JsonProperty(value = JSON_PROPERTY_BOND_MASTER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getBondMaster() {
     return bondMaster;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_BOND_MASTER)
+  @JsonProperty(value = JSON_PROPERTY_BOND_MASTER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBondMaster(@javax.annotation.Nullable String bondMaster) {
     this.bondMaster = bondMaster;
@@ -425,14 +425,14 @@ private final String value;
    * @return bondSlaves
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_BOND_SLAVES)
+  @JsonProperty(value = JSON_PROPERTY_BOND_SLAVES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<BrandedPIF> getBondSlaves() {
     return bondSlaves;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_BOND_SLAVES)
+  @JsonProperty(value = JSON_PROPERTY_BOND_SLAVES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBondSlaves(@javax.annotation.Nullable List<BrandedPIF> bondSlaves) {
     this.bondSlaves = bondSlaves;
@@ -449,14 +449,14 @@ private final String value;
    * @return carrier
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_CARRIER)
+  @JsonProperty(value = JSON_PROPERTY_CARRIER, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Boolean getCarrier() {
     return carrier;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CARRIER)
+  @JsonProperty(value = JSON_PROPERTY_CARRIER, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCarrier(@javax.annotation.Nonnull Boolean carrier) {
     this.carrier = carrier;
@@ -473,14 +473,14 @@ private final String value;
    * @return device
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_DEVICE)
+  @JsonProperty(value = JSON_PROPERTY_DEVICE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getDevice() {
     return device;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DEVICE)
+  @JsonProperty(value = JSON_PROPERTY_DEVICE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDevice(@javax.annotation.Nonnull String device) {
     this.device = device;
@@ -497,14 +497,14 @@ private final String value;
    * @return deviceName
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DEVICE_NAME)
+  @JsonProperty(value = JSON_PROPERTY_DEVICE_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getDeviceName() {
     return deviceName;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DEVICE_NAME)
+  @JsonProperty(value = JSON_PROPERTY_DEVICE_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDeviceName(@javax.annotation.Nullable String deviceName) {
     this.deviceName = deviceName;
@@ -521,14 +521,14 @@ private final String value;
    * @return disallowUnplug
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_DISALLOW_UNPLUG)
+  @JsonProperty(value = JSON_PROPERTY_DISALLOW_UNPLUG, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Boolean getDisallowUnplug() {
     return disallowUnplug;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DISALLOW_UNPLUG)
+  @JsonProperty(value = JSON_PROPERTY_DISALLOW_UNPLUG, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDisallowUnplug(@javax.annotation.Nonnull Boolean disallowUnplug) {
     this.disallowUnplug = disallowUnplug;
@@ -545,14 +545,14 @@ private final String value;
    * @return dns
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_DNS)
+  @JsonProperty(value = JSON_PROPERTY_DNS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getDns() {
     return dns;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DNS)
+  @JsonProperty(value = JSON_PROPERTY_DNS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDns(@javax.annotation.Nonnull String dns) {
     this.dns = dns;
@@ -569,14 +569,14 @@ private final String value;
    * @return gateway
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_GATEWAY)
+  @JsonProperty(value = JSON_PROPERTY_GATEWAY, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getGateway() {
     return gateway;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_GATEWAY)
+  @JsonProperty(value = JSON_PROPERTY_GATEWAY, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setGateway(@javax.annotation.Nonnull String gateway) {
     this.gateway = gateway;
@@ -593,14 +593,14 @@ private final String value;
    * @return id
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
@@ -617,14 +617,14 @@ private final String value;
    * @return ip
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_IP)
+  @JsonProperty(value = JSON_PROPERTY_IP, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getIp() {
     return ip;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_IP)
+  @JsonProperty(value = JSON_PROPERTY_IP, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setIp(@javax.annotation.Nonnull String ip) {
     this.ip = ip;
@@ -649,14 +649,14 @@ private final String value;
    * @return ipv6
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_IPV6)
+  @JsonProperty(value = JSON_PROPERTY_IPV6, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<String> getIpv6() {
     return ipv6;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_IPV6)
+  @JsonProperty(value = JSON_PROPERTY_IPV6, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setIpv6(@javax.annotation.Nonnull List<String> ipv6) {
     this.ipv6 = ipv6;
@@ -673,14 +673,14 @@ private final String value;
    * @return ipv6Mode
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_IPV6_MODE)
+  @JsonProperty(value = JSON_PROPERTY_IPV6_MODE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public IPV6CONFIGURATIONMODE getIpv6Mode() {
     return ipv6Mode;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_IPV6_MODE)
+  @JsonProperty(value = JSON_PROPERTY_IPV6_MODE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setIpv6Mode(@javax.annotation.Nonnull IPV6CONFIGURATIONMODE ipv6Mode) {
     this.ipv6Mode = ipv6Mode;
@@ -697,14 +697,14 @@ private final String value;
    * @return isBondMaster
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_IS_BOND_MASTER)
+  @JsonProperty(value = JSON_PROPERTY_IS_BOND_MASTER, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Boolean getIsBondMaster() {
     return isBondMaster;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_IS_BOND_MASTER)
+  @JsonProperty(value = JSON_PROPERTY_IS_BOND_MASTER, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setIsBondMaster(@javax.annotation.Nonnull Boolean isBondMaster) {
     this.isBondMaster = isBondMaster;
@@ -721,14 +721,14 @@ private final String value;
    * @return isBondSlave
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_IS_BOND_SLAVE)
+  @JsonProperty(value = JSON_PROPERTY_IS_BOND_SLAVE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Boolean getIsBondSlave() {
     return isBondSlave;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_IS_BOND_SLAVE)
+  @JsonProperty(value = JSON_PROPERTY_IS_BOND_SLAVE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setIsBondSlave(@javax.annotation.Nonnull Boolean isBondSlave) {
     this.isBondSlave = isBondSlave;
@@ -745,14 +745,14 @@ private final String value;
    * @return mac
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_MAC)
+  @JsonProperty(value = JSON_PROPERTY_MAC, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getMac() {
     return mac;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MAC)
+  @JsonProperty(value = JSON_PROPERTY_MAC, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setMac(@javax.annotation.Nonnull String mac) {
     this.mac = mac;
@@ -769,14 +769,14 @@ private final String value;
    * @return management
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_MANAGEMENT)
+  @JsonProperty(value = JSON_PROPERTY_MANAGEMENT, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Boolean getManagement() {
     return management;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MANAGEMENT)
+  @JsonProperty(value = JSON_PROPERTY_MANAGEMENT, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setManagement(@javax.annotation.Nonnull Boolean management) {
     this.management = management;
@@ -793,14 +793,14 @@ private final String value;
    * @return mode
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_MODE)
+  @JsonProperty(value = JSON_PROPERTY_MODE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public IPCONFIGURATIONMODE getMode() {
     return mode;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MODE)
+  @JsonProperty(value = JSON_PROPERTY_MODE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setMode(@javax.annotation.Nonnull IPCONFIGURATIONMODE mode) {
     this.mode = mode;
@@ -817,14 +817,14 @@ private final String value;
    * @return mtu
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_MTU)
+  @JsonProperty(value = JSON_PROPERTY_MTU, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getMtu() {
     return mtu;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MTU)
+  @JsonProperty(value = JSON_PROPERTY_MTU, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setMtu(@javax.annotation.Nonnull Double mtu) {
     this.mtu = mtu;
@@ -841,14 +841,14 @@ private final String value;
    * @return netmask
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_NETMASK)
+  @JsonProperty(value = JSON_PROPERTY_NETMASK, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getNetmask() {
     return netmask;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NETMASK)
+  @JsonProperty(value = JSON_PROPERTY_NETMASK, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setNetmask(@javax.annotation.Nonnull String netmask) {
     this.netmask = netmask;
@@ -865,14 +865,14 @@ private final String value;
    * @return physical
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_PHYSICAL)
+  @JsonProperty(value = JSON_PROPERTY_PHYSICAL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Boolean getPhysical() {
     return physical;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PHYSICAL)
+  @JsonProperty(value = JSON_PROPERTY_PHYSICAL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setPhysical(@javax.annotation.Nonnull Boolean physical) {
     this.physical = physical;
@@ -889,14 +889,14 @@ private final String value;
    * @return primaryAddressType
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_PRIMARY_ADDRESS_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_PRIMARY_ADDRESS_TYPE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public PRIMARYADDRESSTYPE getPrimaryAddressType() {
     return primaryAddressType;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PRIMARY_ADDRESS_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_PRIMARY_ADDRESS_TYPE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setPrimaryAddressType(@javax.annotation.Nonnull PRIMARYADDRESSTYPE primaryAddressType) {
     this.primaryAddressType = primaryAddressType;
@@ -913,14 +913,14 @@ private final String value;
    * @return speed
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SPEED)
+  @JsonProperty(value = JSON_PROPERTY_SPEED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getSpeed() {
     return speed;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SPEED)
+  @JsonProperty(value = JSON_PROPERTY_SPEED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSpeed(@javax.annotation.Nullable Double speed) {
     this.speed = speed;
@@ -937,14 +937,14 @@ private final String value;
    * @return type
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public TypeEnum getType() {
     return type;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setType(@javax.annotation.Nonnull TypeEnum type) {
     this.type = type;
@@ -961,14 +961,14 @@ private final String value;
    * @return uuid
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_UUID)
+  @JsonProperty(value = JSON_PROPERTY_UUID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getUuid() {
     return uuid;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_UUID)
+  @JsonProperty(value = JSON_PROPERTY_UUID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUuid(@javax.annotation.Nonnull String uuid) {
     this.uuid = uuid;
@@ -985,14 +985,14 @@ private final String value;
    * @return vlan
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_VLAN)
+  @JsonProperty(value = JSON_PROPERTY_VLAN, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getVlan() {
     return vlan;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_VLAN)
+  @JsonProperty(value = JSON_PROPERTY_VLAN, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setVlan(@javax.annotation.Nonnull Double vlan) {
     this.vlan = vlan;
@@ -1093,10 +1093,7 @@ private final String value;
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -1133,166 +1130,166 @@ private final String value;
 
     // add `$host` to the URL query string
     if (get$Host() != null) {
-      joiner.add(String.format("%s$host%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$Host()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%s$host%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$Host()))));
     }
 
     // add `$network` to the URL query string
     if (get$Network() != null) {
-      joiner.add(String.format("%s$network%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$Network()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%s$network%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$Network()))));
     }
 
     // add `$pool` to the URL query string
     if (get$Pool() != null) {
-      joiner.add(String.format("%s$pool%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$Pool()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%s$pool%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$Pool()))));
     }
 
     // add `$poolId` to the URL query string
     if (get$PoolId() != null) {
-      joiner.add(String.format("%s$poolId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$PoolId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%s$poolId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$PoolId()))));
     }
 
     // add `_xapiRef` to the URL query string
     if (getXapiRef() != null) {
-      joiner.add(String.format("%s_xapiRef%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getXapiRef()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%s_xapiRef%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getXapiRef()))));
     }
 
     // add `attached` to the URL query string
     if (getAttached() != null) {
-      joiner.add(String.format("%sattached%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAttached()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sattached%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAttached()))));
     }
 
     // add `bondMaster` to the URL query string
     if (getBondMaster() != null) {
-      joiner.add(String.format("%sbondMaster%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBondMaster()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbondMaster%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBondMaster()))));
     }
 
     // add `bondSlaves` to the URL query string
     if (getBondSlaves() != null) {
       for (int i = 0; i < getBondSlaves().size(); i++) {
         if (getBondSlaves().get(i) != null) {
-          joiner.add(getBondSlaves().get(i).toUrlQueryString(String.format("%sbondSlaves%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+          joiner.add(getBondSlaves().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sbondSlaves%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
     }
 
     // add `carrier` to the URL query string
     if (getCarrier() != null) {
-      joiner.add(String.format("%scarrier%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCarrier()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%scarrier%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCarrier()))));
     }
 
     // add `device` to the URL query string
     if (getDevice() != null) {
-      joiner.add(String.format("%sdevice%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDevice()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdevice%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDevice()))));
     }
 
     // add `deviceName` to the URL query string
     if (getDeviceName() != null) {
-      joiner.add(String.format("%sdeviceName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDeviceName()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdeviceName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDeviceName()))));
     }
 
     // add `disallowUnplug` to the URL query string
     if (getDisallowUnplug() != null) {
-      joiner.add(String.format("%sdisallowUnplug%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDisallowUnplug()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdisallowUnplug%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDisallowUnplug()))));
     }
 
     // add `dns` to the URL query string
     if (getDns() != null) {
-      joiner.add(String.format("%sdns%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDns()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdns%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDns()))));
     }
 
     // add `gateway` to the URL query string
     if (getGateway() != null) {
-      joiner.add(String.format("%sgateway%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGateway()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sgateway%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGateway()))));
     }
 
     // add `id` to the URL query string
     if (getId() != null) {
-      joiner.add(String.format("%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
     }
 
     // add `ip` to the URL query string
     if (getIp() != null) {
-      joiner.add(String.format("%sip%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIp()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sip%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIp()))));
     }
 
     // add `ipv6` to the URL query string
     if (getIpv6() != null) {
       for (int i = 0; i < getIpv6().size(); i++) {
-        joiner.add(String.format("%sipv6%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%sipv6%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getIpv6().get(i)))));
       }
     }
 
     // add `ipv6Mode` to the URL query string
     if (getIpv6Mode() != null) {
-      joiner.add(String.format("%sipv6Mode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIpv6Mode()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sipv6Mode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIpv6Mode()))));
     }
 
     // add `isBondMaster` to the URL query string
     if (getIsBondMaster() != null) {
-      joiner.add(String.format("%sisBondMaster%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsBondMaster()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sisBondMaster%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsBondMaster()))));
     }
 
     // add `isBondSlave` to the URL query string
     if (getIsBondSlave() != null) {
-      joiner.add(String.format("%sisBondSlave%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsBondSlave()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sisBondSlave%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsBondSlave()))));
     }
 
     // add `mac` to the URL query string
     if (getMac() != null) {
-      joiner.add(String.format("%smac%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMac()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%smac%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMac()))));
     }
 
     // add `management` to the URL query string
     if (getManagement() != null) {
-      joiner.add(String.format("%smanagement%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getManagement()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%smanagement%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getManagement()))));
     }
 
     // add `mode` to the URL query string
     if (getMode() != null) {
-      joiner.add(String.format("%smode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMode()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%smode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMode()))));
     }
 
     // add `mtu` to the URL query string
     if (getMtu() != null) {
-      joiner.add(String.format("%smtu%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMtu()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%smtu%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMtu()))));
     }
 
     // add `netmask` to the URL query string
     if (getNetmask() != null) {
-      joiner.add(String.format("%snetmask%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNetmask()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%snetmask%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNetmask()))));
     }
 
     // add `physical` to the URL query string
     if (getPhysical() != null) {
-      joiner.add(String.format("%sphysical%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPhysical()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sphysical%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPhysical()))));
     }
 
     // add `primaryAddressType` to the URL query string
     if (getPrimaryAddressType() != null) {
-      joiner.add(String.format("%sprimaryAddressType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPrimaryAddressType()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sprimaryAddressType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPrimaryAddressType()))));
     }
 
     // add `speed` to the URL query string
     if (getSpeed() != null) {
-      joiner.add(String.format("%sspeed%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSpeed()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sspeed%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSpeed()))));
     }
 
     // add `type` to the URL query string
     if (getType() != null) {
-      joiner.add(String.format("%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
     }
 
     // add `uuid` to the URL query string
     if (getUuid() != null) {
-      joiner.add(String.format("%suuid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUuid()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%suuid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUuid()))));
     }
 
     // add `vlan` to the URL query string
     if (getVlan() != null) {
-      joiner.add(String.format("%svlan%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVlan()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%svlan%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVlan()))));
     }
 
     return joiner.toString();

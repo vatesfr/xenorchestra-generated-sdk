@@ -24,7 +24,7 @@ from typing import Union, Any, List, Set, TYPE_CHECKING, Optional, Dict
 from typing_extensions import Literal, Self
 from pydantic import Field
 
-SENDOBJECTSPARTIALUNBRANDXOALARM_ANY_OF_SCHEMAS = ["List[WithHrefPartialUnbrandXoAlarm]", "List[str]", "bytearray", "str"]
+SENDOBJECTSPARTIALUNBRANDXOALARM_ANY_OF_SCHEMAS = ["List[WithHrefPartialUnbrandXoAlarm]", "List[str]", "bytes", "str"]
 
 class SendObjectsPartialUnbrandXoAlarm(BaseModel):
     """
@@ -35,15 +35,15 @@ class SendObjectsPartialUnbrandXoAlarm(BaseModel):
     anyof_schema_1_validator: Optional[List[StrictStr]] = None
     # data type: List[WithHrefPartialUnbrandXoAlarm]
     anyof_schema_2_validator: Optional[List[WithHrefPartialUnbrandXoAlarm]] = None
-    # data type: bytearray
+    # data type: bytes
     anyof_schema_3_validator: Optional[Union[StrictBytes, StrictStr]] = None
     # data type: str
     anyof_schema_4_validator: Optional[StrictStr] = None
     if TYPE_CHECKING:
-        actual_instance: Optional[Union[List[WithHrefPartialUnbrandXoAlarm], List[str], bytearray, str]] = None
+        actual_instance: Optional[Union[List[WithHrefPartialUnbrandXoAlarm], List[str], bytes, str]] = None
     else:
         actual_instance: Any = None
-    any_of_schemas: Set[str] = { "List[WithHrefPartialUnbrandXoAlarm]", "List[str]", "bytearray", "str" }
+    any_of_schemas: Set[str] = { "List[WithHrefPartialUnbrandXoAlarm]", "List[str]", "bytes", "str" }
 
     model_config = {
         "validate_assignment": True,
@@ -76,7 +76,7 @@ class SendObjectsPartialUnbrandXoAlarm(BaseModel):
             return v
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # validate data type: bytearray
+        # validate data type: bytes
         try:
             instance.anyof_schema_3_validator = v
             return v
@@ -90,7 +90,7 @@ class SendObjectsPartialUnbrandXoAlarm(BaseModel):
             error_messages.append(str(e))
         if error_messages:
             # no match
-            raise ValueError("No match found when setting the actual_instance in SendObjectsPartialUnbrandXoAlarm with anyOf schemas: List[WithHrefPartialUnbrandXoAlarm], List[str], bytearray, str. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting the actual_instance in SendObjectsPartialUnbrandXoAlarm with anyOf schemas: List[WithHrefPartialUnbrandXoAlarm], List[str], bytes, str. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -121,7 +121,7 @@ class SendObjectsPartialUnbrandXoAlarm(BaseModel):
             return instance
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into bytearray
+        # deserialize data into bytes
         try:
             # validation
             instance.anyof_schema_3_validator = json.loads(json_str)
@@ -142,7 +142,7 @@ class SendObjectsPartialUnbrandXoAlarm(BaseModel):
 
         if error_messages:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into SendObjectsPartialUnbrandXoAlarm with anyOf schemas: List[WithHrefPartialUnbrandXoAlarm], List[str], bytearray, str. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into SendObjectsPartialUnbrandXoAlarm with anyOf schemas: List[WithHrefPartialUnbrandXoAlarm], List[str], bytes, str. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -156,7 +156,7 @@ class SendObjectsPartialUnbrandXoAlarm(BaseModel):
         else:
             return json.dumps(self.to_dict())
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], List[WithHrefPartialUnbrandXoAlarm], List[str], bytearray, str]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], List[WithHrefPartialUnbrandXoAlarm], List[str], bytes, str]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

@@ -37,7 +37,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   CleanRebootHostRequest.JSON_PROPERTY_BYPASS_VERSION_CHECK,
   CleanRebootHostRequest.JSON_PROPERTY_FORCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class CleanRebootHostRequest {
   public static final String JSON_PROPERTY_BYPASS_BACKUP_CHECK = "bypassBackupCheck";
   @javax.annotation.Nullable
@@ -64,14 +64,14 @@ public class CleanRebootHostRequest {
    * @return bypassBackupCheck
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_BYPASS_BACKUP_CHECK)
+  @JsonProperty(value = JSON_PROPERTY_BYPASS_BACKUP_CHECK, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getBypassBackupCheck() {
     return bypassBackupCheck;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_BYPASS_BACKUP_CHECK)
+  @JsonProperty(value = JSON_PROPERTY_BYPASS_BACKUP_CHECK, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBypassBackupCheck(@javax.annotation.Nullable Boolean bypassBackupCheck) {
     this.bypassBackupCheck = bypassBackupCheck;
@@ -88,14 +88,14 @@ public class CleanRebootHostRequest {
    * @return bypassVersionCheck
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_BYPASS_VERSION_CHECK)
+  @JsonProperty(value = JSON_PROPERTY_BYPASS_VERSION_CHECK, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getBypassVersionCheck() {
     return bypassVersionCheck;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_BYPASS_VERSION_CHECK)
+  @JsonProperty(value = JSON_PROPERTY_BYPASS_VERSION_CHECK, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBypassVersionCheck(@javax.annotation.Nullable Boolean bypassVersionCheck) {
     this.bypassVersionCheck = bypassVersionCheck;
@@ -112,14 +112,14 @@ public class CleanRebootHostRequest {
    * @return force
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_FORCE)
+  @JsonProperty(value = JSON_PROPERTY_FORCE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getForce() {
     return force;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_FORCE)
+  @JsonProperty(value = JSON_PROPERTY_FORCE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setForce(@javax.annotation.Nullable Boolean force) {
     this.force = force;
@@ -164,10 +164,7 @@ public class CleanRebootHostRequest {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -204,17 +201,17 @@ public class CleanRebootHostRequest {
 
     // add `bypassBackupCheck` to the URL query string
     if (getBypassBackupCheck() != null) {
-      joiner.add(String.format("%sbypassBackupCheck%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBypassBackupCheck()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbypassBackupCheck%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBypassBackupCheck()))));
     }
 
     // add `bypassVersionCheck` to the URL query string
     if (getBypassVersionCheck() != null) {
-      joiner.add(String.format("%sbypassVersionCheck%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBypassVersionCheck()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbypassVersionCheck%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBypassVersionCheck()))));
     }
 
     // add `force` to the URL query string
     if (getForce() != null) {
-      joiner.add(String.format("%sforce%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getForce()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sforce%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getForce()))));
     }
 
     return joiner.toString();

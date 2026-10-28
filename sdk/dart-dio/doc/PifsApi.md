@@ -40,7 +40,7 @@ final String id = d9e42451-3794-089f-de81-4ee0e6137bee; // String |
 try {
     final response = api.getPif(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PifsApi->getPif: $e\n');
 }
 ```
@@ -95,7 +95,7 @@ final double limit = 42; // double |
 try {
     final response = api.getPifAlarms(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PifsApi->getPifAlarms: $e\n');
 }
 ```
@@ -155,7 +155,7 @@ final double limit = 42; // double |
 try {
     final response = api.getPifMessages(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PifsApi->getPifMessages: $e\n');
 }
 ```
@@ -215,7 +215,7 @@ final double limit = 42; // double |
 try {
     final response = api.getPifTasks(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PifsApi->getPifTasks: $e\n');
 }
 ```
@@ -274,7 +274,7 @@ final double limit = 42; // double |
 try {
     final response = api.getPifs(fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PifsApi->getPifs: $e\n');
 }
 ```

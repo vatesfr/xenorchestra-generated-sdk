@@ -186,51 +186,59 @@ class _$PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettingsSerializer
         case r'backupReportTpl':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(
+            specifiedType: const FullType.nullable(
                 PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettingsBackupReportTplEnum),
-          ) as PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettingsBackupReportTplEnum;
+          ) as PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettingsBackupReportTplEnum?;
+          if (valueDes == null) continue;
           result.backupReportTpl = valueDes;
           break;
         case r'concurrency':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.concurrency = valueDes;
           break;
         case r'hideSuccessfulItems':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.hideSuccessfulItems = valueDes;
           break;
         case r'maxExportRate':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.maxExportRate = valueDes;
           break;
         case r'mergeBackupsSynchronously':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.mergeBackupsSynchronously = valueDes;
           break;
         case r'nRetriesVmBackupFailures':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.nRetriesVmBackupFailures = valueDes;
           break;
         case r'reportRecipients':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
+            specifiedType:
+                const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
           result.reportRecipients.replace(valueDes);
           break;
         case r'reportWhen':
@@ -244,8 +252,9 @@ class _$PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettingsSerializer
         case r'timeout':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.timeout = valueDes;
           break;
         default:

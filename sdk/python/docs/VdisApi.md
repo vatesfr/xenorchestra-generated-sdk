@@ -471,7 +471,7 @@ void (empty response body)
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **export_vdi_content**
-> bytearray export_vdi_content(id, format)
+> bytes export_vdi_content(id, format)
 
 
 Export VDI content
@@ -540,7 +540,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**bytearray**
+**bytes**
 
 ### Authorization
 
@@ -565,7 +565,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **export_vdi_snapshot_content**
-> bytearray export_vdi_snapshot_content(id, format)
+> bytes export_vdi_snapshot_content(id, format)
 
 Required privilege:
 - resource: vdi-snapshot, action: export
@@ -633,7 +633,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**bytearray**
+**bytes**
 
 ### Authorization
 
@@ -2040,7 +2040,7 @@ with xenorchestra_client.ApiClient(configuration) as api_client:
     api_instance = xenorchestra_client.VdisApi(api_client)
     id = 'c77f9955-c1d2-4b39-aa1c-73cdb2dacb7e' # str | 
     format = xenorchestra_client.ExcludeSUPPORTEDVDIFORMATQcow2() # ExcludeSUPPORTEDVDIFORMATQcow2 | 
-    body = None # bytearray | 
+    body = None # bytes | 
 
     try:
         api_instance.import_vdi_content(id, format, body)
@@ -2057,7 +2057,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**|  | 
  **format** | [**ExcludeSUPPORTEDVDIFORMATQcow2**](.md)|  | 
- **body** | **bytearray**|  | 
+ **body** | **bytes**|  | 
 
 ### Return type
 
@@ -2404,7 +2404,7 @@ with xenorchestra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = xenorchestra_client.VdisApi(api_client)
     id = 'c4284e12-37c9-7967-b9e8-83ef229c3e03' # str | 
-    body = None # bytearray | 
+    body = None # bytes | 
     name_label = 'VDI_foo_import' # str |  (optional)
     name_description = 'VDI imported by the REST API' # str |  (optional)
     raw = true # bool |  (optional)
@@ -2425,7 +2425,7 @@ with xenorchestra_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**|  | 
- **body** | **bytearray**|  | 
+ **body** | **bytes**|  | 
  **name_label** | **str**|  | [optional] 
  **name_description** | **str**|  | [optional] 
  **raw** | **bool**|  | [optional] 

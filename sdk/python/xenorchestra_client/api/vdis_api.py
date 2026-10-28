@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     @xen-orchestra/rest-api
 
@@ -10,6 +8,7 @@
 
     Do not edit the class manually.
 """  # noqa: E501
+
 
 import warnings
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
@@ -1454,7 +1453,7 @@ class VdisApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> bytearray:
+    ) -> bytes:
         """export_vdi_content
 
          Export VDI content  Required privilege: - resource: vdi, action: export-content
@@ -1495,7 +1494,7 @@ class VdisApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "bytearray",
+            '200': "bytes",
             '400': None,
             '401': None,
             '403': None,
@@ -1530,7 +1529,7 @@ class VdisApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[bytearray]:
+    ) -> ApiResponse[bytes]:
         """export_vdi_content
 
          Export VDI content  Required privilege: - resource: vdi, action: export-content
@@ -1571,7 +1570,7 @@ class VdisApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "bytearray",
+            '200': "bytes",
             '400': None,
             '401': None,
             '403': None,
@@ -1647,7 +1646,7 @@ class VdisApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "bytearray",
+            '200': "bytes",
             '400': None,
             '401': None,
             '403': None,
@@ -1746,7 +1745,7 @@ class VdisApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> bytearray:
+    ) -> bytes:
         """export_vdi_snapshot_content
 
         Required privilege: - resource: vdi-snapshot, action: export  Export VDI-snapshot content
@@ -1787,7 +1786,7 @@ class VdisApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "bytearray",
+            '200': "bytes",
             '400': None,
             '401': None,
             '403': None,
@@ -1822,7 +1821,7 @@ class VdisApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[bytearray]:
+    ) -> ApiResponse[bytes]:
         """export_vdi_snapshot_content
 
         Required privilege: - resource: vdi-snapshot, action: export  Export VDI-snapshot content
@@ -1863,7 +1862,7 @@ class VdisApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "bytearray",
+            '200': "bytes",
             '400': None,
             '401': None,
             '403': None,
@@ -1939,7 +1938,7 @@ class VdisApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "bytearray",
+            '200': "bytes",
             '400': None,
             '401': None,
             '403': None,
@@ -6833,7 +6832,7 @@ class VdisApi:
         :param format: (required)
         :type format: ExcludeSUPPORTEDVDIFORMATQcow2
         :param body: (required)
-        :type body: bytearray
+        :type body: bytes
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6914,7 +6913,7 @@ class VdisApi:
         :param format: (required)
         :type format: ExcludeSUPPORTEDVDIFORMATQcow2
         :param body: (required)
-        :type body: bytearray
+        :type body: bytes
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -6995,7 +6994,7 @@ class VdisApi:
         :param format: (required)
         :type format: ExcludeSUPPORTEDVDIFORMATQcow2
         :param body: (required)
-        :type body: bytearray
+        :type body: bytes
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -8046,7 +8045,7 @@ class VdisApi:
         :param id: (required)
         :type id: str
         :param body: (required)
-        :type body: bytearray
+        :type body: bytes
         :param name_label:
         :type name_label: str
         :param name_description:
@@ -8133,7 +8132,7 @@ class VdisApi:
         :param id: (required)
         :type id: str
         :param body: (required)
-        :type body: bytearray
+        :type body: bytes
         :param name_label:
         :type name_label: str
         :param name_description:
@@ -8220,7 +8219,7 @@ class VdisApi:
         :param id: (required)
         :type id: str
         :param body: (required)
-        :type body: bytearray
+        :type body: bytes
         :param name_label:
         :type name_label: str
         :param name_description:

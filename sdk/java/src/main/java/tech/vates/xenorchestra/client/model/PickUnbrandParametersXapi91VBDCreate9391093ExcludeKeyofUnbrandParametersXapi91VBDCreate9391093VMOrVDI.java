@@ -45,7 +45,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PickUnbrandParametersXapi91VBDCreate9391093ExcludeKeyofUnbrandParametersXapi91VBDCreate9391093VMOrVDI.JSON_PROPERTY_UNPLUGGABLE,
   PickUnbrandParametersXapi91VBDCreate9391093ExcludeKeyofUnbrandParametersXapi91VBDCreate9391093VMOrVDI.JSON_PROPERTY_USERDEVICE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PickUnbrandParametersXapi91VBDCreate9391093ExcludeKeyofUnbrandParametersXapi91VBDCreate9391093VMOrVDI {
   public static final String JSON_PROPERTY_BOOTABLE = "bootable";
   @javax.annotation.Nullable
@@ -96,14 +96,14 @@ public class PickUnbrandParametersXapi91VBDCreate9391093ExcludeKeyofUnbrandParam
    * @return bootable
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_BOOTABLE)
+  @JsonProperty(value = JSON_PROPERTY_BOOTABLE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getBootable() {
     return bootable;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_BOOTABLE)
+  @JsonProperty(value = JSON_PROPERTY_BOOTABLE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBootable(@javax.annotation.Nullable Boolean bootable) {
     this.bootable = bootable;
@@ -120,14 +120,14 @@ public class PickUnbrandParametersXapi91VBDCreate9391093ExcludeKeyofUnbrandParam
    * @return empty
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_EMPTY)
+  @JsonProperty(value = JSON_PROPERTY_EMPTY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getEmpty() {
     return empty;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_EMPTY)
+  @JsonProperty(value = JSON_PROPERTY_EMPTY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEmpty(@javax.annotation.Nullable Boolean empty) {
     this.empty = empty;
@@ -144,14 +144,14 @@ public class PickUnbrandParametersXapi91VBDCreate9391093ExcludeKeyofUnbrandParam
    * @return mode
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_MODE)
+  @JsonProperty(value = JSON_PROPERTY_MODE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public VBDMODE getMode() {
     return mode;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MODE)
+  @JsonProperty(value = JSON_PROPERTY_MODE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMode(@javax.annotation.Nullable VBDMODE mode) {
     this.mode = mode;
@@ -168,14 +168,14 @@ public class PickUnbrandParametersXapi91VBDCreate9391093ExcludeKeyofUnbrandParam
    * @return otherConfig
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_OTHER_CONFIG)
+  @JsonProperty(value = JSON_PROPERTY_OTHER_CONFIG, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Object getOtherConfig() {
     return otherConfig;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_OTHER_CONFIG)
+  @JsonProperty(value = JSON_PROPERTY_OTHER_CONFIG, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOtherConfig(@javax.annotation.Nullable Object otherConfig) {
     this.otherConfig = otherConfig;
@@ -192,14 +192,14 @@ public class PickUnbrandParametersXapi91VBDCreate9391093ExcludeKeyofUnbrandParam
    * @return qosAlgorithmParams
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_QOS_ALGORITHM_PARAMS)
+  @JsonProperty(value = JSON_PROPERTY_QOS_ALGORITHM_PARAMS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Object getQosAlgorithmParams() {
     return qosAlgorithmParams;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_QOS_ALGORITHM_PARAMS)
+  @JsonProperty(value = JSON_PROPERTY_QOS_ALGORITHM_PARAMS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setQosAlgorithmParams(@javax.annotation.Nullable Object qosAlgorithmParams) {
     this.qosAlgorithmParams = qosAlgorithmParams;
@@ -216,14 +216,14 @@ public class PickUnbrandParametersXapi91VBDCreate9391093ExcludeKeyofUnbrandParam
    * @return qosAlgorithmType
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_QOS_ALGORITHM_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_QOS_ALGORITHM_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getQosAlgorithmType() {
     return qosAlgorithmType;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_QOS_ALGORITHM_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_QOS_ALGORITHM_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setQosAlgorithmType(@javax.annotation.Nullable String qosAlgorithmType) {
     this.qosAlgorithmType = qosAlgorithmType;
@@ -240,14 +240,14 @@ public class PickUnbrandParametersXapi91VBDCreate9391093ExcludeKeyofUnbrandParam
    * @return type
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public VBDTYPE getType() {
     return type;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setType(@javax.annotation.Nullable VBDTYPE type) {
     this.type = type;
@@ -264,14 +264,14 @@ public class PickUnbrandParametersXapi91VBDCreate9391093ExcludeKeyofUnbrandParam
    * @return unpluggable
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_UNPLUGGABLE)
+  @JsonProperty(value = JSON_PROPERTY_UNPLUGGABLE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getUnpluggable() {
     return unpluggable;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_UNPLUGGABLE)
+  @JsonProperty(value = JSON_PROPERTY_UNPLUGGABLE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUnpluggable(@javax.annotation.Nullable Boolean unpluggable) {
     this.unpluggable = unpluggable;
@@ -288,14 +288,14 @@ public class PickUnbrandParametersXapi91VBDCreate9391093ExcludeKeyofUnbrandParam
    * @return userdevice
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_USERDEVICE)
+  @JsonProperty(value = JSON_PROPERTY_USERDEVICE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getUserdevice() {
     return userdevice;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_USERDEVICE)
+  @JsonProperty(value = JSON_PROPERTY_USERDEVICE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUserdevice(@javax.annotation.Nullable String userdevice) {
     this.userdevice = userdevice;
@@ -352,10 +352,7 @@ public class PickUnbrandParametersXapi91VBDCreate9391093ExcludeKeyofUnbrandParam
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -392,47 +389,47 @@ public class PickUnbrandParametersXapi91VBDCreate9391093ExcludeKeyofUnbrandParam
 
     // add `bootable` to the URL query string
     if (getBootable() != null) {
-      joiner.add(String.format("%sbootable%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBootable()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbootable%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBootable()))));
     }
 
     // add `empty` to the URL query string
     if (getEmpty() != null) {
-      joiner.add(String.format("%sempty%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEmpty()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sempty%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEmpty()))));
     }
 
     // add `mode` to the URL query string
     if (getMode() != null) {
-      joiner.add(String.format("%smode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMode()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%smode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMode()))));
     }
 
     // add `other_config` to the URL query string
     if (getOtherConfig() != null) {
-      joiner.add(String.format("%sother_config%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOtherConfig()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sother_config%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOtherConfig()))));
     }
 
     // add `qos_algorithm_params` to the URL query string
     if (getQosAlgorithmParams() != null) {
-      joiner.add(String.format("%sqos_algorithm_params%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getQosAlgorithmParams()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sqos_algorithm_params%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getQosAlgorithmParams()))));
     }
 
     // add `qos_algorithm_type` to the URL query string
     if (getQosAlgorithmType() != null) {
-      joiner.add(String.format("%sqos_algorithm_type%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getQosAlgorithmType()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sqos_algorithm_type%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getQosAlgorithmType()))));
     }
 
     // add `type` to the URL query string
     if (getType() != null) {
-      joiner.add(String.format("%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
     }
 
     // add `unpluggable` to the URL query string
     if (getUnpluggable() != null) {
-      joiner.add(String.format("%sunpluggable%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUnpluggable()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sunpluggable%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUnpluggable()))));
     }
 
     // add `userdevice` to the URL query string
     if (getUserdevice() != null) {
-      joiner.add(String.format("%suserdevice%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUserdevice()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%suserdevice%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUserdevice()))));
     }
 
     return joiner.toString();

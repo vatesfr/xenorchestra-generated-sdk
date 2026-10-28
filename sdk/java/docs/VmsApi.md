@@ -210,7 +210,7 @@ null (empty response body)
 
 ## addDataSourceWithHttpInfo
 
-> ApiResponse<Void> addDataSource addDataSourceWithHttpInfo(id, dataSource)
+> ApiResponse<Void> addDataSourceWithHttpInfo(id, dataSource)
 
 
 
@@ -381,7 +381,7 @@ public class Example {
 
 ## cleanRebootVmWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> cleanRebootVm cleanRebootVmWithHttpInfo(id, sync)
+> ApiResponse<CreateActionReturnTypeVoid> cleanRebootVmWithHttpInfo(id, sync)
 
 
 
@@ -554,7 +554,7 @@ public class Example {
 
 ## cleanShutdownVmWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> cleanShutdownVm cleanShutdownVmWithHttpInfo(id, sync)
+> ApiResponse<CreateActionReturnTypeVoid> cleanShutdownVmWithHttpInfo(id, sync)
 
 
 
@@ -730,7 +730,7 @@ null (empty response body)
 
 ## cloneVmWithHttpInfo
 
-> ApiResponse<Void> cloneVm cloneVmWithHttpInfo(id, sync, cloneVmRequest)
+> ApiResponse<Void> cloneVmWithHttpInfo(id, sync, cloneVmRequest)
 
 
 
@@ -908,7 +908,7 @@ public class Example {
 
 ## createVmWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeIdUnbrandXoVm91Id93> createVm createVmWithHttpInfo(id, unbrandCreateVmBody, sync)
+> ApiResponse<CreateActionReturnTypeIdUnbrandXoVm91Id93> createVmWithHttpInfo(id, unbrandCreateVmBody, sync)
 
 
 
@@ -1082,7 +1082,7 @@ null (empty response body)
 
 ## deleteDataSourceWithHttpInfo
 
-> ApiResponse<Void> deleteDataSource deleteDataSourceWithHttpInfo(id, dataSource)
+> ApiResponse<Void> deleteDataSourceWithHttpInfo(id, dataSource)
 
 
 
@@ -1250,7 +1250,7 @@ null (empty response body)
 
 ## deleteVmWithHttpInfo
 
-> ApiResponse<Void> deleteVm deleteVmWithHttpInfo(id)
+> ApiResponse<Void> deleteVmWithHttpInfo(id)
 
 
 
@@ -1417,7 +1417,7 @@ null (empty response body)
 
 ## deleteVmControllerTagWithHttpInfo
 
-> ApiResponse<Void> deleteVmControllerTag deleteVmControllerTagWithHttpInfo(id, tag)
+> ApiResponse<Void> deleteVmControllerTagWithHttpInfo(id, tag)
 
 
 
@@ -1584,7 +1584,7 @@ null (empty response body)
 
 ## deleteVmSnapshotWithHttpInfo
 
-> ApiResponse<Void> deleteVmSnapshot deleteVmSnapshotWithHttpInfo(id)
+> ApiResponse<Void> deleteVmSnapshotWithHttpInfo(id)
 
 
 
@@ -1751,7 +1751,7 @@ null (empty response body)
 
 ## deleteVmSnapshotTagWithHttpInfo
 
-> ApiResponse<Void> deleteVmSnapshotTag deleteVmSnapshotTagWithHttpInfo(id, tag)
+> ApiResponse<Void> deleteVmSnapshotTagWithHttpInfo(id, tag)
 
 
 
@@ -1919,7 +1919,7 @@ null (empty response body)
 
 ## deleteVmTagWithHttpInfo
 
-> ApiResponse<Void> deleteVmTag deleteVmTagWithHttpInfo(id, tag)
+> ApiResponse<Void> deleteVmTagWithHttpInfo(id, tag)
 
 
 
@@ -2086,7 +2086,7 @@ null (empty response body)
 
 ## deleteVmTemplateWithHttpInfo
 
-> ApiResponse<Void> deleteVmTemplate deleteVmTemplateWithHttpInfo(id)
+> ApiResponse<Void> deleteVmTemplateWithHttpInfo(id)
 
 
 
@@ -2253,7 +2253,7 @@ null (empty response body)
 
 ## deleteVmTemplateTagWithHttpInfo
 
-> ApiResponse<Void> deleteVmTemplateTag deleteVmTemplateTagWithHttpInfo(id, tag)
+> ApiResponse<Void> deleteVmTemplateTagWithHttpInfo(id, tag)
 
 
 
@@ -2425,7 +2425,7 @@ public class Example {
 
 ## exportVmWithHttpInfo
 
-> ApiResponse<byte[]> exportVm exportVmWithHttpInfo(id, format, compress)
+> ApiResponse<byte[]> exportVmWithHttpInfo(id, format, compress)
 
 
 
@@ -2601,7 +2601,7 @@ public class Example {
 
 ## exportVmSnapshotWithHttpInfo
 
-> ApiResponse<byte[]> exportVmSnapshot exportVmSnapshotWithHttpInfo(id, format, compress)
+> ApiResponse<byte[]> exportVmSnapshotWithHttpInfo(id, format, compress)
 
 
 
@@ -2777,7 +2777,7 @@ public class Example {
 
 ## exportVmTemplateWithHttpInfo
 
-> ApiResponse<byte[]> exportVmTemplate exportVmTemplateWithHttpInfo(id, format, compress)
+> ApiResponse<byte[]> exportVmTemplateWithHttpInfo(id, format, compress)
 
 
 
@@ -2948,7 +2948,7 @@ public class Example {
 
 ## getVmWithHttpInfo
 
-> ApiResponse<UnbrandXoVm> getVm getVmWithHttpInfo(id)
+> ApiResponse<UnbrandXoVm> getVmWithHttpInfo(id)
 
 
 
@@ -3123,7 +3123,7 @@ public class Example {
 
 ## getVmAlarmsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVmAlarms getVmAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVmAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -3298,7 +3298,7 @@ public class Example {
 
 ## getVmControllerWithHttpInfo
 
-> ApiResponse<UnbrandXoVmController> getVmController getVmControllerWithHttpInfo(id)
+> ApiResponse<UnbrandXoVmController> getVmControllerWithHttpInfo(id)
 
 
 
@@ -3473,7 +3473,7 @@ public class Example {
 
 ## getVmControllerAlarmsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVmControllerAlarms getVmControllerAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVmControllerAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -3657,7 +3657,7 @@ public class Example {
 
 ## getVmControllerMessagesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoMessage> getVmControllerMessages getVmControllerMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoMessage> getVmControllerMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -3841,7 +3841,7 @@ public class Example {
 
 ## getVmControllerTasksWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoTask> getVmControllerTasks getVmControllerTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoTask> getVmControllerTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -4025,7 +4025,7 @@ public class Example {
 
 ## getVmControllerVdisWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoVdi> getVmControllerVdis getVmControllerVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoVdi> getVmControllerVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -4206,7 +4206,7 @@ public class Example {
 
 ## getVmControllersWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoVmController> getVmControllers getVmControllersWithHttpInfo(fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoVmController> getVmControllersWithHttpInfo(fields, ndjson, markdown, filter, limit)
 
 
 
@@ -4379,7 +4379,7 @@ public class Example {
 
 ## getVmDashboardWithHttpInfo
 
-> ApiResponse<UnbrandedVmDashboard> getVmDashboard getVmDashboardWithHttpInfo(id, ndjson)
+> ApiResponse<UnbrandedVmDashboard> getVmDashboardWithHttpInfo(id, ndjson)
 
 
 
@@ -4555,7 +4555,7 @@ public class Example {
 
 ## getVmMessagesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoMessage> getVmMessages getVmMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoMessage> getVmMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -4730,7 +4730,7 @@ public class Example {
 
 ## getVmSnapshotWithHttpInfo
 
-> ApiResponse<UnbrandXoVmSnapshot> getVmSnapshot getVmSnapshotWithHttpInfo(id)
+> ApiResponse<UnbrandXoVmSnapshot> getVmSnapshotWithHttpInfo(id)
 
 
 
@@ -4905,7 +4905,7 @@ public class Example {
 
 ## getVmSnapshotAlarmsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVmSnapshotAlarms getVmSnapshotAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVmSnapshotAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -5089,7 +5089,7 @@ public class Example {
 
 ## getVmSnapshotTasksWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoTask> getVmSnapshotTasks getVmSnapshotTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoTask> getVmSnapshotTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -5273,7 +5273,7 @@ public class Example {
 
 ## getVmSnapshotVdisWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoVdiSnapshot> getVmSnapshotVdis getVmSnapshotVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoVdiSnapshot> getVmSnapshotVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -5454,7 +5454,7 @@ public class Example {
 
 ## getVmSnapshotsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoVmSnapshot> getVmSnapshots getVmSnapshotsWithHttpInfo(fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoVmSnapshot> getVmSnapshotsWithHttpInfo(fields, ndjson, markdown, filter, limit)
 
 
 
@@ -5635,7 +5635,7 @@ public class Example {
 
 ## getVmSnapshotsMessagesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoMessage> getVmSnapshotsMessages getVmSnapshotsMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoMessage> getVmSnapshotsMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -5813,7 +5813,7 @@ public class Example {
 
 ## getVmStatsWithHttpInfo
 
-> ApiResponse<XapiStatsResponseXapiVmStatsRaw> getVmStats getVmStatsWithHttpInfo(id, granularity)
+> ApiResponse<XapiStatsResponseXapiVmStatsRaw> getVmStatsWithHttpInfo(id, granularity)
 
 
 
@@ -5991,7 +5991,7 @@ public class Example {
 
 ## getVmTasksWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoTask> getVmTasks getVmTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoTask> getVmTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -6166,7 +6166,7 @@ public class Example {
 
 ## getVmTemplateWithHttpInfo
 
-> ApiResponse<UnbrandXoVmTemplate> getVmTemplate getVmTemplateWithHttpInfo(id)
+> ApiResponse<UnbrandXoVmTemplate> getVmTemplateWithHttpInfo(id)
 
 
 
@@ -6341,7 +6341,7 @@ public class Example {
 
 ## getVmTemplateAlarmsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVmTemplateAlarms getVmTemplateAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVmTemplateAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -6525,7 +6525,7 @@ public class Example {
 
 ## getVmTemplateMessagesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoMessage> getVmTemplateMessages getVmTemplateMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoMessage> getVmTemplateMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -6709,7 +6709,7 @@ public class Example {
 
 ## getVmTemplateTasksWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoTask> getVmTemplateTasks getVmTemplateTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoTask> getVmTemplateTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -6893,7 +6893,7 @@ public class Example {
 
 ## getVmTemplateVdisWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoVdi> getVmTemplateVdis getVmTemplateVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoVdi> getVmTemplateVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -7074,7 +7074,7 @@ public class Example {
 
 ## getVmTemplatesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoVmTemplate> getVmTemplates getVmTemplatesWithHttpInfo(fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoVmTemplate> getVmTemplatesWithHttpInfo(fields, ndjson, markdown, filter, limit)
 
 
 
@@ -7255,7 +7255,7 @@ public class Example {
 
 ## getVmVdisWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoVdi> getVmVdis getVmVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoVdi> getVmVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -7436,7 +7436,7 @@ public class Example {
 
 ## getVmsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoVm> getVms getVmsWithHttpInfo(fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoVm> getVmsWithHttpInfo(fields, ndjson, markdown, filter, limit)
 
 
 
@@ -7612,7 +7612,7 @@ public class Example {
 
 ## hardRebootVmWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> hardRebootVm hardRebootVmWithHttpInfo(id, sync)
+> ApiResponse<CreateActionReturnTypeVoid> hardRebootVmWithHttpInfo(id, sync)
 
 
 
@@ -7786,7 +7786,7 @@ public class Example {
 
 ## hardShutdownVmWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> hardShutdownVm hardShutdownVmWithHttpInfo(id, sync)
+> ApiResponse<CreateActionReturnTypeVoid> hardShutdownVmWithHttpInfo(id, sync)
 
 
 
@@ -7961,7 +7961,7 @@ public class Example {
 
 ## importVmWithHttpInfo
 
-> ApiResponse<CreateAclV2Privilege201Response> importVm importVmWithHttpInfo(id, body, sr)
+> ApiResponse<CreateAclV2Privilege201Response> importVmWithHttpInfo(id, body, sr)
 
 
 
@@ -8139,7 +8139,7 @@ public class Example {
 
 ## migrateVmWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> migrateVm migrateVmWithHttpInfo(id, migrateVmRequest, sync)
+> ApiResponse<CreateActionReturnTypeVoid> migrateVmWithHttpInfo(id, migrateVmRequest, sync)
 
 
 
@@ -8316,7 +8316,7 @@ public class Example {
 
 ## pauseVmWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> pauseVm pauseVmWithHttpInfo(id, sync)
+> ApiResponse<CreateActionReturnTypeVoid> pauseVmWithHttpInfo(id, sync)
 
 
 
@@ -8487,7 +8487,7 @@ null (empty response body)
 
 ## putVmControllerTagWithHttpInfo
 
-> ApiResponse<Void> putVmControllerTag putVmControllerTagWithHttpInfo(id, tag)
+> ApiResponse<Void> putVmControllerTagWithHttpInfo(id, tag)
 
 
 
@@ -8655,7 +8655,7 @@ null (empty response body)
 
 ## putVmSnapshotTagWithHttpInfo
 
-> ApiResponse<Void> putVmSnapshotTag putVmSnapshotTagWithHttpInfo(id, tag)
+> ApiResponse<Void> putVmSnapshotTagWithHttpInfo(id, tag)
 
 
 
@@ -8823,7 +8823,7 @@ null (empty response body)
 
 ## putVmTagWithHttpInfo
 
-> ApiResponse<Void> putVmTag putVmTagWithHttpInfo(id, tag)
+> ApiResponse<Void> putVmTagWithHttpInfo(id, tag)
 
 
 
@@ -8991,7 +8991,7 @@ null (empty response body)
 
 ## putVmTemplateTagWithHttpInfo
 
-> ApiResponse<Void> putVmTemplateTag putVmTemplateTagWithHttpInfo(id, tag)
+> ApiResponse<Void> putVmTemplateTagWithHttpInfo(id, tag)
 
 
 
@@ -9162,7 +9162,7 @@ public class Example {
 
 ## resumeVmWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> resumeVm resumeVmWithHttpInfo(id, sync)
+> ApiResponse<CreateActionReturnTypeVoid> resumeVmWithHttpInfo(id, sync)
 
 
 
@@ -9339,7 +9339,7 @@ public class Example {
 
 ## revertSnapshotVmWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> revertSnapshotVm revertSnapshotVmWithHttpInfo(id, revertSnapshotVmRequest, sync)
+> ApiResponse<CreateActionReturnTypeVoid> revertSnapshotVmWithHttpInfo(id, revertSnapshotVmRequest, sync)
 
 
 
@@ -9517,7 +9517,7 @@ null (empty response body)
 
 ## snapshotVmWithHttpInfo
 
-> ApiResponse<Void> snapshotVm snapshotVmWithHttpInfo(id, sync, snapshotVmRequest)
+> ApiResponse<Void> snapshotVmWithHttpInfo(id, sync, snapshotVmRequest)
 
 
 
@@ -9694,7 +9694,7 @@ public class Example {
 
 ## startVmWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> startVm startVmWithHttpInfo(id, sync, startVmRequest)
+> ApiResponse<CreateActionReturnTypeVoid> startVmWithHttpInfo(id, sync, startVmRequest)
 
 
 
@@ -9870,7 +9870,7 @@ public class Example {
 
 ## suspendVmWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> suspendVm suspendVmWithHttpInfo(id, sync)
+> ApiResponse<CreateActionReturnTypeVoid> suspendVmWithHttpInfo(id, sync)
 
 
 
@@ -10044,7 +10044,7 @@ public class Example {
 
 ## unpauseVmWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> unpauseVm unpauseVmWithHttpInfo(id, sync)
+> ApiResponse<CreateActionReturnTypeVoid> unpauseVmWithHttpInfo(id, sync)
 
 
 
@@ -10217,7 +10217,7 @@ null (empty response body)
 
 ## updateVmWithHttpInfo
 
-> ApiResponse<Void> updateVm updateVmWithHttpInfo(id, updateVmRequestBody)
+> ApiResponse<Void> updateVmWithHttpInfo(id, updateVmRequestBody)
 
 
 
@@ -10395,7 +10395,7 @@ public class Example {
 
 ## vmGetVmBackupJobsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoVmBackupJob> vmGetVmBackupJobs vmGetVmBackupJobsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoVmBackupJob> vmGetVmBackupJobsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 

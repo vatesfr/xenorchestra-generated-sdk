@@ -1179,7 +1179,7 @@ with xenorchestra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = xenorchestra_client.SrsApi(api_client)
     id = 'c4284e12-37c9-7967-b9e8-83ef229c3e03' # str | 
-    body = None # bytearray | 
+    body = None # bytes | 
     name_label = 'VDI_foo_import' # str |  (optional)
     name_description = 'VDI imported by the REST API' # str |  (optional)
     raw = true # bool |  (optional)
@@ -1200,7 +1200,7 @@ with xenorchestra_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**|  | 
- **body** | **bytearray**|  | 
+ **body** | **bytes**|  | 
  **name_label** | **str**|  | [optional] 
  **name_description** | **str**|  | [optional] 
  **raw** | **bool**|  | [optional] 

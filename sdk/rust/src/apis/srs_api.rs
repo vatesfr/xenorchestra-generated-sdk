@@ -12,6 +12,8 @@ use super::{configuration, ContentType, Error};
 use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
+use tokio::fs::File as TokioFile;
+use tokio_util::codec::{BytesCodec, FramedRead};
 
 /// struct for typed errors of method [`create_sr`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -166,7 +168,7 @@ pub async fn create_sr(
     create_sr_body: models::CreateSrBody,
 ) -> Result<models::CreateAclV2Privilege201Response, Error<CreateSrError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_create_sr_body = create_sr_body;
+    let p_body_create_sr_body = create_sr_body;
 
     let uri_str = format!("{}/srs", configuration.base_path);
     let mut req_builder = configuration
@@ -185,7 +187,7 @@ pub async fn create_sr(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.json(&p_create_sr_body);
+    req_builder = req_builder.json(&p_body_create_sr_body);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -222,12 +224,12 @@ pub async fn delete_sr(
     id: &str,
 ) -> Result<(), Error<DeleteSrError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
     let uri_str = format!(
         "{}/srs/{id}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
@@ -271,14 +273,14 @@ pub async fn delete_sr_tag(
     tag: &str,
 ) -> Result<(), Error<DeleteSrTagError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_tag = tag;
+    let p_path_id = id;
+    let p_path_tag = tag;
 
     let uri_str = format!(
         "{}/srs/{id}/tags/{tag}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id),
-        tag = crate::apis::urlencode(p_tag)
+        id = crate::apis::urlencode(p_path_id),
+        tag = crate::apis::urlencode(p_path_tag)
     );
     let mut req_builder = configuration
         .client
@@ -322,19 +324,19 @@ pub async fn forget_sr(
     sync: Option<bool>,
 ) -> Result<models::CreateActionReturnTypeVoid, Error<ForgetSrError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_sync = sync;
+    let p_path_id = id;
+    let p_query_sync = sync;
 
     let uri_str = format!(
         "{}/srs/{id}/actions/forget",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -385,12 +387,12 @@ pub async fn get_sr(
     id: &str,
 ) -> Result<models::UnbrandXoSr, Error<GetSrError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
     let uri_str = format!(
         "{}/srs/{id}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -447,33 +449,33 @@ pub async fn get_sr_alarms(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoAlarm, Error<GetSrAlarmsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/srs/{id}/alarms",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -529,33 +531,33 @@ pub async fn get_sr_messages(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoMessage, Error<GetSrMessagesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/srs/{id}/messages",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -611,33 +613,33 @@ pub async fn get_sr_tasks(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoTask, Error<GetSrTasksError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/srs/{id}/tasks",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -692,28 +694,28 @@ pub async fn get_srs(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoSr, Error<GetSrsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!("{}/srs", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -765,14 +767,14 @@ pub async fn put_sr_tag(
     tag: &str,
 ) -> Result<(), Error<PutSrTagError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_tag = tag;
+    let p_path_id = id;
+    let p_path_tag = tag;
 
     let uri_str = format!(
         "{}/srs/{id}/tags/{tag}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id),
-        tag = crate::apis::urlencode(p_tag)
+        id = crate::apis::urlencode(p_path_id),
+        tag = crate::apis::urlencode(p_path_tag)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -814,19 +816,19 @@ pub async fn reclaim_space_sr(
     sync: Option<bool>,
 ) -> Result<models::CreateActionReturnTypeVoid, Error<ReclaimSpaceSrError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_sync = sync;
+    let p_path_id = id;
+    let p_query_sync = sync;
 
     let uri_str = format!(
         "{}/srs/{id}/actions/reclaim_space",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -878,19 +880,19 @@ pub async fn scan_sr(
     sync: Option<bool>,
 ) -> Result<models::CreateActionReturnTypeVoid, Error<ScanSrError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_sync = sync;
+    let p_path_id = id;
+    let p_query_sync = sync;
 
     let uri_str = format!(
         "{}/srs/{id}/actions/scan",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -945,28 +947,28 @@ pub async fn sr_import_vdi(
     raw: Option<bool>,
 ) -> Result<models::CreateAclV2Privilege201Response, Error<SrImportVdiError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_body = body;
-    let p_name_label = name_label;
-    let p_name_description = name_description;
-    let p_raw = raw;
+    let p_path_id = id;
+    let p_body_body = body;
+    let p_query_name_label = name_label;
+    let p_query_name_description = name_description;
+    let p_query_raw = raw;
 
     let uri_str = format!(
         "{}/srs/{id}/vdis",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_name_label {
+    if let Some(ref param_value) = p_query_name_label {
         req_builder = req_builder.query(&[("name_label", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_name_description {
+    if let Some(ref param_value) = p_query_name_description {
         req_builder = req_builder.query(&[("name_description", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_raw {
+    if let Some(ref param_value) = p_query_raw {
         req_builder = req_builder.query(&[("raw", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -981,7 +983,9 @@ pub async fn sr_import_vdi(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.body(std::fs::read(p_body)?);
+    let file = TokioFile::open(p_body_body).await?;
+    let stream = FramedRead::new(file, BytesCodec::new());
+    req_builder = req_builder.body(reqwest::Body::wrap_stream(stream));
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;

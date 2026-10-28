@@ -12,6 +12,8 @@ use super::{configuration, ContentType, Error};
 use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
+use tokio::fs::File as TokioFile;
+use tokio_util::codec::{BytesCodec, FramedRead};
 
 /// struct for typed errors of method [`create_vdi`]
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -310,7 +312,7 @@ pub async fn create_vdi(
     create_vdi_body: models::CreateVdiBody,
 ) -> Result<models::CreateAclV2Privilege201Response, Error<CreateVdiError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_create_vdi_body = create_vdi_body;
+    let p_body_create_vdi_body = create_vdi_body;
 
     let uri_str = format!("{}/vdis", configuration.base_path);
     let mut req_builder = configuration
@@ -329,7 +331,7 @@ pub async fn create_vdi(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.json(&p_create_vdi_body);
+    req_builder = req_builder.json(&p_body_create_vdi_body);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -366,12 +368,12 @@ pub async fn delete_vdi(
     id: &str,
 ) -> Result<(), Error<DeleteVdiError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
     let uri_str = format!(
         "{}/vdis/{id}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
@@ -414,12 +416,12 @@ pub async fn delete_vdi_snapshot(
     id: &str,
 ) -> Result<(), Error<DeleteVdiSnapshotError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
     let uri_str = format!(
         "{}/vdi-snapshots/{id}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
@@ -463,14 +465,14 @@ pub async fn delete_vdi_snapshot_tag(
     tag: &str,
 ) -> Result<(), Error<DeleteVdiSnapshotTagError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_tag = tag;
+    let p_path_id = id;
+    let p_path_tag = tag;
 
     let uri_str = format!(
         "{}/vdi-snapshots/{id}/tags/{tag}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id),
-        tag = crate::apis::urlencode(p_tag)
+        id = crate::apis::urlencode(p_path_id),
+        tag = crate::apis::urlencode(p_path_tag)
     );
     let mut req_builder = configuration
         .client
@@ -514,14 +516,14 @@ pub async fn delete_vdi_tag(
     tag: &str,
 ) -> Result<(), Error<DeleteVdiTagError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_tag = tag;
+    let p_path_id = id;
+    let p_path_tag = tag;
 
     let uri_str = format!(
         "{}/vdis/{id}/tags/{tag}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id),
-        tag = crate::apis::urlencode(p_tag)
+        id = crate::apis::urlencode(p_path_id),
+        tag = crate::apis::urlencode(p_path_tag)
     );
     let mut req_builder = configuration
         .client
@@ -562,17 +564,17 @@ pub async fn delete_vdi_tag(
 pub async fn export_vdi_content(
     configuration: &configuration::Configuration,
     id: &str,
-    format: models::ExcludeSupportedVdiFormatPeriodQcow2,
+    format: models::ExcludeSupportedVdiFormatQcow2,
 ) -> Result<String, Error<ExportVdiContentError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_format = format;
+    let p_path_id = id;
+    let p_path_format = format;
 
     let uri_str = format!(
         "{}/vdis/{id}.{format}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id),
-        format = p_format.to_string()
+        id = crate::apis::urlencode(p_path_id),
+        format = p_path_format.to_string()
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -622,17 +624,17 @@ pub async fn export_vdi_content(
 pub async fn export_vdi_snapshot_content(
     configuration: &configuration::Configuration,
     id: &str,
-    format: models::ExcludeSupportedVdiFormatPeriodQcow2,
+    format: models::ExcludeSupportedVdiFormatQcow2,
 ) -> Result<String, Error<ExportVdiSnapshotContentError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_format = format;
+    let p_path_id = id;
+    let p_path_format = format;
 
     let uri_str = format!(
         "{}/vdi-snapshots/{id}.{format}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id),
-        format = p_format.to_string()
+        id = crate::apis::urlencode(p_path_id),
+        format = p_path_format.to_string()
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -684,12 +686,12 @@ pub async fn get_vdi(
     id: &str,
 ) -> Result<models::UnbrandXoVdi, Error<GetVdiError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
     let uri_str = format!(
         "{}/vdis/{id}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -746,33 +748,33 @@ pub async fn get_vdi_alarms(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoAlarm, Error<GetVdiAlarmsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vdis/{id}/alarms",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -828,33 +830,33 @@ pub async fn get_vdi_messages(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoMessage, Error<GetVdiMessagesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vdis/{id}/messages",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -905,12 +907,12 @@ pub async fn get_vdi_snapshot(
     id: &str,
 ) -> Result<models::UnbrandXoVdiSnapshot, Error<GetVdiSnapshotError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
     let uri_str = format!(
         "{}/vdi-snapshots/{id}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -967,33 +969,33 @@ pub async fn get_vdi_snapshot_alarms(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoAlarm, Error<GetVdiSnapshotAlarmsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vdi-snapshots/{id}/alarms",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1049,33 +1051,33 @@ pub async fn get_vdi_snapshot_messages(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoMessage, Error<GetVdiSnapshotMessagesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vdi-snapshots/{id}/messages",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1131,33 +1133,33 @@ pub async fn get_vdi_snapshot_tasks(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoTask, Error<GetVdiSnapshotTasksError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vdi-snapshots/{id}/tasks",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1212,28 +1214,28 @@ pub async fn get_vdi_snapshots(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoVdiSnapshot, Error<GetVdiSnapshotsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!("{}/vdi-snapshots", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1289,33 +1291,33 @@ pub async fn get_vdi_tasks(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoTask, Error<GetVdiTasksError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vdis/{id}/tasks",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1370,28 +1372,28 @@ pub async fn get_vdis(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoVdi, Error<GetVdisError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!("{}/vdis", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1447,33 +1449,33 @@ pub async fn get_vm_controller_vdis(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoVdi, Error<GetVmControllerVdisError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vm-controllers/{id}/vdis",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1529,33 +1531,33 @@ pub async fn get_vm_snapshot_vdis(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoVdiSnapshot, Error<GetVmSnapshotVdisError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vm-snapshots/{id}/vdis",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1611,33 +1613,33 @@ pub async fn get_vm_template_vdis(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoVdi, Error<GetVmTemplateVdisError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vm-templates/{id}/vdis",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1693,33 +1695,33 @@ pub async fn get_vm_vdis(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoVdi, Error<GetVmVdisError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/vms/{id}/vdis",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1768,19 +1770,19 @@ pub async fn get_vm_vdis(
 pub async fn import_vdi_content(
     configuration: &configuration::Configuration,
     id: &str,
-    format: models::ExcludeSupportedVdiFormatPeriodQcow2,
+    format: models::ExcludeSupportedVdiFormatQcow2,
     body: std::path::PathBuf,
 ) -> Result<(), Error<ImportVdiContentError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_format = format;
-    let p_body = body;
+    let p_path_id = id;
+    let p_path_format = format;
+    let p_body_body = body;
 
     let uri_str = format!(
         "{}/vdis/{id}.{format}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id),
-        format = p_format.to_string()
+        id = crate::apis::urlencode(p_path_id),
+        format = p_path_format.to_string()
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -1796,7 +1798,9 @@ pub async fn import_vdi_content(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.body(std::fs::read(p_body)?);
+    let file = TokioFile::open(p_body_body).await?;
+    let stream = FramedRead::new(file, BytesCodec::new());
+    req_builder = req_builder.body(reqwest::Body::wrap_stream(stream));
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1824,20 +1828,20 @@ pub async fn migrate_vdi(
     sync: Option<bool>,
 ) -> Result<(), Error<MigrateVdiError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_migrate_vdi_request = migrate_vdi_request;
-    let p_sync = sync;
+    let p_path_id = id;
+    let p_body_migrate_vdi_request = migrate_vdi_request;
+    let p_query_sync = sync;
 
     let uri_str = format!(
         "{}/vdis/{id}/actions/migrate",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1852,7 +1856,7 @@ pub async fn migrate_vdi(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.json(&p_migrate_vdi_request);
+    req_builder = req_builder.json(&p_body_migrate_vdi_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1879,14 +1883,14 @@ pub async fn put_vdi_snapshot_tag(
     tag: &str,
 ) -> Result<(), Error<PutVdiSnapshotTagError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_tag = tag;
+    let p_path_id = id;
+    let p_path_tag = tag;
 
     let uri_str = format!(
         "{}/vdi-snapshots/{id}/tags/{tag}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id),
-        tag = crate::apis::urlencode(p_tag)
+        id = crate::apis::urlencode(p_path_id),
+        tag = crate::apis::urlencode(p_path_tag)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -1928,14 +1932,14 @@ pub async fn put_vdi_tag(
     tag: &str,
 ) -> Result<(), Error<PutVdiTagError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_tag = tag;
+    let p_path_id = id;
+    let p_path_tag = tag;
 
     let uri_str = format!(
         "{}/vdis/{id}/tags/{tag}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id),
-        tag = crate::apis::urlencode(p_tag)
+        id = crate::apis::urlencode(p_path_id),
+        tag = crate::apis::urlencode(p_path_tag)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -1980,28 +1984,28 @@ pub async fn sr_import_vdi(
     raw: Option<bool>,
 ) -> Result<models::CreateAclV2Privilege201Response, Error<SrImportVdiError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_body = body;
-    let p_name_label = name_label;
-    let p_name_description = name_description;
-    let p_raw = raw;
+    let p_path_id = id;
+    let p_body_body = body;
+    let p_query_name_label = name_label;
+    let p_query_name_description = name_description;
+    let p_query_raw = raw;
 
     let uri_str = format!(
         "{}/srs/{id}/vdis",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_name_label {
+    if let Some(ref param_value) = p_query_name_label {
         req_builder = req_builder.query(&[("name_label", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_name_description {
+    if let Some(ref param_value) = p_query_name_description {
         req_builder = req_builder.query(&[("name_description", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_raw {
+    if let Some(ref param_value) = p_query_raw {
         req_builder = req_builder.query(&[("raw", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -2016,7 +2020,9 @@ pub async fn sr_import_vdi(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.body(std::fs::read(p_body)?);
+    let file = TokioFile::open(p_body_body).await?;
+    let stream = FramedRead::new(file, BytesCodec::new());
+    req_builder = req_builder.body(reqwest::Body::wrap_stream(stream));
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -2054,13 +2060,13 @@ pub async fn update_vdi(
     update_vdi_request_body: models::UpdateVdiRequestBody,
 ) -> Result<(), Error<UpdateVdiError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_update_vdi_request_body = update_vdi_request_body;
+    let p_path_id = id;
+    let p_body_update_vdi_request_body = update_vdi_request_body;
 
     let uri_str = format!(
         "{}/vdis/{id}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
@@ -2078,7 +2084,7 @@ pub async fn update_vdi(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.json(&p_update_vdi_request_body);
+    req_builder = req_builder.json(&p_body_update_vdi_request_body);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;

@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**changelog** | Option<[**models::XcpPatchesChangelog**](XcpPatches_changelog.md)> |  | [optional]
+**changelog** | Option<[**models::XcpPatchesChangelog**](XcpPatchesChangelog.md)> |  | [optional]
 **description** | **String** |  | 
 **license** | **String** |  | 
 **name** | **String** |  | 

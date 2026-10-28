@@ -36,7 +36,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PartialUnbrandXoPbdDeviceConfigAnyOf5.JSON_PROPERTY_LOCATION,
   PartialUnbrandXoPbdDeviceConfigAnyOf5.JSON_PROPERTY_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PartialUnbrandXoPbdDeviceConfigAnyOf5 {
   public static final String JSON_PROPERTY_LOCATION = "location";
   @javax.annotation.Nonnull
@@ -59,14 +59,14 @@ public class PartialUnbrandXoPbdDeviceConfigAnyOf5 {
    * @return location
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_LOCATION)
+  @JsonProperty(value = JSON_PROPERTY_LOCATION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getLocation() {
     return location;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_LOCATION)
+  @JsonProperty(value = JSON_PROPERTY_LOCATION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setLocation(@javax.annotation.Nonnull String location) {
     this.location = location;
@@ -83,14 +83,14 @@ public class PartialUnbrandXoPbdDeviceConfigAnyOf5 {
    * @return type
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getType() {
     return type;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setType(@javax.annotation.Nonnull String type) {
     this.type = type;
@@ -133,10 +133,7 @@ public class PartialUnbrandXoPbdDeviceConfigAnyOf5 {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -173,12 +170,12 @@ public class PartialUnbrandXoPbdDeviceConfigAnyOf5 {
 
     // add `location` to the URL query string
     if (getLocation() != null) {
-      joiner.add(String.format("%slocation%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLocation()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%slocation%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLocation()))));
     }
 
     // add `type` to the URL query string
     if (getType() != null) {
-      joiner.add(String.format("%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
     }
 
     return joiner.toString();

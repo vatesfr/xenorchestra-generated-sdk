@@ -39,7 +39,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   XapiHostStatsRawPifs.JSON_PROPERTY_RX,
   XapiHostStatsRawPifs.JSON_PROPERTY_TX
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class XapiHostStatsRawPifs {
   public static final String JSON_PROPERTY_RX = "rx";
   @javax.annotation.Nonnull
@@ -70,14 +70,14 @@ public class XapiHostStatsRawPifs {
    * @return rx
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_RX)
+  @JsonProperty(value = JSON_PROPERTY_RX, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Map<String, List<Double>> getRx() {
     return rx;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_RX)
+  @JsonProperty(value = JSON_PROPERTY_RX, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setRx(@javax.annotation.Nonnull Map<String, List<Double>> rx) {
     this.rx = rx;
@@ -102,14 +102,14 @@ public class XapiHostStatsRawPifs {
    * @return tx
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_TX)
+  @JsonProperty(value = JSON_PROPERTY_TX, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Map<String, List<Double>> getTx() {
     return tx;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TX)
+  @JsonProperty(value = JSON_PROPERTY_TX, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setTx(@javax.annotation.Nonnull Map<String, List<Double>> tx) {
     this.tx = tx;
@@ -152,10 +152,7 @@ public class XapiHostStatsRawPifs {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -193,8 +190,8 @@ public class XapiHostStatsRawPifs {
     // add `rx` to the URL query string
     if (getRx() != null) {
       for (String _key : getRx().keySet()) {
-        joiner.add(String.format("%srx%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%srx%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getRx().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getRx().get(_key)))));
       }
     }
@@ -202,8 +199,8 @@ public class XapiHostStatsRawPifs {
     // add `tx` to the URL query string
     if (getTx() != null) {
       for (String _key : getTx().keySet()) {
-        joiner.add(String.format("%stx%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%stx%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getTx().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getTx().get(_key)))));
       }
     }

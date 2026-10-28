@@ -139,32 +139,36 @@ class _$UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantAclPrivilegeSerialize
         case r'action':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(
+            specifiedType: const FullType.nullable(
                 UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantAclPrivilegeActionEnum),
-          ) as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantAclPrivilegeActionEnum;
+          ) as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantAclPrivilegeActionEnum?;
+          if (valueDes == null) continue;
           result.action = valueDes;
           break;
         case r'effect':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(
+            specifiedType: const FullType.nullable(
                 UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantAclPrivilegeEffectEnum),
-          ) as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantAclPrivilegeEffectEnum;
+          ) as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantAclPrivilegeEffectEnum?;
+          if (valueDes == null) continue;
           result.effect = valueDes;
           break;
         case r'resource':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(
+            specifiedType: const FullType.nullable(
                 UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantAclPrivilegeResourceEnum),
-          ) as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantAclPrivilegeResourceEnum;
+          ) as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantAclPrivilegeResourceEnum?;
+          if (valueDes == null) continue;
           result.resource = valueDes;
           break;
         case r'selector':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.selector = valueDes;
           break;
         default:

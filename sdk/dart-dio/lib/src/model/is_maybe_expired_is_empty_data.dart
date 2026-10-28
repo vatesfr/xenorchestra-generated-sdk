@@ -100,8 +100,9 @@ class _$IsMaybeExpiredIsEmptyDataSerializer
         case r'isExpired':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.isExpired = valueDes;
           break;
         default:

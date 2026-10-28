@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **id** | **String** |  | 
 **name** | **String** |  | 
 **time** | **f64** |  | 
-**r#type** | **String** |  | 
+**r#type** | **Type** |  (enum: message) | 
 **uuid** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

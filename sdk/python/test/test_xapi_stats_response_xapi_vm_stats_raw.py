@@ -48,32 +48,106 @@ class TestXapiStatsResponseXapiVmStatsRaw(unittest.TestCase):
                         }, 
                     iops = xenorchestra_client.models.xapi_host_stats_raw_io_throughput.XapiHostStatsRaw_ioThroughput(
                         r = {
-                            'key' : 
+                            'key' : [
+                                1.337
+                                ]
                             }, 
-                        w = , ), 
-                    memory = , 
-                    memory_free = , 
-                    memory_target = , 
-                    runstate_blocked = , 
-                    runstate_concurrency_hazard = , 
-                    runstate_full_contention = , 
-                    runstate_fullrun = , 
-                    runstate_partial_contention = , 
-                    runstate_partial_run = , 
-                    vbd_avgqu_sz = , 
-                    vbd_inflight = , 
-                    vbd_iowait = , 
+                        w = {
+                            'key' : [
+                                1.337
+                                ]
+                            }, ), 
+                    memory = [
+                        1.337
+                        ], 
+                    memory_free = [
+                        1.337
+                        ], 
+                    memory_target = [
+                        1.337
+                        ], 
+                    runstate_blocked = [
+                        1.337
+                        ], 
+                    runstate_concurrency_hazard = [
+                        1.337
+                        ], 
+                    runstate_full_contention = [
+                        1.337
+                        ], 
+                    runstate_fullrun = [
+                        1.337
+                        ], 
+                    runstate_partial_contention = [
+                        1.337
+                        ], 
+                    runstate_partial_run = [
+                        1.337
+                        ], 
+                    vbd_avgqu_sz = {
+                        'key' : [
+                            1.337
+                            ]
+                        }, 
+                    vbd_inflight = {
+                        'key' : [
+                            1.337
+                            ]
+                        }, 
+                    vbd_iowait = {
+                        'key' : [
+                            1.337
+                            ]
+                        }, 
                     vbd_latency = xenorchestra_client.models.xapi_host_stats_raw_io_throughput.XapiHostStatsRaw_ioThroughput(
-                        r = , 
-                        w = , ), 
+                        r = {
+                            'key' : [
+                                1.337
+                                ]
+                            }, 
+                        w = {
+                            'key' : [
+                                1.337
+                                ]
+                            }, ), 
                     vif_errors = xenorchestra_client.models.xapi_host_stats_raw_pifs.XapiHostStatsRaw_pifs(
-                        rx = , 
-                        tx = , ), 
+                        rx = {
+                            'key' : [
+                                1.337
+                                ]
+                            }, 
+                        tx = {
+                            'key' : [
+                                1.337
+                                ]
+                            }, ), 
                     vifs = xenorchestra_client.models.xapi_host_stats_raw_pifs.XapiHostStatsRaw_pifs(
-                        rx = , 
-                        tx = , ), 
+                        rx = {
+                            'key' : [
+                                1.337
+                                ]
+                            }, 
+                        tx = {
+                            'key' : [
+                                1.337
+                                ]
+                            }, ), 
                     xvds = xenorchestra_client.models.xapi_vm_stats_raw_xvds.XapiVmStatsRaw_xvds(
-                        total = , ), )
+                        r = {
+                            'key' : [
+                                1.337
+                                ]
+                            }, 
+                        total = {
+                            'key' : [
+                                1.337
+                                ]
+                            }, 
+                        w = {
+                            'key' : [
+                                1.337
+                                ]
+                            }, ), )
             )
         else:
             return XapiStatsResponseXapiVmStatsRaw(
@@ -90,32 +164,106 @@ class TestXapiStatsResponseXapiVmStatsRaw(unittest.TestCase):
                         }, 
                     iops = xenorchestra_client.models.xapi_host_stats_raw_io_throughput.XapiHostStatsRaw_ioThroughput(
                         r = {
-                            'key' : 
+                            'key' : [
+                                1.337
+                                ]
                             }, 
-                        w = , ), 
-                    memory = , 
-                    memory_free = , 
-                    memory_target = , 
-                    runstate_blocked = , 
-                    runstate_concurrency_hazard = , 
-                    runstate_full_contention = , 
-                    runstate_fullrun = , 
-                    runstate_partial_contention = , 
-                    runstate_partial_run = , 
-                    vbd_avgqu_sz = , 
-                    vbd_inflight = , 
-                    vbd_iowait = , 
+                        w = {
+                            'key' : [
+                                1.337
+                                ]
+                            }, ), 
+                    memory = [
+                        1.337
+                        ], 
+                    memory_free = [
+                        1.337
+                        ], 
+                    memory_target = [
+                        1.337
+                        ], 
+                    runstate_blocked = [
+                        1.337
+                        ], 
+                    runstate_concurrency_hazard = [
+                        1.337
+                        ], 
+                    runstate_full_contention = [
+                        1.337
+                        ], 
+                    runstate_fullrun = [
+                        1.337
+                        ], 
+                    runstate_partial_contention = [
+                        1.337
+                        ], 
+                    runstate_partial_run = [
+                        1.337
+                        ], 
+                    vbd_avgqu_sz = {
+                        'key' : [
+                            1.337
+                            ]
+                        }, 
+                    vbd_inflight = {
+                        'key' : [
+                            1.337
+                            ]
+                        }, 
+                    vbd_iowait = {
+                        'key' : [
+                            1.337
+                            ]
+                        }, 
                     vbd_latency = xenorchestra_client.models.xapi_host_stats_raw_io_throughput.XapiHostStatsRaw_ioThroughput(
-                        r = , 
-                        w = , ), 
+                        r = {
+                            'key' : [
+                                1.337
+                                ]
+                            }, 
+                        w = {
+                            'key' : [
+                                1.337
+                                ]
+                            }, ), 
                     vif_errors = xenorchestra_client.models.xapi_host_stats_raw_pifs.XapiHostStatsRaw_pifs(
-                        rx = , 
-                        tx = , ), 
+                        rx = {
+                            'key' : [
+                                1.337
+                                ]
+                            }, 
+                        tx = {
+                            'key' : [
+                                1.337
+                                ]
+                            }, ), 
                     vifs = xenorchestra_client.models.xapi_host_stats_raw_pifs.XapiHostStatsRaw_pifs(
-                        rx = , 
-                        tx = , ), 
+                        rx = {
+                            'key' : [
+                                1.337
+                                ]
+                            }, 
+                        tx = {
+                            'key' : [
+                                1.337
+                                ]
+                            }, ), 
                     xvds = xenorchestra_client.models.xapi_vm_stats_raw_xvds.XapiVmStatsRaw_xvds(
-                        total = , ), ),
+                        r = {
+                            'key' : [
+                                1.337
+                                ]
+                            }, 
+                        total = {
+                            'key' : [
+                                1.337
+                                ]
+                            }, 
+                        w = {
+                            'key' : [
+                                1.337
+                                ]
+                            }, ), ),
         )
         """
 

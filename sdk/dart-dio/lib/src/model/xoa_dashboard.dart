@@ -167,15 +167,18 @@ class _$XoaDashboardSerializer implements PrimitiveSerializer<XoaDashboard> {
         case r'backupRepositories':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(XoaDashboardBackupRepositories),
-          ) as XoaDashboardBackupRepositories;
+            specifiedType:
+                const FullType.nullable(XoaDashboardBackupRepositories),
+          ) as XoaDashboardBackupRepositories?;
+          if (valueDes == null) continue;
           result.backupRepositories.replace(valueDes);
           break;
         case r'backups':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(XoaDashboardBackups),
-          ) as XoaDashboardBackups;
+            specifiedType: const FullType.nullable(XoaDashboardBackups),
+          ) as XoaDashboardBackups?;
+          if (valueDes == null) continue;
           result.backups.replace(valueDes);
           break;
         case r'hostsStatus':

@@ -288,20 +288,20 @@ pub async fn clean_reboot_host(
     clean_reboot_host_request: Option<models::CleanRebootHostRequest>,
 ) -> Result<models::CreateActionReturnTypeVoid, Error<CleanRebootHostError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_sync = sync;
-    let p_clean_reboot_host_request = clean_reboot_host_request;
+    let p_path_id = id;
+    let p_query_sync = sync;
+    let p_body_clean_reboot_host_request = clean_reboot_host_request;
 
     let uri_str = format!(
         "{}/hosts/{id}/actions/clean_reboot",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -316,7 +316,7 @@ pub async fn clean_reboot_host(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.json(&p_clean_reboot_host_request);
+    req_builder = req_builder.json(&p_body_clean_reboot_host_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -355,20 +355,20 @@ pub async fn clean_shutdown_host(
     clean_shutdown_host_request: Option<models::CleanShutdownHostRequest>,
 ) -> Result<models::CreateActionReturnTypeVoid, Error<CleanShutdownHostError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_sync = sync;
-    let p_clean_shutdown_host_request = clean_shutdown_host_request;
+    let p_path_id = id;
+    let p_query_sync = sync;
+    let p_body_clean_shutdown_host_request = clean_shutdown_host_request;
 
     let uri_str = format!(
         "{}/hosts/{id}/actions/clean_shutdown",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -383,7 +383,7 @@ pub async fn clean_shutdown_host(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.json(&p_clean_shutdown_host_request);
+    req_builder = req_builder.json(&p_body_clean_shutdown_host_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -421,14 +421,14 @@ pub async fn delete_host_tag(
     tag: &str,
 ) -> Result<(), Error<DeleteHostTagError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_tag = tag;
+    let p_path_id = id;
+    let p_path_tag = tag;
 
     let uri_str = format!(
         "{}/hosts/{id}/tags/{tag}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id),
-        tag = crate::apis::urlencode(p_tag)
+        id = crate::apis::urlencode(p_path_id),
+        tag = crate::apis::urlencode(p_path_tag)
     );
     let mut req_builder = configuration
         .client
@@ -472,19 +472,19 @@ pub async fn detach_host(
     sync: Option<bool>,
 ) -> Result<models::CreateActionReturnTypeVoid, Error<DetachHostError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_sync = sync;
+    let p_path_id = id;
+    let p_query_sync = sync;
 
     let uri_str = format!(
         "{}/hosts/{id}/actions/detach",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -537,20 +537,20 @@ pub async fn disable(
     disable_request: Option<models::DisableRequest>,
 ) -> Result<models::CreateActionReturnTypeVoid, Error<DisableError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_sync = sync;
-    let p_disable_request = disable_request;
+    let p_path_id = id;
+    let p_query_sync = sync;
+    let p_body_disable_request = disable_request;
 
     let uri_str = format!(
         "{}/hosts/{id}/actions/disable",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -565,7 +565,7 @@ pub async fn disable(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.json(&p_disable_request);
+    req_builder = req_builder.json(&p_body_disable_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -603,19 +603,19 @@ pub async fn emergency_shutdown_host(
     sync: Option<bool>,
 ) -> Result<models::CreateActionReturnTypeVoid, Error<EmergencyShutdownHostError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_sync = sync;
+    let p_path_id = id;
+    let p_query_sync = sync;
 
     let uri_str = format!(
         "{}/hosts/{id}/actions/emergency_shutdown",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -667,19 +667,19 @@ pub async fn enable(
     sync: Option<bool>,
 ) -> Result<models::CreateActionReturnTypeVoid, Error<EnableError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_sync = sync;
+    let p_path_id = id;
+    let p_query_sync = sync;
 
     let uri_str = format!(
         "{}/hosts/{id}/actions/enable",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -731,19 +731,19 @@ pub async fn forget_host(
     sync: Option<bool>,
 ) -> Result<models::CreateActionReturnTypeVoid, Error<ForgetHostError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_sync = sync;
+    let p_path_id = id;
+    let p_query_sync = sync;
 
     let uri_str = format!(
         "{}/hosts/{id}/actions/forget",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -794,12 +794,12 @@ pub async fn get_audit_log(
     id: &str,
 ) -> Result<(), Error<GetAuditLogError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
     let uri_str = format!(
         "{}/hosts/{id}/audit.txt",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -840,12 +840,12 @@ pub async fn get_host(
     id: &str,
 ) -> Result<models::UnbrandXoHost, Error<GetHostError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
     let uri_str = format!(
         "{}/hosts/{id}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -902,33 +902,33 @@ pub async fn get_host_alarms(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoAlarm, Error<GetHostAlarmsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/hosts/{id}/alarms",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -979,12 +979,12 @@ pub async fn get_host_logs(
     id: &str,
 ) -> Result<(), Error<GetHostLogsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
     let uri_str = format!(
         "{}/hosts/{id}/logs.tgz",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1030,33 +1030,33 @@ pub async fn get_host_messages(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoMessage, Error<GetHostMessagesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/hosts/{id}/messages",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1108,17 +1108,17 @@ pub async fn get_host_stats(
     granularity: Option<models::XapiStatsGranularity>,
 ) -> Result<models::XapiStatsResponseXapiHostStatsRaw, Error<GetHostStatsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_granularity = granularity;
+    let p_path_id = id;
+    let p_query_granularity = granularity;
 
     let uri_str = format!(
         "{}/hosts/{id}/stats",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_granularity {
+    if let Some(ref param_value) = p_query_granularity {
         req_builder = req_builder.query(&[("granularity", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1174,33 +1174,33 @@ pub async fn get_host_tasks(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoTask, Error<GetHostTasksError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/hosts/{id}/tasks",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1255,28 +1255,28 @@ pub async fn get_hosts(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoHost, Error<GetHostsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!("{}/hosts", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1327,12 +1327,12 @@ pub async fn get_missing_patches(
     id: &str,
 ) -> Result<models::GetMissingPatches200Response, Error<GetMissingPatchesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
     let uri_str = format!(
         "{}/hosts/{id}/missing_patches",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1384,12 +1384,12 @@ pub async fn gethost_smt(
     id: &str,
 ) -> Result<models::GethostSmt200Response, Error<GethostSmtError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
     let uri_str = format!(
         "{}/hosts/{id}/smt",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1443,20 +1443,20 @@ pub async fn management_reconfigure(
     sync: Option<bool>,
 ) -> Result<models::CreateActionReturnTypeVoid, Error<ManagementReconfigureError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_management_reconfigure_request = management_reconfigure_request;
-    let p_sync = sync;
+    let p_path_id = id;
+    let p_body_management_reconfigure_request = management_reconfigure_request;
+    let p_query_sync = sync;
 
     let uri_str = format!(
         "{}/hosts/{id}/actions/management_reconfigure",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1471,7 +1471,7 @@ pub async fn management_reconfigure(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.json(&p_management_reconfigure_request);
+    req_builder = req_builder.json(&p_body_management_reconfigure_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1509,14 +1509,14 @@ pub async fn put_host_tag(
     tag: &str,
 ) -> Result<(), Error<PutHostTagError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_tag = tag;
+    let p_path_id = id;
+    let p_path_tag = tag;
 
     let uri_str = format!(
         "{}/hosts/{id}/tags/{tag}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id),
-        tag = crate::apis::urlencode(p_tag)
+        id = crate::apis::urlencode(p_path_id),
+        tag = crate::apis::urlencode(p_path_tag)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -1559,20 +1559,20 @@ pub async fn restart_host_toolstack(
     restart_host_toolstack_request: Option<models::RestartHostToolstackRequest>,
 ) -> Result<models::CreateActionReturnTypeVoid, Error<RestartHostToolstackError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_sync = sync;
-    let p_restart_host_toolstack_request = restart_host_toolstack_request;
+    let p_path_id = id;
+    let p_query_sync = sync;
+    let p_body_restart_host_toolstack_request = restart_host_toolstack_request;
 
     let uri_str = format!(
         "{}/hosts/{id}/actions/restart_toolstack",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1587,7 +1587,7 @@ pub async fn restart_host_toolstack(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.json(&p_restart_host_toolstack_request);
+    req_builder = req_builder.json(&p_body_restart_host_toolstack_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1626,20 +1626,20 @@ pub async fn smart_reboot_host(
     smart_reboot_host_request: Option<models::SmartRebootHostRequest>,
 ) -> Result<models::CreateActionReturnTypeVoid, Error<SmartRebootHostError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_sync = sync;
-    let p_smart_reboot_host_request = smart_reboot_host_request;
+    let p_path_id = id;
+    let p_query_sync = sync;
+    let p_body_smart_reboot_host_request = smart_reboot_host_request;
 
     let uri_str = format!(
         "{}/hosts/{id}/actions/smart_reboot",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1654,7 +1654,7 @@ pub async fn smart_reboot_host(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.json(&p_smart_reboot_host_request);
+    req_builder = req_builder.json(&p_body_smart_reboot_host_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1692,19 +1692,19 @@ pub async fn start_host(
     sync: Option<bool>,
 ) -> Result<models::CreateActionReturnTypeVoid, Error<StartHostError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_sync = sync;
+    let p_path_id = id;
+    let p_query_sync = sync;
 
     let uri_str = format!(
         "{}/hosts/{id}/actions/start",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {

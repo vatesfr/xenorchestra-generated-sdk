@@ -36,7 +36,7 @@ import tech.vates.xenorchestra.client.ApiClient;
 @JsonPropertyOrder({
   DashboardBackupRepositoriesSizeInfoOther.JSON_PROPERTY_SIZE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class DashboardBackupRepositoriesSizeInfoOther {
   public static final String JSON_PROPERTY_SIZE = "size";
   @javax.annotation.Nonnull
@@ -55,14 +55,14 @@ public class DashboardBackupRepositoriesSizeInfoOther {
    * @return size
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonProperty(value = JSON_PROPERTY_SIZE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public DashboardBackupRepositoriesSizeInfoOtherSize getSize() {
     return size;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonProperty(value = JSON_PROPERTY_SIZE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSize(@javax.annotation.Nonnull DashboardBackupRepositoriesSizeInfoOtherSize size) {
     this.size = size;
@@ -103,10 +103,7 @@ public class DashboardBackupRepositoriesSizeInfoOther {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**

@@ -98,15 +98,17 @@ class _$XoMetadataBackupJobScheduleSettingsSerializer
         case r'retentionPoolMetadata':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.retentionPoolMetadata = valueDes;
           break;
         case r'retentionXoMetadata':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.retentionXoMetadata = valueDes;
           break;
         default:

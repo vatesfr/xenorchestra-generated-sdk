@@ -55,8 +55,16 @@ class TestXoVmBackupJobGeneralSettings(unittest.TestCase):
                         settings = {
                             'key' : null
                             }, ), 
-                    weekly = , 
-                    yearly = , ),
+                    weekly = xenorchestra_client.models.xo_vm_backup_job_general_settings_all_of_long_term_retention_daily.XoVmBackupJobGeneralSettings_allOf_longTermRetention_daily(
+                        retention = 1.337, 
+                        settings = {
+                            'key' : null
+                            }, ), 
+                    yearly = xenorchestra_client.models.xo_vm_backup_job_general_settings_all_of_long_term_retention_daily.XoVmBackupJobGeneralSettings_allOf_longTermRetention_daily(
+                        retention = 1.337, 
+                        settings = {
+                            'key' : null
+                            }, ), ),
                 max_export_rate = 1.337,
                 merge_backups_synchronously = True,
                 n_retries_vm_backup_failures = 1.337,

@@ -37,7 +37,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   CloneVmRequestAnyOf1.JSON_PROPERTY_NAME_LABEL,
   CloneVmRequestAnyOf1.JSON_PROPERTY_SR_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class CloneVmRequestAnyOf1 {
   /**
    * Gets or Sets compress
@@ -102,14 +102,14 @@ private final String value;
    * @return compress
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_COMPRESS)
+  @JsonProperty(value = JSON_PROPERTY_COMPRESS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public CompressEnum getCompress() {
     return compress;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_COMPRESS)
+  @JsonProperty(value = JSON_PROPERTY_COMPRESS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCompress(@javax.annotation.Nullable CompressEnum compress) {
     this.compress = compress;
@@ -126,14 +126,14 @@ private final String value;
    * @return nameLabel
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_NAME_LABEL)
+  @JsonProperty(value = JSON_PROPERTY_NAME_LABEL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getNameLabel() {
     return nameLabel;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME_LABEL)
+  @JsonProperty(value = JSON_PROPERTY_NAME_LABEL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNameLabel(@javax.annotation.Nullable String nameLabel) {
     this.nameLabel = nameLabel;
@@ -150,14 +150,14 @@ private final String value;
    * @return srId
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SR_ID)
+  @JsonProperty(value = JSON_PROPERTY_SR_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getSrId() {
     return srId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SR_ID)
+  @JsonProperty(value = JSON_PROPERTY_SR_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSrId(@javax.annotation.Nullable String srId) {
     this.srId = srId;
@@ -202,10 +202,7 @@ private final String value;
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -242,17 +239,17 @@ private final String value;
 
     // add `compress` to the URL query string
     if (getCompress() != null) {
-      joiner.add(String.format("%scompress%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCompress()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%scompress%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCompress()))));
     }
 
     // add `name_label` to the URL query string
     if (getNameLabel() != null) {
-      joiner.add(String.format("%sname_label%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameLabel()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname_label%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameLabel()))));
     }
 
     // add `srId` to the URL query string
     if (getSrId() != null) {
-      joiner.add(String.format("%ssrId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSrId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssrId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSrId()))));
     }
 
     return joiner.toString();

@@ -35,7 +35,7 @@ import tech.vates.xenorchestra.client.ApiClient;
 @JsonPropertyOrder({
   IsEmptyData.JSON_PROPERTY_IS_EMPTY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class IsEmptyData {
   public static final String JSON_PROPERTY_IS_EMPTY = "isEmpty";
   @javax.annotation.Nonnull
@@ -54,14 +54,14 @@ public class IsEmptyData {
    * @return isEmpty
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_IS_EMPTY)
+  @JsonProperty(value = JSON_PROPERTY_IS_EMPTY, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Boolean getIsEmpty() {
     return isEmpty;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_IS_EMPTY)
+  @JsonProperty(value = JSON_PROPERTY_IS_EMPTY, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setIsEmpty(@javax.annotation.Nonnull Boolean isEmpty) {
     this.isEmpty = isEmpty;
@@ -102,10 +102,7 @@ public class IsEmptyData {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -142,7 +139,7 @@ public class IsEmptyData {
 
     // add `isEmpty` to the URL query string
     if (getIsEmpty() != null) {
-      joiner.add(String.format("%sisEmpty%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsEmpty()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sisEmpty%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsEmpty()))));
     }
 
     return joiner.toString();

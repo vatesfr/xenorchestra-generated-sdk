@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**action** | **String** |  | 
-**effect** | **String** |  | 
+**action** | **Action** |  (enum: *, delete, read, abort) | 
+**effect** | **Effect** |  (enum: allow, deny) | 
 **id** | **String** |  | 
-**resource** | **String** |  | 
+**resource** | **Resource** |  (enum: task) | 
 **role_id** | **String** |  | 
 **selector** | Option<**String**> |  | [optional]
 

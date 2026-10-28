@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**action** | Option<**String**> |  | [optional]
-**effect** | Option<**String**> |  | [optional]
+**action** | Option<**Action**> |  (enum: update, *, create, delete, read, update:tags, update:other_config) | [optional]
+**effect** | Option<**Effect**> |  (enum: allow, deny) | [optional]
 **id** | Option<**String**> |  | [optional]
-**resource** | Option<**String**> |  | [optional]
+**resource** | Option<**Resource**> |  (enum: network) | [optional]
 **role_id** | Option<**String**> |  | [optional]
 **selector** | Option<**String**> |  | [optional]
 

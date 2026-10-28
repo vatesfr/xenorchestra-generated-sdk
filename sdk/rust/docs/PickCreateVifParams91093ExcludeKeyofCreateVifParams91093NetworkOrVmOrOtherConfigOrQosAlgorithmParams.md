@@ -1,4 +1,4 @@
-# PickCreateVifParams91093PeriodExcludeKeyofCreateVifParams91093PeriodNetworkOrVmOrOtherConfigOrQosAlgorithmParams
+# PickCreateVifParams91093ExcludeKeyofCreateVifParams91093NetworkOrVmOrOtherConfigOrQosAlgorithmParams
 
 ## Properties
 
@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **device** | Option<**String**> |  | [optional]
 **ipv4_allowed** | Option<**Vec<String>**> |  | [optional]
 **ipv6_allowed** | Option<**Vec<String>**> |  | [optional]
-**locking_mode** | Option<[**models::VifLockingMode**](VIF_LOCKING_MODE.md)> |  | [optional]
+**locking_mode** | Option<[**models::VifLockingMode**](VIFLOCKINGMODE.md)> |  | [optional]
 **qos_algorithm_type** | Option<**String**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

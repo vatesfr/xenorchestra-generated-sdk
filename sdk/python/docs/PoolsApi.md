@@ -1484,7 +1484,7 @@ with xenorchestra_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = xenorchestra_client.PoolsApi(api_client)
     id = '355ee47d-ff4c-4924-3db2-fd86ae629677' # str | 
-    body = None # bytearray | 
+    body = None # bytes | 
     sr = 'c787b75c-3e0d-70fa-d0c3-cbfd382d7e33' # str |  (optional)
 
     try:
@@ -1503,7 +1503,7 @@ with xenorchestra_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **str**|  | 
- **body** | **bytearray**|  | 
+ **body** | **bytes**|  | 
  **sr** | **str**|  | [optional] 
 
 ### Return type

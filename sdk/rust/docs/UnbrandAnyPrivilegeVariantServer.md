@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**action** | **String** |  | 
-**effect** | **String** |  | 
+**action** | **Action** |  (enum: *, create, delete, read, connect, disconnect) | 
+**effect** | **Effect** |  (enum: allow, deny) | 
 **id** | **String** |  | 
-**resource** | **String** |  | 
+**resource** | **Resource** |  (enum: server) | 
 **role_id** | **String** |  | 
 **selector** | Option<**String**> |  | [optional]
 

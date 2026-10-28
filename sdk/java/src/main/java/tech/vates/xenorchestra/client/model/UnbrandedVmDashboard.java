@@ -41,7 +41,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   UnbrandedVmDashboard.JSON_PROPERTY_BACKUPS_INFO,
   UnbrandedVmDashboard.JSON_PROPERTY_QUICK_INFO
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class UnbrandedVmDashboard {
   public static final String JSON_PROPERTY_ALARMS = "alarms";
   @javax.annotation.Nonnull
@@ -76,14 +76,14 @@ public class UnbrandedVmDashboard {
    * @return alarms
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ALARMS)
+  @JsonProperty(value = JSON_PROPERTY_ALARMS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<String> getAlarms() {
     return alarms;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ALARMS)
+  @JsonProperty(value = JSON_PROPERTY_ALARMS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setAlarms(@javax.annotation.Nonnull List<String> alarms) {
     this.alarms = alarms;
@@ -100,14 +100,14 @@ public class UnbrandedVmDashboard {
    * @return backupsInfo
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_BACKUPS_INFO)
+  @JsonProperty(value = JSON_PROPERTY_BACKUPS_INFO, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public UnbrandedVmDashboardBackupsInfo getBackupsInfo() {
     return backupsInfo;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_BACKUPS_INFO)
+  @JsonProperty(value = JSON_PROPERTY_BACKUPS_INFO, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setBackupsInfo(@javax.annotation.Nonnull UnbrandedVmDashboardBackupsInfo backupsInfo) {
     this.backupsInfo = backupsInfo;
@@ -124,14 +124,14 @@ public class UnbrandedVmDashboard {
    * @return quickInfo
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_QUICK_INFO)
+  @JsonProperty(value = JSON_PROPERTY_QUICK_INFO, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public UnbrandedVmDashboardQuickInfo getQuickInfo() {
     return quickInfo;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_QUICK_INFO)
+  @JsonProperty(value = JSON_PROPERTY_QUICK_INFO, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setQuickInfo(@javax.annotation.Nonnull UnbrandedVmDashboardQuickInfo quickInfo) {
     this.quickInfo = quickInfo;
@@ -176,10 +176,7 @@ public class UnbrandedVmDashboard {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -217,8 +214,8 @@ public class UnbrandedVmDashboard {
     // add `alarms` to the URL query string
     if (getAlarms() != null) {
       for (int i = 0; i < getAlarms().size(); i++) {
-        joiner.add(String.format("%salarms%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%salarms%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getAlarms().get(i)))));
       }
     }

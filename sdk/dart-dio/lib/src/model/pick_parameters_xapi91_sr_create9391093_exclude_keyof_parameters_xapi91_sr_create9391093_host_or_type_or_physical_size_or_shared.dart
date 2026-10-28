@@ -147,9 +147,10 @@ class _$PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9
         case r'content_type':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(
+            specifiedType: const FullType.nullable(
                 PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum),
-          ) as PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum;
+          ) as PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedContentTypeEnum?;
+          if (valueDes == null) continue;
           result.contentType = valueDes;
           break;
         case r'device_config':
@@ -163,8 +164,9 @@ class _$PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9
         case r'name_description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.nameDescription = valueDes;
           break;
         case r'name_label':
@@ -177,9 +179,10 @@ class _$PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9
         case r'sm_config':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType:
-                const FullType(BuiltMap, [FullType(String), FullType(String)]),
-          ) as BuiltMap<String, String>;
+            specifiedType: const FullType.nullable(
+                BuiltMap, [FullType(String), FullType(String)]),
+          ) as BuiltMap<String, String>?;
+          if (valueDes == null) continue;
           result.smConfig.replace(valueDes);
           break;
         default:

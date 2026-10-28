@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **dollar_pool_id** | **String** |  | 
 **dollar_vgpus** | **Vec<String>** |  | 
 **_xapi_ref** | **String** |  | 
-**dom0_access** | [**models::PgpuDom0Access**](PGPU_DOM0_ACCESS.md) |  | 
+**dom0_access** | [**models::PgpuDom0Access**](PGPUDOM0ACCESS.md) |  | 
 **enabled_vgpu_types** | **Vec<String>** |  | 
 **gpu_group** | Option<**String**> |  | [optional]
 **host** | **String** |  | 
@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **pci** | Option<**String**> |  | [optional]
 **supported_vgpu_max_capcities** | Option<**String**> |  | [optional]
 **supported_vgpu_types** | **Vec<String>** |  | 
-**r#type** | **String** |  | 
+**r#type** | **Type** |  (enum: PGPU) | 
 **uuid** | **String** |  | 
 **vgpus** | **Vec<String>** |  | 
 

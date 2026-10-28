@@ -185,7 +185,7 @@ void main() {
     });
 
     // Construct a type with a set of properties K of type T
-    // BuiltMap<String, String> xenStoreData
+    // BuiltMap<String, String?> xenStoreData
     test('to test the property `xenStoreData`', () async {
       // TODO
     });

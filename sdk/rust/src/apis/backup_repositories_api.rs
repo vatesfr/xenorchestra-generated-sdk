@@ -98,19 +98,19 @@ pub async fn benchmark_backup_repository(
     sync: Option<bool>,
 ) -> Result<(), Error<BenchmarkBackupRepositoryError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_sync = sync;
+    let p_path_id = id;
+    let p_query_sync = sync;
 
     let uri_str = format!(
         "{}/backup-repositories/{id}/actions/benchmark",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -150,7 +150,7 @@ pub async fn create_backup_repository(
     unbrand_parameters_xo_app_at_create_remote91093: models::UnbrandParametersXoAppAtCreateRemote91093,
 ) -> Result<models::CreateAclV2Privilege201Response, Error<CreateBackupRepositoryError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_unbrand_parameters_xo_app_at_create_remote91093 =
+    let p_body_unbrand_parameters_xo_app_at_create_remote91093 =
         unbrand_parameters_xo_app_at_create_remote91093;
 
     let uri_str = format!("{}/backup-repositories", configuration.base_path);
@@ -170,7 +170,7 @@ pub async fn create_backup_repository(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.json(&p_unbrand_parameters_xo_app_at_create_remote91093);
+    req_builder = req_builder.json(&p_body_unbrand_parameters_xo_app_at_create_remote91093);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -208,19 +208,19 @@ pub async fn forget_backup_repository(
     sync: Option<bool>,
 ) -> Result<models::CreateActionReturnTypeVoid, Error<ForgetBackupRepositoryError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_sync = sync;
+    let p_path_id = id;
+    let p_query_sync = sync;
 
     let uri_str = format!(
         "{}/backup-repositories/{id}/actions/forget",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -271,12 +271,12 @@ pub async fn get_backup_repository_health(
     id: &str,
 ) -> Result<models::ReturnTypeXoAppAtPingRemote, Error<GetBackupRepositoryHealthError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
     let uri_str = format!(
         "{}/backup-repositories/{id}/health",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -332,28 +332,28 @@ pub async fn get_repositories(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoBackupRepository, Error<GetRepositoriesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!("{}/backup-repositories", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -404,12 +404,12 @@ pub async fn get_repository(
     id: &str,
 ) -> Result<models::UnbrandXoBackupRepository, Error<GetRepositoryError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
     let uri_str = format!(
         "{}/backup-repositories/{id}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -462,14 +462,14 @@ pub async fn update_backup_repository(
     unbrand_parameters_xo_app_at_update_remote91193: models::UnbrandParametersXoAppAtUpdateRemote91193,
 ) -> Result<(), Error<UpdateBackupRepositoryError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_unbrand_parameters_xo_app_at_update_remote91193 =
+    let p_path_id = id;
+    let p_body_unbrand_parameters_xo_app_at_update_remote91193 =
         unbrand_parameters_xo_app_at_update_remote91193;
 
     let uri_str = format!(
         "{}/backup-repositories/{id}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
@@ -487,7 +487,7 @@ pub async fn update_backup_repository(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.json(&p_unbrand_parameters_xo_app_at_update_remote91193);
+    req_builder = req_builder.json(&p_body_unbrand_parameters_xo_app_at_update_remote91193);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;

@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**action** | **String** |  | 
-**effect** | **String** |  | 
-**resource** | **String** |  | 
+**action** | **Action** |  (enum: import, forget, update, *, create, delete, read, migrate-receive, update:tags, import:vdi, import:vm, reclaim-space, scan) | 
+**effect** | **Effect** |  (enum: allow, deny) | 
+**resource** | **Resource** |  (enum: sr) | 
 **role_id** | **String** |  | 
 **selector** | Option<**String**> |  | [optional]
 

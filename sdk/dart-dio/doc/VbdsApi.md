@@ -45,7 +45,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.connectVbd(id, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VbdsApi->connectVbd: $e\n');
 }
 ```
@@ -96,7 +96,7 @@ final CreateVbdRequest createVbdRequest = {"VDI":"656052a2-2e3e-467b-88ba-63a9ea
 try {
     final response = api.createVbd(createVbdRequest);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VbdsApi->createVbd: $e\n');
 }
 ```
@@ -145,7 +145,7 @@ final String id = f07ab729-c0e8-721c-45ec-f11276377030; // String |
 
 try {
     api.deleteVbd(id);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VbdsApi->deleteVbd: $e\n');
 }
 ```
@@ -196,7 +196,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.disconnectVbd(id, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VbdsApi->disconnectVbd: $e\n');
 }
 ```
@@ -247,7 +247,7 @@ final String id = f07ab729-c0e8-721c-45ec-f11276377030; // String |
 try {
     final response = api.getVbd(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VbdsApi->getVbd: $e\n');
 }
 ```
@@ -302,7 +302,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVbdAlarms(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VbdsApi->getVbdAlarms: $e\n');
 }
 ```
@@ -362,7 +362,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVbdMessages(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VbdsApi->getVbdMessages: $e\n');
 }
 ```
@@ -422,7 +422,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVbdTasks(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VbdsApi->getVbdTasks: $e\n');
 }
 ```
@@ -481,7 +481,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVbds(fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling VbdsApi->getVbds: $e\n');
 }
 ```

@@ -35,7 +35,7 @@ import tech.vates.xenorchestra.client.ApiClient;
 @JsonPropertyOrder({
   PartialUnbrandXoHostChipsetInfo.JSON_PROPERTY_IOMMU
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PartialUnbrandXoHostChipsetInfo {
   public static final String JSON_PROPERTY_IOMMU = "iommu";
   @javax.annotation.Nullable
@@ -54,14 +54,14 @@ public class PartialUnbrandXoHostChipsetInfo {
    * @return iommu
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_IOMMU)
+  @JsonProperty(value = JSON_PROPERTY_IOMMU, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getIommu() {
     return iommu;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_IOMMU)
+  @JsonProperty(value = JSON_PROPERTY_IOMMU, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIommu(@javax.annotation.Nullable Boolean iommu) {
     this.iommu = iommu;
@@ -102,10 +102,7 @@ public class PartialUnbrandXoHostChipsetInfo {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -142,7 +139,7 @@ public class PartialUnbrandXoHostChipsetInfo {
 
     // add `iommu` to the URL query string
     if (getIommu() != null) {
-      joiner.add(String.format("%siommu%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIommu()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%siommu%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIommu()))));
     }
 
     return joiner.toString();

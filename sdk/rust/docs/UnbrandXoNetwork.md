@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **_xapi_ref** | **String** |  | 
 **automatic** | **bool** |  | 
 **bridge** | **String** |  | 
-**current_operations** | [**serde_json::Value**](.md) | Construct a type with a set of properties K of type T | 
+**current_operations** | **serde_json::Value** | Construct a type with a set of properties K of type T | 
 **default_is_locked** | **bool** |  | 
 **id** | **String** |  | 
 **insecure_nbd** | Option<**bool**> |  | [optional]
@@ -20,9 +20,9 @@ Name | Type | Description | Notes
 **name_description** | **String** |  | 
 **name_label** | **String** |  | 
 **nbd** | Option<**bool**> |  | [optional]
-**other_config** | [**serde_json::Value**](.md) | Construct a type with a set of properties K of type T | 
+**other_config** | **serde_json::Value** | Construct a type with a set of properties K of type T | 
 **tags** | **Vec<String>** |  | 
-**r#type** | **String** |  | 
+**r#type** | **Type** |  (enum: network) | 
 **uuid** | **String** |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -1257,3 +1257,4 @@ from xenorchestra_client.models.xoa_dashboard_resources_overview_any_of import X
 from xenorchestra_client.models.xoa_dashboard_storage_repositories import XoaDashboardStorageRepositories as XoaDashboardStorageRepositories
 from xenorchestra_client.models.xoa_dashboard_vms_status import XoaDashboardVmsStatus as XoaDashboardVmsStatus
 from xenorchestra_client.models.xs_patches import XsPatches as XsPatches
+

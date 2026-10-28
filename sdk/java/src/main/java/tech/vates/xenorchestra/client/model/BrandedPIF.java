@@ -35,7 +35,7 @@ import tech.vates.xenorchestra.client.ApiClient;
 @JsonPropertyOrder({
   BrandedPIF.JSON_PROPERTY_UNDEFINED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class BrandedPIF {
   /**
    * Gets or Sets undefined
@@ -91,14 +91,14 @@ private final String value;
    * @return undefined
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_UNDEFINED)
+  @JsonProperty(value = JSON_PROPERTY_UNDEFINED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public UndefinedEnum getUndefined() {
     return undefined;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_UNDEFINED)
+  @JsonProperty(value = JSON_PROPERTY_UNDEFINED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUndefined(@javax.annotation.Nullable UndefinedEnum undefined) {
     this.undefined = undefined;
@@ -139,10 +139,7 @@ private final String value;
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -179,7 +176,7 @@ private final String value;
 
     // add `undefined` to the URL query string
     if (getUndefined() != null) {
-      joiner.add(String.format("%sundefined%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUndefined()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sundefined%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUndefined()))));
     }
 
     return joiner.toString();

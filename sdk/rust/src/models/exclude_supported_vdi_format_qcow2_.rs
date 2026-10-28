@@ -11,15 +11,15 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// ExcludeSupportedVdiFormatPeriodQcow2 : Exclude from T those types that are assignable to U
+/// ExcludeSupportedVdiFormatQcow2 : Exclude from T those types that are assignable to U
 /// Exclude from T those types that are assignable to U
 #[derive(Clone, Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-pub enum ExcludeSupportedVdiFormatPeriodQcow2 {
+pub enum ExcludeSupportedVdiFormatQcow2 {
     Raw,
     Vhd,
     UnknownValue(String),
 }
-impl ExcludeSupportedVdiFormatPeriodQcow2 {
+impl ExcludeSupportedVdiFormatQcow2 {
     pub fn as_str(&self) -> &str {
         match self {
             Self::Raw => "raw",
@@ -28,7 +28,7 @@ impl ExcludeSupportedVdiFormatPeriodQcow2 {
         }
     }
 }
-impl From<String> for ExcludeSupportedVdiFormatPeriodQcow2 {
+impl From<String> for ExcludeSupportedVdiFormatQcow2 {
     fn from(value: String) -> Self {
         match value.as_str() {
             "raw" => Self::Raw,
@@ -37,17 +37,17 @@ impl From<String> for ExcludeSupportedVdiFormatPeriodQcow2 {
         }
     }
 }
-impl From<&str> for ExcludeSupportedVdiFormatPeriodQcow2 {
+impl From<&str> for ExcludeSupportedVdiFormatQcow2 {
     fn from(value: &str) -> Self {
         Self::from(value.to_owned())
     }
 }
-impl std::fmt::Display for ExcludeSupportedVdiFormatPeriodQcow2 {
+impl std::fmt::Display for ExcludeSupportedVdiFormatQcow2 {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.write_str(self.as_str())
     }
 }
-impl Serialize for ExcludeSupportedVdiFormatPeriodQcow2 {
+impl Serialize for ExcludeSupportedVdiFormatQcow2 {
     fn serialize<S: serde::Serializer>(
         &self,
         serializer: S,
@@ -55,7 +55,7 @@ impl Serialize for ExcludeSupportedVdiFormatPeriodQcow2 {
         serializer.serialize_str(self.as_str())
     }
 }
-impl<'de> Deserialize<'de> for ExcludeSupportedVdiFormatPeriodQcow2 {
+impl<'de> Deserialize<'de> for ExcludeSupportedVdiFormatQcow2 {
     fn deserialize<D: serde::Deserializer<'de>>(
         deserializer: D,
     ) -> std::result::Result<Self, D::Error> {
@@ -65,8 +65,8 @@ impl<'de> Deserialize<'de> for ExcludeSupportedVdiFormatPeriodQcow2 {
     }
 }
 
-impl Default for ExcludeSupportedVdiFormatPeriodQcow2 {
-    fn default() -> ExcludeSupportedVdiFormatPeriodQcow2 {
+impl Default for ExcludeSupportedVdiFormatQcow2 {
+    fn default() -> ExcludeSupportedVdiFormatQcow2 {
         Self::Raw
     }
 }

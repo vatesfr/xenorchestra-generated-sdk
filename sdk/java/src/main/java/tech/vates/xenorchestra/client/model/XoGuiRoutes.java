@@ -36,7 +36,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   XoGuiRoutes.JSON_PROPERTY_XO5,
   XoGuiRoutes.JSON_PROPERTY_XO6
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class XoGuiRoutes {
   public static final String JSON_PROPERTY_XO5 = "xo5";
   @javax.annotation.Nullable
@@ -59,14 +59,14 @@ public class XoGuiRoutes {
    * @return xo5
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_XO5)
+  @JsonProperty(value = JSON_PROPERTY_XO5, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getXo5() {
     return xo5;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_XO5)
+  @JsonProperty(value = JSON_PROPERTY_XO5, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setXo5(@javax.annotation.Nullable String xo5) {
     this.xo5 = xo5;
@@ -83,14 +83,14 @@ public class XoGuiRoutes {
    * @return xo6
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_XO6)
+  @JsonProperty(value = JSON_PROPERTY_XO6, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getXo6() {
     return xo6;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_XO6)
+  @JsonProperty(value = JSON_PROPERTY_XO6, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setXo6(@javax.annotation.Nullable String xo6) {
     this.xo6 = xo6;
@@ -133,10 +133,7 @@ public class XoGuiRoutes {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -173,12 +170,12 @@ public class XoGuiRoutes {
 
     // add `xo5` to the URL query string
     if (getXo5() != null) {
-      joiner.add(String.format("%sxo5%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getXo5()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sxo5%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getXo5()))));
     }
 
     // add `xo6` to the URL query string
     if (getXo6() != null) {
-      joiner.add(String.format("%sxo6%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getXo6()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sxo6%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getXo6()))));
     }
 
     return joiner.toString();

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **has_authorization** | **bool** |  | 
 **n_hosts** | **f64** |  | 
-**n_hosts_eol** | [**models::MissingPatchesInfoNHostsEol**](MissingPatchesInfo_nHostsEol.md) |  | 
+**n_hosts_eol** | [**models::MissingPatchesInfoNHostsEol**](MissingPatchesInfoNHostsEol.md) |  | 
 **n_hosts_failed** | **f64** |  | 
 **n_hosts_with_missing_patches** | **f64** |  | 
 **n_pools** | **f64** |  | 

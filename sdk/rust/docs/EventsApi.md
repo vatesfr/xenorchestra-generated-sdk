@@ -81,7 +81,7 @@ Remove a subscription
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **String** |  | [required] |
-**subscription_id** | [**XoListenerType**](.md) |  | [required] |
+**subscription_id** | [**XoListenerType**](XoListenerType.md) |  | [required] |
 
 ### Return type
 

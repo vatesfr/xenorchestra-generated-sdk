@@ -9,16 +9,12 @@ import 'package:built_value/serializer.dart';
 
 part 'exclude_supportedvdiformat_qcow2.g.dart';
 
+/// Exclude from T those types that are assignable to U
 class ExcludeSUPPORTEDVDIFORMATQcow2 extends EnumClass {
-  /// Exclude from T those types that are assignable to U
   @BuiltValueEnumConst(wireName: r'raw')
   static const ExcludeSUPPORTEDVDIFORMATQcow2 raw = _$raw;
-
-  /// Exclude from T those types that are assignable to U
   @BuiltValueEnumConst(wireName: r'vhd')
   static const ExcludeSUPPORTEDVDIFORMATQcow2 vhd = _$vhd;
-
-  /// Exclude from T those types that are assignable to U
   @BuiltValueEnumConst(wireName: r'unknown_default_open_api')
   static const ExcludeSUPPORTEDVDIFORMATQcow2 unknownDefaultOpenApi =
       _$unknownDefaultOpenApi;

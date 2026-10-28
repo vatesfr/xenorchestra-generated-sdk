@@ -191,37 +191,43 @@ class _$PartialUnbrandXoVmBackupJobSerializer
         case r'compression':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType:
-                const FullType(PartialUnbrandXoVmBackupJobCompressionEnum),
-          ) as PartialUnbrandXoVmBackupJobCompressionEnum;
+            specifiedType: const FullType.nullable(
+                PartialUnbrandXoVmBackupJobCompressionEnum),
+          ) as PartialUnbrandXoVmBackupJobCompressionEnum?;
+          if (valueDes == null) continue;
           result.compression = valueDes;
           break;
         case r'id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'mode':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(PartialUnbrandXoVmBackupJobModeEnum),
-          ) as PartialUnbrandXoVmBackupJobModeEnum;
+            specifiedType:
+                const FullType.nullable(PartialUnbrandXoVmBackupJobModeEnum),
+          ) as PartialUnbrandXoVmBackupJobModeEnum?;
+          if (valueDes == null) continue;
           result.mode = valueDes;
           break;
         case r'name':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.name = valueDes;
           break;
         case r'proxy':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.proxy = valueDes;
           break;
         case r'remotes':
@@ -235,9 +241,10 @@ class _$PartialUnbrandXoVmBackupJobSerializer
         case r'settings':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(
+            specifiedType: const FullType.nullable(
                 PartialUnbrandAnyXoBackupJobVariantBackupSettings),
-          ) as PartialUnbrandAnyXoBackupJobVariantBackupSettings;
+          ) as PartialUnbrandAnyXoBackupJobVariantBackupSettings?;
+          if (valueDes == null) continue;
           result.settings.replace(valueDes);
           break;
         case r'srs':
@@ -251,8 +258,10 @@ class _$PartialUnbrandXoVmBackupJobSerializer
         case r'type':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(PartialUnbrandXoVmBackupJobTypeEnum),
-          ) as PartialUnbrandXoVmBackupJobTypeEnum;
+            specifiedType:
+                const FullType.nullable(PartialUnbrandXoVmBackupJobTypeEnum),
+          ) as PartialUnbrandXoVmBackupJobTypeEnum?;
+          if (valueDes == null) continue;
           result.type = valueDes;
           break;
         case r'vms':

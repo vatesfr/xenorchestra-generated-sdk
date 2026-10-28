@@ -82,7 +82,7 @@ No authorization required
 
 ## pluginsSdnControllerNetworksIdActionsUpdateTrafficRulePostWithHttpInfo
 
-> ApiResponse<Void> pluginsSdnControllerNetworksIdActionsUpdateTrafficRulePost pluginsSdnControllerNetworksIdActionsUpdateTrafficRulePostWithHttpInfo(id, pluginsSdnControllerNetworksIdActionsUpdateTrafficRulePostRequest, sync)
+> ApiResponse<Void> pluginsSdnControllerNetworksIdActionsUpdateTrafficRulePostWithHttpInfo(id, pluginsSdnControllerNetworksIdActionsUpdateTrafficRulePostRequest, sync)
 
 
 
@@ -224,7 +224,7 @@ No authorization required
 
 ## pluginsSdnControllerVifsIdActionsUpdateTrafficRulePostWithHttpInfo
 
-> ApiResponse<Void> pluginsSdnControllerVifsIdActionsUpdateTrafficRulePost pluginsSdnControllerVifsIdActionsUpdateTrafficRulePostWithHttpInfo(id, pluginsSdnControllerVifsIdActionsUpdateTrafficRulePostRequest, sync)
+> ApiResponse<Void> pluginsSdnControllerVifsIdActionsUpdateTrafficRulePostWithHttpInfo(id, pluginsSdnControllerVifsIdActionsUpdateTrafficRulePostRequest, sync)
 
 
 

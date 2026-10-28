@@ -59,7 +59,7 @@ class _$UpdateVmRequestBodyCoresPerSocketSerializer
     final anyOf = object.anyOf;
     return serializers.serialize(anyOf,
         specifiedType: FullType(
-            AnyOf, anyOf.valueTypes.map((type) => FullType(type)).toList()))!;
+            AnyOf, anyOf.types.map((type) => FullType(type)).toList()))!;
   }
 
   @override

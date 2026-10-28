@@ -48,7 +48,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   XsPatches.JSON_PROPERTY_URL,
   XsPatches.JSON_PROPERTY_UUID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class XsPatches {
   public static final String JSON_PROPERTY_CONFLICTS = "conflicts";
   @javax.annotation.Nullable
@@ -119,14 +119,14 @@ public class XsPatches {
    * @return conflicts
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CONFLICTS)
+  @JsonProperty(value = JSON_PROPERTY_CONFLICTS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getConflicts() {
     return conflicts;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CONFLICTS)
+  @JsonProperty(value = JSON_PROPERTY_CONFLICTS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setConflicts(@javax.annotation.Nullable List<String> conflicts) {
     this.conflicts = conflicts;
@@ -143,14 +143,14 @@ public class XsPatches {
    * @return date
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_DATE)
+  @JsonProperty(value = JSON_PROPERTY_DATE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getDate() {
     return date;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DATE)
+  @JsonProperty(value = JSON_PROPERTY_DATE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDate(@javax.annotation.Nonnull String date) {
     this.date = date;
@@ -167,14 +167,14 @@ public class XsPatches {
    * @return description
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getDescription() {
     return description;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDescription(@javax.annotation.Nonnull String description) {
     this.description = description;
@@ -191,14 +191,14 @@ public class XsPatches {
    * @return documentationUrl
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DOCUMENTATION_URL)
+  @JsonProperty(value = JSON_PROPERTY_DOCUMENTATION_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getDocumentationUrl() {
     return documentationUrl;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DOCUMENTATION_URL)
+  @JsonProperty(value = JSON_PROPERTY_DOCUMENTATION_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDocumentationUrl(@javax.annotation.Nullable String documentationUrl) {
     this.documentationUrl = documentationUrl;
@@ -215,14 +215,14 @@ public class XsPatches {
    * @return guidances
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_GUIDANCES)
+  @JsonProperty(value = JSON_PROPERTY_GUIDANCES, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getGuidances() {
     return guidances;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_GUIDANCES)
+  @JsonProperty(value = JSON_PROPERTY_GUIDANCES, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setGuidances(@javax.annotation.Nonnull String guidances) {
     this.guidances = guidances;
@@ -239,14 +239,14 @@ public class XsPatches {
    * @return id
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
@@ -263,14 +263,14 @@ public class XsPatches {
    * @return name
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getName() {
     return name;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setName(@javax.annotation.Nonnull String name) {
     this.name = name;
@@ -287,14 +287,14 @@ public class XsPatches {
    * @return paid
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PAID)
+  @JsonProperty(value = JSON_PROPERTY_PAID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getPaid() {
     return paid;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PAID)
+  @JsonProperty(value = JSON_PROPERTY_PAID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPaid(@javax.annotation.Nullable Boolean paid) {
     this.paid = paid;
@@ -319,14 +319,14 @@ public class XsPatches {
    * @return requirements
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_REQUIREMENTS)
+  @JsonProperty(value = JSON_PROPERTY_REQUIREMENTS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getRequirements() {
     return requirements;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_REQUIREMENTS)
+  @JsonProperty(value = JSON_PROPERTY_REQUIREMENTS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRequirements(@javax.annotation.Nullable List<String> requirements) {
     this.requirements = requirements;
@@ -343,14 +343,14 @@ public class XsPatches {
    * @return upgrade
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_UPGRADE)
+  @JsonProperty(value = JSON_PROPERTY_UPGRADE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getUpgrade() {
     return upgrade;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_UPGRADE)
+  @JsonProperty(value = JSON_PROPERTY_UPGRADE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUpgrade(@javax.annotation.Nullable Boolean upgrade) {
     this.upgrade = upgrade;
@@ -367,14 +367,14 @@ public class XsPatches {
    * @return url
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_URL)
+  @JsonProperty(value = JSON_PROPERTY_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getUrl() {
     return url;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_URL)
+  @JsonProperty(value = JSON_PROPERTY_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUrl(@javax.annotation.Nullable String url) {
     this.url = url;
@@ -391,14 +391,14 @@ public class XsPatches {
    * @return uuid
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_UUID)
+  @JsonProperty(value = JSON_PROPERTY_UUID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getUuid() {
     return uuid;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_UUID)
+  @JsonProperty(value = JSON_PROPERTY_UUID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUuid(@javax.annotation.Nullable String uuid) {
     this.uuid = uuid;
@@ -461,10 +461,7 @@ public class XsPatches {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -502,69 +499,69 @@ public class XsPatches {
     // add `conflicts` to the URL query string
     if (getConflicts() != null) {
       for (int i = 0; i < getConflicts().size(); i++) {
-        joiner.add(String.format("%sconflicts%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%sconflicts%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getConflicts().get(i)))));
       }
     }
 
     // add `date` to the URL query string
     if (getDate() != null) {
-      joiner.add(String.format("%sdate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDate()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDate()))));
     }
 
     // add `description` to the URL query string
     if (getDescription() != null) {
-      joiner.add(String.format("%sdescription%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDescription()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdescription%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDescription()))));
     }
 
     // add `documentationUrl` to the URL query string
     if (getDocumentationUrl() != null) {
-      joiner.add(String.format("%sdocumentationUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDocumentationUrl()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdocumentationUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDocumentationUrl()))));
     }
 
     // add `guidances` to the URL query string
     if (getGuidances() != null) {
-      joiner.add(String.format("%sguidances%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGuidances()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sguidances%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGuidances()))));
     }
 
     // add `id` to the URL query string
     if (getId() != null) {
-      joiner.add(String.format("%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
     }
 
     // add `name` to the URL query string
     if (getName() != null) {
-      joiner.add(String.format("%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
     }
 
     // add `paid` to the URL query string
     if (getPaid() != null) {
-      joiner.add(String.format("%spaid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPaid()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%spaid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPaid()))));
     }
 
     // add `requirements` to the URL query string
     if (getRequirements() != null) {
       for (int i = 0; i < getRequirements().size(); i++) {
-        joiner.add(String.format("%srequirements%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%srequirements%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getRequirements().get(i)))));
       }
     }
 
     // add `upgrade` to the URL query string
     if (getUpgrade() != null) {
-      joiner.add(String.format("%supgrade%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUpgrade()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%supgrade%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUpgrade()))));
     }
 
     // add `url` to the URL query string
     if (getUrl() != null) {
-      joiner.add(String.format("%surl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUrl()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%surl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUrl()))));
     }
 
     // add `uuid` to the URL query string
     if (getUuid() != null) {
-      joiner.add(String.format("%suuid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUuid()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%suuid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUuid()))));
     }
 
     return joiner.toString();

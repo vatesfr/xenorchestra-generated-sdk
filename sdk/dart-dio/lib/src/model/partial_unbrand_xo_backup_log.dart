@@ -168,58 +168,69 @@ class _$PartialUnbrandXoBackupLogSerializer
         case r'end':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.end = valueDes;
           break;
         case r'id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'infos':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(
+            specifiedType: const FullType.nullable(
                 BuiltList, [FullType(PartialUnbrandXoBackupLogInfosInner)]),
-          ) as BuiltList<PartialUnbrandXoBackupLogInfosInner>;
+          ) as BuiltList<PartialUnbrandXoBackupLogInfosInner>?;
+          if (valueDes == null) continue;
           result.infos.replace(valueDes);
           break;
         case r'jobId':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.jobId = valueDes;
           break;
         case r'message':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(PartialUnbrandXoBackupLogMessageEnum),
-          ) as PartialUnbrandXoBackupLogMessageEnum;
+            specifiedType:
+                const FullType.nullable(PartialUnbrandXoBackupLogMessageEnum),
+          ) as PartialUnbrandXoBackupLogMessageEnum?;
+          if (valueDes == null) continue;
           result.message = valueDes;
           break;
         case r'start':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.start = valueDes;
           break;
         case r'status':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(PartialUnbrandXoBackupLogStatusEnum),
-          ) as PartialUnbrandXoBackupLogStatusEnum;
+            specifiedType:
+                const FullType.nullable(PartialUnbrandXoBackupLogStatusEnum),
+          ) as PartialUnbrandXoBackupLogStatusEnum?;
+          if (valueDes == null) continue;
           result.status = valueDes;
           break;
         case r'tasks':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(XoTask)]),
-          ) as BuiltList<XoTask>;
+            specifiedType:
+                const FullType.nullable(BuiltList, [FullType(XoTask)]),
+          ) as BuiltList<XoTask>?;
+          if (valueDes == null) continue;
           result.tasks.replace(valueDes);
           break;
         default:

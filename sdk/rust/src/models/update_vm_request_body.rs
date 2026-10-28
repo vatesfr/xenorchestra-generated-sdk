@@ -26,8 +26,7 @@ pub struct UpdateVmRequestBody {
     #[serde(rename = "autoPoweron", skip_serializing_if = "Option::is_none")]
     pub auto_poweron: Option<bool>,
     #[serde(rename = "blockedOperations", skip_serializing_if = "Option::is_none")]
-    pub blocked_operations:
-        Option<Box<models::PartialRecordVmOperationsPeriodBooleanOrStringOrNull>>,
+    pub blocked_operations: Option<Box<models::PartialRecordVmOperationsBooleanOrStringOrNull>>,
     #[serde(
         rename = "coresPerSocket",
         default,

@@ -50,7 +50,7 @@ final String id = 0c98c71c-2f9c-d5c2-b9b6-2c8371730eab; // String |
 try {
     final response = api.getAlarm(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling AlarmsApi->getAlarm: $e\n');
 }
 ```
@@ -104,7 +104,7 @@ final double limit = 42; // double |
 try {
     final response = api.getAlarms(fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling AlarmsApi->getAlarms: $e\n');
 }
 ```
@@ -163,7 +163,7 @@ final double limit = 42; // double |
 try {
     final response = api.getHostAlarms(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling AlarmsApi->getHostAlarms: $e\n');
 }
 ```
@@ -223,7 +223,7 @@ final double limit = 42; // double |
 try {
     final response = api.getNetworkAlarms(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling AlarmsApi->getNetworkAlarms: $e\n');
 }
 ```
@@ -283,7 +283,7 @@ final double limit = 42; // double |
 try {
     final response = api.getPifAlarms(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling AlarmsApi->getPifAlarms: $e\n');
 }
 ```
@@ -343,7 +343,7 @@ final double limit = 42; // double |
 try {
     final response = api.getPoolAlarms(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling AlarmsApi->getPoolAlarms: $e\n');
 }
 ```
@@ -403,7 +403,7 @@ final double limit = 42; // double |
 try {
     final response = api.getSrAlarms(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling AlarmsApi->getSrAlarms: $e\n');
 }
 ```
@@ -463,7 +463,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVbdAlarms(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling AlarmsApi->getVbdAlarms: $e\n');
 }
 ```
@@ -523,7 +523,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVdiAlarms(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling AlarmsApi->getVdiAlarms: $e\n');
 }
 ```
@@ -583,7 +583,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVdiSnapshotAlarms(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling AlarmsApi->getVdiSnapshotAlarms: $e\n');
 }
 ```
@@ -643,7 +643,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVifAlarms(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling AlarmsApi->getVifAlarms: $e\n');
 }
 ```
@@ -703,7 +703,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmAlarms(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling AlarmsApi->getVmAlarms: $e\n');
 }
 ```
@@ -763,7 +763,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmControllerAlarms(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling AlarmsApi->getVmControllerAlarms: $e\n');
 }
 ```
@@ -823,7 +823,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmSnapshotAlarms(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling AlarmsApi->getVmSnapshotAlarms: $e\n');
 }
 ```
@@ -883,7 +883,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmTemplateAlarms(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling AlarmsApi->getVmTemplateAlarms: $e\n');
 }
 ```

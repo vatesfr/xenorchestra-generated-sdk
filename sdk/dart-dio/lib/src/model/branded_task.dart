@@ -77,8 +77,9 @@ class _$BrandedTaskSerializer implements PrimitiveSerializer<BrandedTask> {
         case r'undefined':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BrandedTaskUndefinedEnum),
-          ) as BrandedTaskUndefinedEnum;
+            specifiedType: const FullType.nullable(BrandedTaskUndefinedEnum),
+          ) as BrandedTaskUndefinedEnum?;
+          if (valueDes == null) continue;
           result.undefined = valueDes;
           break;
         default:

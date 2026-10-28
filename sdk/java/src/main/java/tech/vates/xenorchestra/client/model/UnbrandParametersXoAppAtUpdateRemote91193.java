@@ -43,7 +43,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   UnbrandParametersXoAppAtUpdateRemote91193.JSON_PROPERTY_PROXY,
   UnbrandParametersXoAppAtUpdateRemote91193.JSON_PROPERTY_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class UnbrandParametersXoAppAtUpdateRemote91193 {
   public static final String JSON_PROPERTY_ENABLED = "enabled";
   @javax.annotation.Nullable
@@ -76,14 +76,14 @@ public class UnbrandParametersXoAppAtUpdateRemote91193 {
    * @return enabled
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ENABLED)
+  @JsonProperty(value = JSON_PROPERTY_ENABLED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getEnabled() {
     return enabled;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ENABLED)
+  @JsonProperty(value = JSON_PROPERTY_ENABLED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEnabled(@javax.annotation.Nullable Boolean enabled) {
     this.enabled = enabled;
@@ -100,14 +100,14 @@ public class UnbrandParametersXoAppAtUpdateRemote91193 {
    * @return name
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getName() {
     return name;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
@@ -129,7 +129,7 @@ public class UnbrandParametersXoAppAtUpdateRemote91193 {
         return options.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_OPTIONS)
+  @JsonProperty(value = JSON_PROPERTY_OPTIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<String> getOptions_JsonNullable() {
@@ -161,7 +161,7 @@ public class UnbrandParametersXoAppAtUpdateRemote91193 {
         return proxy.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_PROXY)
+  @JsonProperty(value = JSON_PROPERTY_PROXY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<String> getProxy_JsonNullable() {
@@ -188,14 +188,14 @@ public class UnbrandParametersXoAppAtUpdateRemote91193 {
    * @return url
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_URL)
+  @JsonProperty(value = JSON_PROPERTY_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getUrl() {
     return url;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_URL)
+  @JsonProperty(value = JSON_PROPERTY_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUrl(@javax.annotation.Nullable String url) {
     this.url = url;
@@ -255,10 +255,7 @@ public class UnbrandParametersXoAppAtUpdateRemote91193 {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -295,27 +292,27 @@ public class UnbrandParametersXoAppAtUpdateRemote91193 {
 
     // add `enabled` to the URL query string
     if (getEnabled() != null) {
-      joiner.add(String.format("%senabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEnabled()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%senabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEnabled()))));
     }
 
     // add `name` to the URL query string
     if (getName() != null) {
-      joiner.add(String.format("%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
     }
 
     // add `options` to the URL query string
     if (getOptions() != null) {
-      joiner.add(String.format("%soptions%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOptions()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%soptions%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOptions()))));
     }
 
     // add `proxy` to the URL query string
     if (getProxy() != null) {
-      joiner.add(String.format("%sproxy%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProxy()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sproxy%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProxy()))));
     }
 
     // add `url` to the URL query string
     if (getUrl() != null) {
-      joiner.add(String.format("%surl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUrl()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%surl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUrl()))));
     }
 
     return joiner.toString();

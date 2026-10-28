@@ -12,7 +12,6 @@
     Do not edit the class manually.
 """  # noqa: E501
 
-
 # import models into model package
 from xenorchestra_client.models.add_host_request import AddHostRequest
 from xenorchestra_client.models.add_subscription_request import AddSubscriptionRequest
@@ -588,3 +587,4 @@ from xenorchestra_client.models.xoa_dashboard_resources_overview_any_of import X
 from xenorchestra_client.models.xoa_dashboard_storage_repositories import XoaDashboardStorageRepositories
 from xenorchestra_client.models.xoa_dashboard_vms_status import XoaDashboardVmsStatus
 from xenorchestra_client.models.xs_patches import XsPatches
+

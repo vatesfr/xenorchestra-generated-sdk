@@ -269,123 +269,141 @@ class _$XoVmBackupJobGeneralSettingsSerializer
         case r'backupReportTpl':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType:
-                const FullType(XoVmBackupJobGeneralSettingsBackupReportTplEnum),
-          ) as XoVmBackupJobGeneralSettingsBackupReportTplEnum;
+            specifiedType: const FullType.nullable(
+                XoVmBackupJobGeneralSettingsBackupReportTplEnum),
+          ) as XoVmBackupJobGeneralSettingsBackupReportTplEnum?;
+          if (valueDes == null) continue;
           result.backupReportTpl = valueDes;
           break;
         case r'cbtDestroySnapshotData':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.cbtDestroySnapshotData = valueDes;
           break;
         case r'checkpointSnapshot':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.checkpointSnapshot = valueDes;
           break;
         case r'concurrency':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.concurrency = valueDes;
           break;
         case r'hideSuccessfulItems':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.hideSuccessfulItems = valueDes;
           break;
         case r'longTermRetention':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(
+            specifiedType: const FullType.nullable(
                 PartialUnbrandAnyXoBackupJobVariantBackupSettingsLongTermRetention),
-          ) as PartialUnbrandAnyXoBackupJobVariantBackupSettingsLongTermRetention;
+          ) as PartialUnbrandAnyXoBackupJobVariantBackupSettingsLongTermRetention?;
+          if (valueDes == null) continue;
           result.longTermRetention.replace(valueDes);
           break;
         case r'maxExportRate':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.maxExportRate = valueDes;
           break;
         case r'mergeBackupsSynchronously':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.mergeBackupsSynchronously = valueDes;
           break;
         case r'nRetriesVmBackupFailures':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.nRetriesVmBackupFailures = valueDes;
           break;
         case r'nbdConcurrency':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.nbdConcurrency = valueDes;
           break;
         case r'offlineBackup':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.offlineBackup = valueDes;
           break;
         case r'offlineSnapshot':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.offlineSnapshot = valueDes;
           break;
         case r'preferNbd':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.preferNbd = valueDes;
           break;
         case r'reportRecipients':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
+            specifiedType:
+                const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
           result.reportRecipients.replace(valueDes);
           break;
         case r'reportWhen':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType:
-                const FullType(XoVmBackupJobGeneralSettingsReportWhenEnum),
-          ) as XoVmBackupJobGeneralSettingsReportWhenEnum;
+            specifiedType: const FullType.nullable(
+                XoVmBackupJobGeneralSettingsReportWhenEnum),
+          ) as XoVmBackupJobGeneralSettingsReportWhenEnum?;
+          if (valueDes == null) continue;
           result.reportWhen = valueDes;
           break;
         case r'timeout':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.timeout = valueDes;
           break;
         case r'timezone':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.timezone = valueDes;
           break;
         default:

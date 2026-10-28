@@ -177,24 +177,27 @@ class _$WithHrefPartialUnbrandXoBackupRepositorySerializer
         case r'benchmarks':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList,
+            specifiedType: const FullType.nullable(BuiltList,
                 [FullType(PartialUnbrandXoBackupRepositoryBenchmarksInner)]),
-          ) as BuiltList<PartialUnbrandXoBackupRepositoryBenchmarksInner>;
+          ) as BuiltList<PartialUnbrandXoBackupRepositoryBenchmarksInner>?;
+          if (valueDes == null) continue;
           result.benchmarks.replace(valueDes);
           break;
         case r'enabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.enabled = valueDes;
           break;
         case r'error':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(
+            specifiedType: const FullType.nullable(
                 BuiltMap, [FullType(String), FullType.nullable(JsonObject)]),
-          ) as BuiltMap<String, JsonObject?>;
+          ) as BuiltMap<String, JsonObject?>?;
+          if (valueDes == null) continue;
           result.error.replace(valueDes);
           break;
         case r'href':
@@ -207,36 +210,41 @@ class _$WithHrefPartialUnbrandXoBackupRepositorySerializer
         case r'id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'name':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.name = valueDes;
           break;
         case r'options':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.options = valueDes;
           break;
         case r'proxy':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.proxy = valueDes;
           break;
         case r'url':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.url = valueDes;
           break;
         default:

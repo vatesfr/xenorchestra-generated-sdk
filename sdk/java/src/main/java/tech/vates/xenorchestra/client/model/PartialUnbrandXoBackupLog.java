@@ -30,9 +30,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import tech.vates.xenorchestra.client.model.PartialUnbrandXoBackupLogInfosInner;
 import tech.vates.xenorchestra.client.model.XoTask;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -52,7 +50,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PartialUnbrandXoBackupLog.JSON_PROPERTY_STATUS,
   PartialUnbrandXoBackupLog.JSON_PROPERTY_TASKS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PartialUnbrandXoBackupLog {
   public static final String JSON_PROPERTY_END = "end";
   @javax.annotation.Nullable
@@ -177,14 +175,14 @@ private final String value;
    * @return end
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_END)
+  @JsonProperty(value = JSON_PROPERTY_END, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getEnd() {
     return end;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_END)
+  @JsonProperty(value = JSON_PROPERTY_END, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEnd(@javax.annotation.Nullable Double end) {
     this.end = end;
@@ -201,14 +199,14 @@ private final String value;
    * @return id
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
@@ -233,14 +231,14 @@ private final String value;
    * @return infos
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_INFOS)
+  @JsonProperty(value = JSON_PROPERTY_INFOS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<PartialUnbrandXoBackupLogInfosInner> getInfos() {
     return infos;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_INFOS)
+  @JsonProperty(value = JSON_PROPERTY_INFOS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInfos(@javax.annotation.Nullable List<PartialUnbrandXoBackupLogInfosInner> infos) {
     this.infos = infos;
@@ -257,14 +255,14 @@ private final String value;
    * @return jobId
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_JOB_ID)
+  @JsonProperty(value = JSON_PROPERTY_JOB_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getJobId() {
     return jobId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_JOB_ID)
+  @JsonProperty(value = JSON_PROPERTY_JOB_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setJobId(@javax.annotation.Nullable String jobId) {
     this.jobId = jobId;
@@ -281,14 +279,14 @@ private final String value;
    * @return message
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_MESSAGE)
+  @JsonProperty(value = JSON_PROPERTY_MESSAGE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public MessageEnum getMessage() {
     return message;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MESSAGE)
+  @JsonProperty(value = JSON_PROPERTY_MESSAGE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMessage(@javax.annotation.Nullable MessageEnum message) {
     this.message = message;
@@ -305,14 +303,14 @@ private final String value;
    * @return start
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_START)
+  @JsonProperty(value = JSON_PROPERTY_START, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getStart() {
     return start;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_START)
+  @JsonProperty(value = JSON_PROPERTY_START, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStart(@javax.annotation.Nullable Double start) {
     this.start = start;
@@ -329,14 +327,14 @@ private final String value;
    * @return status
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_STATUS)
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public StatusEnum getStatus() {
     return status;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_STATUS)
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStatus(@javax.annotation.Nullable StatusEnum status) {
     this.status = status;
@@ -361,14 +359,14 @@ private final String value;
    * @return tasks
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TASKS)
+  @JsonProperty(value = JSON_PROPERTY_TASKS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<XoTask> getTasks() {
     return tasks;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TASKS)
+  @JsonProperty(value = JSON_PROPERTY_TASKS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTasks(@javax.annotation.Nullable List<XoTask> tasks) {
     this.tasks = tasks;
@@ -468,10 +466,7 @@ private final String value;
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -508,50 +503,50 @@ private final String value;
 
     // add `end` to the URL query string
     if (getEnd() != null) {
-      joiner.add(String.format("%send%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEnd()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%send%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEnd()))));
     }
 
     // add `id` to the URL query string
     if (getId() != null) {
-      joiner.add(String.format("%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
     }
 
     // add `infos` to the URL query string
     if (getInfos() != null) {
       for (int i = 0; i < getInfos().size(); i++) {
         if (getInfos().get(i) != null) {
-          joiner.add(getInfos().get(i).toUrlQueryString(String.format("%sinfos%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+          joiner.add(getInfos().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sinfos%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
     }
 
     // add `jobId` to the URL query string
     if (getJobId() != null) {
-      joiner.add(String.format("%sjobId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getJobId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sjobId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getJobId()))));
     }
 
     // add `message` to the URL query string
     if (getMessage() != null) {
-      joiner.add(String.format("%smessage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMessage()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%smessage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMessage()))));
     }
 
     // add `start` to the URL query string
     if (getStart() != null) {
-      joiner.add(String.format("%sstart%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStart()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sstart%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStart()))));
     }
 
     // add `status` to the URL query string
     if (getStatus() != null) {
-      joiner.add(String.format("%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
     }
 
     // add `tasks` to the URL query string
     if (getTasks() != null) {
       for (int i = 0; i < getTasks().size(); i++) {
         if (getTasks().get(i) != null) {
-          joiner.add(getTasks().get(i).toUrlQueryString(String.format("%stasks%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+          joiner.add(getTasks().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%stasks%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
     }

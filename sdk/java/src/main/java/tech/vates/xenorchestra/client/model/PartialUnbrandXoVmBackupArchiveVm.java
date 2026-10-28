@@ -40,7 +40,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PartialUnbrandXoVmBackupArchiveVm.JSON_PROPERTY_TAGS,
   PartialUnbrandXoVmBackupArchiveVm.JSON_PROPERTY_UUID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PartialUnbrandXoVmBackupArchiveVm {
   public static final String JSON_PROPERTY_NAME_DESCRIPTION = "name_description";
   @javax.annotation.Nonnull
@@ -71,14 +71,14 @@ public class PartialUnbrandXoVmBackupArchiveVm {
    * @return nameDescription
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_NAME_DESCRIPTION)
+  @JsonProperty(value = JSON_PROPERTY_NAME_DESCRIPTION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getNameDescription() {
     return nameDescription;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME_DESCRIPTION)
+  @JsonProperty(value = JSON_PROPERTY_NAME_DESCRIPTION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setNameDescription(@javax.annotation.Nonnull String nameDescription) {
     this.nameDescription = nameDescription;
@@ -95,14 +95,14 @@ public class PartialUnbrandXoVmBackupArchiveVm {
    * @return nameLabel
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_NAME_LABEL)
+  @JsonProperty(value = JSON_PROPERTY_NAME_LABEL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getNameLabel() {
     return nameLabel;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME_LABEL)
+  @JsonProperty(value = JSON_PROPERTY_NAME_LABEL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setNameLabel(@javax.annotation.Nonnull String nameLabel) {
     this.nameLabel = nameLabel;
@@ -127,14 +127,14 @@ public class PartialUnbrandXoVmBackupArchiveVm {
    * @return tags
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_TAGS)
+  @JsonProperty(value = JSON_PROPERTY_TAGS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<String> getTags() {
     return tags;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TAGS)
+  @JsonProperty(value = JSON_PROPERTY_TAGS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setTags(@javax.annotation.Nonnull List<String> tags) {
     this.tags = tags;
@@ -151,14 +151,14 @@ public class PartialUnbrandXoVmBackupArchiveVm {
    * @return uuid
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_UUID)
+  @JsonProperty(value = JSON_PROPERTY_UUID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getUuid() {
     return uuid;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_UUID)
+  @JsonProperty(value = JSON_PROPERTY_UUID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUuid(@javax.annotation.Nonnull String uuid) {
     this.uuid = uuid;
@@ -205,10 +205,7 @@ public class PartialUnbrandXoVmBackupArchiveVm {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -245,26 +242,26 @@ public class PartialUnbrandXoVmBackupArchiveVm {
 
     // add `name_description` to the URL query string
     if (getNameDescription() != null) {
-      joiner.add(String.format("%sname_description%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameDescription()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname_description%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameDescription()))));
     }
 
     // add `name_label` to the URL query string
     if (getNameLabel() != null) {
-      joiner.add(String.format("%sname_label%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameLabel()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname_label%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameLabel()))));
     }
 
     // add `tags` to the URL query string
     if (getTags() != null) {
       for (int i = 0; i < getTags().size(); i++) {
-        joiner.add(String.format("%stags%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%stags%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getTags().get(i)))));
       }
     }
 
     // add `uuid` to the URL query string
     if (getUuid() != null) {
-      joiner.add(String.format("%suuid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUuid()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%suuid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUuid()))));
     }
 
     return joiner.toString();

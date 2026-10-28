@@ -139,33 +139,37 @@ class _$PartialUnbrandAnyXoBackupJobVariantBackupSettingsLongTermRetentionSerial
         case r'daily':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(
+            specifiedType: const FullType.nullable(
                 PartialUnbrandAnyXoBackupJobVariantBackupSettingsLongTermRetentionDaily),
-          ) as PartialUnbrandAnyXoBackupJobVariantBackupSettingsLongTermRetentionDaily;
+          ) as PartialUnbrandAnyXoBackupJobVariantBackupSettingsLongTermRetentionDaily?;
+          if (valueDes == null) continue;
           result.daily.replace(valueDes);
           break;
         case r'monthly':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(
+            specifiedType: const FullType.nullable(
                 PartialUnbrandAnyXoBackupJobVariantBackupSettingsLongTermRetentionDaily),
-          ) as PartialUnbrandAnyXoBackupJobVariantBackupSettingsLongTermRetentionDaily;
+          ) as PartialUnbrandAnyXoBackupJobVariantBackupSettingsLongTermRetentionDaily?;
+          if (valueDes == null) continue;
           result.monthly.replace(valueDes);
           break;
         case r'weekly':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(
+            specifiedType: const FullType.nullable(
                 PartialUnbrandAnyXoBackupJobVariantBackupSettingsLongTermRetentionDaily),
-          ) as PartialUnbrandAnyXoBackupJobVariantBackupSettingsLongTermRetentionDaily;
+          ) as PartialUnbrandAnyXoBackupJobVariantBackupSettingsLongTermRetentionDaily?;
+          if (valueDes == null) continue;
           result.weekly.replace(valueDes);
           break;
         case r'yearly':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(
+            specifiedType: const FullType.nullable(
                 PartialUnbrandAnyXoBackupJobVariantBackupSettingsLongTermRetentionDaily),
-          ) as PartialUnbrandAnyXoBackupJobVariantBackupSettingsLongTermRetentionDaily;
+          ) as PartialUnbrandAnyXoBackupJobVariantBackupSettingsLongTermRetentionDaily?;
+          if (valueDes == null) continue;
           result.yearly.replace(valueDes);
           break;
         default:

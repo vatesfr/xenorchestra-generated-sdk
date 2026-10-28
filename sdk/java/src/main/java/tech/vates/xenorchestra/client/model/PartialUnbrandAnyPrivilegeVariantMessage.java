@@ -40,7 +40,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PartialUnbrandAnyPrivilegeVariantMessage.JSON_PROPERTY_ROLE_ID,
   PartialUnbrandAnyPrivilegeVariantMessage.JSON_PROPERTY_SELECTOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PartialUnbrandAnyPrivilegeVariantMessage {
   /**
    * Gets or Sets action
@@ -192,14 +192,14 @@ private final String value;
    * @return action
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ACTION)
+  @JsonProperty(value = JSON_PROPERTY_ACTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public ActionEnum getAction() {
     return action;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ACTION)
+  @JsonProperty(value = JSON_PROPERTY_ACTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAction(@javax.annotation.Nullable ActionEnum action) {
     this.action = action;
@@ -216,14 +216,14 @@ private final String value;
    * @return effect
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_EFFECT)
+  @JsonProperty(value = JSON_PROPERTY_EFFECT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public EffectEnum getEffect() {
     return effect;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_EFFECT)
+  @JsonProperty(value = JSON_PROPERTY_EFFECT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEffect(@javax.annotation.Nullable EffectEnum effect) {
     this.effect = effect;
@@ -240,14 +240,14 @@ private final String value;
    * @return id
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
@@ -264,14 +264,14 @@ private final String value;
    * @return resource
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_RESOURCE)
+  @JsonProperty(value = JSON_PROPERTY_RESOURCE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public ResourceEnum getResource() {
     return resource;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_RESOURCE)
+  @JsonProperty(value = JSON_PROPERTY_RESOURCE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setResource(@javax.annotation.Nullable ResourceEnum resource) {
     this.resource = resource;
@@ -288,14 +288,14 @@ private final String value;
    * @return roleId
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ROLE_ID)
+  @JsonProperty(value = JSON_PROPERTY_ROLE_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getRoleId() {
     return roleId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ROLE_ID)
+  @JsonProperty(value = JSON_PROPERTY_ROLE_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRoleId(@javax.annotation.Nullable String roleId) {
     this.roleId = roleId;
@@ -312,14 +312,14 @@ private final String value;
    * @return selector
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SELECTOR)
+  @JsonProperty(value = JSON_PROPERTY_SELECTOR, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getSelector() {
     return selector;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SELECTOR)
+  @JsonProperty(value = JSON_PROPERTY_SELECTOR, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSelector(@javax.annotation.Nullable String selector) {
     this.selector = selector;
@@ -370,10 +370,7 @@ private final String value;
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -410,32 +407,32 @@ private final String value;
 
     // add `action` to the URL query string
     if (getAction() != null) {
-      joiner.add(String.format("%saction%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAction()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%saction%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAction()))));
     }
 
     // add `effect` to the URL query string
     if (getEffect() != null) {
-      joiner.add(String.format("%seffect%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEffect()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%seffect%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEffect()))));
     }
 
     // add `id` to the URL query string
     if (getId() != null) {
-      joiner.add(String.format("%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
     }
 
     // add `resource` to the URL query string
     if (getResource() != null) {
-      joiner.add(String.format("%sresource%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getResource()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sresource%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getResource()))));
     }
 
     // add `roleId` to the URL query string
     if (getRoleId() != null) {
-      joiner.add(String.format("%sroleId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRoleId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sroleId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRoleId()))));
     }
 
     // add `selector` to the URL query string
     if (getSelector() != null) {
-      joiner.add(String.format("%sselector%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSelector()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sselector%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSelector()))));
     }
 
     return joiner.toString();

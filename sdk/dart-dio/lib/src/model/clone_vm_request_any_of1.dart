@@ -106,22 +106,26 @@ class _$CloneVmRequestAnyOf1Serializer
         case r'compress':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(CloneVmRequestAnyOf1CompressEnum),
-          ) as CloneVmRequestAnyOf1CompressEnum;
+            specifiedType:
+                const FullType.nullable(CloneVmRequestAnyOf1CompressEnum),
+          ) as CloneVmRequestAnyOf1CompressEnum?;
+          if (valueDes == null) continue;
           result.compress = valueDes;
           break;
         case r'name_label':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.nameLabel = valueDes;
           break;
         case r'srId':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.srId = valueDes;
           break;
         default:

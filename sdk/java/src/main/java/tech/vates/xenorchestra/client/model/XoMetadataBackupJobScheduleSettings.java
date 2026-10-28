@@ -29,8 +29,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -42,7 +40,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   XoMetadataBackupJobScheduleSettings.JSON_PROPERTY_RETENTION_POOL_METADATA,
   XoMetadataBackupJobScheduleSettings.JSON_PROPERTY_RETENTION_XO_METADATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class XoMetadataBackupJobScheduleSettings {
   public static final String JSON_PROPERTY_RETENTION_POOL_METADATA = "retentionPoolMetadata";
   @javax.annotation.Nullable
@@ -65,14 +63,14 @@ public class XoMetadataBackupJobScheduleSettings {
    * @return retentionPoolMetadata
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_RETENTION_POOL_METADATA)
+  @JsonProperty(value = JSON_PROPERTY_RETENTION_POOL_METADATA, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getRetentionPoolMetadata() {
     return retentionPoolMetadata;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_RETENTION_POOL_METADATA)
+  @JsonProperty(value = JSON_PROPERTY_RETENTION_POOL_METADATA, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRetentionPoolMetadata(@javax.annotation.Nullable Double retentionPoolMetadata) {
     this.retentionPoolMetadata = retentionPoolMetadata;
@@ -89,14 +87,14 @@ public class XoMetadataBackupJobScheduleSettings {
    * @return retentionXoMetadata
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_RETENTION_XO_METADATA)
+  @JsonProperty(value = JSON_PROPERTY_RETENTION_XO_METADATA, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getRetentionXoMetadata() {
     return retentionXoMetadata;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_RETENTION_XO_METADATA)
+  @JsonProperty(value = JSON_PROPERTY_RETENTION_XO_METADATA, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRetentionXoMetadata(@javax.annotation.Nullable Double retentionXoMetadata) {
     this.retentionXoMetadata = retentionXoMetadata;
@@ -184,10 +182,7 @@ public class XoMetadataBackupJobScheduleSettings {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -224,12 +219,12 @@ public class XoMetadataBackupJobScheduleSettings {
 
     // add `retentionPoolMetadata` to the URL query string
     if (getRetentionPoolMetadata() != null) {
-      joiner.add(String.format("%sretentionPoolMetadata%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRetentionPoolMetadata()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sretentionPoolMetadata%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRetentionPoolMetadata()))));
     }
 
     // add `retentionXoMetadata` to the URL query string
     if (getRetentionXoMetadata() != null) {
-      joiner.add(String.format("%sretentionXoMetadata%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRetentionXoMetadata()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sretentionXoMetadata%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRetentionXoMetadata()))));
     }
 
     return joiner.toString();

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **device_name** | Option<**String**> |  | [optional]
 **id** | Option<**String**> |  | [optional]
 **pci_id** | Option<**String**> |  | [optional]
-**r#type** | Option<**String**> |  | [optional]
+**r#type** | Option<**Type**> |  (enum: PCI) | [optional]
 **uuid** | Option<**String**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

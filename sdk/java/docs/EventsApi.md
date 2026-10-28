@@ -97,7 +97,7 @@ public class Example {
 
 ## addSubscriptionWithHttpInfo
 
-> ApiResponse<CreateAclV2Privilege201Response> addSubscription addSubscriptionWithHttpInfo(id, addSubscriptionRequest)
+> ApiResponse<CreateAclV2Privilege201Response> addSubscriptionWithHttpInfo(id, addSubscriptionRequest)
 
 
 
@@ -257,7 +257,7 @@ null (empty response body)
 
 ## openSseConnectionWithHttpInfo
 
-> ApiResponse<Void> openSseConnection openSseConnectionWithHttpInfo()
+> ApiResponse<Void> openSseConnectionWithHttpInfo()
 
 
 
@@ -416,7 +416,7 @@ null (empty response body)
 
 ## removeSubscriptionWithHttpInfo
 
-> ApiResponse<Void> removeSubscription removeSubscriptionWithHttpInfo(id, subscriptionId)
+> ApiResponse<Void> removeSubscriptionWithHttpInfo(id, subscriptionId)
 
 
 

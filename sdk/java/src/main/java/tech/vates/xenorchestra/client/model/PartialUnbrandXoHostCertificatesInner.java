@@ -36,7 +36,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PartialUnbrandXoHostCertificatesInner.JSON_PROPERTY_FINGERPRINT,
   PartialUnbrandXoHostCertificatesInner.JSON_PROPERTY_NOT_AFTER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PartialUnbrandXoHostCertificatesInner {
   public static final String JSON_PROPERTY_FINGERPRINT = "fingerprint";
   @javax.annotation.Nonnull
@@ -59,14 +59,14 @@ public class PartialUnbrandXoHostCertificatesInner {
    * @return fingerprint
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_FINGERPRINT)
+  @JsonProperty(value = JSON_PROPERTY_FINGERPRINT, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getFingerprint() {
     return fingerprint;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_FINGERPRINT)
+  @JsonProperty(value = JSON_PROPERTY_FINGERPRINT, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setFingerprint(@javax.annotation.Nonnull String fingerprint) {
     this.fingerprint = fingerprint;
@@ -83,14 +83,14 @@ public class PartialUnbrandXoHostCertificatesInner {
    * @return notAfter
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_NOT_AFTER)
+  @JsonProperty(value = JSON_PROPERTY_NOT_AFTER, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getNotAfter() {
     return notAfter;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NOT_AFTER)
+  @JsonProperty(value = JSON_PROPERTY_NOT_AFTER, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setNotAfter(@javax.annotation.Nonnull Double notAfter) {
     this.notAfter = notAfter;
@@ -133,10 +133,7 @@ public class PartialUnbrandXoHostCertificatesInner {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -173,12 +170,12 @@ public class PartialUnbrandXoHostCertificatesInner {
 
     // add `fingerprint` to the URL query string
     if (getFingerprint() != null) {
-      joiner.add(String.format("%sfingerprint%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFingerprint()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sfingerprint%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFingerprint()))));
     }
 
     // add `notAfter` to the URL query string
     if (getNotAfter() != null) {
-      joiner.add(String.format("%snotAfter%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNotAfter()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%snotAfter%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNotAfter()))));
     }
 
     return joiner.toString();

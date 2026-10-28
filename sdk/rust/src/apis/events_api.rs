@@ -49,13 +49,13 @@ pub async fn add_subscription(
     add_subscription_request: models::AddSubscriptionRequest,
 ) -> Result<models::CreateAclV2Privilege201Response, Error<AddSubscriptionError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_add_subscription_request = add_subscription_request;
+    let p_path_id = id;
+    let p_body_add_subscription_request = add_subscription_request;
 
     let uri_str = format!(
         "{}/events/{id}/subscriptions",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
@@ -73,7 +73,7 @@ pub async fn add_subscription(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.json(&p_add_subscription_request);
+    req_builder = req_builder.json(&p_body_add_subscription_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -149,14 +149,14 @@ pub async fn remove_subscription(
     subscription_id: models::XoListenerType,
 ) -> Result<(), Error<RemoveSubscriptionError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_subscription_id = subscription_id;
+    let p_path_id = id;
+    let p_path_subscription_id = subscription_id;
 
     let uri_str = format!(
         "{}/events/{id}/subscriptions/{subscriptionId}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id),
-        subscriptionId = p_subscription_id.to_string()
+        id = crate::apis::urlencode(p_path_id),
+        subscriptionId = p_path_subscription_id.to_string()
     );
     let mut req_builder = configuration
         .client

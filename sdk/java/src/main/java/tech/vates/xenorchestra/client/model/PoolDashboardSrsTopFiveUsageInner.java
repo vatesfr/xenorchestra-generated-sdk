@@ -39,7 +39,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PoolDashboardSrsTopFiveUsageInner.JSON_PROPERTY_PHYSICAL_USAGE,
   PoolDashboardSrsTopFiveUsageInner.JSON_PROPERTY_SIZE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PoolDashboardSrsTopFiveUsageInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -74,14 +74,14 @@ public class PoolDashboardSrsTopFiveUsageInner {
    * @return id
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
@@ -98,14 +98,14 @@ public class PoolDashboardSrsTopFiveUsageInner {
    * @return nameLabel
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_NAME_LABEL)
+  @JsonProperty(value = JSON_PROPERTY_NAME_LABEL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getNameLabel() {
     return nameLabel;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME_LABEL)
+  @JsonProperty(value = JSON_PROPERTY_NAME_LABEL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setNameLabel(@javax.annotation.Nonnull String nameLabel) {
     this.nameLabel = nameLabel;
@@ -122,14 +122,14 @@ public class PoolDashboardSrsTopFiveUsageInner {
    * @return percent
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_PERCENT)
+  @JsonProperty(value = JSON_PROPERTY_PERCENT, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getPercent() {
     return percent;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PERCENT)
+  @JsonProperty(value = JSON_PROPERTY_PERCENT, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setPercent(@javax.annotation.Nonnull Double percent) {
     this.percent = percent;
@@ -146,14 +146,14 @@ public class PoolDashboardSrsTopFiveUsageInner {
    * @return physicalUsage
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_PHYSICAL_USAGE)
+  @JsonProperty(value = JSON_PROPERTY_PHYSICAL_USAGE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getPhysicalUsage() {
     return physicalUsage;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PHYSICAL_USAGE)
+  @JsonProperty(value = JSON_PROPERTY_PHYSICAL_USAGE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setPhysicalUsage(@javax.annotation.Nonnull Double physicalUsage) {
     this.physicalUsage = physicalUsage;
@@ -170,14 +170,14 @@ public class PoolDashboardSrsTopFiveUsageInner {
    * @return size
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonProperty(value = JSON_PROPERTY_SIZE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getSize() {
     return size;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonProperty(value = JSON_PROPERTY_SIZE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSize(@javax.annotation.Nonnull Double size) {
     this.size = size;
@@ -226,10 +226,7 @@ public class PoolDashboardSrsTopFiveUsageInner {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -266,27 +263,27 @@ public class PoolDashboardSrsTopFiveUsageInner {
 
     // add `id` to the URL query string
     if (getId() != null) {
-      joiner.add(String.format("%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
     }
 
     // add `name_label` to the URL query string
     if (getNameLabel() != null) {
-      joiner.add(String.format("%sname_label%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameLabel()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname_label%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameLabel()))));
     }
 
     // add `percent` to the URL query string
     if (getPercent() != null) {
-      joiner.add(String.format("%spercent%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPercent()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%spercent%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPercent()))));
     }
 
     // add `physical_usage` to the URL query string
     if (getPhysicalUsage() != null) {
-      joiner.add(String.format("%sphysical_usage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPhysicalUsage()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sphysical_usage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPhysicalUsage()))));
     }
 
     // add `size` to the URL query string
     if (getSize() != null) {
-      joiner.add(String.format("%ssize%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSize()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssize%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSize()))));
     }
 
     return joiner.toString();

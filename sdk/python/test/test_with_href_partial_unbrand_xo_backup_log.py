@@ -69,10 +69,19 @@ class TestWithHrefPartialUnbrandXoBackupLog(unittest.TestCase):
                         tasks = [
                             xenorchestra_client.models.xo_task.XoTask(
                                 abortion_requested_at = 1.337, 
+                                data = xenorchestra_client.models.record_string/string_.Record_string.string_(), 
                                 end = 1.337, 
                                 id = null, 
+                                infos = [
+                                    xenorchestra_client.models.partial_unbrand_xo_backup_log___infos_inner.Partial_Unbrand_XoBackupLog___infos_inner(
+                                        data = null, 
+                                        message = '', )
+                                    ], 
                                 progress = 1.337, 
                                 properties = {
+                                    'key' : null
+                                    }, 
+                                result = {
                                     'key' : null
                                     }, 
                                 start = 1.337, 
@@ -86,7 +95,9 @@ class TestWithHrefPartialUnbrandXoBackupLog(unittest.TestCase):
                             ], 
                         updated_at = 1.337, 
                         warnings = [
-                            
+                            xenorchestra_client.models.partial_unbrand_xo_backup_log___infos_inner.Partial_Unbrand_XoBackupLog___infos_inner(
+                                data = null, 
+                                message = '', )
                             ], )
                     ],
                 href = ''

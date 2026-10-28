@@ -43,7 +43,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   UnbrandUnbrandedXoMirrorBackupJob.JSON_PROPERTY_SOURCE_REMOTE,
   UnbrandUnbrandedXoMirrorBackupJob.JSON_PROPERTY_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class UnbrandUnbrandedXoMirrorBackupJob {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -165,14 +165,14 @@ private final String value;
    * @return id
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
@@ -189,14 +189,14 @@ private final String value;
    * @return mode
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_MODE)
+  @JsonProperty(value = JSON_PROPERTY_MODE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public ModeEnum getMode() {
     return mode;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MODE)
+  @JsonProperty(value = JSON_PROPERTY_MODE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setMode(@javax.annotation.Nonnull ModeEnum mode) {
     this.mode = mode;
@@ -213,14 +213,14 @@ private final String value;
    * @return name
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getName() {
     return name;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
@@ -237,14 +237,14 @@ private final String value;
    * @return proxy
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PROXY)
+  @JsonProperty(value = JSON_PROPERTY_PROXY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getProxy() {
     return proxy;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PROXY)
+  @JsonProperty(value = JSON_PROPERTY_PROXY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setProxy(@javax.annotation.Nullable String proxy) {
     this.proxy = proxy;
@@ -261,14 +261,14 @@ private final String value;
    * @return remotes
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_REMOTES)
+  @JsonProperty(value = JSON_PROPERTY_REMOTES, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Object getRemotes() {
     return remotes;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_REMOTES)
+  @JsonProperty(value = JSON_PROPERTY_REMOTES, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setRemotes(@javax.annotation.Nullable Object remotes) {
     this.remotes = remotes;
@@ -285,14 +285,14 @@ private final String value;
    * @return settings
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_SETTINGS)
+  @JsonProperty(value = JSON_PROPERTY_SETTINGS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettings getSettings() {
     return settings;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SETTINGS)
+  @JsonProperty(value = JSON_PROPERTY_SETTINGS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSettings(@javax.annotation.Nonnull PartialUnbrandAnyXoBackupJobVariantMirrorBackupSettings settings) {
     this.settings = settings;
@@ -309,14 +309,14 @@ private final String value;
    * @return sourceRemote
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_SOURCE_REMOTE)
+  @JsonProperty(value = JSON_PROPERTY_SOURCE_REMOTE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getSourceRemote() {
     return sourceRemote;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SOURCE_REMOTE)
+  @JsonProperty(value = JSON_PROPERTY_SOURCE_REMOTE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSourceRemote(@javax.annotation.Nonnull String sourceRemote) {
     this.sourceRemote = sourceRemote;
@@ -333,14 +333,14 @@ private final String value;
    * @return type
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public TypeEnum getType() {
     return type;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setType(@javax.annotation.Nonnull TypeEnum type) {
     this.type = type;
@@ -395,10 +395,7 @@ private final String value;
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -435,27 +432,27 @@ private final String value;
 
     // add `id` to the URL query string
     if (getId() != null) {
-      joiner.add(String.format("%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
     }
 
     // add `mode` to the URL query string
     if (getMode() != null) {
-      joiner.add(String.format("%smode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMode()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%smode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMode()))));
     }
 
     // add `name` to the URL query string
     if (getName() != null) {
-      joiner.add(String.format("%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
     }
 
     // add `proxy` to the URL query string
     if (getProxy() != null) {
-      joiner.add(String.format("%sproxy%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProxy()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sproxy%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProxy()))));
     }
 
     // add `remotes` to the URL query string
     if (getRemotes() != null) {
-      joiner.add(String.format("%sremotes%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRemotes()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sremotes%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRemotes()))));
     }
 
     // add `settings` to the URL query string
@@ -465,12 +462,12 @@ private final String value;
 
     // add `sourceRemote` to the URL query string
     if (getSourceRemote() != null) {
-      joiner.add(String.format("%ssourceRemote%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSourceRemote()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssourceRemote%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSourceRemote()))));
     }
 
     // add `type` to the URL query string
     if (getType() != null) {
-      joiner.add(String.format("%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
     }
 
     return joiner.toString();

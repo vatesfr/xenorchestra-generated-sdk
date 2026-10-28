@@ -35,7 +35,7 @@ import tech.vates.xenorchestra.client.ApiClient;
 @JsonPropertyOrder({
   MigrateVdiRequest.JSON_PROPERTY_SR_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class MigrateVdiRequest {
   public static final String JSON_PROPERTY_SR_ID = "srId";
   @javax.annotation.Nonnull
@@ -54,14 +54,14 @@ public class MigrateVdiRequest {
    * @return srId
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_SR_ID)
+  @JsonProperty(value = JSON_PROPERTY_SR_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getSrId() {
     return srId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SR_ID)
+  @JsonProperty(value = JSON_PROPERTY_SR_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSrId(@javax.annotation.Nonnull String srId) {
     this.srId = srId;
@@ -102,10 +102,7 @@ public class MigrateVdiRequest {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -142,7 +139,7 @@ public class MigrateVdiRequest {
 
     // add `srId` to the URL query string
     if (getSrId() != null) {
-      joiner.add(String.format("%ssrId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSrId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssrId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSrId()))));
     }
 
     return joiner.toString();

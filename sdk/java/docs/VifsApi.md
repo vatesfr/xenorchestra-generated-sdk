@@ -114,7 +114,7 @@ public class Example {
 
 ## connectVifWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> connectVif connectVifWithHttpInfo(id, sync)
+> ApiResponse<CreateActionReturnTypeVoid> connectVifWithHttpInfo(id, sync)
 
 
 
@@ -286,7 +286,7 @@ public class Example {
 
 ## createVifWithHttpInfo
 
-> ApiResponse<CreateAclV2Privilege201Response> createVif createVifWithHttpInfo(createVifBody)
+> ApiResponse<CreateAclV2Privilege201Response> createVifWithHttpInfo(createVifBody)
 
 
 
@@ -454,7 +454,7 @@ null (empty response body)
 
 ## destroyVifWithHttpInfo
 
-> ApiResponse<Void> destroyVif destroyVifWithHttpInfo(id)
+> ApiResponse<Void> destroyVifWithHttpInfo(id)
 
 
 
@@ -624,7 +624,7 @@ public class Example {
 
 ## disconnectVifWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> disconnectVif disconnectVifWithHttpInfo(id, sync)
+> ApiResponse<CreateActionReturnTypeVoid> disconnectVifWithHttpInfo(id, sync)
 
 
 
@@ -794,7 +794,7 @@ public class Example {
 
 ## getVifWithHttpInfo
 
-> ApiResponse<UnbrandXoVif> getVif getVifWithHttpInfo(id)
+> ApiResponse<UnbrandXoVif> getVifWithHttpInfo(id)
 
 
 
@@ -969,7 +969,7 @@ public class Example {
 
 ## getVifAlarmsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVifAlarms getVifAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVifAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1153,7 +1153,7 @@ public class Example {
 
 ## getVifMessagesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoMessage> getVifMessages getVifMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoMessage> getVifMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1337,7 +1337,7 @@ public class Example {
 
 ## getVifTasksWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoTask> getVifTasks getVifTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoTask> getVifTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1518,7 +1518,7 @@ public class Example {
 
 ## getVifsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandedXoVif> getVifs getVifsWithHttpInfo(fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandedXoVif> getVifsWithHttpInfo(fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1693,7 +1693,7 @@ null (empty response body)
 
 ## updateVifWithHttpInfo
 
-> ApiResponse<Void> updateVif updateVifWithHttpInfo(id, updateVifRequestBody)
+> ApiResponse<Void> updateVifWithHttpInfo(id, updateVifRequestBody)
 
 
 

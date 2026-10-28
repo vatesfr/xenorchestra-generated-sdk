@@ -39,7 +39,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   DashboardBackupRepositoriesSizeInfoOtherSize.JSON_PROPERTY_TOTAL,
   DashboardBackupRepositoriesSizeInfoOtherSize.JSON_PROPERTY_USED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class DashboardBackupRepositoriesSizeInfoOtherSize {
   public static final String JSON_PROPERTY_AVAILABLE = "available";
   @javax.annotation.Nullable
@@ -74,14 +74,14 @@ public class DashboardBackupRepositoriesSizeInfoOtherSize {
    * @return available
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_AVAILABLE)
+  @JsonProperty(value = JSON_PROPERTY_AVAILABLE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getAvailable() {
     return available;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_AVAILABLE)
+  @JsonProperty(value = JSON_PROPERTY_AVAILABLE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAvailable(@javax.annotation.Nullable Double available) {
     this.available = available;
@@ -98,14 +98,14 @@ public class DashboardBackupRepositoriesSizeInfoOtherSize {
    * @return backups
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_BACKUPS)
+  @JsonProperty(value = JSON_PROPERTY_BACKUPS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getBackups() {
     return backups;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_BACKUPS)
+  @JsonProperty(value = JSON_PROPERTY_BACKUPS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setBackups(@javax.annotation.Nonnull Double backups) {
     this.backups = backups;
@@ -122,14 +122,14 @@ public class DashboardBackupRepositoriesSizeInfoOtherSize {
    * @return other
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_OTHER)
+  @JsonProperty(value = JSON_PROPERTY_OTHER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getOther() {
     return other;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_OTHER)
+  @JsonProperty(value = JSON_PROPERTY_OTHER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOther(@javax.annotation.Nullable Double other) {
     this.other = other;
@@ -146,14 +146,14 @@ public class DashboardBackupRepositoriesSizeInfoOtherSize {
    * @return total
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TOTAL)
+  @JsonProperty(value = JSON_PROPERTY_TOTAL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getTotal() {
     return total;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TOTAL)
+  @JsonProperty(value = JSON_PROPERTY_TOTAL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTotal(@javax.annotation.Nullable Double total) {
     this.total = total;
@@ -170,14 +170,14 @@ public class DashboardBackupRepositoriesSizeInfoOtherSize {
    * @return used
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_USED)
+  @JsonProperty(value = JSON_PROPERTY_USED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getUsed() {
     return used;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_USED)
+  @JsonProperty(value = JSON_PROPERTY_USED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUsed(@javax.annotation.Nullable Double used) {
     this.used = used;
@@ -226,10 +226,7 @@ public class DashboardBackupRepositoriesSizeInfoOtherSize {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -266,27 +263,27 @@ public class DashboardBackupRepositoriesSizeInfoOtherSize {
 
     // add `available` to the URL query string
     if (getAvailable() != null) {
-      joiner.add(String.format("%savailable%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAvailable()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%savailable%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAvailable()))));
     }
 
     // add `backups` to the URL query string
     if (getBackups() != null) {
-      joiner.add(String.format("%sbackups%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBackups()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbackups%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBackups()))));
     }
 
     // add `other` to the URL query string
     if (getOther() != null) {
-      joiner.add(String.format("%sother%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOther()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sother%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOther()))));
     }
 
     // add `total` to the URL query string
     if (getTotal() != null) {
-      joiner.add(String.format("%stotal%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTotal()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%stotal%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTotal()))));
     }
 
     // add `used` to the URL query string
     if (getUsed() != null) {
-      joiner.add(String.format("%sused%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUsed()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sused%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUsed()))));
     }
 
     return joiner.toString();

@@ -236,14 +236,14 @@ pub async fn attach_acl_v2_group(
     group_id: &str,
 ) -> Result<(), Error<AttachAclV2GroupError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_group_id = group_id;
+    let p_path_id = id;
+    let p_path_group_id = group_id;
 
     let uri_str = format!(
         "{}/acl-roles/{id}/groups/{groupId}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id),
-        groupId = crate::apis::urlencode(p_group_id)
+        id = crate::apis::urlencode(p_path_id),
+        groupId = crate::apis::urlencode(p_path_group_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -285,14 +285,14 @@ pub async fn attach_acl_v2_user(
     user_id: &str,
 ) -> Result<(), Error<AttachAclV2UserError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_user_id = user_id;
+    let p_path_id = id;
+    let p_path_user_id = user_id;
 
     let uri_str = format!(
         "{}/acl-roles/{id}/users/{userId}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id),
-        userId = crate::apis::urlencode(p_user_id)
+        id = crate::apis::urlencode(p_path_id),
+        userId = crate::apis::urlencode(p_path_user_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::PUT, &uri_str);
 
@@ -335,20 +335,20 @@ pub async fn copy_acl_v2_role(
     copy_acl_v2_role_request: Option<models::CopyAclV2RoleRequest>,
 ) -> Result<models::CreateActionReturnTypeIdString, Error<CopyAclV2RoleError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_sync = sync;
-    let p_copy_acl_v2_role_request = copy_acl_v2_role_request;
+    let p_path_id = id;
+    let p_query_sync = sync;
+    let p_body_copy_acl_v2_role_request = copy_acl_v2_role_request;
 
     let uri_str = format!(
         "{}/acl-roles/{id}/actions/copy",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -363,7 +363,7 @@ pub async fn copy_acl_v2_role(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.json(&p_copy_acl_v2_role_request);
+    req_builder = req_builder.json(&p_body_copy_acl_v2_role_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -397,10 +397,10 @@ pub async fn copy_acl_v2_role(
 /// Required privilege: - resource: acl-privilege, action: create
 pub async fn create_acl_v2_privilege(
     configuration: &configuration::Configuration,
-    unbrand_safe_omit_any_privilege_period_id: models::UnbrandSafeOmitAnyPrivilegePeriodId,
+    unbrand_safe_omit_any_privilege_id: models::UnbrandSafeOmitAnyPrivilegeId,
 ) -> Result<models::CreateAclV2Privilege201Response, Error<CreateAclV2PrivilegeError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_unbrand_safe_omit_any_privilege_period_id = unbrand_safe_omit_any_privilege_period_id;
+    let p_body_unbrand_safe_omit_any_privilege_id = unbrand_safe_omit_any_privilege_id;
 
     let uri_str = format!("{}/acl-privileges", configuration.base_path);
     let mut req_builder = configuration
@@ -419,7 +419,7 @@ pub async fn create_acl_v2_privilege(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.json(&p_unbrand_safe_omit_any_privilege_period_id);
+    req_builder = req_builder.json(&p_body_unbrand_safe_omit_any_privilege_id);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -456,7 +456,7 @@ pub async fn create_acl_v2_role(
     create_acl_v2_role_request: models::CreateAclV2RoleRequest,
 ) -> Result<models::CreateAclV2Privilege201Response, Error<CreateAclV2RoleError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_create_acl_v2_role_request = create_acl_v2_role_request;
+    let p_body_create_acl_v2_role_request = create_acl_v2_role_request;
 
     let uri_str = format!("{}/acl-roles", configuration.base_path);
     let mut req_builder = configuration
@@ -475,7 +475,7 @@ pub async fn create_acl_v2_role(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.json(&p_create_acl_v2_role_request);
+    req_builder = req_builder.json(&p_body_create_acl_v2_role_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -512,12 +512,12 @@ pub async fn delete_acl_v2_privilege(
     id: &str,
 ) -> Result<(), Error<DeleteAclV2PrivilegeError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
     let uri_str = format!(
         "{}/acl-privileges/{id}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
@@ -560,12 +560,12 @@ pub async fn delete_acl_v2_role(
     id: &str,
 ) -> Result<(), Error<DeleteAclV2RoleError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
     let uri_str = format!(
         "{}/acl-roles/{id}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
@@ -609,14 +609,14 @@ pub async fn detach_acl_v2_group(
     group_id: &str,
 ) -> Result<(), Error<DetachAclV2GroupError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_group_id = group_id;
+    let p_path_id = id;
+    let p_path_group_id = group_id;
 
     let uri_str = format!(
         "{}/acl-roles/{id}/groups/{groupId}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id),
-        groupId = crate::apis::urlencode(p_group_id)
+        id = crate::apis::urlencode(p_path_id),
+        groupId = crate::apis::urlencode(p_path_group_id)
     );
     let mut req_builder = configuration
         .client
@@ -660,14 +660,14 @@ pub async fn detach_acl_v2_user(
     user_id: &str,
 ) -> Result<(), Error<DetachAclV2UserError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_user_id = user_id;
+    let p_path_id = id;
+    let p_path_user_id = user_id;
 
     let uri_str = format!(
         "{}/acl-roles/{id}/users/{userId}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id),
-        userId = crate::apis::urlencode(p_user_id)
+        id = crate::apis::urlencode(p_path_id),
+        userId = crate::apis::urlencode(p_path_user_id)
     );
     let mut req_builder = configuration
         .client
@@ -715,33 +715,33 @@ pub async fn get_acl_role_groups(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoGroup, Error<GetAclRoleGroupsError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/acl-roles/{id}/groups",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -797,33 +797,33 @@ pub async fn get_acl_role_users(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoUser, Error<GetAclRoleUsersError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/acl-roles/{id}/users",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -874,12 +874,12 @@ pub async fn get_acl_v2_privilege(
     id: &str,
 ) -> Result<models::UnbrandAnyPrivilege, Error<GetAclV2PrivilegeError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
     let uri_str = format!(
         "{}/acl-privileges/{id}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -934,24 +934,24 @@ pub async fn get_acl_v2_privileges(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandAnyPrivilege, Error<GetAclV2PrivilegesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!("{}/acl-privileges", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1002,12 +1002,12 @@ pub async fn get_acl_v2_role(
     id: &str,
 ) -> Result<models::UnbrandXoAclRole, Error<GetAclV2RoleError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
+    let p_path_id = id;
 
     let uri_str = format!(
         "{}/acl-roles/{id}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
@@ -1063,29 +1063,29 @@ pub async fn get_acl_v2_role_privileges(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandAnyPrivilege, Error<GetAclV2RolePrivilegesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/acl-roles/{id}/privileges",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1139,24 +1139,24 @@ pub async fn get_acl_v2_roles(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandXoAclRole, Error<GetAclV2RolesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!("{}/acl-roles", configuration.base_path);
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1211,37 +1211,37 @@ pub async fn get_group_acl_roles(
     filter: Option<&str>,
     limit: Option<f64>,
 ) -> Result<
-    models::SendObjectsPartialUnbrandExcludeXoAclRolePeriodIsTemplateTrue,
+    models::SendObjectsPartialUnbrandExcludeXoAclRoleIsTemplateTrue,
     Error<GetGroupAclRolesError>,
 > {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_markdown = markdown;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_markdown = markdown;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/groups/{id}/acl-roles",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_markdown {
+    if let Some(ref param_value) = p_query_markdown {
         req_builder = req_builder.query(&[("markdown", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1272,8 +1272,8 @@ pub async fn get_group_acl_roles(
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::SendObjectsPartialUnbrandExcludeXoAclRolePeriodIsTemplateTrue`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::SendObjectsPartialUnbrandExcludeXoAclRolePeriodIsTemplateTrue`")))),
+            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::SendObjectsPartialUnbrandExcludeXoAclRoleIsTemplateTrue`"))),
+            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::SendObjectsPartialUnbrandExcludeXoAclRoleIsTemplateTrue`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -1296,29 +1296,29 @@ pub async fn get_user_privileges(
     limit: Option<f64>,
 ) -> Result<models::SendObjectsPartialUnbrandAnyPrivilege, Error<GetUserPrivilegesError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_fields = fields;
-    let p_ndjson = ndjson;
-    let p_filter = filter;
-    let p_limit = limit;
+    let p_path_id = id;
+    let p_query_fields = fields;
+    let p_query_ndjson = ndjson;
+    let p_query_filter = filter;
+    let p_query_limit = limit;
 
     let uri_str = format!(
         "{}/users/{id}/acl-privileges",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration.client.request(reqwest::Method::GET, &uri_str);
 
-    if let Some(ref param_value) = p_fields {
+    if let Some(ref param_value) = p_query_fields {
         req_builder = req_builder.query(&[("fields", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_ndjson {
+    if let Some(ref param_value) = p_query_ndjson {
         req_builder = req_builder.query(&[("ndjson", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_filter {
+    if let Some(ref param_value) = p_query_filter {
         req_builder = req_builder.query(&[("filter", &param_value.to_string())]);
     }
-    if let Some(ref param_value) = p_limit {
+    if let Some(ref param_value) = p_query_limit {
         req_builder = req_builder.query(&[("limit", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
@@ -1367,17 +1367,17 @@ pub async fn get_user_privileges(
 pub async fn update_acl_v2_privilege(
     configuration: &configuration::Configuration,
     id: &str,
-    unbrand_safe_omit_partial_any_privilege_period_id_or_role_id: models::UnbrandSafeOmitPartialAnyPrivilegePeriodIdOrRoleId,
+    unbrand_safe_omit_partial_any_privilege_id_or_role_id: models::UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleId,
 ) -> Result<(), Error<UpdateAclV2PrivilegeError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_unbrand_safe_omit_partial_any_privilege_period_id_or_role_id =
-        unbrand_safe_omit_partial_any_privilege_period_id_or_role_id;
+    let p_path_id = id;
+    let p_body_unbrand_safe_omit_partial_any_privilege_id_or_role_id =
+        unbrand_safe_omit_partial_any_privilege_id_or_role_id;
 
     let uri_str = format!(
         "{}/acl-privileges/{id}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
@@ -1395,7 +1395,7 @@ pub async fn update_acl_v2_privilege(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.json(&p_unbrand_safe_omit_partial_any_privilege_period_id_or_role_id);
+    req_builder = req_builder.json(&p_body_unbrand_safe_omit_partial_any_privilege_id_or_role_id);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -1422,13 +1422,13 @@ pub async fn update_acl_v2_role(
     update_acl_v2_role_request: models::UpdateAclV2RoleRequest,
 ) -> Result<(), Error<UpdateAclV2RoleError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_update_acl_v2_role_request = update_acl_v2_role_request;
+    let p_path_id = id;
+    let p_body_update_acl_v2_role_request = update_acl_v2_role_request;
 
     let uri_str = format!(
         "{}/acl-roles/{id}",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
@@ -1446,7 +1446,7 @@ pub async fn update_acl_v2_role(
             format!("authenticationToken={}", auth_conf.key),
         );
     };
-    req_builder = req_builder.json(&p_update_acl_v2_role_request);
+    req_builder = req_builder.json(&p_body_update_acl_v2_role_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;

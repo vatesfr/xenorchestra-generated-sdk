@@ -37,7 +37,7 @@ final String id = 9377b642-cc71-8749-1e71-308898b652da; // String |
 try {
     final response = api.getPci(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PcisApi->getPci: $e\n');
 }
 ```
@@ -91,7 +91,7 @@ final double limit = 42; // double |
 try {
     final response = api.getPcis(fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PcisApi->getPcis: $e\n');
 }
 ```

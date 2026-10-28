@@ -41,7 +41,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PartialUnbrandXoVmControllerDocker.JSON_PROPERTY_PROCESS,
   PartialUnbrandXoVmControllerDocker.JSON_PROPERTY_VERSION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PartialUnbrandXoVmControllerDocker {
   public static final String JSON_PROPERTY_CONTAINERS = "containers";
   @javax.annotation.Nullable
@@ -84,14 +84,14 @@ public class PartialUnbrandXoVmControllerDocker {
    * @return containers
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CONTAINERS)
+  @JsonProperty(value = JSON_PROPERTY_CONTAINERS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getContainers() {
     return containers;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CONTAINERS)
+  @JsonProperty(value = JSON_PROPERTY_CONTAINERS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setContainers(@javax.annotation.Nullable List<String> containers) {
     this.containers = containers;
@@ -108,14 +108,14 @@ public class PartialUnbrandXoVmControllerDocker {
    * @return enabled
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ENABLED)
+  @JsonProperty(value = JSON_PROPERTY_ENABLED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Boolean getEnabled() {
     return enabled;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ENABLED)
+  @JsonProperty(value = JSON_PROPERTY_ENABLED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setEnabled(@javax.annotation.Nonnull Boolean enabled) {
     this.enabled = enabled;
@@ -132,14 +132,14 @@ public class PartialUnbrandXoVmControllerDocker {
    * @return info
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_INFO)
+  @JsonProperty(value = JSON_PROPERTY_INFO, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getInfo() {
     return info;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_INFO)
+  @JsonProperty(value = JSON_PROPERTY_INFO, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInfo(@javax.annotation.Nullable String info) {
     this.info = info;
@@ -156,14 +156,14 @@ public class PartialUnbrandXoVmControllerDocker {
    * @return process
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PROCESS)
+  @JsonProperty(value = JSON_PROPERTY_PROCESS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getProcess() {
     return process;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PROCESS)
+  @JsonProperty(value = JSON_PROPERTY_PROCESS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setProcess(@javax.annotation.Nullable String process) {
     this.process = process;
@@ -180,14 +180,14 @@ public class PartialUnbrandXoVmControllerDocker {
    * @return version
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_VERSION)
+  @JsonProperty(value = JSON_PROPERTY_VERSION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getVersion() {
     return version;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_VERSION)
+  @JsonProperty(value = JSON_PROPERTY_VERSION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVersion(@javax.annotation.Nullable String version) {
     this.version = version;
@@ -236,10 +236,7 @@ public class PartialUnbrandXoVmControllerDocker {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -277,30 +274,30 @@ public class PartialUnbrandXoVmControllerDocker {
     // add `containers` to the URL query string
     if (getContainers() != null) {
       for (int i = 0; i < getContainers().size(); i++) {
-        joiner.add(String.format("%scontainers%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%scontainers%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getContainers().get(i)))));
       }
     }
 
     // add `enabled` to the URL query string
     if (getEnabled() != null) {
-      joiner.add(String.format("%senabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEnabled()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%senabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEnabled()))));
     }
 
     // add `info` to the URL query string
     if (getInfo() != null) {
-      joiner.add(String.format("%sinfo%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getInfo()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sinfo%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getInfo()))));
     }
 
     // add `process` to the URL query string
     if (getProcess() != null) {
-      joiner.add(String.format("%sprocess%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProcess()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sprocess%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProcess()))));
     }
 
     // add `version` to the URL query string
     if (getVersion() != null) {
-      joiner.add(String.format("%sversion%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVersion()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sversion%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVersion()))));
     }
 
     return joiner.toString();

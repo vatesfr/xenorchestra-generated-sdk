@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **device** | Option<**String**> |  | [optional]
 **ipv4_allowed** | Option<**Vec<String>**> |  | [optional]
 **ipv6_allowed** | Option<**Vec<String>**> |  | [optional]
-**locking_mode** | Option<[**models::VifLockingMode**](VIF_LOCKING_MODE.md)> |  | [optional]
+**locking_mode** | Option<[**models::VifLockingMode**](VIFLOCKINGMODE.md)> |  | [optional]
 **qos_algorithm_type** | Option<**String**> |  | [optional]
 **mac** | Option<**String**> |  | [optional]
 **network_id** | **String** |  | 

@@ -608,9 +608,10 @@ class _$UnbrandXoHostSerializer implements PrimitiveSerializer<UnbrandXoHost> {
         case r'certificates':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(
+            specifiedType: const FullType.nullable(
                 BuiltList, [FullType(PartialUnbrandXoHostCertificatesInner)]),
-          ) as BuiltList<PartialUnbrandXoHostCertificatesInner>;
+          ) as BuiltList<PartialUnbrandXoHostCertificatesInner>?;
+          if (valueDes == null) continue;
           result.certificates.replace(valueDes);
           break;
         case r'chipset_info':
@@ -623,8 +624,9 @@ class _$UnbrandXoHostSerializer implements PrimitiveSerializer<UnbrandXoHost> {
         case r'controlDomain':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.controlDomain = valueDes;
           break;
         case r'cpus':

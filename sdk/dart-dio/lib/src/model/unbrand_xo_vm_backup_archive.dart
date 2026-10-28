@@ -218,8 +218,9 @@ class _$UnbrandXoVmBackupArchiveSerializer
         case r'differencingVhds':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.differencingVhds = valueDes;
           break;
         case r'disks':
@@ -233,8 +234,9 @@ class _$UnbrandXoVmBackupArchiveSerializer
         case r'dynamicVhds':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.dynamicVhds = valueDes;
           break;
         case r'id':
@@ -247,8 +249,9 @@ class _$UnbrandXoVmBackupArchiveSerializer
         case r'isImmutable':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.isImmutable = valueDes;
           break;
         case r'jobId':

@@ -36,7 +36,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PingResponse.JSON_PROPERTY_RESULT,
   PingResponse.JSON_PROPERTY_TIMESTAMP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PingResponse {
   /**
    * Gets or Sets result
@@ -96,14 +96,14 @@ private final String value;
    * @return result
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_RESULT)
+  @JsonProperty(value = JSON_PROPERTY_RESULT, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public ResultEnum getResult() {
     return result;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_RESULT)
+  @JsonProperty(value = JSON_PROPERTY_RESULT, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setResult(@javax.annotation.Nonnull ResultEnum result) {
     this.result = result;
@@ -120,14 +120,14 @@ private final String value;
    * @return timestamp
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_TIMESTAMP)
+  @JsonProperty(value = JSON_PROPERTY_TIMESTAMP, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getTimestamp() {
     return timestamp;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TIMESTAMP)
+  @JsonProperty(value = JSON_PROPERTY_TIMESTAMP, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setTimestamp(@javax.annotation.Nonnull Double timestamp) {
     this.timestamp = timestamp;
@@ -170,10 +170,7 @@ private final String value;
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -210,12 +207,12 @@ private final String value;
 
     // add `result` to the URL query string
     if (getResult() != null) {
-      joiner.add(String.format("%sresult%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getResult()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sresult%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getResult()))));
     }
 
     // add `timestamp` to the URL query string
     if (getTimestamp() != null) {
-      joiner.add(String.format("%stimestamp%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTimestamp()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%stimestamp%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTimestamp()))));
     }
 
     return joiner.toString();

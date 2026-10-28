@@ -52,7 +52,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   XoaDashboard.JSON_PROPERTY_STORAGE_REPOSITORIES,
   XoaDashboard.JSON_PROPERTY_VMS_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class XoaDashboard {
   public static final String JSON_PROPERTY_BACKUP_REPOSITORIES = "backupRepositories";
   @javax.annotation.Nullable
@@ -107,14 +107,14 @@ public class XoaDashboard {
    * @return backupRepositories
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_BACKUP_REPOSITORIES)
+  @JsonProperty(value = JSON_PROPERTY_BACKUP_REPOSITORIES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public XoaDashboardBackupRepositories getBackupRepositories() {
     return backupRepositories;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_BACKUP_REPOSITORIES)
+  @JsonProperty(value = JSON_PROPERTY_BACKUP_REPOSITORIES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBackupRepositories(@javax.annotation.Nullable XoaDashboardBackupRepositories backupRepositories) {
     this.backupRepositories = backupRepositories;
@@ -131,14 +131,14 @@ public class XoaDashboard {
    * @return backups
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_BACKUPS)
+  @JsonProperty(value = JSON_PROPERTY_BACKUPS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public XoaDashboardBackups getBackups() {
     return backups;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_BACKUPS)
+  @JsonProperty(value = JSON_PROPERTY_BACKUPS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBackups(@javax.annotation.Nullable XoaDashboardBackups backups) {
     this.backups = backups;
@@ -155,14 +155,14 @@ public class XoaDashboard {
    * @return hostsStatus
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_HOSTS_STATUS)
+  @JsonProperty(value = JSON_PROPERTY_HOSTS_STATUS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public XoaDashboardHostsStatus getHostsStatus() {
     return hostsStatus;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_HOSTS_STATUS)
+  @JsonProperty(value = JSON_PROPERTY_HOSTS_STATUS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setHostsStatus(@javax.annotation.Nonnull XoaDashboardHostsStatus hostsStatus) {
     this.hostsStatus = hostsStatus;
@@ -179,14 +179,14 @@ public class XoaDashboard {
    * @return missingPatches
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_MISSING_PATCHES)
+  @JsonProperty(value = JSON_PROPERTY_MISSING_PATCHES, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public XoaDashboardMissingPatches getMissingPatches() {
     return missingPatches;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MISSING_PATCHES)
+  @JsonProperty(value = JSON_PROPERTY_MISSING_PATCHES, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setMissingPatches(@javax.annotation.Nonnull XoaDashboardMissingPatches missingPatches) {
     this.missingPatches = missingPatches;
@@ -203,14 +203,14 @@ public class XoaDashboard {
    * @return nHosts
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_N_HOSTS)
+  @JsonProperty(value = JSON_PROPERTY_N_HOSTS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getnHosts() {
     return nHosts;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_N_HOSTS)
+  @JsonProperty(value = JSON_PROPERTY_N_HOSTS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setnHosts(@javax.annotation.Nonnull Double nHosts) {
     this.nHosts = nHosts;
@@ -227,14 +227,14 @@ public class XoaDashboard {
    * @return nPools
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_N_POOLS)
+  @JsonProperty(value = JSON_PROPERTY_N_POOLS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getnPools() {
     return nPools;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_N_POOLS)
+  @JsonProperty(value = JSON_PROPERTY_N_POOLS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setnPools(@javax.annotation.Nonnull Double nPools) {
     this.nPools = nPools;
@@ -251,14 +251,14 @@ public class XoaDashboard {
    * @return poolsStatus
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_POOLS_STATUS)
+  @JsonProperty(value = JSON_PROPERTY_POOLS_STATUS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public XoaDashboardPoolsStatus getPoolsStatus() {
     return poolsStatus;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_POOLS_STATUS)
+  @JsonProperty(value = JSON_PROPERTY_POOLS_STATUS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setPoolsStatus(@javax.annotation.Nonnull XoaDashboardPoolsStatus poolsStatus) {
     this.poolsStatus = poolsStatus;
@@ -275,14 +275,14 @@ public class XoaDashboard {
    * @return resourcesOverview
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_RESOURCES_OVERVIEW)
+  @JsonProperty(value = JSON_PROPERTY_RESOURCES_OVERVIEW, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public XoaDashboardResourcesOverview getResourcesOverview() {
     return resourcesOverview;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_RESOURCES_OVERVIEW)
+  @JsonProperty(value = JSON_PROPERTY_RESOURCES_OVERVIEW, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setResourcesOverview(@javax.annotation.Nonnull XoaDashboardResourcesOverview resourcesOverview) {
     this.resourcesOverview = resourcesOverview;
@@ -299,14 +299,14 @@ public class XoaDashboard {
    * @return storageRepositories
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_STORAGE_REPOSITORIES)
+  @JsonProperty(value = JSON_PROPERTY_STORAGE_REPOSITORIES, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public XoaDashboardStorageRepositories getStorageRepositories() {
     return storageRepositories;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_STORAGE_REPOSITORIES)
+  @JsonProperty(value = JSON_PROPERTY_STORAGE_REPOSITORIES, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setStorageRepositories(@javax.annotation.Nonnull XoaDashboardStorageRepositories storageRepositories) {
     this.storageRepositories = storageRepositories;
@@ -323,14 +323,14 @@ public class XoaDashboard {
    * @return vmsStatus
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_VMS_STATUS)
+  @JsonProperty(value = JSON_PROPERTY_VMS_STATUS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public XoaDashboardVmsStatus getVmsStatus() {
     return vmsStatus;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_VMS_STATUS)
+  @JsonProperty(value = JSON_PROPERTY_VMS_STATUS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setVmsStatus(@javax.annotation.Nonnull XoaDashboardVmsStatus vmsStatus) {
     this.vmsStatus = vmsStatus;
@@ -389,10 +389,7 @@ public class XoaDashboard {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -449,12 +446,12 @@ public class XoaDashboard {
 
     // add `nHosts` to the URL query string
     if (getnHosts() != null) {
-      joiner.add(String.format("%snHosts%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getnHosts()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%snHosts%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getnHosts()))));
     }
 
     // add `nPools` to the URL query string
     if (getnPools() != null) {
-      joiner.add(String.format("%snPools%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getnPools()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%snPools%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getnPools()))));
     }
 
     // add `poolsStatus` to the URL query string

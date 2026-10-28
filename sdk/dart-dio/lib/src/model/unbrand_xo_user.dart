@@ -150,8 +150,9 @@ class _$UnbrandXoUserSerializer implements PrimitiveSerializer<UnbrandXoUser> {
         case r'authProviders':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.authProviders = valueDes;
           break;
         case r'email':
@@ -178,8 +179,9 @@ class _$UnbrandXoUserSerializer implements PrimitiveSerializer<UnbrandXoUser> {
         case r'name':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.name = valueDes;
           break;
         case r'permission':
@@ -199,8 +201,9 @@ class _$UnbrandXoUserSerializer implements PrimitiveSerializer<UnbrandXoUser> {
         case r'pw_hash':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.pwHash = valueDes;
           break;
         default:

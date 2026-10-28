@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**action** | **String** |  | 
-**effect** | **String** |  | 
+**action** | **Action** |  (enum: update, *, read, update:management) | 
+**effect** | **Effect** |  (enum: allow, deny) | 
 **id** | **String** |  | 
-**resource** | **String** |  | 
+**resource** | **Resource** |  (enum: pif) | 
 **role_id** | **String** |  | 
 **selector** | Option<**String**> |  | [optional]
 

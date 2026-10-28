@@ -114,31 +114,34 @@ class _$XapiVmStatsRawXvdsSerializer
         case r'r':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltMap, [
+            specifiedType: const FullType.nullable(BuiltMap, [
               FullType(String),
               FullType(BuiltList, [FullType.nullable(double)])
             ]),
-          ) as BuiltMap<String, BuiltList<double?>>;
+          ) as BuiltMap<String, BuiltList<double?>>?;
+          if (valueDes == null) continue;
           result.r.replace(valueDes);
           break;
         case r'total':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltMap, [
+            specifiedType: const FullType.nullable(BuiltMap, [
               FullType(String),
               FullType(BuiltList, [FullType.nullable(double)])
             ]),
-          ) as BuiltMap<String, BuiltList<double?>>;
+          ) as BuiltMap<String, BuiltList<double?>>?;
+          if (valueDes == null) continue;
           result.total.replace(valueDes);
           break;
         case r'w':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltMap, [
+            specifiedType: const FullType.nullable(BuiltMap, [
               FullType(String),
               FullType(BuiltList, [FullType.nullable(double)])
             ]),
-          ) as BuiltMap<String, BuiltList<double?>>;
+          ) as BuiltMap<String, BuiltList<double?>>?;
+          if (valueDes == null) continue;
           result.w.replace(valueDes);
           break;
         default:

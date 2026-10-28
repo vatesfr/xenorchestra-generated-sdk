@@ -38,7 +38,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PoolDashboardHostsStatus.JSON_PROPERTY_RUNNING,
   PoolDashboardHostsStatus.JSON_PROPERTY_TOTAL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PoolDashboardHostsStatus {
   public static final String JSON_PROPERTY_DISABLED = "disabled";
   @javax.annotation.Nonnull
@@ -69,14 +69,14 @@ public class PoolDashboardHostsStatus {
    * @return disabled
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_DISABLED)
+  @JsonProperty(value = JSON_PROPERTY_DISABLED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getDisabled() {
     return disabled;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DISABLED)
+  @JsonProperty(value = JSON_PROPERTY_DISABLED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDisabled(@javax.annotation.Nonnull Double disabled) {
     this.disabled = disabled;
@@ -93,14 +93,14 @@ public class PoolDashboardHostsStatus {
    * @return halted
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_HALTED)
+  @JsonProperty(value = JSON_PROPERTY_HALTED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getHalted() {
     return halted;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_HALTED)
+  @JsonProperty(value = JSON_PROPERTY_HALTED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setHalted(@javax.annotation.Nonnull Double halted) {
     this.halted = halted;
@@ -117,14 +117,14 @@ public class PoolDashboardHostsStatus {
    * @return running
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_RUNNING)
+  @JsonProperty(value = JSON_PROPERTY_RUNNING, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getRunning() {
     return running;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_RUNNING)
+  @JsonProperty(value = JSON_PROPERTY_RUNNING, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setRunning(@javax.annotation.Nonnull Double running) {
     this.running = running;
@@ -141,14 +141,14 @@ public class PoolDashboardHostsStatus {
    * @return total
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_TOTAL)
+  @JsonProperty(value = JSON_PROPERTY_TOTAL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getTotal() {
     return total;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TOTAL)
+  @JsonProperty(value = JSON_PROPERTY_TOTAL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setTotal(@javax.annotation.Nonnull Double total) {
     this.total = total;
@@ -195,10 +195,7 @@ public class PoolDashboardHostsStatus {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -235,22 +232,22 @@ public class PoolDashboardHostsStatus {
 
     // add `disabled` to the URL query string
     if (getDisabled() != null) {
-      joiner.add(String.format("%sdisabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDisabled()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdisabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDisabled()))));
     }
 
     // add `halted` to the URL query string
     if (getHalted() != null) {
-      joiner.add(String.format("%shalted%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHalted()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%shalted%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHalted()))));
     }
 
     // add `running` to the URL query string
     if (getRunning() != null) {
-      joiner.add(String.format("%srunning%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRunning()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%srunning%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRunning()))));
     }
 
     // add `total` to the URL query string
     if (getTotal() != null) {
-      joiner.add(String.format("%stotal%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTotal()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%stotal%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTotal()))));
     }
 
     return joiner.toString();

@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**issues** | [**Vec<models::DashboardBackupsInfoIssuesInner>**](DashboardBackupsInfo_issues_inner.md) |  | 
-**jobs** | [**models::DashboardBackupsInfoJobs**](DashboardBackupsInfo_jobs.md) |  | 
-**vms_protection** | [**models::DashboardBackupsInfoVmsProtection**](DashboardBackupsInfo_vmsProtection.md) |  | 
+**issues** | [**Vec<models::DashboardBackupsInfoIssuesInner>**](DashboardBackupsInfoIssuesInner.md) |  | 
+**jobs** | [**models::DashboardBackupsInfoJobs**](DashboardBackupsInfoJobs.md) |  | 
+**vms_protection** | [**models::DashboardBackupsInfoVmsProtection**](DashboardBackupsInfoVmsProtection.md) |  | 
 **is_expired** | Option<**bool**> |  | [optional]
 **is_empty** | **bool** |  | 
 **error** | **bool** |  | 

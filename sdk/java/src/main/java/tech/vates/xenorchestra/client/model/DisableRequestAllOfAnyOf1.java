@@ -39,7 +39,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   DisableRequestAllOfAnyOf1.JSON_PROPERTY_FORCE,
   DisableRequestAllOfAnyOf1.JSON_PROPERTY_VM_IDS_TO_FORCE_MIGRATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class DisableRequestAllOfAnyOf1 {
   public static final String JSON_PROPERTY_EVACUATE = "evacuate";
   @javax.annotation.Nonnull
@@ -66,14 +66,14 @@ public class DisableRequestAllOfAnyOf1 {
    * @return evacuate
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_EVACUATE)
+  @JsonProperty(value = JSON_PROPERTY_EVACUATE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Boolean getEvacuate() {
     return evacuate;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_EVACUATE)
+  @JsonProperty(value = JSON_PROPERTY_EVACUATE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setEvacuate(@javax.annotation.Nonnull Boolean evacuate) {
     this.evacuate = evacuate;
@@ -90,14 +90,14 @@ public class DisableRequestAllOfAnyOf1 {
    * @return force
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_FORCE)
+  @JsonProperty(value = JSON_PROPERTY_FORCE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getForce() {
     return force;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_FORCE)
+  @JsonProperty(value = JSON_PROPERTY_FORCE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setForce(@javax.annotation.Nullable Boolean force) {
     this.force = force;
@@ -122,14 +122,14 @@ public class DisableRequestAllOfAnyOf1 {
    * @return vmIdsToForceMigrate
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_VM_IDS_TO_FORCE_MIGRATE)
+  @JsonProperty(value = JSON_PROPERTY_VM_IDS_TO_FORCE_MIGRATE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getVmIdsToForceMigrate() {
     return vmIdsToForceMigrate;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_VM_IDS_TO_FORCE_MIGRATE)
+  @JsonProperty(value = JSON_PROPERTY_VM_IDS_TO_FORCE_MIGRATE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVmIdsToForceMigrate(@javax.annotation.Nullable List<String> vmIdsToForceMigrate) {
     this.vmIdsToForceMigrate = vmIdsToForceMigrate;
@@ -174,10 +174,7 @@ public class DisableRequestAllOfAnyOf1 {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -214,19 +211,19 @@ public class DisableRequestAllOfAnyOf1 {
 
     // add `evacuate` to the URL query string
     if (getEvacuate() != null) {
-      joiner.add(String.format("%sevacuate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEvacuate()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sevacuate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEvacuate()))));
     }
 
     // add `force` to the URL query string
     if (getForce() != null) {
-      joiner.add(String.format("%sforce%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getForce()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sforce%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getForce()))));
     }
 
     // add `vmIdsToForceMigrate` to the URL query string
     if (getVmIdsToForceMigrate() != null) {
       for (int i = 0; i < getVmIdsToForceMigrate().size(); i++) {
-        joiner.add(String.format("%svmIdsToForceMigrate%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%svmIdsToForceMigrate%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getVmIdsToForceMigrate().get(i)))));
       }
     }

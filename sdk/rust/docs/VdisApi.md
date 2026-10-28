@@ -199,7 +199,7 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **String** |  | [required] |
-**format** | [**ExcludeSupportedVdiFormatPeriodQcow2**](.md) |  | [required] |
+**format** | [**ExcludeSupportedVdiFormatQcow2**](ExcludeSupportedVdiFormatQcow2.md) |  | [required] |
 
 ### Return type
 
@@ -230,7 +230,7 @@ Required privilege: - resource: vdi-snapshot, action: export  Export VDI-snapsho
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **String** |  | [required] |
-**format** | [**ExcludeSupportedVdiFormatPeriodQcow2**](.md) |  | [required] |
+**format** | [**ExcludeSupportedVdiFormatQcow2**](ExcludeSupportedVdiFormatQcow2.md) |  | [required] |
 
 ### Return type
 
@@ -739,7 +739,7 @@ Name | Type | Description  | Required | Notes
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **String** |  | [required] |
-**format** | [**ExcludeSupportedVdiFormatPeriodQcow2**](.md) |  | [required] |
+**format** | [**ExcludeSupportedVdiFormatQcow2**](ExcludeSupportedVdiFormatQcow2.md) |  | [required] |
 **body** | **std::path::PathBuf** |  | [required] |
 
 ### Return type

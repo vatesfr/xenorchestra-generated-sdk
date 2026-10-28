@@ -22,26 +22,6 @@ func patchGeneratedRust(root string) error {
 	if err != nil {
 		return err
 	}
-	const old = "req_builder = req_builder.body(p_body);"
-	const replacement = "req_builder = req_builder.body(std::fs::read(p_body)?);"
-	changed := 0
-	for _, path := range paths {
-		data, err := os.ReadFile(path)
-		if err != nil {
-			return err
-		}
-		count := strings.Count(string(data), old)
-		if count == 0 {
-			continue
-		}
-		if err := os.WriteFile(path, []byte(strings.ReplaceAll(string(data), old, replacement)), 0o644); err != nil {
-			return err
-		}
-		changed += count
-	}
-	if changed != 5 {
-		return fmt.Errorf("expected 5 binary body fixes, applied %d", changed)
-	}
 
 	const basicAuthentication = `    if let Some(ref auth_conf) = configuration.basic_auth {
         req_builder = req_builder.basic_auth(auth_conf.0.to_owned(), auth_conf.1.to_owned());
@@ -79,7 +59,7 @@ func patchGeneratedRust(root string) error {
 	manifest := filepath.Join(root, "Cargo.toml")
 	manifestReplacements := [][2]string{
 		{`authors = ["OpenAPI Generator team and contributors"]`, `authors = ["Vates SAS"]`},
-		{`reqwest = { version = "^0.12", default-features = false, features = ["json", "multipart"] }`, `reqwest = { version = "^0.12", default-features = false, features = ["json", "multipart", "rustls-tls"] }`},
+		{`default = ["native-tls"]`, `default = ["rustls"]`},
 		{`edition = "2021"`, `edition = "2021"
 repository = "https://github.com/vatesfr/xenorchestra-generated-sdk"
 homepage = "https://xen-orchestra.com"

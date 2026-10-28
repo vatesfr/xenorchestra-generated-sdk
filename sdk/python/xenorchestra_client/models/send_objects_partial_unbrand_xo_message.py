@@ -24,7 +24,7 @@ from typing import Union, Any, List, Set, TYPE_CHECKING, Optional, Dict
 from typing_extensions import Literal, Self
 from pydantic import Field
 
-SENDOBJECTSPARTIALUNBRANDXOMESSAGE_ANY_OF_SCHEMAS = ["List[WithHrefPartialUnbrandXoMessage]", "List[str]", "bytearray", "str"]
+SENDOBJECTSPARTIALUNBRANDXOMESSAGE_ANY_OF_SCHEMAS = ["List[WithHrefPartialUnbrandXoMessage]", "List[str]", "bytes", "str"]
 
 class SendObjectsPartialUnbrandXoMessage(BaseModel):
     """
@@ -35,15 +35,15 @@ class SendObjectsPartialUnbrandXoMessage(BaseModel):
     anyof_schema_1_validator: Optional[List[StrictStr]] = None
     # data type: List[WithHrefPartialUnbrandXoMessage]
     anyof_schema_2_validator: Optional[List[WithHrefPartialUnbrandXoMessage]] = None
-    # data type: bytearray
+    # data type: bytes
     anyof_schema_3_validator: Optional[Union[StrictBytes, StrictStr]] = None
     # data type: str
     anyof_schema_4_validator: Optional[StrictStr] = None
     if TYPE_CHECKING:
-        actual_instance: Optional[Union[List[WithHrefPartialUnbrandXoMessage], List[str], bytearray, str]] = None
+        actual_instance: Optional[Union[List[WithHrefPartialUnbrandXoMessage], List[str], bytes, str]] = None
     else:
         actual_instance: Any = None
-    any_of_schemas: Set[str] = { "List[WithHrefPartialUnbrandXoMessage]", "List[str]", "bytearray", "str" }
+    any_of_schemas: Set[str] = { "List[WithHrefPartialUnbrandXoMessage]", "List[str]", "bytes", "str" }
 
     model_config = {
         "validate_assignment": True,
@@ -76,7 +76,7 @@ class SendObjectsPartialUnbrandXoMessage(BaseModel):
             return v
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # validate data type: bytearray
+        # validate data type: bytes
         try:
             instance.anyof_schema_3_validator = v
             return v
@@ -90,7 +90,7 @@ class SendObjectsPartialUnbrandXoMessage(BaseModel):
             error_messages.append(str(e))
         if error_messages:
             # no match
-            raise ValueError("No match found when setting the actual_instance in SendObjectsPartialUnbrandXoMessage with anyOf schemas: List[WithHrefPartialUnbrandXoMessage], List[str], bytearray, str. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when setting the actual_instance in SendObjectsPartialUnbrandXoMessage with anyOf schemas: List[WithHrefPartialUnbrandXoMessage], List[str], bytes, str. Details: " + ", ".join(error_messages))
         else:
             return v
 
@@ -121,7 +121,7 @@ class SendObjectsPartialUnbrandXoMessage(BaseModel):
             return instance
         except (ValidationError, ValueError) as e:
             error_messages.append(str(e))
-        # deserialize data into bytearray
+        # deserialize data into bytes
         try:
             # validation
             instance.anyof_schema_3_validator = json.loads(json_str)
@@ -142,7 +142,7 @@ class SendObjectsPartialUnbrandXoMessage(BaseModel):
 
         if error_messages:
             # no match
-            raise ValueError("No match found when deserializing the JSON string into SendObjectsPartialUnbrandXoMessage with anyOf schemas: List[WithHrefPartialUnbrandXoMessage], List[str], bytearray, str. Details: " + ", ".join(error_messages))
+            raise ValueError("No match found when deserializing the JSON string into SendObjectsPartialUnbrandXoMessage with anyOf schemas: List[WithHrefPartialUnbrandXoMessage], List[str], bytes, str. Details: " + ", ".join(error_messages))
         else:
             return instance
 
@@ -156,7 +156,7 @@ class SendObjectsPartialUnbrandXoMessage(BaseModel):
         else:
             return json.dumps(self.to_dict())
 
-    def to_dict(self) -> Optional[Union[Dict[str, Any], List[WithHrefPartialUnbrandXoMessage], List[str], bytearray, str]]:
+    def to_dict(self) -> Optional[Union[Dict[str, Any], List[WithHrefPartialUnbrandXoMessage], List[str], bytes, str]]:
         """Returns the dict representation of the actual instance"""
         if self.actual_instance is None:
             return None

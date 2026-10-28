@@ -37,7 +37,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PartialUnbrandXoBackupRepositoryBenchmarksInner.JSON_PROPERTY_TIMESTAMP,
   PartialUnbrandXoBackupRepositoryBenchmarksInner.JSON_PROPERTY_WRITE_RATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PartialUnbrandXoBackupRepositoryBenchmarksInner {
   public static final String JSON_PROPERTY_READ_RATE = "readRate";
   @javax.annotation.Nonnull
@@ -64,14 +64,14 @@ public class PartialUnbrandXoBackupRepositoryBenchmarksInner {
    * @return readRate
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_READ_RATE)
+  @JsonProperty(value = JSON_PROPERTY_READ_RATE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getReadRate() {
     return readRate;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_READ_RATE)
+  @JsonProperty(value = JSON_PROPERTY_READ_RATE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setReadRate(@javax.annotation.Nonnull Double readRate) {
     this.readRate = readRate;
@@ -88,14 +88,14 @@ public class PartialUnbrandXoBackupRepositoryBenchmarksInner {
    * @return timestamp
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_TIMESTAMP)
+  @JsonProperty(value = JSON_PROPERTY_TIMESTAMP, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getTimestamp() {
     return timestamp;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TIMESTAMP)
+  @JsonProperty(value = JSON_PROPERTY_TIMESTAMP, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setTimestamp(@javax.annotation.Nonnull Double timestamp) {
     this.timestamp = timestamp;
@@ -112,14 +112,14 @@ public class PartialUnbrandXoBackupRepositoryBenchmarksInner {
    * @return writeRate
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_WRITE_RATE)
+  @JsonProperty(value = JSON_PROPERTY_WRITE_RATE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getWriteRate() {
     return writeRate;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_WRITE_RATE)
+  @JsonProperty(value = JSON_PROPERTY_WRITE_RATE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setWriteRate(@javax.annotation.Nonnull Double writeRate) {
     this.writeRate = writeRate;
@@ -164,10 +164,7 @@ public class PartialUnbrandXoBackupRepositoryBenchmarksInner {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -204,17 +201,17 @@ public class PartialUnbrandXoBackupRepositoryBenchmarksInner {
 
     // add `readRate` to the URL query string
     if (getReadRate() != null) {
-      joiner.add(String.format("%sreadRate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReadRate()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sreadRate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReadRate()))));
     }
 
     // add `timestamp` to the URL query string
     if (getTimestamp() != null) {
-      joiner.add(String.format("%stimestamp%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTimestamp()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%stimestamp%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTimestamp()))));
     }
 
     // add `writeRate` to the URL query string
     if (getWriteRate() != null) {
-      joiner.add(String.format("%swriteRate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getWriteRate()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%swriteRate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getWriteRate()))));
     }
 
     return joiner.toString();

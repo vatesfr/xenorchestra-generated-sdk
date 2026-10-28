@@ -30,9 +30,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import tech.vates.xenorchestra.client.model.PartialUnbrandXoBackupLogInfosInner;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -46,7 +44,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   UnbrandXoRestoreLog.JSON_PROPERTY_INFOS,
   UnbrandXoRestoreLog.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class UnbrandXoRestoreLog {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -110,14 +108,14 @@ private final String value;
    * @return id
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
@@ -142,14 +140,14 @@ private final String value;
    * @return infos
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_INFOS)
+  @JsonProperty(value = JSON_PROPERTY_INFOS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<PartialUnbrandXoBackupLogInfosInner> getInfos() {
     return infos;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_INFOS)
+  @JsonProperty(value = JSON_PROPERTY_INFOS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInfos(@javax.annotation.Nullable List<PartialUnbrandXoBackupLogInfosInner> infos) {
     this.infos = infos;
@@ -166,14 +164,14 @@ private final String value;
    * @return message
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_MESSAGE)
+  @JsonProperty(value = JSON_PROPERTY_MESSAGE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public MessageEnum getMessage() {
     return message;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MESSAGE)
+  @JsonProperty(value = JSON_PROPERTY_MESSAGE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setMessage(@javax.annotation.Nonnull MessageEnum message) {
     this.message = message;
@@ -263,10 +261,7 @@ private final String value;
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -303,22 +298,22 @@ private final String value;
 
     // add `id` to the URL query string
     if (getId() != null) {
-      joiner.add(String.format("%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
     }
 
     // add `infos` to the URL query string
     if (getInfos() != null) {
       for (int i = 0; i < getInfos().size(); i++) {
         if (getInfos().get(i) != null) {
-          joiner.add(getInfos().get(i).toUrlQueryString(String.format("%sinfos%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+          joiner.add(getInfos().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sinfos%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
     }
 
     // add `message` to the URL query string
     if (getMessage() != null) {
-      joiner.add(String.format("%smessage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMessage()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%smessage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMessage()))));
     }
 
     return joiner.toString();

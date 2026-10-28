@@ -39,7 +39,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   IsMaybeExpiredDashboardBackupRepositoriesSizeInfo.JSON_PROPERTY_S3,
   IsMaybeExpiredDashboardBackupRepositoriesSizeInfo.JSON_PROPERTY_IS_EXPIRED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class IsMaybeExpiredDashboardBackupRepositoriesSizeInfo {
   public static final String JSON_PROPERTY_OTHER = "other";
   @javax.annotation.Nullable
@@ -66,14 +66,14 @@ public class IsMaybeExpiredDashboardBackupRepositoriesSizeInfo {
    * @return other
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_OTHER)
+  @JsonProperty(value = JSON_PROPERTY_OTHER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public DashboardBackupRepositoriesSizeInfoOther getOther() {
     return other;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_OTHER)
+  @JsonProperty(value = JSON_PROPERTY_OTHER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOther(@javax.annotation.Nullable DashboardBackupRepositoriesSizeInfoOther other) {
     this.other = other;
@@ -90,14 +90,14 @@ public class IsMaybeExpiredDashboardBackupRepositoriesSizeInfo {
    * @return s3
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_S3)
+  @JsonProperty(value = JSON_PROPERTY_S3, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public DashboardBackupRepositoriesSizeInfoS3 getS3() {
     return s3;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_S3)
+  @JsonProperty(value = JSON_PROPERTY_S3, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setS3(@javax.annotation.Nullable DashboardBackupRepositoriesSizeInfoS3 s3) {
     this.s3 = s3;
@@ -114,14 +114,14 @@ public class IsMaybeExpiredDashboardBackupRepositoriesSizeInfo {
    * @return isExpired
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_IS_EXPIRED)
+  @JsonProperty(value = JSON_PROPERTY_IS_EXPIRED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getIsExpired() {
     return isExpired;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_IS_EXPIRED)
+  @JsonProperty(value = JSON_PROPERTY_IS_EXPIRED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIsExpired(@javax.annotation.Nullable Boolean isExpired) {
     this.isExpired = isExpired;
@@ -166,10 +166,7 @@ public class IsMaybeExpiredDashboardBackupRepositoriesSizeInfo {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -216,7 +213,7 @@ public class IsMaybeExpiredDashboardBackupRepositoriesSizeInfo {
 
     // add `isExpired` to the URL query string
     if (getIsExpired() != null) {
-      joiner.add(String.format("%sisExpired%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsExpired()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sisExpired%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsExpired()))));
     }
 
     return joiner.toString();

@@ -132,7 +132,7 @@ null (empty response body)
 
 ## attachAclV2GroupWithHttpInfo
 
-> ApiResponse<Void> attachAclV2Group attachAclV2GroupWithHttpInfo(id, groupId)
+> ApiResponse<Void> attachAclV2GroupWithHttpInfo(id, groupId)
 
 
 
@@ -302,7 +302,7 @@ null (empty response body)
 
 ## attachAclV2UserWithHttpInfo
 
-> ApiResponse<Void> attachAclV2User attachAclV2UserWithHttpInfo(id, userId)
+> ApiResponse<Void> attachAclV2UserWithHttpInfo(id, userId)
 
 
 
@@ -475,7 +475,7 @@ public class Example {
 
 ## copyAclV2RoleWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeIdString> copyAclV2Role copyAclV2RoleWithHttpInfo(id, sync, copyAclV2RoleRequest)
+> ApiResponse<CreateActionReturnTypeIdString> copyAclV2RoleWithHttpInfo(id, sync, copyAclV2RoleRequest)
 
 
 
@@ -647,7 +647,7 @@ public class Example {
 
 ## createAclV2PrivilegeWithHttpInfo
 
-> ApiResponse<CreateAclV2Privilege201Response> createAclV2Privilege createAclV2PrivilegeWithHttpInfo(unbrandSafeOmitAnyPrivilegeId)
+> ApiResponse<CreateAclV2Privilege201Response> createAclV2PrivilegeWithHttpInfo(unbrandSafeOmitAnyPrivilegeId)
 
 
 
@@ -814,7 +814,7 @@ public class Example {
 
 ## createAclV2RoleWithHttpInfo
 
-> ApiResponse<CreateAclV2Privilege201Response> createAclV2Role createAclV2RoleWithHttpInfo(createAclV2RoleRequest)
+> ApiResponse<CreateAclV2Privilege201Response> createAclV2RoleWithHttpInfo(createAclV2RoleRequest)
 
 
 
@@ -979,7 +979,7 @@ null (empty response body)
 
 ## deleteAclV2PrivilegeWithHttpInfo
 
-> ApiResponse<Void> deleteAclV2Privilege deleteAclV2PrivilegeWithHttpInfo(id)
+> ApiResponse<Void> deleteAclV2PrivilegeWithHttpInfo(id)
 
 
 
@@ -1143,7 +1143,7 @@ null (empty response body)
 
 ## deleteAclV2RoleWithHttpInfo
 
-> ApiResponse<Void> deleteAclV2Role deleteAclV2RoleWithHttpInfo(id)
+> ApiResponse<Void> deleteAclV2RoleWithHttpInfo(id)
 
 
 
@@ -1309,7 +1309,7 @@ null (empty response body)
 
 ## detachAclV2GroupWithHttpInfo
 
-> ApiResponse<Void> detachAclV2Group detachAclV2GroupWithHttpInfo(id, groupId)
+> ApiResponse<Void> detachAclV2GroupWithHttpInfo(id, groupId)
 
 
 
@@ -1477,7 +1477,7 @@ null (empty response body)
 
 ## detachAclV2UserWithHttpInfo
 
-> ApiResponse<Void> detachAclV2User detachAclV2UserWithHttpInfo(id, userId)
+> ApiResponse<Void> detachAclV2UserWithHttpInfo(id, userId)
 
 
 
@@ -1653,7 +1653,7 @@ public class Example {
 
 ## getAclRoleGroupsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoGroup> getAclRoleGroups getAclRoleGroupsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoGroup> getAclRoleGroupsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1837,7 +1837,7 @@ public class Example {
 
 ## getAclRoleUsersWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoUser> getAclRoleUsers getAclRoleUsersWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoUser> getAclRoleUsersWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -2012,7 +2012,7 @@ public class Example {
 
 ## getAclV2PrivilegeWithHttpInfo
 
-> ApiResponse<UnbrandAnyPrivilege> getAclV2Privilege getAclV2PrivilegeWithHttpInfo(id)
+> ApiResponse<UnbrandAnyPrivilege> getAclV2PrivilegeWithHttpInfo(id)
 
 
 
@@ -2182,7 +2182,7 @@ public class Example {
 
 ## getAclV2PrivilegesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandAnyPrivilege> getAclV2Privileges getAclV2PrivilegesWithHttpInfo(fields, ndjson, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandAnyPrivilege> getAclV2PrivilegesWithHttpInfo(fields, ndjson, filter, limit)
 
 
 
@@ -2352,7 +2352,7 @@ public class Example {
 
 ## getAclV2RoleWithHttpInfo
 
-> ApiResponse<UnbrandXoAclRole> getAclV2Role getAclV2RoleWithHttpInfo(id)
+> ApiResponse<UnbrandXoAclRole> getAclV2RoleWithHttpInfo(id)
 
 
 
@@ -2525,7 +2525,7 @@ public class Example {
 
 ## getAclV2RolePrivilegesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandAnyPrivilege> getAclV2RolePrivileges getAclV2RolePrivilegesWithHttpInfo(id, fields, ndjson, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandAnyPrivilege> getAclV2RolePrivilegesWithHttpInfo(id, fields, ndjson, filter, limit)
 
 
 
@@ -2702,7 +2702,7 @@ public class Example {
 
 ## getAclV2RolesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoAclRole> getAclV2Roles getAclV2RolesWithHttpInfo(fields, ndjson, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoAclRole> getAclV2RolesWithHttpInfo(fields, ndjson, filter, limit)
 
 
 
@@ -2881,7 +2881,7 @@ public class Example {
 
 ## getGroupAclRolesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandExcludeXoAclRoleIsTemplateTrue> getGroupAclRoles getGroupAclRolesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandExcludeXoAclRoleIsTemplateTrue> getGroupAclRolesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -3063,7 +3063,7 @@ public class Example {
 
 ## getUserPrivilegesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandAnyPrivilege> getUserPrivileges getUserPrivilegesWithHttpInfo(id, fields, ndjson, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandAnyPrivilege> getUserPrivilegesWithHttpInfo(id, fields, ndjson, filter, limit)
 
 
 
@@ -3238,7 +3238,7 @@ null (empty response body)
 
 ## updateAclV2PrivilegeWithHttpInfo
 
-> ApiResponse<Void> updateAclV2Privilege updateAclV2PrivilegeWithHttpInfo(id, unbrandSafeOmitPartialAnyPrivilegeIdOrRoleId)
+> ApiResponse<Void> updateAclV2PrivilegeWithHttpInfo(id, unbrandSafeOmitPartialAnyPrivilegeIdOrRoleId)
 
 
 
@@ -3408,7 +3408,7 @@ null (empty response body)
 
 ## updateAclV2RoleWithHttpInfo
 
-> ApiResponse<Void> updateAclV2Role updateAclV2RoleWithHttpInfo(id, updateAclV2RoleRequest)
+> ApiResponse<Void> updateAclV2RoleWithHttpInfo(id, updateAclV2RoleRequest)
 
 
 

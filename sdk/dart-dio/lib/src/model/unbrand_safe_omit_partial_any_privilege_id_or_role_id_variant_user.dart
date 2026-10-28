@@ -134,32 +134,36 @@ class _$UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantUserSerializer
         case r'action':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(
+            specifiedType: const FullType.nullable(
                 UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantUserActionEnum),
-          ) as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantUserActionEnum;
+          ) as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantUserActionEnum?;
+          if (valueDes == null) continue;
           result.action = valueDes;
           break;
         case r'effect':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(
+            specifiedType: const FullType.nullable(
                 UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantUserEffectEnum),
-          ) as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantUserEffectEnum;
+          ) as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantUserEffectEnum?;
+          if (valueDes == null) continue;
           result.effect = valueDes;
           break;
         case r'resource':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(
+            specifiedType: const FullType.nullable(
                 UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantUserResourceEnum),
-          ) as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantUserResourceEnum;
+          ) as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantUserResourceEnum?;
+          if (valueDes == null) continue;
           result.resource = valueDes;
           break;
         case r'selector':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.selector = valueDes;
           break;
         default:

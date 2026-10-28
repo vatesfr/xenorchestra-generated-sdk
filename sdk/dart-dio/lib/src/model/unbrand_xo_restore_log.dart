@@ -112,9 +112,10 @@ class _$UnbrandXoRestoreLogSerializer
         case r'infos':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(
+            specifiedType: const FullType.nullable(
                 BuiltList, [FullType(PartialUnbrandXoBackupLogInfosInner)]),
-          ) as BuiltList<PartialUnbrandXoBackupLogInfosInner>;
+          ) as BuiltList<PartialUnbrandXoBackupLogInfosInner>?;
+          if (valueDes == null) continue;
           result.infos.replace(valueDes);
           break;
         case r'message':

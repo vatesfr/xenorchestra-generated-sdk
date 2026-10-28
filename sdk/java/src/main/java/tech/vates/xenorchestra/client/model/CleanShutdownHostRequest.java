@@ -36,7 +36,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   CleanShutdownHostRequest.JSON_PROPERTY_BYPASS_BACKUP_CHECK,
   CleanShutdownHostRequest.JSON_PROPERTY_BYPASS_EVACUATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class CleanShutdownHostRequest {
   public static final String JSON_PROPERTY_BYPASS_BACKUP_CHECK = "bypassBackupCheck";
   @javax.annotation.Nullable
@@ -59,14 +59,14 @@ public class CleanShutdownHostRequest {
    * @return bypassBackupCheck
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_BYPASS_BACKUP_CHECK)
+  @JsonProperty(value = JSON_PROPERTY_BYPASS_BACKUP_CHECK, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getBypassBackupCheck() {
     return bypassBackupCheck;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_BYPASS_BACKUP_CHECK)
+  @JsonProperty(value = JSON_PROPERTY_BYPASS_BACKUP_CHECK, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBypassBackupCheck(@javax.annotation.Nullable Boolean bypassBackupCheck) {
     this.bypassBackupCheck = bypassBackupCheck;
@@ -83,14 +83,14 @@ public class CleanShutdownHostRequest {
    * @return bypassEvacuate
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_BYPASS_EVACUATE)
+  @JsonProperty(value = JSON_PROPERTY_BYPASS_EVACUATE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getBypassEvacuate() {
     return bypassEvacuate;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_BYPASS_EVACUATE)
+  @JsonProperty(value = JSON_PROPERTY_BYPASS_EVACUATE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBypassEvacuate(@javax.annotation.Nullable Boolean bypassEvacuate) {
     this.bypassEvacuate = bypassEvacuate;
@@ -133,10 +133,7 @@ public class CleanShutdownHostRequest {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -173,12 +170,12 @@ public class CleanShutdownHostRequest {
 
     // add `bypassBackupCheck` to the URL query string
     if (getBypassBackupCheck() != null) {
-      joiner.add(String.format("%sbypassBackupCheck%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBypassBackupCheck()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbypassBackupCheck%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBypassBackupCheck()))));
     }
 
     // add `bypassEvacuate` to the URL query string
     if (getBypassEvacuate() != null) {
-      joiner.add(String.format("%sbypassEvacuate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBypassEvacuate()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbypassEvacuate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBypassEvacuate()))));
     }
 
     return joiner.toString();

@@ -156,8 +156,9 @@ class _$PluginsSdnControllerNetworksIdActionsUpdateTrafficRulePostRequestOldRule
         case r'port':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(num),
-          ) as num;
+            specifiedType: const FullType.nullable(num),
+          ) as num?;
+          if (valueDes == null) continue;
           result.port = valueDes;
           break;
         case r'protocol':

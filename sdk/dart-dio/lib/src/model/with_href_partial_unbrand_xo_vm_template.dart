@@ -815,198 +815,235 @@ class _$WithHrefPartialUnbrandXoVmTemplateSerializer
         case r'$VBDs':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
+            specifiedType:
+                const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
           result.dollarVBDs.replace(valueDes);
           break;
         case r'$VGPUs':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
+            specifiedType:
+                const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
           result.dollarVGPUs.replace(valueDes);
           break;
         case r'$container':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.dollarContainer = valueDes;
           break;
         case r'$pool':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.dollarPool = valueDes;
           break;
         case r'$poolId':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.dollarPoolId = valueDes;
           break;
         case r'CPUs':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(PartialUnbrandXoVmControllerCPUs),
-          ) as PartialUnbrandXoVmControllerCPUs;
+            specifiedType:
+                const FullType.nullable(PartialUnbrandXoVmControllerCPUs),
+          ) as PartialUnbrandXoVmControllerCPUs?;
+          if (valueDes == null) continue;
           result.cPUs.replace(valueDes);
           break;
         case r'PV_args':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.pVArgs = valueDes;
           break;
         case r'VGPUs':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
+            specifiedType:
+                const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
           result.vGPUs.replace(valueDes);
           break;
         case r'VIFs':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
+            specifiedType:
+                const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
           result.vIFs.replace(valueDes);
           break;
         case r'VTPMs':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
+            specifiedType:
+                const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
           result.vTPMs.replace(valueDes);
           break;
         case r'_xapiRef':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.xapiRef = valueDes;
           break;
         case r'addresses':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.addresses = valueDes;
           break;
         case r'affinityHost':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.affinityHost = valueDes;
           break;
         case r'attachedPcis':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
+            specifiedType:
+                const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
           result.attachedPcis.replace(valueDes);
           break;
         case r'auto_poweron':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.autoPoweron = valueDes;
           break;
         case r'bios_strings':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.biosStrings = valueDes;
           break;
         case r'blockedOperations':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.blockedOperations = valueDes;
           break;
         case r'boot':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.boot = valueDes;
           break;
         case r'coresPerSocket':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.coresPerSocket = valueDes;
           break;
         case r'cpuCap':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.cpuCap = valueDes;
           break;
         case r'cpuMask':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(double)]),
-          ) as BuiltList<double>;
+            specifiedType:
+                const FullType.nullable(BuiltList, [FullType(double)]),
+          ) as BuiltList<double>?;
+          if (valueDes == null) continue;
           result.cpuMask.replace(valueDes);
           break;
         case r'cpuWeight':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.cpuWeight = valueDes;
           break;
         case r'creation':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.creation = valueDes;
           break;
         case r'current_operations':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.currentOperations = valueDes;
           break;
         case r'docker':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(PartialUnbrandXoVmControllerDocker),
-          ) as PartialUnbrandXoVmControllerDocker;
+            specifiedType:
+                const FullType.nullable(PartialUnbrandXoVmControllerDocker),
+          ) as PartialUnbrandXoVmControllerDocker?;
+          if (valueDes == null) continue;
           result.docker.replace(valueDes);
           break;
         case r'expNestedHvm':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.expNestedHvm = valueDes;
           break;
         case r'hasVendorDevice':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.hasVendorDevice = valueDes;
           break;
         case r'high_availability':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(
+            specifiedType: const FullType.nullable(
                 WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum),
-          ) as WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum;
+          ) as WithHrefPartialUnbrandXoVmTemplateHighAvailabilityEnum?;
+          if (valueDes == null) continue;
           result.highAvailability = valueDes;
           break;
         case r'href':
@@ -1019,8 +1056,9 @@ class _$WithHrefPartialUnbrandXoVmTemplateSerializer
         case r'id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'installTime':
@@ -1034,78 +1072,90 @@ class _$WithHrefPartialUnbrandXoVmTemplateSerializer
         case r'isDefaultTemplate':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.isDefaultTemplate = valueDes;
           break;
         case r'isFirmwareSupported':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.isFirmwareSupported = valueDes;
           break;
         case r'isNestedVirtEnabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.isNestedVirtEnabled = valueDes;
           break;
         case r'mainIpAddress':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.mainIpAddress = valueDes;
           break;
         case r'managementAgentDetected':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.managementAgentDetected = valueDes;
           break;
         case r'memory':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(PartialUnbrandXoVmControllerMemory),
-          ) as PartialUnbrandXoVmControllerMemory;
+            specifiedType:
+                const FullType.nullable(PartialUnbrandXoVmControllerMemory),
+          ) as PartialUnbrandXoVmControllerMemory?;
+          if (valueDes == null) continue;
           result.memory.replace(valueDes);
           break;
         case r'name_description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.nameDescription = valueDes;
           break;
         case r'name_label':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.nameLabel = valueDes;
           break;
         case r'needsVtpm':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.needsVtpm = valueDes;
           break;
         case r'nicType':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.nicType = valueDes;
           break;
         case r'notes':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.notes = valueDes;
           break;
         case r'os_version':
@@ -1119,71 +1169,82 @@ class _$WithHrefPartialUnbrandXoVmTemplateSerializer
         case r'other':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.other = valueDes;
           break;
         case r'parent':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.parent = valueDes;
           break;
         case r'power_state':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(VMPOWERSTATE),
-          ) as VMPOWERSTATE;
+            specifiedType: const FullType.nullable(VMPOWERSTATE),
+          ) as VMPOWERSTATE?;
+          if (valueDes == null) continue;
           result.powerState = valueDes;
           break;
         case r'pvDriversDetected':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.pvDriversDetected = valueDes;
           break;
         case r'pvDriversUpToDate':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.pvDriversUpToDate = valueDes;
           break;
         case r'pvDriversVersion':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.pvDriversVersion = valueDes;
           break;
         case r'resourceSet':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.resourceSet = valueDes;
           break;
         case r'secureBoot':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.secureBoot = valueDes;
           break;
         case r'snapshots':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
+            specifiedType:
+                const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
           result.snapshots.replace(valueDes);
           break;
         case r'startDelay':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.startDelay = valueDes;
           break;
         case r'startTime':
@@ -1197,80 +1258,93 @@ class _$WithHrefPartialUnbrandXoVmTemplateSerializer
         case r'suspendSr':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.suspendSr = valueDes;
           break;
         case r'tags':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
+            specifiedType:
+                const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
           result.tags.replace(valueDes);
           break;
         case r'template_info':
           final valueDes = serializers.deserialize(
             value,
             specifiedType:
-                const FullType(PartialUnbrandXoVmTemplateTemplateInfo),
-          ) as PartialUnbrandXoVmTemplateTemplateInfo;
+                const FullType.nullable(PartialUnbrandXoVmTemplateTemplateInfo),
+          ) as PartialUnbrandXoVmTemplateTemplateInfo?;
+          if (valueDes == null) continue;
           result.templateInfo.replace(valueDes);
           break;
         case r'type':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType:
-                const FullType(WithHrefPartialUnbrandXoVmTemplateTypeEnum),
-          ) as WithHrefPartialUnbrandXoVmTemplateTypeEnum;
+            specifiedType: const FullType.nullable(
+                WithHrefPartialUnbrandXoVmTemplateTypeEnum),
+          ) as WithHrefPartialUnbrandXoVmTemplateTypeEnum?;
+          if (valueDes == null) continue;
           result.type = valueDes;
           break;
         case r'uuid':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.uuid = valueDes;
           break;
         case r'vga':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.vga = valueDes;
           break;
         case r'videoram':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.videoram = valueDes;
           break;
         case r'viridian':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.viridian = valueDes;
           break;
         case r'virtualizationMode':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(DOMAINTYPE),
-          ) as DOMAINTYPE;
+            specifiedType: const FullType.nullable(DOMAINTYPE),
+          ) as DOMAINTYPE?;
+          if (valueDes == null) continue;
           result.virtualizationMode = valueDes;
           break;
         case r'xenStoreData':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.xenStoreData = valueDes;
           break;
         case r'xentools':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(PartialUnbrandXoVmControllerXentools),
-          ) as PartialUnbrandXoVmControllerXentools;
+            specifiedType:
+                const FullType.nullable(PartialUnbrandXoVmControllerXentools),
+          ) as PartialUnbrandXoVmControllerXentools?;
+          if (valueDes == null) continue;
           result.xentools.replace(valueDes);
           break;
         default:

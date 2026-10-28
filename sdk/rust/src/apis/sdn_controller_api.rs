@@ -37,28 +37,28 @@ pub async fn plugins_sdn_controller_networks_id_actions_update_traffic_rule_post
     sync: Option<bool>,
 ) -> Result<(), Error<PluginsSdnControllerNetworksIdActionsUpdateTrafficRulePostError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_plugins_sdn_controller_networks_id_actions_update_traffic_rule_post_request =
+    let p_path_id = id;
+    let p_body_plugins_sdn_controller_networks_id_actions_update_traffic_rule_post_request =
         plugins_sdn_controller_networks_id_actions_update_traffic_rule_post_request;
-    let p_sync = sync;
+    let p_query_sync = sync;
 
     let uri_str = format!(
         "{}/plugins/sdn-controller/networks/{id}/actions/update_traffic_rule",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
     req_builder = req_builder
-        .json(&p_plugins_sdn_controller_networks_id_actions_update_traffic_rule_post_request);
+        .json(&p_body_plugins_sdn_controller_networks_id_actions_update_traffic_rule_post_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;
@@ -87,28 +87,28 @@ pub async fn plugins_sdn_controller_vifs_id_actions_update_traffic_rule_post(
     sync: Option<bool>,
 ) -> Result<(), Error<PluginsSdnControllerVifsIdActionsUpdateTrafficRulePostError>> {
     // add a prefix to parameters to efficiently prevent name collisions
-    let p_id = id;
-    let p_plugins_sdn_controller_vifs_id_actions_update_traffic_rule_post_request =
+    let p_path_id = id;
+    let p_body_plugins_sdn_controller_vifs_id_actions_update_traffic_rule_post_request =
         plugins_sdn_controller_vifs_id_actions_update_traffic_rule_post_request;
-    let p_sync = sync;
+    let p_query_sync = sync;
 
     let uri_str = format!(
         "{}/plugins/sdn-controller/vifs/{id}/actions/update_traffic_rule",
         configuration.base_path,
-        id = crate::apis::urlencode(p_id)
+        id = crate::apis::urlencode(p_path_id)
     );
     let mut req_builder = configuration
         .client
         .request(reqwest::Method::POST, &uri_str);
 
-    if let Some(ref param_value) = p_sync {
+    if let Some(ref param_value) = p_query_sync {
         req_builder = req_builder.query(&[("sync", &param_value.to_string())]);
     }
     if let Some(ref user_agent) = configuration.user_agent {
         req_builder = req_builder.header(reqwest::header::USER_AGENT, user_agent.clone());
     }
     req_builder = req_builder
-        .json(&p_plugins_sdn_controller_vifs_id_actions_update_traffic_rule_post_request);
+        .json(&p_body_plugins_sdn_controller_vifs_id_actions_update_traffic_rule_post_request);
 
     let req = req_builder.build()?;
     let resp = configuration.client.execute(req).await?;

@@ -139,32 +139,36 @@ class _$UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantBackupJobSerializer
         case r'action':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(
+            specifiedType: const FullType.nullable(
                 UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantBackupJobActionEnum),
-          ) as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantBackupJobActionEnum;
+          ) as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantBackupJobActionEnum?;
+          if (valueDes == null) continue;
           result.action = valueDes;
           break;
         case r'effect':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(
+            specifiedType: const FullType.nullable(
                 UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantBackupJobEffectEnum),
-          ) as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantBackupJobEffectEnum;
+          ) as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantBackupJobEffectEnum?;
+          if (valueDes == null) continue;
           result.effect = valueDes;
           break;
         case r'resource':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(
+            specifiedType: const FullType.nullable(
                 UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantBackupJobResourceEnum),
-          ) as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantBackupJobResourceEnum;
+          ) as UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantBackupJobResourceEnum?;
+          if (valueDes == null) continue;
           result.resource = valueDes;
           break;
         case r'selector':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.selector = valueDes;
           break;
         default:

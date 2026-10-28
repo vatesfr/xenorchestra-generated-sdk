@@ -35,7 +35,7 @@ import tech.vates.xenorchestra.client.ApiClient;
 @JsonPropertyOrder({
   UpdateVmRequestBodyCreation.JSON_PROPERTY_USER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class UpdateVmRequestBodyCreation {
   public static final String JSON_PROPERTY_USER = "user";
   @javax.annotation.Nullable
@@ -54,14 +54,14 @@ public class UpdateVmRequestBodyCreation {
    * @return user
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_USER)
+  @JsonProperty(value = JSON_PROPERTY_USER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getUser() {
     return user;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_USER)
+  @JsonProperty(value = JSON_PROPERTY_USER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUser(@javax.annotation.Nullable String user) {
     this.user = user;
@@ -102,10 +102,7 @@ public class UpdateVmRequestBodyCreation {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -142,7 +139,7 @@ public class UpdateVmRequestBodyCreation {
 
     // add `user` to the URL query string
     if (getUser() != null) {
-      joiner.add(String.format("%suser%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUser()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%suser%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUser()))));
     }
 
     return joiner.toString();

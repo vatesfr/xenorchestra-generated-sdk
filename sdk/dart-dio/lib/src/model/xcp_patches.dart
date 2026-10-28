@@ -139,8 +139,9 @@ class _$XcpPatchesSerializer implements PrimitiveSerializer<XcpPatches> {
         case r'changelog':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(XcpPatchesChangelog),
-          ) as XcpPatchesChangelog;
+            specifiedType: const FullType.nullable(XcpPatchesChangelog),
+          ) as XcpPatchesChangelog?;
+          if (valueDes == null) continue;
           result.changelog.replace(valueDes);
           break;
         case r'description':

@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **device_name** | Option<**String**> |  | [optional]
 **id** | Option<**String**> |  | [optional]
 **pci_id** | Option<**String**> |  | [optional]
-**r#type** | Option<**String**> |  | [optional]
+**r#type** | Option<**Type**> |  (enum: PCI) | [optional]
 **uuid** | Option<**String**> |  | [optional]
 **href** | **String** |  | 
 

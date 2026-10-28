@@ -177,7 +177,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_group_acl_roles
 
-> models::SendObjectsPartialUnbrandExcludeXoAclRolePeriodIsTemplateTrue get_group_acl_roles(id, fields, ndjson, markdown, filter, limit)
+> models::SendObjectsPartialUnbrandExcludeXoAclRoleIsTemplateTrue get_group_acl_roles(id, fields, ndjson, markdown, filter, limit)
 
 
 Returns all acl-roles that match the following privilege: - resource: acl-role, action: read
@@ -196,7 +196,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::SendObjectsPartialUnbrandExcludeXoAclRolePeriodIsTemplateTrue**](SendObjects_Partial_Unbrand_Exclude_XoAclRole._isTemplate-true_____.md)
+[**models::SendObjectsPartialUnbrandExcludeXoAclRoleIsTemplateTrue**](SendObjects_Partial_Unbrand_Exclude_XoAclRole._isTemplate-true_____.md)
 
 ### Authorization
 

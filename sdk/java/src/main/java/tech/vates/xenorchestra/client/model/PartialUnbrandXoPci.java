@@ -44,7 +44,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PartialUnbrandXoPci.JSON_PROPERTY_TYPE,
   PartialUnbrandXoPci.JSON_PROPERTY_UUID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PartialUnbrandXoPci {
   public static final String JSON_PROPERTY_$_HOST = "$host";
   @javax.annotation.Nullable
@@ -136,14 +136,14 @@ private final String value;
    * @return $host
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_$_HOST)
+  @JsonProperty(value = JSON_PROPERTY_$_HOST, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String get$Host() {
     return $host;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_$_HOST)
+  @JsonProperty(value = JSON_PROPERTY_$_HOST, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void set$Host(@javax.annotation.Nullable String $host) {
     this.$host = $host;
@@ -160,14 +160,14 @@ private final String value;
    * @return $pool
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_$_POOL)
+  @JsonProperty(value = JSON_PROPERTY_$_POOL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String get$Pool() {
     return $pool;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_$_POOL)
+  @JsonProperty(value = JSON_PROPERTY_$_POOL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void set$Pool(@javax.annotation.Nullable String $pool) {
     this.$pool = $pool;
@@ -186,14 +186,14 @@ private final String value;
    */
   @Deprecated
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_$_POOL_ID)
+  @JsonProperty(value = JSON_PROPERTY_$_POOL_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String get$PoolId() {
     return $poolId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_$_POOL_ID)
+  @JsonProperty(value = JSON_PROPERTY_$_POOL_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void set$PoolId(@javax.annotation.Nullable String $poolId) {
     this.$poolId = $poolId;
@@ -210,14 +210,14 @@ private final String value;
    * @return xapiRef
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_XAPI_REF)
+  @JsonProperty(value = JSON_PROPERTY_XAPI_REF, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getXapiRef() {
     return xapiRef;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_XAPI_REF)
+  @JsonProperty(value = JSON_PROPERTY_XAPI_REF, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setXapiRef(@javax.annotation.Nullable String xapiRef) {
     this.xapiRef = xapiRef;
@@ -234,14 +234,14 @@ private final String value;
    * @return className
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CLASS_NAME)
+  @JsonProperty(value = JSON_PROPERTY_CLASS_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getClassName() {
     return className;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CLASS_NAME)
+  @JsonProperty(value = JSON_PROPERTY_CLASS_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setClassName(@javax.annotation.Nullable String className) {
     this.className = className;
@@ -258,14 +258,14 @@ private final String value;
    * @return deviceName
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DEVICE_NAME)
+  @JsonProperty(value = JSON_PROPERTY_DEVICE_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getDeviceName() {
     return deviceName;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DEVICE_NAME)
+  @JsonProperty(value = JSON_PROPERTY_DEVICE_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDeviceName(@javax.annotation.Nullable String deviceName) {
     this.deviceName = deviceName;
@@ -282,14 +282,14 @@ private final String value;
    * @return id
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
@@ -306,14 +306,14 @@ private final String value;
    * @return pciId
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PCI_ID)
+  @JsonProperty(value = JSON_PROPERTY_PCI_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getPciId() {
     return pciId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PCI_ID)
+  @JsonProperty(value = JSON_PROPERTY_PCI_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPciId(@javax.annotation.Nullable String pciId) {
     this.pciId = pciId;
@@ -330,14 +330,14 @@ private final String value;
    * @return type
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public TypeEnum getType() {
     return type;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setType(@javax.annotation.Nullable TypeEnum type) {
     this.type = type;
@@ -354,14 +354,14 @@ private final String value;
    * @return uuid
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_UUID)
+  @JsonProperty(value = JSON_PROPERTY_UUID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getUuid() {
     return uuid;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_UUID)
+  @JsonProperty(value = JSON_PROPERTY_UUID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUuid(@javax.annotation.Nullable String uuid) {
     this.uuid = uuid;
@@ -420,10 +420,7 @@ private final String value;
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -460,52 +457,52 @@ private final String value;
 
     // add `$host` to the URL query string
     if (get$Host() != null) {
-      joiner.add(String.format("%s$host%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$Host()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%s$host%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$Host()))));
     }
 
     // add `$pool` to the URL query string
     if (get$Pool() != null) {
-      joiner.add(String.format("%s$pool%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$Pool()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%s$pool%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$Pool()))));
     }
 
     // add `$poolId` to the URL query string
     if (get$PoolId() != null) {
-      joiner.add(String.format("%s$poolId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$PoolId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%s$poolId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$PoolId()))));
     }
 
     // add `_xapiRef` to the URL query string
     if (getXapiRef() != null) {
-      joiner.add(String.format("%s_xapiRef%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getXapiRef()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%s_xapiRef%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getXapiRef()))));
     }
 
     // add `class_name` to the URL query string
     if (getClassName() != null) {
-      joiner.add(String.format("%sclass_name%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getClassName()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sclass_name%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getClassName()))));
     }
 
     // add `device_name` to the URL query string
     if (getDeviceName() != null) {
-      joiner.add(String.format("%sdevice_name%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDeviceName()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdevice_name%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDeviceName()))));
     }
 
     // add `id` to the URL query string
     if (getId() != null) {
-      joiner.add(String.format("%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
     }
 
     // add `pci_id` to the URL query string
     if (getPciId() != null) {
-      joiner.add(String.format("%spci_id%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPciId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%spci_id%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPciId()))));
     }
 
     // add `type` to the URL query string
     if (getType() != null) {
-      joiner.add(String.format("%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
     }
 
     // add `uuid` to the URL query string
     if (getUuid() != null) {
-      joiner.add(String.format("%suuid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUuid()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%suuid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUuid()))));
     }
 
     return joiner.toString();

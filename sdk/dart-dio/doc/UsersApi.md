@@ -48,7 +48,7 @@ final CreateUserRequest createUserRequest = {"name":"new user","password":"passw
 try {
     final response = api.createUser(createUserRequest);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling UsersApi->createUser: $e\n');
 }
 ```
@@ -97,7 +97,7 @@ final String id = 722d17b9-699b-49d2-8193-be1ac573d3de; // String |
 
 try {
     api.deleteUser(id);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling UsersApi->deleteUser: $e\n');
 }
 ```
@@ -152,7 +152,7 @@ final double limit = 42; // double |
 try {
     final response = api.getAclRoleUsers(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling UsersApi->getAclRoleUsers: $e\n');
 }
 ```
@@ -209,7 +209,7 @@ final double limit = 42; // double |
 try {
     final response = api.getAuthenticationTokens(id, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling UsersApi->getAuthenticationTokens: $e\n');
 }
 ```
@@ -266,7 +266,7 @@ final double limit = 42; // double |
 try {
     final response = api.getGroupUsers(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling UsersApi->getGroupUsers: $e\n');
 }
 ```
@@ -321,7 +321,7 @@ final String id = 722d17b9-699b-49d2-8193-be1ac573d3de; // String |
 try {
     final response = api.getUser(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling UsersApi->getUser: $e\n');
 }
 ```
@@ -376,7 +376,7 @@ final double limit = 42; // double |
 try {
     final response = api.getUserGroups(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling UsersApi->getUserGroups: $e\n');
 }
 ```
@@ -435,7 +435,7 @@ final double limit = 42; // double |
 try {
     final response = api.getUserPrivileges(id, fields, ndjson, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling UsersApi->getUserPrivileges: $e\n');
 }
 ```
@@ -494,7 +494,7 @@ final double limit = 42; // double |
 try {
     final response = api.getUserTasks(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling UsersApi->getUserTasks: $e\n');
 }
 ```
@@ -553,7 +553,7 @@ final double limit = 42; // double |
 try {
     final response = api.getUsers(fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling UsersApi->getUsers: $e\n');
 }
 ```
@@ -608,7 +608,7 @@ final PostDeprecatedAuthenticationTokensRequest postDeprecatedAuthenticationToke
 try {
     final response = api.postAuthenticationTokens(id, postDeprecatedAuthenticationTokensRequest);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling UsersApi->postAuthenticationTokens: $e\n');
 }
 ```
@@ -657,7 +657,7 @@ final PostDeprecatedAuthenticationTokensRequest postDeprecatedAuthenticationToke
 try {
     final response = api.postDeprecatedAuthenticationTokens(postDeprecatedAuthenticationTokensRequest);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling UsersApi->postDeprecatedAuthenticationTokens: $e\n');
 }
 ```
@@ -707,7 +707,7 @@ final UpdateUserRequestBody updateUserRequestBody = {"name":"updated user name",
 
 try {
     api.updateUser(id, updateUserRequestBody);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling UsersApi->updateUser: $e\n');
 }
 ```

@@ -42,7 +42,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   UnbrandCreateVmBodyVifsInnerAnyOf.JSON_PROPERTY_MTU,
   UnbrandCreateVmBodyVifsInnerAnyOf.JSON_PROPERTY_NETWORK
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class UnbrandCreateVmBodyVifsInnerAnyOf {
   public static final String JSON_PROPERTY_DEVICE = "device";
   @javax.annotation.Nullable
@@ -81,14 +81,14 @@ public class UnbrandCreateVmBodyVifsInnerAnyOf {
    * @return device
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DEVICE)
+  @JsonProperty(value = JSON_PROPERTY_DEVICE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getDevice() {
     return device;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DEVICE)
+  @JsonProperty(value = JSON_PROPERTY_DEVICE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDevice(@javax.annotation.Nullable String device) {
     this.device = device;
@@ -113,14 +113,14 @@ public class UnbrandCreateVmBodyVifsInnerAnyOf {
    * @return ipv4Allowed
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_IPV4_ALLOWED)
+  @JsonProperty(value = JSON_PROPERTY_IPV4_ALLOWED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getIpv4Allowed() {
     return ipv4Allowed;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_IPV4_ALLOWED)
+  @JsonProperty(value = JSON_PROPERTY_IPV4_ALLOWED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIpv4Allowed(@javax.annotation.Nullable List<String> ipv4Allowed) {
     this.ipv4Allowed = ipv4Allowed;
@@ -145,14 +145,14 @@ public class UnbrandCreateVmBodyVifsInnerAnyOf {
    * @return ipv6Allowed
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_IPV6_ALLOWED)
+  @JsonProperty(value = JSON_PROPERTY_IPV6_ALLOWED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getIpv6Allowed() {
     return ipv6Allowed;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_IPV6_ALLOWED)
+  @JsonProperty(value = JSON_PROPERTY_IPV6_ALLOWED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIpv6Allowed(@javax.annotation.Nullable List<String> ipv6Allowed) {
     this.ipv6Allowed = ipv6Allowed;
@@ -169,14 +169,14 @@ public class UnbrandCreateVmBodyVifsInnerAnyOf {
    * @return mac
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_MAC)
+  @JsonProperty(value = JSON_PROPERTY_MAC, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getMac() {
     return mac;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MAC)
+  @JsonProperty(value = JSON_PROPERTY_MAC, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMac(@javax.annotation.Nullable String mac) {
     this.mac = mac;
@@ -193,14 +193,14 @@ public class UnbrandCreateVmBodyVifsInnerAnyOf {
    * @return mtu
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_MTU)
+  @JsonProperty(value = JSON_PROPERTY_MTU, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getMtu() {
     return mtu;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MTU)
+  @JsonProperty(value = JSON_PROPERTY_MTU, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMtu(@javax.annotation.Nullable Double mtu) {
     this.mtu = mtu;
@@ -217,14 +217,14 @@ public class UnbrandCreateVmBodyVifsInnerAnyOf {
    * @return network
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_NETWORK)
+  @JsonProperty(value = JSON_PROPERTY_NETWORK, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getNetwork() {
     return network;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NETWORK)
+  @JsonProperty(value = JSON_PROPERTY_NETWORK, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setNetwork(@javax.annotation.Nonnull String network) {
     this.network = network;
@@ -275,10 +275,7 @@ public class UnbrandCreateVmBodyVifsInnerAnyOf {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -315,14 +312,14 @@ public class UnbrandCreateVmBodyVifsInnerAnyOf {
 
     // add `device` to the URL query string
     if (getDevice() != null) {
-      joiner.add(String.format("%sdevice%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDevice()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdevice%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDevice()))));
     }
 
     // add `ipv4_allowed` to the URL query string
     if (getIpv4Allowed() != null) {
       for (int i = 0; i < getIpv4Allowed().size(); i++) {
-        joiner.add(String.format("%sipv4_allowed%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%sipv4_allowed%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getIpv4Allowed().get(i)))));
       }
     }
@@ -330,25 +327,25 @@ public class UnbrandCreateVmBodyVifsInnerAnyOf {
     // add `ipv6_allowed` to the URL query string
     if (getIpv6Allowed() != null) {
       for (int i = 0; i < getIpv6Allowed().size(); i++) {
-        joiner.add(String.format("%sipv6_allowed%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%sipv6_allowed%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getIpv6Allowed().get(i)))));
       }
     }
 
     // add `mac` to the URL query string
     if (getMac() != null) {
-      joiner.add(String.format("%smac%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMac()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%smac%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMac()))));
     }
 
     // add `mtu` to the URL query string
     if (getMtu() != null) {
-      joiner.add(String.format("%smtu%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMtu()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%smtu%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMtu()))));
     }
 
     // add `network` to the URL query string
     if (getNetwork() != null) {
-      joiner.add(String.format("%snetwork%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNetwork()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%snetwork%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNetwork()))));
     }
 
     return joiner.toString();

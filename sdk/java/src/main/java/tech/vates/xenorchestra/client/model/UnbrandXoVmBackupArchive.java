@@ -52,7 +52,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   UnbrandXoVmBackupArchive.JSON_PROPERTY_VM,
   UnbrandXoVmBackupArchive.JSON_PROPERTY_WITH_MEMORY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class UnbrandXoVmBackupArchive {
   public static final String JSON_PROPERTY_BACKUP_REPOSITORY = "backupRepository";
   @javax.annotation.Nonnull
@@ -198,14 +198,14 @@ private final String value;
    * @return backupRepository
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_BACKUP_REPOSITORY)
+  @JsonProperty(value = JSON_PROPERTY_BACKUP_REPOSITORY, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getBackupRepository() {
     return backupRepository;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_BACKUP_REPOSITORY)
+  @JsonProperty(value = JSON_PROPERTY_BACKUP_REPOSITORY, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setBackupRepository(@javax.annotation.Nonnull String backupRepository) {
     this.backupRepository = backupRepository;
@@ -222,14 +222,14 @@ private final String value;
    * @return differencingVhds
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DIFFERENCING_VHDS)
+  @JsonProperty(value = JSON_PROPERTY_DIFFERENCING_VHDS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getDifferencingVhds() {
     return differencingVhds;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DIFFERENCING_VHDS)
+  @JsonProperty(value = JSON_PROPERTY_DIFFERENCING_VHDS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDifferencingVhds(@javax.annotation.Nullable Double differencingVhds) {
     this.differencingVhds = differencingVhds;
@@ -254,14 +254,14 @@ private final String value;
    * @return disks
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_DISKS)
+  @JsonProperty(value = JSON_PROPERTY_DISKS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<PartialUnbrandXoVmBackupArchiveDisksInner> getDisks() {
     return disks;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DISKS)
+  @JsonProperty(value = JSON_PROPERTY_DISKS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDisks(@javax.annotation.Nonnull List<PartialUnbrandXoVmBackupArchiveDisksInner> disks) {
     this.disks = disks;
@@ -278,14 +278,14 @@ private final String value;
    * @return dynamicVhds
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DYNAMIC_VHDS)
+  @JsonProperty(value = JSON_PROPERTY_DYNAMIC_VHDS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getDynamicVhds() {
     return dynamicVhds;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DYNAMIC_VHDS)
+  @JsonProperty(value = JSON_PROPERTY_DYNAMIC_VHDS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDynamicVhds(@javax.annotation.Nullable Double dynamicVhds) {
     this.dynamicVhds = dynamicVhds;
@@ -302,14 +302,14 @@ private final String value;
    * @return id
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
@@ -326,14 +326,14 @@ private final String value;
    * @return isImmutable
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_IS_IMMUTABLE)
+  @JsonProperty(value = JSON_PROPERTY_IS_IMMUTABLE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getIsImmutable() {
     return isImmutable;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_IS_IMMUTABLE)
+  @JsonProperty(value = JSON_PROPERTY_IS_IMMUTABLE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIsImmutable(@javax.annotation.Nullable Boolean isImmutable) {
     this.isImmutable = isImmutable;
@@ -350,14 +350,14 @@ private final String value;
    * @return jobId
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_JOB_ID)
+  @JsonProperty(value = JSON_PROPERTY_JOB_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getJobId() {
     return jobId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_JOB_ID)
+  @JsonProperty(value = JSON_PROPERTY_JOB_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setJobId(@javax.annotation.Nonnull String jobId) {
     this.jobId = jobId;
@@ -374,14 +374,14 @@ private final String value;
    * @return mode
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_MODE)
+  @JsonProperty(value = JSON_PROPERTY_MODE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public ModeEnum getMode() {
     return mode;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MODE)
+  @JsonProperty(value = JSON_PROPERTY_MODE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setMode(@javax.annotation.Nonnull ModeEnum mode) {
     this.mode = mode;
@@ -398,14 +398,14 @@ private final String value;
    * @return scheduleId
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_SCHEDULE_ID)
+  @JsonProperty(value = JSON_PROPERTY_SCHEDULE_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getScheduleId() {
     return scheduleId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SCHEDULE_ID)
+  @JsonProperty(value = JSON_PROPERTY_SCHEDULE_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setScheduleId(@javax.annotation.Nonnull String scheduleId) {
     this.scheduleId = scheduleId;
@@ -422,14 +422,14 @@ private final String value;
    * @return size
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonProperty(value = JSON_PROPERTY_SIZE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getSize() {
     return size;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonProperty(value = JSON_PROPERTY_SIZE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSize(@javax.annotation.Nonnull Double size) {
     this.size = size;
@@ -446,14 +446,14 @@ private final String value;
    * @return timestamp
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_TIMESTAMP)
+  @JsonProperty(value = JSON_PROPERTY_TIMESTAMP, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getTimestamp() {
     return timestamp;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TIMESTAMP)
+  @JsonProperty(value = JSON_PROPERTY_TIMESTAMP, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setTimestamp(@javax.annotation.Nonnull Double timestamp) {
     this.timestamp = timestamp;
@@ -470,14 +470,14 @@ private final String value;
    * @return type
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public TypeEnum getType() {
     return type;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setType(@javax.annotation.Nonnull TypeEnum type) {
     this.type = type;
@@ -494,14 +494,14 @@ private final String value;
    * @return vm
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_VM)
+  @JsonProperty(value = JSON_PROPERTY_VM, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public PartialUnbrandXoVmBackupArchiveVm getVm() {
     return vm;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_VM)
+  @JsonProperty(value = JSON_PROPERTY_VM, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setVm(@javax.annotation.Nonnull PartialUnbrandXoVmBackupArchiveVm vm) {
     this.vm = vm;
@@ -518,14 +518,14 @@ private final String value;
    * @return withMemory
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_WITH_MEMORY)
+  @JsonProperty(value = JSON_PROPERTY_WITH_MEMORY, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Boolean getWithMemory() {
     return withMemory;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_WITH_MEMORY)
+  @JsonProperty(value = JSON_PROPERTY_WITH_MEMORY, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setWithMemory(@javax.annotation.Nonnull Boolean withMemory) {
     this.withMemory = withMemory;
@@ -592,10 +592,7 @@ private final String value;
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -632,67 +629,67 @@ private final String value;
 
     // add `backupRepository` to the URL query string
     if (getBackupRepository() != null) {
-      joiner.add(String.format("%sbackupRepository%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBackupRepository()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbackupRepository%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBackupRepository()))));
     }
 
     // add `differencingVhds` to the URL query string
     if (getDifferencingVhds() != null) {
-      joiner.add(String.format("%sdifferencingVhds%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDifferencingVhds()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdifferencingVhds%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDifferencingVhds()))));
     }
 
     // add `disks` to the URL query string
     if (getDisks() != null) {
       for (int i = 0; i < getDisks().size(); i++) {
         if (getDisks().get(i) != null) {
-          joiner.add(getDisks().get(i).toUrlQueryString(String.format("%sdisks%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+          joiner.add(getDisks().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sdisks%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
     }
 
     // add `dynamicVhds` to the URL query string
     if (getDynamicVhds() != null) {
-      joiner.add(String.format("%sdynamicVhds%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDynamicVhds()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdynamicVhds%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDynamicVhds()))));
     }
 
     // add `id` to the URL query string
     if (getId() != null) {
-      joiner.add(String.format("%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
     }
 
     // add `isImmutable` to the URL query string
     if (getIsImmutable() != null) {
-      joiner.add(String.format("%sisImmutable%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsImmutable()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sisImmutable%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsImmutable()))));
     }
 
     // add `jobId` to the URL query string
     if (getJobId() != null) {
-      joiner.add(String.format("%sjobId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getJobId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sjobId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getJobId()))));
     }
 
     // add `mode` to the URL query string
     if (getMode() != null) {
-      joiner.add(String.format("%smode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMode()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%smode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMode()))));
     }
 
     // add `scheduleId` to the URL query string
     if (getScheduleId() != null) {
-      joiner.add(String.format("%sscheduleId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getScheduleId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sscheduleId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getScheduleId()))));
     }
 
     // add `size` to the URL query string
     if (getSize() != null) {
-      joiner.add(String.format("%ssize%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSize()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssize%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSize()))));
     }
 
     // add `timestamp` to the URL query string
     if (getTimestamp() != null) {
-      joiner.add(String.format("%stimestamp%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTimestamp()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%stimestamp%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTimestamp()))));
     }
 
     // add `type` to the URL query string
     if (getType() != null) {
-      joiner.add(String.format("%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
     }
 
     // add `vm` to the URL query string
@@ -702,7 +699,7 @@ private final String value;
 
     // add `withMemory` to the URL query string
     if (getWithMemory() != null) {
-      joiner.add(String.format("%swithMemory%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getWithMemory()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%swithMemory%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getWithMemory()))));
     }
 
     return joiner.toString();

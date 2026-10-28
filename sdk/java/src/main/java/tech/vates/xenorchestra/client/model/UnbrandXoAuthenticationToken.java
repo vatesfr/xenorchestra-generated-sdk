@@ -42,7 +42,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   UnbrandXoAuthenticationToken.JSON_PROPERTY_LAST_USES,
   UnbrandXoAuthenticationToken.JSON_PROPERTY_USER_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class UnbrandXoAuthenticationToken {
   public static final String JSON_PROPERTY_CLIENT = "client";
   @javax.annotation.Nullable
@@ -85,14 +85,14 @@ public class UnbrandXoAuthenticationToken {
    * @return client
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CLIENT)
+  @JsonProperty(value = JSON_PROPERTY_CLIENT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public UnbrandXoAuthenticationTokenClient getClient() {
     return client;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CLIENT)
+  @JsonProperty(value = JSON_PROPERTY_CLIENT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setClient(@javax.annotation.Nullable UnbrandXoAuthenticationTokenClient client) {
     this.client = client;
@@ -109,14 +109,14 @@ public class UnbrandXoAuthenticationToken {
    * @return createdAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CREATED_AT)
+  @JsonProperty(value = JSON_PROPERTY_CREATED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getCreatedAt() {
     return createdAt;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CREATED_AT)
+  @JsonProperty(value = JSON_PROPERTY_CREATED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreatedAt(@javax.annotation.Nullable Double createdAt) {
     this.createdAt = createdAt;
@@ -133,14 +133,14 @@ public class UnbrandXoAuthenticationToken {
    * @return description
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getDescription() {
     return description;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDescription(@javax.annotation.Nullable String description) {
     this.description = description;
@@ -157,14 +157,14 @@ public class UnbrandXoAuthenticationToken {
    * @return expiration
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_EXPIRATION)
+  @JsonProperty(value = JSON_PROPERTY_EXPIRATION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getExpiration() {
     return expiration;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_EXPIRATION)
+  @JsonProperty(value = JSON_PROPERTY_EXPIRATION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setExpiration(@javax.annotation.Nonnull Double expiration) {
     this.expiration = expiration;
@@ -181,14 +181,14 @@ public class UnbrandXoAuthenticationToken {
    * @return id
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
@@ -205,14 +205,14 @@ public class UnbrandXoAuthenticationToken {
    * @return lastUses
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_LAST_USES)
+  @JsonProperty(value = JSON_PROPERTY_LAST_USES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Object getLastUses() {
     return lastUses;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_LAST_USES)
+  @JsonProperty(value = JSON_PROPERTY_LAST_USES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLastUses(@javax.annotation.Nullable Object lastUses) {
     this.lastUses = lastUses;
@@ -229,14 +229,14 @@ public class UnbrandXoAuthenticationToken {
    * @return userId
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_USER_ID)
+  @JsonProperty(value = JSON_PROPERTY_USER_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getUserId() {
     return userId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_USER_ID)
+  @JsonProperty(value = JSON_PROPERTY_USER_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUserId(@javax.annotation.Nonnull String userId) {
     this.userId = userId;
@@ -289,10 +289,7 @@ public class UnbrandXoAuthenticationToken {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -329,37 +326,37 @@ public class UnbrandXoAuthenticationToken {
 
     // add `client` to the URL query string
     if (getClient() != null) {
-      joiner.add(String.format("%sclient%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getClient()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sclient%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getClient()))));
     }
 
     // add `created_at` to the URL query string
     if (getCreatedAt() != null) {
-      joiner.add(String.format("%screated_at%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCreatedAt()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%screated_at%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCreatedAt()))));
     }
 
     // add `description` to the URL query string
     if (getDescription() != null) {
-      joiner.add(String.format("%sdescription%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDescription()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdescription%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDescription()))));
     }
 
     // add `expiration` to the URL query string
     if (getExpiration() != null) {
-      joiner.add(String.format("%sexpiration%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getExpiration()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sexpiration%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getExpiration()))));
     }
 
     // add `id` to the URL query string
     if (getId() != null) {
-      joiner.add(String.format("%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
     }
 
     // add `last_uses` to the URL query string
     if (getLastUses() != null) {
-      joiner.add(String.format("%slast_uses%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLastUses()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%slast_uses%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLastUses()))));
     }
 
     // add `user_id` to the URL query string
     if (getUserId() != null) {
-      joiner.add(String.format("%suser_id%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUserId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%suser_id%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUserId()))));
     }
 
     return joiner.toString();

@@ -46,7 +46,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   UpdateVifRequestBody.JSON_PROPERTY_ALLOWED_IPV4_ADDRESSES,
   UpdateVifRequestBody.JSON_PROPERTY_ALLOWED_IPV6_ADDRESSES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class UpdateVifRequestBody {
   public static final String JSON_PROPERTY_LOCKING_MODE = "lockingMode";
   @javax.annotation.Nullable
@@ -80,14 +80,14 @@ public class UpdateVifRequestBody {
    * @return lockingMode
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_LOCKING_MODE)
+  @JsonProperty(value = JSON_PROPERTY_LOCKING_MODE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public VIFLOCKINGMODE getLockingMode() {
     return lockingMode;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_LOCKING_MODE)
+  @JsonProperty(value = JSON_PROPERTY_LOCKING_MODE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLockingMode(@javax.annotation.Nullable VIFLOCKINGMODE lockingMode) {
     this.lockingMode = lockingMode;
@@ -109,7 +109,7 @@ public class UpdateVifRequestBody {
         return rateLimit.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_RATE_LIMIT)
+  @JsonProperty(value = JSON_PROPERTY_RATE_LIMIT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<Double> getRateLimit_JsonNullable() {
@@ -136,14 +136,14 @@ public class UpdateVifRequestBody {
    * @return txChecksumming
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TX_CHECKSUMMING)
+  @JsonProperty(value = JSON_PROPERTY_TX_CHECKSUMMING, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getTxChecksumming() {
     return txChecksumming;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TX_CHECKSUMMING)
+  @JsonProperty(value = JSON_PROPERTY_TX_CHECKSUMMING, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTxChecksumming(@javax.annotation.Nullable Boolean txChecksumming) {
     this.txChecksumming = txChecksumming;
@@ -168,14 +168,14 @@ public class UpdateVifRequestBody {
    * @return allowedIpv4Addresses
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ALLOWED_IPV4_ADDRESSES)
+  @JsonProperty(value = JSON_PROPERTY_ALLOWED_IPV4_ADDRESSES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getAllowedIpv4Addresses() {
     return allowedIpv4Addresses;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ALLOWED_IPV4_ADDRESSES)
+  @JsonProperty(value = JSON_PROPERTY_ALLOWED_IPV4_ADDRESSES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAllowedIpv4Addresses(@javax.annotation.Nullable List<String> allowedIpv4Addresses) {
     this.allowedIpv4Addresses = allowedIpv4Addresses;
@@ -200,14 +200,14 @@ public class UpdateVifRequestBody {
    * @return allowedIpv6Addresses
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ALLOWED_IPV6_ADDRESSES)
+  @JsonProperty(value = JSON_PROPERTY_ALLOWED_IPV6_ADDRESSES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getAllowedIpv6Addresses() {
     return allowedIpv6Addresses;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ALLOWED_IPV6_ADDRESSES)
+  @JsonProperty(value = JSON_PROPERTY_ALLOWED_IPV6_ADDRESSES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAllowedIpv6Addresses(@javax.annotation.Nullable List<String> allowedIpv6Addresses) {
     this.allowedIpv6Addresses = allowedIpv6Addresses;
@@ -267,10 +267,7 @@ public class UpdateVifRequestBody {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -307,24 +304,24 @@ public class UpdateVifRequestBody {
 
     // add `lockingMode` to the URL query string
     if (getLockingMode() != null) {
-      joiner.add(String.format("%slockingMode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLockingMode()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%slockingMode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLockingMode()))));
     }
 
     // add `rateLimit` to the URL query string
     if (getRateLimit() != null) {
-      joiner.add(String.format("%srateLimit%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRateLimit()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%srateLimit%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRateLimit()))));
     }
 
     // add `txChecksumming` to the URL query string
     if (getTxChecksumming() != null) {
-      joiner.add(String.format("%stxChecksumming%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTxChecksumming()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%stxChecksumming%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTxChecksumming()))));
     }
 
     // add `allowedIpv4Addresses` to the URL query string
     if (getAllowedIpv4Addresses() != null) {
       for (int i = 0; i < getAllowedIpv4Addresses().size(); i++) {
-        joiner.add(String.format("%sallowedIpv4Addresses%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%sallowedIpv4Addresses%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getAllowedIpv4Addresses().get(i)))));
       }
     }
@@ -332,8 +329,8 @@ public class UpdateVifRequestBody {
     // add `allowedIpv6Addresses` to the URL query string
     if (getAllowedIpv6Addresses() != null) {
       for (int i = 0; i < getAllowedIpv6Addresses().size(); i++) {
-        joiner.add(String.format("%sallowedIpv6Addresses%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%sallowedIpv6Addresses%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getAllowedIpv6Addresses().get(i)))));
       }
     }

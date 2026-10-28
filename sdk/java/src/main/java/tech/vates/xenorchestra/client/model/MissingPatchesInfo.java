@@ -42,7 +42,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   MissingPatchesInfo.JSON_PROPERTY_N_POOLS,
   MissingPatchesInfo.JSON_PROPERTY_N_POOLS_WITH_MISSING_PATCHES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class MissingPatchesInfo {
   public static final String JSON_PROPERTY_HAS_AUTHORIZATION = "hasAuthorization";
   @javax.annotation.Nonnull
@@ -85,14 +85,14 @@ public class MissingPatchesInfo {
    * @return hasAuthorization
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_HAS_AUTHORIZATION)
+  @JsonProperty(value = JSON_PROPERTY_HAS_AUTHORIZATION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Boolean getHasAuthorization() {
     return hasAuthorization;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_HAS_AUTHORIZATION)
+  @JsonProperty(value = JSON_PROPERTY_HAS_AUTHORIZATION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setHasAuthorization(@javax.annotation.Nonnull Boolean hasAuthorization) {
     this.hasAuthorization = hasAuthorization;
@@ -109,14 +109,14 @@ public class MissingPatchesInfo {
    * @return nHosts
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_N_HOSTS)
+  @JsonProperty(value = JSON_PROPERTY_N_HOSTS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getnHosts() {
     return nHosts;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_N_HOSTS)
+  @JsonProperty(value = JSON_PROPERTY_N_HOSTS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setnHosts(@javax.annotation.Nonnull Double nHosts) {
     this.nHosts = nHosts;
@@ -133,14 +133,14 @@ public class MissingPatchesInfo {
    * @return nHostsEol
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_N_HOSTS_EOL)
+  @JsonProperty(value = JSON_PROPERTY_N_HOSTS_EOL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public MissingPatchesInfoNHostsEol getnHostsEol() {
     return nHostsEol;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_N_HOSTS_EOL)
+  @JsonProperty(value = JSON_PROPERTY_N_HOSTS_EOL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setnHostsEol(@javax.annotation.Nonnull MissingPatchesInfoNHostsEol nHostsEol) {
     this.nHostsEol = nHostsEol;
@@ -157,14 +157,14 @@ public class MissingPatchesInfo {
    * @return nHostsFailed
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_N_HOSTS_FAILED)
+  @JsonProperty(value = JSON_PROPERTY_N_HOSTS_FAILED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getnHostsFailed() {
     return nHostsFailed;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_N_HOSTS_FAILED)
+  @JsonProperty(value = JSON_PROPERTY_N_HOSTS_FAILED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setnHostsFailed(@javax.annotation.Nonnull Double nHostsFailed) {
     this.nHostsFailed = nHostsFailed;
@@ -181,14 +181,14 @@ public class MissingPatchesInfo {
    * @return nHostsWithMissingPatches
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_N_HOSTS_WITH_MISSING_PATCHES)
+  @JsonProperty(value = JSON_PROPERTY_N_HOSTS_WITH_MISSING_PATCHES, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getnHostsWithMissingPatches() {
     return nHostsWithMissingPatches;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_N_HOSTS_WITH_MISSING_PATCHES)
+  @JsonProperty(value = JSON_PROPERTY_N_HOSTS_WITH_MISSING_PATCHES, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setnHostsWithMissingPatches(@javax.annotation.Nonnull Double nHostsWithMissingPatches) {
     this.nHostsWithMissingPatches = nHostsWithMissingPatches;
@@ -205,14 +205,14 @@ public class MissingPatchesInfo {
    * @return nPools
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_N_POOLS)
+  @JsonProperty(value = JSON_PROPERTY_N_POOLS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getnPools() {
     return nPools;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_N_POOLS)
+  @JsonProperty(value = JSON_PROPERTY_N_POOLS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setnPools(@javax.annotation.Nonnull Double nPools) {
     this.nPools = nPools;
@@ -229,14 +229,14 @@ public class MissingPatchesInfo {
    * @return nPoolsWithMissingPatches
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_N_POOLS_WITH_MISSING_PATCHES)
+  @JsonProperty(value = JSON_PROPERTY_N_POOLS_WITH_MISSING_PATCHES, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getnPoolsWithMissingPatches() {
     return nPoolsWithMissingPatches;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_N_POOLS_WITH_MISSING_PATCHES)
+  @JsonProperty(value = JSON_PROPERTY_N_POOLS_WITH_MISSING_PATCHES, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setnPoolsWithMissingPatches(@javax.annotation.Nonnull Double nPoolsWithMissingPatches) {
     this.nPoolsWithMissingPatches = nPoolsWithMissingPatches;
@@ -289,10 +289,7 @@ public class MissingPatchesInfo {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -329,12 +326,12 @@ public class MissingPatchesInfo {
 
     // add `hasAuthorization` to the URL query string
     if (getHasAuthorization() != null) {
-      joiner.add(String.format("%shasAuthorization%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHasAuthorization()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%shasAuthorization%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHasAuthorization()))));
     }
 
     // add `nHosts` to the URL query string
     if (getnHosts() != null) {
-      joiner.add(String.format("%snHosts%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getnHosts()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%snHosts%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getnHosts()))));
     }
 
     // add `nHostsEol` to the URL query string
@@ -344,22 +341,22 @@ public class MissingPatchesInfo {
 
     // add `nHostsFailed` to the URL query string
     if (getnHostsFailed() != null) {
-      joiner.add(String.format("%snHostsFailed%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getnHostsFailed()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%snHostsFailed%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getnHostsFailed()))));
     }
 
     // add `nHostsWithMissingPatches` to the URL query string
     if (getnHostsWithMissingPatches() != null) {
-      joiner.add(String.format("%snHostsWithMissingPatches%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getnHostsWithMissingPatches()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%snHostsWithMissingPatches%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getnHostsWithMissingPatches()))));
     }
 
     // add `nPools` to the URL query string
     if (getnPools() != null) {
-      joiner.add(String.format("%snPools%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getnPools()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%snPools%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getnPools()))));
     }
 
     // add `nPoolsWithMissingPatches` to the URL query string
     if (getnPoolsWithMissingPatches() != null) {
-      joiner.add(String.format("%snPoolsWithMissingPatches%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getnPoolsWithMissingPatches()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%snPoolsWithMissingPatches%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getnPoolsWithMissingPatches()))));
     }
 
     return joiner.toString();

@@ -39,7 +39,7 @@ final AddSubscriptionRequest addSubscriptionRequest = {"collection":"VM","fields
 try {
     final response = api.addSubscription(id, addSubscriptionRequest);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling EventsApi->addSubscription: $e\n');
 }
 ```
@@ -88,7 +88,7 @@ final api = XenorchestraDartSdk().getEventsApi();
 
 try {
     api.openSseConnection();
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling EventsApi->openSseConnection: $e\n');
 }
 ```
@@ -135,7 +135,7 @@ final XoListenerType subscriptionId = ; // XoListenerType |
 
 try {
     api.removeSubscription(id, subscriptionId);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling EventsApi->removeSubscription: $e\n');
 }
 ```

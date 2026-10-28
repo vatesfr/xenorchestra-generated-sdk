@@ -60,7 +60,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   WithHrefPartialUnbrandXoSr.JSON_PROPERTY_UUID,
   WithHrefPartialUnbrandXoSr.JSON_PROPERTY_HREF
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class WithHrefPartialUnbrandXoSr {
   public static final String JSON_PROPERTY_$_P_B_DS = "$PBDs";
   @javax.annotation.Nullable
@@ -350,14 +350,14 @@ private final String value;
    * @return $pBDs
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_$_P_B_DS)
+  @JsonProperty(value = JSON_PROPERTY_$_P_B_DS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> get$PBDs() {
     return $pBDs;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_$_P_B_DS)
+  @JsonProperty(value = JSON_PROPERTY_$_P_B_DS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void set$PBDs(@javax.annotation.Nullable List<String> $pBDs) {
     this.$pBDs = $pBDs;
@@ -374,14 +374,14 @@ private final String value;
    * @return $container
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_$_CONTAINER)
+  @JsonProperty(value = JSON_PROPERTY_$_CONTAINER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String get$Container() {
     return $container;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_$_CONTAINER)
+  @JsonProperty(value = JSON_PROPERTY_$_CONTAINER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void set$Container(@javax.annotation.Nullable String $container) {
     this.$container = $container;
@@ -398,14 +398,14 @@ private final String value;
    * @return $pool
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_$_POOL)
+  @JsonProperty(value = JSON_PROPERTY_$_POOL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String get$Pool() {
     return $pool;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_$_POOL)
+  @JsonProperty(value = JSON_PROPERTY_$_POOL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void set$Pool(@javax.annotation.Nullable String $pool) {
     this.$pool = $pool;
@@ -424,14 +424,14 @@ private final String value;
    */
   @Deprecated
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_$_POOL_ID)
+  @JsonProperty(value = JSON_PROPERTY_$_POOL_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String get$PoolId() {
     return $poolId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_$_POOL_ID)
+  @JsonProperty(value = JSON_PROPERTY_$_POOL_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void set$PoolId(@javax.annotation.Nullable String $poolId) {
     this.$poolId = $poolId;
@@ -448,14 +448,14 @@ private final String value;
    * @return srType
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SR_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_SR_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public SrTypeEnum getSrType() {
     return srType;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SR_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_SR_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSrType(@javax.annotation.Nullable SrTypeEnum srType) {
     this.srType = srType;
@@ -480,14 +480,14 @@ private final String value;
    * @return vdIs
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_VD_IS)
+  @JsonProperty(value = JSON_PROPERTY_VD_IS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getVdIs() {
     return vdIs;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_VD_IS)
+  @JsonProperty(value = JSON_PROPERTY_VD_IS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVdIs(@javax.annotation.Nullable List<String> vdIs) {
     this.vdIs = vdIs;
@@ -504,14 +504,14 @@ private final String value;
    * @return xapiRef
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_XAPI_REF)
+  @JsonProperty(value = JSON_PROPERTY_XAPI_REF, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getXapiRef() {
     return xapiRef;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_XAPI_REF)
+  @JsonProperty(value = JSON_PROPERTY_XAPI_REF, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setXapiRef(@javax.annotation.Nullable String xapiRef) {
     this.xapiRef = xapiRef;
@@ -528,14 +528,14 @@ private final String value;
    * @return allocationStrategy
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ALLOCATION_STRATEGY)
+  @JsonProperty(value = JSON_PROPERTY_ALLOCATION_STRATEGY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public AllocationStrategyEnum getAllocationStrategy() {
     return allocationStrategy;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ALLOCATION_STRATEGY)
+  @JsonProperty(value = JSON_PROPERTY_ALLOCATION_STRATEGY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAllocationStrategy(@javax.annotation.Nullable AllocationStrategyEnum allocationStrategy) {
     this.allocationStrategy = allocationStrategy;
@@ -552,14 +552,14 @@ private final String value;
    * @return contentType
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CONTENT_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_CONTENT_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public ContentTypeEnum getContentType() {
     return contentType;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CONTENT_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_CONTENT_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setContentType(@javax.annotation.Nullable ContentTypeEnum contentType) {
     this.contentType = contentType;
@@ -576,14 +576,14 @@ private final String value;
    * @return currentOperations
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CURRENT_OPERATIONS)
+  @JsonProperty(value = JSON_PROPERTY_CURRENT_OPERATIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Object getCurrentOperations() {
     return currentOperations;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CURRENT_OPERATIONS)
+  @JsonProperty(value = JSON_PROPERTY_CURRENT_OPERATIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCurrentOperations(@javax.annotation.Nullable Object currentOperations) {
     this.currentOperations = currentOperations;
@@ -600,14 +600,14 @@ private final String value;
    * @return id
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
@@ -624,14 +624,14 @@ private final String value;
    * @return inMaintenanceMode
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_IN_MAINTENANCE_MODE)
+  @JsonProperty(value = JSON_PROPERTY_IN_MAINTENANCE_MODE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getInMaintenanceMode() {
     return inMaintenanceMode;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_IN_MAINTENANCE_MODE)
+  @JsonProperty(value = JSON_PROPERTY_IN_MAINTENANCE_MODE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInMaintenanceMode(@javax.annotation.Nullable Boolean inMaintenanceMode) {
     this.inMaintenanceMode = inMaintenanceMode;
@@ -648,14 +648,14 @@ private final String value;
    * @return nameDescription
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_NAME_DESCRIPTION)
+  @JsonProperty(value = JSON_PROPERTY_NAME_DESCRIPTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getNameDescription() {
     return nameDescription;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME_DESCRIPTION)
+  @JsonProperty(value = JSON_PROPERTY_NAME_DESCRIPTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNameDescription(@javax.annotation.Nullable String nameDescription) {
     this.nameDescription = nameDescription;
@@ -672,14 +672,14 @@ private final String value;
    * @return nameLabel
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_NAME_LABEL)
+  @JsonProperty(value = JSON_PROPERTY_NAME_LABEL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getNameLabel() {
     return nameLabel;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME_LABEL)
+  @JsonProperty(value = JSON_PROPERTY_NAME_LABEL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNameLabel(@javax.annotation.Nullable String nameLabel) {
     this.nameLabel = nameLabel;
@@ -696,14 +696,14 @@ private final String value;
    * @return otherConfig
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_OTHER_CONFIG)
+  @JsonProperty(value = JSON_PROPERTY_OTHER_CONFIG, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Object getOtherConfig() {
     return otherConfig;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_OTHER_CONFIG)
+  @JsonProperty(value = JSON_PROPERTY_OTHER_CONFIG, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOtherConfig(@javax.annotation.Nullable Object otherConfig) {
     this.otherConfig = otherConfig;
@@ -720,14 +720,14 @@ private final String value;
    * @return physicalUsage
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PHYSICAL_USAGE)
+  @JsonProperty(value = JSON_PROPERTY_PHYSICAL_USAGE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getPhysicalUsage() {
     return physicalUsage;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PHYSICAL_USAGE)
+  @JsonProperty(value = JSON_PROPERTY_PHYSICAL_USAGE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPhysicalUsage(@javax.annotation.Nullable Double physicalUsage) {
     this.physicalUsage = physicalUsage;
@@ -744,14 +744,14 @@ private final String value;
    * @return shared
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SHARED)
+  @JsonProperty(value = JSON_PROPERTY_SHARED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getShared() {
     return shared;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SHARED)
+  @JsonProperty(value = JSON_PROPERTY_SHARED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setShared(@javax.annotation.Nullable Boolean shared) {
     this.shared = shared;
@@ -768,14 +768,14 @@ private final String value;
    * @return size
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonProperty(value = JSON_PROPERTY_SIZE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getSize() {
     return size;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonProperty(value = JSON_PROPERTY_SIZE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSize(@javax.annotation.Nullable Double size) {
     this.size = size;
@@ -792,14 +792,14 @@ private final String value;
    * @return smConfig
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SM_CONFIG)
+  @JsonProperty(value = JSON_PROPERTY_SM_CONFIG, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Object getSmConfig() {
     return smConfig;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SM_CONFIG)
+  @JsonProperty(value = JSON_PROPERTY_SM_CONFIG, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSmConfig(@javax.annotation.Nullable Object smConfig) {
     this.smConfig = smConfig;
@@ -824,14 +824,14 @@ private final String value;
    * @return tags
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TAGS)
+  @JsonProperty(value = JSON_PROPERTY_TAGS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getTags() {
     return tags;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TAGS)
+  @JsonProperty(value = JSON_PROPERTY_TAGS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTags(@javax.annotation.Nullable List<String> tags) {
     this.tags = tags;
@@ -848,14 +848,14 @@ private final String value;
    * @return type
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public TypeEnum getType() {
     return type;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setType(@javax.annotation.Nullable TypeEnum type) {
     this.type = type;
@@ -872,14 +872,14 @@ private final String value;
    * @return usage
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_USAGE)
+  @JsonProperty(value = JSON_PROPERTY_USAGE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getUsage() {
     return usage;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_USAGE)
+  @JsonProperty(value = JSON_PROPERTY_USAGE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUsage(@javax.annotation.Nullable Double usage) {
     this.usage = usage;
@@ -896,14 +896,14 @@ private final String value;
    * @return uuid
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_UUID)
+  @JsonProperty(value = JSON_PROPERTY_UUID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getUuid() {
     return uuid;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_UUID)
+  @JsonProperty(value = JSON_PROPERTY_UUID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUuid(@javax.annotation.Nullable String uuid) {
     this.uuid = uuid;
@@ -920,14 +920,14 @@ private final String value;
    * @return href
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_HREF)
+  @JsonProperty(value = JSON_PROPERTY_HREF, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getHref() {
     return href;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_HREF)
+  @JsonProperty(value = JSON_PROPERTY_HREF, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setHref(@javax.annotation.Nonnull String href) {
     this.href = href;
@@ -1014,10 +1014,7 @@ private final String value;
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -1055,133 +1052,133 @@ private final String value;
     // add `$PBDs` to the URL query string
     if (get$PBDs() != null) {
       for (int i = 0; i < get$PBDs().size(); i++) {
-        joiner.add(String.format("%s$PBDs%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%s$PBDs%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(get$PBDs().get(i)))));
       }
     }
 
     // add `$container` to the URL query string
     if (get$Container() != null) {
-      joiner.add(String.format("%s$container%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$Container()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%s$container%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$Container()))));
     }
 
     // add `$pool` to the URL query string
     if (get$Pool() != null) {
-      joiner.add(String.format("%s$pool%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$Pool()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%s$pool%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$Pool()))));
     }
 
     // add `$poolId` to the URL query string
     if (get$PoolId() != null) {
-      joiner.add(String.format("%s$poolId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$PoolId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%s$poolId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$PoolId()))));
     }
 
     // add `SR_type` to the URL query string
     if (getSrType() != null) {
-      joiner.add(String.format("%sSR_type%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSrType()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sSR_type%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSrType()))));
     }
 
     // add `VDIs` to the URL query string
     if (getVdIs() != null) {
       for (int i = 0; i < getVdIs().size(); i++) {
-        joiner.add(String.format("%sVDIs%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%sVDIs%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getVdIs().get(i)))));
       }
     }
 
     // add `_xapiRef` to the URL query string
     if (getXapiRef() != null) {
-      joiner.add(String.format("%s_xapiRef%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getXapiRef()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%s_xapiRef%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getXapiRef()))));
     }
 
     // add `allocationStrategy` to the URL query string
     if (getAllocationStrategy() != null) {
-      joiner.add(String.format("%sallocationStrategy%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAllocationStrategy()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sallocationStrategy%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAllocationStrategy()))));
     }
 
     // add `content_type` to the URL query string
     if (getContentType() != null) {
-      joiner.add(String.format("%scontent_type%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getContentType()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%scontent_type%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getContentType()))));
     }
 
     // add `current_operations` to the URL query string
     if (getCurrentOperations() != null) {
-      joiner.add(String.format("%scurrent_operations%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCurrentOperations()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%scurrent_operations%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCurrentOperations()))));
     }
 
     // add `id` to the URL query string
     if (getId() != null) {
-      joiner.add(String.format("%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
     }
 
     // add `inMaintenanceMode` to the URL query string
     if (getInMaintenanceMode() != null) {
-      joiner.add(String.format("%sinMaintenanceMode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getInMaintenanceMode()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sinMaintenanceMode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getInMaintenanceMode()))));
     }
 
     // add `name_description` to the URL query string
     if (getNameDescription() != null) {
-      joiner.add(String.format("%sname_description%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameDescription()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname_description%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameDescription()))));
     }
 
     // add `name_label` to the URL query string
     if (getNameLabel() != null) {
-      joiner.add(String.format("%sname_label%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameLabel()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname_label%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameLabel()))));
     }
 
     // add `other_config` to the URL query string
     if (getOtherConfig() != null) {
-      joiner.add(String.format("%sother_config%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOtherConfig()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sother_config%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOtherConfig()))));
     }
 
     // add `physical_usage` to the URL query string
     if (getPhysicalUsage() != null) {
-      joiner.add(String.format("%sphysical_usage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPhysicalUsage()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sphysical_usage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPhysicalUsage()))));
     }
 
     // add `shared` to the URL query string
     if (getShared() != null) {
-      joiner.add(String.format("%sshared%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getShared()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sshared%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getShared()))));
     }
 
     // add `size` to the URL query string
     if (getSize() != null) {
-      joiner.add(String.format("%ssize%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSize()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssize%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSize()))));
     }
 
     // add `sm_config` to the URL query string
     if (getSmConfig() != null) {
-      joiner.add(String.format("%ssm_config%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSmConfig()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssm_config%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSmConfig()))));
     }
 
     // add `tags` to the URL query string
     if (getTags() != null) {
       for (int i = 0; i < getTags().size(); i++) {
-        joiner.add(String.format("%stags%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%stags%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getTags().get(i)))));
       }
     }
 
     // add `type` to the URL query string
     if (getType() != null) {
-      joiner.add(String.format("%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
     }
 
     // add `usage` to the URL query string
     if (getUsage() != null) {
-      joiner.add(String.format("%susage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUsage()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%susage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUsage()))));
     }
 
     // add `uuid` to the URL query string
     if (getUuid() != null) {
-      joiner.add(String.format("%suuid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUuid()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%suuid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUuid()))));
     }
 
     // add `href` to the URL query string
     if (getHref() != null) {
-      joiner.add(String.format("%shref%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHref()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%shref%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHref()))));
     }
 
     return joiner.toString();

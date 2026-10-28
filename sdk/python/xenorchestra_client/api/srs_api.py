@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     @xen-orchestra/rest-api
 
@@ -10,6 +8,7 @@
 
     Do not edit the class manually.
 """  # noqa: E501
+
 
 import warnings
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
@@ -3780,7 +3779,7 @@ class SrsApi:
         :param id: (required)
         :type id: str
         :param body: (required)
-        :type body: bytearray
+        :type body: bytes
         :param name_label:
         :type name_label: str
         :param name_description:
@@ -3867,7 +3866,7 @@ class SrsApi:
         :param id: (required)
         :type id: str
         :param body: (required)
-        :type body: bytearray
+        :type body: bytes
         :param name_label:
         :type name_label: str
         :param name_description:
@@ -3954,7 +3953,7 @@ class SrsApi:
         :param id: (required)
         :type id: str
         :param body: (required)
-        :type body: bytearray
+        :type body: bytes
         :param name_label:
         :type name_label: str
         :param name_description:

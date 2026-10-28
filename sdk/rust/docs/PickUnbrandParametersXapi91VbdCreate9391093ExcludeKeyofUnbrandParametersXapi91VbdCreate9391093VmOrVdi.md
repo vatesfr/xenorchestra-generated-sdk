@@ -1,4 +1,4 @@
-# PickUnbrandParametersXapi91VbdCreate9391093PeriodExcludeKeyofUnbrandParametersXapi91VbdCreate9391093PeriodVmOrVdi
+# PickUnbrandParametersXapi91VbdCreate9391093ExcludeKeyofUnbrandParametersXapi91VbdCreate9391093VmOrVdi
 
 ## Properties
 
@@ -6,11 +6,11 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **bootable** | Option<**bool**> |  | [optional]
 **empty** | Option<**bool**> |  | [optional]
-**mode** | Option<[**models::VbdMode**](VBD_MODE.md)> |  | [optional]
-**other_config** | Option<[**serde_json::Value**](.md)> | Construct a type with a set of properties K of type T | [optional]
-**qos_algorithm_params** | Option<[**serde_json::Value**](.md)> | Construct a type with a set of properties K of type T | [optional]
+**mode** | Option<[**models::VbdMode**](VBDMODE.md)> |  | [optional]
+**other_config** | Option<**serde_json::Value**> | Construct a type with a set of properties K of type T | [optional]
+**qos_algorithm_params** | Option<**serde_json::Value**> | Construct a type with a set of properties K of type T | [optional]
 **qos_algorithm_type** | Option<**String**> |  | [optional]
-**r#type** | Option<[**models::VbdType**](VBD_TYPE.md)> |  | [optional]
+**r#type** | Option<[**models::VbdType**](VBDTYPE.md)> |  | [optional]
 **unpluggable** | Option<**bool**> |  | [optional]
 **userdevice** | Option<**String**> |  | [optional]
 

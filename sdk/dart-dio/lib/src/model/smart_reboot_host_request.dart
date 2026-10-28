@@ -120,29 +120,33 @@ class _$SmartRebootHostRequestSerializer
         case r'bypassBackupCheck':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.bypassBackupCheck = valueDes;
           break;
         case r'bypassBlockedSuspend':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.bypassBlockedSuspend = valueDes;
           break;
         case r'bypassCurrentVmCheck':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.bypassCurrentVmCheck = valueDes;
           break;
         case r'bypassVersionCheck':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.bypassVersionCheck = valueDes;
           break;
         default:

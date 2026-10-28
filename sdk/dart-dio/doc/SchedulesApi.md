@@ -38,7 +38,7 @@ final String id = cf7249f8-d20b-494f-97f4-b1f32f94e780; // String |
 try {
     final response = api.getSchedule(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling SchedulesApi->getSchedule: $e\n');
 }
 ```
@@ -92,7 +92,7 @@ final double limit = 42; // double |
 try {
     final response = api.getSchedules(fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling SchedulesApi->getSchedules: $e\n');
 }
 ```
@@ -147,7 +147,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.runSchedule(id, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling SchedulesApi->runSchedule: $e\n');
 }
 ```

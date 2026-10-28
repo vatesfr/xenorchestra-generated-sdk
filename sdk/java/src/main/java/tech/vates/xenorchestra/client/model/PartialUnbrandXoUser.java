@@ -44,7 +44,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PartialUnbrandXoUser.JSON_PROPERTY_PREFERENCES,
   PartialUnbrandXoUser.JSON_PROPERTY_PW_HASH
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PartialUnbrandXoUser {
   public static final String JSON_PROPERTY_AUTH_PROVIDERS = "authProviders";
   @javax.annotation.Nullable
@@ -129,14 +129,14 @@ private final String value;
    * @return authProviders
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_AUTH_PROVIDERS)
+  @JsonProperty(value = JSON_PROPERTY_AUTH_PROVIDERS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Object getAuthProviders() {
     return authProviders;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_AUTH_PROVIDERS)
+  @JsonProperty(value = JSON_PROPERTY_AUTH_PROVIDERS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAuthProviders(@javax.annotation.Nullable Object authProviders) {
     this.authProviders = authProviders;
@@ -153,14 +153,14 @@ private final String value;
    * @return email
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_EMAIL)
+  @JsonProperty(value = JSON_PROPERTY_EMAIL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getEmail() {
     return email;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_EMAIL)
+  @JsonProperty(value = JSON_PROPERTY_EMAIL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEmail(@javax.annotation.Nullable String email) {
     this.email = email;
@@ -185,14 +185,14 @@ private final String value;
    * @return groups
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_GROUPS)
+  @JsonProperty(value = JSON_PROPERTY_GROUPS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getGroups() {
     return groups;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_GROUPS)
+  @JsonProperty(value = JSON_PROPERTY_GROUPS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGroups(@javax.annotation.Nullable List<String> groups) {
     this.groups = groups;
@@ -209,14 +209,14 @@ private final String value;
    * @return id
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
@@ -233,14 +233,14 @@ private final String value;
    * @return name
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getName() {
     return name;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
@@ -257,14 +257,14 @@ private final String value;
    * @return permission
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PERMISSION)
+  @JsonProperty(value = JSON_PROPERTY_PERMISSION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public PermissionEnum getPermission() {
     return permission;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PERMISSION)
+  @JsonProperty(value = JSON_PROPERTY_PERMISSION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPermission(@javax.annotation.Nullable PermissionEnum permission) {
     this.permission = permission;
@@ -281,14 +281,14 @@ private final String value;
    * @return preferences
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PREFERENCES)
+  @JsonProperty(value = JSON_PROPERTY_PREFERENCES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Object getPreferences() {
     return preferences;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PREFERENCES)
+  @JsonProperty(value = JSON_PROPERTY_PREFERENCES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPreferences(@javax.annotation.Nullable Object preferences) {
     this.preferences = preferences;
@@ -305,14 +305,14 @@ private final String value;
    * @return pwHash
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PW_HASH)
+  @JsonProperty(value = JSON_PROPERTY_PW_HASH, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getPwHash() {
     return pwHash;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PW_HASH)
+  @JsonProperty(value = JSON_PROPERTY_PW_HASH, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPwHash(@javax.annotation.Nullable String pwHash) {
     this.pwHash = pwHash;
@@ -367,10 +367,7 @@ private final String value;
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -407,46 +404,46 @@ private final String value;
 
     // add `authProviders` to the URL query string
     if (getAuthProviders() != null) {
-      joiner.add(String.format("%sauthProviders%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAuthProviders()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sauthProviders%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAuthProviders()))));
     }
 
     // add `email` to the URL query string
     if (getEmail() != null) {
-      joiner.add(String.format("%semail%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEmail()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%semail%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEmail()))));
     }
 
     // add `groups` to the URL query string
     if (getGroups() != null) {
       for (int i = 0; i < getGroups().size(); i++) {
-        joiner.add(String.format("%sgroups%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%sgroups%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getGroups().get(i)))));
       }
     }
 
     // add `id` to the URL query string
     if (getId() != null) {
-      joiner.add(String.format("%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
     }
 
     // add `name` to the URL query string
     if (getName() != null) {
-      joiner.add(String.format("%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
     }
 
     // add `permission` to the URL query string
     if (getPermission() != null) {
-      joiner.add(String.format("%spermission%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPermission()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%spermission%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPermission()))));
     }
 
     // add `preferences` to the URL query string
     if (getPreferences() != null) {
-      joiner.add(String.format("%spreferences%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPreferences()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%spreferences%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPreferences()))));
     }
 
     // add `pw_hash` to the URL query string
     if (getPwHash() != null) {
-      joiner.add(String.format("%spw_hash%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPwHash()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%spw_hash%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPwHash()))));
     }
 
     return joiner.toString();

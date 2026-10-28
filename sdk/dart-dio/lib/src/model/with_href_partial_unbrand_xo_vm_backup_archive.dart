@@ -245,30 +245,34 @@ class _$WithHrefPartialUnbrandXoVmBackupArchiveSerializer
         case r'backupRepository':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.backupRepository = valueDes;
           break;
         case r'differencingVhds':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.differencingVhds = valueDes;
           break;
         case r'disks':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList,
+            specifiedType: const FullType.nullable(BuiltList,
                 [FullType(PartialUnbrandXoVmBackupArchiveDisksInner)]),
-          ) as BuiltList<PartialUnbrandXoVmBackupArchiveDisksInner>;
+          ) as BuiltList<PartialUnbrandXoVmBackupArchiveDisksInner>?;
+          if (valueDes == null) continue;
           result.disks.replace(valueDes);
           break;
         case r'dynamicVhds':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.dynamicVhds = valueDes;
           break;
         case r'href':
@@ -281,73 +285,84 @@ class _$WithHrefPartialUnbrandXoVmBackupArchiveSerializer
         case r'id':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.id = valueDes;
           break;
         case r'isImmutable':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.isImmutable = valueDes;
           break;
         case r'jobId':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.jobId = valueDes;
           break;
         case r'mode':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType:
-                const FullType(WithHrefPartialUnbrandXoVmBackupArchiveModeEnum),
-          ) as WithHrefPartialUnbrandXoVmBackupArchiveModeEnum;
+            specifiedType: const FullType.nullable(
+                WithHrefPartialUnbrandXoVmBackupArchiveModeEnum),
+          ) as WithHrefPartialUnbrandXoVmBackupArchiveModeEnum?;
+          if (valueDes == null) continue;
           result.mode = valueDes;
           break;
         case r'scheduleId':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.scheduleId = valueDes;
           break;
         case r'size':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.size = valueDes;
           break;
         case r'timestamp':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.timestamp = valueDes;
           break;
         case r'type':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType:
-                const FullType(WithHrefPartialUnbrandXoVmBackupArchiveTypeEnum),
-          ) as WithHrefPartialUnbrandXoVmBackupArchiveTypeEnum;
+            specifiedType: const FullType.nullable(
+                WithHrefPartialUnbrandXoVmBackupArchiveTypeEnum),
+          ) as WithHrefPartialUnbrandXoVmBackupArchiveTypeEnum?;
+          if (valueDes == null) continue;
           result.type = valueDes;
           break;
         case r'vm':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(PartialUnbrandXoVmBackupArchiveVm),
-          ) as PartialUnbrandXoVmBackupArchiveVm;
+            specifiedType:
+                const FullType.nullable(PartialUnbrandXoVmBackupArchiveVm),
+          ) as PartialUnbrandXoVmBackupArchiveVm?;
+          if (valueDes == null) continue;
           result.vm.replace(valueDes);
           break;
         case r'withMemory':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.withMemory = valueDes;
           break;
         default:

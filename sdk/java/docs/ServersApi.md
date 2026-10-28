@@ -105,7 +105,7 @@ public class Example {
 
 ## addServerWithHttpInfo
 
-> ApiResponse<CreateAclV2Privilege201Response> addServer addServerWithHttpInfo(insertableXoServer)
+> ApiResponse<CreateAclV2Privilege201Response> addServerWithHttpInfo(insertableXoServer)
 
 
 
@@ -276,7 +276,7 @@ public class Example {
 
 ## connectServerWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> connectServer connectServerWithHttpInfo(id, sync)
+> ApiResponse<CreateActionReturnTypeVoid> connectServerWithHttpInfo(id, sync)
 
 
 
@@ -445,7 +445,7 @@ null (empty response body)
 
 ## deleteServerWithHttpInfo
 
-> ApiResponse<Void> deleteServer deleteServerWithHttpInfo(id)
+> ApiResponse<Void> deleteServerWithHttpInfo(id)
 
 
 
@@ -614,7 +614,7 @@ public class Example {
 
 ## disconnectServerWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> disconnectServer disconnectServerWithHttpInfo(id, sync)
+> ApiResponse<CreateActionReturnTypeVoid> disconnectServerWithHttpInfo(id, sync)
 
 
 
@@ -784,7 +784,7 @@ public class Example {
 
 ## getServerWithHttpInfo
 
-> ApiResponse<UnbrandXoServer> getServer getServerWithHttpInfo(id)
+> ApiResponse<UnbrandXoServer> getServerWithHttpInfo(id)
 
 
 
@@ -959,7 +959,7 @@ public class Example {
 
 ## getServerTasksWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoTask> getServerTasks getServerTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoTask> getServerTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1140,7 +1140,7 @@ public class Example {
 
 ## getServersWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoServer> getServers getServersWithHttpInfo(fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoServer> getServersWithHttpInfo(fields, ndjson, markdown, filter, limit)
 
 
 

@@ -11,9 +11,9 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// PickEditVifPropsPeriodExcludeKeyofEditVifPropsPeriodIpv4AllowedOrIpv6Allowed : From T, pick a set of properties whose keys are in the union K
+/// PickEditVifPropsExcludeKeyofEditVifPropsIpv4AllowedOrIpv6Allowed : From T, pick a set of properties whose keys are in the union K
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct PickEditVifPropsPeriodExcludeKeyofEditVifPropsPeriodIpv4AllowedOrIpv6Allowed {
+pub struct PickEditVifPropsExcludeKeyofEditVifPropsIpv4AllowedOrIpv6Allowed {
     #[serde(rename = "lockingMode", skip_serializing_if = "Option::is_none")]
     pub locking_mode: Option<models::VifLockingMode>,
     #[serde(
@@ -27,10 +27,10 @@ pub struct PickEditVifPropsPeriodExcludeKeyofEditVifPropsPeriodIpv4AllowedOrIpv6
     pub tx_checksumming: Option<bool>,
 }
 
-impl PickEditVifPropsPeriodExcludeKeyofEditVifPropsPeriodIpv4AllowedOrIpv6Allowed {
+impl PickEditVifPropsExcludeKeyofEditVifPropsIpv4AllowedOrIpv6Allowed {
     /// From T, pick a set of properties whose keys are in the union K
-    pub fn new() -> PickEditVifPropsPeriodExcludeKeyofEditVifPropsPeriodIpv4AllowedOrIpv6Allowed {
-        PickEditVifPropsPeriodExcludeKeyofEditVifPropsPeriodIpv4AllowedOrIpv6Allowed {
+    pub fn new() -> PickEditVifPropsExcludeKeyofEditVifPropsIpv4AllowedOrIpv6Allowed {
+        PickEditVifPropsExcludeKeyofEditVifPropsIpv4AllowedOrIpv6Allowed {
             locking_mode: None,
             rate_limit: None,
             tx_checksumming: None,

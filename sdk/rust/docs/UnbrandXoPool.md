@@ -9,9 +9,9 @@ Name | Type | Description | Notes
 **ha_enabled** | **bool** |  | 
 **_xapi_ref** | **String** |  | 
 **auto_poweron** | **bool** |  | 
-**cpus** | [**models::PartialUnbrandXoHostCpus**](Partial_Unbrand_XoHost___cpus.md) |  | 
+**cpus** | [**models::PartialUnbrandXoHostCpus**](PartialUnbrandXoHostCpus.md) |  | 
 **crash_dump_sr** | Option<**String**> |  | [optional]
-**current_operations** | [**serde_json::Value**](.md) | Construct a type with a set of properties K of type T | 
+**current_operations** | **serde_json::Value** | Construct a type with a set of properties K of type T | 
 **default_sr** | Option<**String**> |  | [optional]
 **ha_reboot_vm_on_internal_shutdown** | **bool** |  | 
 **ha_srs** | **Vec<String>** |  | 
@@ -20,11 +20,11 @@ Name | Type | Description | Notes
 **migration_compression** | Option<**bool**> |  | [optional]
 **name_description** | **String** |  | 
 **name_label** | **String** |  | 
-**other_config** | [**serde_json::Value**](.md) | Construct a type with a set of properties K of type T | 
+**other_config** | **serde_json::Value** | Construct a type with a set of properties K of type T | 
 **platform_version** | **String** |  | 
 **suspend_sr** | Option<**String**> |  | [optional]
 **tags** | **Vec<String>** |  | 
-**r#type** | **String** |  | 
+**r#type** | **Type** |  (enum: pool) | 
 **uuid** | **String** |  | 
 **vtpm_supported** | **bool** |  | 
 **zstd_supported** | **bool** |  | 

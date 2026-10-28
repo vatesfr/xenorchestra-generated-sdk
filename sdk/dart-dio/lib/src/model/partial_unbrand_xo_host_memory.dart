@@ -109,8 +109,9 @@ class _$PartialUnbrandXoHostMemorySerializer
         case r'total':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.total = valueDes;
           break;
         case r'usage':

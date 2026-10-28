@@ -55,7 +55,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   WithHrefPartialUnbrandXoTask.JSON_PROPERTY_WARNINGS,
   WithHrefPartialUnbrandXoTask.JSON_PROPERTY_HREF
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class WithHrefPartialUnbrandXoTask {
   public static final String JSON_PROPERTY_ABORTION_REQUESTED_AT = "abortionRequestedAt";
   @javax.annotation.Nullable
@@ -166,14 +166,14 @@ private final String value;
    * @return abortionRequestedAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ABORTION_REQUESTED_AT)
+  @JsonProperty(value = JSON_PROPERTY_ABORTION_REQUESTED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getAbortionRequestedAt() {
     return abortionRequestedAt;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ABORTION_REQUESTED_AT)
+  @JsonProperty(value = JSON_PROPERTY_ABORTION_REQUESTED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAbortionRequestedAt(@javax.annotation.Nullable Double abortionRequestedAt) {
     this.abortionRequestedAt = abortionRequestedAt;
@@ -190,14 +190,14 @@ private final String value;
    * @return data
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DATA)
+  @JsonProperty(value = JSON_PROPERTY_DATA, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Object getData() {
     return data;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DATA)
+  @JsonProperty(value = JSON_PROPERTY_DATA, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setData(@javax.annotation.Nullable Object data) {
     this.data = data;
@@ -214,14 +214,14 @@ private final String value;
    * @return end
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_END)
+  @JsonProperty(value = JSON_PROPERTY_END, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getEnd() {
     return end;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_END)
+  @JsonProperty(value = JSON_PROPERTY_END, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEnd(@javax.annotation.Nullable Double end) {
     this.end = end;
@@ -238,14 +238,14 @@ private final String value;
    * @return id
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
@@ -270,14 +270,14 @@ private final String value;
    * @return infos
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_INFOS)
+  @JsonProperty(value = JSON_PROPERTY_INFOS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<PartialUnbrandXoBackupLogInfosInner> getInfos() {
     return infos;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_INFOS)
+  @JsonProperty(value = JSON_PROPERTY_INFOS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInfos(@javax.annotation.Nullable List<PartialUnbrandXoBackupLogInfosInner> infos) {
     this.infos = infos;
@@ -294,14 +294,14 @@ private final String value;
    * @return progress
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PROGRESS)
+  @JsonProperty(value = JSON_PROPERTY_PROGRESS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getProgress() {
     return progress;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PROGRESS)
+  @JsonProperty(value = JSON_PROPERTY_PROGRESS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setProgress(@javax.annotation.Nullable Double progress) {
     this.progress = progress;
@@ -318,14 +318,14 @@ private final String value;
    * @return properties
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PROPERTIES)
+  @JsonProperty(value = JSON_PROPERTY_PROPERTIES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public PartialUnbrandXoTaskProperties getProperties() {
     return properties;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PROPERTIES)
+  @JsonProperty(value = JSON_PROPERTY_PROPERTIES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setProperties(@javax.annotation.Nullable PartialUnbrandXoTaskProperties properties) {
     this.properties = properties;
@@ -350,14 +350,14 @@ private final String value;
    * @return result
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_RESULT)
+  @JsonProperty(value = JSON_PROPERTY_RESULT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, Object> getResult() {
     return result;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_RESULT)
+  @JsonProperty(value = JSON_PROPERTY_RESULT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setResult(@javax.annotation.Nullable Map<String, Object> result) {
     this.result = result;
@@ -374,14 +374,14 @@ private final String value;
    * @return start
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_START)
+  @JsonProperty(value = JSON_PROPERTY_START, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getStart() {
     return start;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_START)
+  @JsonProperty(value = JSON_PROPERTY_START, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStart(@javax.annotation.Nullable Double start) {
     this.start = start;
@@ -398,14 +398,14 @@ private final String value;
    * @return status
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_STATUS)
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public StatusEnum getStatus() {
     return status;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_STATUS)
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStatus(@javax.annotation.Nullable StatusEnum status) {
     this.status = status;
@@ -430,14 +430,14 @@ private final String value;
    * @return tasks
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TASKS)
+  @JsonProperty(value = JSON_PROPERTY_TASKS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<XoTask> getTasks() {
     return tasks;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TASKS)
+  @JsonProperty(value = JSON_PROPERTY_TASKS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTasks(@javax.annotation.Nullable List<XoTask> tasks) {
     this.tasks = tasks;
@@ -454,14 +454,14 @@ private final String value;
    * @return updatedAt
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_UPDATED_AT)
+  @JsonProperty(value = JSON_PROPERTY_UPDATED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getUpdatedAt() {
     return updatedAt;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_UPDATED_AT)
+  @JsonProperty(value = JSON_PROPERTY_UPDATED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUpdatedAt(@javax.annotation.Nullable Double updatedAt) {
     this.updatedAt = updatedAt;
@@ -486,14 +486,14 @@ private final String value;
    * @return warnings
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_WARNINGS)
+  @JsonProperty(value = JSON_PROPERTY_WARNINGS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<PartialUnbrandXoBackupLogInfosInner> getWarnings() {
     return warnings;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_WARNINGS)
+  @JsonProperty(value = JSON_PROPERTY_WARNINGS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setWarnings(@javax.annotation.Nullable List<PartialUnbrandXoBackupLogInfosInner> warnings) {
     this.warnings = warnings;
@@ -510,14 +510,14 @@ private final String value;
    * @return href
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_HREF)
+  @JsonProperty(value = JSON_PROPERTY_HREF, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getHref() {
     return href;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_HREF)
+  @JsonProperty(value = JSON_PROPERTY_HREF, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setHref(@javax.annotation.Nonnull String href) {
     this.href = href;
@@ -584,10 +584,7 @@ private final String value;
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -624,91 +621,91 @@ private final String value;
 
     // add `abortionRequestedAt` to the URL query string
     if (getAbortionRequestedAt() != null) {
-      joiner.add(String.format("%sabortionRequestedAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAbortionRequestedAt()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sabortionRequestedAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAbortionRequestedAt()))));
     }
 
     // add `data` to the URL query string
     if (getData() != null) {
-      joiner.add(String.format("%sdata%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getData()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdata%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getData()))));
     }
 
     // add `end` to the URL query string
     if (getEnd() != null) {
-      joiner.add(String.format("%send%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEnd()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%send%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEnd()))));
     }
 
     // add `id` to the URL query string
     if (getId() != null) {
-      joiner.add(String.format("%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
     }
 
     // add `infos` to the URL query string
     if (getInfos() != null) {
       for (int i = 0; i < getInfos().size(); i++) {
         if (getInfos().get(i) != null) {
-          joiner.add(getInfos().get(i).toUrlQueryString(String.format("%sinfos%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+          joiner.add(getInfos().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sinfos%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
     }
 
     // add `progress` to the URL query string
     if (getProgress() != null) {
-      joiner.add(String.format("%sprogress%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProgress()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sprogress%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProgress()))));
     }
 
     // add `properties` to the URL query string
     if (getProperties() != null) {
-      joiner.add(String.format("%sproperties%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProperties()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sproperties%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProperties()))));
     }
 
     // add `result` to the URL query string
     if (getResult() != null) {
       for (String _key : getResult().keySet()) {
-        joiner.add(String.format("%sresult%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%sresult%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getResult().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getResult().get(_key)))));
       }
     }
 
     // add `start` to the URL query string
     if (getStart() != null) {
-      joiner.add(String.format("%sstart%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStart()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sstart%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStart()))));
     }
 
     // add `status` to the URL query string
     if (getStatus() != null) {
-      joiner.add(String.format("%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
     }
 
     // add `tasks` to the URL query string
     if (getTasks() != null) {
       for (int i = 0; i < getTasks().size(); i++) {
         if (getTasks().get(i) != null) {
-          joiner.add(getTasks().get(i).toUrlQueryString(String.format("%stasks%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+          joiner.add(getTasks().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%stasks%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
     }
 
     // add `updatedAt` to the URL query string
     if (getUpdatedAt() != null) {
-      joiner.add(String.format("%supdatedAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUpdatedAt()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%supdatedAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUpdatedAt()))));
     }
 
     // add `warnings` to the URL query string
     if (getWarnings() != null) {
       for (int i = 0; i < getWarnings().size(); i++) {
         if (getWarnings().get(i) != null) {
-          joiner.add(getWarnings().get(i).toUrlQueryString(String.format("%swarnings%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+          joiner.add(getWarnings().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%swarnings%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
     }
 
     // add `href` to the URL query string
     if (getHref() != null) {
-      joiner.add(String.format("%shref%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHref()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%shref%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHref()))));
     }
 
     return joiner.toString();

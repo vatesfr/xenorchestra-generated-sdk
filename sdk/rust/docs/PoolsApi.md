@@ -492,7 +492,7 @@ Required privilege: - resource: pool, action: read
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **String** |  | [required] |
-**granularity** | Option<[**XapiStatsGranularity**](.md)> |  |  |
+**granularity** | Option<[**XapiStatsGranularity**](XapiStatsGranularity.md)> |  |  |
 
 ### Return type
 

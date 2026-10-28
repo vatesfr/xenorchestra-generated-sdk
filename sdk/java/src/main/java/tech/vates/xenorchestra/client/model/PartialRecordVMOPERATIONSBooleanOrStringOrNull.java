@@ -88,7 +88,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PartialRecordVMOPERATIONSBooleanOrStringOrNull.JSON_PROPERTY_UNPAUSE,
   PartialRecordVMOPERATIONSBooleanOrStringOrNull.JSON_PROPERTY_UPDATE_ALLOWED_OPERATIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
   public static final String JSON_PROPERTY_ASSERT_OPERATION_VALID = "assert_operation_valid";
   private JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> assertOperationValid = JsonNullable.<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid>undefined();
@@ -255,7 +255,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return assertOperationValid.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_ASSERT_OPERATION_VALID)
+  @JsonProperty(value = JSON_PROPERTY_ASSERT_OPERATION_VALID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getAssertOperationValid_JsonNullable() {
@@ -287,7 +287,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return awaitingMemoryLive.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_AWAITING_MEMORY_LIVE)
+  @JsonProperty(value = JSON_PROPERTY_AWAITING_MEMORY_LIVE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getAwaitingMemoryLive_JsonNullable() {
@@ -319,7 +319,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return callPlugin.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_CALL_PLUGIN)
+  @JsonProperty(value = JSON_PROPERTY_CALL_PLUGIN, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getCallPlugin_JsonNullable() {
@@ -351,7 +351,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return changingNVRAM.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_CHANGING_N_V_R_A_M)
+  @JsonProperty(value = JSON_PROPERTY_CHANGING_N_V_R_A_M, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getChangingNVRAM_JsonNullable() {
@@ -383,7 +383,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return changingVCPUs.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_CHANGING_V_C_P_US)
+  @JsonProperty(value = JSON_PROPERTY_CHANGING_V_C_P_US, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getChangingVCPUs_JsonNullable() {
@@ -415,7 +415,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return changingVCPUsLive.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_CHANGING_V_C_P_US_LIVE)
+  @JsonProperty(value = JSON_PROPERTY_CHANGING_V_C_P_US_LIVE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getChangingVCPUsLive_JsonNullable() {
@@ -447,7 +447,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return changingDynamicRange.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_CHANGING_DYNAMIC_RANGE)
+  @JsonProperty(value = JSON_PROPERTY_CHANGING_DYNAMIC_RANGE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getChangingDynamicRange_JsonNullable() {
@@ -479,7 +479,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return changingMemoryLimits.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_CHANGING_MEMORY_LIMITS)
+  @JsonProperty(value = JSON_PROPERTY_CHANGING_MEMORY_LIMITS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getChangingMemoryLimits_JsonNullable() {
@@ -511,7 +511,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return changingMemoryLive.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_CHANGING_MEMORY_LIVE)
+  @JsonProperty(value = JSON_PROPERTY_CHANGING_MEMORY_LIVE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getChangingMemoryLive_JsonNullable() {
@@ -543,7 +543,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return changingShadowMemory.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_CHANGING_SHADOW_MEMORY)
+  @JsonProperty(value = JSON_PROPERTY_CHANGING_SHADOW_MEMORY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getChangingShadowMemory_JsonNullable() {
@@ -575,7 +575,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return changingShadowMemoryLive.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_CHANGING_SHADOW_MEMORY_LIVE)
+  @JsonProperty(value = JSON_PROPERTY_CHANGING_SHADOW_MEMORY_LIVE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getChangingShadowMemoryLive_JsonNullable() {
@@ -607,7 +607,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return changingStaticRange.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_CHANGING_STATIC_RANGE)
+  @JsonProperty(value = JSON_PROPERTY_CHANGING_STATIC_RANGE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getChangingStaticRange_JsonNullable() {
@@ -639,7 +639,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return checkpoint.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_CHECKPOINT)
+  @JsonProperty(value = JSON_PROPERTY_CHECKPOINT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getCheckpoint_JsonNullable() {
@@ -671,7 +671,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return cleanReboot.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_CLEAN_REBOOT)
+  @JsonProperty(value = JSON_PROPERTY_CLEAN_REBOOT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getCleanReboot_JsonNullable() {
@@ -703,7 +703,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return cleanShutdown.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_CLEAN_SHUTDOWN)
+  @JsonProperty(value = JSON_PROPERTY_CLEAN_SHUTDOWN, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getCleanShutdown_JsonNullable() {
@@ -735,7 +735,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return clone.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_CLONE)
+  @JsonProperty(value = JSON_PROPERTY_CLONE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getClone_JsonNullable() {
@@ -767,7 +767,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return copy.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_COPY)
+  @JsonProperty(value = JSON_PROPERTY_COPY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getCopy_JsonNullable() {
@@ -799,7 +799,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return createTemplate.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_CREATE_TEMPLATE)
+  @JsonProperty(value = JSON_PROPERTY_CREATE_TEMPLATE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getCreateTemplate_JsonNullable() {
@@ -831,7 +831,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return createVtpm.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_CREATE_VTPM)
+  @JsonProperty(value = JSON_PROPERTY_CREATE_VTPM, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getCreateVtpm_JsonNullable() {
@@ -863,7 +863,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return csvm.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_CSVM)
+  @JsonProperty(value = JSON_PROPERTY_CSVM, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getCsvm_JsonNullable() {
@@ -895,7 +895,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return dataSourceOp.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_DATA_SOURCE_OP)
+  @JsonProperty(value = JSON_PROPERTY_DATA_SOURCE_OP, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getDataSourceOp_JsonNullable() {
@@ -927,7 +927,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return destroy.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_DESTROY)
+  @JsonProperty(value = JSON_PROPERTY_DESTROY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getDestroy_JsonNullable() {
@@ -959,7 +959,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return export.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_EXPORT)
+  @JsonProperty(value = JSON_PROPERTY_EXPORT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getExport_JsonNullable() {
@@ -991,7 +991,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return getBootRecord.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_GET_BOOT_RECORD)
+  @JsonProperty(value = JSON_PROPERTY_GET_BOOT_RECORD, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getGetBootRecord_JsonNullable() {
@@ -1023,7 +1023,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return hardReboot.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_HARD_REBOOT)
+  @JsonProperty(value = JSON_PROPERTY_HARD_REBOOT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getHardReboot_JsonNullable() {
@@ -1055,7 +1055,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return hardShutdown.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_HARD_SHUTDOWN)
+  @JsonProperty(value = JSON_PROPERTY_HARD_SHUTDOWN, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getHardShutdown_JsonNullable() {
@@ -1087,7 +1087,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return _import.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_IMPORT)
+  @JsonProperty(value = JSON_PROPERTY_IMPORT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getImport_JsonNullable() {
@@ -1119,7 +1119,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return makeIntoTemplate.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_MAKE_INTO_TEMPLATE)
+  @JsonProperty(value = JSON_PROPERTY_MAKE_INTO_TEMPLATE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getMakeIntoTemplate_JsonNullable() {
@@ -1151,7 +1151,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return metadataExport.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_METADATA_EXPORT)
+  @JsonProperty(value = JSON_PROPERTY_METADATA_EXPORT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getMetadataExport_JsonNullable() {
@@ -1183,7 +1183,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return migrateSend.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_MIGRATE_SEND)
+  @JsonProperty(value = JSON_PROPERTY_MIGRATE_SEND, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getMigrateSend_JsonNullable() {
@@ -1215,7 +1215,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return pause.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_PAUSE)
+  @JsonProperty(value = JSON_PROPERTY_PAUSE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getPause_JsonNullable() {
@@ -1247,7 +1247,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return poolMigrate.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_POOL_MIGRATE)
+  @JsonProperty(value = JSON_PROPERTY_POOL_MIGRATE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getPoolMigrate_JsonNullable() {
@@ -1279,7 +1279,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return powerStateReset.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_POWER_STATE_RESET)
+  @JsonProperty(value = JSON_PROPERTY_POWER_STATE_RESET, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getPowerStateReset_JsonNullable() {
@@ -1311,7 +1311,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return provision.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_PROVISION)
+  @JsonProperty(value = JSON_PROPERTY_PROVISION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getProvision_JsonNullable() {
@@ -1343,7 +1343,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return queryServices.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_QUERY_SERVICES)
+  @JsonProperty(value = JSON_PROPERTY_QUERY_SERVICES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getQueryServices_JsonNullable() {
@@ -1375,7 +1375,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return resume.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_RESUME)
+  @JsonProperty(value = JSON_PROPERTY_RESUME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getResume_JsonNullable() {
@@ -1407,7 +1407,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return resumeOn.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_RESUME_ON)
+  @JsonProperty(value = JSON_PROPERTY_RESUME_ON, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getResumeOn_JsonNullable() {
@@ -1439,7 +1439,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return revert.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_REVERT)
+  @JsonProperty(value = JSON_PROPERTY_REVERT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getRevert_JsonNullable() {
@@ -1471,7 +1471,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return reverting.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_REVERTING)
+  @JsonProperty(value = JSON_PROPERTY_REVERTING, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getReverting_JsonNullable() {
@@ -1503,7 +1503,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return sendSysrq.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_SEND_SYSRQ)
+  @JsonProperty(value = JSON_PROPERTY_SEND_SYSRQ, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getSendSysrq_JsonNullable() {
@@ -1535,7 +1535,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return sendTrigger.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_SEND_TRIGGER)
+  @JsonProperty(value = JSON_PROPERTY_SEND_TRIGGER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getSendTrigger_JsonNullable() {
@@ -1567,7 +1567,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return shutdown.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_SHUTDOWN)
+  @JsonProperty(value = JSON_PROPERTY_SHUTDOWN, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getShutdown_JsonNullable() {
@@ -1599,7 +1599,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return snapshot.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_SNAPSHOT)
+  @JsonProperty(value = JSON_PROPERTY_SNAPSHOT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getSnapshot_JsonNullable() {
@@ -1631,7 +1631,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return snapshotWithQuiesce.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_SNAPSHOT_WITH_QUIESCE)
+  @JsonProperty(value = JSON_PROPERTY_SNAPSHOT_WITH_QUIESCE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getSnapshotWithQuiesce_JsonNullable() {
@@ -1663,7 +1663,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return start.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_START)
+  @JsonProperty(value = JSON_PROPERTY_START, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getStart_JsonNullable() {
@@ -1695,7 +1695,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return startOn.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_START_ON)
+  @JsonProperty(value = JSON_PROPERTY_START_ON, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getStartOn_JsonNullable() {
@@ -1727,7 +1727,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return suspend.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_SUSPEND)
+  @JsonProperty(value = JSON_PROPERTY_SUSPEND, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getSuspend_JsonNullable() {
@@ -1759,7 +1759,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return unpause.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_UNPAUSE)
+  @JsonProperty(value = JSON_PROPERTY_UNPAUSE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getUnpause_JsonNullable() {
@@ -1791,7 +1791,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
         return updateAllowedOperations.orElse(null);
   }
 
-  @JsonProperty(JSON_PROPERTY_UPDATE_ALLOWED_OPERATIONS)
+  @JsonProperty(value = JSON_PROPERTY_UPDATE_ALLOWED_OPERATIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public JsonNullable<PartialRecordVMOPERATIONSBooleanOrStringOrNullAssertOperationValid> getUpdateAllowedOperations_JsonNullable() {
@@ -1949,10 +1949,7 @@ public class PartialRecordVMOPERATIONSBooleanOrStringOrNull {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**

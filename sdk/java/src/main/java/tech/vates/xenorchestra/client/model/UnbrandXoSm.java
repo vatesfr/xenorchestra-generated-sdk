@@ -51,7 +51,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   UnbrandXoSm.JSON_PROPERTY_UUID,
   UnbrandXoSm.JSON_PROPERTY_VENDOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class UnbrandXoSm {
   public static final String JSON_PROPERTY_$_POOL = "$pool";
   @javax.annotation.Nonnull
@@ -163,14 +163,14 @@ private final String value;
    * @return $pool
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_$_POOL)
+  @JsonProperty(value = JSON_PROPERTY_$_POOL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String get$Pool() {
     return $pool;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_$_POOL)
+  @JsonProperty(value = JSON_PROPERTY_$_POOL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void set$Pool(@javax.annotation.Nonnull String $pool) {
     this.$pool = $pool;
@@ -189,14 +189,14 @@ private final String value;
    */
   @Deprecated
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_$_POOL_ID)
+  @JsonProperty(value = JSON_PROPERTY_$_POOL_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String get$PoolId() {
     return $poolId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_$_POOL_ID)
+  @JsonProperty(value = JSON_PROPERTY_$_POOL_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void set$PoolId(@javax.annotation.Nonnull String $poolId) {
     this.$poolId = $poolId;
@@ -213,14 +213,14 @@ private final String value;
    * @return smType
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_SM_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_SM_TYPE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getSmType() {
     return smType;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SM_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_SM_TYPE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSmType(@javax.annotation.Nonnull String smType) {
     this.smType = smType;
@@ -237,14 +237,14 @@ private final String value;
    * @return xapiRef
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_XAPI_REF)
+  @JsonProperty(value = JSON_PROPERTY_XAPI_REF, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getXapiRef() {
     return xapiRef;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_XAPI_REF)
+  @JsonProperty(value = JSON_PROPERTY_XAPI_REF, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setXapiRef(@javax.annotation.Nonnull String xapiRef) {
     this.xapiRef = xapiRef;
@@ -261,14 +261,14 @@ private final String value;
    * @return _configuration
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_CONFIGURATION)
+  @JsonProperty(value = JSON_PROPERTY_CONFIGURATION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Object getConfiguration() {
     return _configuration;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CONFIGURATION)
+  @JsonProperty(value = JSON_PROPERTY_CONFIGURATION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setConfiguration(@javax.annotation.Nonnull Object _configuration) {
     this._configuration = _configuration;
@@ -285,14 +285,14 @@ private final String value;
    * @return driverFilename
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_DRIVER_FILENAME)
+  @JsonProperty(value = JSON_PROPERTY_DRIVER_FILENAME, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getDriverFilename() {
     return driverFilename;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DRIVER_FILENAME)
+  @JsonProperty(value = JSON_PROPERTY_DRIVER_FILENAME, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDriverFilename(@javax.annotation.Nonnull String driverFilename) {
     this.driverFilename = driverFilename;
@@ -309,14 +309,14 @@ private final String value;
    * @return features
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_FEATURES)
+  @JsonProperty(value = JSON_PROPERTY_FEATURES, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Object getFeatures() {
     return features;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_FEATURES)
+  @JsonProperty(value = JSON_PROPERTY_FEATURES, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setFeatures(@javax.annotation.Nonnull Object features) {
     this.features = features;
@@ -333,14 +333,14 @@ private final String value;
    * @return id
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
@@ -357,14 +357,14 @@ private final String value;
    * @return nameDescription
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_NAME_DESCRIPTION)
+  @JsonProperty(value = JSON_PROPERTY_NAME_DESCRIPTION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getNameDescription() {
     return nameDescription;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME_DESCRIPTION)
+  @JsonProperty(value = JSON_PROPERTY_NAME_DESCRIPTION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setNameDescription(@javax.annotation.Nonnull String nameDescription) {
     this.nameDescription = nameDescription;
@@ -381,14 +381,14 @@ private final String value;
    * @return nameLabel
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_NAME_LABEL)
+  @JsonProperty(value = JSON_PROPERTY_NAME_LABEL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getNameLabel() {
     return nameLabel;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME_LABEL)
+  @JsonProperty(value = JSON_PROPERTY_NAME_LABEL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setNameLabel(@javax.annotation.Nonnull String nameLabel) {
     this.nameLabel = nameLabel;
@@ -413,14 +413,14 @@ private final String value;
    * @return requiredClusterStack
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_REQUIRED_CLUSTER_STACK)
+  @JsonProperty(value = JSON_PROPERTY_REQUIRED_CLUSTER_STACK, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<String> getRequiredClusterStack() {
     return requiredClusterStack;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_REQUIRED_CLUSTER_STACK)
+  @JsonProperty(value = JSON_PROPERTY_REQUIRED_CLUSTER_STACK, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setRequiredClusterStack(@javax.annotation.Nonnull List<String> requiredClusterStack) {
     this.requiredClusterStack = requiredClusterStack;
@@ -445,14 +445,14 @@ private final String value;
    * @return supportedImageFormats
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_SUPPORTED_IMAGE_FORMATS)
+  @JsonProperty(value = JSON_PROPERTY_SUPPORTED_IMAGE_FORMATS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<String> getSupportedImageFormats() {
     return supportedImageFormats;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SUPPORTED_IMAGE_FORMATS)
+  @JsonProperty(value = JSON_PROPERTY_SUPPORTED_IMAGE_FORMATS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSupportedImageFormats(@javax.annotation.Nonnull List<String> supportedImageFormats) {
     this.supportedImageFormats = supportedImageFormats;
@@ -469,14 +469,14 @@ private final String value;
    * @return type
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public TypeEnum getType() {
     return type;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setType(@javax.annotation.Nonnull TypeEnum type) {
     this.type = type;
@@ -493,14 +493,14 @@ private final String value;
    * @return uuid
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_UUID)
+  @JsonProperty(value = JSON_PROPERTY_UUID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getUuid() {
     return uuid;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_UUID)
+  @JsonProperty(value = JSON_PROPERTY_UUID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUuid(@javax.annotation.Nonnull String uuid) {
     this.uuid = uuid;
@@ -517,14 +517,14 @@ private final String value;
    * @return vendor
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_VENDOR)
+  @JsonProperty(value = JSON_PROPERTY_VENDOR, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getVendor() {
     return vendor;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_VENDOR)
+  @JsonProperty(value = JSON_PROPERTY_VENDOR, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setVendor(@javax.annotation.Nonnull String vendor) {
     this.vendor = vendor;
@@ -593,10 +593,7 @@ private final String value;
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -633,59 +630,59 @@ private final String value;
 
     // add `$pool` to the URL query string
     if (get$Pool() != null) {
-      joiner.add(String.format("%s$pool%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$Pool()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%s$pool%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$Pool()))));
     }
 
     // add `$poolId` to the URL query string
     if (get$PoolId() != null) {
-      joiner.add(String.format("%s$poolId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$PoolId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%s$poolId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$PoolId()))));
     }
 
     // add `SM_type` to the URL query string
     if (getSmType() != null) {
-      joiner.add(String.format("%sSM_type%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSmType()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sSM_type%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSmType()))));
     }
 
     // add `_xapiRef` to the URL query string
     if (getXapiRef() != null) {
-      joiner.add(String.format("%s_xapiRef%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getXapiRef()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%s_xapiRef%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getXapiRef()))));
     }
 
     // add `configuration` to the URL query string
     if (getConfiguration() != null) {
-      joiner.add(String.format("%sconfiguration%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getConfiguration()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sconfiguration%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getConfiguration()))));
     }
 
     // add `driver_filename` to the URL query string
     if (getDriverFilename() != null) {
-      joiner.add(String.format("%sdriver_filename%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDriverFilename()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdriver_filename%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDriverFilename()))));
     }
 
     // add `features` to the URL query string
     if (getFeatures() != null) {
-      joiner.add(String.format("%sfeatures%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFeatures()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sfeatures%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFeatures()))));
     }
 
     // add `id` to the URL query string
     if (getId() != null) {
-      joiner.add(String.format("%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
     }
 
     // add `name_description` to the URL query string
     if (getNameDescription() != null) {
-      joiner.add(String.format("%sname_description%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameDescription()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname_description%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameDescription()))));
     }
 
     // add `name_label` to the URL query string
     if (getNameLabel() != null) {
-      joiner.add(String.format("%sname_label%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameLabel()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname_label%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameLabel()))));
     }
 
     // add `required_cluster_stack` to the URL query string
     if (getRequiredClusterStack() != null) {
       for (int i = 0; i < getRequiredClusterStack().size(); i++) {
-        joiner.add(String.format("%srequired_cluster_stack%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%srequired_cluster_stack%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getRequiredClusterStack().get(i)))));
       }
     }
@@ -693,25 +690,25 @@ private final String value;
     // add `supported_image_formats` to the URL query string
     if (getSupportedImageFormats() != null) {
       for (int i = 0; i < getSupportedImageFormats().size(); i++) {
-        joiner.add(String.format("%ssupported_image_formats%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%ssupported_image_formats%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getSupportedImageFormats().get(i)))));
       }
     }
 
     // add `type` to the URL query string
     if (getType() != null) {
-      joiner.add(String.format("%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
     }
 
     // add `uuid` to the URL query string
     if (getUuid() != null) {
-      joiner.add(String.format("%suuid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUuid()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%suuid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUuid()))));
     }
 
     // add `vendor` to the URL query string
     if (getVendor() != null) {
-      joiner.add(String.format("%svendor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVendor()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%svendor%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVendor()))));
     }
 
     return joiner.toString();

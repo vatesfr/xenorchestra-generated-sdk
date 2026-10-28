@@ -40,7 +40,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   XapiVmStatsRawXvds.JSON_PROPERTY_TOTAL,
   XapiVmStatsRawXvds.JSON_PROPERTY_W
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class XapiVmStatsRawXvds {
   public static final String JSON_PROPERTY_R = "r";
   @javax.annotation.Nullable
@@ -75,14 +75,14 @@ public class XapiVmStatsRawXvds {
    * @return r
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_R)
+  @JsonProperty(value = JSON_PROPERTY_R, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, List<Double>> getR() {
     return r;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_R)
+  @JsonProperty(value = JSON_PROPERTY_R, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setR(@javax.annotation.Nullable Map<String, List<Double>> r) {
     this.r = r;
@@ -107,14 +107,14 @@ public class XapiVmStatsRawXvds {
    * @return total
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TOTAL)
+  @JsonProperty(value = JSON_PROPERTY_TOTAL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, List<Double>> getTotal() {
     return total;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TOTAL)
+  @JsonProperty(value = JSON_PROPERTY_TOTAL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTotal(@javax.annotation.Nullable Map<String, List<Double>> total) {
     this.total = total;
@@ -139,14 +139,14 @@ public class XapiVmStatsRawXvds {
    * @return w
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_W)
+  @JsonProperty(value = JSON_PROPERTY_W, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, List<Double>> getW() {
     return w;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_W)
+  @JsonProperty(value = JSON_PROPERTY_W, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setW(@javax.annotation.Nullable Map<String, List<Double>> w) {
     this.w = w;
@@ -191,10 +191,7 @@ public class XapiVmStatsRawXvds {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -232,8 +229,8 @@ public class XapiVmStatsRawXvds {
     // add `r` to the URL query string
     if (getR() != null) {
       for (String _key : getR().keySet()) {
-        joiner.add(String.format("%sr%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%sr%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getR().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getR().get(_key)))));
       }
     }
@@ -241,8 +238,8 @@ public class XapiVmStatsRawXvds {
     // add `total` to the URL query string
     if (getTotal() != null) {
       for (String _key : getTotal().keySet()) {
-        joiner.add(String.format("%stotal%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%stotal%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getTotal().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getTotal().get(_key)))));
       }
     }
@@ -250,8 +247,8 @@ public class XapiVmStatsRawXvds {
     // add `w` to the URL query string
     if (getW() != null) {
       for (String _key : getW().keySet()) {
-        joiner.add(String.format("%sw%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%sw%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getW().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getW().get(_key)))));
       }
     }

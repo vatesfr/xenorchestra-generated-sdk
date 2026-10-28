@@ -112,24 +112,27 @@ class _$PostDeprecatedAuthenticationTokensRequestSerializer
         case r'client':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType:
-                const FullType(PostDeprecatedAuthenticationTokensRequestClient),
-          ) as PostDeprecatedAuthenticationTokensRequestClient;
+            specifiedType: const FullType.nullable(
+                PostDeprecatedAuthenticationTokensRequestClient),
+          ) as PostDeprecatedAuthenticationTokensRequestClient?;
+          if (valueDes == null) continue;
           result.client.replace(valueDes);
           break;
         case r'description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.description = valueDes;
           break;
         case r'expiresIn':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(
+            specifiedType: const FullType.nullable(
                 PostDeprecatedAuthenticationTokensRequestExpiresIn),
-          ) as PostDeprecatedAuthenticationTokensRequestExpiresIn;
+          ) as PostDeprecatedAuthenticationTokensRequestExpiresIn?;
+          if (valueDes == null) continue;
           result.expiresIn.replace(valueDes);
           break;
         default:

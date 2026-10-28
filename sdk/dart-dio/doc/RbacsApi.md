@@ -55,7 +55,7 @@ final String groupId = ee4965bf-d8af-4ca2-aa0e-5f29d0c5f9e2; // String |
 
 try {
     api.attachAclV2Group(id, groupId);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling RbacsApi->attachAclV2Group: $e\n');
 }
 ```
@@ -106,7 +106,7 @@ final String userId = ee4965bf-d8af-4ca2-aa0e-5f29d0c5f9e2; // String |
 
 try {
     api.attachAclV2User(id, userId);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling RbacsApi->attachAclV2User: $e\n');
 }
 ```
@@ -159,7 +159,7 @@ final CopyAclV2RoleRequest copyAclV2RoleRequest = {"name":"Copied role"}; // Cop
 try {
     final response = api.copyAclV2Role(id, sync_, copyAclV2RoleRequest);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling RbacsApi->copyAclV2Role: $e\n');
 }
 ```
@@ -211,7 +211,7 @@ final UnbrandSafeOmitAnyPrivilegeId unbrandSafeOmitAnyPrivilegeId = {"action":"r
 try {
     final response = api.createAclV2Privilege(unbrandSafeOmitAnyPrivilegeId);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling RbacsApi->createAclV2Privilege: $e\n');
 }
 ```
@@ -261,7 +261,7 @@ final CreateAclV2RoleRequest createAclV2RoleRequest = {"description":"Allow to c
 try {
     final response = api.createAclV2Role(createAclV2RoleRequest);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling RbacsApi->createAclV2Role: $e\n');
 }
 ```
@@ -310,7 +310,7 @@ final String id = 784bd959-08de-4b26-b575-92ded5aef872; // String |
 
 try {
     api.deleteAclV2Privilege(id);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling RbacsApi->deleteAclV2Privilege: $e\n');
 }
 ```
@@ -359,7 +359,7 @@ final String id = 784bd959-08de-4b26-b575-92ded5aef872; // String |
 
 try {
     api.deleteAclV2Role(id);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling RbacsApi->deleteAclV2Role: $e\n');
 }
 ```
@@ -409,7 +409,7 @@ final String groupId = ee4965bf-d8af-4ca2-aa0e-5f29d0c5f9e2; // String |
 
 try {
     api.detachAclV2Group(id, groupId);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling RbacsApi->detachAclV2Group: $e\n');
 }
 ```
@@ -460,7 +460,7 @@ final String userId = ee4965bf-d8af-4ca2-aa0e-5f29d0c5f9e2; // String |
 
 try {
     api.detachAclV2User(id, userId);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling RbacsApi->detachAclV2User: $e\n');
 }
 ```
@@ -516,7 +516,7 @@ final double limit = 42; // double |
 try {
     final response = api.getAclRoleGroups(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling RbacsApi->getAclRoleGroups: $e\n');
 }
 ```
@@ -576,7 +576,7 @@ final double limit = 42; // double |
 try {
     final response = api.getAclRoleUsers(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling RbacsApi->getAclRoleUsers: $e\n');
 }
 ```
@@ -631,7 +631,7 @@ final String id = c5d89d1a-df1e-4b72-98a0-c40adfdf49c1; // String |
 try {
     final response = api.getAclV2Privilege(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling RbacsApi->getAclV2Privilege: $e\n');
 }
 ```
@@ -684,7 +684,7 @@ final double limit = 42; // double |
 try {
     final response = api.getAclV2Privileges(fields, ndjson, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling RbacsApi->getAclV2Privileges: $e\n');
 }
 ```
@@ -737,7 +737,7 @@ final String id = 784bd959-08de-4b26-b575-92ded5aef872; // String |
 try {
     final response = api.getAclV2Role(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling RbacsApi->getAclV2Role: $e\n');
 }
 ```
@@ -791,7 +791,7 @@ final double limit = 42; // double |
 try {
     final response = api.getAclV2RolePrivileges(id, fields, ndjson, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling RbacsApi->getAclV2RolePrivileges: $e\n');
 }
 ```
@@ -848,7 +848,7 @@ final double limit = 42; // double |
 try {
     final response = api.getAclV2Roles(fields, ndjson, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling RbacsApi->getAclV2Roles: $e\n');
 }
 ```
@@ -906,7 +906,7 @@ final double limit = 42; // double |
 try {
     final response = api.getGroupAclRoles(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling RbacsApi->getGroupAclRoles: $e\n');
 }
 ```
@@ -965,7 +965,7 @@ final double limit = 42; // double |
 try {
     final response = api.getUserPrivileges(id, fields, ndjson, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling RbacsApi->getUserPrivileges: $e\n');
 }
 ```
@@ -1019,7 +1019,7 @@ final UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleId unbrandSafeOmitPartialAnyPriv
 
 try {
     api.updateAclV2Privilege(id, unbrandSafeOmitPartialAnyPrivilegeIdOrRoleId);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling RbacsApi->updateAclV2Privilege: $e\n');
 }
 ```
@@ -1070,7 +1070,7 @@ final UpdateAclV2RoleRequest updateAclV2RoleRequest = {"description":"Allow to c
 
 try {
     api.updateAclV2Role(id, updateAclV2RoleRequest);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling RbacsApi->updateAclV2Role: $e\n');
 }
 ```

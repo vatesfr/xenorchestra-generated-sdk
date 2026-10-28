@@ -178,73 +178,85 @@ class _$XapiHostStatsRawSerializer
         case r'cpus':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltMap, [
+            specifiedType: const FullType.nullable(BuiltMap, [
               FullType(String),
               FullType(BuiltList, [FullType.nullable(double)])
             ]),
-          ) as BuiltMap<String, BuiltList<double?>>;
+          ) as BuiltMap<String, BuiltList<double?>>?;
+          if (valueDes == null) continue;
           result.cpus.replace(valueDes);
           break;
         case r'ioThroughput':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(XapiHostStatsRawIoThroughput),
-          ) as XapiHostStatsRawIoThroughput;
+            specifiedType:
+                const FullType.nullable(XapiHostStatsRawIoThroughput),
+          ) as XapiHostStatsRawIoThroughput?;
+          if (valueDes == null) continue;
           result.ioThroughput.replace(valueDes);
           break;
         case r'iops':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(XapiHostStatsRawIoThroughput),
-          ) as XapiHostStatsRawIoThroughput;
+            specifiedType:
+                const FullType.nullable(XapiHostStatsRawIoThroughput),
+          ) as XapiHostStatsRawIoThroughput?;
+          if (valueDes == null) continue;
           result.iops.replace(valueDes);
           break;
         case r'iowait':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltMap, [
+            specifiedType: const FullType.nullable(BuiltMap, [
               FullType(String),
               FullType(BuiltList, [FullType.nullable(double)])
             ]),
-          ) as BuiltMap<String, BuiltList<double?>>;
+          ) as BuiltMap<String, BuiltList<double?>>?;
+          if (valueDes == null) continue;
           result.iowait.replace(valueDes);
           break;
         case r'latency':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(XapiHostStatsRawIoThroughput),
-          ) as XapiHostStatsRawIoThroughput;
+            specifiedType:
+                const FullType.nullable(XapiHostStatsRawIoThroughput),
+          ) as XapiHostStatsRawIoThroughput?;
+          if (valueDes == null) continue;
           result.latency.replace(valueDes);
           break;
         case r'load':
           final valueDes = serializers.deserialize(
             value,
             specifiedType:
-                const FullType(BuiltList, [FullType.nullable(double)]),
-          ) as BuiltList<double?>;
+                const FullType.nullable(BuiltList, [FullType.nullable(double)]),
+          ) as BuiltList<double?>?;
+          if (valueDes == null) continue;
           result.load.replace(valueDes);
           break;
         case r'memory':
           final valueDes = serializers.deserialize(
             value,
             specifiedType:
-                const FullType(BuiltList, [FullType.nullable(double)]),
-          ) as BuiltList<double?>;
+                const FullType.nullable(BuiltList, [FullType.nullable(double)]),
+          ) as BuiltList<double?>?;
+          if (valueDes == null) continue;
           result.memory.replace(valueDes);
           break;
         case r'memoryFree':
           final valueDes = serializers.deserialize(
             value,
             specifiedType:
-                const FullType(BuiltList, [FullType.nullable(double)]),
-          ) as BuiltList<double?>;
+                const FullType.nullable(BuiltList, [FullType.nullable(double)]),
+          ) as BuiltList<double?>?;
+          if (valueDes == null) continue;
           result.memoryFree.replace(valueDes);
           break;
         case r'pifs':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(XapiHostStatsRawPifs),
-          ) as XapiHostStatsRawPifs;
+            specifiedType: const FullType.nullable(XapiHostStatsRawPifs),
+          ) as XapiHostStatsRawPifs?;
+          if (valueDes == null) continue;
           result.pifs.replace(valueDes);
           break;
         default:

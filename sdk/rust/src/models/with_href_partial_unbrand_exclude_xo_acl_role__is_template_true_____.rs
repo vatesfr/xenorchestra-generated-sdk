@@ -12,7 +12,7 @@ use crate::models;
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct WithHrefPartialUnbrandExcludeXoAclRolePeriodIsTemplateTrue {
+pub struct WithHrefPartialUnbrandExcludeXoAclRoleIsTemplateTrue {
     #[serde(rename = "description", skip_serializing_if = "Option::is_none")]
     pub description: Option<String>,
     #[serde(rename = "groupIds", skip_serializing_if = "Option::is_none")]
@@ -29,9 +29,9 @@ pub struct WithHrefPartialUnbrandExcludeXoAclRolePeriodIsTemplateTrue {
     pub href: String,
 }
 
-impl WithHrefPartialUnbrandExcludeXoAclRolePeriodIsTemplateTrue {
-    pub fn new(href: String) -> WithHrefPartialUnbrandExcludeXoAclRolePeriodIsTemplateTrue {
-        WithHrefPartialUnbrandExcludeXoAclRolePeriodIsTemplateTrue {
+impl WithHrefPartialUnbrandExcludeXoAclRoleIsTemplateTrue {
+    pub fn new(href: String) -> WithHrefPartialUnbrandExcludeXoAclRoleIsTemplateTrue {
+        WithHrefPartialUnbrandExcludeXoAclRoleIsTemplateTrue {
             description: None,
             group_ids: None,
             id: None,

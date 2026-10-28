@@ -23,6 +23,7 @@ from xenorchestra_client.models.dashboard_backup_repositories_size_info_other im
 from xenorchestra_client.models.dashboard_backup_repositories_size_info_s3 import DashboardBackupRepositoriesSizeInfoS3
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class IsMaybeExpiredDashboardBackupRepositoriesSizeInfo(BaseModel):
     """
@@ -34,7 +35,8 @@ class IsMaybeExpiredDashboardBackupRepositoriesSizeInfo(BaseModel):
     __properties: ClassVar[List[str]] = ["other", "s3", "isExpired"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -46,8 +48,7 @@ class IsMaybeExpiredDashboardBackupRepositoriesSizeInfo(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

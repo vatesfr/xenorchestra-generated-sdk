@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**size** | [**models::SrSizeInfoSize**](SrSizeInfo_size.md) |  | 
+**size** | [**models::SrSizeInfoSize**](SrSizeInfoSize.md) |  | 
 **error** | **bool** |  | 
 **is_empty** | **bool** |  | 
 

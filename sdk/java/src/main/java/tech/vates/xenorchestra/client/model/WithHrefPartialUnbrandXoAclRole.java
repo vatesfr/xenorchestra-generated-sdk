@@ -45,7 +45,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   WithHrefPartialUnbrandXoAclRole.JSON_PROPERTY_ROLE_TEMPLATE_ID,
   WithHrefPartialUnbrandXoAclRole.JSON_PROPERTY_HREF
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class WithHrefPartialUnbrandXoAclRole {
   public static final String JSON_PROPERTY_DESCRIPTION = "description";
   @javax.annotation.Nullable
@@ -96,14 +96,14 @@ public class WithHrefPartialUnbrandXoAclRole {
    * @return description
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getDescription() {
     return description;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDescription(@javax.annotation.Nullable String description) {
     this.description = description;
@@ -128,14 +128,14 @@ public class WithHrefPartialUnbrandXoAclRole {
    * @return groupIds
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_GROUP_IDS)
+  @JsonProperty(value = JSON_PROPERTY_GROUP_IDS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getGroupIds() {
     return groupIds;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_GROUP_IDS)
+  @JsonProperty(value = JSON_PROPERTY_GROUP_IDS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setGroupIds(@javax.annotation.Nullable List<String> groupIds) {
     this.groupIds = groupIds;
@@ -152,14 +152,14 @@ public class WithHrefPartialUnbrandXoAclRole {
    * @return id
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
@@ -176,14 +176,14 @@ public class WithHrefPartialUnbrandXoAclRole {
    * @return name
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getName() {
     return name;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
@@ -208,14 +208,14 @@ public class WithHrefPartialUnbrandXoAclRole {
    * @return privilegeIds
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PRIVILEGE_IDS)
+  @JsonProperty(value = JSON_PROPERTY_PRIVILEGE_IDS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getPrivilegeIds() {
     return privilegeIds;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PRIVILEGE_IDS)
+  @JsonProperty(value = JSON_PROPERTY_PRIVILEGE_IDS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPrivilegeIds(@javax.annotation.Nullable List<String> privilegeIds) {
     this.privilegeIds = privilegeIds;
@@ -240,14 +240,14 @@ public class WithHrefPartialUnbrandXoAclRole {
    * @return userIds
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_USER_IDS)
+  @JsonProperty(value = JSON_PROPERTY_USER_IDS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getUserIds() {
     return userIds;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_USER_IDS)
+  @JsonProperty(value = JSON_PROPERTY_USER_IDS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUserIds(@javax.annotation.Nullable List<String> userIds) {
     this.userIds = userIds;
@@ -264,14 +264,14 @@ public class WithHrefPartialUnbrandXoAclRole {
    * @return isTemplate
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_IS_TEMPLATE)
+  @JsonProperty(value = JSON_PROPERTY_IS_TEMPLATE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getIsTemplate() {
     return isTemplate;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_IS_TEMPLATE)
+  @JsonProperty(value = JSON_PROPERTY_IS_TEMPLATE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIsTemplate(@javax.annotation.Nullable Boolean isTemplate) {
     this.isTemplate = isTemplate;
@@ -288,14 +288,14 @@ public class WithHrefPartialUnbrandXoAclRole {
    * @return roleTemplateId
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ROLE_TEMPLATE_ID)
+  @JsonProperty(value = JSON_PROPERTY_ROLE_TEMPLATE_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getRoleTemplateId() {
     return roleTemplateId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ROLE_TEMPLATE_ID)
+  @JsonProperty(value = JSON_PROPERTY_ROLE_TEMPLATE_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRoleTemplateId(@javax.annotation.Nullable Double roleTemplateId) {
     this.roleTemplateId = roleTemplateId;
@@ -312,14 +312,14 @@ public class WithHrefPartialUnbrandXoAclRole {
    * @return href
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_HREF)
+  @JsonProperty(value = JSON_PROPERTY_HREF, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getHref() {
     return href;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_HREF)
+  @JsonProperty(value = JSON_PROPERTY_HREF, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setHref(@javax.annotation.Nonnull String href) {
     this.href = href;
@@ -376,10 +376,7 @@ public class WithHrefPartialUnbrandXoAclRole {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -416,33 +413,33 @@ public class WithHrefPartialUnbrandXoAclRole {
 
     // add `description` to the URL query string
     if (getDescription() != null) {
-      joiner.add(String.format("%sdescription%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDescription()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdescription%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDescription()))));
     }
 
     // add `groupIds` to the URL query string
     if (getGroupIds() != null) {
       for (int i = 0; i < getGroupIds().size(); i++) {
-        joiner.add(String.format("%sgroupIds%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%sgroupIds%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getGroupIds().get(i)))));
       }
     }
 
     // add `id` to the URL query string
     if (getId() != null) {
-      joiner.add(String.format("%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
     }
 
     // add `name` to the URL query string
     if (getName() != null) {
-      joiner.add(String.format("%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
     }
 
     // add `privilegeIds` to the URL query string
     if (getPrivilegeIds() != null) {
       for (int i = 0; i < getPrivilegeIds().size(); i++) {
-        joiner.add(String.format("%sprivilegeIds%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%sprivilegeIds%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getPrivilegeIds().get(i)))));
       }
     }
@@ -450,25 +447,25 @@ public class WithHrefPartialUnbrandXoAclRole {
     // add `userIds` to the URL query string
     if (getUserIds() != null) {
       for (int i = 0; i < getUserIds().size(); i++) {
-        joiner.add(String.format("%suserIds%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%suserIds%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getUserIds().get(i)))));
       }
     }
 
     // add `isTemplate` to the URL query string
     if (getIsTemplate() != null) {
-      joiner.add(String.format("%sisTemplate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsTemplate()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sisTemplate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsTemplate()))));
     }
 
     // add `roleTemplateId` to the URL query string
     if (getRoleTemplateId() != null) {
-      joiner.add(String.format("%sroleTemplateId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRoleTemplateId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sroleTemplateId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRoleTemplateId()))));
     }
 
     // add `href` to the URL query string
     if (getHref() != null) {
-      joiner.add(String.format("%shref%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHref()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%shref%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHref()))));
     }
 
     return joiner.toString();

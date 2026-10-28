@@ -41,7 +41,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   InsertableXoServer.JSON_PROPERTY_READ_ONLY,
   InsertableXoServer.JSON_PROPERTY_USERNAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class InsertableXoServer {
   public static final String JSON_PROPERTY_ALLOW_UNAUTHORIZED = "allowUnauthorized";
   @javax.annotation.Nullable
@@ -84,14 +84,14 @@ public class InsertableXoServer {
    * @return allowUnauthorized
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ALLOW_UNAUTHORIZED)
+  @JsonProperty(value = JSON_PROPERTY_ALLOW_UNAUTHORIZED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getAllowUnauthorized() {
     return allowUnauthorized;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ALLOW_UNAUTHORIZED)
+  @JsonProperty(value = JSON_PROPERTY_ALLOW_UNAUTHORIZED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAllowUnauthorized(@javax.annotation.Nullable Boolean allowUnauthorized) {
     this.allowUnauthorized = allowUnauthorized;
@@ -108,14 +108,14 @@ public class InsertableXoServer {
    * @return host
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_HOST)
+  @JsonProperty(value = JSON_PROPERTY_HOST, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getHost() {
     return host;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_HOST)
+  @JsonProperty(value = JSON_PROPERTY_HOST, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setHost(@javax.annotation.Nonnull String host) {
     this.host = host;
@@ -132,14 +132,14 @@ public class InsertableXoServer {
    * @return httpProxy
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_HTTP_PROXY)
+  @JsonProperty(value = JSON_PROPERTY_HTTP_PROXY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getHttpProxy() {
     return httpProxy;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_HTTP_PROXY)
+  @JsonProperty(value = JSON_PROPERTY_HTTP_PROXY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHttpProxy(@javax.annotation.Nullable String httpProxy) {
     this.httpProxy = httpProxy;
@@ -156,14 +156,14 @@ public class InsertableXoServer {
    * @return label
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_LABEL)
+  @JsonProperty(value = JSON_PROPERTY_LABEL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getLabel() {
     return label;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_LABEL)
+  @JsonProperty(value = JSON_PROPERTY_LABEL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLabel(@javax.annotation.Nullable String label) {
     this.label = label;
@@ -180,14 +180,14 @@ public class InsertableXoServer {
    * @return password
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_PASSWORD)
+  @JsonProperty(value = JSON_PROPERTY_PASSWORD, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getPassword() {
     return password;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PASSWORD)
+  @JsonProperty(value = JSON_PROPERTY_PASSWORD, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setPassword(@javax.annotation.Nonnull String password) {
     this.password = password;
@@ -204,14 +204,14 @@ public class InsertableXoServer {
    * @return readOnly
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_READ_ONLY)
+  @JsonProperty(value = JSON_PROPERTY_READ_ONLY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getReadOnly() {
     return readOnly;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_READ_ONLY)
+  @JsonProperty(value = JSON_PROPERTY_READ_ONLY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setReadOnly(@javax.annotation.Nullable Boolean readOnly) {
     this.readOnly = readOnly;
@@ -228,14 +228,14 @@ public class InsertableXoServer {
    * @return username
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_USERNAME)
+  @JsonProperty(value = JSON_PROPERTY_USERNAME, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getUsername() {
     return username;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_USERNAME)
+  @JsonProperty(value = JSON_PROPERTY_USERNAME, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUsername(@javax.annotation.Nonnull String username) {
     this.username = username;
@@ -288,10 +288,7 @@ public class InsertableXoServer {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -328,37 +325,37 @@ public class InsertableXoServer {
 
     // add `allowUnauthorized` to the URL query string
     if (getAllowUnauthorized() != null) {
-      joiner.add(String.format("%sallowUnauthorized%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAllowUnauthorized()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sallowUnauthorized%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAllowUnauthorized()))));
     }
 
     // add `host` to the URL query string
     if (getHost() != null) {
-      joiner.add(String.format("%shost%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHost()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%shost%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHost()))));
     }
 
     // add `httpProxy` to the URL query string
     if (getHttpProxy() != null) {
-      joiner.add(String.format("%shttpProxy%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHttpProxy()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%shttpProxy%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHttpProxy()))));
     }
 
     // add `label` to the URL query string
     if (getLabel() != null) {
-      joiner.add(String.format("%slabel%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLabel()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%slabel%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLabel()))));
     }
 
     // add `password` to the URL query string
     if (getPassword() != null) {
-      joiner.add(String.format("%spassword%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPassword()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%spassword%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPassword()))));
     }
 
     // add `readOnly` to the URL query string
     if (getReadOnly() != null) {
-      joiner.add(String.format("%sreadOnly%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReadOnly()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sreadOnly%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReadOnly()))));
     }
 
     // add `username` to the URL query string
     if (getUsername() != null) {
-      joiner.add(String.format("%susername%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUsername()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%susername%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUsername()))));
     }
 
     return joiner.toString();

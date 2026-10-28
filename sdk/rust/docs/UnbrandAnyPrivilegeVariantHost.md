@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**action** | **String** |  | 
-**effect** | **String** |  | 
+**action** | **Action** |  (enum: export, shutdown, start, forget, update, *, read, allow-vm, detach, disable, enable, evacuate, export:logs, join-pool, migrate-receive, reboot, reboot:clean, reboot:smart, restart-toolstack, shutdown:clean, shutdown:emergency, update:tags) | 
+**effect** | **Effect** |  (enum: allow, deny) | 
 **id** | **String** |  | 
-**resource** | **String** |  | 
+**resource** | **Resource** |  (enum: host) | 
 **role_id** | **String** |  | 
 **selector** | Option<**String**> |  | [optional]
 

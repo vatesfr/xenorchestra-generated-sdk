@@ -7,13 +7,13 @@ void main() {
   // TODO add properties to the builder and call build()
 
   group(XapiVmStatsRaw, () {
-    // BuiltList<double> cpuUsage
+    // BuiltList<double?> cpuUsage
     test('to test the property `cpuUsage`', () async {
       // TODO
     });
 
     // Construct a type with a set of properties K of type T
-    // BuiltMap<String, BuiltList<double>> cpus
+    // BuiltMap<String, BuiltList<double?>> cpus
     test('to test the property `cpus`', () async {
       // TODO
     });
@@ -23,65 +23,65 @@ void main() {
       // TODO
     });
 
-    // BuiltList<double> memory
+    // BuiltList<double?> memory
     test('to test the property `memory`', () async {
       // TODO
     });
 
-    // BuiltList<double> memoryFree
+    // BuiltList<double?> memoryFree
     test('to test the property `memoryFree`', () async {
       // TODO
     });
 
-    // BuiltList<double> memoryTarget
+    // BuiltList<double?> memoryTarget
     test('to test the property `memoryTarget`', () async {
       // TODO
     });
 
-    // BuiltList<double> runstateBlocked
+    // BuiltList<double?> runstateBlocked
     test('to test the property `runstateBlocked`', () async {
       // TODO
     });
 
-    // BuiltList<double> runstateConcurrencyHazard
+    // BuiltList<double?> runstateConcurrencyHazard
     test('to test the property `runstateConcurrencyHazard`', () async {
       // TODO
     });
 
-    // BuiltList<double> runstateFullContention
+    // BuiltList<double?> runstateFullContention
     test('to test the property `runstateFullContention`', () async {
       // TODO
     });
 
-    // BuiltList<double> runstateFullrun
+    // BuiltList<double?> runstateFullrun
     test('to test the property `runstateFullrun`', () async {
       // TODO
     });
 
-    // BuiltList<double> runstatePartialContention
+    // BuiltList<double?> runstatePartialContention
     test('to test the property `runstatePartialContention`', () async {
       // TODO
     });
 
-    // BuiltList<double> runstatePartialRun
+    // BuiltList<double?> runstatePartialRun
     test('to test the property `runstatePartialRun`', () async {
       // TODO
     });
 
     // Construct a type with a set of properties K of type T
-    // BuiltMap<String, BuiltList<double>> vbdAvgquSz
+    // BuiltMap<String, BuiltList<double?>> vbdAvgquSz
     test('to test the property `vbdAvgquSz`', () async {
       // TODO
     });
 
     // Construct a type with a set of properties K of type T
-    // BuiltMap<String, BuiltList<double>> vbdInflight
+    // BuiltMap<String, BuiltList<double?>> vbdInflight
     test('to test the property `vbdInflight`', () async {
       // TODO
     });
 
     // Construct a type with a set of properties K of type T
-    // BuiltMap<String, BuiltList<double>> vbdIowait
+    // BuiltMap<String, BuiltList<double?>> vbdIowait
     test('to test the property `vbdIowait`', () async {
       // TODO
     });

@@ -25,6 +25,7 @@ from xenorchestra_client.models.ipv6_configurationmode import IPV6CONFIGURATIONM
 from xenorchestra_client.models.primaryaddresstype import PRIMARYADDRESSTYPE
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class UnbrandXoPif(BaseModel):
     """
@@ -69,7 +70,8 @@ class UnbrandXoPif(BaseModel):
         return value
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -81,8 +83,7 @@ class UnbrandXoPif(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
@@ -111,8 +112,7 @@ class UnbrandXoPif(BaseModel):
         _items = []
         if self.bond_slaves:
             for _item_bond_slaves in self.bond_slaves:
-                if _item_bond_slaves:
-                    _items.append(_item_bond_slaves.to_dict())
+                _items.append(_item_bond_slaves.to_dict() if _item_bond_slaves is not None else None)
             _dict['bondSlaves'] = _items
         return _dict
 

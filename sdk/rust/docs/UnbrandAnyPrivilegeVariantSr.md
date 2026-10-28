@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**action** | **String** |  | 
-**effect** | **String** |  | 
+**action** | **Action** |  (enum: import, forget, update, *, create, delete, read, migrate-receive, update:tags, import:vdi, import:vm, reclaim-space, scan) | 
+**effect** | **Effect** |  (enum: allow, deny) | 
 **id** | **String** |  | 
-**resource** | **String** |  | 
+**resource** | **Resource** |  (enum: sr) | 
 **role_id** | **String** |  | 
 **selector** | Option<**String**> |  | [optional]
 

@@ -94,7 +94,7 @@ public class Example {
 
 ## getDeprecatedRestoreLogWithHttpInfo
 
-> ApiResponse<UnbrandXoRestoreLog> getDeprecatedRestoreLog getDeprecatedRestoreLogWithHttpInfo(id)
+> ApiResponse<UnbrandXoRestoreLog> getDeprecatedRestoreLogWithHttpInfo(id)
 
 
 
@@ -262,7 +262,7 @@ public class Example {
 
 ## getDeprecatedRestoreLogsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoRestoreLog> getDeprecatedRestoreLogs getDeprecatedRestoreLogsWithHttpInfo(fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoRestoreLog> getDeprecatedRestoreLogsWithHttpInfo(fields, ndjson, markdown, filter, limit)
 
 
 
@@ -434,7 +434,7 @@ public class Example {
 
 ## getRestoreLogWithHttpInfo
 
-> ApiResponse<UnbrandXoRestoreLog> getRestoreLog getRestoreLogWithHttpInfo(id)
+> ApiResponse<UnbrandXoRestoreLog> getRestoreLogWithHttpInfo(id)
 
 
 
@@ -606,7 +606,7 @@ public class Example {
 
 ## getRestoreLogsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoRestoreLog> getRestoreLogs getRestoreLogsWithHttpInfo(fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoRestoreLog> getRestoreLogsWithHttpInfo(fields, ndjson, markdown, filter, limit)
 
 
 

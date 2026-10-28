@@ -49,7 +49,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   XapiHostStatsRaw.JSON_PROPERTY_MEMORY_FREE,
   XapiHostStatsRaw.JSON_PROPERTY_PIFS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class XapiHostStatsRaw {
   public static final String JSON_PROPERTY_CPUS = "cpus";
   @javax.annotation.Nullable
@@ -108,14 +108,14 @@ public class XapiHostStatsRaw {
    * @return cpus
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CPUS)
+  @JsonProperty(value = JSON_PROPERTY_CPUS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, List<Double>> getCpus() {
     return cpus;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CPUS)
+  @JsonProperty(value = JSON_PROPERTY_CPUS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCpus(@javax.annotation.Nullable Map<String, List<Double>> cpus) {
     this.cpus = cpus;
@@ -132,14 +132,14 @@ public class XapiHostStatsRaw {
    * @return ioThroughput
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_IO_THROUGHPUT)
+  @JsonProperty(value = JSON_PROPERTY_IO_THROUGHPUT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public XapiHostStatsRawIoThroughput getIoThroughput() {
     return ioThroughput;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_IO_THROUGHPUT)
+  @JsonProperty(value = JSON_PROPERTY_IO_THROUGHPUT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIoThroughput(@javax.annotation.Nullable XapiHostStatsRawIoThroughput ioThroughput) {
     this.ioThroughput = ioThroughput;
@@ -156,14 +156,14 @@ public class XapiHostStatsRaw {
    * @return iops
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_IOPS)
+  @JsonProperty(value = JSON_PROPERTY_IOPS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public XapiHostStatsRawIoThroughput getIops() {
     return iops;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_IOPS)
+  @JsonProperty(value = JSON_PROPERTY_IOPS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIops(@javax.annotation.Nullable XapiHostStatsRawIoThroughput iops) {
     this.iops = iops;
@@ -188,14 +188,14 @@ public class XapiHostStatsRaw {
    * @return iowait
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_IOWAIT)
+  @JsonProperty(value = JSON_PROPERTY_IOWAIT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, List<Double>> getIowait() {
     return iowait;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_IOWAIT)
+  @JsonProperty(value = JSON_PROPERTY_IOWAIT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIowait(@javax.annotation.Nullable Map<String, List<Double>> iowait) {
     this.iowait = iowait;
@@ -212,14 +212,14 @@ public class XapiHostStatsRaw {
    * @return latency
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_LATENCY)
+  @JsonProperty(value = JSON_PROPERTY_LATENCY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public XapiHostStatsRawIoThroughput getLatency() {
     return latency;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_LATENCY)
+  @JsonProperty(value = JSON_PROPERTY_LATENCY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLatency(@javax.annotation.Nullable XapiHostStatsRawIoThroughput latency) {
     this.latency = latency;
@@ -244,14 +244,14 @@ public class XapiHostStatsRaw {
    * @return load
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_LOAD)
+  @JsonProperty(value = JSON_PROPERTY_LOAD, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<Double> getLoad() {
     return load;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_LOAD)
+  @JsonProperty(value = JSON_PROPERTY_LOAD, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLoad(@javax.annotation.Nullable List<Double> load) {
     this.load = load;
@@ -276,14 +276,14 @@ public class XapiHostStatsRaw {
    * @return memory
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_MEMORY)
+  @JsonProperty(value = JSON_PROPERTY_MEMORY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<Double> getMemory() {
     return memory;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MEMORY)
+  @JsonProperty(value = JSON_PROPERTY_MEMORY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMemory(@javax.annotation.Nullable List<Double> memory) {
     this.memory = memory;
@@ -308,14 +308,14 @@ public class XapiHostStatsRaw {
    * @return memoryFree
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_MEMORY_FREE)
+  @JsonProperty(value = JSON_PROPERTY_MEMORY_FREE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<Double> getMemoryFree() {
     return memoryFree;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MEMORY_FREE)
+  @JsonProperty(value = JSON_PROPERTY_MEMORY_FREE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMemoryFree(@javax.annotation.Nullable List<Double> memoryFree) {
     this.memoryFree = memoryFree;
@@ -332,14 +332,14 @@ public class XapiHostStatsRaw {
    * @return pifs
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PIFS)
+  @JsonProperty(value = JSON_PROPERTY_PIFS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public XapiHostStatsRawPifs getPifs() {
     return pifs;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PIFS)
+  @JsonProperty(value = JSON_PROPERTY_PIFS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPifs(@javax.annotation.Nullable XapiHostStatsRawPifs pifs) {
     this.pifs = pifs;
@@ -396,10 +396,7 @@ public class XapiHostStatsRaw {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -437,8 +434,8 @@ public class XapiHostStatsRaw {
     // add `cpus` to the URL query string
     if (getCpus() != null) {
       for (String _key : getCpus().keySet()) {
-        joiner.add(String.format("%scpus%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%scpus%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getCpus().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getCpus().get(_key)))));
       }
     }
@@ -456,8 +453,8 @@ public class XapiHostStatsRaw {
     // add `iowait` to the URL query string
     if (getIowait() != null) {
       for (String _key : getIowait().keySet()) {
-        joiner.add(String.format("%siowait%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%siowait%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getIowait().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getIowait().get(_key)))));
       }
     }
@@ -470,8 +467,8 @@ public class XapiHostStatsRaw {
     // add `load` to the URL query string
     if (getLoad() != null) {
       for (int i = 0; i < getLoad().size(); i++) {
-        joiner.add(String.format("%sload%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%sload%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getLoad().get(i)))));
       }
     }
@@ -479,8 +476,8 @@ public class XapiHostStatsRaw {
     // add `memory` to the URL query string
     if (getMemory() != null) {
       for (int i = 0; i < getMemory().size(); i++) {
-        joiner.add(String.format("%smemory%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%smemory%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getMemory().get(i)))));
       }
     }
@@ -488,8 +485,8 @@ public class XapiHostStatsRaw {
     // add `memoryFree` to the URL query string
     if (getMemoryFree() != null) {
       for (int i = 0; i < getMemoryFree().size(); i++) {
-        joiner.add(String.format("%smemoryFree%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%smemoryFree%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getMemoryFree().get(i)))));
       }
     }

@@ -8,13 +8,13 @@ void main() {
 
   group(XapiHostStatsRawPifs, () {
     // Construct a type with a set of properties K of type T
-    // BuiltMap<String, BuiltList<double>> rx
+    // BuiltMap<String, BuiltList<double?>> rx
     test('to test the property `rx`', () async {
       // TODO
     });
 
     // Construct a type with a set of properties K of type T
-    // BuiltMap<String, BuiltList<double>> tx
+    // BuiltMap<String, BuiltList<double?>> tx
     test('to test the property `tx`', () async {
       // TODO
     });

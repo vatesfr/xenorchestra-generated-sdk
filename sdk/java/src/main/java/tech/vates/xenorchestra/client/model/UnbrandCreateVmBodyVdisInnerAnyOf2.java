@@ -36,7 +36,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   UnbrandCreateVmBodyVdisInnerAnyOf2.JSON_PROPERTY_DESTROY,
   UnbrandCreateVmBodyVdisInnerAnyOf2.JSON_PROPERTY_USERDERVICE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class UnbrandCreateVmBodyVdisInnerAnyOf2 {
   public static final String JSON_PROPERTY_DESTROY = "destroy";
   @javax.annotation.Nonnull
@@ -59,14 +59,14 @@ public class UnbrandCreateVmBodyVdisInnerAnyOf2 {
    * @return destroy
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_DESTROY)
+  @JsonProperty(value = JSON_PROPERTY_DESTROY, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Boolean getDestroy() {
     return destroy;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DESTROY)
+  @JsonProperty(value = JSON_PROPERTY_DESTROY, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDestroy(@javax.annotation.Nonnull Boolean destroy) {
     this.destroy = destroy;
@@ -83,14 +83,14 @@ public class UnbrandCreateVmBodyVdisInnerAnyOf2 {
    * @return userdervice
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_USERDERVICE)
+  @JsonProperty(value = JSON_PROPERTY_USERDERVICE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getUserdervice() {
     return userdervice;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_USERDERVICE)
+  @JsonProperty(value = JSON_PROPERTY_USERDERVICE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUserdervice(@javax.annotation.Nonnull String userdervice) {
     this.userdervice = userdervice;
@@ -133,10 +133,7 @@ public class UnbrandCreateVmBodyVdisInnerAnyOf2 {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -173,12 +170,12 @@ public class UnbrandCreateVmBodyVdisInnerAnyOf2 {
 
     // add `destroy` to the URL query string
     if (getDestroy() != null) {
-      joiner.add(String.format("%sdestroy%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDestroy()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdestroy%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDestroy()))));
     }
 
     // add `userdervice` to the URL query string
     if (getUserdervice() != null) {
-      joiner.add(String.format("%suserdervice%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUserdervice()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%suserdervice%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUserdervice()))));
     }
 
     return joiner.toString();

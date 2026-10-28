@@ -48,7 +48,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   UnbrandXoVbd.JSON_PROPERTY_TYPE,
   UnbrandXoVbd.JSON_PROPERTY_UUID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class UnbrandXoVbd {
   public static final String JSON_PROPERTY_$_POOL = "$pool";
   @javax.annotation.Nonnull
@@ -156,14 +156,14 @@ private final String value;
    * @return $pool
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_$_POOL)
+  @JsonProperty(value = JSON_PROPERTY_$_POOL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String get$Pool() {
     return $pool;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_$_POOL)
+  @JsonProperty(value = JSON_PROPERTY_$_POOL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void set$Pool(@javax.annotation.Nonnull String $pool) {
     this.$pool = $pool;
@@ -182,14 +182,14 @@ private final String value;
    */
   @Deprecated
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_$_POOL_ID)
+  @JsonProperty(value = JSON_PROPERTY_$_POOL_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String get$PoolId() {
     return $poolId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_$_POOL_ID)
+  @JsonProperty(value = JSON_PROPERTY_$_POOL_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void set$PoolId(@javax.annotation.Nonnull String $poolId) {
     this.$poolId = $poolId;
@@ -206,14 +206,14 @@ private final String value;
    * @return VDI
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_V_D_I)
+  @JsonProperty(value = JSON_PROPERTY_V_D_I, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getVDI() {
     return VDI;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_V_D_I)
+  @JsonProperty(value = JSON_PROPERTY_V_D_I, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVDI(@javax.annotation.Nullable String VDI) {
     this.VDI = VDI;
@@ -230,14 +230,14 @@ private final String value;
    * @return VM
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_V_M)
+  @JsonProperty(value = JSON_PROPERTY_V_M, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getVM() {
     return VM;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_V_M)
+  @JsonProperty(value = JSON_PROPERTY_V_M, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setVM(@javax.annotation.Nonnull String VM) {
     this.VM = VM;
@@ -254,14 +254,14 @@ private final String value;
    * @return xapiRef
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_XAPI_REF)
+  @JsonProperty(value = JSON_PROPERTY_XAPI_REF, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getXapiRef() {
     return xapiRef;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_XAPI_REF)
+  @JsonProperty(value = JSON_PROPERTY_XAPI_REF, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setXapiRef(@javax.annotation.Nonnull String xapiRef) {
     this.xapiRef = xapiRef;
@@ -278,14 +278,14 @@ private final String value;
    * @return attached
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ATTACHED)
+  @JsonProperty(value = JSON_PROPERTY_ATTACHED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Boolean getAttached() {
     return attached;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ATTACHED)
+  @JsonProperty(value = JSON_PROPERTY_ATTACHED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setAttached(@javax.annotation.Nonnull Boolean attached) {
     this.attached = attached;
@@ -302,14 +302,14 @@ private final String value;
    * @return bootable
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_BOOTABLE)
+  @JsonProperty(value = JSON_PROPERTY_BOOTABLE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Boolean getBootable() {
     return bootable;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_BOOTABLE)
+  @JsonProperty(value = JSON_PROPERTY_BOOTABLE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setBootable(@javax.annotation.Nonnull Boolean bootable) {
     this.bootable = bootable;
@@ -326,14 +326,14 @@ private final String value;
    * @return device
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DEVICE)
+  @JsonProperty(value = JSON_PROPERTY_DEVICE, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getDevice() {
     return device;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DEVICE)
+  @JsonProperty(value = JSON_PROPERTY_DEVICE, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDevice(@javax.annotation.Nullable String device) {
     this.device = device;
@@ -350,14 +350,14 @@ private final String value;
    * @return id
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
@@ -374,14 +374,14 @@ private final String value;
    * @return isCdDrive
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_IS_CD_DRIVE)
+  @JsonProperty(value = JSON_PROPERTY_IS_CD_DRIVE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Boolean getIsCdDrive() {
     return isCdDrive;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_IS_CD_DRIVE)
+  @JsonProperty(value = JSON_PROPERTY_IS_CD_DRIVE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setIsCdDrive(@javax.annotation.Nonnull Boolean isCdDrive) {
     this.isCdDrive = isCdDrive;
@@ -398,14 +398,14 @@ private final String value;
    * @return position
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_POSITION)
+  @JsonProperty(value = JSON_PROPERTY_POSITION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getPosition() {
     return position;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_POSITION)
+  @JsonProperty(value = JSON_PROPERTY_POSITION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setPosition(@javax.annotation.Nonnull String position) {
     this.position = position;
@@ -422,14 +422,14 @@ private final String value;
    * @return readOnly
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_READ_ONLY)
+  @JsonProperty(value = JSON_PROPERTY_READ_ONLY, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Boolean getReadOnly() {
     return readOnly;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_READ_ONLY)
+  @JsonProperty(value = JSON_PROPERTY_READ_ONLY, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setReadOnly(@javax.annotation.Nonnull Boolean readOnly) {
     this.readOnly = readOnly;
@@ -446,14 +446,14 @@ private final String value;
    * @return type
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public TypeEnum getType() {
     return type;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setType(@javax.annotation.Nonnull TypeEnum type) {
     this.type = type;
@@ -470,14 +470,14 @@ private final String value;
    * @return uuid
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_UUID)
+  @JsonProperty(value = JSON_PROPERTY_UUID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getUuid() {
     return uuid;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_UUID)
+  @JsonProperty(value = JSON_PROPERTY_UUID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUuid(@javax.annotation.Nonnull String uuid) {
     this.uuid = uuid;
@@ -544,10 +544,7 @@ private final String value;
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -584,72 +581,72 @@ private final String value;
 
     // add `$pool` to the URL query string
     if (get$Pool() != null) {
-      joiner.add(String.format("%s$pool%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$Pool()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%s$pool%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$Pool()))));
     }
 
     // add `$poolId` to the URL query string
     if (get$PoolId() != null) {
-      joiner.add(String.format("%s$poolId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$PoolId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%s$poolId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$PoolId()))));
     }
 
     // add `VDI` to the URL query string
     if (getVDI() != null) {
-      joiner.add(String.format("%sVDI%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVDI()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sVDI%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVDI()))));
     }
 
     // add `VM` to the URL query string
     if (getVM() != null) {
-      joiner.add(String.format("%sVM%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVM()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sVM%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVM()))));
     }
 
     // add `_xapiRef` to the URL query string
     if (getXapiRef() != null) {
-      joiner.add(String.format("%s_xapiRef%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getXapiRef()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%s_xapiRef%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getXapiRef()))));
     }
 
     // add `attached` to the URL query string
     if (getAttached() != null) {
-      joiner.add(String.format("%sattached%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAttached()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sattached%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAttached()))));
     }
 
     // add `bootable` to the URL query string
     if (getBootable() != null) {
-      joiner.add(String.format("%sbootable%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBootable()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbootable%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBootable()))));
     }
 
     // add `device` to the URL query string
     if (getDevice() != null) {
-      joiner.add(String.format("%sdevice%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDevice()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdevice%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDevice()))));
     }
 
     // add `id` to the URL query string
     if (getId() != null) {
-      joiner.add(String.format("%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
     }
 
     // add `is_cd_drive` to the URL query string
     if (getIsCdDrive() != null) {
-      joiner.add(String.format("%sis_cd_drive%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsCdDrive()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sis_cd_drive%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsCdDrive()))));
     }
 
     // add `position` to the URL query string
     if (getPosition() != null) {
-      joiner.add(String.format("%sposition%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPosition()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sposition%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPosition()))));
     }
 
     // add `read_only` to the URL query string
     if (getReadOnly() != null) {
-      joiner.add(String.format("%sread_only%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReadOnly()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sread_only%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReadOnly()))));
     }
 
     // add `type` to the URL query string
     if (getType() != null) {
-      joiner.add(String.format("%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
     }
 
     // add `uuid` to the URL query string
     if (getUuid() != null) {
-      joiner.add(String.format("%suuid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUuid()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%suuid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUuid()))));
     }
 
     return joiner.toString();

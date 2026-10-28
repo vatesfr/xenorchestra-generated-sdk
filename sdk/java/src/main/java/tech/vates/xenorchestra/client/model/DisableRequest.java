@@ -40,7 +40,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   DisableRequest.JSON_PROPERTY_FORCE,
   DisableRequest.JSON_PROPERTY_VM_IDS_TO_FORCE_MIGRATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class DisableRequest {
   public static final String JSON_PROPERTY_AUTO_ENABLE = "autoEnable";
   @javax.annotation.Nullable
@@ -71,14 +71,14 @@ public class DisableRequest {
    * @return autoEnable
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_AUTO_ENABLE)
+  @JsonProperty(value = JSON_PROPERTY_AUTO_ENABLE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getAutoEnable() {
     return autoEnable;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_AUTO_ENABLE)
+  @JsonProperty(value = JSON_PROPERTY_AUTO_ENABLE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAutoEnable(@javax.annotation.Nullable Boolean autoEnable) {
     this.autoEnable = autoEnable;
@@ -95,14 +95,14 @@ public class DisableRequest {
    * @return evacuate
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_EVACUATE)
+  @JsonProperty(value = JSON_PROPERTY_EVACUATE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Boolean getEvacuate() {
     return evacuate;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_EVACUATE)
+  @JsonProperty(value = JSON_PROPERTY_EVACUATE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setEvacuate(@javax.annotation.Nonnull Boolean evacuate) {
     this.evacuate = evacuate;
@@ -119,14 +119,14 @@ public class DisableRequest {
    * @return force
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_FORCE)
+  @JsonProperty(value = JSON_PROPERTY_FORCE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getForce() {
     return force;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_FORCE)
+  @JsonProperty(value = JSON_PROPERTY_FORCE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setForce(@javax.annotation.Nullable Boolean force) {
     this.force = force;
@@ -151,14 +151,14 @@ public class DisableRequest {
    * @return vmIdsToForceMigrate
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_VM_IDS_TO_FORCE_MIGRATE)
+  @JsonProperty(value = JSON_PROPERTY_VM_IDS_TO_FORCE_MIGRATE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getVmIdsToForceMigrate() {
     return vmIdsToForceMigrate;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_VM_IDS_TO_FORCE_MIGRATE)
+  @JsonProperty(value = JSON_PROPERTY_VM_IDS_TO_FORCE_MIGRATE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setVmIdsToForceMigrate(@javax.annotation.Nullable List<String> vmIdsToForceMigrate) {
     this.vmIdsToForceMigrate = vmIdsToForceMigrate;
@@ -205,10 +205,7 @@ public class DisableRequest {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -245,24 +242,24 @@ public class DisableRequest {
 
     // add `autoEnable` to the URL query string
     if (getAutoEnable() != null) {
-      joiner.add(String.format("%sautoEnable%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAutoEnable()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sautoEnable%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAutoEnable()))));
     }
 
     // add `evacuate` to the URL query string
     if (getEvacuate() != null) {
-      joiner.add(String.format("%sevacuate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEvacuate()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sevacuate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEvacuate()))));
     }
 
     // add `force` to the URL query string
     if (getForce() != null) {
-      joiner.add(String.format("%sforce%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getForce()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sforce%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getForce()))));
     }
 
     // add `vmIdsToForceMigrate` to the URL query string
     if (getVmIdsToForceMigrate() != null) {
       for (int i = 0; i < getVmIdsToForceMigrate().size(); i++) {
-        joiner.add(String.format("%svmIdsToForceMigrate%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%svmIdsToForceMigrate%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getVmIdsToForceMigrate().get(i)))));
       }
     }

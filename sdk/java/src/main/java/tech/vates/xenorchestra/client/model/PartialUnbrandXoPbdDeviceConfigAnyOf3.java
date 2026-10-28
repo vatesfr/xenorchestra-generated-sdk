@@ -37,7 +37,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PartialUnbrandXoPbdDeviceConfigAnyOf3.JSON_PROPERTY_PROVISIONING,
   PartialUnbrandXoPbdDeviceConfigAnyOf3.JSON_PROPERTY_REDUNDANCY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PartialUnbrandXoPbdDeviceConfigAnyOf3 {
   public static final String JSON_PROPERTY_GROUP_NAME = "group-name";
   @javax.annotation.Nonnull
@@ -64,14 +64,14 @@ public class PartialUnbrandXoPbdDeviceConfigAnyOf3 {
    * @return groupName
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_GROUP_NAME)
+  @JsonProperty(value = JSON_PROPERTY_GROUP_NAME, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getGroupName() {
     return groupName;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_GROUP_NAME)
+  @JsonProperty(value = JSON_PROPERTY_GROUP_NAME, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setGroupName(@javax.annotation.Nonnull String groupName) {
     this.groupName = groupName;
@@ -88,14 +88,14 @@ public class PartialUnbrandXoPbdDeviceConfigAnyOf3 {
    * @return provisioning
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_PROVISIONING)
+  @JsonProperty(value = JSON_PROPERTY_PROVISIONING, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getProvisioning() {
     return provisioning;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PROVISIONING)
+  @JsonProperty(value = JSON_PROPERTY_PROVISIONING, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setProvisioning(@javax.annotation.Nonnull String provisioning) {
     this.provisioning = provisioning;
@@ -112,14 +112,14 @@ public class PartialUnbrandXoPbdDeviceConfigAnyOf3 {
    * @return redundancy
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_REDUNDANCY)
+  @JsonProperty(value = JSON_PROPERTY_REDUNDANCY, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getRedundancy() {
     return redundancy;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_REDUNDANCY)
+  @JsonProperty(value = JSON_PROPERTY_REDUNDANCY, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setRedundancy(@javax.annotation.Nonnull String redundancy) {
     this.redundancy = redundancy;
@@ -164,10 +164,7 @@ public class PartialUnbrandXoPbdDeviceConfigAnyOf3 {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -204,17 +201,17 @@ public class PartialUnbrandXoPbdDeviceConfigAnyOf3 {
 
     // add `group-name` to the URL query string
     if (getGroupName() != null) {
-      joiner.add(String.format("%sgroup-name%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGroupName()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sgroup-name%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getGroupName()))));
     }
 
     // add `provisioning` to the URL query string
     if (getProvisioning() != null) {
-      joiner.add(String.format("%sprovisioning%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProvisioning()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sprovisioning%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProvisioning()))));
     }
 
     // add `redundancy` to the URL query string
     if (getRedundancy() != null) {
-      joiner.add(String.format("%sredundancy%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRedundancy()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sredundancy%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRedundancy()))));
     }
 
     return joiner.toString();

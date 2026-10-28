@@ -50,7 +50,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PartialUnbrandXoServer.JSON_PROPERTY_STATUS,
   PartialUnbrandXoServer.JSON_PROPERTY_USERNAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PartialUnbrandXoServer {
   public static final String JSON_PROPERTY_ALLOW_UNAUTHORIZED = "allowUnauthorized";
   @javax.annotation.Nullable
@@ -160,14 +160,14 @@ private final String value;
    * @return allowUnauthorized
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ALLOW_UNAUTHORIZED)
+  @JsonProperty(value = JSON_PROPERTY_ALLOW_UNAUTHORIZED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getAllowUnauthorized() {
     return allowUnauthorized;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ALLOW_UNAUTHORIZED)
+  @JsonProperty(value = JSON_PROPERTY_ALLOW_UNAUTHORIZED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAllowUnauthorized(@javax.annotation.Nullable Boolean allowUnauthorized) {
     this.allowUnauthorized = allowUnauthorized;
@@ -184,14 +184,14 @@ private final String value;
    * @return enabled
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ENABLED)
+  @JsonProperty(value = JSON_PROPERTY_ENABLED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getEnabled() {
     return enabled;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ENABLED)
+  @JsonProperty(value = JSON_PROPERTY_ENABLED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEnabled(@javax.annotation.Nullable Boolean enabled) {
     this.enabled = enabled;
@@ -216,14 +216,14 @@ private final String value;
    * @return error
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ERROR)
+  @JsonProperty(value = JSON_PROPERTY_ERROR, required = false)
   @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, Object> getError() {
     return error;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ERROR)
+  @JsonProperty(value = JSON_PROPERTY_ERROR, required = false)
   @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
   public void setError(@javax.annotation.Nullable Map<String, Object> error) {
     this.error = error;
@@ -240,14 +240,14 @@ private final String value;
    * @return host
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_HOST)
+  @JsonProperty(value = JSON_PROPERTY_HOST, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getHost() {
     return host;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_HOST)
+  @JsonProperty(value = JSON_PROPERTY_HOST, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHost(@javax.annotation.Nullable String host) {
     this.host = host;
@@ -264,14 +264,14 @@ private final String value;
    * @return httpProxy
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_HTTP_PROXY)
+  @JsonProperty(value = JSON_PROPERTY_HTTP_PROXY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getHttpProxy() {
     return httpProxy;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_HTTP_PROXY)
+  @JsonProperty(value = JSON_PROPERTY_HTTP_PROXY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHttpProxy(@javax.annotation.Nullable String httpProxy) {
     this.httpProxy = httpProxy;
@@ -288,14 +288,14 @@ private final String value;
    * @return id
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
@@ -312,14 +312,14 @@ private final String value;
    * @return label
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_LABEL)
+  @JsonProperty(value = JSON_PROPERTY_LABEL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getLabel() {
     return label;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_LABEL)
+  @JsonProperty(value = JSON_PROPERTY_LABEL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLabel(@javax.annotation.Nullable String label) {
     this.label = label;
@@ -336,14 +336,14 @@ private final String value;
    * @return master
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_MASTER)
+  @JsonProperty(value = JSON_PROPERTY_MASTER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getMaster() {
     return master;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MASTER)
+  @JsonProperty(value = JSON_PROPERTY_MASTER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMaster(@javax.annotation.Nullable String master) {
     this.master = master;
@@ -360,14 +360,14 @@ private final String value;
    * @return poolId
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_POOL_ID)
+  @JsonProperty(value = JSON_PROPERTY_POOL_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getPoolId() {
     return poolId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_POOL_ID)
+  @JsonProperty(value = JSON_PROPERTY_POOL_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPoolId(@javax.annotation.Nullable String poolId) {
     this.poolId = poolId;
@@ -384,14 +384,14 @@ private final String value;
    * @return poolNameDescription
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_POOL_NAME_DESCRIPTION)
+  @JsonProperty(value = JSON_PROPERTY_POOL_NAME_DESCRIPTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getPoolNameDescription() {
     return poolNameDescription;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_POOL_NAME_DESCRIPTION)
+  @JsonProperty(value = JSON_PROPERTY_POOL_NAME_DESCRIPTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPoolNameDescription(@javax.annotation.Nullable String poolNameDescription) {
     this.poolNameDescription = poolNameDescription;
@@ -408,14 +408,14 @@ private final String value;
    * @return poolNameLabel
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_POOL_NAME_LABEL)
+  @JsonProperty(value = JSON_PROPERTY_POOL_NAME_LABEL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getPoolNameLabel() {
     return poolNameLabel;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_POOL_NAME_LABEL)
+  @JsonProperty(value = JSON_PROPERTY_POOL_NAME_LABEL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPoolNameLabel(@javax.annotation.Nullable String poolNameLabel) {
     this.poolNameLabel = poolNameLabel;
@@ -432,14 +432,14 @@ private final String value;
    * @return readOnly
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_READ_ONLY)
+  @JsonProperty(value = JSON_PROPERTY_READ_ONLY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getReadOnly() {
     return readOnly;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_READ_ONLY)
+  @JsonProperty(value = JSON_PROPERTY_READ_ONLY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setReadOnly(@javax.annotation.Nullable Boolean readOnly) {
     this.readOnly = readOnly;
@@ -456,14 +456,14 @@ private final String value;
    * @return status
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_STATUS)
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public StatusEnum getStatus() {
     return status;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_STATUS)
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStatus(@javax.annotation.Nullable StatusEnum status) {
     this.status = status;
@@ -480,14 +480,14 @@ private final String value;
    * @return username
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_USERNAME)
+  @JsonProperty(value = JSON_PROPERTY_USERNAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getUsername() {
     return username;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_USERNAME)
+  @JsonProperty(value = JSON_PROPERTY_USERNAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUsername(@javax.annotation.Nullable String username) {
     this.username = username;
@@ -554,10 +554,7 @@ private final String value;
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -594,76 +591,76 @@ private final String value;
 
     // add `allowUnauthorized` to the URL query string
     if (getAllowUnauthorized() != null) {
-      joiner.add(String.format("%sallowUnauthorized%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAllowUnauthorized()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sallowUnauthorized%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAllowUnauthorized()))));
     }
 
     // add `enabled` to the URL query string
     if (getEnabled() != null) {
-      joiner.add(String.format("%senabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEnabled()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%senabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEnabled()))));
     }
 
     // add `error` to the URL query string
     if (getError() != null) {
       for (String _key : getError().keySet()) {
-        joiner.add(String.format("%serror%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%serror%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getError().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getError().get(_key)))));
       }
     }
 
     // add `host` to the URL query string
     if (getHost() != null) {
-      joiner.add(String.format("%shost%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHost()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%shost%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHost()))));
     }
 
     // add `httpProxy` to the URL query string
     if (getHttpProxy() != null) {
-      joiner.add(String.format("%shttpProxy%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHttpProxy()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%shttpProxy%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHttpProxy()))));
     }
 
     // add `id` to the URL query string
     if (getId() != null) {
-      joiner.add(String.format("%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
     }
 
     // add `label` to the URL query string
     if (getLabel() != null) {
-      joiner.add(String.format("%slabel%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLabel()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%slabel%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLabel()))));
     }
 
     // add `master` to the URL query string
     if (getMaster() != null) {
-      joiner.add(String.format("%smaster%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMaster()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%smaster%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMaster()))));
     }
 
     // add `poolId` to the URL query string
     if (getPoolId() != null) {
-      joiner.add(String.format("%spoolId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPoolId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%spoolId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPoolId()))));
     }
 
     // add `poolNameDescription` to the URL query string
     if (getPoolNameDescription() != null) {
-      joiner.add(String.format("%spoolNameDescription%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPoolNameDescription()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%spoolNameDescription%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPoolNameDescription()))));
     }
 
     // add `poolNameLabel` to the URL query string
     if (getPoolNameLabel() != null) {
-      joiner.add(String.format("%spoolNameLabel%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPoolNameLabel()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%spoolNameLabel%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPoolNameLabel()))));
     }
 
     // add `readOnly` to the URL query string
     if (getReadOnly() != null) {
-      joiner.add(String.format("%sreadOnly%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReadOnly()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sreadOnly%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReadOnly()))));
     }
 
     // add `status` to the URL query string
     if (getStatus() != null) {
-      joiner.add(String.format("%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
     }
 
     // add `username` to the URL query string
     if (getUsername() != null) {
-      joiner.add(String.format("%susername%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUsername()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%susername%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUsername()))));
     }
 
     return joiner.toString();

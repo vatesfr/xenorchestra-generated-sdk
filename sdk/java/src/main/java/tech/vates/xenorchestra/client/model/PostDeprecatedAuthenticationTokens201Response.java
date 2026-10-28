@@ -36,7 +36,7 @@ import tech.vates.xenorchestra.client.ApiClient;
 @JsonPropertyOrder({
   PostDeprecatedAuthenticationTokens201Response.JSON_PROPERTY_TOKEN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PostDeprecatedAuthenticationTokens201Response {
   public static final String JSON_PROPERTY_TOKEN = "token";
   @javax.annotation.Nonnull
@@ -55,14 +55,14 @@ public class PostDeprecatedAuthenticationTokens201Response {
    * @return token
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_TOKEN)
+  @JsonProperty(value = JSON_PROPERTY_TOKEN, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public UnbrandXoAuthenticationToken getToken() {
     return token;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TOKEN)
+  @JsonProperty(value = JSON_PROPERTY_TOKEN, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setToken(@javax.annotation.Nonnull UnbrandXoAuthenticationToken token) {
     this.token = token;
@@ -103,10 +103,7 @@ public class PostDeprecatedAuthenticationTokens201Response {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**

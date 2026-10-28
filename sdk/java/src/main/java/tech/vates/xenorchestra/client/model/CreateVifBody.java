@@ -51,7 +51,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   CreateVifBody.JSON_PROPERTY_QOS_ALGORITHM_PARAMS,
   CreateVifBody.JSON_PROPERTY_VM_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class CreateVifBody {
   public static final String JSON_PROPERTY_M_T_U = "MTU";
   @javax.annotation.Nullable
@@ -114,14 +114,14 @@ public class CreateVifBody {
    * @return MTU
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_M_T_U)
+  @JsonProperty(value = JSON_PROPERTY_M_T_U, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getMTU() {
     return MTU;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_M_T_U)
+  @JsonProperty(value = JSON_PROPERTY_M_T_U, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMTU(@javax.annotation.Nullable Double MTU) {
     this.MTU = MTU;
@@ -138,14 +138,14 @@ public class CreateVifBody {
    * @return currentlyAttached
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CURRENTLY_ATTACHED)
+  @JsonProperty(value = JSON_PROPERTY_CURRENTLY_ATTACHED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getCurrentlyAttached() {
     return currentlyAttached;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CURRENTLY_ATTACHED)
+  @JsonProperty(value = JSON_PROPERTY_CURRENTLY_ATTACHED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCurrentlyAttached(@javax.annotation.Nullable Boolean currentlyAttached) {
     this.currentlyAttached = currentlyAttached;
@@ -162,14 +162,14 @@ public class CreateVifBody {
    * @return device
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DEVICE)
+  @JsonProperty(value = JSON_PROPERTY_DEVICE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getDevice() {
     return device;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DEVICE)
+  @JsonProperty(value = JSON_PROPERTY_DEVICE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDevice(@javax.annotation.Nullable String device) {
     this.device = device;
@@ -194,14 +194,14 @@ public class CreateVifBody {
    * @return ipv4Allowed
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_IPV4_ALLOWED)
+  @JsonProperty(value = JSON_PROPERTY_IPV4_ALLOWED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getIpv4Allowed() {
     return ipv4Allowed;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_IPV4_ALLOWED)
+  @JsonProperty(value = JSON_PROPERTY_IPV4_ALLOWED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIpv4Allowed(@javax.annotation.Nullable List<String> ipv4Allowed) {
     this.ipv4Allowed = ipv4Allowed;
@@ -226,14 +226,14 @@ public class CreateVifBody {
    * @return ipv6Allowed
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_IPV6_ALLOWED)
+  @JsonProperty(value = JSON_PROPERTY_IPV6_ALLOWED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getIpv6Allowed() {
     return ipv6Allowed;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_IPV6_ALLOWED)
+  @JsonProperty(value = JSON_PROPERTY_IPV6_ALLOWED, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIpv6Allowed(@javax.annotation.Nullable List<String> ipv6Allowed) {
     this.ipv6Allowed = ipv6Allowed;
@@ -250,14 +250,14 @@ public class CreateVifBody {
    * @return lockingMode
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_LOCKING_MODE)
+  @JsonProperty(value = JSON_PROPERTY_LOCKING_MODE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public VIFLOCKINGMODE getLockingMode() {
     return lockingMode;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_LOCKING_MODE)
+  @JsonProperty(value = JSON_PROPERTY_LOCKING_MODE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLockingMode(@javax.annotation.Nullable VIFLOCKINGMODE lockingMode) {
     this.lockingMode = lockingMode;
@@ -274,14 +274,14 @@ public class CreateVifBody {
    * @return qosAlgorithmType
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_QOS_ALGORITHM_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_QOS_ALGORITHM_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getQosAlgorithmType() {
     return qosAlgorithmType;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_QOS_ALGORITHM_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_QOS_ALGORITHM_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setQosAlgorithmType(@javax.annotation.Nullable String qosAlgorithmType) {
     this.qosAlgorithmType = qosAlgorithmType;
@@ -298,14 +298,14 @@ public class CreateVifBody {
    * @return MAC
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_M_A_C)
+  @JsonProperty(value = JSON_PROPERTY_M_A_C, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getMAC() {
     return MAC;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_M_A_C)
+  @JsonProperty(value = JSON_PROPERTY_M_A_C, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMAC(@javax.annotation.Nullable String MAC) {
     this.MAC = MAC;
@@ -322,14 +322,14 @@ public class CreateVifBody {
    * @return networkId
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_NETWORK_ID)
+  @JsonProperty(value = JSON_PROPERTY_NETWORK_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getNetworkId() {
     return networkId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NETWORK_ID)
+  @JsonProperty(value = JSON_PROPERTY_NETWORK_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setNetworkId(@javax.annotation.Nonnull String networkId) {
     this.networkId = networkId;
@@ -354,14 +354,14 @@ public class CreateVifBody {
    * @return otherConfig
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_OTHER_CONFIG)
+  @JsonProperty(value = JSON_PROPERTY_OTHER_CONFIG, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, String> getOtherConfig() {
     return otherConfig;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_OTHER_CONFIG)
+  @JsonProperty(value = JSON_PROPERTY_OTHER_CONFIG, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOtherConfig(@javax.annotation.Nullable Map<String, String> otherConfig) {
     this.otherConfig = otherConfig;
@@ -386,14 +386,14 @@ public class CreateVifBody {
    * @return qosAlgorithmParams
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_QOS_ALGORITHM_PARAMS)
+  @JsonProperty(value = JSON_PROPERTY_QOS_ALGORITHM_PARAMS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, String> getQosAlgorithmParams() {
     return qosAlgorithmParams;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_QOS_ALGORITHM_PARAMS)
+  @JsonProperty(value = JSON_PROPERTY_QOS_ALGORITHM_PARAMS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setQosAlgorithmParams(@javax.annotation.Nullable Map<String, String> qosAlgorithmParams) {
     this.qosAlgorithmParams = qosAlgorithmParams;
@@ -410,14 +410,14 @@ public class CreateVifBody {
    * @return vmId
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_VM_ID)
+  @JsonProperty(value = JSON_PROPERTY_VM_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getVmId() {
     return vmId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_VM_ID)
+  @JsonProperty(value = JSON_PROPERTY_VM_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setVmId(@javax.annotation.Nonnull String vmId) {
     this.vmId = vmId;
@@ -480,10 +480,7 @@ public class CreateVifBody {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -520,24 +517,24 @@ public class CreateVifBody {
 
     // add `MTU` to the URL query string
     if (getMTU() != null) {
-      joiner.add(String.format("%sMTU%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMTU()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sMTU%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMTU()))));
     }
 
     // add `currently_attached` to the URL query string
     if (getCurrentlyAttached() != null) {
-      joiner.add(String.format("%scurrently_attached%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCurrentlyAttached()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%scurrently_attached%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCurrentlyAttached()))));
     }
 
     // add `device` to the URL query string
     if (getDevice() != null) {
-      joiner.add(String.format("%sdevice%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDevice()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdevice%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDevice()))));
     }
 
     // add `ipv4_allowed` to the URL query string
     if (getIpv4Allowed() != null) {
       for (int i = 0; i < getIpv4Allowed().size(); i++) {
-        joiner.add(String.format("%sipv4_allowed%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%sipv4_allowed%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getIpv4Allowed().get(i)))));
       }
     }
@@ -545,37 +542,37 @@ public class CreateVifBody {
     // add `ipv6_allowed` to the URL query string
     if (getIpv6Allowed() != null) {
       for (int i = 0; i < getIpv6Allowed().size(); i++) {
-        joiner.add(String.format("%sipv6_allowed%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%sipv6_allowed%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getIpv6Allowed().get(i)))));
       }
     }
 
     // add `locking_mode` to the URL query string
     if (getLockingMode() != null) {
-      joiner.add(String.format("%slocking_mode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLockingMode()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%slocking_mode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLockingMode()))));
     }
 
     // add `qos_algorithm_type` to the URL query string
     if (getQosAlgorithmType() != null) {
-      joiner.add(String.format("%sqos_algorithm_type%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getQosAlgorithmType()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sqos_algorithm_type%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getQosAlgorithmType()))));
     }
 
     // add `MAC` to the URL query string
     if (getMAC() != null) {
-      joiner.add(String.format("%sMAC%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMAC()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sMAC%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMAC()))));
     }
 
     // add `networkId` to the URL query string
     if (getNetworkId() != null) {
-      joiner.add(String.format("%snetworkId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNetworkId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%snetworkId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNetworkId()))));
     }
 
     // add `other_config` to the URL query string
     if (getOtherConfig() != null) {
       for (String _key : getOtherConfig().keySet()) {
-        joiner.add(String.format("%sother_config%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%sother_config%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getOtherConfig().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getOtherConfig().get(_key)))));
       }
     }
@@ -583,15 +580,15 @@ public class CreateVifBody {
     // add `qos_algorithm_params` to the URL query string
     if (getQosAlgorithmParams() != null) {
       for (String _key : getQosAlgorithmParams().keySet()) {
-        joiner.add(String.format("%sqos_algorithm_params%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%sqos_algorithm_params%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getQosAlgorithmParams().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getQosAlgorithmParams().get(_key)))));
       }
     }
 
     // add `vmId` to the URL query string
     if (getVmId() != null) {
-      joiner.add(String.format("%svmId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVmId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%svmId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVmId()))));
     }
 
     return joiner.toString();

@@ -94,7 +94,7 @@ public class Example {
 
 ## getBackupArchiveWithHttpInfo
 
-> ApiResponse<UnbrandXoVmBackupArchive> getBackupArchive getBackupArchiveWithHttpInfo(id)
+> ApiResponse<UnbrandXoVmBackupArchive> getBackupArchiveWithHttpInfo(id)
 
 
 
@@ -269,7 +269,7 @@ public class Example {
 
 ## getBackupArchivesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoVmBackupArchive> getBackupArchives getBackupArchivesWithHttpInfo(backupRepository, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoVmBackupArchive> getBackupArchivesWithHttpInfo(backupRepository, fields, ndjson, markdown, filter, limit)
 
 
 

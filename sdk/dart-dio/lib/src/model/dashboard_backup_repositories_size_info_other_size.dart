@@ -132,8 +132,9 @@ class _$DashboardBackupRepositoriesSizeInfoOtherSizeSerializer
         case r'available':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.available = valueDes;
           break;
         case r'backups':
@@ -146,22 +147,25 @@ class _$DashboardBackupRepositoriesSizeInfoOtherSizeSerializer
         case r'other':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.other = valueDes;
           break;
         case r'total':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.total = valueDes;
           break;
         case r'used':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.used = valueDes;
           break;
         default:

@@ -33,16 +33,6 @@ func patchGeneratedPython(root string) error {
 		return err
 	}
 
-	apiClient := filepath.Join(root, "xenorchestra_client", "api_client.py")
-	if err := replaceExactlyInFile(
-		apiClient,
-		"            headers['Cookie'] = auth_setting['value']",
-		"            headers['Cookie'] = f\"{auth_setting['key']}={auth_setting['value']}\"",
-		1,
-	); err != nil {
-		return fmt.Errorf("patch Python cookie authentication: %w", err)
-	}
-
 	metadata := filepath.Join(root, "pyproject.toml")
 	metadataReplacements := [][2]string{
 		{`name = "xenorchestra_client"`, `name = "xenorchestra-python-sdk"`},

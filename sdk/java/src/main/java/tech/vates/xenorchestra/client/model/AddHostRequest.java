@@ -36,7 +36,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   AddHostRequest.JSON_PROPERTY_FORCE,
   AddHostRequest.JSON_PROPERTY_HOST
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class AddHostRequest {
   public static final String JSON_PROPERTY_FORCE = "force";
   @javax.annotation.Nullable
@@ -59,14 +59,14 @@ public class AddHostRequest {
    * @return force
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_FORCE)
+  @JsonProperty(value = JSON_PROPERTY_FORCE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getForce() {
     return force;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_FORCE)
+  @JsonProperty(value = JSON_PROPERTY_FORCE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setForce(@javax.annotation.Nullable Boolean force) {
     this.force = force;
@@ -83,14 +83,14 @@ public class AddHostRequest {
    * @return host
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_HOST)
+  @JsonProperty(value = JSON_PROPERTY_HOST, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getHost() {
     return host;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_HOST)
+  @JsonProperty(value = JSON_PROPERTY_HOST, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setHost(@javax.annotation.Nonnull String host) {
     this.host = host;
@@ -133,10 +133,7 @@ public class AddHostRequest {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -173,12 +170,12 @@ public class AddHostRequest {
 
     // add `force` to the URL query string
     if (getForce() != null) {
-      joiner.add(String.format("%sforce%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getForce()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sforce%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getForce()))));
     }
 
     // add `host` to the URL query string
     if (getHost() != null) {
-      joiner.add(String.format("%shost%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHost()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%shost%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHost()))));
     }
 
     return joiner.toString();

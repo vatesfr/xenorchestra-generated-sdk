@@ -56,7 +56,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   UnbrandXoNetwork.JSON_PROPERTY_TYPE,
   UnbrandXoNetwork.JSON_PROPERTY_UUID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class UnbrandXoNetwork {
   public static final String JSON_PROPERTY_$_POOL = "$pool";
   @javax.annotation.Nonnull
@@ -188,14 +188,14 @@ private final String value;
    * @return $pool
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_$_POOL)
+  @JsonProperty(value = JSON_PROPERTY_$_POOL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String get$Pool() {
     return $pool;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_$_POOL)
+  @JsonProperty(value = JSON_PROPERTY_$_POOL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void set$Pool(@javax.annotation.Nonnull String $pool) {
     this.$pool = $pool;
@@ -214,14 +214,14 @@ private final String value;
    */
   @Deprecated
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_$_POOL_ID)
+  @JsonProperty(value = JSON_PROPERTY_$_POOL_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String get$PoolId() {
     return $poolId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_$_POOL_ID)
+  @JsonProperty(value = JSON_PROPERTY_$_POOL_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void set$PoolId(@javax.annotation.Nonnull String $poolId) {
     this.$poolId = $poolId;
@@ -238,14 +238,14 @@ private final String value;
    * @return MTU
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_M_T_U)
+  @JsonProperty(value = JSON_PROPERTY_M_T_U, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getMTU() {
     return MTU;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_M_T_U)
+  @JsonProperty(value = JSON_PROPERTY_M_T_U, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setMTU(@javax.annotation.Nonnull Double MTU) {
     this.MTU = MTU;
@@ -270,14 +270,14 @@ private final String value;
    * @return piFs
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_PI_FS)
+  @JsonProperty(value = JSON_PROPERTY_PI_FS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<String> getPiFs() {
     return piFs;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PI_FS)
+  @JsonProperty(value = JSON_PROPERTY_PI_FS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setPiFs(@javax.annotation.Nonnull List<String> piFs) {
     this.piFs = piFs;
@@ -302,14 +302,14 @@ private final String value;
    * @return viFs
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_VI_FS)
+  @JsonProperty(value = JSON_PROPERTY_VI_FS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<String> getViFs() {
     return viFs;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_VI_FS)
+  @JsonProperty(value = JSON_PROPERTY_VI_FS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setViFs(@javax.annotation.Nonnull List<String> viFs) {
     this.viFs = viFs;
@@ -326,14 +326,14 @@ private final String value;
    * @return xapiRef
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_XAPI_REF)
+  @JsonProperty(value = JSON_PROPERTY_XAPI_REF, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getXapiRef() {
     return xapiRef;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_XAPI_REF)
+  @JsonProperty(value = JSON_PROPERTY_XAPI_REF, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setXapiRef(@javax.annotation.Nonnull String xapiRef) {
     this.xapiRef = xapiRef;
@@ -350,14 +350,14 @@ private final String value;
    * @return automatic
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_AUTOMATIC)
+  @JsonProperty(value = JSON_PROPERTY_AUTOMATIC, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Boolean getAutomatic() {
     return automatic;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_AUTOMATIC)
+  @JsonProperty(value = JSON_PROPERTY_AUTOMATIC, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setAutomatic(@javax.annotation.Nonnull Boolean automatic) {
     this.automatic = automatic;
@@ -374,14 +374,14 @@ private final String value;
    * @return bridge
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_BRIDGE)
+  @JsonProperty(value = JSON_PROPERTY_BRIDGE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getBridge() {
     return bridge;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_BRIDGE)
+  @JsonProperty(value = JSON_PROPERTY_BRIDGE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setBridge(@javax.annotation.Nonnull String bridge) {
     this.bridge = bridge;
@@ -398,14 +398,14 @@ private final String value;
    * @return currentOperations
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_CURRENT_OPERATIONS)
+  @JsonProperty(value = JSON_PROPERTY_CURRENT_OPERATIONS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Object getCurrentOperations() {
     return currentOperations;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CURRENT_OPERATIONS)
+  @JsonProperty(value = JSON_PROPERTY_CURRENT_OPERATIONS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCurrentOperations(@javax.annotation.Nonnull Object currentOperations) {
     this.currentOperations = currentOperations;
@@ -422,14 +422,14 @@ private final String value;
    * @return defaultIsLocked
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_DEFAULT_IS_LOCKED)
+  @JsonProperty(value = JSON_PROPERTY_DEFAULT_IS_LOCKED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Boolean getDefaultIsLocked() {
     return defaultIsLocked;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DEFAULT_IS_LOCKED)
+  @JsonProperty(value = JSON_PROPERTY_DEFAULT_IS_LOCKED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDefaultIsLocked(@javax.annotation.Nonnull Boolean defaultIsLocked) {
     this.defaultIsLocked = defaultIsLocked;
@@ -446,14 +446,14 @@ private final String value;
    * @return id
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
@@ -470,14 +470,14 @@ private final String value;
    * @return insecureNbd
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_INSECURE_NBD)
+  @JsonProperty(value = JSON_PROPERTY_INSECURE_NBD, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getInsecureNbd() {
     return insecureNbd;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_INSECURE_NBD)
+  @JsonProperty(value = JSON_PROPERTY_INSECURE_NBD, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInsecureNbd(@javax.annotation.Nullable Boolean insecureNbd) {
     this.insecureNbd = insecureNbd;
@@ -494,14 +494,14 @@ private final String value;
    * @return isBonded
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_IS_BONDED)
+  @JsonProperty(value = JSON_PROPERTY_IS_BONDED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Boolean getIsBonded() {
     return isBonded;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_IS_BONDED)
+  @JsonProperty(value = JSON_PROPERTY_IS_BONDED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setIsBonded(@javax.annotation.Nonnull Boolean isBonded) {
     this.isBonded = isBonded;
@@ -518,14 +518,14 @@ private final String value;
    * @return nameDescription
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_NAME_DESCRIPTION)
+  @JsonProperty(value = JSON_PROPERTY_NAME_DESCRIPTION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getNameDescription() {
     return nameDescription;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME_DESCRIPTION)
+  @JsonProperty(value = JSON_PROPERTY_NAME_DESCRIPTION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setNameDescription(@javax.annotation.Nonnull String nameDescription) {
     this.nameDescription = nameDescription;
@@ -542,14 +542,14 @@ private final String value;
    * @return nameLabel
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_NAME_LABEL)
+  @JsonProperty(value = JSON_PROPERTY_NAME_LABEL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getNameLabel() {
     return nameLabel;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME_LABEL)
+  @JsonProperty(value = JSON_PROPERTY_NAME_LABEL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setNameLabel(@javax.annotation.Nonnull String nameLabel) {
     this.nameLabel = nameLabel;
@@ -566,14 +566,14 @@ private final String value;
    * @return nbd
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_NBD)
+  @JsonProperty(value = JSON_PROPERTY_NBD, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getNbd() {
     return nbd;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NBD)
+  @JsonProperty(value = JSON_PROPERTY_NBD, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNbd(@javax.annotation.Nullable Boolean nbd) {
     this.nbd = nbd;
@@ -590,14 +590,14 @@ private final String value;
    * @return otherConfig
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_OTHER_CONFIG)
+  @JsonProperty(value = JSON_PROPERTY_OTHER_CONFIG, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Object getOtherConfig() {
     return otherConfig;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_OTHER_CONFIG)
+  @JsonProperty(value = JSON_PROPERTY_OTHER_CONFIG, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setOtherConfig(@javax.annotation.Nonnull Object otherConfig) {
     this.otherConfig = otherConfig;
@@ -622,14 +622,14 @@ private final String value;
    * @return tags
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_TAGS)
+  @JsonProperty(value = JSON_PROPERTY_TAGS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<String> getTags() {
     return tags;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TAGS)
+  @JsonProperty(value = JSON_PROPERTY_TAGS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setTags(@javax.annotation.Nonnull List<String> tags) {
     this.tags = tags;
@@ -646,14 +646,14 @@ private final String value;
    * @return type
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public TypeEnum getType() {
     return type;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setType(@javax.annotation.Nonnull TypeEnum type) {
     this.type = type;
@@ -670,14 +670,14 @@ private final String value;
    * @return uuid
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_UUID)
+  @JsonProperty(value = JSON_PROPERTY_UUID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getUuid() {
     return uuid;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_UUID)
+  @JsonProperty(value = JSON_PROPERTY_UUID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUuid(@javax.annotation.Nonnull String uuid) {
     this.uuid = uuid;
@@ -756,10 +756,7 @@ private final String value;
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -796,24 +793,24 @@ private final String value;
 
     // add `$pool` to the URL query string
     if (get$Pool() != null) {
-      joiner.add(String.format("%s$pool%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$Pool()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%s$pool%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$Pool()))));
     }
 
     // add `$poolId` to the URL query string
     if (get$PoolId() != null) {
-      joiner.add(String.format("%s$poolId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$PoolId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%s$poolId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(get$PoolId()))));
     }
 
     // add `MTU` to the URL query string
     if (getMTU() != null) {
-      joiner.add(String.format("%sMTU%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMTU()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sMTU%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMTU()))));
     }
 
     // add `PIFs` to the URL query string
     if (getPiFs() != null) {
       for (int i = 0; i < getPiFs().size(); i++) {
-        joiner.add(String.format("%sPIFs%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%sPIFs%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getPiFs().get(i)))));
       }
     }
@@ -821,89 +818,89 @@ private final String value;
     // add `VIFs` to the URL query string
     if (getViFs() != null) {
       for (int i = 0; i < getViFs().size(); i++) {
-        joiner.add(String.format("%sVIFs%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%sVIFs%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getViFs().get(i)))));
       }
     }
 
     // add `_xapiRef` to the URL query string
     if (getXapiRef() != null) {
-      joiner.add(String.format("%s_xapiRef%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getXapiRef()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%s_xapiRef%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getXapiRef()))));
     }
 
     // add `automatic` to the URL query string
     if (getAutomatic() != null) {
-      joiner.add(String.format("%sautomatic%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAutomatic()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sautomatic%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAutomatic()))));
     }
 
     // add `bridge` to the URL query string
     if (getBridge() != null) {
-      joiner.add(String.format("%sbridge%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBridge()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbridge%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBridge()))));
     }
 
     // add `current_operations` to the URL query string
     if (getCurrentOperations() != null) {
-      joiner.add(String.format("%scurrent_operations%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCurrentOperations()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%scurrent_operations%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCurrentOperations()))));
     }
 
     // add `defaultIsLocked` to the URL query string
     if (getDefaultIsLocked() != null) {
-      joiner.add(String.format("%sdefaultIsLocked%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDefaultIsLocked()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdefaultIsLocked%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDefaultIsLocked()))));
     }
 
     // add `id` to the URL query string
     if (getId() != null) {
-      joiner.add(String.format("%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
     }
 
     // add `insecureNbd` to the URL query string
     if (getInsecureNbd() != null) {
-      joiner.add(String.format("%sinsecureNbd%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getInsecureNbd()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sinsecureNbd%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getInsecureNbd()))));
     }
 
     // add `isBonded` to the URL query string
     if (getIsBonded() != null) {
-      joiner.add(String.format("%sisBonded%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsBonded()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sisBonded%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsBonded()))));
     }
 
     // add `name_description` to the URL query string
     if (getNameDescription() != null) {
-      joiner.add(String.format("%sname_description%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameDescription()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname_description%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameDescription()))));
     }
 
     // add `name_label` to the URL query string
     if (getNameLabel() != null) {
-      joiner.add(String.format("%sname_label%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameLabel()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname_label%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameLabel()))));
     }
 
     // add `nbd` to the URL query string
     if (getNbd() != null) {
-      joiner.add(String.format("%snbd%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNbd()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%snbd%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNbd()))));
     }
 
     // add `other_config` to the URL query string
     if (getOtherConfig() != null) {
-      joiner.add(String.format("%sother_config%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOtherConfig()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sother_config%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOtherConfig()))));
     }
 
     // add `tags` to the URL query string
     if (getTags() != null) {
       for (int i = 0; i < getTags().size(); i++) {
-        joiner.add(String.format("%stags%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%stags%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getTags().get(i)))));
       }
     }
 
     // add `type` to the URL query string
     if (getType() != null) {
-      joiner.add(String.format("%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
     }
 
     // add `uuid` to the URL query string
     if (getUuid() != null) {
-      joiner.add(String.format("%suuid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUuid()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%suuid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUuid()))));
     }
 
     return joiner.toString();

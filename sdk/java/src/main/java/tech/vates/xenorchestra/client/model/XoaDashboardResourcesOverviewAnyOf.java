@@ -37,7 +37,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   XoaDashboardResourcesOverviewAnyOf.JSON_PROPERTY_N_CPUS,
   XoaDashboardResourcesOverviewAnyOf.JSON_PROPERTY_SR_SIZE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class XoaDashboardResourcesOverviewAnyOf {
   public static final String JSON_PROPERTY_MEMORY_SIZE = "memorySize";
   @javax.annotation.Nonnull
@@ -64,14 +64,14 @@ public class XoaDashboardResourcesOverviewAnyOf {
    * @return memorySize
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_MEMORY_SIZE)
+  @JsonProperty(value = JSON_PROPERTY_MEMORY_SIZE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getMemorySize() {
     return memorySize;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MEMORY_SIZE)
+  @JsonProperty(value = JSON_PROPERTY_MEMORY_SIZE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setMemorySize(@javax.annotation.Nonnull Double memorySize) {
     this.memorySize = memorySize;
@@ -88,14 +88,14 @@ public class XoaDashboardResourcesOverviewAnyOf {
    * @return nCpus
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_N_CPUS)
+  @JsonProperty(value = JSON_PROPERTY_N_CPUS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getnCpus() {
     return nCpus;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_N_CPUS)
+  @JsonProperty(value = JSON_PROPERTY_N_CPUS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setnCpus(@javax.annotation.Nonnull Double nCpus) {
     this.nCpus = nCpus;
@@ -112,14 +112,14 @@ public class XoaDashboardResourcesOverviewAnyOf {
    * @return srSize
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_SR_SIZE)
+  @JsonProperty(value = JSON_PROPERTY_SR_SIZE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getSrSize() {
     return srSize;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SR_SIZE)
+  @JsonProperty(value = JSON_PROPERTY_SR_SIZE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSrSize(@javax.annotation.Nonnull Double srSize) {
     this.srSize = srSize;
@@ -164,10 +164,7 @@ public class XoaDashboardResourcesOverviewAnyOf {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -204,17 +201,17 @@ public class XoaDashboardResourcesOverviewAnyOf {
 
     // add `memorySize` to the URL query string
     if (getMemorySize() != null) {
-      joiner.add(String.format("%smemorySize%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMemorySize()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%smemorySize%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMemorySize()))));
     }
 
     // add `nCpus` to the URL query string
     if (getnCpus() != null) {
-      joiner.add(String.format("%snCpus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getnCpus()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%snCpus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getnCpus()))));
     }
 
     // add `srSize` to the URL query string
     if (getSrSize() != null) {
-      joiner.add(String.format("%ssrSize%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSrSize()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssrSize%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSrSize()))));
     }
 
     return joiner.toString();

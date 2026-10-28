@@ -8,15 +8,15 @@ Name | Type | Description | Notes
 **dollar_pool_id** | **String** |  | 
 **sm_type** | **String** |  | 
 **_xapi_ref** | **String** |  | 
-**configuration** | [**serde_json::Value**](.md) | Construct a type with a set of properties K of type T | 
+**configuration** | **serde_json::Value** | Construct a type with a set of properties K of type T | 
 **driver_filename** | **String** |  | 
-**features** | [**serde_json::Value**](.md) | Construct a type with a set of properties K of type T | 
+**features** | **serde_json::Value** | Construct a type with a set of properties K of type T | 
 **id** | **String** |  | 
 **name_description** | **String** |  | 
 **name_label** | **String** |  | 
 **required_cluster_stack** | **Vec<String>** |  | 
 **supported_image_formats** | **Vec<String>** |  | 
-**r#type** | **String** |  | 
+**r#type** | **Type** |  (enum: SM) | 
 **uuid** | **String** |  | 
 **vendor** | **String** |  | 
 

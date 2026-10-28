@@ -39,7 +39,7 @@ final String id = 1753776067468; // String |
 try {
     final response = api.getBackupLog(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BackupLogsApi->getBackupLog: $e\n');
 }
 ```
@@ -93,7 +93,7 @@ final double limit = 42; // double |
 try {
     final response = api.getBackupLogs(fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BackupLogsApi->getBackupLogs: $e\n');
 }
 ```
@@ -145,7 +145,7 @@ final String id = 1753776067468; // String |
 try {
     final response = api.getDeprecatedBackupLog(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BackupLogsApi->getDeprecatedBackupLog: $e\n');
 }
 ```
@@ -199,7 +199,7 @@ final double limit = 42; // double |
 try {
     final response = api.getDeprecatedBackupLogs(fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BackupLogsApi->getDeprecatedBackupLogs: $e\n');
 }
 ```

@@ -36,7 +36,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   MigrateVmRequestAnyOf.JSON_PROPERTY_HOST_ID,
   MigrateVmRequestAnyOf.JSON_PROPERTY_MIGRATION_NETWORK_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class MigrateVmRequestAnyOf {
   public static final String JSON_PROPERTY_HOST_ID = "hostId";
   @javax.annotation.Nonnull
@@ -59,14 +59,14 @@ public class MigrateVmRequestAnyOf {
    * @return hostId
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_HOST_ID)
+  @JsonProperty(value = JSON_PROPERTY_HOST_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getHostId() {
     return hostId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_HOST_ID)
+  @JsonProperty(value = JSON_PROPERTY_HOST_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setHostId(@javax.annotation.Nonnull String hostId) {
     this.hostId = hostId;
@@ -83,14 +83,14 @@ public class MigrateVmRequestAnyOf {
    * @return migrationNetworkId
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_MIGRATION_NETWORK_ID)
+  @JsonProperty(value = JSON_PROPERTY_MIGRATION_NETWORK_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getMigrationNetworkId() {
     return migrationNetworkId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MIGRATION_NETWORK_ID)
+  @JsonProperty(value = JSON_PROPERTY_MIGRATION_NETWORK_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMigrationNetworkId(@javax.annotation.Nullable String migrationNetworkId) {
     this.migrationNetworkId = migrationNetworkId;
@@ -133,10 +133,7 @@ public class MigrateVmRequestAnyOf {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -173,12 +170,12 @@ public class MigrateVmRequestAnyOf {
 
     // add `hostId` to the URL query string
     if (getHostId() != null) {
-      joiner.add(String.format("%shostId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHostId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%shostId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHostId()))));
     }
 
     // add `migrationNetworkId` to the URL query string
     if (getMigrationNetworkId() != null) {
-      joiner.add(String.format("%smigrationNetworkId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMigrationNetworkId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%smigrationNetworkId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMigrationNetworkId()))));
     }
 
     return joiner.toString();

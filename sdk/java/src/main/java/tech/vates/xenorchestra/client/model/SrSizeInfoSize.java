@@ -39,7 +39,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   SrSizeInfoSize.JSON_PROPERTY_TOTAL,
   SrSizeInfoSize.JSON_PROPERTY_USED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class SrSizeInfoSize {
   public static final String JSON_PROPERTY_AVAILABLE = "available";
   @javax.annotation.Nonnull
@@ -74,14 +74,14 @@ public class SrSizeInfoSize {
    * @return available
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_AVAILABLE)
+  @JsonProperty(value = JSON_PROPERTY_AVAILABLE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getAvailable() {
     return available;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_AVAILABLE)
+  @JsonProperty(value = JSON_PROPERTY_AVAILABLE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setAvailable(@javax.annotation.Nonnull Double available) {
     this.available = available;
@@ -98,14 +98,14 @@ public class SrSizeInfoSize {
    * @return other
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_OTHER)
+  @JsonProperty(value = JSON_PROPERTY_OTHER, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getOther() {
     return other;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_OTHER)
+  @JsonProperty(value = JSON_PROPERTY_OTHER, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setOther(@javax.annotation.Nonnull Double other) {
     this.other = other;
@@ -122,14 +122,14 @@ public class SrSizeInfoSize {
    * @return replicated
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_REPLICATED)
+  @JsonProperty(value = JSON_PROPERTY_REPLICATED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getReplicated() {
     return replicated;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_REPLICATED)
+  @JsonProperty(value = JSON_PROPERTY_REPLICATED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setReplicated(@javax.annotation.Nonnull Double replicated) {
     this.replicated = replicated;
@@ -146,14 +146,14 @@ public class SrSizeInfoSize {
    * @return total
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_TOTAL)
+  @JsonProperty(value = JSON_PROPERTY_TOTAL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getTotal() {
     return total;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TOTAL)
+  @JsonProperty(value = JSON_PROPERTY_TOTAL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setTotal(@javax.annotation.Nonnull Double total) {
     this.total = total;
@@ -170,14 +170,14 @@ public class SrSizeInfoSize {
    * @return used
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_USED)
+  @JsonProperty(value = JSON_PROPERTY_USED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getUsed() {
     return used;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_USED)
+  @JsonProperty(value = JSON_PROPERTY_USED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUsed(@javax.annotation.Nonnull Double used) {
     this.used = used;
@@ -226,10 +226,7 @@ public class SrSizeInfoSize {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -266,27 +263,27 @@ public class SrSizeInfoSize {
 
     // add `available` to the URL query string
     if (getAvailable() != null) {
-      joiner.add(String.format("%savailable%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAvailable()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%savailable%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAvailable()))));
     }
 
     // add `other` to the URL query string
     if (getOther() != null) {
-      joiner.add(String.format("%sother%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOther()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sother%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOther()))));
     }
 
     // add `replicated` to the URL query string
     if (getReplicated() != null) {
-      joiner.add(String.format("%sreplicated%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReplicated()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sreplicated%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReplicated()))));
     }
 
     // add `total` to the URL query string
     if (getTotal() != null) {
-      joiner.add(String.format("%stotal%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTotal()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%stotal%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTotal()))));
     }
 
     // add `used` to the URL query string
     if (getUsed() != null) {
-      joiner.add(String.format("%sused%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUsed()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sused%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUsed()))));
     }
 
     return joiner.toString();

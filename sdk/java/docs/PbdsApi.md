@@ -98,7 +98,7 @@ public class Example {
 
 ## getPbdWithHttpInfo
 
-> ApiResponse<UnbrandXoPbd> getPbd getPbdWithHttpInfo(id)
+> ApiResponse<UnbrandXoPbd> getPbdWithHttpInfo(id)
 
 
 
@@ -270,7 +270,7 @@ public class Example {
 
 ## getPbdsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoPbd> getPbds getPbdsWithHttpInfo(fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoPbd> getPbdsWithHttpInfo(fields, ndjson, markdown, filter, limit)
 
 
 
@@ -447,7 +447,7 @@ public class Example {
 
 ## plugPbdWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> plugPbd plugPbdWithHttpInfo(id, sync)
+> ApiResponse<CreateActionReturnTypeVoid> plugPbdWithHttpInfo(id, sync)
 
 
 
@@ -623,7 +623,7 @@ public class Example {
 
 ## unplugPbdWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> unplugPbd unplugPbdWithHttpInfo(id, sync)
+> ApiResponse<CreateActionReturnTypeVoid> unplugPbdWithHttpInfo(id, sync)
 
 
 

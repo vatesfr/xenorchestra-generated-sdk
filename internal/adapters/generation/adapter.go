@@ -9,7 +9,7 @@ import (
 	"github.com/vatesfr/xenorchestra-generated-sdk/internal/app/ports/driven"
 )
 
-const defaultGeneratorImage = "openapitools/openapi-generator-cli:v7.14.0"
+const defaultGeneratorImage = "openapitools/openapi-generator-cli:v7.26.0"
 const defaultSDKVersion = "0.1.0"
 
 // SDKGenerationService generates SDKs and verifies generation idempotence.

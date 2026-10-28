@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**action** | **String** |  | 
-**effect** | **String** |  | 
+**action** | **Action** |  (enum: update, *, create, read, update:tags, add-host, create:network, create:vm, emergency-shutdown, rolling-reboot, rolling-update) | 
+**effect** | **Effect** |  (enum: allow, deny) | 
 **id** | **String** |  | 
-**resource** | **String** |  | 
+**resource** | **Resource** |  (enum: pool) | 
 **role_id** | **String** |  | 
 **selector** | Option<**String**> |  | [optional]
 

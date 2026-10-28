@@ -122,31 +122,36 @@ class _$XoBackupJobGeneralSettingsSerializer
         case r'backupReportTpl':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType:
-                const FullType(XoBackupJobGeneralSettingsBackupReportTplEnum),
-          ) as XoBackupJobGeneralSettingsBackupReportTplEnum;
+            specifiedType: const FullType.nullable(
+                XoBackupJobGeneralSettingsBackupReportTplEnum),
+          ) as XoBackupJobGeneralSettingsBackupReportTplEnum?;
+          if (valueDes == null) continue;
           result.backupReportTpl = valueDes;
           break;
         case r'hideSuccessfulItems':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.hideSuccessfulItems = valueDes;
           break;
         case r'reportRecipients':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(String)]),
-          ) as BuiltList<String>;
+            specifiedType:
+                const FullType.nullable(BuiltList, [FullType(String)]),
+          ) as BuiltList<String>?;
+          if (valueDes == null) continue;
           result.reportRecipients.replace(valueDes);
           break;
         case r'reportWhen':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType:
-                const FullType(XoBackupJobGeneralSettingsReportWhenEnum),
-          ) as XoBackupJobGeneralSettingsReportWhenEnum;
+            specifiedType: const FullType.nullable(
+                XoBackupJobGeneralSettingsReportWhenEnum),
+          ) as XoBackupJobGeneralSettingsReportWhenEnum?;
+          if (valueDes == null) continue;
           result.reportWhen = valueDes;
           break;
         default:

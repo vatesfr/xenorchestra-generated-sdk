@@ -42,7 +42,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrShared.JSON_PROPERTY_NAME_LABEL,
   PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrShared.JSON_PROPERTY_SM_CONFIG
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrShared {
   /**
    * Gets or Sets contentType
@@ -116,14 +116,14 @@ private final String value;
    * @return contentType
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CONTENT_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_CONTENT_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public ContentTypeEnum getContentType() {
     return contentType;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CONTENT_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_CONTENT_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setContentType(@javax.annotation.Nullable ContentTypeEnum contentType) {
     this.contentType = contentType;
@@ -140,14 +140,14 @@ private final String value;
    * @return deviceConfig
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_DEVICE_CONFIG)
+  @JsonProperty(value = JSON_PROPERTY_DEVICE_CONFIG, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedDeviceConfig getDeviceConfig() {
     return deviceConfig;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DEVICE_CONFIG)
+  @JsonProperty(value = JSON_PROPERTY_DEVICE_CONFIG, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDeviceConfig(@javax.annotation.Nonnull PickParametersXapi91SRCreate9391093ExcludeKeyofParametersXapi91SRCreate9391093HostOrTypeOrPhysicalSizeOrSharedDeviceConfig deviceConfig) {
     this.deviceConfig = deviceConfig;
@@ -164,14 +164,14 @@ private final String value;
    * @return nameDescription
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_NAME_DESCRIPTION)
+  @JsonProperty(value = JSON_PROPERTY_NAME_DESCRIPTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getNameDescription() {
     return nameDescription;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME_DESCRIPTION)
+  @JsonProperty(value = JSON_PROPERTY_NAME_DESCRIPTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNameDescription(@javax.annotation.Nullable String nameDescription) {
     this.nameDescription = nameDescription;
@@ -188,14 +188,14 @@ private final String value;
    * @return nameLabel
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_NAME_LABEL)
+  @JsonProperty(value = JSON_PROPERTY_NAME_LABEL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getNameLabel() {
     return nameLabel;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME_LABEL)
+  @JsonProperty(value = JSON_PROPERTY_NAME_LABEL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setNameLabel(@javax.annotation.Nonnull String nameLabel) {
     this.nameLabel = nameLabel;
@@ -220,14 +220,14 @@ private final String value;
    * @return smConfig
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SM_CONFIG)
+  @JsonProperty(value = JSON_PROPERTY_SM_CONFIG, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, String> getSmConfig() {
     return smConfig;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SM_CONFIG)
+  @JsonProperty(value = JSON_PROPERTY_SM_CONFIG, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSmConfig(@javax.annotation.Nullable Map<String, String> smConfig) {
     this.smConfig = smConfig;
@@ -276,10 +276,7 @@ private final String value;
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -316,7 +313,7 @@ private final String value;
 
     // add `content_type` to the URL query string
     if (getContentType() != null) {
-      joiner.add(String.format("%scontent_type%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getContentType()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%scontent_type%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getContentType()))));
     }
 
     // add `device_config` to the URL query string
@@ -326,19 +323,19 @@ private final String value;
 
     // add `name_description` to the URL query string
     if (getNameDescription() != null) {
-      joiner.add(String.format("%sname_description%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameDescription()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname_description%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameDescription()))));
     }
 
     // add `name_label` to the URL query string
     if (getNameLabel() != null) {
-      joiner.add(String.format("%sname_label%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameLabel()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname_label%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNameLabel()))));
     }
 
     // add `sm_config` to the URL query string
     if (getSmConfig() != null) {
       for (String _key : getSmConfig().keySet()) {
-        joiner.add(String.format("%ssm_config%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%ssm_config%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getSmConfig().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getSmConfig().get(_key)))));
       }
     }

@@ -36,7 +36,7 @@ final bool ndjson = true; // bool |
 try {
     final response = api.getDashboard(ndjson);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling XoaApi->getDashboard: $e\n');
 }
 ```
@@ -76,7 +76,7 @@ final api = XenorchestraDartSdk().getXoaApi();
 try {
     final response = api.getGuiRoutes();
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling XoaApi->getGuiRoutes: $e\n');
 }
 ```
@@ -113,7 +113,7 @@ final api = XenorchestraDartSdk().getXoaApi();
 try {
     final response = api.ping();
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling XoaApi->ping: $e\n');
 }
 ```

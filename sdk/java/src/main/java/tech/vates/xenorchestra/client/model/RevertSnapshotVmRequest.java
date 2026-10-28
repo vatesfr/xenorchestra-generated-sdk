@@ -36,7 +36,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   RevertSnapshotVmRequest.JSON_PROPERTY_SNAPSHOT_BEFORE,
   RevertSnapshotVmRequest.JSON_PROPERTY_SNAPSHOT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class RevertSnapshotVmRequest {
   public static final String JSON_PROPERTY_SNAPSHOT_BEFORE = "snapshotBefore";
   @javax.annotation.Nullable
@@ -59,14 +59,14 @@ public class RevertSnapshotVmRequest {
    * @return snapshotBefore
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_SNAPSHOT_BEFORE)
+  @JsonProperty(value = JSON_PROPERTY_SNAPSHOT_BEFORE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getSnapshotBefore() {
     return snapshotBefore;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SNAPSHOT_BEFORE)
+  @JsonProperty(value = JSON_PROPERTY_SNAPSHOT_BEFORE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSnapshotBefore(@javax.annotation.Nullable Boolean snapshotBefore) {
     this.snapshotBefore = snapshotBefore;
@@ -83,14 +83,14 @@ public class RevertSnapshotVmRequest {
    * @return snapshotId
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_SNAPSHOT_ID)
+  @JsonProperty(value = JSON_PROPERTY_SNAPSHOT_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getSnapshotId() {
     return snapshotId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SNAPSHOT_ID)
+  @JsonProperty(value = JSON_PROPERTY_SNAPSHOT_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSnapshotId(@javax.annotation.Nonnull String snapshotId) {
     this.snapshotId = snapshotId;
@@ -133,10 +133,7 @@ public class RevertSnapshotVmRequest {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -173,12 +170,12 @@ public class RevertSnapshotVmRequest {
 
     // add `snapshotBefore` to the URL query string
     if (getSnapshotBefore() != null) {
-      joiner.add(String.format("%ssnapshotBefore%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSnapshotBefore()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssnapshotBefore%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSnapshotBefore()))));
     }
 
     // add `snapshotId` to the URL query string
     if (getSnapshotId() != null) {
-      joiner.add(String.format("%ssnapshotId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSnapshotId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssnapshotId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSnapshotId()))));
     }
 
     return joiner.toString();

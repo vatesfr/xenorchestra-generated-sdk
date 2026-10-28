@@ -27,7 +27,7 @@ final api = XenorchestraDartSdk().getDocsApi();
 
 try {
     api.swaggerSpec();
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling DocsApi->swaggerSpec: $e\n');
 }
 ```

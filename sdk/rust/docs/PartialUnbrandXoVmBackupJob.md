@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**compression** | Option<**String**> |  | [optional]
+**compression** | Option<**Compression**> |  (enum: , zstd, native) | [optional]
 **id** | Option<**String**> |  | [optional]
-**mode** | Option<**String**> |  | [optional]
+**mode** | Option<**Mode**> |  (enum: full, delta) | [optional]
 **name** | Option<**String**> |  | [optional]
 **proxy** | Option<**String**> |  | [optional]
-**remotes** | Option<[**serde_json::Value**](.md)> |  | [optional]
-**settings** | Option<[**models::PartialUnbrandAnyXoBackupJobVariantBackupSettings**](PartialUnbrandAnyXoBackupJobVariantBackup_settings.md)> |  | [optional]
-**srs** | Option<[**serde_json::Value**](.md)> |  | [optional]
-**r#type** | Option<**String**> |  | [optional]
-**vms** | Option<[**serde_json::Value**](.md)> |  | [optional]
+**remotes** | Option<**serde_json::Value**> |  | [optional]
+**settings** | Option<[**models::PartialUnbrandAnyXoBackupJobVariantBackupSettings**](PartialUnbrandAnyXoBackupJobVariantBackupSettings.md)> |  | [optional]
+**srs** | Option<**serde_json::Value**> |  | [optional]
+**r#type** | Option<**Type**> |  (enum: backup) | [optional]
+**vms** | Option<**serde_json::Value**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

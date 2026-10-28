@@ -40,7 +40,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   DashboardBackupsInfoJobs.JSON_PROPERTY_SUCCESSFUL,
   DashboardBackupsInfoJobs.JSON_PROPERTY_TOTAL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class DashboardBackupsInfoJobs {
   public static final String JSON_PROPERTY_DISABLED = "disabled";
   @javax.annotation.Nonnull
@@ -79,14 +79,14 @@ public class DashboardBackupsInfoJobs {
    * @return disabled
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_DISABLED)
+  @JsonProperty(value = JSON_PROPERTY_DISABLED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getDisabled() {
     return disabled;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DISABLED)
+  @JsonProperty(value = JSON_PROPERTY_DISABLED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDisabled(@javax.annotation.Nonnull Double disabled) {
     this.disabled = disabled;
@@ -103,14 +103,14 @@ public class DashboardBackupsInfoJobs {
    * @return failed
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_FAILED)
+  @JsonProperty(value = JSON_PROPERTY_FAILED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getFailed() {
     return failed;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_FAILED)
+  @JsonProperty(value = JSON_PROPERTY_FAILED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setFailed(@javax.annotation.Nonnull Double failed) {
     this.failed = failed;
@@ -127,14 +127,14 @@ public class DashboardBackupsInfoJobs {
    * @return noRecentRun
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_NO_RECENT_RUN)
+  @JsonProperty(value = JSON_PROPERTY_NO_RECENT_RUN, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getNoRecentRun() {
     return noRecentRun;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NO_RECENT_RUN)
+  @JsonProperty(value = JSON_PROPERTY_NO_RECENT_RUN, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setNoRecentRun(@javax.annotation.Nonnull Double noRecentRun) {
     this.noRecentRun = noRecentRun;
@@ -151,14 +151,14 @@ public class DashboardBackupsInfoJobs {
    * @return skipped
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_SKIPPED)
+  @JsonProperty(value = JSON_PROPERTY_SKIPPED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getSkipped() {
     return skipped;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SKIPPED)
+  @JsonProperty(value = JSON_PROPERTY_SKIPPED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSkipped(@javax.annotation.Nonnull Double skipped) {
     this.skipped = skipped;
@@ -175,14 +175,14 @@ public class DashboardBackupsInfoJobs {
    * @return successful
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_SUCCESSFUL)
+  @JsonProperty(value = JSON_PROPERTY_SUCCESSFUL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getSuccessful() {
     return successful;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SUCCESSFUL)
+  @JsonProperty(value = JSON_PROPERTY_SUCCESSFUL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSuccessful(@javax.annotation.Nonnull Double successful) {
     this.successful = successful;
@@ -199,14 +199,14 @@ public class DashboardBackupsInfoJobs {
    * @return total
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_TOTAL)
+  @JsonProperty(value = JSON_PROPERTY_TOTAL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getTotal() {
     return total;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TOTAL)
+  @JsonProperty(value = JSON_PROPERTY_TOTAL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setTotal(@javax.annotation.Nonnull Double total) {
     this.total = total;
@@ -257,10 +257,7 @@ public class DashboardBackupsInfoJobs {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -297,32 +294,32 @@ public class DashboardBackupsInfoJobs {
 
     // add `disabled` to the URL query string
     if (getDisabled() != null) {
-      joiner.add(String.format("%sdisabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDisabled()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdisabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDisabled()))));
     }
 
     // add `failed` to the URL query string
     if (getFailed() != null) {
-      joiner.add(String.format("%sfailed%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFailed()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sfailed%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFailed()))));
     }
 
     // add `noRecentRun` to the URL query string
     if (getNoRecentRun() != null) {
-      joiner.add(String.format("%snoRecentRun%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNoRecentRun()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%snoRecentRun%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNoRecentRun()))));
     }
 
     // add `skipped` to the URL query string
     if (getSkipped() != null) {
-      joiner.add(String.format("%sskipped%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSkipped()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sskipped%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSkipped()))));
     }
 
     // add `successful` to the URL query string
     if (getSuccessful() != null) {
-      joiner.add(String.format("%ssuccessful%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSuccessful()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssuccessful%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSuccessful()))));
     }
 
     // add `total` to the URL query string
     if (getTotal() != null) {
-      joiner.add(String.format("%stotal%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTotal()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%stotal%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTotal()))));
     }
 
     return joiner.toString();

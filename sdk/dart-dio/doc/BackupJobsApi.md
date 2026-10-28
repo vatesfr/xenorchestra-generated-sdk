@@ -44,7 +44,7 @@ final String id = d33f3dc1-92b4-469c-ad58-4c2a106a4721; // String |
 try {
     final response = api.getBackupJob(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BackupJobsApi->getBackupJob: $e\n');
 }
 ```
@@ -98,7 +98,7 @@ final double limit = 42; // double |
 try {
     final response = api.getBackupJobs(fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BackupJobsApi->getBackupJobs: $e\n');
 }
 ```
@@ -150,7 +150,7 @@ final String id = b50f95fd-f6b7-4027-87b6-6a02c7dcd5f5; // String |
 try {
     final response = api.getMetadataBackupJob(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BackupJobsApi->getMetadataBackupJob: $e\n');
 }
 ```
@@ -204,7 +204,7 @@ final double limit = 42; // double |
 try {
     final response = api.getMetadataBackupJobs(fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BackupJobsApi->getMetadataBackupJobs: $e\n');
 }
 ```
@@ -256,7 +256,7 @@ final String id = e680c14c-ab52-45c8-bb0e-bd4ca12ea8f9; // String |
 try {
     final response = api.getMirrorBackupJob(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BackupJobsApi->getMirrorBackupJob: $e\n');
 }
 ```
@@ -310,7 +310,7 @@ final double limit = 42; // double |
 try {
     final response = api.getMirrorBackupJobs(fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BackupJobsApi->getMirrorBackupJobs: $e\n');
 }
 ```
@@ -362,7 +362,7 @@ final String id = d33f3dc1-92b4-469c-ad58-4c2a106a4721; // String |
 try {
     final response = api.getVmBackupJob(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BackupJobsApi->getVmBackupJob: $e\n');
 }
 ```
@@ -416,7 +416,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmBackupJobs(fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BackupJobsApi->getVmBackupJobs: $e\n');
 }
 ```
@@ -475,7 +475,7 @@ final double limit = 42; // double |
 try {
     final response = api.vmGetVmBackupJobs(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BackupJobsApi->vmGetVmBackupJobs: $e\n');
 }
 ```

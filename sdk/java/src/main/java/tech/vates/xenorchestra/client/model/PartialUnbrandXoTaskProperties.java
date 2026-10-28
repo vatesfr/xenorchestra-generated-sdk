@@ -48,7 +48,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PartialUnbrandXoTaskProperties.JSON_PROPERTY_TYPE,
   PartialUnbrandXoTaskProperties.JSON_PROPERTY_USER_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PartialUnbrandXoTaskProperties {
   public static final String JSON_PROPERTY_METHOD = "method";
   @javax.annotation.Nullable
@@ -169,14 +169,14 @@ private final String value;
    * @return method
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_METHOD)
+  @JsonProperty(value = JSON_PROPERTY_METHOD, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getMethod() {
     return method;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_METHOD)
+  @JsonProperty(value = JSON_PROPERTY_METHOD, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMethod(@javax.annotation.Nullable String method) {
     this.method = method;
@@ -193,14 +193,14 @@ private final String value;
    * @return name
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getName() {
     return name;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
@@ -217,14 +217,14 @@ private final String value;
    * @return objectId
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_OBJECT_ID)
+  @JsonProperty(value = JSON_PROPERTY_OBJECT_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getObjectId() {
     return objectId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_OBJECT_ID)
+  @JsonProperty(value = JSON_PROPERTY_OBJECT_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setObjectId(@javax.annotation.Nullable String objectId) {
     this.objectId = objectId;
@@ -241,14 +241,14 @@ private final String value;
    * @return objectType
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_OBJECT_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_OBJECT_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public ObjectTypeEnum getObjectType() {
     return objectType;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_OBJECT_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_OBJECT_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setObjectType(@javax.annotation.Nullable ObjectTypeEnum objectType) {
     this.objectType = objectType;
@@ -273,14 +273,14 @@ private final String value;
    * @return params
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PARAMS)
+  @JsonProperty(value = JSON_PROPERTY_PARAMS, required = false)
   @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
   public Map<String, Object> getParams() {
     return params;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PARAMS)
+  @JsonProperty(value = JSON_PROPERTY_PARAMS, required = false)
   @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
   public void setParams(@javax.annotation.Nullable Map<String, Object> params) {
     this.params = params;
@@ -297,14 +297,14 @@ private final String value;
    * @return progress
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PROGRESS)
+  @JsonProperty(value = JSON_PROPERTY_PROGRESS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getProgress() {
     return progress;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PROGRESS)
+  @JsonProperty(value = JSON_PROPERTY_PROGRESS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setProgress(@javax.annotation.Nullable Double progress) {
     this.progress = progress;
@@ -321,14 +321,14 @@ private final String value;
    * @return type
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getType() {
     return type;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setType(@javax.annotation.Nullable String type) {
     this.type = type;
@@ -345,14 +345,14 @@ private final String value;
    * @return userId
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_USER_ID)
+  @JsonProperty(value = JSON_PROPERTY_USER_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getUserId() {
     return userId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_USER_ID)
+  @JsonProperty(value = JSON_PROPERTY_USER_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUserId(@javax.annotation.Nullable String userId) {
     this.userId = userId;
@@ -452,10 +452,7 @@ private final String value;
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -492,46 +489,46 @@ private final String value;
 
     // add `method` to the URL query string
     if (getMethod() != null) {
-      joiner.add(String.format("%smethod%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMethod()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%smethod%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMethod()))));
     }
 
     // add `name` to the URL query string
     if (getName() != null) {
-      joiner.add(String.format("%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
     }
 
     // add `objectId` to the URL query string
     if (getObjectId() != null) {
-      joiner.add(String.format("%sobjectId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getObjectId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sobjectId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getObjectId()))));
     }
 
     // add `objectType` to the URL query string
     if (getObjectType() != null) {
-      joiner.add(String.format("%sobjectType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getObjectType()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sobjectType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getObjectType()))));
     }
 
     // add `params` to the URL query string
     if (getParams() != null) {
       for (String _key : getParams().keySet()) {
-        joiner.add(String.format("%sparams%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%sparams%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getParams().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getParams().get(_key)))));
       }
     }
 
     // add `progress` to the URL query string
     if (getProgress() != null) {
-      joiner.add(String.format("%sprogress%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProgress()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sprogress%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProgress()))));
     }
 
     // add `type` to the URL query string
     if (getType() != null) {
-      joiner.add(String.format("%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
     }
 
     // add `userId` to the URL query string
     if (getUserId() != null) {
-      joiner.add(String.format("%suserId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUserId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%suserId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUserId()))));
     }
 
     return joiner.toString();

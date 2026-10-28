@@ -38,7 +38,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   DashboardBackupRepositoriesSizeInfo.JSON_PROPERTY_OTHER,
   DashboardBackupRepositoriesSizeInfo.JSON_PROPERTY_S3
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class DashboardBackupRepositoriesSizeInfo {
   public static final String JSON_PROPERTY_OTHER = "other";
   @javax.annotation.Nullable
@@ -61,14 +61,14 @@ public class DashboardBackupRepositoriesSizeInfo {
    * @return other
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_OTHER)
+  @JsonProperty(value = JSON_PROPERTY_OTHER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public DashboardBackupRepositoriesSizeInfoOther getOther() {
     return other;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_OTHER)
+  @JsonProperty(value = JSON_PROPERTY_OTHER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOther(@javax.annotation.Nullable DashboardBackupRepositoriesSizeInfoOther other) {
     this.other = other;
@@ -85,14 +85,14 @@ public class DashboardBackupRepositoriesSizeInfo {
    * @return s3
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_S3)
+  @JsonProperty(value = JSON_PROPERTY_S3, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public DashboardBackupRepositoriesSizeInfoS3 getS3() {
     return s3;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_S3)
+  @JsonProperty(value = JSON_PROPERTY_S3, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setS3(@javax.annotation.Nullable DashboardBackupRepositoriesSizeInfoS3 s3) {
     this.s3 = s3;
@@ -135,10 +135,7 @@ public class DashboardBackupRepositoriesSizeInfo {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**

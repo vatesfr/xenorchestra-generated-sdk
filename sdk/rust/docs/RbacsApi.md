@@ -123,7 +123,7 @@ Name | Type | Description  | Required | Notes
 
 ## create_acl_v2_privilege
 
-> models::CreateAclV2Privilege201Response create_acl_v2_privilege(unbrand_safe_omit_any_privilege_period_id)
+> models::CreateAclV2Privilege201Response create_acl_v2_privilege(unbrand_safe_omit_any_privilege_id)
 
 
 Required privilege: - resource: acl-privilege, action: create
@@ -133,7 +133,7 @@ Required privilege: - resource: acl-privilege, action: create
 
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
-**unbrand_safe_omit_any_privilege_period_id** | [**UnbrandSafeOmitAnyPrivilegePeriodId**](UnbrandSafeOmitAnyPrivilegePeriodId.md) |  | [required] |
+**unbrand_safe_omit_any_privilege_id** | [**UnbrandSafeOmitAnyPrivilegeId**](UnbrandSafeOmitAnyPrivilegeId.md) |  | [required] |
 
 ### Return type
 
@@ -535,7 +535,7 @@ Name | Type | Description  | Required | Notes
 
 ## get_group_acl_roles
 
-> models::SendObjectsPartialUnbrandExcludeXoAclRolePeriodIsTemplateTrue get_group_acl_roles(id, fields, ndjson, markdown, filter, limit)
+> models::SendObjectsPartialUnbrandExcludeXoAclRoleIsTemplateTrue get_group_acl_roles(id, fields, ndjson, markdown, filter, limit)
 
 
 Returns all acl-roles that match the following privilege: - resource: acl-role, action: read
@@ -554,7 +554,7 @@ Name | Type | Description  | Required | Notes
 
 ### Return type
 
-[**models::SendObjectsPartialUnbrandExcludeXoAclRolePeriodIsTemplateTrue**](SendObjects_Partial_Unbrand_Exclude_XoAclRole._isTemplate-true_____.md)
+[**models::SendObjectsPartialUnbrandExcludeXoAclRoleIsTemplateTrue**](SendObjects_Partial_Unbrand_Exclude_XoAclRole._isTemplate-true_____.md)
 
 ### Authorization
 
@@ -604,7 +604,7 @@ Name | Type | Description  | Required | Notes
 
 ## update_acl_v2_privilege
 
-> update_acl_v2_privilege(id, unbrand_safe_omit_partial_any_privilege_period_id_or_role_id)
+> update_acl_v2_privilege(id, unbrand_safe_omit_partial_any_privilege_id_or_role_id)
 
 
 Required privileges: - resource: acl-privilege, action: update (grants all fields) - resource: acl-privilege, action: update:action (if action is passed) - resource: acl-privilege, action: update:resource (if resource is passed) - resource: acl-privilege, action: update:effect (if effect is passed) - resource: acl-privilege, action: update:selector (if selector is passed)
@@ -615,7 +615,7 @@ Required privileges: - resource: acl-privilege, action: update (grants all field
 Name | Type | Description  | Required | Notes
 ------------- | ------------- | ------------- | ------------- | -------------
 **id** | **String** |  | [required] |
-**unbrand_safe_omit_partial_any_privilege_period_id_or_role_id** | [**UnbrandSafeOmitPartialAnyPrivilegePeriodIdOrRoleId**](UnbrandSafeOmitPartialAnyPrivilegePeriodIdOrRoleId.md) |  | [required] |
+**unbrand_safe_omit_partial_any_privilege_id_or_role_id** | [**UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleId**](UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleId.md) |  | [required] |
 
 ### Return type
 

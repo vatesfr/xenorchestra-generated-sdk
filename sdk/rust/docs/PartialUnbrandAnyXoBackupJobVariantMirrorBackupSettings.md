@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**backup_report_tpl** | Option<**String**> |  | [optional]
+**backup_report_tpl** | Option<**BackupReportTpl**> |  (enum: compactMjml) | [optional]
 **hide_successful_items** | Option<**bool**> |  | [optional]
 **report_recipients** | Option<**Vec<String>**> |  | [optional]
-**report_when** | **String** |  | 
+**report_when** | **ReportWhen** |  (enum: failure) | 
 **concurrency** | Option<**f64**> |  | [optional]
 **max_export_rate** | Option<**f64**> |  | [optional]
 **merge_backups_synchronously** | Option<**bool**> |  | [optional]

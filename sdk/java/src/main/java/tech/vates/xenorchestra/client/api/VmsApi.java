@@ -73,15 +73,35 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class VmsApi {
+  /**
+   * Utility class for extending HttpRequest.Builder functionality.
+   */
+  private static class HttpRequestBuilderExtensions {
+    /**
+     * Adds additional headers to the provided HttpRequest.Builder. Useful for adding method/endpoint specific headers.
+     *
+     * @param builder the HttpRequest.Builder to which headers will be added
+     * @param headers a map of header names and values to add; may be null
+     * @return the same HttpRequest.Builder instance with the additional headers set
+     */
+    static HttpRequest.Builder withAdditionalHeaders(HttpRequest.Builder builder, Map<String, String> headers) {
+        if (headers != null) {
+            for (Map.Entry<String, String> entry : headers.entrySet()) {
+                builder.header(entry.getKey(), entry.getValue());
+            }
+        }
+        return builder;
+    }
+  }
   private final HttpClient memberVarHttpClient;
   private final ObjectMapper memberVarObjectMapper;
   private final String memberVarBaseUri;
   private final Consumer<HttpRequest.Builder> memberVarInterceptor;
   private final Duration memberVarReadTimeout;
   private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
-  private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
+  private final Consumer<HttpResponse<InputStream>> memberVarAsyncResponseInterceptor;
 
   public VmsApi() {
     this(Configuration.getDefaultApiClient());
@@ -97,8 +117,17 @@ public class VmsApi {
     memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
   }
 
+
   protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
-    String body = response.body() == null ? null : new String(response.body().readAllBytes());
+    InputStream responseBody = ApiClient.getResponseBody(response);
+    String body = null;
+    try {
+      body = responseBody == null ? null : new String(responseBody.readAllBytes());
+    } finally {
+      if (responseBody != null) {
+        responseBody.close();
+      }
+    }
     String message = formatExceptionMessage(operationId, response.statusCode(), body);
     return new ApiException(response.statusCode(), message, response.headers(), body);
   }
@@ -111,6 +140,57 @@ public class VmsApi {
   }
 
   /**
+   * Download file from the given response.
+   *
+   * @param response Response
+   * @return File
+   * @throws ApiException If fail to read file content from response and write to disk
+   */
+  public File downloadFileFromResponse(HttpResponse<InputStream> response, InputStream responseBody) throws ApiException {
+    if (responseBody == null) {
+      throw new ApiException(new IOException("Response body is empty"));
+    }
+    try {
+      File file = prepareDownloadFile(response);
+      java.nio.file.Files.copy(responseBody, file.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+      return file;
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+  }
+
+  /**
+   * <p>Prepare the file for download from the response.</p>
+   *
+   * @param response a {@link java.net.http.HttpResponse} object.
+   * @return a {@link java.io.File} object.
+   * @throws java.io.IOException if any.
+   */
+  private File prepareDownloadFile(HttpResponse<InputStream> response) throws IOException {
+    String filename = null;
+    java.util.Optional<String> contentDisposition = response.headers().firstValue("Content-Disposition");
+    if (contentDisposition.isPresent() && !"".equals(contentDisposition.get())) {
+      // Get filename from the Content-Disposition header.
+      java.util.regex.Pattern pattern = java.util.regex.Pattern.compile("filename=['\"]?([^'\"\\s]+)['\"]?");
+      java.util.regex.Matcher matcher = pattern.matcher(contentDisposition.get());
+      if (matcher.find())
+        filename = matcher.group(1);
+    }
+    File file = null;
+    if (filename != null) {
+      java.nio.file.Path tempDir = java.nio.file.Files.createTempDirectory("swagger-gen-native");
+      java.nio.file.Path filePath = java.nio.file.Files.createFile(tempDir.resolve(filename));
+      file = filePath.toFile();
+      tempDir.toFile().deleteOnExit();   // best effort cleanup
+      file.deleteOnExit(); // best effort cleanup
+    } else {
+      file = java.nio.file.Files.createTempFile("download-", "").toFile();
+      file.deleteOnExit(); // best effort cleanup
+    }
+    return file;
+  }
+
+  /**
    * 
    * The VM must be running  List of possible data_source (Based on [Xenserver doc](https://docs.xenserver.com/en-us/xenserver/8/monitor-performance#available-vm-metrics)) - **cpu#** : Utilization of vCPU cpu (fraction). Enabled by default. *Condition*: vCPU cpu exists. - **cpu_usage** : Domain CPU usage. *Condition*: None. - **memory** : Memory currently allocated to VM (Bytes). Enabled by default. *Condition*: None. - **memory_target** : Target of VM balloon driver (Bytes). Enabled by default. *Condition*: None. - **memory_internal_free** : Memory used as reported by the guest agent (KiB). Enabled by default. *Condition*: None. - **runstate_fullrun** : Fraction of time that all vCPUs are running. *Condition*: None. - **runstate_full_contention** : Fraction of time that all vCPUs are runnable (waiting for CPU). *Condition*: None. - **runstate_concurrency_hazard** : Fraction of time that some vCPUs are running and some are runnable. *Condition*: None. - **runstate_blocked** : Fraction of time that all vCPUs are blocked or offline. *Condition*: None. - **runstate_partial_run** : Fraction of time that some vCPUs are running, and some are blocked. *Condition*: None. - **runstate_partial_contention** : Fraction of time that some vCPUs are runnable and some are blocked. *Condition*: None. - **vbd_#_write** : Writes to device vbd in bytes per second. Enabled by default. *Condition*: VBD vbd exists. - **vbd_#_read** : Reads from device vbd in bytes per second. Enabled by default. *Condition*: VBD vbd exists. - **vbd_#_write_latency** : Writes to device vbd in microseconds. *Condition*: VBD vbd exists. - **vbd_#_read_latency** : Reads from device vbd in microseconds. *Condition*: VBD vbd exists. - **vbd_#_iops_read** : Read requests per second. *Condition*: At least one plugged VBD for non-ISO VDI on the host. - **vbd_#_iops_write** : Write requests per second. *Condition*: At least one plugged VBD for non-ISO VDI on the host. - **vbd_#_iops_total** : I/O requests per second. *Condition*: At least one plugged VBD for non-ISO VDI on the host. - **vbd_#_iowait** : Percentage of time waiting for I/O. *Condition*: At least one plugged VBD for non-ISO VDI on the host. - **vbd_#_inflight** : Number of I/O requests currently in flight. *Condition*: At least one plugged VBD for non-ISO VDI on the host. - **vbd_#_avgqu_sz** : Average I/O queue size. *Condition*: At least one plugged VBD for non-ISO VDI on the host. - **vif_#_rx** : Bytes per second received on virtual interface number vif. Enabled by default. *Condition*: VIF vif exists. - **vif_#_tx** : Bytes per second transmitted on virtual interface vif. Enabled by default. *Condition*: VIF vif exists. - **vif_#_rx_errors** : Receive errors per second on virtual interface vif. Enabled by default. *Condition*: VIF vif exists. - **vif_#_tx_errors** : Transmit errors per second on virtual interface vif. Enabled by default. *Condition*: VIF vif exists.  Required privilege: - resource: vm, action: update:datasources
    * @param id  (required)
@@ -118,7 +198,19 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public void addDataSource(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String dataSource) throws ApiException {
-    addDataSourceWithHttpInfo(id, dataSource);
+    addDataSource(id, dataSource, null);
+  }
+
+  /**
+   * 
+   * The VM must be running  List of possible data_source (Based on [Xenserver doc](https://docs.xenserver.com/en-us/xenserver/8/monitor-performance#available-vm-metrics)) - **cpu#** : Utilization of vCPU cpu (fraction). Enabled by default. *Condition*: vCPU cpu exists. - **cpu_usage** : Domain CPU usage. *Condition*: None. - **memory** : Memory currently allocated to VM (Bytes). Enabled by default. *Condition*: None. - **memory_target** : Target of VM balloon driver (Bytes). Enabled by default. *Condition*: None. - **memory_internal_free** : Memory used as reported by the guest agent (KiB). Enabled by default. *Condition*: None. - **runstate_fullrun** : Fraction of time that all vCPUs are running. *Condition*: None. - **runstate_full_contention** : Fraction of time that all vCPUs are runnable (waiting for CPU). *Condition*: None. - **runstate_concurrency_hazard** : Fraction of time that some vCPUs are running and some are runnable. *Condition*: None. - **runstate_blocked** : Fraction of time that all vCPUs are blocked or offline. *Condition*: None. - **runstate_partial_run** : Fraction of time that some vCPUs are running, and some are blocked. *Condition*: None. - **runstate_partial_contention** : Fraction of time that some vCPUs are runnable and some are blocked. *Condition*: None. - **vbd_#_write** : Writes to device vbd in bytes per second. Enabled by default. *Condition*: VBD vbd exists. - **vbd_#_read** : Reads from device vbd in bytes per second. Enabled by default. *Condition*: VBD vbd exists. - **vbd_#_write_latency** : Writes to device vbd in microseconds. *Condition*: VBD vbd exists. - **vbd_#_read_latency** : Reads from device vbd in microseconds. *Condition*: VBD vbd exists. - **vbd_#_iops_read** : Read requests per second. *Condition*: At least one plugged VBD for non-ISO VDI on the host. - **vbd_#_iops_write** : Write requests per second. *Condition*: At least one plugged VBD for non-ISO VDI on the host. - **vbd_#_iops_total** : I/O requests per second. *Condition*: At least one plugged VBD for non-ISO VDI on the host. - **vbd_#_iowait** : Percentage of time waiting for I/O. *Condition*: At least one plugged VBD for non-ISO VDI on the host. - **vbd_#_inflight** : Number of I/O requests currently in flight. *Condition*: At least one plugged VBD for non-ISO VDI on the host. - **vbd_#_avgqu_sz** : Average I/O queue size. *Condition*: At least one plugged VBD for non-ISO VDI on the host. - **vif_#_rx** : Bytes per second received on virtual interface number vif. Enabled by default. *Condition*: VIF vif exists. - **vif_#_tx** : Bytes per second transmitted on virtual interface vif. Enabled by default. *Condition*: VIF vif exists. - **vif_#_rx_errors** : Receive errors per second on virtual interface vif. Enabled by default. *Condition*: VIF vif exists. - **vif_#_tx_errors** : Transmit errors per second on virtual interface vif. Enabled by default. *Condition*: VIF vif exists.  Required privilege: - resource: vm, action: update:datasources
+   * @param id  (required)
+   * @param dataSource  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void addDataSource(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String dataSource, Map<String, String> headers) throws ApiException {
+    addDataSourceWithHttpInfo(id, dataSource, headers);
   }
 
   /**
@@ -130,7 +222,20 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> addDataSourceWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String dataSource) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = addDataSourceRequestBuilder(id, dataSource);
+    return addDataSourceWithHttpInfo(id, dataSource, null);
+  }
+
+  /**
+   * 
+   * The VM must be running  List of possible data_source (Based on [Xenserver doc](https://docs.xenserver.com/en-us/xenserver/8/monitor-performance#available-vm-metrics)) - **cpu#** : Utilization of vCPU cpu (fraction). Enabled by default. *Condition*: vCPU cpu exists. - **cpu_usage** : Domain CPU usage. *Condition*: None. - **memory** : Memory currently allocated to VM (Bytes). Enabled by default. *Condition*: None. - **memory_target** : Target of VM balloon driver (Bytes). Enabled by default. *Condition*: None. - **memory_internal_free** : Memory used as reported by the guest agent (KiB). Enabled by default. *Condition*: None. - **runstate_fullrun** : Fraction of time that all vCPUs are running. *Condition*: None. - **runstate_full_contention** : Fraction of time that all vCPUs are runnable (waiting for CPU). *Condition*: None. - **runstate_concurrency_hazard** : Fraction of time that some vCPUs are running and some are runnable. *Condition*: None. - **runstate_blocked** : Fraction of time that all vCPUs are blocked or offline. *Condition*: None. - **runstate_partial_run** : Fraction of time that some vCPUs are running, and some are blocked. *Condition*: None. - **runstate_partial_contention** : Fraction of time that some vCPUs are runnable and some are blocked. *Condition*: None. - **vbd_#_write** : Writes to device vbd in bytes per second. Enabled by default. *Condition*: VBD vbd exists. - **vbd_#_read** : Reads from device vbd in bytes per second. Enabled by default. *Condition*: VBD vbd exists. - **vbd_#_write_latency** : Writes to device vbd in microseconds. *Condition*: VBD vbd exists. - **vbd_#_read_latency** : Reads from device vbd in microseconds. *Condition*: VBD vbd exists. - **vbd_#_iops_read** : Read requests per second. *Condition*: At least one plugged VBD for non-ISO VDI on the host. - **vbd_#_iops_write** : Write requests per second. *Condition*: At least one plugged VBD for non-ISO VDI on the host. - **vbd_#_iops_total** : I/O requests per second. *Condition*: At least one plugged VBD for non-ISO VDI on the host. - **vbd_#_iowait** : Percentage of time waiting for I/O. *Condition*: At least one plugged VBD for non-ISO VDI on the host. - **vbd_#_inflight** : Number of I/O requests currently in flight. *Condition*: At least one plugged VBD for non-ISO VDI on the host. - **vbd_#_avgqu_sz** : Average I/O queue size. *Condition*: At least one plugged VBD for non-ISO VDI on the host. - **vif_#_rx** : Bytes per second received on virtual interface number vif. Enabled by default. *Condition*: VIF vif exists. - **vif_#_tx** : Bytes per second transmitted on virtual interface vif. Enabled by default. *Condition*: VIF vif exists. - **vif_#_rx_errors** : Receive errors per second on virtual interface vif. Enabled by default. *Condition*: VIF vif exists. - **vif_#_tx_errors** : Transmit errors per second on virtual interface vif. Enabled by default. *Condition*: VIF vif exists.  Required privilege: - resource: vm, action: update:datasources
+   * @param id  (required)
+   * @param dataSource  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> addDataSourceWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String dataSource, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = addDataSourceRequestBuilder(id, dataSource, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -138,9 +243,14 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("addDataSource", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -148,11 +258,9 @@ public class VmsApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -163,7 +271,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder addDataSourceRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String dataSource) throws ApiException {
+  private HttpRequest.Builder addDataSourceRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String dataSource, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling addDataSource");
@@ -187,6 +295,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -202,7 +312,20 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeVoid cleanRebootVm(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = cleanRebootVmWithHttpInfo(id, sync);
+    return cleanRebootVm(id, sync, null);
+  }
+
+  /**
+   * 
+   * Requires guest tools to be installed  Required privilege: - resource: vm, action: reboot:clean
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeVoid
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeVoid cleanRebootVm(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = cleanRebootVmWithHttpInfo(id, sync, headers);
     return localVarResponse.getData();
   }
 
@@ -215,7 +338,20 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeVoid> cleanRebootVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = cleanRebootVmRequestBuilder(id, sync);
+    return cleanRebootVmWithHttpInfo(id, sync, null);
+  }
+
+  /**
+   * 
+   * Requires guest tools to be installed  Required privilege: - resource: vm, action: reboot:clean
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeVoid&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeVoid> cleanRebootVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = cleanRebootVmRequestBuilder(id, sync, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -223,11 +359,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("cleanRebootVm", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeVoid>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -235,15 +373,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeVoid responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeVoid>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -254,7 +398,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder cleanRebootVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
+  private HttpRequest.Builder cleanRebootVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling cleanRebootVm");
@@ -288,6 +432,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -303,7 +449,20 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeVoid cleanShutdownVm(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = cleanShutdownVmWithHttpInfo(id, sync);
+    return cleanShutdownVm(id, sync, null);
+  }
+
+  /**
+   * 
+   * Requires guest tools to be installed  Required privilege: - resource: vm, action: shutdown:clean
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeVoid
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeVoid cleanShutdownVm(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = cleanShutdownVmWithHttpInfo(id, sync, headers);
     return localVarResponse.getData();
   }
 
@@ -316,7 +475,20 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeVoid> cleanShutdownVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = cleanShutdownVmRequestBuilder(id, sync);
+    return cleanShutdownVmWithHttpInfo(id, sync, null);
+  }
+
+  /**
+   * 
+   * Requires guest tools to be installed  Required privilege: - resource: vm, action: shutdown:clean
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeVoid&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeVoid> cleanShutdownVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = cleanShutdownVmRequestBuilder(id, sync, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -324,11 +496,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("cleanShutdownVm", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeVoid>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -336,15 +510,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeVoid responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeVoid>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -355,7 +535,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder cleanShutdownVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
+  private HttpRequest.Builder cleanShutdownVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling cleanShutdownVm");
@@ -389,6 +569,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -404,7 +586,20 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public void cloneVm(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable CloneVmRequest cloneVmRequest) throws ApiException {
-    cloneVmWithHttpInfo(id, sync, cloneVmRequest);
+    cloneVm(id, sync, cloneVmRequest, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm, action: clone  - For fast clone on the same SR, omit &#x60;srId&#x60; and set &#x60;fast&#x60; to &#x60;true&#x60;. - For full copy on the same SR, omit &#x60;srId&#x60; and set &#x60;fast&#x60; to &#x60;false&#x60;. - To copy the VM to a different SR (always a full copy), provide &#x60;srId&#x60;. Supports cross-pool copy. Optionally use &#x60;compress: \&quot;gzip\&quot;&#x60; or &#x60;compress: \&quot;zstd\&quot;&#x60; to compress the export stream during cross-pool copy.
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param cloneVmRequest  (optional)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void cloneVm(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable CloneVmRequest cloneVmRequest, Map<String, String> headers) throws ApiException {
+    cloneVmWithHttpInfo(id, sync, cloneVmRequest, headers);
   }
 
   /**
@@ -417,7 +612,21 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> cloneVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable CloneVmRequest cloneVmRequest) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = cloneVmRequestBuilder(id, sync, cloneVmRequest);
+    return cloneVmWithHttpInfo(id, sync, cloneVmRequest, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm, action: clone  - For fast clone on the same SR, omit &#x60;srId&#x60; and set &#x60;fast&#x60; to &#x60;true&#x60;. - For full copy on the same SR, omit &#x60;srId&#x60; and set &#x60;fast&#x60; to &#x60;false&#x60;. - To copy the VM to a different SR (always a full copy), provide &#x60;srId&#x60;. Supports cross-pool copy. Optionally use &#x60;compress: \&quot;gzip\&quot;&#x60; or &#x60;compress: \&quot;zstd\&quot;&#x60; to compress the export stream during cross-pool copy.
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param cloneVmRequest  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> cloneVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable CloneVmRequest cloneVmRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = cloneVmRequestBuilder(id, sync, cloneVmRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -425,9 +634,14 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("cloneVm", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -435,11 +649,9 @@ public class VmsApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -450,7 +662,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder cloneVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable CloneVmRequest cloneVmRequest) throws ApiException {
+  private HttpRequest.Builder cloneVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable CloneVmRequest cloneVmRequest, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling cloneVm");
@@ -490,6 +702,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -506,7 +720,21 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeIdUnbrandXoVm91Id93 createVm(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateVmBody unbrandCreateVmBody, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    ApiResponse<CreateActionReturnTypeIdUnbrandXoVm91Id93> localVarResponse = createVmWithHttpInfo(id, unbrandCreateVmBody, sync);
+    return createVm(id, unbrandCreateVmBody, sync, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: pool, action: create:vm - resource: vm-template, action: instantiate - resource: vdi, action: create (if vdis is passed) - resource: vdi, action: boot (if install.repository is passed) - resource: vif, action: create (if vifs is passed) - resource: host, action: allow-vm (if affinity is passed)
+   * @param id  (required)
+   * @param unbrandCreateVmBody  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeIdUnbrandXoVm91Id93
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeIdUnbrandXoVm91Id93 createVm(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateVmBody unbrandCreateVmBody, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeIdUnbrandXoVm91Id93> localVarResponse = createVmWithHttpInfo(id, unbrandCreateVmBody, sync, headers);
     return localVarResponse.getData();
   }
 
@@ -520,7 +748,21 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeIdUnbrandXoVm91Id93> createVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateVmBody unbrandCreateVmBody, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createVmRequestBuilder(id, unbrandCreateVmBody, sync);
+    return createVmWithHttpInfo(id, unbrandCreateVmBody, sync, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: pool, action: create:vm - resource: vm-template, action: instantiate - resource: vdi, action: create (if vdis is passed) - resource: vdi, action: boot (if install.repository is passed) - resource: vif, action: create (if vifs is passed) - resource: host, action: allow-vm (if affinity is passed)
+   * @param id  (required)
+   * @param unbrandCreateVmBody  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeIdUnbrandXoVm91Id93&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeIdUnbrandXoVm91Id93> createVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateVmBody unbrandCreateVmBody, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createVmRequestBuilder(id, unbrandCreateVmBody, sync, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -528,11 +770,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("createVm", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeIdUnbrandXoVm91Id93>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -540,15 +784,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeIdUnbrandXoVm91Id93 responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeIdUnbrandXoVm91Id93>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeIdUnbrandXoVm91Id93>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeIdUnbrandXoVm91Id93>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -559,7 +809,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder createVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateVmBody unbrandCreateVmBody, @javax.annotation.Nullable Boolean sync) throws ApiException {
+  private HttpRequest.Builder createVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandCreateVmBody unbrandCreateVmBody, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling createVm");
@@ -603,6 +853,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -617,7 +869,19 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public void deleteDataSource(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String dataSource) throws ApiException {
-    deleteDataSourceWithHttpInfo(id, dataSource);
+    deleteDataSource(id, dataSource, null);
+  }
+
+  /**
+   * 
+   * The VM must be running  For a list of possible data sources, see the endpoint documentation: &#x60;GET {id}/stats/data_source/{data_source}&#x60;  Required privilege: - resource: vm, action: update:datasources
+   * @param id  (required)
+   * @param dataSource  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteDataSource(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String dataSource, Map<String, String> headers) throws ApiException {
+    deleteDataSourceWithHttpInfo(id, dataSource, headers);
   }
 
   /**
@@ -629,7 +893,20 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> deleteDataSourceWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String dataSource) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = deleteDataSourceRequestBuilder(id, dataSource);
+    return deleteDataSourceWithHttpInfo(id, dataSource, null);
+  }
+
+  /**
+   * 
+   * The VM must be running  For a list of possible data sources, see the endpoint documentation: &#x60;GET {id}/stats/data_source/{data_source}&#x60;  Required privilege: - resource: vm, action: update:datasources
+   * @param id  (required)
+   * @param dataSource  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteDataSourceWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String dataSource, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteDataSourceRequestBuilder(id, dataSource, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -637,9 +914,14 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("deleteDataSource", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -647,11 +929,9 @@ public class VmsApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -662,7 +942,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder deleteDataSourceRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String dataSource) throws ApiException {
+  private HttpRequest.Builder deleteDataSourceRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String dataSource, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling deleteDataSource");
@@ -686,6 +966,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -699,7 +981,18 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public void deleteVm(@javax.annotation.Nonnull String id) throws ApiException {
-    deleteVmWithHttpInfo(id);
+    deleteVm(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm, action: delete
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteVm(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    deleteVmWithHttpInfo(id, headers);
   }
 
   /**
@@ -710,7 +1003,19 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> deleteVmWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = deleteVmRequestBuilder(id);
+    return deleteVmWithHttpInfo(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm, action: delete
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteVmWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteVmRequestBuilder(id, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -718,9 +1023,14 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("deleteVm", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -728,11 +1038,9 @@ public class VmsApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -743,7 +1051,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder deleteVmRequestBuilder(@javax.annotation.Nonnull String id) throws ApiException {
+  private HttpRequest.Builder deleteVmRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling deleteVm");
@@ -762,6 +1070,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -776,7 +1086,19 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public void deleteVmControllerTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    deleteVmControllerTagWithHttpInfo(id, tag);
+    deleteVmControllerTag(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm-controller, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteVmControllerTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    deleteVmControllerTagWithHttpInfo(id, tag, headers);
   }
 
   /**
@@ -788,7 +1110,20 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> deleteVmControllerTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = deleteVmControllerTagRequestBuilder(id, tag);
+    return deleteVmControllerTagWithHttpInfo(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm-controller, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteVmControllerTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteVmControllerTagRequestBuilder(id, tag, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -796,9 +1131,14 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("deleteVmControllerTag", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -806,11 +1146,9 @@ public class VmsApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -821,7 +1159,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder deleteVmControllerTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
+  private HttpRequest.Builder deleteVmControllerTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling deleteVmControllerTag");
@@ -845,6 +1183,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -858,7 +1198,18 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public void deleteVmSnapshot(@javax.annotation.Nonnull String id) throws ApiException {
-    deleteVmSnapshotWithHttpInfo(id);
+    deleteVmSnapshot(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm-snapshot, action: delete
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteVmSnapshot(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    deleteVmSnapshotWithHttpInfo(id, headers);
   }
 
   /**
@@ -869,7 +1220,19 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> deleteVmSnapshotWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = deleteVmSnapshotRequestBuilder(id);
+    return deleteVmSnapshotWithHttpInfo(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm-snapshot, action: delete
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteVmSnapshotWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteVmSnapshotRequestBuilder(id, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -877,9 +1240,14 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("deleteVmSnapshot", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -887,11 +1255,9 @@ public class VmsApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -902,7 +1268,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder deleteVmSnapshotRequestBuilder(@javax.annotation.Nonnull String id) throws ApiException {
+  private HttpRequest.Builder deleteVmSnapshotRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling deleteVmSnapshot");
@@ -921,6 +1287,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -935,7 +1303,19 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public void deleteVmSnapshotTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    deleteVmSnapshotTagWithHttpInfo(id, tag);
+    deleteVmSnapshotTag(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm-snapshot, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteVmSnapshotTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    deleteVmSnapshotTagWithHttpInfo(id, tag, headers);
   }
 
   /**
@@ -947,7 +1327,20 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> deleteVmSnapshotTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = deleteVmSnapshotTagRequestBuilder(id, tag);
+    return deleteVmSnapshotTagWithHttpInfo(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm-snapshot, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteVmSnapshotTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteVmSnapshotTagRequestBuilder(id, tag, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -955,9 +1348,14 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("deleteVmSnapshotTag", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -965,11 +1363,9 @@ public class VmsApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -980,7 +1376,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder deleteVmSnapshotTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
+  private HttpRequest.Builder deleteVmSnapshotTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling deleteVmSnapshotTag");
@@ -1004,6 +1400,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1018,7 +1416,19 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public void deleteVmTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    deleteVmTagWithHttpInfo(id, tag);
+    deleteVmTag(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteVmTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    deleteVmTagWithHttpInfo(id, tag, headers);
   }
 
   /**
@@ -1030,7 +1440,20 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> deleteVmTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = deleteVmTagRequestBuilder(id, tag);
+    return deleteVmTagWithHttpInfo(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteVmTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteVmTagRequestBuilder(id, tag, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1038,9 +1461,14 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("deleteVmTag", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -1048,11 +1476,9 @@ public class VmsApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1063,7 +1489,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder deleteVmTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
+  private HttpRequest.Builder deleteVmTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling deleteVmTag");
@@ -1087,6 +1513,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1100,7 +1528,18 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public void deleteVmTemplate(@javax.annotation.Nonnull String id) throws ApiException {
-    deleteVmTemplateWithHttpInfo(id);
+    deleteVmTemplate(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm-template, action: delete
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteVmTemplate(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    deleteVmTemplateWithHttpInfo(id, headers);
   }
 
   /**
@@ -1111,7 +1550,19 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> deleteVmTemplateWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = deleteVmTemplateRequestBuilder(id);
+    return deleteVmTemplateWithHttpInfo(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm-template, action: delete
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteVmTemplateWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteVmTemplateRequestBuilder(id, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1119,9 +1570,14 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("deleteVmTemplate", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -1129,11 +1585,9 @@ public class VmsApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1144,7 +1598,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder deleteVmTemplateRequestBuilder(@javax.annotation.Nonnull String id) throws ApiException {
+  private HttpRequest.Builder deleteVmTemplateRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling deleteVmTemplate");
@@ -1163,6 +1617,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1177,7 +1633,19 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public void deleteVmTemplateTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    deleteVmTemplateTagWithHttpInfo(id, tag);
+    deleteVmTemplateTag(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm-template, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteVmTemplateTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    deleteVmTemplateTagWithHttpInfo(id, tag, headers);
   }
 
   /**
@@ -1189,7 +1657,20 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> deleteVmTemplateTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = deleteVmTemplateTagRequestBuilder(id, tag);
+    return deleteVmTemplateTagWithHttpInfo(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm-template, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteVmTemplateTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteVmTemplateTagRequestBuilder(id, tag, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1197,9 +1678,14 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("deleteVmTemplateTag", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -1207,11 +1693,9 @@ public class VmsApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1222,7 +1706,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder deleteVmTemplateTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
+  private HttpRequest.Builder deleteVmTemplateTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling deleteVmTemplateTag");
@@ -1246,6 +1730,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1262,7 +1748,21 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public byte[] exportVm(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String format, @javax.annotation.Nullable Object compress) throws ApiException {
-    ApiResponse<byte[]> localVarResponse = exportVmWithHttpInfo(id, format, compress);
+    return exportVm(id, format, compress, null);
+  }
+
+  /**
+   * 
+   *  Export VM. Compress is only used for XVA format  Required privilege: - resource: vm, action: export
+   * @param id  (required)
+   * @param format  (required)
+   * @param compress  (optional)
+   * @param headers Optional headers to include in the request
+   * @return byte[]
+   * @throws ApiException if fails to make API call
+   */
+  public byte[] exportVm(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String format, @javax.annotation.Nullable Object compress, Map<String, String> headers) throws ApiException {
+    ApiResponse<byte[]> localVarResponse = exportVmWithHttpInfo(id, format, compress, headers);
     return localVarResponse.getData();
   }
 
@@ -1276,7 +1776,21 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<byte[]> exportVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String format, @javax.annotation.Nullable Object compress) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportVmRequestBuilder(id, format, compress);
+    return exportVmWithHttpInfo(id, format, compress, null);
+  }
+
+  /**
+   * 
+   *  Export VM. Compress is only used for XVA format  Required privilege: - resource: vm, action: export
+   * @param id  (required)
+   * @param format  (required)
+   * @param compress  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;byte[]&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<byte[]> exportVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String format, @javax.annotation.Nullable Object compress, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = exportVmRequestBuilder(id, format, compress, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1284,11 +1798,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("exportVm", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<byte[]>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1296,15 +1812,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        byte[] responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<byte[]>() {});
+        
 
         return new ApiResponse<byte[]>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<byte[]>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1315,7 +1837,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder exportVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String format, @javax.annotation.Nullable Object compress) throws ApiException {
+  private HttpRequest.Builder exportVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String format, @javax.annotation.Nullable Object compress, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling exportVm");
@@ -1354,6 +1876,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1370,7 +1894,21 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public byte[] exportVmSnapshot(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String format, @javax.annotation.Nullable Object compress) throws ApiException {
-    ApiResponse<byte[]> localVarResponse = exportVmSnapshotWithHttpInfo(id, format, compress);
+    return exportVmSnapshot(id, format, compress, null);
+  }
+
+  /**
+   * 
+   *  Export VM-snapshot. Compress is only used for XVA format  Required privilege: - resource: vm-snapshot, action: export
+   * @param id  (required)
+   * @param format  (required)
+   * @param compress  (optional)
+   * @param headers Optional headers to include in the request
+   * @return byte[]
+   * @throws ApiException if fails to make API call
+   */
+  public byte[] exportVmSnapshot(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String format, @javax.annotation.Nullable Object compress, Map<String, String> headers) throws ApiException {
+    ApiResponse<byte[]> localVarResponse = exportVmSnapshotWithHttpInfo(id, format, compress, headers);
     return localVarResponse.getData();
   }
 
@@ -1384,7 +1922,21 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<byte[]> exportVmSnapshotWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String format, @javax.annotation.Nullable Object compress) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportVmSnapshotRequestBuilder(id, format, compress);
+    return exportVmSnapshotWithHttpInfo(id, format, compress, null);
+  }
+
+  /**
+   * 
+   *  Export VM-snapshot. Compress is only used for XVA format  Required privilege: - resource: vm-snapshot, action: export
+   * @param id  (required)
+   * @param format  (required)
+   * @param compress  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;byte[]&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<byte[]> exportVmSnapshotWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String format, @javax.annotation.Nullable Object compress, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = exportVmSnapshotRequestBuilder(id, format, compress, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1392,11 +1944,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("exportVmSnapshot", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<byte[]>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1404,15 +1958,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        byte[] responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<byte[]>() {});
+        
 
         return new ApiResponse<byte[]>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<byte[]>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1423,7 +1983,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder exportVmSnapshotRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String format, @javax.annotation.Nullable Object compress) throws ApiException {
+  private HttpRequest.Builder exportVmSnapshotRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String format, @javax.annotation.Nullable Object compress, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling exportVmSnapshot");
@@ -1462,6 +2022,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1478,7 +2040,21 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public byte[] exportVmTemplate(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String format, @javax.annotation.Nullable Object compress) throws ApiException {
-    ApiResponse<byte[]> localVarResponse = exportVmTemplateWithHttpInfo(id, format, compress);
+    return exportVmTemplate(id, format, compress, null);
+  }
+
+  /**
+   * 
+   *  Export VM-template. Compress is only used for XVA format  Required privilege: - resource: vm-template, action: export
+   * @param id  (required)
+   * @param format  (required)
+   * @param compress  (optional)
+   * @param headers Optional headers to include in the request
+   * @return byte[]
+   * @throws ApiException if fails to make API call
+   */
+  public byte[] exportVmTemplate(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String format, @javax.annotation.Nullable Object compress, Map<String, String> headers) throws ApiException {
+    ApiResponse<byte[]> localVarResponse = exportVmTemplateWithHttpInfo(id, format, compress, headers);
     return localVarResponse.getData();
   }
 
@@ -1492,7 +2068,21 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<byte[]> exportVmTemplateWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String format, @javax.annotation.Nullable Object compress) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = exportVmTemplateRequestBuilder(id, format, compress);
+    return exportVmTemplateWithHttpInfo(id, format, compress, null);
+  }
+
+  /**
+   * 
+   *  Export VM-template. Compress is only used for XVA format  Required privilege: - resource: vm-template, action: export
+   * @param id  (required)
+   * @param format  (required)
+   * @param compress  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;byte[]&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<byte[]> exportVmTemplateWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String format, @javax.annotation.Nullable Object compress, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = exportVmTemplateRequestBuilder(id, format, compress, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1500,11 +2090,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("exportVmTemplate", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<byte[]>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1512,15 +2104,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        byte[] responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<byte[]>() {});
+        
 
         return new ApiResponse<byte[]>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<byte[]>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1531,7 +2129,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder exportVmTemplateRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String format, @javax.annotation.Nullable Object compress) throws ApiException {
+  private HttpRequest.Builder exportVmTemplateRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String format, @javax.annotation.Nullable Object compress, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling exportVmTemplate");
@@ -1570,6 +2168,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1584,7 +2184,19 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public UnbrandXoVm getVm(@javax.annotation.Nonnull String id) throws ApiException {
-    ApiResponse<UnbrandXoVm> localVarResponse = getVmWithHttpInfo(id);
+    return getVm(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm, action: read
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return UnbrandXoVm
+   * @throws ApiException if fails to make API call
+   */
+  public UnbrandXoVm getVm(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<UnbrandXoVm> localVarResponse = getVmWithHttpInfo(id, headers);
     return localVarResponse.getData();
   }
 
@@ -1596,7 +2208,19 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<UnbrandXoVm> getVmWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVmRequestBuilder(id);
+    return getVmWithHttpInfo(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm, action: read
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UnbrandXoVm&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UnbrandXoVm> getVmWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVmRequestBuilder(id, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1604,11 +2228,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVm", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<UnbrandXoVm>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1616,15 +2242,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UnbrandXoVm responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnbrandXoVm>() {});
+        
 
         return new ApiResponse<UnbrandXoVm>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnbrandXoVm>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1635,7 +2267,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder getVmRequestBuilder(@javax.annotation.Nonnull String id) throws ApiException {
+  private HttpRequest.Builder getVmRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVm");
@@ -1654,6 +2286,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1673,7 +2307,24 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoAlarm getVmAlarms(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoAlarm> localVarResponse = getVmAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getVmAlarms(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all alarms that match the following privilege: - resource: alarm, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoAlarm
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoAlarm getVmAlarms(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoAlarm> localVarResponse = getVmAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -1690,7 +2341,24 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVmAlarmsWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVmAlarmsRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getVmAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all alarms that match the following privilege: - resource: alarm, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoAlarm&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVmAlarmsWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVmAlarmsRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1698,11 +2366,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVmAlarms", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoAlarm>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1710,15 +2380,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoAlarm responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoAlarm>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoAlarm>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoAlarm>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1729,7 +2405,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder getVmAlarmsRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVmAlarmsRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVmAlarms");
@@ -1771,6 +2447,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1785,7 +2463,19 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public UnbrandXoVmController getVmController(@javax.annotation.Nonnull String id) throws ApiException {
-    ApiResponse<UnbrandXoVmController> localVarResponse = getVmControllerWithHttpInfo(id);
+    return getVmController(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm-controller, action: read
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return UnbrandXoVmController
+   * @throws ApiException if fails to make API call
+   */
+  public UnbrandXoVmController getVmController(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<UnbrandXoVmController> localVarResponse = getVmControllerWithHttpInfo(id, headers);
     return localVarResponse.getData();
   }
 
@@ -1797,7 +2487,19 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<UnbrandXoVmController> getVmControllerWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVmControllerRequestBuilder(id);
+    return getVmControllerWithHttpInfo(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm-controller, action: read
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UnbrandXoVmController&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UnbrandXoVmController> getVmControllerWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVmControllerRequestBuilder(id, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1805,11 +2507,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVmController", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<UnbrandXoVmController>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1817,15 +2521,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UnbrandXoVmController responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnbrandXoVmController>() {});
+        
 
         return new ApiResponse<UnbrandXoVmController>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnbrandXoVmController>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1836,7 +2546,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder getVmControllerRequestBuilder(@javax.annotation.Nonnull String id) throws ApiException {
+  private HttpRequest.Builder getVmControllerRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVmController");
@@ -1855,6 +2565,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1874,7 +2586,24 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoAlarm getVmControllerAlarms(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoAlarm> localVarResponse = getVmControllerAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getVmControllerAlarms(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all alarms that match the following privilege: - resource: alarm, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoAlarm
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoAlarm getVmControllerAlarms(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoAlarm> localVarResponse = getVmControllerAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -1891,7 +2620,24 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVmControllerAlarmsWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVmControllerAlarmsRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getVmControllerAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all alarms that match the following privilege: - resource: alarm, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoAlarm&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVmControllerAlarmsWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVmControllerAlarmsRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1899,11 +2645,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVmControllerAlarms", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoAlarm>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1911,15 +2659,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoAlarm responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoAlarm>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoAlarm>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoAlarm>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1930,7 +2684,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder getVmControllerAlarmsRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVmControllerAlarmsRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVmControllerAlarms");
@@ -1972,6 +2726,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1991,7 +2747,24 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoMessage getVmControllerMessages(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoMessage> localVarResponse = getVmControllerMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getVmControllerMessages(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all messages that match the following privilege: - resource: message, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoMessage
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoMessage getVmControllerMessages(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoMessage> localVarResponse = getVmControllerMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -2008,7 +2781,24 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoMessage> getVmControllerMessagesWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVmControllerMessagesRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getVmControllerMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all messages that match the following privilege: - resource: message, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoMessage&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoMessage> getVmControllerMessagesWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVmControllerMessagesRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2016,11 +2806,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVmControllerMessages", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoMessage>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -2028,15 +2820,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoMessage responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoMessage>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoMessage>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoMessage>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -2047,7 +2845,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder getVmControllerMessagesRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVmControllerMessagesRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVmControllerMessages");
@@ -2089,6 +2887,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -2108,7 +2908,24 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoTask getVmControllerTasks(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoTask> localVarResponse = getVmControllerTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getVmControllerTasks(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all tasks that match the following privilege: - resource: task, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoTask
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoTask getVmControllerTasks(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoTask> localVarResponse = getVmControllerTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -2125,7 +2942,24 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoTask> getVmControllerTasksWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVmControllerTasksRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getVmControllerTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all tasks that match the following privilege: - resource: task, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoTask&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoTask> getVmControllerTasksWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVmControllerTasksRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2133,11 +2967,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVmControllerTasks", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoTask>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -2145,15 +2981,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoTask responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoTask>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoTask>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoTask>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -2164,7 +3006,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder getVmControllerTasksRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVmControllerTasksRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVmControllerTasks");
@@ -2206,6 +3048,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -2225,7 +3069,24 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoVdi getVmControllerVdis(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoVdi> localVarResponse = getVmControllerVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getVmControllerVdis(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all VDIs that match the following privilege: - resource: vdi, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoVdi
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoVdi getVmControllerVdis(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoVdi> localVarResponse = getVmControllerVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -2242,7 +3103,24 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoVdi> getVmControllerVdisWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVmControllerVdisRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getVmControllerVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all VDIs that match the following privilege: - resource: vdi, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoVdi&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoVdi> getVmControllerVdisWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVmControllerVdisRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2250,11 +3128,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVmControllerVdis", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoVdi>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -2262,15 +3142,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoVdi responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoVdi>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoVdi>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoVdi>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -2281,7 +3167,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder getVmControllerVdisRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVmControllerVdisRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVmControllerVdis");
@@ -2323,6 +3209,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -2341,7 +3229,23 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoVmController getVmControllers(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoVmController> localVarResponse = getVmControllersWithHttpInfo(fields, ndjson, markdown, filter, limit);
+    return getVmControllers(fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all VM controllers that match the following privilege: - resource: vm-controller, action: read
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoVmController
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoVmController getVmControllers(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoVmController> localVarResponse = getVmControllersWithHttpInfo(fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -2357,7 +3261,23 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoVmController> getVmControllersWithHttpInfo(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVmControllersRequestBuilder(fields, ndjson, markdown, filter, limit);
+    return getVmControllersWithHttpInfo(fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all VM controllers that match the following privilege: - resource: vm-controller, action: read
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoVmController&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoVmController> getVmControllersWithHttpInfo(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVmControllersRequestBuilder(fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2365,11 +3285,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVmControllers", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoVmController>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -2377,15 +3299,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoVmController responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoVmController>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoVmController>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoVmController>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -2396,7 +3324,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder getVmControllersRequestBuilder(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVmControllersRequestBuilder(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -2433,6 +3361,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -2448,7 +3378,20 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public UnbrandedVmDashboard getVmDashboard(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean ndjson) throws ApiException {
-    ApiResponse<UnbrandedVmDashboard> localVarResponse = getVmDashboardWithHttpInfo(id, ndjson);
+    return getVmDashboard(id, ndjson, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm, action: read
+   * @param id  (required)
+   * @param ndjson  (optional)
+   * @param headers Optional headers to include in the request
+   * @return UnbrandedVmDashboard
+   * @throws ApiException if fails to make API call
+   */
+  public UnbrandedVmDashboard getVmDashboard(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean ndjson, Map<String, String> headers) throws ApiException {
+    ApiResponse<UnbrandedVmDashboard> localVarResponse = getVmDashboardWithHttpInfo(id, ndjson, headers);
     return localVarResponse.getData();
   }
 
@@ -2461,7 +3404,20 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<UnbrandedVmDashboard> getVmDashboardWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean ndjson) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVmDashboardRequestBuilder(id, ndjson);
+    return getVmDashboardWithHttpInfo(id, ndjson, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm, action: read
+   * @param id  (required)
+   * @param ndjson  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UnbrandedVmDashboard&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UnbrandedVmDashboard> getVmDashboardWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean ndjson, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVmDashboardRequestBuilder(id, ndjson, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2469,11 +3425,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVmDashboard", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<UnbrandedVmDashboard>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -2481,15 +3439,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UnbrandedVmDashboard responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnbrandedVmDashboard>() {});
+        
 
         return new ApiResponse<UnbrandedVmDashboard>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnbrandedVmDashboard>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -2500,7 +3464,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder getVmDashboardRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean ndjson) throws ApiException {
+  private HttpRequest.Builder getVmDashboardRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean ndjson, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVmDashboard");
@@ -2534,6 +3498,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -2553,7 +3519,24 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoMessage getVmMessages(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoMessage> localVarResponse = getVmMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getVmMessages(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all messages that match the following privilege: - resource: message, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoMessage
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoMessage getVmMessages(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoMessage> localVarResponse = getVmMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -2570,7 +3553,24 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoMessage> getVmMessagesWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVmMessagesRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getVmMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all messages that match the following privilege: - resource: message, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoMessage&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoMessage> getVmMessagesWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVmMessagesRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2578,11 +3578,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVmMessages", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoMessage>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -2590,15 +3592,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoMessage responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoMessage>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoMessage>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoMessage>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -2609,7 +3617,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder getVmMessagesRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVmMessagesRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVmMessages");
@@ -2651,6 +3659,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -2665,7 +3675,19 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public UnbrandXoVmSnapshot getVmSnapshot(@javax.annotation.Nonnull String id) throws ApiException {
-    ApiResponse<UnbrandXoVmSnapshot> localVarResponse = getVmSnapshotWithHttpInfo(id);
+    return getVmSnapshot(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm-snapshot, action: read
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return UnbrandXoVmSnapshot
+   * @throws ApiException if fails to make API call
+   */
+  public UnbrandXoVmSnapshot getVmSnapshot(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<UnbrandXoVmSnapshot> localVarResponse = getVmSnapshotWithHttpInfo(id, headers);
     return localVarResponse.getData();
   }
 
@@ -2677,7 +3699,19 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<UnbrandXoVmSnapshot> getVmSnapshotWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVmSnapshotRequestBuilder(id);
+    return getVmSnapshotWithHttpInfo(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm-snapshot, action: read
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UnbrandXoVmSnapshot&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UnbrandXoVmSnapshot> getVmSnapshotWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVmSnapshotRequestBuilder(id, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2685,11 +3719,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVmSnapshot", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<UnbrandXoVmSnapshot>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -2697,15 +3733,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UnbrandXoVmSnapshot responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnbrandXoVmSnapshot>() {});
+        
 
         return new ApiResponse<UnbrandXoVmSnapshot>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnbrandXoVmSnapshot>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -2716,7 +3758,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder getVmSnapshotRequestBuilder(@javax.annotation.Nonnull String id) throws ApiException {
+  private HttpRequest.Builder getVmSnapshotRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVmSnapshot");
@@ -2735,6 +3777,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -2754,7 +3798,24 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoAlarm getVmSnapshotAlarms(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoAlarm> localVarResponse = getVmSnapshotAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getVmSnapshotAlarms(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all alarms that match the following privilege: - resource: alarm, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoAlarm
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoAlarm getVmSnapshotAlarms(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoAlarm> localVarResponse = getVmSnapshotAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -2771,7 +3832,24 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVmSnapshotAlarmsWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVmSnapshotAlarmsRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getVmSnapshotAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all alarms that match the following privilege: - resource: alarm, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoAlarm&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVmSnapshotAlarmsWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVmSnapshotAlarmsRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2779,11 +3857,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVmSnapshotAlarms", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoAlarm>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -2791,15 +3871,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoAlarm responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoAlarm>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoAlarm>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoAlarm>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -2810,7 +3896,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder getVmSnapshotAlarmsRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVmSnapshotAlarmsRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVmSnapshotAlarms");
@@ -2852,6 +3938,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -2871,7 +3959,24 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoTask getVmSnapshotTasks(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoTask> localVarResponse = getVmSnapshotTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getVmSnapshotTasks(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all tasks that match the following privilege: - resource: task, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoTask
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoTask getVmSnapshotTasks(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoTask> localVarResponse = getVmSnapshotTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -2888,7 +3993,24 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoTask> getVmSnapshotTasksWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVmSnapshotTasksRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getVmSnapshotTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all tasks that match the following privilege: - resource: task, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoTask&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoTask> getVmSnapshotTasksWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVmSnapshotTasksRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2896,11 +4018,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVmSnapshotTasks", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoTask>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -2908,15 +4032,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoTask responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoTask>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoTask>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoTask>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -2927,7 +4057,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder getVmSnapshotTasksRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVmSnapshotTasksRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVmSnapshotTasks");
@@ -2969,6 +4099,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -2988,7 +4120,24 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoVdiSnapshot getVmSnapshotVdis(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoVdiSnapshot> localVarResponse = getVmSnapshotVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getVmSnapshotVdis(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all VDIs that match the following privilege: - resource: vdi, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoVdiSnapshot
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoVdiSnapshot getVmSnapshotVdis(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoVdiSnapshot> localVarResponse = getVmSnapshotVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -3005,7 +4154,24 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoVdiSnapshot> getVmSnapshotVdisWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVmSnapshotVdisRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getVmSnapshotVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all VDIs that match the following privilege: - resource: vdi, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoVdiSnapshot&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoVdiSnapshot> getVmSnapshotVdisWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVmSnapshotVdisRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -3013,11 +4179,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVmSnapshotVdis", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoVdiSnapshot>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -3025,15 +4193,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoVdiSnapshot responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoVdiSnapshot>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoVdiSnapshot>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoVdiSnapshot>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -3044,7 +4218,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder getVmSnapshotVdisRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVmSnapshotVdisRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVmSnapshotVdis");
@@ -3086,6 +4260,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -3104,7 +4280,23 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoVmSnapshot getVmSnapshots(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoVmSnapshot> localVarResponse = getVmSnapshotsWithHttpInfo(fields, ndjson, markdown, filter, limit);
+    return getVmSnapshots(fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all VM snapshots that match the following privilege: - resource: vm-snapshot, action: read
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoVmSnapshot
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoVmSnapshot getVmSnapshots(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoVmSnapshot> localVarResponse = getVmSnapshotsWithHttpInfo(fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -3120,7 +4312,23 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoVmSnapshot> getVmSnapshotsWithHttpInfo(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVmSnapshotsRequestBuilder(fields, ndjson, markdown, filter, limit);
+    return getVmSnapshotsWithHttpInfo(fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all VM snapshots that match the following privilege: - resource: vm-snapshot, action: read
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoVmSnapshot&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoVmSnapshot> getVmSnapshotsWithHttpInfo(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVmSnapshotsRequestBuilder(fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -3128,11 +4336,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVmSnapshots", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoVmSnapshot>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -3140,15 +4350,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoVmSnapshot responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoVmSnapshot>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoVmSnapshot>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoVmSnapshot>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -3159,7 +4375,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder getVmSnapshotsRequestBuilder(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVmSnapshotsRequestBuilder(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -3196,6 +4412,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -3215,7 +4433,24 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoMessage getVmSnapshotsMessages(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoMessage> localVarResponse = getVmSnapshotsMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getVmSnapshotsMessages(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all messages that match the following privilege: - resource: message, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoMessage
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoMessage getVmSnapshotsMessages(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoMessage> localVarResponse = getVmSnapshotsMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -3232,7 +4467,24 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoMessage> getVmSnapshotsMessagesWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVmSnapshotsMessagesRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getVmSnapshotsMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all messages that match the following privilege: - resource: message, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoMessage&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoMessage> getVmSnapshotsMessagesWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVmSnapshotsMessagesRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -3240,11 +4492,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVmSnapshotsMessages", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoMessage>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -3252,15 +4506,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoMessage responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoMessage>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoMessage>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoMessage>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -3271,7 +4531,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder getVmSnapshotsMessagesRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVmSnapshotsMessagesRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVmSnapshotsMessages");
@@ -3313,6 +4573,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -3328,7 +4590,20 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public XapiStatsResponseXapiVmStatsRaw getVmStats(@javax.annotation.Nonnull String id, @javax.annotation.Nullable XapiStatsGranularity granularity) throws ApiException {
-    ApiResponse<XapiStatsResponseXapiVmStatsRaw> localVarResponse = getVmStatsWithHttpInfo(id, granularity);
+    return getVmStats(id, granularity, null);
+  }
+
+  /**
+   * 
+   *  VM must be running  Required privilege: - resource: vm, action: read
+   * @param id  (required)
+   * @param granularity  (optional)
+   * @param headers Optional headers to include in the request
+   * @return XapiStatsResponseXapiVmStatsRaw
+   * @throws ApiException if fails to make API call
+   */
+  public XapiStatsResponseXapiVmStatsRaw getVmStats(@javax.annotation.Nonnull String id, @javax.annotation.Nullable XapiStatsGranularity granularity, Map<String, String> headers) throws ApiException {
+    ApiResponse<XapiStatsResponseXapiVmStatsRaw> localVarResponse = getVmStatsWithHttpInfo(id, granularity, headers);
     return localVarResponse.getData();
   }
 
@@ -3341,7 +4616,20 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<XapiStatsResponseXapiVmStatsRaw> getVmStatsWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable XapiStatsGranularity granularity) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVmStatsRequestBuilder(id, granularity);
+    return getVmStatsWithHttpInfo(id, granularity, null);
+  }
+
+  /**
+   * 
+   *  VM must be running  Required privilege: - resource: vm, action: read
+   * @param id  (required)
+   * @param granularity  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;XapiStatsResponseXapiVmStatsRaw&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<XapiStatsResponseXapiVmStatsRaw> getVmStatsWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable XapiStatsGranularity granularity, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVmStatsRequestBuilder(id, granularity, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -3349,11 +4637,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVmStats", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<XapiStatsResponseXapiVmStatsRaw>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -3361,15 +4651,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        XapiStatsResponseXapiVmStatsRaw responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<XapiStatsResponseXapiVmStatsRaw>() {});
+        
 
         return new ApiResponse<XapiStatsResponseXapiVmStatsRaw>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<XapiStatsResponseXapiVmStatsRaw>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -3380,7 +4676,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder getVmStatsRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable XapiStatsGranularity granularity) throws ApiException {
+  private HttpRequest.Builder getVmStatsRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable XapiStatsGranularity granularity, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVmStats");
@@ -3414,6 +4710,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -3433,7 +4731,24 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoTask getVmTasks(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoTask> localVarResponse = getVmTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getVmTasks(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all tasks that match the following privilege: - resource: task, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoTask
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoTask getVmTasks(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoTask> localVarResponse = getVmTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -3450,7 +4765,24 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoTask> getVmTasksWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVmTasksRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getVmTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all tasks that match the following privilege: - resource: task, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoTask&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoTask> getVmTasksWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVmTasksRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -3458,11 +4790,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVmTasks", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoTask>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -3470,15 +4804,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoTask responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoTask>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoTask>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoTask>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -3489,7 +4829,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder getVmTasksRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVmTasksRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVmTasks");
@@ -3531,6 +4871,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -3545,7 +4887,19 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public UnbrandXoVmTemplate getVmTemplate(@javax.annotation.Nonnull String id) throws ApiException {
-    ApiResponse<UnbrandXoVmTemplate> localVarResponse = getVmTemplateWithHttpInfo(id);
+    return getVmTemplate(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm-template, action: read
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return UnbrandXoVmTemplate
+   * @throws ApiException if fails to make API call
+   */
+  public UnbrandXoVmTemplate getVmTemplate(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<UnbrandXoVmTemplate> localVarResponse = getVmTemplateWithHttpInfo(id, headers);
     return localVarResponse.getData();
   }
 
@@ -3557,7 +4911,19 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<UnbrandXoVmTemplate> getVmTemplateWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVmTemplateRequestBuilder(id);
+    return getVmTemplateWithHttpInfo(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm-template, action: read
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UnbrandXoVmTemplate&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UnbrandXoVmTemplate> getVmTemplateWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVmTemplateRequestBuilder(id, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -3565,11 +4931,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVmTemplate", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<UnbrandXoVmTemplate>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -3577,15 +4945,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UnbrandXoVmTemplate responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnbrandXoVmTemplate>() {});
+        
 
         return new ApiResponse<UnbrandXoVmTemplate>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnbrandXoVmTemplate>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -3596,7 +4970,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder getVmTemplateRequestBuilder(@javax.annotation.Nonnull String id) throws ApiException {
+  private HttpRequest.Builder getVmTemplateRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVmTemplate");
@@ -3615,6 +4989,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -3634,7 +5010,24 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoAlarm getVmTemplateAlarms(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoAlarm> localVarResponse = getVmTemplateAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getVmTemplateAlarms(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all alarms that match the following privilege: - resource: alarm, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoAlarm
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoAlarm getVmTemplateAlarms(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoAlarm> localVarResponse = getVmTemplateAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -3651,7 +5044,24 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVmTemplateAlarmsWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVmTemplateAlarmsRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getVmTemplateAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all alarms that match the following privilege: - resource: alarm, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoAlarm&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVmTemplateAlarmsWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVmTemplateAlarmsRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -3659,11 +5069,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVmTemplateAlarms", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoAlarm>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -3671,15 +5083,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoAlarm responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoAlarm>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoAlarm>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoAlarm>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -3690,7 +5108,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder getVmTemplateAlarmsRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVmTemplateAlarmsRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVmTemplateAlarms");
@@ -3732,6 +5150,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -3751,7 +5171,24 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoMessage getVmTemplateMessages(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoMessage> localVarResponse = getVmTemplateMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getVmTemplateMessages(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all messages that match the following privilege: - resource: message, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoMessage
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoMessage getVmTemplateMessages(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoMessage> localVarResponse = getVmTemplateMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -3768,7 +5205,24 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoMessage> getVmTemplateMessagesWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVmTemplateMessagesRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getVmTemplateMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all messages that match the following privilege: - resource: message, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoMessage&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoMessage> getVmTemplateMessagesWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVmTemplateMessagesRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -3776,11 +5230,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVmTemplateMessages", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoMessage>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -3788,15 +5244,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoMessage responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoMessage>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoMessage>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoMessage>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -3807,7 +5269,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder getVmTemplateMessagesRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVmTemplateMessagesRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVmTemplateMessages");
@@ -3849,6 +5311,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -3868,7 +5332,24 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoTask getVmTemplateTasks(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoTask> localVarResponse = getVmTemplateTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getVmTemplateTasks(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all tasks that match the following privilege: - resource: task, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoTask
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoTask getVmTemplateTasks(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoTask> localVarResponse = getVmTemplateTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -3885,7 +5366,24 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoTask> getVmTemplateTasksWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVmTemplateTasksRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getVmTemplateTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all tasks that match the following privilege: - resource: task, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoTask&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoTask> getVmTemplateTasksWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVmTemplateTasksRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -3893,11 +5391,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVmTemplateTasks", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoTask>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -3905,15 +5405,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoTask responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoTask>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoTask>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoTask>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -3924,7 +5430,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder getVmTemplateTasksRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVmTemplateTasksRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVmTemplateTasks");
@@ -3966,6 +5472,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -3985,7 +5493,24 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoVdi getVmTemplateVdis(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoVdi> localVarResponse = getVmTemplateVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getVmTemplateVdis(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all VDIs that match the following privilege: - resource: vdi, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoVdi
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoVdi getVmTemplateVdis(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoVdi> localVarResponse = getVmTemplateVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -4002,7 +5527,24 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoVdi> getVmTemplateVdisWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVmTemplateVdisRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getVmTemplateVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all VDIs that match the following privilege: - resource: vdi, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoVdi&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoVdi> getVmTemplateVdisWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVmTemplateVdisRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -4010,11 +5552,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVmTemplateVdis", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoVdi>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -4022,15 +5566,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoVdi responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoVdi>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoVdi>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoVdi>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -4041,7 +5591,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder getVmTemplateVdisRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVmTemplateVdisRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVmTemplateVdis");
@@ -4083,6 +5633,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -4101,7 +5653,23 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoVmTemplate getVmTemplates(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoVmTemplate> localVarResponse = getVmTemplatesWithHttpInfo(fields, ndjson, markdown, filter, limit);
+    return getVmTemplates(fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all VM templates that match the following privilege: - resource: vm-template, action: read
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoVmTemplate
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoVmTemplate getVmTemplates(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoVmTemplate> localVarResponse = getVmTemplatesWithHttpInfo(fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -4117,7 +5685,23 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoVmTemplate> getVmTemplatesWithHttpInfo(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVmTemplatesRequestBuilder(fields, ndjson, markdown, filter, limit);
+    return getVmTemplatesWithHttpInfo(fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all VM templates that match the following privilege: - resource: vm-template, action: read
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoVmTemplate&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoVmTemplate> getVmTemplatesWithHttpInfo(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVmTemplatesRequestBuilder(fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -4125,11 +5709,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVmTemplates", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoVmTemplate>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -4137,15 +5723,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoVmTemplate responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoVmTemplate>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoVmTemplate>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoVmTemplate>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -4156,7 +5748,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder getVmTemplatesRequestBuilder(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVmTemplatesRequestBuilder(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -4193,6 +5785,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -4212,7 +5806,24 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoVdi getVmVdis(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoVdi> localVarResponse = getVmVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getVmVdis(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all VDIs that match the following privilege: - resource: vdi, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoVdi
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoVdi getVmVdis(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoVdi> localVarResponse = getVmVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -4229,7 +5840,24 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoVdi> getVmVdisWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVmVdisRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getVmVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all VDIs that match the following privilege: - resource: vdi, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoVdi&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoVdi> getVmVdisWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVmVdisRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -4237,11 +5865,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVmVdis", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoVdi>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -4249,15 +5879,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoVdi responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoVdi>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoVdi>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoVdi>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -4268,7 +5904,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder getVmVdisRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVmVdisRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getVmVdis");
@@ -4310,6 +5946,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -4328,7 +5966,23 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoVm getVms(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoVm> localVarResponse = getVmsWithHttpInfo(fields, ndjson, markdown, filter, limit);
+    return getVms(fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all VMs that match the following privilege: - resource: vm, action: read
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoVm
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoVm getVms(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoVm> localVarResponse = getVmsWithHttpInfo(fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -4344,7 +5998,23 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoVm> getVmsWithHttpInfo(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getVmsRequestBuilder(fields, ndjson, markdown, filter, limit);
+    return getVmsWithHttpInfo(fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all VMs that match the following privilege: - resource: vm, action: read
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoVm&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoVm> getVmsWithHttpInfo(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getVmsRequestBuilder(fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -4352,11 +6022,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getVms", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoVm>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -4364,15 +6036,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoVm responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoVm>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoVm>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoVm>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -4383,7 +6061,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder getVmsRequestBuilder(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getVmsRequestBuilder(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -4420,6 +6098,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -4435,7 +6115,20 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeVoid hardRebootVm(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = hardRebootVmWithHttpInfo(id, sync);
+    return hardRebootVm(id, sync, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm, action: reboot:hard
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeVoid
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeVoid hardRebootVm(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = hardRebootVmWithHttpInfo(id, sync, headers);
     return localVarResponse.getData();
   }
 
@@ -4448,7 +6141,20 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeVoid> hardRebootVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = hardRebootVmRequestBuilder(id, sync);
+    return hardRebootVmWithHttpInfo(id, sync, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm, action: reboot:hard
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeVoid&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeVoid> hardRebootVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = hardRebootVmRequestBuilder(id, sync, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -4456,11 +6162,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("hardRebootVm", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeVoid>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -4468,15 +6176,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeVoid responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeVoid>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -4487,7 +6201,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder hardRebootVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
+  private HttpRequest.Builder hardRebootVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling hardRebootVm");
@@ -4521,6 +6235,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -4536,7 +6252,20 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeVoid hardShutdownVm(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = hardShutdownVmWithHttpInfo(id, sync);
+    return hardShutdownVm(id, sync, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm, action: shutdown:hard
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeVoid
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeVoid hardShutdownVm(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = hardShutdownVmWithHttpInfo(id, sync, headers);
     return localVarResponse.getData();
   }
 
@@ -4549,7 +6278,20 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeVoid> hardShutdownVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = hardShutdownVmRequestBuilder(id, sync);
+    return hardShutdownVmWithHttpInfo(id, sync, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm, action: shutdown:hard
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeVoid&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeVoid> hardShutdownVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = hardShutdownVmRequestBuilder(id, sync, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -4557,11 +6299,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("hardShutdownVm", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeVoid>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -4569,15 +6313,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeVoid responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeVoid>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -4588,7 +6338,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder hardShutdownVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
+  private HttpRequest.Builder hardShutdownVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling hardShutdownVm");
@@ -4622,6 +6372,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -4638,7 +6390,21 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateAclV2Privilege201Response importVm(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull File body, @javax.annotation.Nullable String sr) throws ApiException {
-    ApiResponse<CreateAclV2Privilege201Response> localVarResponse = importVmWithHttpInfo(id, body, sr);
+    return importVm(id, body, sr, null);
+  }
+
+  /**
+   * 
+   * Import an XVA VM into a pool  Required privilege: - resource: sr, action: import:vm
+   * @param id  (required)
+   * @param body  (required)
+   * @param sr  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateAclV2Privilege201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateAclV2Privilege201Response importVm(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull File body, @javax.annotation.Nullable String sr, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateAclV2Privilege201Response> localVarResponse = importVmWithHttpInfo(id, body, sr, headers);
     return localVarResponse.getData();
   }
 
@@ -4652,7 +6418,21 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateAclV2Privilege201Response> importVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull File body, @javax.annotation.Nullable String sr) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = importVmRequestBuilder(id, body, sr);
+    return importVmWithHttpInfo(id, body, sr, null);
+  }
+
+  /**
+   * 
+   * Import an XVA VM into a pool  Required privilege: - resource: sr, action: import:vm
+   * @param id  (required)
+   * @param body  (required)
+   * @param sr  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateAclV2Privilege201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateAclV2Privilege201Response> importVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull File body, @javax.annotation.Nullable String sr, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = importVmRequestBuilder(id, body, sr, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -4660,11 +6440,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("importVm", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateAclV2Privilege201Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -4672,15 +6454,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateAclV2Privilege201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateAclV2Privilege201Response>() {});
+        
 
         return new ApiResponse<CreateAclV2Privilege201Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateAclV2Privilege201Response>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -4691,7 +6479,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder importVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull File body, @javax.annotation.Nullable String sr) throws ApiException {
+  private HttpRequest.Builder importVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull File body, @javax.annotation.Nullable String sr, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling importVm");
@@ -4735,6 +6523,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -4751,7 +6541,21 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeVoid migrateVm(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull MigrateVmRequest migrateVmRequest, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = migrateVmWithHttpInfo(id, migrateVmRequest, sync);
+    return migrateVm(id, migrateVmRequest, sync, null);
+  }
+
+  /**
+   * 
+   * Required privileges: - resource: vm, action: migrate-send - resource: host, action: migrate-receive (on the destination host)  VIF mapping is not allowed for intra-pool migration  Networks and SRs must belong to the same pool as the destination host
+   * @param id  (required)
+   * @param migrateVmRequest  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeVoid
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeVoid migrateVm(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull MigrateVmRequest migrateVmRequest, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = migrateVmWithHttpInfo(id, migrateVmRequest, sync, headers);
     return localVarResponse.getData();
   }
 
@@ -4765,7 +6569,21 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeVoid> migrateVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull MigrateVmRequest migrateVmRequest, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = migrateVmRequestBuilder(id, migrateVmRequest, sync);
+    return migrateVmWithHttpInfo(id, migrateVmRequest, sync, null);
+  }
+
+  /**
+   * 
+   * Required privileges: - resource: vm, action: migrate-send - resource: host, action: migrate-receive (on the destination host)  VIF mapping is not allowed for intra-pool migration  Networks and SRs must belong to the same pool as the destination host
+   * @param id  (required)
+   * @param migrateVmRequest  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeVoid&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeVoid> migrateVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull MigrateVmRequest migrateVmRequest, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = migrateVmRequestBuilder(id, migrateVmRequest, sync, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -4773,11 +6591,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("migrateVm", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeVoid>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -4785,15 +6605,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeVoid responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeVoid>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -4804,7 +6630,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder migrateVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull MigrateVmRequest migrateVmRequest, @javax.annotation.Nullable Boolean sync) throws ApiException {
+  private HttpRequest.Builder migrateVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull MigrateVmRequest migrateVmRequest, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling migrateVm");
@@ -4848,6 +6674,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -4863,7 +6691,20 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeVoid pauseVm(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = pauseVmWithHttpInfo(id, sync);
+    return pauseVm(id, sync, null);
+  }
+
+  /**
+   * 
+   * The VM must be running  Required privilege: - resource: vm, action: pause
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeVoid
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeVoid pauseVm(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = pauseVmWithHttpInfo(id, sync, headers);
     return localVarResponse.getData();
   }
 
@@ -4876,7 +6717,20 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeVoid> pauseVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = pauseVmRequestBuilder(id, sync);
+    return pauseVmWithHttpInfo(id, sync, null);
+  }
+
+  /**
+   * 
+   * The VM must be running  Required privilege: - resource: vm, action: pause
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeVoid&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeVoid> pauseVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = pauseVmRequestBuilder(id, sync, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -4884,11 +6738,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("pauseVm", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeVoid>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -4896,15 +6752,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeVoid responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeVoid>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -4915,7 +6777,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder pauseVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
+  private HttpRequest.Builder pauseVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling pauseVm");
@@ -4949,6 +6811,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -4963,7 +6827,19 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public void putVmControllerTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    putVmControllerTagWithHttpInfo(id, tag);
+    putVmControllerTag(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm-controller, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void putVmControllerTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    putVmControllerTagWithHttpInfo(id, tag, headers);
   }
 
   /**
@@ -4975,7 +6851,20 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> putVmControllerTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = putVmControllerTagRequestBuilder(id, tag);
+    return putVmControllerTagWithHttpInfo(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm-controller, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> putVmControllerTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = putVmControllerTagRequestBuilder(id, tag, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -4983,9 +6872,14 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("putVmControllerTag", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -4993,11 +6887,9 @@ public class VmsApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -5008,7 +6900,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder putVmControllerTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
+  private HttpRequest.Builder putVmControllerTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling putVmControllerTag");
@@ -5032,6 +6924,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -5046,7 +6940,19 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public void putVmSnapshotTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    putVmSnapshotTagWithHttpInfo(id, tag);
+    putVmSnapshotTag(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm-snapshot, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void putVmSnapshotTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    putVmSnapshotTagWithHttpInfo(id, tag, headers);
   }
 
   /**
@@ -5058,7 +6964,20 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> putVmSnapshotTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = putVmSnapshotTagRequestBuilder(id, tag);
+    return putVmSnapshotTagWithHttpInfo(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm-snapshot, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> putVmSnapshotTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = putVmSnapshotTagRequestBuilder(id, tag, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -5066,9 +6985,14 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("putVmSnapshotTag", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -5076,11 +7000,9 @@ public class VmsApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -5091,7 +7013,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder putVmSnapshotTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
+  private HttpRequest.Builder putVmSnapshotTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling putVmSnapshotTag");
@@ -5115,6 +7037,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -5129,7 +7053,19 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public void putVmTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    putVmTagWithHttpInfo(id, tag);
+    putVmTag(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void putVmTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    putVmTagWithHttpInfo(id, tag, headers);
   }
 
   /**
@@ -5141,7 +7077,20 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> putVmTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = putVmTagRequestBuilder(id, tag);
+    return putVmTagWithHttpInfo(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> putVmTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = putVmTagRequestBuilder(id, tag, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -5149,9 +7098,14 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("putVmTag", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -5159,11 +7113,9 @@ public class VmsApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -5174,7 +7126,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder putVmTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
+  private HttpRequest.Builder putVmTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling putVmTag");
@@ -5198,6 +7150,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -5212,7 +7166,19 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public void putVmTemplateTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    putVmTemplateTagWithHttpInfo(id, tag);
+    putVmTemplateTag(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm-template, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void putVmTemplateTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    putVmTemplateTagWithHttpInfo(id, tag, headers);
   }
 
   /**
@@ -5224,7 +7190,20 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> putVmTemplateTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = putVmTemplateTagRequestBuilder(id, tag);
+    return putVmTemplateTagWithHttpInfo(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm-template, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> putVmTemplateTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = putVmTemplateTagRequestBuilder(id, tag, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -5232,9 +7211,14 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("putVmTemplateTag", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -5242,11 +7226,9 @@ public class VmsApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -5257,7 +7239,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder putVmTemplateTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
+  private HttpRequest.Builder putVmTemplateTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling putVmTemplateTag");
@@ -5281,6 +7263,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -5296,7 +7280,20 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeVoid resumeVm(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = resumeVmWithHttpInfo(id, sync);
+    return resumeVm(id, sync, null);
+  }
+
+  /**
+   * 
+   * The VM must be suspended  Required privilege: - resource: vm, action: resume
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeVoid
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeVoid resumeVm(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = resumeVmWithHttpInfo(id, sync, headers);
     return localVarResponse.getData();
   }
 
@@ -5309,7 +7306,20 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeVoid> resumeVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = resumeVmRequestBuilder(id, sync);
+    return resumeVmWithHttpInfo(id, sync, null);
+  }
+
+  /**
+   * 
+   * The VM must be suspended  Required privilege: - resource: vm, action: resume
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeVoid&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeVoid> resumeVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = resumeVmRequestBuilder(id, sync, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -5317,11 +7327,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("resumeVm", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeVoid>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -5329,15 +7341,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeVoid responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeVoid>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -5348,7 +7366,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder resumeVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
+  private HttpRequest.Builder resumeVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling resumeVm");
@@ -5382,6 +7400,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -5398,7 +7418,21 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeVoid revertSnapshotVm(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull RevertSnapshotVmRequest revertSnapshotVmRequest, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = revertSnapshotVmWithHttpInfo(id, revertSnapshotVmRequest, sync);
+    return revertSnapshotVm(id, revertSnapshotVmRequest, sync, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm, action: revert-snapshot - resource: vm, action: snapshot (if &#x60;snapshotBefore: true&#x60;)
+   * @param id  (required)
+   * @param revertSnapshotVmRequest  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeVoid
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeVoid revertSnapshotVm(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull RevertSnapshotVmRequest revertSnapshotVmRequest, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = revertSnapshotVmWithHttpInfo(id, revertSnapshotVmRequest, sync, headers);
     return localVarResponse.getData();
   }
 
@@ -5412,7 +7446,21 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeVoid> revertSnapshotVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull RevertSnapshotVmRequest revertSnapshotVmRequest, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = revertSnapshotVmRequestBuilder(id, revertSnapshotVmRequest, sync);
+    return revertSnapshotVmWithHttpInfo(id, revertSnapshotVmRequest, sync, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm, action: revert-snapshot - resource: vm, action: snapshot (if &#x60;snapshotBefore: true&#x60;)
+   * @param id  (required)
+   * @param revertSnapshotVmRequest  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeVoid&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeVoid> revertSnapshotVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull RevertSnapshotVmRequest revertSnapshotVmRequest, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = revertSnapshotVmRequestBuilder(id, revertSnapshotVmRequest, sync, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -5420,11 +7468,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("revertSnapshotVm", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeVoid>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -5432,15 +7482,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeVoid responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeVoid>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -5451,7 +7507,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder revertSnapshotVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull RevertSnapshotVmRequest revertSnapshotVmRequest, @javax.annotation.Nullable Boolean sync) throws ApiException {
+  private HttpRequest.Builder revertSnapshotVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull RevertSnapshotVmRequest revertSnapshotVmRequest, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling revertSnapshotVm");
@@ -5495,6 +7551,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -5510,7 +7568,20 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public void snapshotVm(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable SnapshotVmRequest snapshotVmRequest) throws ApiException {
-    snapshotVmWithHttpInfo(id, sync, snapshotVmRequest);
+    snapshotVm(id, sync, snapshotVmRequest, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm, action: snapshot
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param snapshotVmRequest  (optional)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void snapshotVm(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable SnapshotVmRequest snapshotVmRequest, Map<String, String> headers) throws ApiException {
+    snapshotVmWithHttpInfo(id, sync, snapshotVmRequest, headers);
   }
 
   /**
@@ -5523,7 +7594,21 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> snapshotVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable SnapshotVmRequest snapshotVmRequest) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = snapshotVmRequestBuilder(id, sync, snapshotVmRequest);
+    return snapshotVmWithHttpInfo(id, sync, snapshotVmRequest, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: vm, action: snapshot
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param snapshotVmRequest  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> snapshotVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable SnapshotVmRequest snapshotVmRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = snapshotVmRequestBuilder(id, sync, snapshotVmRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -5531,9 +7616,14 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("snapshotVm", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -5541,11 +7631,9 @@ public class VmsApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -5556,7 +7644,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder snapshotVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable SnapshotVmRequest snapshotVmRequest) throws ApiException {
+  private HttpRequest.Builder snapshotVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable SnapshotVmRequest snapshotVmRequest, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling snapshotVm");
@@ -5596,6 +7684,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -5612,7 +7702,21 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeVoid startVm(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable StartVmRequest startVmRequest) throws ApiException {
-    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = startVmWithHttpInfo(id, sync, startVmRequest);
+    return startVm(id, sync, startVmRequest, null);
+  }
+
+  /**
+   * 
+   * The VM must be halted  Required privileges: - resource: vm, action: start - resource: host, action: allow-vm (if an hostId is specified)
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param startVmRequest  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeVoid
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeVoid startVm(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable StartVmRequest startVmRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = startVmWithHttpInfo(id, sync, startVmRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -5626,7 +7730,21 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeVoid> startVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable StartVmRequest startVmRequest) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = startVmRequestBuilder(id, sync, startVmRequest);
+    return startVmWithHttpInfo(id, sync, startVmRequest, null);
+  }
+
+  /**
+   * 
+   * The VM must be halted  Required privileges: - resource: vm, action: start - resource: host, action: allow-vm (if an hostId is specified)
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param startVmRequest  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeVoid&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeVoid> startVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable StartVmRequest startVmRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = startVmRequestBuilder(id, sync, startVmRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -5634,11 +7752,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("startVm", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeVoid>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -5646,15 +7766,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeVoid responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeVoid>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -5665,7 +7791,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder startVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable StartVmRequest startVmRequest) throws ApiException {
+  private HttpRequest.Builder startVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable StartVmRequest startVmRequest, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling startVm");
@@ -5705,6 +7831,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -5720,7 +7848,20 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeVoid suspendVm(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = suspendVmWithHttpInfo(id, sync);
+    return suspendVm(id, sync, null);
+  }
+
+  /**
+   * 
+   * The VM must be running  Required privilege: - resource: vm, action: suspend
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeVoid
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeVoid suspendVm(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = suspendVmWithHttpInfo(id, sync, headers);
     return localVarResponse.getData();
   }
 
@@ -5733,7 +7874,20 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeVoid> suspendVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = suspendVmRequestBuilder(id, sync);
+    return suspendVmWithHttpInfo(id, sync, null);
+  }
+
+  /**
+   * 
+   * The VM must be running  Required privilege: - resource: vm, action: suspend
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeVoid&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeVoid> suspendVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = suspendVmRequestBuilder(id, sync, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -5741,11 +7895,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("suspendVm", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeVoid>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -5753,15 +7909,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeVoid responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeVoid>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -5772,7 +7934,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder suspendVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
+  private HttpRequest.Builder suspendVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling suspendVm");
@@ -5806,6 +7968,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -5821,7 +7985,20 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeVoid unpauseVm(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = unpauseVmWithHttpInfo(id, sync);
+    return unpauseVm(id, sync, null);
+  }
+
+  /**
+   * 
+   * The VM must be paused  Required privilege: - resource: vm, action: unpause
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeVoid
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeVoid unpauseVm(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = unpauseVmWithHttpInfo(id, sync, headers);
     return localVarResponse.getData();
   }
 
@@ -5834,7 +8011,20 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeVoid> unpauseVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = unpauseVmRequestBuilder(id, sync);
+    return unpauseVmWithHttpInfo(id, sync, null);
+  }
+
+  /**
+   * 
+   * The VM must be paused  Required privilege: - resource: vm, action: unpause
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeVoid&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeVoid> unpauseVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = unpauseVmRequestBuilder(id, sync, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -5842,11 +8032,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("unpauseVm", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeVoid>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -5854,15 +8046,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeVoid responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeVoid>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -5873,7 +8071,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder unpauseVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
+  private HttpRequest.Builder unpauseVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling unpauseVm");
@@ -5907,6 +8105,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -5921,7 +8121,19 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public void updateVm(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateVmRequestBody updateVmRequestBody) throws ApiException {
-    updateVmWithHttpInfo(id, updateVmRequestBody);
+    updateVm(id, updateVmRequestBody, null);
+  }
+
+  /**
+   * 
+   * Partial update of a VM. Only the fields present in the body are modified; everything else is left untouched.  Operations are applied sequentially: if one fails, previously applied changes are not rolled back.  Required privilege per field provided in the body: - resource: vm, action: update:&amp;lt;field&amp;gt; (e.g. update:nameLabel, update:cpus, ...)  Special fields: - &#x60;xenStoreData&#x60; keys are automatically prefixed with &#x60;vm-data/&#x60; when missing
+   * @param id  (required)
+   * @param updateVmRequestBody  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void updateVm(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateVmRequestBody updateVmRequestBody, Map<String, String> headers) throws ApiException {
+    updateVmWithHttpInfo(id, updateVmRequestBody, headers);
   }
 
   /**
@@ -5933,7 +8145,20 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> updateVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateVmRequestBody updateVmRequestBody) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = updateVmRequestBuilder(id, updateVmRequestBody);
+    return updateVmWithHttpInfo(id, updateVmRequestBody, null);
+  }
+
+  /**
+   * 
+   * Partial update of a VM. Only the fields present in the body are modified; everything else is left untouched.  Operations are applied sequentially: if one fails, previously applied changes are not rolled back.  Required privilege per field provided in the body: - resource: vm, action: update:&amp;lt;field&amp;gt; (e.g. update:nameLabel, update:cpus, ...)  Special fields: - &#x60;xenStoreData&#x60; keys are automatically prefixed with &#x60;vm-data/&#x60; when missing
+   * @param id  (required)
+   * @param updateVmRequestBody  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> updateVmWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateVmRequestBody updateVmRequestBody, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateVmRequestBuilder(id, updateVmRequestBody, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -5941,9 +8166,14 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("updateVm", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -5951,11 +8181,9 @@ public class VmsApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -5966,7 +8194,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder updateVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateVmRequestBody updateVmRequestBody) throws ApiException {
+  private HttpRequest.Builder updateVmRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateVmRequestBody updateVmRequestBody, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling updateVm");
@@ -5995,6 +8223,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -6014,7 +8244,24 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoVmBackupJob vmGetVmBackupJobs(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoVmBackupJob> localVarResponse = vmGetVmBackupJobsWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return vmGetVmBackupJobs(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all backup jobs that match the following privilege: - resource: backup-job, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoVmBackupJob
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoVmBackupJob vmGetVmBackupJobs(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoVmBackupJob> localVarResponse = vmGetVmBackupJobsWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -6031,7 +8278,24 @@ public class VmsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoVmBackupJob> vmGetVmBackupJobsWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = vmGetVmBackupJobsRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return vmGetVmBackupJobsWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all backup jobs that match the following privilege: - resource: backup-job, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoVmBackupJob&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoVmBackupJob> vmGetVmBackupJobsWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = vmGetVmBackupJobsRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -6039,11 +8303,13 @@ public class VmsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("vmGetVmBackupJobs", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoVmBackupJob>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -6051,15 +8317,21 @@ public class VmsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoVmBackupJob responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoVmBackupJob>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoVmBackupJob>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoVmBackupJob>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -6070,7 +8342,7 @@ public class VmsApi {
     }
   }
 
-  private HttpRequest.Builder vmGetVmBackupJobsRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder vmGetVmBackupJobsRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling vmGetVmBackupJobs");
@@ -6112,6 +8384,8 @@ public class VmsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }

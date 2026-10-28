@@ -38,7 +38,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PartialUnbrandXoVmTemplateTemplateInfoDisksInner.JSON_PROPERTY_SIZE,
   PartialUnbrandXoVmTemplateTemplateInfoDisksInner.JSON_PROPERTY_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PartialUnbrandXoVmTemplateTemplateInfoDisksInner {
   public static final String JSON_PROPERTY_S_R = "SR";
   @javax.annotation.Nonnull
@@ -69,14 +69,14 @@ public class PartialUnbrandXoVmTemplateTemplateInfoDisksInner {
    * @return SR
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_S_R)
+  @JsonProperty(value = JSON_PROPERTY_S_R, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getSR() {
     return SR;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_S_R)
+  @JsonProperty(value = JSON_PROPERTY_S_R, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSR(@javax.annotation.Nonnull String SR) {
     this.SR = SR;
@@ -93,14 +93,14 @@ public class PartialUnbrandXoVmTemplateTemplateInfoDisksInner {
    * @return bootable
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_BOOTABLE)
+  @JsonProperty(value = JSON_PROPERTY_BOOTABLE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Boolean getBootable() {
     return bootable;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_BOOTABLE)
+  @JsonProperty(value = JSON_PROPERTY_BOOTABLE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setBootable(@javax.annotation.Nonnull Boolean bootable) {
     this.bootable = bootable;
@@ -117,14 +117,14 @@ public class PartialUnbrandXoVmTemplateTemplateInfoDisksInner {
    * @return size
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonProperty(value = JSON_PROPERTY_SIZE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getSize() {
     return size;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonProperty(value = JSON_PROPERTY_SIZE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSize(@javax.annotation.Nonnull Double size) {
     this.size = size;
@@ -141,14 +141,14 @@ public class PartialUnbrandXoVmTemplateTemplateInfoDisksInner {
    * @return type
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getType() {
     return type;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(value = JSON_PROPERTY_TYPE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setType(@javax.annotation.Nonnull String type) {
     this.type = type;
@@ -195,10 +195,7 @@ public class PartialUnbrandXoVmTemplateTemplateInfoDisksInner {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -235,22 +232,22 @@ public class PartialUnbrandXoVmTemplateTemplateInfoDisksInner {
 
     // add `SR` to the URL query string
     if (getSR() != null) {
-      joiner.add(String.format("%sSR%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSR()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sSR%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSR()))));
     }
 
     // add `bootable` to the URL query string
     if (getBootable() != null) {
-      joiner.add(String.format("%sbootable%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBootable()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbootable%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBootable()))));
     }
 
     // add `size` to the URL query string
     if (getSize() != null) {
-      joiner.add(String.format("%ssize%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSize()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssize%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSize()))));
     }
 
     // add `type` to the URL query string
     if (getType() != null) {
-      joiner.add(String.format("%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%stype%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getType()))));
     }
 
     return joiner.toString();

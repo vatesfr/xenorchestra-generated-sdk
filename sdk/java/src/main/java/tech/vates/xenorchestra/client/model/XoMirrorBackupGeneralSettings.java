@@ -45,7 +45,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   XoMirrorBackupGeneralSettings.JSON_PROPERTY_N_RETRIES_VM_BACKUP_FAILURES,
   XoMirrorBackupGeneralSettings.JSON_PROPERTY_TIMEOUT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class XoMirrorBackupGeneralSettings {
   /**
    * Gets or Sets backupReportTpl
@@ -170,14 +170,14 @@ private final String value;
    * @return backupReportTpl
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_BACKUP_REPORT_TPL)
+  @JsonProperty(value = JSON_PROPERTY_BACKUP_REPORT_TPL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public BackupReportTplEnum getBackupReportTpl() {
     return backupReportTpl;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_BACKUP_REPORT_TPL)
+  @JsonProperty(value = JSON_PROPERTY_BACKUP_REPORT_TPL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBackupReportTpl(@javax.annotation.Nullable BackupReportTplEnum backupReportTpl) {
     this.backupReportTpl = backupReportTpl;
@@ -194,14 +194,14 @@ private final String value;
    * @return hideSuccessfulItems
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_HIDE_SUCCESSFUL_ITEMS)
+  @JsonProperty(value = JSON_PROPERTY_HIDE_SUCCESSFUL_ITEMS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getHideSuccessfulItems() {
     return hideSuccessfulItems;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_HIDE_SUCCESSFUL_ITEMS)
+  @JsonProperty(value = JSON_PROPERTY_HIDE_SUCCESSFUL_ITEMS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHideSuccessfulItems(@javax.annotation.Nullable Boolean hideSuccessfulItems) {
     this.hideSuccessfulItems = hideSuccessfulItems;
@@ -226,14 +226,14 @@ private final String value;
    * @return reportRecipients
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_REPORT_RECIPIENTS)
+  @JsonProperty(value = JSON_PROPERTY_REPORT_RECIPIENTS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getReportRecipients() {
     return reportRecipients;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_REPORT_RECIPIENTS)
+  @JsonProperty(value = JSON_PROPERTY_REPORT_RECIPIENTS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setReportRecipients(@javax.annotation.Nullable List<String> reportRecipients) {
     this.reportRecipients = reportRecipients;
@@ -250,14 +250,14 @@ private final String value;
    * @return reportWhen
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_REPORT_WHEN)
+  @JsonProperty(value = JSON_PROPERTY_REPORT_WHEN, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public ReportWhenEnum getReportWhen() {
     return reportWhen;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_REPORT_WHEN)
+  @JsonProperty(value = JSON_PROPERTY_REPORT_WHEN, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setReportWhen(@javax.annotation.Nonnull ReportWhenEnum reportWhen) {
     this.reportWhen = reportWhen;
@@ -274,14 +274,14 @@ private final String value;
    * @return concurrency
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CONCURRENCY)
+  @JsonProperty(value = JSON_PROPERTY_CONCURRENCY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getConcurrency() {
     return concurrency;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CONCURRENCY)
+  @JsonProperty(value = JSON_PROPERTY_CONCURRENCY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setConcurrency(@javax.annotation.Nullable Double concurrency) {
     this.concurrency = concurrency;
@@ -298,14 +298,14 @@ private final String value;
    * @return maxExportRate
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_MAX_EXPORT_RATE)
+  @JsonProperty(value = JSON_PROPERTY_MAX_EXPORT_RATE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getMaxExportRate() {
     return maxExportRate;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MAX_EXPORT_RATE)
+  @JsonProperty(value = JSON_PROPERTY_MAX_EXPORT_RATE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMaxExportRate(@javax.annotation.Nullable Double maxExportRate) {
     this.maxExportRate = maxExportRate;
@@ -322,14 +322,14 @@ private final String value;
    * @return mergeBackupsSynchronously
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_MERGE_BACKUPS_SYNCHRONOUSLY)
+  @JsonProperty(value = JSON_PROPERTY_MERGE_BACKUPS_SYNCHRONOUSLY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getMergeBackupsSynchronously() {
     return mergeBackupsSynchronously;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MERGE_BACKUPS_SYNCHRONOUSLY)
+  @JsonProperty(value = JSON_PROPERTY_MERGE_BACKUPS_SYNCHRONOUSLY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMergeBackupsSynchronously(@javax.annotation.Nullable Boolean mergeBackupsSynchronously) {
     this.mergeBackupsSynchronously = mergeBackupsSynchronously;
@@ -346,14 +346,14 @@ private final String value;
    * @return nRetriesVmBackupFailures
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_N_RETRIES_VM_BACKUP_FAILURES)
+  @JsonProperty(value = JSON_PROPERTY_N_RETRIES_VM_BACKUP_FAILURES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getnRetriesVmBackupFailures() {
     return nRetriesVmBackupFailures;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_N_RETRIES_VM_BACKUP_FAILURES)
+  @JsonProperty(value = JSON_PROPERTY_N_RETRIES_VM_BACKUP_FAILURES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setnRetriesVmBackupFailures(@javax.annotation.Nullable Double nRetriesVmBackupFailures) {
     this.nRetriesVmBackupFailures = nRetriesVmBackupFailures;
@@ -370,14 +370,14 @@ private final String value;
    * @return timeout
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TIMEOUT)
+  @JsonProperty(value = JSON_PROPERTY_TIMEOUT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getTimeout() {
     return timeout;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TIMEOUT)
+  @JsonProperty(value = JSON_PROPERTY_TIMEOUT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTimeout(@javax.annotation.Nullable Double timeout) {
     this.timeout = timeout;
@@ -434,10 +434,7 @@ private final String value;
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -474,51 +471,51 @@ private final String value;
 
     // add `backupReportTpl` to the URL query string
     if (getBackupReportTpl() != null) {
-      joiner.add(String.format("%sbackupReportTpl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBackupReportTpl()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbackupReportTpl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBackupReportTpl()))));
     }
 
     // add `hideSuccessfulItems` to the URL query string
     if (getHideSuccessfulItems() != null) {
-      joiner.add(String.format("%shideSuccessfulItems%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHideSuccessfulItems()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%shideSuccessfulItems%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHideSuccessfulItems()))));
     }
 
     // add `reportRecipients` to the URL query string
     if (getReportRecipients() != null) {
       for (int i = 0; i < getReportRecipients().size(); i++) {
-        joiner.add(String.format("%sreportRecipients%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%sreportRecipients%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getReportRecipients().get(i)))));
       }
     }
 
     // add `reportWhen` to the URL query string
     if (getReportWhen() != null) {
-      joiner.add(String.format("%sreportWhen%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReportWhen()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sreportWhen%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReportWhen()))));
     }
 
     // add `concurrency` to the URL query string
     if (getConcurrency() != null) {
-      joiner.add(String.format("%sconcurrency%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getConcurrency()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sconcurrency%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getConcurrency()))));
     }
 
     // add `maxExportRate` to the URL query string
     if (getMaxExportRate() != null) {
-      joiner.add(String.format("%smaxExportRate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMaxExportRate()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%smaxExportRate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMaxExportRate()))));
     }
 
     // add `mergeBackupsSynchronously` to the URL query string
     if (getMergeBackupsSynchronously() != null) {
-      joiner.add(String.format("%smergeBackupsSynchronously%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMergeBackupsSynchronously()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%smergeBackupsSynchronously%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMergeBackupsSynchronously()))));
     }
 
     // add `nRetriesVmBackupFailures` to the URL query string
     if (getnRetriesVmBackupFailures() != null) {
-      joiner.add(String.format("%snRetriesVmBackupFailures%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getnRetriesVmBackupFailures()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%snRetriesVmBackupFailures%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getnRetriesVmBackupFailures()))));
     }
 
     // add `timeout` to the URL query string
     if (getTimeout() != null) {
-      joiner.add(String.format("%stimeout%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTimeout()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%stimeout%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTimeout()))));
     }
 
     return joiner.toString();

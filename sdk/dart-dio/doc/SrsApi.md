@@ -48,7 +48,7 @@ final CreateSrBody createSrBody = {"SR_type":"nfs","device_config":{"server":"10
 try {
     final response = api.createSr(createSrBody);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling SrsApi->createSr: $e\n');
 }
 ```
@@ -97,7 +97,7 @@ final String id = c4284e12-37c9-7967-b9e8-83ef229c3e03; // String |
 
 try {
     api.deleteSr(id);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling SrsApi->deleteSr: $e\n');
 }
 ```
@@ -147,7 +147,7 @@ final String tag = from-rest-api; // String |
 
 try {
     api.deleteSrTag(id, tag);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling SrsApi->deleteSrTag: $e\n');
 }
 ```
@@ -199,7 +199,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.forgetSr(id, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling SrsApi->forgetSr: $e\n');
 }
 ```
@@ -250,7 +250,7 @@ final String id = c4284e12-37c9-7967-b9e8-83ef229c3e03; // String |
 try {
     final response = api.getSr(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling SrsApi->getSr: $e\n');
 }
 ```
@@ -305,7 +305,7 @@ final double limit = 42; // double |
 try {
     final response = api.getSrAlarms(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling SrsApi->getSrAlarms: $e\n');
 }
 ```
@@ -365,7 +365,7 @@ final double limit = 42; // double |
 try {
     final response = api.getSrMessages(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling SrsApi->getSrMessages: $e\n');
 }
 ```
@@ -425,7 +425,7 @@ final double limit = 42; // double |
 try {
     final response = api.getSrTasks(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling SrsApi->getSrTasks: $e\n');
 }
 ```
@@ -484,7 +484,7 @@ final double limit = 42; // double |
 try {
     final response = api.getSrs(fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling SrsApi->getSrs: $e\n');
 }
 ```
@@ -538,7 +538,7 @@ final String tag = from-rest-api; // String |
 
 try {
     api.putSrTag(id, tag);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling SrsApi->putSrTag: $e\n');
 }
 ```
@@ -590,7 +590,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.reclaimSpaceSr(id, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling SrsApi->reclaimSpaceSr: $e\n');
 }
 ```
@@ -642,7 +642,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.scanSr(id, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling SrsApi->scanSr: $e\n');
 }
 ```
@@ -697,7 +697,7 @@ final bool raw = true; // bool |
 try {
     final response = api.srImportVdi(id, body, nameLabel, nameDescription, raw);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling SrsApi->srImportVdi: $e\n');
 }
 ```

@@ -39,7 +39,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PostDeprecatedAuthenticationTokensRequest.JSON_PROPERTY_DESCRIPTION,
   PostDeprecatedAuthenticationTokensRequest.JSON_PROPERTY_EXPIRES_IN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PostDeprecatedAuthenticationTokensRequest {
   public static final String JSON_PROPERTY_CLIENT = "client";
   @javax.annotation.Nullable
@@ -66,14 +66,14 @@ public class PostDeprecatedAuthenticationTokensRequest {
    * @return client
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CLIENT)
+  @JsonProperty(value = JSON_PROPERTY_CLIENT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public PostDeprecatedAuthenticationTokensRequestClient getClient() {
     return client;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CLIENT)
+  @JsonProperty(value = JSON_PROPERTY_CLIENT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setClient(@javax.annotation.Nullable PostDeprecatedAuthenticationTokensRequestClient client) {
     this.client = client;
@@ -90,14 +90,14 @@ public class PostDeprecatedAuthenticationTokensRequest {
    * @return description
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getDescription() {
     return description;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDescription(@javax.annotation.Nullable String description) {
     this.description = description;
@@ -114,14 +114,14 @@ public class PostDeprecatedAuthenticationTokensRequest {
    * @return expiresIn
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_EXPIRES_IN)
+  @JsonProperty(value = JSON_PROPERTY_EXPIRES_IN, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public PostDeprecatedAuthenticationTokensRequestExpiresIn getExpiresIn() {
     return expiresIn;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_EXPIRES_IN)
+  @JsonProperty(value = JSON_PROPERTY_EXPIRES_IN, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setExpiresIn(@javax.annotation.Nullable PostDeprecatedAuthenticationTokensRequestExpiresIn expiresIn) {
     this.expiresIn = expiresIn;
@@ -166,10 +166,7 @@ public class PostDeprecatedAuthenticationTokensRequest {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -211,7 +208,7 @@ public class PostDeprecatedAuthenticationTokensRequest {
 
     // add `description` to the URL query string
     if (getDescription() != null) {
-      joiner.add(String.format("%sdescription%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDescription()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdescription%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDescription()))));
     }
 
     // add `expiresIn` to the URL query string

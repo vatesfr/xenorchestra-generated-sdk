@@ -60,7 +60,7 @@ final CleanRebootHostRequest cleanRebootHostRequest = {"bypassBackupCheck":false
 try {
     final response = api.cleanRebootHost(id, sync_, cleanRebootHostRequest);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling HostsApi->cleanRebootHost: $e\n');
 }
 ```
@@ -114,7 +114,7 @@ final CleanShutdownHostRequest cleanShutdownHostRequest = {"bypassBackupCheck":f
 try {
     final response = api.cleanShutdownHost(id, sync_, cleanShutdownHostRequest);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling HostsApi->cleanShutdownHost: $e\n');
 }
 ```
@@ -166,7 +166,7 @@ final String tag = from-rest-api; // String |
 
 try {
     api.deleteHostTag(id, tag);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling HostsApi->deleteHostTag: $e\n');
 }
 ```
@@ -218,7 +218,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.detachHost(id, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling HostsApi->detachHost: $e\n');
 }
 ```
@@ -271,7 +271,7 @@ final DisableRequest disableRequest = {"evacuate":true,"vmIdsToForceMigrate":["f
 try {
     final response = api.disable(id, sync_, disableRequest);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling HostsApi->disable: $e\n');
 }
 ```
@@ -324,7 +324,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.emergencyShutdownHost(id, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling HostsApi->emergencyShutdownHost: $e\n');
 }
 ```
@@ -376,7 +376,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.enable(id, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling HostsApi->enable: $e\n');
 }
 ```
@@ -428,7 +428,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.forgetHost(id, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling HostsApi->forgetHost: $e\n');
 }
 ```
@@ -478,7 +478,7 @@ final String id = b61a5c92-700e-4966-a13b-00633f03eea8; // String |
 
 try {
     api.getAuditLog(id);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling HostsApi->getAuditLog: $e\n');
 }
 ```
@@ -528,7 +528,7 @@ final String id = b61a5c92-700e-4966-a13b-00633f03eea8; // String |
 try {
     final response = api.getHost(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling HostsApi->getHost: $e\n');
 }
 ```
@@ -583,7 +583,7 @@ final double limit = 42; // double |
 try {
     final response = api.getHostAlarms(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling HostsApi->getHostAlarms: $e\n');
 }
 ```
@@ -637,7 +637,7 @@ final String id = b61a5c92-700e-4966-a13b-00633f03eea8; // String |
 
 try {
     api.getHostLogs(id);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling HostsApi->getHostLogs: $e\n');
 }
 ```
@@ -692,7 +692,7 @@ final double limit = 42; // double |
 try {
     final response = api.getHostMessages(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling HostsApi->getHostMessages: $e\n');
 }
 ```
@@ -748,7 +748,7 @@ final XapiStatsGranularity granularity = ; // XapiStatsGranularity |
 try {
     final response = api.getHostStats(id, granularity);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling HostsApi->getHostStats: $e\n');
 }
 ```
@@ -804,7 +804,7 @@ final double limit = 42; // double |
 try {
     final response = api.getHostTasks(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling HostsApi->getHostTasks: $e\n');
 }
 ```
@@ -863,7 +863,7 @@ final double limit = 42; // double |
 try {
     final response = api.getHosts(fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling HostsApi->getHosts: $e\n');
 }
 ```
@@ -917,7 +917,7 @@ final String id = b61a5c92-700e-4966-a13b-00633f03eea8; // String |
 try {
     final response = api.getMissingPatches(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling HostsApi->getMissingPatches: $e\n');
 }
 ```
@@ -967,7 +967,7 @@ final String id = b61a5c92-700e-4966-a13b-00633f03eea8; // String |
 try {
     final response = api.gethostSmt(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling HostsApi->gethostSmt: $e\n');
 }
 ```
@@ -1019,7 +1019,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.managementReconfigure(id, managementReconfigureRequest, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling HostsApi->managementReconfigure: $e\n');
 }
 ```
@@ -1071,7 +1071,7 @@ final String tag = from-rest-api; // String |
 
 try {
     api.putHostTag(id, tag);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling HostsApi->putHostTag: $e\n');
 }
 ```
@@ -1124,7 +1124,7 @@ final RestartHostToolstackRequest restartHostToolstackRequest = ; // RestartHost
 try {
     final response = api.restartHostToolstack(id, sync_, restartHostToolstackRequest);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling HostsApi->restartHostToolstack: $e\n');
 }
 ```
@@ -1178,7 +1178,7 @@ final SmartRebootHostRequest smartRebootHostRequest = {"bypassBackupCheck":false
 try {
     final response = api.smartRebootHost(id, sync_, smartRebootHostRequest);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling HostsApi->smartRebootHost: $e\n');
 }
 ```
@@ -1231,7 +1231,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.startHost(id, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling HostsApi->startHost: $e\n');
 }
 ```

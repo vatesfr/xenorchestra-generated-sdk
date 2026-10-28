@@ -9,22 +9,22 @@ Name | Type | Description | Notes
 **dollar_pool** | **String** |  | 
 **dollar_pool_id** | **String** |  | 
 **dollar_snapshot_of** | Option<**String**> |  | [optional]
-**vdi_type** | [**models::VdiType**](VDI_TYPE.md) |  | 
+**vdi_type** | [**models::VdiType**](VDITYPE.md) |  | 
 **_xapi_ref** | **String** |  | 
 **cbt_enabled** | Option<**bool**> |  | [optional]
-**current_operations** | [**serde_json::Value**](.md) | Construct a type with a set of properties K of type T | 
+**current_operations** | **serde_json::Value** | Construct a type with a set of properties K of type T | 
 **id** | **String** |  | 
 **image_format** | Option<**String**> |  | [optional]
 **missing** | **bool** |  | 
 **name_description** | **String** |  | 
 **name_label** | **String** |  | 
-**other_config** | [**serde_json::Value**](.md) | Construct a type with a set of properties K of type T | 
+**other_config** | **serde_json::Value** | Construct a type with a set of properties K of type T | 
 **parent** | Option<**String**> |  | [optional]
 **size** | **f64** |  | 
 **snapshot_time** | **f64** |  | 
 **snapshots** | **Vec<String>** |  | 
 **tags** | **Vec<String>** |  | 
-**r#type** | **String** |  | 
+**r#type** | **Type** |  (enum: VDI-snapshot) | 
 **usage** | **f64** |  | 
 **uuid** | **String** |  | 
 

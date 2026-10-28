@@ -37,13 +37,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
@@ -51,7 +51,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import tech.vates.xenorchestra.client.ApiClient;
 import tech.vates.xenorchestra.client.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 @JsonDeserialize(using=CreateActionReturnTypeIdUnbrandXoVm91Id93.CreateActionReturnTypeIdUnbrandXoVm91Id93Deserializer.class)
 @JsonSerialize(using = CreateActionReturnTypeIdUnbrandXoVm91Id93.CreateActionReturnTypeIdUnbrandXoVm91Id93Serializer.class)
 public class CreateActionReturnTypeIdUnbrandXoVm91Id93 extends AbstractOpenApiSchema {
@@ -83,7 +83,7 @@ public class CreateActionReturnTypeIdUnbrandXoVm91Id93 extends AbstractOpenApiSc
 
         @Override
         public CreateActionReturnTypeIdUnbrandXoVm91Id93 deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
-            JsonNode tree = jp.readValueAsTree();
+            JsonNode tree = ctxt.readTree(jp);
 
             Object deserialized = null;
             // deserialize CreateAclV2Privilege201Response
@@ -108,7 +108,7 @@ public class CreateActionReturnTypeIdUnbrandXoVm91Id93 extends AbstractOpenApiSc
                 log.log(Level.FINER, "Input data does not match 'CreateActionReturnTypeIdUnbrandXoVm91Id93'", e);
             }
 
-            throw new IOException(String.format("Failed deserialization for CreateActionReturnTypeIdUnbrandXoVm91Id93: no match found"));
+            throw new IOException("Failed deserialization for CreateActionReturnTypeIdUnbrandXoVm91Id93: no match found");
         }
 
         /**

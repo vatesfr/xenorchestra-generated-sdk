@@ -14223,7 +14223,9 @@ paths:
                           name_label: pbt_test
                           percent: 15.54364515482991
               schema:
-                $ref: "#/components/schemas/PoolDashboard"
+                allOf:
+                - $ref: "#/components/schemas/PoolDashboard"
+                nullable: true
           description: Ok
         "400":
           description: Bad request
@@ -27809,10 +27811,10 @@ components:
       type: string
     BaseCreateNetworkBody:
       example:
-        nbd: true
-        name: name
         description: description
         mtu: 0.8008281904610115
+        name: name
+        nbd: true
       properties:
         description:
           type: string
@@ -27950,9 +27952,9 @@ components:
         - hostId
         type: object
       example:
-        size: 0.8008281904610115
         SR_type: cephfs
         hostId: hostId
+        size: 0.8008281904610115
     CreateVdiBody:
       allOf:
       - $ref: "#/components/schemas/Omit_CreateVdiParams_91_0_93_.SR-or-other_config_"
@@ -27974,8 +27976,8 @@ components:
       example:
         other_config:
           key: other_config
-        sm_config: {}
         srId: srId
+        sm_config: {}
     CreateVifBody:
       allOf:
       - $ref: "#/components/schemas/Omit_CreateVifParams_91_0_93_.network-or-VM-or-other_config-or-qos_algorithm_params_"
@@ -28003,13 +28005,13 @@ components:
         - vmId
         type: object
       example:
+        MAC: MAC
+        networkId: networkId
         other_config:
           key: other_config
-        vmId: vmId
-        networkId: networkId
         qos_algorithm_params:
           key: qos_algorithm_params
-        MAC: MAC
+        vmId: vmId
     DOMAIN_TYPE:
       enum:
       - hvm
@@ -28076,12 +28078,12 @@ components:
     InsertableXoServer:
       additionalProperties: false
       example:
-        password: password
-        httpProxy: httpProxy
-        host: host
         allowUnauthorized: true
-        readOnly: true
+        host: host
+        httpProxy: httpProxy
         label: label
+        password: password
+        readOnly: true
         username: username
       properties:
         allowUnauthorized:
@@ -28120,16 +28122,16 @@ components:
             type: boolean
         type: object
       example:
+        other:
+          size:
+            available: 0.8008281904610115
+            backups: 6.027456183070403
+            other: 1.4658129805029452
+            total: 5.962133916683182
+            used: 5.637376656633329
         s3:
           size:
             backups: 2.3021358869347655
-        other:
-          size:
-            other: 1.4658129805029452
-            total: 5.962133916683182
-            available: 0.8008281904610115
-            used: 5.637376656633329
-            backups: 6.027456183070403
         isExpired: true
     IsMaybeExpired_DashboardBackupsInfo_:
       allOf:
@@ -28140,31 +28142,31 @@ components:
             type: boolean
         type: object
       example:
+        issues:
+        - logs:
+          - failure
+          - failure
+          name: name
+          type: backup
+          uuid: uuid
+        - logs:
+          - failure
+          - failure
+          name: name
+          type: backup
+          uuid: uuid
         jobs:
-          total: 7.386281948385884
           disabled: 7.061401241503109
-          noRecentRun: 3.616076749251911
           failed: 9.301444243932576
+          noRecentRun: 3.616076749251911
           skipped: 2.027123023002322
           successful: 4.145608029883936
+          total: 7.386281948385884
         vmsProtection:
-          protected: 1.0246457001441578
           notInJob: 1.2315135367772556
+          protected: 1.0246457001441578
           unprotected: 1.4894159098541704
         isExpired: true
-        issues:
-        - name: name
-          type: backup
-          logs:
-          - failure
-          - failure
-          uuid: uuid
-        - name: name
-          type: backup
-          logs:
-          - failure
-          - failure
-          uuid: uuid
     IsMaybeExpired_IsEmptyData_:
       allOf:
       - $ref: "#/components/schemas/IsEmptyData"
@@ -28185,13 +28187,13 @@ components:
       type: object
     MissingPatchesInfo:
       example:
-        nHostsEol: 9.369310271410669
-        nHostsWithMissingPatches: 8.762042012749001
-        nHosts: 9.965781217890562
-        nPoolsWithMissingPatches: 6.438423552598547
-        nHostsFailed: 6.683562403749608
-        nPools: 9.018348186070783
         hasAuthorization: true
+        nHosts: 9.965781217890562
+        nHostsEol: 9.369310271410669
+        nHostsFailed: 6.683562403749608
+        nHostsWithMissingPatches: 8.762042012749001
+        nPools: 9.018348186070783
+        nPoolsWithMissingPatches: 6.438423552598547
       properties:
         hasAuthorization:
           nullable: false
@@ -29363,55 +29365,55 @@ components:
     Partial_Record_VM_OPERATIONS.boolean-or-string-or-null__:
       description: Make all properties in T optional
       example:
-        checkpoint: null
-        send_sysrq: null
-        update_allowed_operations: null
-        create_template: null
-        csvm: null
-        create_vtpm: null
-        changing_static_range: null
-        make_into_template: null
-        hard_reboot: null
-        changing_VCPUs_live: null
         assert_operation_valid: Partial_Record_VM_OPERATIONS_boolean_or_string_or_null___assert_operation_valid
-        export: null
-        start_on: null
-        suspend: null
-        resume_on: null
-        changing_memory_live: null
-        clean_shutdown: null
-        destroy: null
-        revert: null
-        pause: null
+        awaiting_memory_live: null
+        call_plugin: null
+        changing_NVRAM: null
+        changing_VCPUs: null
+        changing_VCPUs_live: null
         changing_dynamic_range: null
-        pool_migrate: null
-        send_trigger: null
-        provision: null
+        changing_memory_limits: null
+        changing_memory_live: null
+        changing_shadow_memory: null
+        changing_shadow_memory_live: null
+        changing_static_range: null
+        checkpoint: null
+        clean_reboot: null
+        clean_shutdown: null
+        clone: null
+        copy: null
+        create_template: null
+        create_vtpm: null
+        csvm: null
+        data_source_op: null
+        destroy: null
+        export: null
         get_boot_record: null
+        hard_reboot: null
+        hard_shutdown: null
+        import: null
+        make_into_template: null
+        metadata_export: null
+        migrate_send: null
+        pause: null
+        pool_migrate: null
+        power_state_reset: null
+        provision: null
+        query_services: null
+        resume: null
+        resume_on: null
+        revert: null
         reverting: null
-        unpause: null
+        send_sysrq: null
+        send_trigger: null
         shutdown: null
         snapshot: null
-        changing_NVRAM: null
-        changing_shadow_memory: null
-        data_source_op: null
-        import: null
         snapshot_with_quiesce: null
-        changing_shadow_memory_live: null
-        power_state_reset: null
-        clean_reboot: null
-        copy: null
-        resume: null
-        changing_VCPUs: null
         start: null
-        call_plugin: null
-        query_services: null
-        hard_shutdown: null
-        metadata_export: null
-        clone: null
-        migrate_send: null
-        awaiting_memory_live: null
-        changing_memory_limits: null
+        start_on: null
+        suspend: null
+        unpause: null
+        update_allowed_operations: null
       properties:
         assert_operation_valid:
           $ref: "#/components/schemas/Partial_Record_VM_OPERATIONS_boolean_or_string_or_null___assert_operation_valid"
@@ -31844,80 +31846,6 @@ components:
       - timestamp
       type: object
     PoolDashboard:
-      example:
-        cpuProvisioning:
-          total: 1.4658129805029452
-          assigned: 0.8008281904610115
-          percent: 6.027456183070403
-        srs:
-          topFiveUsage:
-          - size: 1.0246457001441578
-            id: id
-            physical_usage: 1.2315135367772556
-            percent: 7.386281948385884
-            name_label: name_label
-          - size: 1.0246457001441578
-            id: id
-            physical_usage: 1.2315135367772556
-            percent: 7.386281948385884
-            name_label: name_label
-        hosts:
-          missingPatches:
-            hasAuthorization: true
-          topFiveUsage:
-            cpu:
-            - id: id
-              percent: 9.301444243932576
-              name_label: name_label
-            - id: id
-              percent: 9.301444243932576
-              name_label: name_label
-            ram:
-            - size: 2.027123023002322
-              usage: 4.145608029883936
-              id: id
-              percent: 3.616076749251911
-              name_label: name_label
-            - size: 2.027123023002322
-              usage: 4.145608029883936
-              id: id
-              percent: 3.616076749251911
-              name_label: name_label
-          status:
-            running: 2.3021358869347655
-            halted: 5.637376656633329
-            total: 7.061401241503109
-            disabled: 5.962133916683182
-        alarms:
-        - alarms
-        - alarms
-        vms:
-          topFiveUsage:
-            cpu:
-            - id: id
-              percent: 9.301444243932576
-              name_label: name_label
-            - id: id
-              percent: 9.301444243932576
-              name_label: name_label
-            isExpired: true
-            ram:
-            - memory: 5.025004791520295
-              memoryFree: 9.965781217890562
-              id: id
-              percent: 9.369310271410669
-              name_label: name_label
-            - memory: 5.025004791520295
-              memoryFree: 9.965781217890562
-              id: id
-              percent: 9.369310271410669
-              name_label: name_label
-          status:
-            running: 7.457744773683766
-            halted: 1.4894159098541704
-            paused: 6.84685269835264
-            total: 4.965218492984954
-            suspended: 1.1730742509559433
       properties:
         alarms:
           items:
@@ -32407,11 +32335,11 @@ components:
     SrSizeInfo:
       example:
         size:
-          other: 0.8851374739011653
-          total: 6.519180951018382
           available: 7.143538047012306
-          used: 0.10263654006109402
+          other: 0.8851374739011653
           replicated: 7.058770351582356
+          total: 6.519180951018382
+          used: 0.10263654006109402
       properties:
         size:
           $ref: "#/components/schemas/SrSizeInfo_size"
@@ -32426,12 +32354,12 @@ components:
       type: array
     UnbrandAnyPrivilegeVariantAclPrivilege:
       example:
+        action: update
+        effect: allow
+        id: id
         resource: acl-privilege
         roleId: roleId
-        effect: allow
-        action: update
         selector: selector
-        id: id
       properties:
         action:
           enum:
@@ -36107,21 +36035,21 @@ components:
       - $ref: "#/components/schemas/UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleIdVariantVtpm"
     Unbrand_UnbrandedXoMetadataBackupJob_:
       example:
+        id: id
+        name: name
+        pools: ""
         proxy: proxy
+        remotes: ""
         settings:
-          reportWhen: always
-          hideSuccessfulItems: true
           backupReportTpl: compactMjml
+          hideSuccessfulItems: true
           reportRecipients:
           - reportRecipients
           - reportRecipients
-        xoMetadata: true
-        name: name
-        pools: ""
-        remotes: ""
-        id: id
+          reportWhen: always
         type: metadataBackup
         userId: userId
+        xoMetadata: true
       properties:
         id:
           type: string
@@ -36151,23 +36079,23 @@ components:
       type: object
     Unbrand_UnbrandedXoMirrorBackupJob_:
       example:
+        id: id
         mode: full
+        name: name
         proxy: proxy
+        remotes: ""
         settings:
-          reportWhen: failure
-          hideSuccessfulItems: true
           backupReportTpl: compactMjml
+          hideSuccessfulItems: true
           reportRecipients:
           - reportRecipients
           - reportRecipients
+          reportWhen: failure
+          concurrency: 0.8008281904610115
+          maxExportRate: 6.027456183070403
           mergeBackupsSynchronously: true
           nRetriesVmBackupFailures: 1.4658129805029452
-          maxExportRate: 6.027456183070403
           timeout: 5.962133916683182
-          concurrency: 0.8008281904610115
-        name: name
-        remotes: ""
-        id: id
         sourceRemote: sourceRemote
         type: mirrorBackup
       properties:
@@ -36202,49 +36130,49 @@ components:
       type: object
     Unbrand_UnbrandedXoVmBackupJob_:
       example:
+        compression: ""
+        id: id
         mode: full
+        name: name
         proxy: proxy
+        remotes: ""
         settings:
-          nbdConcurrency: 5.637376656633329
-          hideSuccessfulItems: true
-          offlineBackup: true
-          longTermRetention:
-            daily:
-              settings:
-                key: ""
-              retention: 6.027456183070403
-            monthly:
-              settings:
-                key: ""
-              retention: 6.027456183070403
-            yearly:
-              settings:
-                key: ""
-              retention: 6.027456183070403
-            weekly:
-              settings:
-                key: ""
-              retention: 6.027456183070403
-          timezone: timezone
           backupReportTpl: compactMjml
-          mergeBackupsSynchronously: true
-          maxExportRate: 1.4658129805029452
-          cbtDestroySnapshotData: true
-          timeout: 2.3021358869347655
-          concurrency: 0.8008281904610115
-          reportWhen: always
+          hideSuccessfulItems: true
           reportRecipients:
           - reportRecipients
           - reportRecipients
-          nRetriesVmBackupFailures: 5.962133916683182
-          preferNbd: true
+          reportWhen: always
+          cbtDestroySnapshotData: true
           checkpointSnapshot: true
+          concurrency: 0.8008281904610115
+          longTermRetention:
+            daily:
+              retention: 6.027456183070403
+              settings:
+                key: ""
+            monthly:
+              retention: 6.027456183070403
+              settings:
+                key: ""
+            weekly:
+              retention: 6.027456183070403
+              settings:
+                key: ""
+            yearly:
+              retention: 6.027456183070403
+              settings:
+                key: ""
+          maxExportRate: 1.4658129805029452
+          mergeBackupsSynchronously: true
+          nRetriesVmBackupFailures: 5.962133916683182
+          nbdConcurrency: 5.637376656633329
+          offlineBackup: true
           offlineSnapshot: true
+          preferNbd: true
+          timeout: 2.3021358869347655
+          timezone: timezone
         srs: ""
-        name: name
-        remotes: ""
-        id: id
-        compression: ""
         type: backup
         vms: ""
       properties:
@@ -36299,9 +36227,9 @@ components:
       type: object
     Unbrand_VmDashboardBackupArchive_:
       example:
-        size: 0.8008281904610115
         backupRepository: backupRepository
         id: id
+        size: 0.8008281904610115
         timestamp: 6.027456183070403
       properties:
         backupRepository:
@@ -36344,21 +36272,21 @@ components:
       - $ref: "#/components/schemas/Unbrand_XoAclRole__anyOf_1"
     Unbrand_XoAlarm_:
       example:
+        $pool: $pool
         $poolId: $poolId
-        name: name
-        id: id
-        time: 0.8008281904610115
+        _xapiRef: _xapiRef
         body:
           name: name
           value: value
-        type: message
-        uuid: uuid
-        _xapiRef: _xapiRef
-        $pool: $pool
+        id: id
+        name: name
         object:
           href: href
           type: pool
           uuid: uuid
+        time: 0.8008281904610115
+        type: message
+        uuid: uuid
       properties:
         $pool:
           type: string
@@ -36399,14 +36327,14 @@ components:
       type: object
     Unbrand_XoAuthenticationToken_:
       example:
-        last_uses: "{}"
-        user_id: user_id
         client:
           id: id
         created_at: 0.8008281904610115
         description: description
         expiration: 6.027456183070403
         id: id
+        last_uses: "{}"
+        user_id: user_id
       properties:
         client:
           $ref: "#/components/schemas/Unbrand_XoAuthenticationToken__client"
@@ -36434,28 +36362,20 @@ components:
     Unbrand_XoBackupLog_:
       additionalProperties: {}
       example:
-        jobId: jobId
-        start: 6.027456183070403
         end: 0.8008281904610115
         id: id
-        message: backup
         infos:
         - data: ""
           message: message
         - data: ""
           message: message
+        jobId: jobId
+        message: backup
+        start: 6.027456183070403
+        status: failure
         tasks:
         - abortionRequestedAt: 1.4658129805029452
           data: "{}"
-          warnings:
-          - data: ""
-            message: message
-          - data: ""
-            message: message
-          start: 7.061401241503109
-          result:
-            key: ""
-          progress: 5.637376656633329
           end: 5.962133916683182
           id:
             undefined: task
@@ -36464,32 +36384,32 @@ components:
             message: message
           - data: ""
             message: message
+          progress: 5.637376656633329
           properties:
             method: method
             name: name
-            progress: 2.3021358869347655
-            params:
-              key: ""
-            type: type
-            userId: userId
             objectId: objectId
             objectType: pool
+            params:
+              key: ""
+            progress: 2.3021358869347655
+            type: type
+            userId: userId
+          result:
+            key: ""
+          start: 7.061401241503109
+          status: failure
           tasks:
           - null
           - null
-          status: failure
           updatedAt: 9.301444243932576
+          warnings:
+          - data: ""
+            message: message
+          - data: ""
+            message: message
         - abortionRequestedAt: 1.4658129805029452
           data: "{}"
-          warnings:
-          - data: ""
-            message: message
-          - data: ""
-            message: message
-          start: 7.061401241503109
-          result:
-            key: ""
-          progress: 5.637376656633329
           end: 5.962133916683182
           id:
             undefined: task
@@ -36498,22 +36418,30 @@ components:
             message: message
           - data: ""
             message: message
+          progress: 5.637376656633329
           properties:
             method: method
             name: name
-            progress: 2.3021358869347655
-            params:
-              key: ""
-            type: type
-            userId: userId
             objectId: objectId
             objectType: pool
+            params:
+              key: ""
+            progress: 2.3021358869347655
+            type: type
+            userId: userId
+          result:
+            key: ""
+          start: 7.061401241503109
+          status: failure
           tasks:
           - null
           - null
-          status: failure
           updatedAt: 9.301444243932576
-        status: failure
+          warnings:
+          - data: ""
+            message: message
+          - data: ""
+            message: message
       properties:
         end:
           format: double
@@ -36554,20 +36482,20 @@ components:
       type: object
     Unbrand_XoBackupRepository_:
       example:
-        proxy: proxy
-        name: name
-        options: options
         benchmarks:
-        - writeRate: 1.4658129805029452
-          readRate: 0.8008281904610115
+        - readRate: 0.8008281904610115
           timestamp: 6.027456183070403
-        - writeRate: 1.4658129805029452
-          readRate: 0.8008281904610115
+          writeRate: 1.4658129805029452
+        - readRate: 0.8008281904610115
           timestamp: 6.027456183070403
-        id: id
+          writeRate: 1.4658129805029452
+        enabled: true
         error:
           key: ""
-        enabled: true
+        id: id
+        name: name
+        options: options
+        proxy: proxy
         url: url
       properties:
         benchmarks:
@@ -36599,13 +36527,13 @@ components:
       type: object
     Unbrand_XoGroup_:
       example:
-        providerGroupId: providerGroupId
-        provider: provider
-        name: name
         aclRoleIds:
         - aclRoleIds
         - aclRoleIds
         id: id
+        name: name
+        provider: provider
+        providerGroupId: providerGroupId
         users:
         - users
         - users
@@ -36634,104 +36562,104 @@ components:
       type: object
     Unbrand_XoHost_:
       example:
-        $PCIs:
-        - $PCIs
-        - $PCIs
-        rebootRequired: true
-        PIFs:
-        - PIFs
-        - PIFs
-        memory:
-          total: 7.061401241503109
-          size: 2.3021358869347655
-          usage: 9.301444243932576
-        productBrand: productBrand
-        license_expiry: 5.637376656633329
-        iscsiIqn: iscsiIqn
-        type: host
-        otherConfig: "{}"
-        uuid: uuid
-        _xapiRef: _xapiRef
-        enabled: true
-        license_server: "{}"
-        controlDomain: controlDomain
-        hostname: hostname
-        multipathing: true
-        current_operations: "{}"
-        powerOnMode: powerOnMode
-        zstdSupported: true
-        PCIs:
-        - PCIs
-        - PCIs
-        name_description: name_description
-        startTime: 3.616076749251911
-        id: id
-        residentVms:
-        - residentVms
-        - residentVms
-        agentStartTime: 0.8008281904610115
-        address: address
-        $PGPUs:
-        - $PGPUs
-        - $PGPUs
-        bios_strings: "{}"
         $PBDs:
         - $PBDs
         - $PBDs
-        cpus:
-          cores: 1.4658129805029452
-          sockets: 5.962133916683182
-        patches:
-        - patches
-        - patches
+        $PCIs:
+        - $PCIs
+        - $PCIs
+        $PGPUs:
+        - $PGPUs
+        - $PGPUs
         $PIFs:
         - $PIFs
         - $PIFs
-        hvmCapable: true
-        power_state: Halted
-        version: version
-        name_label: name_label
         $pool: $pool
-        tags:
-        - tags
-        - tags
-        chipset_info:
-          iommu: true
         $poolId: $poolId
-        certificates:
-        - notAfter: 6.027456183070403
-          fingerprint: fingerprint
-        - notAfter: 6.027456183070403
-          fingerprint: fingerprint
-        build: build
-        supplementalPacks:
-        - size: 2.027123023002322
-          guidance: guidance
-          author: author
-          hosts:
-          - undefined: host
-          - undefined: host
-          name: name
-          description: description
-          vdi:
-            undefined: VDI
-          version: version
-        - size: 2.027123023002322
-          guidance: guidance
-          author: author
-          hosts:
-          - undefined: host
-          - undefined: host
-          name: name
-          description: description
-          vdi:
-            undefined: VDI
-          version: version
-        logging: "{}"
-        license_params: "{}"
+        PCIs:
+        - PCIs
+        - PCIs
         PGPUs:
         - PGPUs
         - PGPUs
+        PIFs:
+        - PIFs
+        - PIFs
+        _xapiRef: _xapiRef
+        address: address
+        agentStartTime: 0.8008281904610115
+        bios_strings: "{}"
+        build: build
+        certificates:
+        - fingerprint: fingerprint
+          notAfter: 6.027456183070403
+        - fingerprint: fingerprint
+          notAfter: 6.027456183070403
+        chipset_info:
+          iommu: true
+        controlDomain: controlDomain
+        cpus:
+          cores: 1.4658129805029452
+          sockets: 5.962133916683182
+        current_operations: "{}"
+        enabled: true
+        hostname: hostname
+        hvmCapable: true
+        id: id
+        iscsiIqn: iscsiIqn
+        license_expiry: 5.637376656633329
+        license_params: "{}"
+        license_server: "{}"
+        logging: "{}"
+        memory:
+          size: 2.3021358869347655
+          total: 7.061401241503109
+          usage: 9.301444243932576
+        multipathing: true
+        name_description: name_description
+        name_label: name_label
+        otherConfig: "{}"
+        patches:
+        - patches
+        - patches
+        powerOnMode: powerOnMode
+        power_state: Halted
+        productBrand: productBrand
+        rebootRequired: true
+        residentVms:
+        - residentVms
+        - residentVms
+        startTime: 3.616076749251911
+        supplementalPacks:
+        - author: author
+          description: description
+          guidance: guidance
+          hosts:
+          - undefined: host
+          - undefined: host
+          name: name
+          size: 2.027123023002322
+          vdi:
+            undefined: VDI
+          version: version
+        - author: author
+          description: description
+          guidance: guidance
+          hosts:
+          - undefined: host
+          - undefined: host
+          name: name
+          size: 2.027123023002322
+          vdi:
+            undefined: VDI
+          version: version
+        tags:
+        - tags
+        - tags
+        type: host
+        uuid: uuid
+        version: version
+        zstdSupported: true
       properties:
         $PBDs:
           items:
@@ -36925,15 +36853,15 @@ components:
     Unbrand_XoMessage_:
       example:
         $object: $object
+        $pool: $pool
         $poolId: $poolId
-        name: name
-        id: id
-        time: 0.8008281904610115
+        _xapiRef: _xapiRef
         body: body
+        id: id
+        name: name
+        time: 0.8008281904610115
         type: message
         uuid: uuid
-        _xapiRef: _xapiRef
-        $pool: $pool
       properties:
         $object:
           type: string
@@ -36977,32 +36905,32 @@ components:
       type: object
     Unbrand_XoNetwork_:
       example:
-        insecureNbd: true
+        $pool: $pool
+        $poolId: $poolId
+        MTU: 0.8008281904610115
         PIFs:
         - PIFs
         - PIFs
-        other_config: "{}"
         VIFs:
         - VIFs
         - VIFs
-        automatic: true
-        type: network
-        uuid: uuid
         _xapiRef: _xapiRef
+        automatic: true
+        bridge: bridge
+        current_operations: "{}"
         defaultIsLocked: true
+        id: id
+        insecureNbd: true
+        isBonded: true
+        name_description: name_description
         name_label: name_label
-        $pool: $pool
-        MTU: 0.8008281904610115
+        nbd: true
+        other_config: "{}"
         tags:
         - tags
         - tags
-        nbd: true
-        current_operations: "{}"
-        $poolId: $poolId
-        name_description: name_description
-        bridge: bridge
-        id: id
-        isBonded: true
+        type: network
+        uuid: uuid
       properties:
         $pool:
           type: string
@@ -37082,17 +37010,17 @@ components:
       type: object
     Unbrand_XoPbd_:
       example:
-        device_config: {}
+        $pool: $pool
         $poolId: $poolId
+        SR: SR
+        _xapiRef: _xapiRef
         attached: true
+        device_config: {}
         host: host
         id: id
-        type: PBD
         otherConfig: {}
+        type: PBD
         uuid: uuid
-        _xapiRef: _xapiRef
-        $pool: $pool
-        SR: SR
       properties:
         $pool:
           type: string
@@ -37139,15 +37067,15 @@ components:
     Unbrand_XoPci_:
       example:
         $host: $host
-        device_name: device_name
-        $poolId: $poolId
-        pci_id: pci_id
-        id: id
-        type: PCI
-        class_name: class_name
-        uuid: uuid
-        _xapiRef: _xapiRef
         $pool: $pool
+        $poolId: $poolId
+        _xapiRef: _xapiRef
+        class_name: class_name
+        device_name: device_name
+        id: id
+        pci_id: pci_id
+        type: PCI
+        uuid: uuid
       properties:
         $host:
           type: string
@@ -37187,30 +37115,30 @@ components:
     Unbrand_XoPgpu_:
       example:
         $host: $host
-        supportedVgpuTypes:
-        - supportedVgpuTypes
-        - supportedVgpuTypes
+        $pool: $pool
+        $poolId: $poolId
         $vgpus:
         - $vgpus
         - $vgpus
-        dom0Access: disabled
-        gpuGroup: gpuGroup
-        supportedVgpuMaxCapcities: supportedVgpuMaxCapcities
-        type: PGPU
-        uuid: uuid
         _xapiRef: _xapiRef
-        $pool: $pool
+        dom0Access: disabled
         enabledVgpuTypes:
         - enabledVgpuTypes
         - enabledVgpuTypes
-        vgpus:
-        - vgpus
-        - vgpus
-        $poolId: $poolId
-        pci: pci
+        gpuGroup: gpuGroup
         host: host
         id: id
         isSystemDisplayDevice: true
+        pci: pci
+        supportedVgpuMaxCapcities: supportedVgpuMaxCapcities
+        supportedVgpuTypes:
+        - supportedVgpuTypes
+        - supportedVgpuTypes
+        type: PGPU
+        uuid: uuid
+        vgpus:
+        - vgpus
+        - vgpus
       properties:
         $host:
           type: string
@@ -37277,41 +37205,41 @@ components:
       type: object
     Unbrand_XoPif_:
       example:
-        $network: $network
-        type: PIF
-        deviceName: deviceName
-        uuid: uuid
-        _xapiRef: _xapiRef
-        mac: mac
-        speed: 6.027456183070403
-        primaryAddressType: IPv4
-        mode: DHCP
-        vlan: 1.4658129805029452
-        netmask: netmask
-        ipv6:
-        - ipv6
-        - ipv6
-        isBondMaster: true
-        id: id
-        physical: true
         $host: $host
-        isBondSlave: true
+        $network: $network
+        $pool: $pool
+        $poolId: $poolId
+        _xapiRef: _xapiRef
+        attached: true
+        bondMaster: bondMaster
         bondSlaves:
         - undefined: PIF
         - undefined: PIF
-        disallowUnplug: true
-        ipv6Mode: DHCP
-        ip: ip
-        dns: dns
-        bondMaster: bondMaster
-        $pool: $pool
-        mtu: 0.8008281904610115
         carrier: true
-        $poolId: $poolId
-        management: true
-        attached: true
         device: device
+        deviceName: deviceName
+        disallowUnplug: true
+        dns: dns
         gateway: gateway
+        id: id
+        ip: ip
+        ipv6:
+        - ipv6
+        - ipv6
+        ipv6Mode: DHCP
+        isBondMaster: true
+        isBondSlave: true
+        mac: mac
+        management: true
+        mode: DHCP
+        mtu: 0.8008281904610115
+        netmask: netmask
+        physical: true
+        primaryAddressType: IPv4
+        speed: 6.027456183070403
+        type: PIF
+        uuid: uuid
+        vlan: 1.4658129805029452
       properties:
         $host:
           type: string
@@ -37417,36 +37345,36 @@ components:
       type: object
     Unbrand_XoPool_:
       example:
-        haRebootVmOnInternalShutdown: true
+        $pool: $pool
+        $poolId: $poolId
+        HA_enabled: true
+        _xapiRef: _xapiRef
+        auto_poweron: true
         cpus:
           cores: 1.4658129805029452
           sockets: 5.962133916683182
-        vtpmSupported: true
         crashDumpSr: crashDumpSr
-        migrationCompression: true
-        auto_poweron: true
-        type: pool
-        otherConfig: {}
-        uuid: uuid
-        _xapiRef: _xapiRef
-        default_SR: default_SR
-        name_label: name_label
-        suspendSr: suspendSr
-        $pool: $pool
-        master: master
-        tags:
-        - tags
-        - tags
         current_operations: "{}"
-        $poolId: $poolId
-        platform_version: platform_version
-        zstdSupported: true
-        name_description: name_description
-        id: id
-        HA_enabled: true
+        default_SR: default_SR
+        haRebootVmOnInternalShutdown: true
         haSrs:
         - haSrs
         - haSrs
+        id: id
+        master: master
+        migrationCompression: true
+        name_description: name_description
+        name_label: name_label
+        otherConfig: {}
+        platform_version: platform_version
+        suspendSr: suspendSr
+        tags:
+        - tags
+        - tags
+        type: pool
+        uuid: uuid
+        vtpmSupported: true
+        zstdSupported: true
       properties:
         $pool:
           type: string
@@ -37540,12 +37468,12 @@ components:
       additionalProperties: {}
       example:
         id: id
-        message: restore
         infos:
         - data: ""
           message: message
         - data: ""
           message: message
+        message: restore
       properties:
         id:
           type: string
@@ -37565,11 +37493,11 @@ components:
     Unbrand_XoSchedule_:
       example:
         cron: cron
-        jobId: jobId
-        timezone: timezone
-        name: name
-        id: id
         enabled: true
+        id: id
+        jobId: jobId
+        name: name
+        timezone: timezone
       properties:
         cron:
           type: string
@@ -37591,19 +37519,19 @@ components:
       type: object
     Unbrand_XoServer_:
       example:
-        httpProxy: httpProxy
         allowUnauthorized: true
+        enabled: true
+        error:
+          key: ""
+        host: host
+        httpProxy: httpProxy
+        id: id
+        label: label
+        master: master
+        poolId: poolId
         poolNameDescription: poolNameDescription
         poolNameLabel: poolNameLabel
         readOnly: true
-        label: label
-        error:
-          key: ""
-        enabled: true
-        master: master
-        host: host
-        poolId: poolId
-        id: id
         status: connected
         username: username
       properties:
@@ -37653,8 +37581,16 @@ components:
       type: object
     Unbrand_XoSm_:
       example:
+        $pool: $pool
+        $poolId: $poolId
         SM_type: SM_type
+        _xapiRef: _xapiRef
         configuration: {}
+        driver_filename: driver_filename
+        features: "{}"
+        id: id
+        name_description: name_description
+        name_label: name_label
         required_cluster_stack:
         - required_cluster_stack
         - required_cluster_stack
@@ -37663,15 +37599,7 @@ components:
         - supported_image_formats
         type: SM
         uuid: uuid
-        _xapiRef: _xapiRef
-        name_label: name_label
-        $pool: $pool
-        features: "{}"
-        $poolId: $poolId
         vendor: vendor
-        name_description: name_description
-        id: id
-        driver_filename: driver_filename
       properties:
         $pool:
           type: string
@@ -37735,35 +37663,35 @@ components:
       type: object
     Unbrand_XoSr_:
       example:
-        shared: true
-        other_config: {}
         $PBDs:
         - $PBDs
         - $PBDs
-        usage: 1.4658129805029452
         $container: $container
-        inMaintenanceMode: true
-        sm_config: {}
-        type: SR
-        uuid: uuid
-        _xapiRef: _xapiRef
-        allocationStrategy: unknown
-        name_label: name_label
         $pool: $pool
-        tags:
-        - tags
-        - tags
+        $poolId: $poolId
+        SR_type: iso
         VDIs:
         - VDIs
         - VDIs
-        current_operations: "{}"
-        $poolId: $poolId
+        _xapiRef: _xapiRef
+        allocationStrategy: unknown
         content_type: user
-        size: 6.027456183070403
-        SR_type: iso
-        name_description: name_description
+        current_operations: "{}"
         id: id
+        inMaintenanceMode: true
+        name_description: name_description
+        name_label: name_label
+        other_config: {}
         physical_usage: 0.8008281904610115
+        shared: true
+        size: 6.027456183070403
+        sm_config: {}
+        tags:
+        - tags
+        - tags
+        type: SR
+        usage: 1.4658129805029452
+        uuid: uuid
       properties:
         $PBDs:
           items:
@@ -37889,15 +37817,6 @@ components:
       example:
         abortionRequestedAt: 0.8008281904610115
         data: {}
-        warnings:
-        - data: ""
-          message: message
-        - data: ""
-          message: message
-        start: 5.637376656633329
-        result:
-          key: ""
-        progress: 1.4658129805029452
         end: 6.027456183070403
         id: id
         infos:
@@ -37905,28 +37824,24 @@ components:
           message: message
         - data: ""
           message: message
+        progress: 1.4658129805029452
         properties:
           method: method
           name: name
-          progress: 5.962133916683182
-          params:
-            key: ""
-          type: type
-          userId: userId
           objectId: objectId
           objectType: backup
+          params:
+            key: ""
+          progress: 5.962133916683182
+          type: type
+          userId: userId
+        result:
+          key: ""
+        start: 5.637376656633329
+        status: failure
         tasks:
         - abortionRequestedAt: 1.4658129805029452
           data: "{}"
-          warnings:
-          - data: ""
-            message: message
-          - data: ""
-            message: message
-          start: 7.061401241503109
-          result:
-            key: ""
-          progress: 5.637376656633329
           end: 5.962133916683182
           id:
             undefined: task
@@ -37935,32 +37850,32 @@ components:
             message: message
           - data: ""
             message: message
+          progress: 5.637376656633329
           properties:
             method: method
             name: name
-            progress: 2.3021358869347655
-            params:
-              key: ""
-            type: type
-            userId: userId
             objectId: objectId
             objectType: pool
+            params:
+              key: ""
+            progress: 2.3021358869347655
+            type: type
+            userId: userId
+          result:
+            key: ""
+          start: 7.061401241503109
+          status: failure
           tasks:
           - null
           - null
-          status: failure
           updatedAt: 9.301444243932576
+          warnings:
+          - data: ""
+            message: message
+          - data: ""
+            message: message
         - abortionRequestedAt: 1.4658129805029452
           data: "{}"
-          warnings:
-          - data: ""
-            message: message
-          - data: ""
-            message: message
-          start: 7.061401241503109
-          result:
-            key: ""
-          progress: 5.637376656633329
           end: 5.962133916683182
           id:
             undefined: task
@@ -37969,23 +37884,36 @@ components:
             message: message
           - data: ""
             message: message
+          progress: 5.637376656633329
           properties:
             method: method
             name: name
-            progress: 2.3021358869347655
-            params:
-              key: ""
-            type: type
-            userId: userId
             objectId: objectId
             objectType: pool
+            params:
+              key: ""
+            progress: 2.3021358869347655
+            type: type
+            userId: userId
+          result:
+            key: ""
+          start: 7.061401241503109
+          status: failure
           tasks:
           - null
           - null
-          status: failure
           updatedAt: 9.301444243932576
-        status: failure
+          warnings:
+          - data: ""
+            message: message
+          - data: ""
+            message: message
         updatedAt: 2.3021358869347655
+        warnings:
+        - data: ""
+          message: message
+        - data: ""
+          message: message
       properties:
         abortionRequestedAt:
           format: double
@@ -38043,16 +37971,16 @@ components:
       type: object
     Unbrand_XoUser_:
       example:
-        pw_hash: pw_hash
         authProviders: {}
-        preferences: {}
-        name: name
+        email: email
         groups:
         - groups
         - groups
-        permission: none
         id: id
-        email: email
+        name: name
+        permission: none
+        preferences: {}
+        pw_hash: pw_hash
       properties:
         authProviders:
           description: Construct a type with a set of properties K of type T
@@ -38090,20 +38018,20 @@ components:
       type: object
     Unbrand_XoVbd_:
       example:
-        is_cd_drive: true
-        type: VBD
-        bootable: true
-        uuid: uuid
-        _xapiRef: _xapiRef
         $pool: $pool
         $poolId: $poolId
-        read_only: true
-        VM: VM
-        attached: true
         VDI: VDI
-        id: id
-        position: position
+        VM: VM
+        _xapiRef: _xapiRef
+        attached: true
+        bootable: true
         device: device
+        id: id
+        is_cd_drive: true
+        position: position
+        read_only: true
+        type: VBD
+        uuid: uuid
       properties:
         $pool:
           type: string
@@ -38155,35 +38083,35 @@ components:
       type: object
     Unbrand_XoVdiSnapshot_:
       example:
-        $snapshot_of: $snapshot_of
-        parent: parent
-        snapshot_time: 6.027456183070403
         $SR: $SR
-        other_config: {}
-        usage: 1.4658129805029452
-        type: VDI-snapshot
-        uuid: uuid
-        _xapiRef: _xapiRef
-        name_label: name_label
-        $pool: $pool
-        tags:
-        - tags
-        - tags
-        snapshots:
-        - snapshots
-        - snapshots
-        VDI_type: metadata
-        current_operations: "{}"
-        $poolId: $poolId
-        size: 0.8008281904610115
-        cbt_enabled: true
-        missing: true
-        name_description: name_description
-        id: id
-        image_format: image_format
         $VBDs:
         - $VBDs
         - $VBDs
+        $pool: $pool
+        $poolId: $poolId
+        $snapshot_of: $snapshot_of
+        VDI_type: metadata
+        _xapiRef: _xapiRef
+        cbt_enabled: true
+        current_operations: "{}"
+        id: id
+        image_format: image_format
+        missing: true
+        name_description: name_description
+        name_label: name_label
+        other_config: {}
+        parent: parent
+        size: 0.8008281904610115
+        snapshot_time: 6.027456183070403
+        snapshots:
+        - snapshots
+        - snapshots
+        tags:
+        - tags
+        - tags
+        type: VDI-snapshot
+        usage: 1.4658129805029452
+        uuid: uuid
       properties:
         $SR:
           type: string
@@ -38272,34 +38200,34 @@ components:
       type: object
     Unbrand_XoVdi_:
       example:
-        parent: parent
         $SR: $SR
-        other_config: {}
-        usage: 1.4658129805029452
-        chainPhysicalUsage: 0.8008281904610115
-        type: VDI
-        uuid: uuid
-        _xapiRef: _xapiRef
-        name_label: name_label
-        $pool: $pool
-        tags:
-        - tags
-        - tags
-        snapshots:
-        - snapshots
-        - snapshots
-        VDI_type: metadata
-        current_operations: "{}"
-        $poolId: $poolId
-        size: 6.027456183070403
-        cbt_enabled: true
-        missing: true
-        name_description: name_description
-        id: id
-        image_format: image_format
         $VBDs:
         - $VBDs
         - $VBDs
+        $pool: $pool
+        $poolId: $poolId
+        VDI_type: metadata
+        _xapiRef: _xapiRef
+        cbt_enabled: true
+        chainPhysicalUsage: 0.8008281904610115
+        current_operations: "{}"
+        id: id
+        image_format: image_format
+        missing: true
+        name_description: name_description
+        name_label: name_label
+        other_config: {}
+        parent: parent
+        size: 6.027456183070403
+        snapshots:
+        - snapshots
+        - snapshots
+        tags:
+        - tags
+        - tags
+        type: VDI
+        usage: 1.4658129805029452
+        uuid: uuid
       properties:
         $SR:
           type: string
@@ -38386,28 +38314,28 @@ components:
       type: object
     Unbrand_XoVif_:
       example:
+        $VM: $VM
         $network: $network
-        lockingMode: disabled
-        other_config: {}
-        rateLimit: 6.027456183070403
-        allowedIpv6Addresses:
-        - allowedIpv6Addresses
-        - allowedIpv6Addresses
-        type: VIF
-        uuid: uuid
-        MAC: MAC
-        _xapiRef: _xapiRef
         $pool: $pool
+        $poolId: $poolId
+        MAC: MAC
         MTU: 0.8008281904610115
+        _xapiRef: _xapiRef
         allowedIpv4Addresses:
         - allowedIpv4Addresses
         - allowedIpv4Addresses
-        $poolId: $poolId
+        allowedIpv6Addresses:
+        - allowedIpv6Addresses
+        - allowedIpv6Addresses
         attached: true
-        txChecksumming: true
-        $VM: $VM
-        id: id
         device: device
+        id: id
+        lockingMode: disabled
+        other_config: {}
+        rateLimit: 6.027456183070403
+        txChecksumming: true
+        type: VIF
+        uuid: uuid
       properties:
         $VM:
           type: string
@@ -38480,32 +38408,32 @@ components:
       type: object
     Unbrand_XoVmBackupArchive_:
       example:
-        disks:
-        - name: name
-          id: id
-          uuid: uuid
-        - name: name
-          id: id
-          uuid: uuid
-        withMemory: true
-        type: xo-vm-backup
-        mode: full
-        jobId: jobId
-        size: 1.4658129805029452
-        dynamicVhds: 6.027456183070403
-        isImmutable: true
         backupRepository: backupRepository
+        differencingVhds: 0.8008281904610115
+        disks:
+        - id: id
+          name: name
+          uuid: uuid
+        - id: id
+          name: name
+          uuid: uuid
+        dynamicVhds: 6.027456183070403
+        id: id
+        isImmutable: true
+        jobId: jobId
+        mode: full
+        scheduleId: scheduleId
+        size: 1.4658129805029452
+        timestamp: 5.962133916683182
+        type: xo-vm-backup
         vm:
           name_description: name_description
-          uuid: uuid
           name_label: name_label
           tags:
           - tags
           - tags
-        id: id
-        differencingVhds: 0.8008281904610115
-        scheduleId: scheduleId
-        timestamp: 5.962133916683182
+          uuid: uuid
+        withMemory: true
       properties:
         backupRepository:
           type: string
@@ -38565,106 +38493,106 @@ components:
       type: object
     Unbrand_XoVmController_:
       example:
-        parent: parent
-        addresses: {}
-        notes: notes
-        $container: $container
-        cpuMask:
-        - 5.637376656633329
-        - 5.637376656633329
-        coresPerSocket: 1.4658129805029452
-        isFirmwareSupported: true
-        secureBoot: true
-        type: VM-controller
-        uuid: uuid
-        _xapiRef: _xapiRef
-        id: id
-        viridian: true
-        cpuWeight: 2.3021358869347655
-        auto_poweron: true
-        name_label: name_label
-        tags:
-        - tags
-        - tags
-        virtualizationMode: hvm
-        expNestedHvm: true
-        $poolId: $poolId
-        pvDriversDetected: true
-        pvDriversUpToDate: true
-        high_availability: ""
-        affinityHost: affinityHost
-        blockedOperations: "{}"
-        other: {}
-        memory:
-          static:
-          - 2.027123023002322
-          - 2.027123023002322
-          size: 3.616076749251911
-          usage: 4.145608029883936
-          dynamic:
-          - 9.301444243932576
-          - 9.301444243932576
-        VIFs:
-        - VIFs
-        - VIFs
-        hasVendorDevice: true
-        installTime: 7.061401241503109
-        needsVtpm: true
-        suspendSr: suspendSr
-        docker:
-          process: process
-          containers:
-          - containers
-          - containers
-          version: version
-          enabled: true
-          info: info
-        vga: vga
-        $VGPUs:
-        - $VGPUs
-        - $VGPUs
-        current_operations: "{}"
-        managementAgentDetected: true
-        isNestedVirtEnabled: true
-        nicType: nicType
-        mainIpAddress: mainIpAddress
-        xenStoreData: {}
-        cpuCap: 5.962133916683182
-        name_description: name_description
-        startTime: 1.2315135367772556
         $VBDs:
         - $VBDs
         - $VBDs
-        boot: {}
-        creation: {}
+        $VGPUs:
+        - $VGPUs
+        - $VGPUs
+        $container: $container
+        $pool: $pool
+        $poolId: $poolId
+        CPUs:
+          max: 0.8008281904610115
+          number: 6.027456183070403
+        PV_args: PV_args
         VGPUs:
         - VGPUs
         - VGPUs
-        resourceSet: resourceSet
-        videoram: 1.0246457001441578
+        VIFs:
+        - VIFs
+        - VIFs
+        VTPMs:
+        - VTPMs
+        - VTPMs
+        _xapiRef: _xapiRef
+        addresses: {}
+        affinityHost: affinityHost
         attachedPcis:
         - attachedPcis
         - attachedPcis
+        auto_poweron: true
         bios_strings: {}
+        blockedOperations: "{}"
+        boot: {}
+        coresPerSocket: 1.4658129805029452
+        cpuCap: 5.962133916683182
+        cpuMask:
+        - 5.637376656633329
+        - 5.637376656633329
+        cpuWeight: 2.3021358869347655
+        creation: {}
+        current_operations: "{}"
+        docker:
+          containers:
+          - containers
+          - containers
+          enabled: true
+          info: info
+          process: process
+          version: version
+        expNestedHvm: true
+        hasVendorDevice: true
+        high_availability: ""
+        id: id
+        installTime: 7.061401241503109
+        isFirmwareSupported: true
+        isNestedVirtEnabled: true
+        mainIpAddress: mainIpAddress
+        managementAgentDetected: true
+        memory:
+          dynamic:
+          - 9.301444243932576
+          - 9.301444243932576
+          size: 3.616076749251911
+          static:
+          - 2.027123023002322
+          - 2.027123023002322
+          usage: 4.145608029883936
+        name_description: name_description
+        name_label: name_label
+        needsVtpm: true
+        nicType: nicType
+        notes: notes
         os_version: ""
-        PV_args: PV_args
+        other: {}
+        parent: parent
         power_state: Halted
-        $pool: $pool
+        pvDriversDetected: true
+        pvDriversUpToDate: true
+        pvDriversVersion: pvDriversVersion
+        resourceSet: resourceSet
+        secureBoot: true
         snapshots:
         - snapshots
         - snapshots
-        CPUs:
-          number: 6.027456183070403
-          max: 0.8008281904610115
+        startDelay: 7.386281948385884
+        startTime: 1.2315135367772556
+        suspendSr: suspendSr
+        tags:
+        - tags
+        - tags
+        type: VM-controller
+        uuid: uuid
+        vga: vga
+        videoram: 1.0246457001441578
+        viridian: true
+        virtualizationMode: hvm
+        xenStoreData: {}
         xentools:
           major: 1.4894159098541704
           minor: 6.84685269835264
           version: version
-        pvDriversVersion: pvDriversVersion
-        startDelay: 7.386281948385884
-        VTPMs:
-        - VTPMs
-        - VTPMs
       properties:
         $VBDs:
           items:
@@ -38897,109 +38825,109 @@ components:
       type: object
     Unbrand_XoVmSnapshot_:
       example:
-        parent: parent
-        snapshot_time: 2.3021358869347655
-        addresses: {}
-        notes: notes
-        $container: $container
-        cpuMask:
-        - 1.4658129805029452
-        - 1.4658129805029452
-        coresPerSocket: 0.8008281904610115
-        isFirmwareSupported: true
-        secureBoot: true
-        type: VM-snapshot
-        uuid: uuid
-        _xapiRef: _xapiRef
-        id: id
-        suspendVdi: suspendVdi
-        viridian: true
-        cpuWeight: 5.962133916683182
-        auto_poweron: true
-        name_label: name_label
-        tags:
-        - tags
-        - tags
-        virtualizationMode: hvm
-        expNestedHvm: true
-        $poolId: $poolId
-        pvDriversDetected: true
-        pvDriversUpToDate: true
-        high_availability: ""
-        affinityHost: affinityHost
-        blockedOperations: "{}"
-        other: {}
-        memory:
-          static:
-          - 2.027123023002322
-          - 2.027123023002322
-          size: 3.616076749251911
-          usage: 4.145608029883936
-          dynamic:
-          - 9.301444243932576
-          - 9.301444243932576
-        VIFs:
-        - VIFs
-        - VIFs
-        hasVendorDevice: true
-        installTime: 5.637376656633329
-        needsVtpm: true
-        suspendSr: suspendSr
-        docker:
-          process: process
-          containers:
-          - containers
-          - containers
-          version: version
-          enabled: true
-          info: info
-        vga: vga
-        $VGPUs:
-        - $VGPUs
-        - $VGPUs
-        current_operations: "{}"
-        managementAgentDetected: true
-        isNestedVirtEnabled: true
-        nicType: nicType
-        mainIpAddress: mainIpAddress
-        xenStoreData: {}
-        cpuCap: 6.027456183070403
-        name_description: name_description
-        startTime: 9.301444243932576
         $VBDs:
         - $VBDs
         - $VBDs
-        boot: {}
-        creation: {}
+        $VGPUs:
+        - $VGPUs
+        - $VGPUs
+        $container: $container
+        $pool: $pool
+        $poolId: $poolId
         $snapshot_of: $snapshot_of
+        CPUs:
+          max: 0.8008281904610115
+          number: 6.027456183070403
+        PV_args: PV_args
         VGPUs:
         - VGPUs
         - VGPUs
-        resourceSet: resourceSet
-        videoram: 3.616076749251911
+        VIFs:
+        - VIFs
+        - VIFs
+        VTPMs:
+        - VTPMs
+        - VTPMs
+        _xapiRef: _xapiRef
+        addresses: {}
+        affinityHost: affinityHost
         attachedPcis:
         - attachedPcis
         - attachedPcis
+        auto_poweron: true
         bios_strings: {}
+        blockedOperations: "{}"
+        boot: {}
+        coresPerSocket: 0.8008281904610115
+        cpuCap: 6.027456183070403
+        cpuMask:
+        - 1.4658129805029452
+        - 1.4658129805029452
+        cpuWeight: 5.962133916683182
+        creation: {}
+        current_operations: "{}"
+        docker:
+          containers:
+          - containers
+          - containers
+          enabled: true
+          info: info
+          process: process
+          version: version
+        expNestedHvm: true
+        hasVendorDevice: true
+        high_availability: ""
+        id: id
+        installTime: 5.637376656633329
+        isFirmwareSupported: true
+        isNestedVirtEnabled: true
+        mainIpAddress: mainIpAddress
+        managementAgentDetected: true
+        memory:
+          dynamic:
+          - 9.301444243932576
+          - 9.301444243932576
+          size: 3.616076749251911
+          static:
+          - 2.027123023002322
+          - 2.027123023002322
+          usage: 4.145608029883936
+        name_description: name_description
+        name_label: name_label
+        needsVtpm: true
+        nicType: nicType
+        notes: notes
         os_version: ""
-        PV_args: PV_args
+        other: {}
+        parent: parent
         power_state: Halted
-        $pool: $pool
+        pvDriversDetected: true
+        pvDriversUpToDate: true
+        pvDriversVersion: pvDriversVersion
+        resourceSet: resourceSet
+        secureBoot: true
+        snapshot_time: 2.3021358869347655
         snapshots:
         - snapshots
         - snapshots
-        CPUs:
-          number: 6.027456183070403
-          max: 0.8008281904610115
+        startDelay: 7.061401241503109
+        startTime: 9.301444243932576
+        suspendSr: suspendSr
+        suspendVdi: suspendVdi
+        tags:
+        - tags
+        - tags
+        type: VM-snapshot
+        uuid: uuid
+        vga: vga
+        videoram: 3.616076749251911
+        viridian: true
+        virtualizationMode: hvm
+        xenStoreData: {}
         xentools:
           major: 1.4894159098541704
           minor: 6.84685269835264
           version: version
-        pvDriversVersion: pvDriversVersion
-        startDelay: 7.061401241503109
-        VTPMs:
-        - VTPMs
-        - VTPMs
       properties:
         $VBDs:
           items:
@@ -39241,122 +39169,122 @@ components:
       type: object
     Unbrand_XoVmTemplate_:
       example:
-        parent: parent
-        addresses: {}
-        notes: notes
+        $VBDs:
+        - $VBDs
+        - $VBDs
+        $VGPUs:
+        - $VGPUs
+        - $VGPUs
         $container: $container
+        $pool: $pool
+        $poolId: $poolId
+        CPUs:
+          max: 0.8008281904610115
+          number: 6.027456183070403
+        PV_args: PV_args
+        VGPUs:
+        - VGPUs
+        - VGPUs
+        VIFs:
+        - VIFs
+        - VIFs
+        VTPMs:
+        - VTPMs
+        - VTPMs
+        _xapiRef: _xapiRef
+        addresses: {}
+        affinityHost: affinityHost
+        attachedPcis:
+        - attachedPcis
+        - attachedPcis
+        auto_poweron: true
+        bios_strings: {}
+        blockedOperations: "{}"
+        boot: {}
+        coresPerSocket: 0.8008281904610115
+        cpuCap: 6.027456183070403
         cpuMask:
         - 1.4658129805029452
         - 1.4658129805029452
-        coresPerSocket: 0.8008281904610115
+        cpuWeight: 5.962133916683182
+        creation: {}
+        current_operations: "{}"
+        docker:
+          containers:
+          - containers
+          - containers
+          enabled: true
+          info: info
+          process: process
+          version: version
+        expNestedHvm: true
+        hasVendorDevice: true
+        high_availability: ""
+        id: id
+        installTime: 5.637376656633329
+        isDefaultTemplate: true
         isFirmwareSupported: true
+        isNestedVirtEnabled: true
+        mainIpAddress: mainIpAddress
+        managementAgentDetected: true
+        memory:
+          dynamic:
+          - 9.301444243932576
+          - 9.301444243932576
+          size: 3.616076749251911
+          static:
+          - 2.027123023002322
+          - 2.027123023002322
+          usage: 4.145608029883936
+        name_description: name_description
+        name_label: name_label
+        needsVtpm: true
+        nicType: nicType
+        notes: notes
+        os_version: ""
+        other: {}
+        parent: parent
+        power_state: Halted
+        pvDriversDetected: true
+        pvDriversUpToDate: true
+        pvDriversVersion: pvDriversVersion
+        resourceSet: resourceSet
         secureBoot: true
-        type: VM-template
-        uuid: uuid
-        _xapiRef: _xapiRef
+        snapshots:
+        - snapshots
+        - snapshots
+        startDelay: 2.3021358869347655
+        startTime: 7.061401241503109
+        suspendSr: suspendSr
+        tags:
+        - tags
+        - tags
         template_info:
+          arch: arch
+          disks:
+          - SR: SR
+            bootable: true
+            size: 9.301444243932576
+            type: type
+          - SR: SR
+            bootable: true
+            size: 9.301444243932576
+            type: type
           install_methods:
           - install_methods
           - install_methods
           install_repository: install_repository
-          disks:
-          - size: 9.301444243932576
-            type: type
-            bootable: true
-            SR: SR
-          - size: 9.301444243932576
-            type: type
-            bootable: true
-            SR: SR
-          arch: arch
-        id: id
-        viridian: true
-        cpuWeight: 5.962133916683182
-        auto_poweron: true
-        name_label: name_label
-        tags:
-        - tags
-        - tags
-        virtualizationMode: hvm
-        expNestedHvm: true
-        $poolId: $poolId
-        pvDriversDetected: true
-        pvDriversUpToDate: true
-        high_availability: ""
-        affinityHost: affinityHost
-        blockedOperations: "{}"
-        other: {}
-        memory:
-          static:
-          - 2.027123023002322
-          - 2.027123023002322
-          size: 3.616076749251911
-          usage: 4.145608029883936
-          dynamic:
-          - 9.301444243932576
-          - 9.301444243932576
-        VIFs:
-        - VIFs
-        - VIFs
-        isDefaultTemplate: true
-        hasVendorDevice: true
-        installTime: 5.637376656633329
-        needsVtpm: true
-        suspendSr: suspendSr
-        docker:
-          process: process
-          containers:
-          - containers
-          - containers
-          version: version
-          enabled: true
-          info: info
+        type: VM-template
+        uuid: uuid
         vga: vga
-        $VGPUs:
-        - $VGPUs
-        - $VGPUs
-        current_operations: "{}"
-        managementAgentDetected: true
-        isNestedVirtEnabled: true
-        nicType: nicType
-        mainIpAddress: mainIpAddress
-        xenStoreData: {}
-        cpuCap: 6.027456183070403
-        name_description: name_description
-        startTime: 7.061401241503109
-        $VBDs:
-        - $VBDs
-        - $VBDs
-        boot: {}
-        creation: {}
-        VGPUs:
-        - VGPUs
-        - VGPUs
-        resourceSet: resourceSet
         videoram: 3.616076749251911
-        attachedPcis:
-        - attachedPcis
-        - attachedPcis
-        bios_strings: {}
-        os_version: ""
-        PV_args: PV_args
-        power_state: Halted
-        $pool: $pool
-        snapshots:
-        - snapshots
-        - snapshots
-        CPUs:
-          number: 6.027456183070403
-          max: 0.8008281904610115
+        viridian: true
+        virtualizationMode: hvm
+        xenStoreData: {}
         xentools:
           major: 1.4894159098541704
           minor: 6.84685269835264
           version: version
-        pvDriversVersion: pvDriversVersion
-        startDelay: 2.3021358869347655
-        VTPMs:
-        - VTPMs
-        - VTPMs
       properties:
         $VBDs:
           items:
@@ -39595,108 +39523,108 @@ components:
       type: object
     Unbrand_XoVm_:
       example:
-        parent: parent
-        addresses: {}
-        notes: notes
-        $container: $container
-        cpuMask:
-        - 1.4658129805029452
-        - 1.4658129805029452
-        coresPerSocket: 0.8008281904610115
-        isFirmwareSupported: true
-        secureBoot: true
-        type: VM
-        uuid: uuid
-        _xapiRef: _xapiRef
-        id: id
-        viridian: true
-        cpuWeight: 5.962133916683182
-        auto_poweron: true
-        name_label: name_label
-        tags:
-        - tags
-        - tags
-        virtualizationMode: hvm
-        expNestedHvm: true
-        $poolId: $poolId
-        pvDriversDetected: true
-        pvDriversUpToDate: true
-        high_availability: ""
-        affinityHost: affinityHost
-        blockedOperations: "{}"
-        other: {}
-        memory:
-          static:
-          - 2.027123023002322
-          - 2.027123023002322
-          size: 3.616076749251911
-          usage: 4.145608029883936
-          dynamic:
-          - 9.301444243932576
-          - 9.301444243932576
-        VIFs:
-        - VIFs
-        - VIFs
-        hasVendorDevice: true
-        installTime: 5.637376656633329
-        needsVtpm: true
-        suspendSr: suspendSr
-        docker:
-          process: process
-          containers:
-          - containers
-          - containers
-          version: version
-          enabled: true
-          info: info
-        vga: vga
-        $VGPUs:
-        - $VGPUs
-        - $VGPUs
-        current_operations: "{}"
-        managementAgentDetected: true
-        isNestedVirtEnabled: true
-        nicType: nicType
-        mainIpAddress: mainIpAddress
-        xenStoreData: {}
-        cpuCap: 6.027456183070403
-        name_description: name_description
-        startTime: 7.061401241503109
         $VBDs:
         - $VBDs
         - $VBDs
-        boot: {}
-        creation: {}
+        $VGPUs:
+        - $VGPUs
+        - $VGPUs
+        $container: $container
+        $pool: $pool
+        $poolId: $poolId
+        CPUs:
+          max: 0.8008281904610115
+          number: 6.027456183070403
+        PV_args: PV_args
         VGPUs:
         - VGPUs
         - VGPUs
-        resourceSet: resourceSet
-        videoram: 9.301444243932576
+        VIFs:
+        - VIFs
+        - VIFs
+        VTPMs:
+        - VTPMs
+        - VTPMs
+        _xapiRef: _xapiRef
+        addresses: {}
+        affinityHost: affinityHost
         attachedPcis:
         - attachedPcis
         - attachedPcis
+        auto_poweron: true
         bios_strings: {}
+        blockedOperations: "{}"
+        boot: {}
+        coresPerSocket: 0.8008281904610115
+        cpuCap: 6.027456183070403
+        cpuMask:
+        - 1.4658129805029452
+        - 1.4658129805029452
+        cpuWeight: 5.962133916683182
+        creation: {}
+        current_operations: "{}"
+        docker:
+          containers:
+          - containers
+          - containers
+          enabled: true
+          info: info
+          process: process
+          version: version
+        expNestedHvm: true
+        hasVendorDevice: true
+        high_availability: ""
+        id: id
+        installTime: 5.637376656633329
+        isFirmwareSupported: true
+        isNestedVirtEnabled: true
+        mainIpAddress: mainIpAddress
+        managementAgentDetected: true
+        memory:
+          dynamic:
+          - 9.301444243932576
+          - 9.301444243932576
+          size: 3.616076749251911
+          static:
+          - 2.027123023002322
+          - 2.027123023002322
+          usage: 4.145608029883936
+        name_description: name_description
+        name_label: name_label
+        needsVtpm: true
+        nicType: nicType
+        notes: notes
         os_version: ""
-        PV_args: PV_args
+        other: {}
+        parent: parent
         power_state: Halted
-        $pool: $pool
+        pvDriversDetected: true
+        pvDriversUpToDate: true
+        pvDriversVersion: pvDriversVersion
+        resourceSet: resourceSet
+        secureBoot: true
         snapshots:
         - snapshots
         - snapshots
-        CPUs:
-          number: 6.027456183070403
-          max: 0.8008281904610115
+        startDelay: 2.3021358869347655
+        startTime: 7.061401241503109
+        suspendSr: suspendSr
+        tags:
+        - tags
+        - tags
+        type: VM
+        uuid: uuid
+        vga: vga
+        videoram: 9.301444243932576
+        viridian: true
+        virtualizationMode: hvm
+        vulnerabilities:
+          xsa468: true
+        xenStoreData: {}
         xentools:
           major: 1.4894159098541704
           minor: 6.84685269835264
           version: version
-        pvDriversVersion: pvDriversVersion
-        startDelay: 2.3021358869347655
-        vulnerabilities:
-          xsa468: true
-        VTPMs:
-        - VTPMs
-        - VTPMs
       properties:
         $VBDs:
           items:
@@ -39935,22 +39863,16 @@ components:
         alarms:
         - alarms
         - alarms
-        quickInfo:
-          creation:
-            date: date
-            user: user
         backupsInfo:
-          replication: "{}"
           backupArchives:
-          - size: 0.8008281904610115
-            backupRepository: backupRepository
+          - backupRepository: backupRepository
             id: id
+            size: 0.8008281904610115
             timestamp: 6.027456183070403
-          - size: 0.8008281904610115
-            backupRepository: backupRepository
+          - backupRepository: backupRepository
             id: id
+            size: 0.8008281904610115
             timestamp: 6.027456183070403
-          vmProtection: protected
           lastRuns:
           - backupJobId: backupJobId
             status: status
@@ -39958,6 +39880,12 @@ components:
           - backupJobId: backupJobId
             status: status
             timestamp: 1.4658129805029452
+          replication: "{}"
+          vmProtection: protected
+        quickInfo:
+          creation:
+            date: date
+            user: user
       properties:
         alarms:
           items:
@@ -39991,10 +39919,10 @@ components:
     UpdateUserRequestBody:
       additionalProperties: false
       example:
-        password: password
-        preferences: {}
         name: name
+        password: password
         permission: none
+        preferences: {}
       properties:
         name:
           type: string
@@ -40014,9 +39942,9 @@ components:
     UpdateVdiRequestBody:
       additionalProperties: false
       example:
-        size: 0.8008281904610115
         name_description: name_description
         name_label: name_label
+        size: 0.8008281904610115
       properties:
         name_description:
           type: string
@@ -40054,97 +39982,97 @@ components:
         Extends {@link EditVmProps} with two REST-only properties that the xo-server
         resource-set mixin handles outside of `editVm`.
       example:
+        PV_args: PV_args
         affinityHost: affinityHost
+        autoPoweron: true
         blockedOperations:
-          checkpoint: null
-          send_sysrq: null
-          update_allowed_operations: null
-          create_template: null
-          csvm: null
-          create_vtpm: null
-          changing_static_range: null
-          make_into_template: null
-          hard_reboot: null
-          changing_VCPUs_live: null
           assert_operation_valid: Partial_Record_VM_OPERATIONS_boolean_or_string_or_null___assert_operation_valid
-          export: null
-          start_on: null
-          suspend: null
-          resume_on: null
-          changing_memory_live: null
-          clean_shutdown: null
-          destroy: null
-          revert: null
-          pause: null
+          awaiting_memory_live: null
+          call_plugin: null
+          changing_NVRAM: null
+          changing_VCPUs: null
+          changing_VCPUs_live: null
           changing_dynamic_range: null
-          pool_migrate: null
-          send_trigger: null
-          provision: null
+          changing_memory_limits: null
+          changing_memory_live: null
+          changing_shadow_memory: null
+          changing_shadow_memory_live: null
+          changing_static_range: null
+          checkpoint: null
+          clean_reboot: null
+          clean_shutdown: null
+          clone: null
+          copy: null
+          create_template: null
+          create_vtpm: null
+          csvm: null
+          data_source_op: null
+          destroy: null
+          export: null
           get_boot_record: null
+          hard_reboot: null
+          hard_shutdown: null
+          import: null
+          make_into_template: null
+          metadata_export: null
+          migrate_send: null
+          pause: null
+          pool_migrate: null
+          power_state_reset: null
+          provision: null
+          query_services: null
+          resume: null
+          resume_on: null
+          revert: null
           reverting: null
-          unpause: null
+          send_sysrq: null
+          send_trigger: null
           shutdown: null
           snapshot: null
-          changing_NVRAM: null
-          changing_shadow_memory: null
-          data_source_op: null
-          import: null
           snapshot_with_quiesce: null
-          changing_shadow_memory_live: null
-          power_state_reset: null
-          clean_reboot: null
-          copy: null
-          resume: null
-          changing_VCPUs: null
           start: null
-          call_plugin: null
-          query_services: null
-          hard_shutdown: null
-          metadata_export: null
-          clone: null
-          migrate_send: null
-          awaiting_memory_live: null
-          changing_memory_limits: null
-        autoPoweron: true
-        memory: null
-        notes: notes
-        nestedVirt: true
+          start_on: null
+          suspend: null
+          unpause: null
+          update_allowed_operations: null
+        coresPerSocket: 0.8008281904610115
+        cpuCap: 6.027456183070403
         cpuMask:
         - 1.4658129805029452
         - 1.4658129805029452
-        coresPerSocket: 0.8008281904610115
-        memoryMax: null
-        hasVendorDevice: true
-        secureBoot: true
-        suspendSr: suspendSr
+        cpuWeight: 5.962133916683182
+        cpus: 5.637376656633329
         cpusStaticMax: 2.3021358869347655
-        highAvailability: best-effort
-        vga: std
-        nicType: nicType
-        xenStoreData:
-          key: xenStoreData
-        cpuCap: 6.027456183070403
-        share: true
         creation:
           user: user
-        nameLabel: nameLabel
+        expNestedHvm: true
+        hasVendorDevice: true
+        highAvailability: best-effort
+        hvmBootFirmware: hvmBootFirmware
+        memory: null
+        memoryMax: null
+        memoryMin: null
+        memoryStaticMax: null
         nameDescription: nameDescription
+        nameLabel: nameLabel
+        nestedVirt: true
+        nicType: nicType
+        notes: notes
         resourceSet: resourceSet
-        videoram: 9.301444243932576
-        viridian: true
-        cpus: 5.637376656633329
-        cpuWeight: 5.962133916683182
-        PV_args: PV_args
+        secureBoot: true
+        share: true
+        startDelay: 7.061401241503109
+        suspendSr: suspendSr
         tags:
         - tags
         - tags
         uefiMode: setup
+        vga: std
+        videoram: 9.301444243932576
+        viridian: true
         virtualizationMode: pv
-        expNestedHvm: true
-        hvmBootFirmware: hvmBootFirmware
-        memoryMin: null
-        startDelay: 7.061401241503109
-        memoryStaticMax: null
+        xenStoreData:
+          key: xenStoreData
       properties:
         PV_args:
           type: string
@@ -41946,25 +41874,11 @@ components:
       $ref: "#/components/schemas/XapiStatsResponse_XapiHostStatsRaw_"
     XapiHostStatsRaw:
       example:
-        pifs:
-          tx:
-            key: null
-          rx:
-            key: null
-        memory:
-        - 5.637376656633329
-        - 5.637376656633329
-        load:
-        - 5.962133916683182
-        - 5.962133916683182
         cpus:
           key:
           - 1.4658129805029452
           - 1.4658129805029452
-        memoryFree:
-        - 2.3021358869347655
-        - 2.3021358869347655
-        latency:
+        ioThroughput:
           r:
             key: null
           w:
@@ -41974,13 +41888,27 @@ components:
             key: null
           w:
             key: null
-        ioThroughput:
+        iowait:
+          key: null
+        latency:
           r:
             key: null
           w:
             key: null
-        iowait:
-          key: null
+        load:
+        - 5.962133916683182
+        - 5.962133916683182
+        memory:
+        - 5.637376656633329
+        - 5.637376656633329
+        memoryFree:
+        - 2.3021358869347655
+        - 2.3021358869347655
+        pifs:
+          rx:
+            key: null
+          tx:
+            key: null
       properties:
         cpus:
           additionalProperties:
@@ -42032,26 +41960,14 @@ components:
       type: string
     XapiStatsResponse_XapiHostStatsRaw_:
       example:
+        endTimestamp: 0.8008281904610115
+        interval: 6.027456183070403
         stats:
-          pifs:
-            tx:
-              key: null
-            rx:
-              key: null
-          memory:
-          - 5.637376656633329
-          - 5.637376656633329
-          load:
-          - 5.962133916683182
-          - 5.962133916683182
           cpus:
             key:
             - 1.4658129805029452
             - 1.4658129805029452
-          memoryFree:
-          - 2.3021358869347655
-          - 2.3021358869347655
-          latency:
+          ioThroughput:
             r:
               key: null
             w:
@@ -42061,15 +41977,27 @@ components:
               key: null
             w:
               key: null
-          ioThroughput:
+          iowait:
+            key: null
+          latency:
             r:
               key: null
             w:
               key: null
-          iowait:
-            key: null
-        interval: 6.027456183070403
-        endTimestamp: 0.8008281904610115
+          load:
+          - 5.962133916683182
+          - 5.962133916683182
+          memory:
+          - 5.637376656633329
+          - 5.637376656633329
+          memoryFree:
+          - 2.3021358869347655
+          - 2.3021358869347655
+          pifs:
+            rx:
+              key: null
+            tx:
+              key: null
       properties:
         endTimestamp:
           format: double
@@ -42086,47 +42014,69 @@ components:
       type: object
     XapiStatsResponse_XapiVmStatsRaw_:
       example:
+        endTimestamp: 0.8008281904610115
+        interval: 6.027456183070403
         stats:
-          vbdIowait:
-            key: null
           cpuUsage:
           - 1.4658129805029452
           - 1.4658129805029452
-          vifErrors:
-            tx:
-              key: null
-            rx:
-              key: null
-          memory:
-          - 5.637376656633329
-          - 5.637376656633329
           cpus:
             key:
             - 5.962133916683182
             - 5.962133916683182
+          iops:
+            r:
+              key: null
+            w:
+              key: null
+          memory:
+          - 5.637376656633329
+          - 5.637376656633329
           memoryFree:
           - 2.3021358869347655
           - 2.3021358869347655
-          runstatePartialContention:
-          - 7.386281948385884
-          - 7.386281948385884
-          runstateFullrun:
-          - 4.145608029883936
-          - 4.145608029883936
+          memoryTarget:
+          - 7.061401241503109
+          - 7.061401241503109
           runstateBlocked:
           - 9.301444243932576
           - 9.301444243932576
+          runstateConcurrencyHazard:
+          - 3.616076749251911
+          - 3.616076749251911
           runstateFullContention:
           - 2.027123023002322
           - 2.027123023002322
+          runstateFullrun:
+          - 4.145608029883936
+          - 4.145608029883936
+          runstatePartialContention:
+          - 7.386281948385884
+          - 7.386281948385884
+          runstatePartialRun:
+          - 1.2315135367772556
+          - 1.2315135367772556
+          vbdAvgquSz:
+            key: null
+          vbdInflight:
+            key: null
+          vbdIowait:
+            key: null
           vbdLatency:
             r:
               key: null
             w:
               key: null
-          runstatePartialRun:
-          - 1.2315135367772556
-          - 1.2315135367772556
+          vifErrors:
+            rx:
+              key: null
+            tx:
+              key: null
+          vifs:
+            rx:
+              key: null
+            tx:
+              key: null
           xvds:
             r:
               key: null
@@ -42134,28 +42084,6 @@ components:
               key: null
             w:
               key: null
-          runstateConcurrencyHazard:
-          - 3.616076749251911
-          - 3.616076749251911
-          vbdAvgquSz:
-            key: null
-          vifs:
-            tx:
-              key: null
-            rx:
-              key: null
-          iops:
-            r:
-              key: null
-            w:
-              key: null
-          memoryTarget:
-          - 7.061401241503109
-          - 7.061401241503109
-          vbdInflight:
-            key: null
-        interval: 6.027456183070403
-        endTimestamp: 0.8008281904610115
       properties:
         endTimestamp:
           format: double
@@ -42174,46 +42102,66 @@ components:
       $ref: "#/components/schemas/XapiStatsResponse_XapiVmStatsRaw_"
     XapiVmStatsRaw:
       example:
-        vbdIowait:
-          key: null
         cpuUsage:
         - 1.4658129805029452
         - 1.4658129805029452
-        vifErrors:
-          tx:
-            key: null
-          rx:
-            key: null
-        memory:
-        - 5.637376656633329
-        - 5.637376656633329
         cpus:
           key:
           - 5.962133916683182
           - 5.962133916683182
+        iops:
+          r:
+            key: null
+          w:
+            key: null
+        memory:
+        - 5.637376656633329
+        - 5.637376656633329
         memoryFree:
         - 2.3021358869347655
         - 2.3021358869347655
-        runstatePartialContention:
-        - 7.386281948385884
-        - 7.386281948385884
-        runstateFullrun:
-        - 4.145608029883936
-        - 4.145608029883936
+        memoryTarget:
+        - 7.061401241503109
+        - 7.061401241503109
         runstateBlocked:
         - 9.301444243932576
         - 9.301444243932576
+        runstateConcurrencyHazard:
+        - 3.616076749251911
+        - 3.616076749251911
         runstateFullContention:
         - 2.027123023002322
         - 2.027123023002322
+        runstateFullrun:
+        - 4.145608029883936
+        - 4.145608029883936
+        runstatePartialContention:
+        - 7.386281948385884
+        - 7.386281948385884
+        runstatePartialRun:
+        - 1.2315135367772556
+        - 1.2315135367772556
+        vbdAvgquSz:
+          key: null
+        vbdInflight:
+          key: null
+        vbdIowait:
+          key: null
         vbdLatency:
           r:
             key: null
           w:
             key: null
-        runstatePartialRun:
-        - 1.2315135367772556
-        - 1.2315135367772556
+        vifErrors:
+          rx:
+            key: null
+          tx:
+            key: null
+        vifs:
+          rx:
+            key: null
+          tx:
+            key: null
         xvds:
           r:
             key: null
@@ -42221,26 +42169,6 @@ components:
             key: null
           w:
             key: null
-        runstateConcurrencyHazard:
-        - 3.616076749251911
-        - 3.616076749251911
-        vbdAvgquSz:
-          key: null
-        vifs:
-          tx:
-            key: null
-          rx:
-            key: null
-        iops:
-          r:
-            key: null
-          w:
-            key: null
-        memoryTarget:
-        - 7.061401241503109
-        - 7.061401241503109
-        vbdInflight:
-          key: null
       properties:
         cpuUsage:
           items:
@@ -42339,17 +42267,17 @@ components:
       type: object
     XcpPatches:
       example:
-        license: license
-        size: 6.027456183070403
-        release: release
-        name: name
         changelog:
-          date: 0.8008281904610115
           author: author
+          date: 0.8008281904610115
           description: description
         description: description
-        version: version
+        license: license
+        name: name
+        release: release
+        size: 6.027456183070403
         url: url
+        version: version
       properties:
         changelog:
           $ref: "#/components/schemas/XcpPatches_changelog"
@@ -42401,8 +42329,8 @@ components:
       type: object
     XoGuiRoutes:
       example:
-        xo6: xo6
         xo5: xo5
+        xo6: xo6
       properties:
         xo5:
           type: string
@@ -42482,15 +42410,6 @@ components:
       example:
         abortionRequestedAt: 1.4658129805029452
         data: "{}"
-        warnings:
-        - data: ""
-          message: message
-        - data: ""
-          message: message
-        start: 7.061401241503109
-        result:
-          key: ""
-        progress: 5.637376656633329
         end: 5.962133916683182
         id:
           undefined: task
@@ -42499,21 +42418,30 @@ components:
           message: message
         - data: ""
           message: message
+        progress: 5.637376656633329
         properties:
           method: method
           name: name
-          progress: 2.3021358869347655
-          params:
-            key: ""
-          type: type
-          userId: userId
           objectId: objectId
           objectType: pool
+          params:
+            key: ""
+          progress: 2.3021358869347655
+          type: type
+          userId: userId
+        result:
+          key: ""
+        start: 7.061401241503109
+        status: failure
         tasks:
         - null
         - null
-        status: failure
         updatedAt: 9.301444243932576
+        warnings:
+        - data: ""
+          message: message
+        - data: ""
+          message: message
       properties:
         abortionRequestedAt:
           format: double
@@ -42607,86 +42535,86 @@ components:
         type: object
     XoaDashboard:
       example:
-        missingPatches:
-          nHostsEol: 9.369310271410669
-          nHostsWithMissingPatches: 8.762042012749001
-          nHosts: 9.965781217890562
-          nPoolsWithMissingPatches: 6.438423552598547
-          nHostsFailed: 6.683562403749608
-          nPools: 9.018348186070783
-          hasAuthorization: true
-        nHosts: 3.5571952270680973
-        vmsStatus:
-          running: 3.0576100241049344
-          halted: 8.969578798196912
-          paused: 3.0205796992916243
-          total: 5.533258397034986
-          inactive: 7.740351818741173
-          active: 4.652396432933246
-          suspended: 7.04836565559697
-          unknown: 3.2588565619047607
         backupRepositories:
+          other:
+            size:
+              available: 0.8008281904610115
+              backups: 6.027456183070403
+              other: 1.4658129805029452
+              total: 5.962133916683182
+              used: 5.637376656633329
           s3:
             size:
               backups: 2.3021358869347655
-          other:
-            size:
-              other: 1.4658129805029452
-              total: 5.962133916683182
-              available: 0.8008281904610115
-              used: 5.637376656633329
-              backups: 6.027456183070403
           isExpired: true
-        resourcesOverview:
-          memorySize: 6.704019297950036
-          nCpus: 3.353193347011243
-          srSize: 3.0937452626664474
+        backups:
+          issues:
+          - logs:
+            - failure
+            - failure
+            name: name
+            type: backup
+            uuid: uuid
+          - logs:
+            - failure
+            - failure
+            name: name
+            type: backup
+            uuid: uuid
+          jobs:
+            disabled: 7.061401241503109
+            failed: 9.301444243932576
+            noRecentRun: 3.616076749251911
+            skipped: 2.027123023002322
+            successful: 4.145608029883936
+            total: 7.386281948385884
+          vmsProtection:
+            notInJob: 1.2315135367772556
+            protected: 1.0246457001441578
+            unprotected: 1.4894159098541704
+          isExpired: true
+        hostsStatus:
+          disabled: 6.84685269835264
+          halted: 7.457744773683766
+          running: 1.1730742509559433
+          total: 4.965218492984954
+          unknown: 5.025004791520295
+        missingPatches:
+          hasAuthorization: true
+          nHosts: 9.965781217890562
+          nHostsEol: 9.369310271410669
+          nHostsFailed: 6.683562403749608
+          nHostsWithMissingPatches: 8.762042012749001
+          nPools: 9.018348186070783
+          nPoolsWithMissingPatches: 6.438423552598547
+        nHosts: 3.5571952270680973
         nPools: 6.965117697638846
         poolsStatus:
           connected: 1.284659006116532
           disconnected: 2.8841621266687802
           total: 6.778324963048013
-          unreachable: 5.944895607614016
           unknown: 6.878052220127876
+          unreachable: 5.944895607614016
+        resourcesOverview:
+          memorySize: 6.704019297950036
+          nCpus: 3.353193347011243
+          srSize: 3.0937452626664474
         storageRepositories:
           size:
-            other: 0.8851374739011653
-            total: 6.519180951018382
             available: 7.143538047012306
-            used: 0.10263654006109402
+            other: 0.8851374739011653
             replicated: 7.058770351582356
-        hostsStatus:
-          running: 1.1730742509559433
-          halted: 7.457744773683766
-          total: 4.965218492984954
-          disabled: 6.84685269835264
-          unknown: 5.025004791520295
-        backups:
-          jobs:
-            total: 7.386281948385884
-            disabled: 7.061401241503109
-            noRecentRun: 3.616076749251911
-            failed: 9.301444243932576
-            skipped: 2.027123023002322
-            successful: 4.145608029883936
-          vmsProtection:
-            protected: 1.0246457001441578
-            notInJob: 1.2315135367772556
-            unprotected: 1.4894159098541704
-          isExpired: true
-          issues:
-          - name: name
-            type: backup
-            logs:
-            - failure
-            - failure
-            uuid: uuid
-          - name: name
-            type: backup
-            logs:
-            - failure
-            - failure
-            uuid: uuid
+            total: 6.519180951018382
+            used: 0.10263654006109402
+        vmsStatus:
+          active: 4.652396432933246
+          halted: 8.969578798196912
+          inactive: 7.740351818741173
+          paused: 3.0205796992916243
+          running: 3.0576100241049344
+          suspended: 7.04836565559697
+          total: 5.533258397034986
+          unknown: 3.2588565619047607
       properties:
         backupRepositories:
           $ref: "#/components/schemas/XoaDashboard_backupRepositories"
@@ -43060,14 +42988,14 @@ components:
     PostDeprecatedAuthenticationTokens_201_response:
       example:
         token:
-          last_uses: "{}"
-          user_id: user_id
           client:
             id: id
           created_at: 0.8008281904610115
           description: description
           expiration: 6.027456183070403
           id: id
+          last_uses: "{}"
+          user_id: user_id
       properties:
         token:
           $ref: "#/components/schemas/Unbrand_XoAuthenticationToken_"
@@ -43212,11 +43140,11 @@ components:
       type: object
     DashboardBackupRepositoriesSizeInfo_other_size:
       example:
+        available: 0.8008281904610115
+        backups: 6.027456183070403
         other: 1.4658129805029452
         total: 5.962133916683182
-        available: 0.8008281904610115
         used: 5.637376656633329
-        backups: 6.027456183070403
       properties:
         available:
           format: double
@@ -43239,11 +43167,11 @@ components:
     DashboardBackupRepositoriesSizeInfo_other:
       example:
         size:
+          available: 0.8008281904610115
+          backups: 6.027456183070403
           other: 1.4658129805029452
           total: 5.962133916683182
-          available: 0.8008281904610115
           used: 5.637376656633329
-          backups: 6.027456183070403
       properties:
         size:
           $ref: "#/components/schemas/DashboardBackupRepositoriesSizeInfo_other_size"
@@ -43272,11 +43200,11 @@ components:
       type: object
     DashboardBackupsInfo_issues_inner:
       example:
-        name: name
-        type: backup
         logs:
         - failure
         - failure
+        name: name
+        type: backup
         uuid: uuid
       properties:
         logs:
@@ -43301,12 +43229,12 @@ components:
       type: object
     DashboardBackupsInfo_jobs:
       example:
-        total: 7.386281948385884
         disabled: 7.061401241503109
-        noRecentRun: 3.616076749251911
         failed: 9.301444243932576
+        noRecentRun: 3.616076749251911
         skipped: 2.027123023002322
         successful: 4.145608029883936
+        total: 7.386281948385884
       properties:
         disabled:
           format: double
@@ -43336,8 +43264,8 @@ components:
       type: object
     DashboardBackupsInfo_vmsProtection:
       example:
-        protected: 1.0246457001441578
         notInJob: 1.2315135367772556
+        protected: 1.0246457001441578
         unprotected: 1.4894159098541704
       properties:
         notInJob:
@@ -43366,41 +43294,41 @@ components:
           $ref: "#/components/schemas/Unbrand_XoVmBackupJobScheduleSettings_"
         type: object
       example:
-        nbdConcurrency: 5.637376656633329
-        hideSuccessfulItems: true
-        offlineBackup: true
-        longTermRetention:
-          daily:
-            settings:
-              key: ""
-            retention: 6.027456183070403
-          monthly:
-            settings:
-              key: ""
-            retention: 6.027456183070403
-          yearly:
-            settings:
-              key: ""
-            retention: 6.027456183070403
-          weekly:
-            settings:
-              key: ""
-            retention: 6.027456183070403
-        timezone: timezone
         backupReportTpl: compactMjml
-        mergeBackupsSynchronously: true
-        maxExportRate: 1.4658129805029452
-        cbtDestroySnapshotData: true
-        timeout: 2.3021358869347655
-        concurrency: 0.8008281904610115
-        reportWhen: always
+        hideSuccessfulItems: true
         reportRecipients:
         - reportRecipients
         - reportRecipients
-        nRetriesVmBackupFailures: 5.962133916683182
-        preferNbd: true
+        reportWhen: always
+        cbtDestroySnapshotData: true
         checkpointSnapshot: true
+        concurrency: 0.8008281904610115
+        longTermRetention:
+          daily:
+            retention: 6.027456183070403
+            settings:
+              key: ""
+          monthly:
+            retention: 6.027456183070403
+            settings:
+              key: ""
+          weekly:
+            retention: 6.027456183070403
+            settings:
+              key: ""
+          yearly:
+            retention: 6.027456183070403
+            settings:
+              key: ""
+        maxExportRate: 1.4658129805029452
+        mergeBackupsSynchronously: true
+        nRetriesVmBackupFailures: 5.962133916683182
+        nbdConcurrency: 5.637376656633329
+        offlineBackup: true
         offlineSnapshot: true
+        preferNbd: true
+        timeout: 2.3021358869347655
+        timezone: timezone
     PartialUnbrandAnyXoBackupJobVariantMetadataBackup_settings:
       allOf:
       - $ref: "#/components/schemas/XoBackupJobGeneralSettings"
@@ -43408,12 +43336,12 @@ components:
           $ref: "#/components/schemas/XoMetadataBackupJobScheduleSettings"
         type: object
       example:
-        reportWhen: always
-        hideSuccessfulItems: true
         backupReportTpl: compactMjml
+        hideSuccessfulItems: true
         reportRecipients:
         - reportRecipients
         - reportRecipients
+        reportWhen: always
     PartialUnbrandAnyXoBackupJobVariantMirrorBackup_settings:
       allOf:
       - $ref: "#/components/schemas/XoMirrorBackupGeneralSettings"
@@ -43421,17 +43349,17 @@ components:
           $ref: "#/components/schemas/Unbrand_XoMirrorBackupScheduleSettings_"
         type: object
       example:
-        reportWhen: failure
-        hideSuccessfulItems: true
         backupReportTpl: compactMjml
+        hideSuccessfulItems: true
         reportRecipients:
         - reportRecipients
         - reportRecipients
+        reportWhen: failure
+        concurrency: 0.8008281904610115
+        maxExportRate: 6.027456183070403
         mergeBackupsSynchronously: true
         nRetriesVmBackupFailures: 1.4658129805029452
-        maxExportRate: 6.027456183070403
         timeout: 5.962133916683182
-        concurrency: 0.8008281904610115
     Partial_Record_VM_OPERATIONS_boolean_or_string_or_null___assert_operation_valid:
       anyOf:
       - type: string
@@ -43543,9 +43471,9 @@ components:
       type: object
     Partial_Unbrand_XoBackupRepository___benchmarks_inner:
       example:
-        writeRate: 1.4658129805029452
         readRate: 0.8008281904610115
         timestamp: 6.027456183070403
+        writeRate: 1.4658129805029452
       properties:
         readRate:
           format: double
@@ -43563,8 +43491,8 @@ components:
       type: object
     Partial_Unbrand_XoHost___certificates_inner:
       example:
-        notAfter: 6.027456183070403
         fingerprint: fingerprint
+        notAfter: 6.027456183070403
       properties:
         fingerprint:
           type: string
@@ -43596,8 +43524,8 @@ components:
       type: object
     Partial_Unbrand_XoHost___memory:
       example:
-        total: 7.061401241503109
         size: 2.3021358869347655
+        total: 7.061401241503109
         usage: 9.301444243932576
       properties:
         size:
@@ -43615,14 +43543,14 @@ components:
       type: object
     Partial_Unbrand_XoHost___supplementalPacks_anyOf_inner:
       example:
-        size: 2.027123023002322
-        guidance: guidance
         author: author
+        description: description
+        guidance: guidance
         hosts:
         - undefined: host
         - undefined: host
         name: name
-        description: description
+        size: 2.027123023002322
         vdi:
           undefined: VDI
         version: version
@@ -43754,13 +43682,13 @@ components:
       example:
         method: method
         name: name
-        progress: 5.962133916683182
-        params:
-          key: ""
-        type: type
-        userId: userId
         objectId: objectId
         objectType: backup
+        params:
+          key: ""
+        progress: 5.962133916683182
+        type: type
+        userId: userId
       properties:
         method:
           type: string
@@ -43824,8 +43752,8 @@ components:
       type: object
     Partial_Unbrand_XoVmBackupArchive___disks_inner:
       example:
-        name: name
         id: id
+        name: name
         uuid: uuid
       properties:
         id:
@@ -43842,11 +43770,11 @@ components:
     Partial_Unbrand_XoVmBackupArchive___vm:
       example:
         name_description: name_description
-        uuid: uuid
         name_label: name_label
         tags:
         - tags
         - tags
+        uuid: uuid
       properties:
         name_description:
           type: string
@@ -43866,8 +43794,8 @@ components:
       type: object
     Partial_Unbrand_XoVmController___CPUs:
       example:
-        number: 6.027456183070403
         max: 0.8008281904610115
+        number: 6.027456183070403
       properties:
         max:
           format: double
@@ -43881,13 +43809,13 @@ components:
       type: object
     Partial_Unbrand_XoVmController___docker:
       example:
-        process: process
         containers:
         - containers
         - containers
-        version: version
         enabled: true
         info: info
+        process: process
+        version: version
       properties:
         containers:
           items:
@@ -43906,14 +43834,14 @@ components:
       type: object
     Partial_Unbrand_XoVmController___memory:
       example:
-        static:
-        - 2.027123023002322
-        - 2.027123023002322
-        size: 3.616076749251911
-        usage: 4.145608029883936
         dynamic:
         - 9.301444243932576
         - 9.301444243932576
+        size: 3.616076749251911
+        static:
+        - 2.027123023002322
+        - 2.027123023002322
+        usage: 4.145608029883936
       properties:
         dynamic:
           items:
@@ -43965,10 +43893,10 @@ components:
       deprecated: true
     Partial_Unbrand_XoVmTemplate___template_info_disks_inner:
       example:
+        SR: SR
+        bootable: true
         size: 9.301444243932576
         type: type
-        bootable: true
-        SR: SR
       properties:
         SR:
           type: string
@@ -43988,20 +43916,20 @@ components:
       type: object
     Partial_Unbrand_XoVmTemplate___template_info:
       example:
+        arch: arch
+        disks:
+        - SR: SR
+          bootable: true
+          size: 9.301444243932576
+          type: type
+        - SR: SR
+          bootable: true
+          size: 9.301444243932576
+          type: type
         install_methods:
         - install_methods
         - install_methods
         install_repository: install_repository
-        disks:
-        - size: 9.301444243932576
-          type: type
-          bootable: true
-          SR: SR
-        - size: 9.301444243932576
-          type: type
-          bootable: true
-          SR: SR
-        arch: arch
       properties:
         arch:
           type: string
@@ -44101,10 +44029,6 @@ components:
           type: string
       type: object
     PoolDashboard_cpuProvisioning:
-      example:
-        total: 1.4658129805029452
-        assigned: 0.8008281904610115
-        percent: 6.027456183070403
       properties:
         assigned:
           format: double
@@ -44121,8 +44045,6 @@ components:
       - total
       type: object
     PoolDashboard_hosts_missingPatches_anyOf:
-      example:
-        hasAuthorization: true
       properties:
         hasAuthorization:
           nullable: false
@@ -44146,11 +44068,6 @@ components:
       - $ref: "#/components/schemas/PoolDashboard_hosts_missingPatches_anyOf"
       - $ref: "#/components/schemas/PoolDashboard_hosts_missingPatches_anyOf_1"
     PoolDashboard_hosts_status:
-      example:
-        running: 2.3021358869347655
-        halted: 5.637376656633329
-        total: 7.061401241503109
-        disabled: 5.962133916683182
       properties:
         disabled:
           format: double
@@ -44171,10 +44088,6 @@ components:
       - total
       type: object
     PoolDashboard_hosts_topFiveUsage_cpu_inner:
-      example:
-        id: id
-        percent: 9.301444243932576
-        name_label: name_label
       properties:
         id:
           type: string
@@ -44189,12 +44102,6 @@ components:
       - percent
       type: object
     PoolDashboard_hosts_topFiveUsage_ram_inner:
-      example:
-        size: 2.027123023002322
-        usage: 4.145608029883936
-        id: id
-        percent: 3.616076749251911
-        name_label: name_label
       properties:
         id:
           type: string
@@ -44217,25 +44124,6 @@ components:
       - usage
       type: object
     PoolDashboard_hosts_topFiveUsage:
-      example:
-        cpu:
-        - id: id
-          percent: 9.301444243932576
-          name_label: name_label
-        - id: id
-          percent: 9.301444243932576
-          name_label: name_label
-        ram:
-        - size: 2.027123023002322
-          usage: 4.145608029883936
-          id: id
-          percent: 3.616076749251911
-          name_label: name_label
-        - size: 2.027123023002322
-          usage: 4.145608029883936
-          id: id
-          percent: 3.616076749251911
-          name_label: name_label
       properties:
         cpu:
           items:
@@ -44250,33 +44138,6 @@ components:
       - ram
       type: object
     PoolDashboard_hosts:
-      example:
-        missingPatches:
-          hasAuthorization: true
-        topFiveUsage:
-          cpu:
-          - id: id
-            percent: 9.301444243932576
-            name_label: name_label
-          - id: id
-            percent: 9.301444243932576
-            name_label: name_label
-          ram:
-          - size: 2.027123023002322
-            usage: 4.145608029883936
-            id: id
-            percent: 3.616076749251911
-            name_label: name_label
-          - size: 2.027123023002322
-            usage: 4.145608029883936
-            id: id
-            percent: 3.616076749251911
-            name_label: name_label
-        status:
-          running: 2.3021358869347655
-          halted: 5.637376656633329
-          total: 7.061401241503109
-          disabled: 5.962133916683182
       properties:
         missingPatches:
           $ref: "#/components/schemas/PoolDashboard_hosts_missingPatches"
@@ -44290,12 +44151,6 @@ components:
       - topFiveUsage
       type: object
     PoolDashboard_srs_topFiveUsage_inner:
-      example:
-        size: 1.0246457001441578
-        id: id
-        physical_usage: 1.2315135367772556
-        percent: 7.386281948385884
-        name_label: name_label
       properties:
         id:
           type: string
@@ -44318,18 +44173,6 @@ components:
       - size
       type: object
     PoolDashboard_srs:
-      example:
-        topFiveUsage:
-        - size: 1.0246457001441578
-          id: id
-          physical_usage: 1.2315135367772556
-          percent: 7.386281948385884
-          name_label: name_label
-        - size: 1.0246457001441578
-          id: id
-          physical_usage: 1.2315135367772556
-          percent: 7.386281948385884
-          name_label: name_label
       properties:
         topFiveUsage:
           items:
@@ -44339,12 +44182,6 @@ components:
       - topFiveUsage
       type: object
     PoolDashboard_vms_status:
-      example:
-        running: 7.457744773683766
-        halted: 1.4894159098541704
-        paused: 6.84685269835264
-        total: 4.965218492984954
-        suspended: 1.1730742509559433
       properties:
         halted:
           format: double
@@ -44369,12 +44206,6 @@ components:
       - total
       type: object
     PoolDashboard_vms_topFiveUsage_ram_inner:
-      example:
-        memory: 5.025004791520295
-        memoryFree: 9.965781217890562
-        id: id
-        percent: 9.369310271410669
-        name_label: name_label
       properties:
         id:
           type: string
@@ -44397,26 +44228,6 @@ components:
       - percent
       type: object
     PoolDashboard_vms_topFiveUsage:
-      example:
-        cpu:
-        - id: id
-          percent: 9.301444243932576
-          name_label: name_label
-        - id: id
-          percent: 9.301444243932576
-          name_label: name_label
-        isExpired: true
-        ram:
-        - memory: 5.025004791520295
-          memoryFree: 9.965781217890562
-          id: id
-          percent: 9.369310271410669
-          name_label: name_label
-        - memory: 5.025004791520295
-          memoryFree: 9.965781217890562
-          id: id
-          percent: 9.369310271410669
-          name_label: name_label
       properties:
         cpu:
           items:
@@ -44433,33 +44244,6 @@ components:
       - ram
       type: object
     PoolDashboard_vms:
-      example:
-        topFiveUsage:
-          cpu:
-          - id: id
-            percent: 9.301444243932576
-            name_label: name_label
-          - id: id
-            percent: 9.301444243932576
-            name_label: name_label
-          isExpired: true
-          ram:
-          - memory: 5.025004791520295
-            memoryFree: 9.965781217890562
-            id: id
-            percent: 9.369310271410669
-            name_label: name_label
-          - memory: 5.025004791520295
-            memoryFree: 9.965781217890562
-            id: id
-            percent: 9.369310271410669
-            name_label: name_label
-        status:
-          running: 7.457744773683766
-          halted: 1.4894159098541704
-          paused: 6.84685269835264
-          total: 4.965218492984954
-          suspended: 1.1730742509559433
       properties:
         status:
           $ref: "#/components/schemas/PoolDashboard_vms_status"
@@ -44484,11 +44268,11 @@ components:
       - $ref: "#/components/schemas/Record_XoHost_at_id_XapiHostStats_or__error_Record_string_unknown____value_anyOf"
     SrSizeInfo_size:
       example:
-        other: 0.8851374739011653
-        total: 6.519180951018382
         available: 7.143538047012306
-        used: 0.10263654006109402
+        other: 0.8851374739011653
         replicated: 7.058770351582356
+        total: 6.519180951018382
+        used: 0.10263654006109402
       properties:
         available:
           format: double
@@ -44611,18 +44395,18 @@ components:
       type: object
     Unbrand_XoAclRole__anyOf:
       example:
+        description: description
         groupIds:
         - groupIds
         - groupIds
-        userIds:
-        - userIds
-        - userIds
-        name: name
-        description: description
         id: id
+        name: name
         privilegeIds:
         - privilegeIds
         - privilegeIds
+        userIds:
+        - userIds
+        - userIds
       properties:
         description:
           type: string
@@ -44687,11 +44471,11 @@ components:
     Unbrand_XoProxy__anyOf:
       example:
         address: address
-        vmUuid: vmUuid
-        name: name
         id: id
-        version: version
+        name: name
         url: url
+        version: version
+        vmUuid: vmUuid
       properties:
         address:
           type: string
@@ -44754,17 +44538,15 @@ components:
       type: object
     UnbrandedVmDashboard_backupsInfo:
       example:
-        replication: "{}"
         backupArchives:
-        - size: 0.8008281904610115
-          backupRepository: backupRepository
+        - backupRepository: backupRepository
           id: id
+          size: 0.8008281904610115
           timestamp: 6.027456183070403
-        - size: 0.8008281904610115
-          backupRepository: backupRepository
+        - backupRepository: backupRepository
           id: id
+          size: 0.8008281904610115
           timestamp: 6.027456183070403
-        vmProtection: protected
         lastRuns:
         - backupJobId: backupJobId
           status: status
@@ -44772,6 +44554,8 @@ components:
         - backupJobId: backupJobId
           status: status
           timestamp: 1.4658129805029452
+        replication: "{}"
+        vmProtection: protected
       properties:
         backupArchives:
           items:
@@ -44854,9 +44638,9 @@ components:
       type: object
     XapiHostStatsRaw_pifs:
       example:
-        tx:
-          key: null
         rx:
+          key: null
+        tx:
           key: null
       properties:
         rx:
@@ -44905,8 +44689,8 @@ components:
       type: object
     XcpPatches_changelog:
       example:
-        date: 0.8008281904610115
         author: author
+        date: 0.8008281904610115
         description: description
       properties:
         author:
@@ -44926,13 +44710,13 @@ components:
       example:
         method: method
         name: name
-        progress: 2.3021358869347655
-        params:
-          key: ""
-        type: type
-        userId: userId
         objectId: objectId
         objectType: pool
+        params:
+          key: ""
+        progress: 2.3021358869347655
+        type: type
+        userId: userId
       properties:
         method:
           type: string
@@ -44996,9 +44780,9 @@ components:
       type: object
     XoVmBackupJobGeneralSettings_allOf_longTermRetention_daily:
       example:
+        retention: 6.027456183070403
         settings:
           key: ""
-        retention: 6.027456183070403
       properties:
         retention:
           format: double
@@ -45015,21 +44799,21 @@ components:
     XoVmBackupJobGeneralSettings_allOf_longTermRetention:
       example:
         daily:
+          retention: 6.027456183070403
           settings:
             key: ""
-          retention: 6.027456183070403
         monthly:
+          retention: 6.027456183070403
           settings:
             key: ""
-          retention: 6.027456183070403
-        yearly:
-          settings:
-            key: ""
-          retention: 6.027456183070403
         weekly:
+          retention: 6.027456183070403
           settings:
             key: ""
+        yearly:
           retention: 6.027456183070403
+          settings:
+            key: ""
       properties:
         daily:
           $ref: "#/components/schemas/XoVmBackupJobGeneralSettings_allOf_longTermRetention_daily"
@@ -45052,10 +44836,10 @@ components:
       - $ref: "#/components/schemas/PromiseWriteInStreamError"
     XoaDashboard_hostsStatus:
       example:
-        running: 1.1730742509559433
-        halted: 7.457744773683766
-        total: 4.965218492984954
         disabled: 6.84685269835264
+        halted: 7.457744773683766
+        running: 1.1730742509559433
+        total: 4.965218492984954
         unknown: 5.025004791520295
       properties:
         disabled:
@@ -45090,8 +44874,8 @@ components:
         connected: 1.284659006116532
         disconnected: 2.8841621266687802
         total: 6.778324963048013
-        unreachable: 5.944895607614016
         unknown: 6.878052220127876
+        unreachable: 5.944895607614016
       properties:
         connected:
           format: double
@@ -45146,13 +44930,13 @@ components:
       - $ref: "#/components/schemas/IsEmptyData"
     XoaDashboard_vmsStatus:
       example:
-        running: 3.0576100241049344
-        halted: 8.969578798196912
-        paused: 3.0205796992916243
-        total: 5.533258397034986
-        inactive: 7.740351818741173
         active: 4.652396432933246
+        halted: 8.969578798196912
+        inactive: 7.740351818741173
+        paused: 3.0205796992916243
+        running: 3.0576100241049344
         suspended: 7.04836565559697
+        total: 5.533258397034986
         unknown: 3.2588565619047607
       properties:
         active:

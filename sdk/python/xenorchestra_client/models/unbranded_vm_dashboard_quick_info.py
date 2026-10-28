@@ -27,6 +27,7 @@ from xenorchestra_client.models.unbrand_vm_dashboard_at_quick_info91_creation93 
 from xenorchestra_client.models.vmpowerstate import VMPOWERSTATE
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class UnbrandedVmDashboardQuickInfo(BaseModel):
     """
@@ -52,7 +53,8 @@ class UnbrandedVmDashboardQuickInfo(BaseModel):
     __properties: ClassVar[List[str]] = ["$pool", "CPUs", "host", "id", "mainIpAddress", "memory", "name_description", "os_version", "power_state", "pvDriversDetected", "pvDriversUpToDate", "pvDriversVersion", "startTime", "tags", "uuid", "virtualizationMode", "creation"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -64,8 +66,7 @@ class UnbrandedVmDashboardQuickInfo(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

@@ -40,7 +40,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PartialUnbrandXoVmControllerMemory.JSON_PROPERTY_STATIC,
   PartialUnbrandXoVmControllerMemory.JSON_PROPERTY_USAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PartialUnbrandXoVmControllerMemory {
   public static final String JSON_PROPERTY_DYNAMIC = "dynamic";
   @javax.annotation.Nonnull
@@ -79,14 +79,14 @@ public class PartialUnbrandXoVmControllerMemory {
    * @return dynamic
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_DYNAMIC)
+  @JsonProperty(value = JSON_PROPERTY_DYNAMIC, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<Double> getDynamic() {
     return dynamic;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DYNAMIC)
+  @JsonProperty(value = JSON_PROPERTY_DYNAMIC, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDynamic(@javax.annotation.Nonnull List<Double> dynamic) {
     this.dynamic = dynamic;
@@ -103,14 +103,14 @@ public class PartialUnbrandXoVmControllerMemory {
    * @return size
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonProperty(value = JSON_PROPERTY_SIZE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getSize() {
     return size;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonProperty(value = JSON_PROPERTY_SIZE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSize(@javax.annotation.Nonnull Double size) {
     this.size = size;
@@ -135,14 +135,14 @@ public class PartialUnbrandXoVmControllerMemory {
    * @return _static
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_STATIC)
+  @JsonProperty(value = JSON_PROPERTY_STATIC, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<Double> getStatic() {
     return _static;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_STATIC)
+  @JsonProperty(value = JSON_PROPERTY_STATIC, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setStatic(@javax.annotation.Nonnull List<Double> _static) {
     this._static = _static;
@@ -159,14 +159,14 @@ public class PartialUnbrandXoVmControllerMemory {
    * @return usage
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_USAGE)
+  @JsonProperty(value = JSON_PROPERTY_USAGE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getUsage() {
     return usage;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_USAGE)
+  @JsonProperty(value = JSON_PROPERTY_USAGE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setUsage(@javax.annotation.Nullable Double usage) {
     this.usage = usage;
@@ -213,10 +213,7 @@ public class PartialUnbrandXoVmControllerMemory {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -254,29 +251,29 @@ public class PartialUnbrandXoVmControllerMemory {
     // add `dynamic` to the URL query string
     if (getDynamic() != null) {
       for (int i = 0; i < getDynamic().size(); i++) {
-        joiner.add(String.format("%sdynamic%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%sdynamic%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getDynamic().get(i)))));
       }
     }
 
     // add `size` to the URL query string
     if (getSize() != null) {
-      joiner.add(String.format("%ssize%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSize()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssize%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSize()))));
     }
 
     // add `static` to the URL query string
     if (getStatic() != null) {
       for (int i = 0; i < getStatic().size(); i++) {
-        joiner.add(String.format("%sstatic%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%sstatic%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getStatic().get(i)))));
       }
     }
 
     // add `usage` to the URL query string
     if (getUsage() != null) {
-      joiner.add(String.format("%susage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUsage()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%susage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUsage()))));
     }
 
     return joiner.toString();

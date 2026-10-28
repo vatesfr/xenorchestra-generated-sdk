@@ -16,11 +16,11 @@ Name | Type | Description | Notes
 **attached** | Option<**bool**> |  | [optional]
 **device** | Option<**String**> |  | [optional]
 **id** | Option<**String**> |  | [optional]
-**locking_mode** | Option<[**models::VifLockingMode**](VIF_LOCKING_MODE.md)> |  | [optional]
-**other_config** | Option<[**serde_json::Value**](.md)> | Construct a type with a set of properties K of type T | [optional]
+**locking_mode** | Option<[**models::VifLockingMode**](VIFLOCKINGMODE.md)> |  | [optional]
+**other_config** | Option<**serde_json::Value**> | Construct a type with a set of properties K of type T | [optional]
 **rate_limit** | Option<**f64**> | In kB/s | [optional]
 **tx_checksumming** | Option<**bool**> |  | [optional]
-**r#type** | Option<**String**> |  | [optional]
+**r#type** | Option<**Type**> |  (enum: VIF) | [optional]
 **uuid** | Option<**String**> |  | [optional]
 **href** | **String** |  | 
 

@@ -35,7 +35,7 @@ import tech.vates.xenorchestra.client.ApiClient;
 @JsonPropertyOrder({
   ManagementReconfigureRequest1.JSON_PROPERTY_NETWORK
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class ManagementReconfigureRequest1 {
   public static final String JSON_PROPERTY_NETWORK = "network";
   @javax.annotation.Nonnull
@@ -54,14 +54,14 @@ public class ManagementReconfigureRequest1 {
    * @return network
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_NETWORK)
+  @JsonProperty(value = JSON_PROPERTY_NETWORK, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getNetwork() {
     return network;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NETWORK)
+  @JsonProperty(value = JSON_PROPERTY_NETWORK, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setNetwork(@javax.annotation.Nonnull String network) {
     this.network = network;
@@ -102,10 +102,7 @@ public class ManagementReconfigureRequest1 {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -142,7 +139,7 @@ public class ManagementReconfigureRequest1 {
 
     // add `network` to the URL query string
     if (getNetwork() != null) {
-      joiner.add(String.format("%snetwork%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNetwork()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%snetwork%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNetwork()))));
     }
 
     return joiner.toString();

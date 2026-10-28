@@ -11,9 +11,9 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// PartialRecordVmOperationsPeriodBooleanOrStringOrNull : Make all properties in T optional
+/// PartialRecordVmOperationsBooleanOrStringOrNull : Make all properties in T optional
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct PartialRecordVmOperationsPeriodBooleanOrStringOrNull {
+pub struct PartialRecordVmOperationsBooleanOrStringOrNull {
     #[serde(
         rename = "assert_operation_valid",
         default,
@@ -457,10 +457,10 @@ pub struct PartialRecordVmOperationsPeriodBooleanOrStringOrNull {
     >,
 }
 
-impl PartialRecordVmOperationsPeriodBooleanOrStringOrNull {
+impl PartialRecordVmOperationsBooleanOrStringOrNull {
     /// Make all properties in T optional
-    pub fn new() -> PartialRecordVmOperationsPeriodBooleanOrStringOrNull {
-        PartialRecordVmOperationsPeriodBooleanOrStringOrNull {
+    pub fn new() -> PartialRecordVmOperationsBooleanOrStringOrNull {
+        PartialRecordVmOperationsBooleanOrStringOrNull {
             assert_operation_valid: None,
             awaiting_memory_live: None,
             call_plugin: None,

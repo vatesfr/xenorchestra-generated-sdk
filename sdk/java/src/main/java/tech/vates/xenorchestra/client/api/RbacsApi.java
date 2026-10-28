@@ -58,15 +58,35 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class RbacsApi {
+  /**
+   * Utility class for extending HttpRequest.Builder functionality.
+   */
+  private static class HttpRequestBuilderExtensions {
+    /**
+     * Adds additional headers to the provided HttpRequest.Builder. Useful for adding method/endpoint specific headers.
+     *
+     * @param builder the HttpRequest.Builder to which headers will be added
+     * @param headers a map of header names and values to add; may be null
+     * @return the same HttpRequest.Builder instance with the additional headers set
+     */
+    static HttpRequest.Builder withAdditionalHeaders(HttpRequest.Builder builder, Map<String, String> headers) {
+        if (headers != null) {
+            for (Map.Entry<String, String> entry : headers.entrySet()) {
+                builder.header(entry.getKey(), entry.getValue());
+            }
+        }
+        return builder;
+    }
+  }
   private final HttpClient memberVarHttpClient;
   private final ObjectMapper memberVarObjectMapper;
   private final String memberVarBaseUri;
   private final Consumer<HttpRequest.Builder> memberVarInterceptor;
   private final Duration memberVarReadTimeout;
   private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
-  private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
+  private final Consumer<HttpResponse<InputStream>> memberVarAsyncResponseInterceptor;
 
   public RbacsApi() {
     this(Configuration.getDefaultApiClient());
@@ -82,8 +102,17 @@ public class RbacsApi {
     memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
   }
 
+
   protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
-    String body = response.body() == null ? null : new String(response.body().readAllBytes());
+    InputStream responseBody = ApiClient.getResponseBody(response);
+    String body = null;
+    try {
+      body = responseBody == null ? null : new String(responseBody.readAllBytes());
+    } finally {
+      if (responseBody != null) {
+        responseBody.close();
+      }
+    }
     String message = formatExceptionMessage(operationId, response.statusCode(), body);
     return new ApiException(response.statusCode(), message, response.headers(), body);
   }
@@ -96,6 +125,57 @@ public class RbacsApi {
   }
 
   /**
+   * Download file from the given response.
+   *
+   * @param response Response
+   * @return File
+   * @throws ApiException If fail to read file content from response and write to disk
+   */
+  public File downloadFileFromResponse(HttpResponse<InputStream> response, InputStream responseBody) throws ApiException {
+    if (responseBody == null) {
+      throw new ApiException(new IOException("Response body is empty"));
+    }
+    try {
+      File file = prepareDownloadFile(response);
+      java.nio.file.Files.copy(responseBody, file.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+      return file;
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+  }
+
+  /**
+   * <p>Prepare the file for download from the response.</p>
+   *
+   * @param response a {@link java.net.http.HttpResponse} object.
+   * @return a {@link java.io.File} object.
+   * @throws java.io.IOException if any.
+   */
+  private File prepareDownloadFile(HttpResponse<InputStream> response) throws IOException {
+    String filename = null;
+    java.util.Optional<String> contentDisposition = response.headers().firstValue("Content-Disposition");
+    if (contentDisposition.isPresent() && !"".equals(contentDisposition.get())) {
+      // Get filename from the Content-Disposition header.
+      java.util.regex.Pattern pattern = java.util.regex.Pattern.compile("filename=['\"]?([^'\"\\s]+)['\"]?");
+      java.util.regex.Matcher matcher = pattern.matcher(contentDisposition.get());
+      if (matcher.find())
+        filename = matcher.group(1);
+    }
+    File file = null;
+    if (filename != null) {
+      java.nio.file.Path tempDir = java.nio.file.Files.createTempDirectory("swagger-gen-native");
+      java.nio.file.Path filePath = java.nio.file.Files.createFile(tempDir.resolve(filename));
+      file = filePath.toFile();
+      tempDir.toFile().deleteOnExit();   // best effort cleanup
+      file.deleteOnExit(); // best effort cleanup
+    } else {
+      file = java.nio.file.Files.createTempFile("download-", "").toFile();
+      file.deleteOnExit(); // best effort cleanup
+    }
+    return file;
+  }
+
+  /**
    * 
    * Attach an ACL V2 role to a group.  Required privilege: - resource: acl-role, action: update:groups
    * @param id  (required)
@@ -103,7 +183,19 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public void attachAclV2Group(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String groupId) throws ApiException {
-    attachAclV2GroupWithHttpInfo(id, groupId);
+    attachAclV2Group(id, groupId, null);
+  }
+
+  /**
+   * 
+   * Attach an ACL V2 role to a group.  Required privilege: - resource: acl-role, action: update:groups
+   * @param id  (required)
+   * @param groupId  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void attachAclV2Group(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String groupId, Map<String, String> headers) throws ApiException {
+    attachAclV2GroupWithHttpInfo(id, groupId, headers);
   }
 
   /**
@@ -115,7 +207,20 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> attachAclV2GroupWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String groupId) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = attachAclV2GroupRequestBuilder(id, groupId);
+    return attachAclV2GroupWithHttpInfo(id, groupId, null);
+  }
+
+  /**
+   * 
+   * Attach an ACL V2 role to a group.  Required privilege: - resource: acl-role, action: update:groups
+   * @param id  (required)
+   * @param groupId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> attachAclV2GroupWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String groupId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = attachAclV2GroupRequestBuilder(id, groupId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -123,9 +228,14 @@ public class RbacsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("attachAclV2Group", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -133,11 +243,9 @@ public class RbacsApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -148,7 +256,7 @@ public class RbacsApi {
     }
   }
 
-  private HttpRequest.Builder attachAclV2GroupRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String groupId) throws ApiException {
+  private HttpRequest.Builder attachAclV2GroupRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String groupId, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling attachAclV2Group");
@@ -172,6 +280,8 @@ public class RbacsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -186,7 +296,19 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public void attachAclV2User(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String userId) throws ApiException {
-    attachAclV2UserWithHttpInfo(id, userId);
+    attachAclV2User(id, userId, null);
+  }
+
+  /**
+   * 
+   * Attach an ACL V2 role to a user.  Required privilege: - resource: acl-role, action: update:users
+   * @param id  (required)
+   * @param userId  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void attachAclV2User(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String userId, Map<String, String> headers) throws ApiException {
+    attachAclV2UserWithHttpInfo(id, userId, headers);
   }
 
   /**
@@ -198,7 +320,20 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> attachAclV2UserWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String userId) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = attachAclV2UserRequestBuilder(id, userId);
+    return attachAclV2UserWithHttpInfo(id, userId, null);
+  }
+
+  /**
+   * 
+   * Attach an ACL V2 role to a user.  Required privilege: - resource: acl-role, action: update:users
+   * @param id  (required)
+   * @param userId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> attachAclV2UserWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String userId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = attachAclV2UserRequestBuilder(id, userId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -206,9 +341,14 @@ public class RbacsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("attachAclV2User", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -216,11 +356,9 @@ public class RbacsApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -231,7 +369,7 @@ public class RbacsApi {
     }
   }
 
-  private HttpRequest.Builder attachAclV2UserRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String userId) throws ApiException {
+  private HttpRequest.Builder attachAclV2UserRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String userId, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling attachAclV2User");
@@ -255,6 +393,8 @@ public class RbacsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -271,7 +411,21 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeIdString copyAclV2Role(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable CopyAclV2RoleRequest copyAclV2RoleRequest) throws ApiException {
-    ApiResponse<CreateActionReturnTypeIdString> localVarResponse = copyAclV2RoleWithHttpInfo(id, sync, copyAclV2RoleRequest);
+    return copyAclV2Role(id, sync, copyAclV2RoleRequest, null);
+  }
+
+  /**
+   * 
+   * Copy a role with all its privileges. Possibility to modify the name and description of the copied role.  Required privileges: - resource: acl-role, action: create - resource: acl-privilege, action: create (if copied role has privileges)
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param copyAclV2RoleRequest  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeIdString
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeIdString copyAclV2Role(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable CopyAclV2RoleRequest copyAclV2RoleRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeIdString> localVarResponse = copyAclV2RoleWithHttpInfo(id, sync, copyAclV2RoleRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -285,7 +439,21 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeIdString> copyAclV2RoleWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable CopyAclV2RoleRequest copyAclV2RoleRequest) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = copyAclV2RoleRequestBuilder(id, sync, copyAclV2RoleRequest);
+    return copyAclV2RoleWithHttpInfo(id, sync, copyAclV2RoleRequest, null);
+  }
+
+  /**
+   * 
+   * Copy a role with all its privileges. Possibility to modify the name and description of the copied role.  Required privileges: - resource: acl-role, action: create - resource: acl-privilege, action: create (if copied role has privileges)
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param copyAclV2RoleRequest  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeIdString&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeIdString> copyAclV2RoleWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable CopyAclV2RoleRequest copyAclV2RoleRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = copyAclV2RoleRequestBuilder(id, sync, copyAclV2RoleRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -293,11 +461,13 @@ public class RbacsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("copyAclV2Role", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeIdString>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -305,15 +475,21 @@ public class RbacsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeIdString responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeIdString>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeIdString>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeIdString>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -324,7 +500,7 @@ public class RbacsApi {
     }
   }
 
-  private HttpRequest.Builder copyAclV2RoleRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable CopyAclV2RoleRequest copyAclV2RoleRequest) throws ApiException {
+  private HttpRequest.Builder copyAclV2RoleRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable CopyAclV2RoleRequest copyAclV2RoleRequest, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling copyAclV2Role");
@@ -364,6 +540,8 @@ public class RbacsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -378,7 +556,19 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateAclV2Privilege201Response createAclV2Privilege(@javax.annotation.Nonnull UnbrandSafeOmitAnyPrivilegeId unbrandSafeOmitAnyPrivilegeId) throws ApiException {
-    ApiResponse<CreateAclV2Privilege201Response> localVarResponse = createAclV2PrivilegeWithHttpInfo(unbrandSafeOmitAnyPrivilegeId);
+    return createAclV2Privilege(unbrandSafeOmitAnyPrivilegeId, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: acl-privilege, action: create
+   * @param unbrandSafeOmitAnyPrivilegeId  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateAclV2Privilege201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateAclV2Privilege201Response createAclV2Privilege(@javax.annotation.Nonnull UnbrandSafeOmitAnyPrivilegeId unbrandSafeOmitAnyPrivilegeId, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateAclV2Privilege201Response> localVarResponse = createAclV2PrivilegeWithHttpInfo(unbrandSafeOmitAnyPrivilegeId, headers);
     return localVarResponse.getData();
   }
 
@@ -390,7 +580,19 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateAclV2Privilege201Response> createAclV2PrivilegeWithHttpInfo(@javax.annotation.Nonnull UnbrandSafeOmitAnyPrivilegeId unbrandSafeOmitAnyPrivilegeId) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createAclV2PrivilegeRequestBuilder(unbrandSafeOmitAnyPrivilegeId);
+    return createAclV2PrivilegeWithHttpInfo(unbrandSafeOmitAnyPrivilegeId, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: acl-privilege, action: create
+   * @param unbrandSafeOmitAnyPrivilegeId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateAclV2Privilege201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateAclV2Privilege201Response> createAclV2PrivilegeWithHttpInfo(@javax.annotation.Nonnull UnbrandSafeOmitAnyPrivilegeId unbrandSafeOmitAnyPrivilegeId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createAclV2PrivilegeRequestBuilder(unbrandSafeOmitAnyPrivilegeId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -398,11 +600,13 @@ public class RbacsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("createAclV2Privilege", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateAclV2Privilege201Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -410,15 +614,21 @@ public class RbacsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateAclV2Privilege201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateAclV2Privilege201Response>() {});
+        
 
         return new ApiResponse<CreateAclV2Privilege201Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateAclV2Privilege201Response>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -429,7 +639,7 @@ public class RbacsApi {
     }
   }
 
-  private HttpRequest.Builder createAclV2PrivilegeRequestBuilder(@javax.annotation.Nonnull UnbrandSafeOmitAnyPrivilegeId unbrandSafeOmitAnyPrivilegeId) throws ApiException {
+  private HttpRequest.Builder createAclV2PrivilegeRequestBuilder(@javax.annotation.Nonnull UnbrandSafeOmitAnyPrivilegeId unbrandSafeOmitAnyPrivilegeId, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'unbrandSafeOmitAnyPrivilegeId' is set
     if (unbrandSafeOmitAnyPrivilegeId == null) {
       throw new ApiException(400, "Missing the required parameter 'unbrandSafeOmitAnyPrivilegeId' when calling createAclV2Privilege");
@@ -453,6 +663,8 @@ public class RbacsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -467,7 +679,19 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateAclV2Privilege201Response createAclV2Role(@javax.annotation.Nonnull CreateAclV2RoleRequest createAclV2RoleRequest) throws ApiException {
-    ApiResponse<CreateAclV2Privilege201Response> localVarResponse = createAclV2RoleWithHttpInfo(createAclV2RoleRequest);
+    return createAclV2Role(createAclV2RoleRequest, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: acl-role, action: create
+   * @param createAclV2RoleRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateAclV2Privilege201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateAclV2Privilege201Response createAclV2Role(@javax.annotation.Nonnull CreateAclV2RoleRequest createAclV2RoleRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateAclV2Privilege201Response> localVarResponse = createAclV2RoleWithHttpInfo(createAclV2RoleRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -479,7 +703,19 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateAclV2Privilege201Response> createAclV2RoleWithHttpInfo(@javax.annotation.Nonnull CreateAclV2RoleRequest createAclV2RoleRequest) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createAclV2RoleRequestBuilder(createAclV2RoleRequest);
+    return createAclV2RoleWithHttpInfo(createAclV2RoleRequest, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: acl-role, action: create
+   * @param createAclV2RoleRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateAclV2Privilege201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateAclV2Privilege201Response> createAclV2RoleWithHttpInfo(@javax.annotation.Nonnull CreateAclV2RoleRequest createAclV2RoleRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createAclV2RoleRequestBuilder(createAclV2RoleRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -487,11 +723,13 @@ public class RbacsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("createAclV2Role", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateAclV2Privilege201Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -499,15 +737,21 @@ public class RbacsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateAclV2Privilege201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateAclV2Privilege201Response>() {});
+        
 
         return new ApiResponse<CreateAclV2Privilege201Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateAclV2Privilege201Response>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -518,7 +762,7 @@ public class RbacsApi {
     }
   }
 
-  private HttpRequest.Builder createAclV2RoleRequestBuilder(@javax.annotation.Nonnull CreateAclV2RoleRequest createAclV2RoleRequest) throws ApiException {
+  private HttpRequest.Builder createAclV2RoleRequestBuilder(@javax.annotation.Nonnull CreateAclV2RoleRequest createAclV2RoleRequest, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'createAclV2RoleRequest' is set
     if (createAclV2RoleRequest == null) {
       throw new ApiException(400, "Missing the required parameter 'createAclV2RoleRequest' when calling createAclV2Role");
@@ -542,6 +786,8 @@ public class RbacsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -555,7 +801,18 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public void deleteAclV2Privilege(@javax.annotation.Nonnull String id) throws ApiException {
-    deleteAclV2PrivilegeWithHttpInfo(id);
+    deleteAclV2Privilege(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: acl-privilege, action: delete
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteAclV2Privilege(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    deleteAclV2PrivilegeWithHttpInfo(id, headers);
   }
 
   /**
@@ -566,7 +823,19 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> deleteAclV2PrivilegeWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = deleteAclV2PrivilegeRequestBuilder(id);
+    return deleteAclV2PrivilegeWithHttpInfo(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: acl-privilege, action: delete
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteAclV2PrivilegeWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteAclV2PrivilegeRequestBuilder(id, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -574,9 +843,14 @@ public class RbacsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("deleteAclV2Privilege", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -584,11 +858,9 @@ public class RbacsApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -599,7 +871,7 @@ public class RbacsApi {
     }
   }
 
-  private HttpRequest.Builder deleteAclV2PrivilegeRequestBuilder(@javax.annotation.Nonnull String id) throws ApiException {
+  private HttpRequest.Builder deleteAclV2PrivilegeRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling deleteAclV2Privilege");
@@ -618,6 +890,8 @@ public class RbacsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -631,7 +905,18 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public void deleteAclV2Role(@javax.annotation.Nonnull String id) throws ApiException {
-    deleteAclV2RoleWithHttpInfo(id);
+    deleteAclV2Role(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: acl-role, action: delete
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteAclV2Role(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    deleteAclV2RoleWithHttpInfo(id, headers);
   }
 
   /**
@@ -642,7 +927,19 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> deleteAclV2RoleWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = deleteAclV2RoleRequestBuilder(id);
+    return deleteAclV2RoleWithHttpInfo(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: acl-role, action: delete
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteAclV2RoleWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteAclV2RoleRequestBuilder(id, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -650,9 +947,14 @@ public class RbacsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("deleteAclV2Role", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -660,11 +962,9 @@ public class RbacsApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -675,7 +975,7 @@ public class RbacsApi {
     }
   }
 
-  private HttpRequest.Builder deleteAclV2RoleRequestBuilder(@javax.annotation.Nonnull String id) throws ApiException {
+  private HttpRequest.Builder deleteAclV2RoleRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling deleteAclV2Role");
@@ -694,6 +994,8 @@ public class RbacsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -708,7 +1010,19 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public void detachAclV2Group(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String groupId) throws ApiException {
-    detachAclV2GroupWithHttpInfo(id, groupId);
+    detachAclV2Group(id, groupId, null);
+  }
+
+  /**
+   * 
+   * Detach an ACL V2 role from a group.  Required privilege: - resource: acl-role, action: update:groups
+   * @param id  (required)
+   * @param groupId  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void detachAclV2Group(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String groupId, Map<String, String> headers) throws ApiException {
+    detachAclV2GroupWithHttpInfo(id, groupId, headers);
   }
 
   /**
@@ -720,7 +1034,20 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> detachAclV2GroupWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String groupId) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = detachAclV2GroupRequestBuilder(id, groupId);
+    return detachAclV2GroupWithHttpInfo(id, groupId, null);
+  }
+
+  /**
+   * 
+   * Detach an ACL V2 role from a group.  Required privilege: - resource: acl-role, action: update:groups
+   * @param id  (required)
+   * @param groupId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> detachAclV2GroupWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String groupId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = detachAclV2GroupRequestBuilder(id, groupId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -728,9 +1055,14 @@ public class RbacsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("detachAclV2Group", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -738,11 +1070,9 @@ public class RbacsApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -753,7 +1083,7 @@ public class RbacsApi {
     }
   }
 
-  private HttpRequest.Builder detachAclV2GroupRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String groupId) throws ApiException {
+  private HttpRequest.Builder detachAclV2GroupRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String groupId, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling detachAclV2Group");
@@ -777,6 +1107,8 @@ public class RbacsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -791,7 +1123,19 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public void detachAclV2User(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String userId) throws ApiException {
-    detachAclV2UserWithHttpInfo(id, userId);
+    detachAclV2User(id, userId, null);
+  }
+
+  /**
+   * 
+   * Detach an ACL V2 role from a user.  Required privilege: - resource: acl-role, action: update:users
+   * @param id  (required)
+   * @param userId  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void detachAclV2User(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String userId, Map<String, String> headers) throws ApiException {
+    detachAclV2UserWithHttpInfo(id, userId, headers);
   }
 
   /**
@@ -803,7 +1147,20 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> detachAclV2UserWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String userId) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = detachAclV2UserRequestBuilder(id, userId);
+    return detachAclV2UserWithHttpInfo(id, userId, null);
+  }
+
+  /**
+   * 
+   * Detach an ACL V2 role from a user.  Required privilege: - resource: acl-role, action: update:users
+   * @param id  (required)
+   * @param userId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> detachAclV2UserWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String userId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = detachAclV2UserRequestBuilder(id, userId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -811,9 +1168,14 @@ public class RbacsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("detachAclV2User", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -821,11 +1183,9 @@ public class RbacsApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -836,7 +1196,7 @@ public class RbacsApi {
     }
   }
 
-  private HttpRequest.Builder detachAclV2UserRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String userId) throws ApiException {
+  private HttpRequest.Builder detachAclV2UserRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String userId, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling detachAclV2User");
@@ -860,6 +1220,8 @@ public class RbacsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -879,7 +1241,24 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoGroup getAclRoleGroups(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoGroup> localVarResponse = getAclRoleGroupsWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getAclRoleGroups(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all groups that match the following privilege: - resource: group, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoGroup
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoGroup getAclRoleGroups(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoGroup> localVarResponse = getAclRoleGroupsWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -896,7 +1275,24 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoGroup> getAclRoleGroupsWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getAclRoleGroupsRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getAclRoleGroupsWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all groups that match the following privilege: - resource: group, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoGroup&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoGroup> getAclRoleGroupsWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAclRoleGroupsRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -904,11 +1300,13 @@ public class RbacsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getAclRoleGroups", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoGroup>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -916,15 +1314,21 @@ public class RbacsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoGroup responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoGroup>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoGroup>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoGroup>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -935,7 +1339,7 @@ public class RbacsApi {
     }
   }
 
-  private HttpRequest.Builder getAclRoleGroupsRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getAclRoleGroupsRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getAclRoleGroups");
@@ -977,6 +1381,8 @@ public class RbacsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -996,7 +1402,24 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoUser getAclRoleUsers(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoUser> localVarResponse = getAclRoleUsersWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getAclRoleUsers(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all users that match the following privilege: - resource: user, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoUser
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoUser getAclRoleUsers(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoUser> localVarResponse = getAclRoleUsersWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -1013,7 +1436,24 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoUser> getAclRoleUsersWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getAclRoleUsersRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getAclRoleUsersWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all users that match the following privilege: - resource: user, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoUser&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoUser> getAclRoleUsersWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAclRoleUsersRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1021,11 +1461,13 @@ public class RbacsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getAclRoleUsers", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoUser>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1033,15 +1475,21 @@ public class RbacsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoUser responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoUser>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoUser>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoUser>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1052,7 +1500,7 @@ public class RbacsApi {
     }
   }
 
-  private HttpRequest.Builder getAclRoleUsersRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getAclRoleUsersRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getAclRoleUsers");
@@ -1094,6 +1542,8 @@ public class RbacsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1108,7 +1558,19 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public UnbrandAnyPrivilege getAclV2Privilege(@javax.annotation.Nonnull String id) throws ApiException {
-    ApiResponse<UnbrandAnyPrivilege> localVarResponse = getAclV2PrivilegeWithHttpInfo(id);
+    return getAclV2Privilege(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: acl-privilege, action: read
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return UnbrandAnyPrivilege
+   * @throws ApiException if fails to make API call
+   */
+  public UnbrandAnyPrivilege getAclV2Privilege(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<UnbrandAnyPrivilege> localVarResponse = getAclV2PrivilegeWithHttpInfo(id, headers);
     return localVarResponse.getData();
   }
 
@@ -1120,7 +1582,19 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<UnbrandAnyPrivilege> getAclV2PrivilegeWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getAclV2PrivilegeRequestBuilder(id);
+    return getAclV2PrivilegeWithHttpInfo(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: acl-privilege, action: read
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UnbrandAnyPrivilege&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UnbrandAnyPrivilege> getAclV2PrivilegeWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAclV2PrivilegeRequestBuilder(id, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1128,11 +1602,13 @@ public class RbacsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getAclV2Privilege", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<UnbrandAnyPrivilege>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1140,15 +1616,21 @@ public class RbacsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UnbrandAnyPrivilege responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnbrandAnyPrivilege>() {});
+        
 
         return new ApiResponse<UnbrandAnyPrivilege>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnbrandAnyPrivilege>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1159,7 +1641,7 @@ public class RbacsApi {
     }
   }
 
-  private HttpRequest.Builder getAclV2PrivilegeRequestBuilder(@javax.annotation.Nonnull String id) throws ApiException {
+  private HttpRequest.Builder getAclV2PrivilegeRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getAclV2Privilege");
@@ -1178,6 +1660,8 @@ public class RbacsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1195,7 +1679,22 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandAnyPrivilege getAclV2Privileges(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandAnyPrivilege> localVarResponse = getAclV2PrivilegesWithHttpInfo(fields, ndjson, filter, limit);
+    return getAclV2Privileges(fields, ndjson, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all ACL privileges that match the following privilege: - resource: acl-privilege, action: read
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandAnyPrivilege
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandAnyPrivilege getAclV2Privileges(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandAnyPrivilege> localVarResponse = getAclV2PrivilegesWithHttpInfo(fields, ndjson, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -1210,7 +1709,22 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandAnyPrivilege> getAclV2PrivilegesWithHttpInfo(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getAclV2PrivilegesRequestBuilder(fields, ndjson, filter, limit);
+    return getAclV2PrivilegesWithHttpInfo(fields, ndjson, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all ACL privileges that match the following privilege: - resource: acl-privilege, action: read
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandAnyPrivilege&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandAnyPrivilege> getAclV2PrivilegesWithHttpInfo(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAclV2PrivilegesRequestBuilder(fields, ndjson, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1218,11 +1732,13 @@ public class RbacsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getAclV2Privileges", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandAnyPrivilege>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1230,15 +1746,21 @@ public class RbacsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandAnyPrivilege responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandAnyPrivilege>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandAnyPrivilege>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandAnyPrivilege>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1249,7 +1771,7 @@ public class RbacsApi {
     }
   }
 
-  private HttpRequest.Builder getAclV2PrivilegesRequestBuilder(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getAclV2PrivilegesRequestBuilder(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -1284,6 +1806,8 @@ public class RbacsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1298,7 +1822,19 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public UnbrandXoAclRole getAclV2Role(@javax.annotation.Nonnull String id) throws ApiException {
-    ApiResponse<UnbrandXoAclRole> localVarResponse = getAclV2RoleWithHttpInfo(id);
+    return getAclV2Role(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: acl-role, action: read
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return UnbrandXoAclRole
+   * @throws ApiException if fails to make API call
+   */
+  public UnbrandXoAclRole getAclV2Role(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<UnbrandXoAclRole> localVarResponse = getAclV2RoleWithHttpInfo(id, headers);
     return localVarResponse.getData();
   }
 
@@ -1310,7 +1846,19 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<UnbrandXoAclRole> getAclV2RoleWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getAclV2RoleRequestBuilder(id);
+    return getAclV2RoleWithHttpInfo(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: acl-role, action: read
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UnbrandXoAclRole&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UnbrandXoAclRole> getAclV2RoleWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAclV2RoleRequestBuilder(id, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1318,11 +1866,13 @@ public class RbacsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getAclV2Role", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<UnbrandXoAclRole>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1330,15 +1880,21 @@ public class RbacsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UnbrandXoAclRole responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnbrandXoAclRole>() {});
+        
 
         return new ApiResponse<UnbrandXoAclRole>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnbrandXoAclRole>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1349,7 +1905,7 @@ public class RbacsApi {
     }
   }
 
-  private HttpRequest.Builder getAclV2RoleRequestBuilder(@javax.annotation.Nonnull String id) throws ApiException {
+  private HttpRequest.Builder getAclV2RoleRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getAclV2Role");
@@ -1368,6 +1924,8 @@ public class RbacsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1386,7 +1944,23 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandAnyPrivilege getAclV2RolePrivileges(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandAnyPrivilege> localVarResponse = getAclV2RolePrivilegesWithHttpInfo(id, fields, ndjson, filter, limit);
+    return getAclV2RolePrivileges(id, fields, ndjson, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all ACL privileges that match the following privilege: - resource: acl-privilege, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandAnyPrivilege
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandAnyPrivilege getAclV2RolePrivileges(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandAnyPrivilege> localVarResponse = getAclV2RolePrivilegesWithHttpInfo(id, fields, ndjson, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -1402,7 +1976,23 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandAnyPrivilege> getAclV2RolePrivilegesWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getAclV2RolePrivilegesRequestBuilder(id, fields, ndjson, filter, limit);
+    return getAclV2RolePrivilegesWithHttpInfo(id, fields, ndjson, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all ACL privileges that match the following privilege: - resource: acl-privilege, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandAnyPrivilege&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandAnyPrivilege> getAclV2RolePrivilegesWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAclV2RolePrivilegesRequestBuilder(id, fields, ndjson, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1410,11 +2000,13 @@ public class RbacsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getAclV2RolePrivileges", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandAnyPrivilege>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1422,15 +2014,21 @@ public class RbacsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandAnyPrivilege responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandAnyPrivilege>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandAnyPrivilege>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandAnyPrivilege>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1441,7 +2039,7 @@ public class RbacsApi {
     }
   }
 
-  private HttpRequest.Builder getAclV2RolePrivilegesRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getAclV2RolePrivilegesRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getAclV2RolePrivileges");
@@ -1481,6 +2079,8 @@ public class RbacsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1498,7 +2098,22 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoAclRole getAclV2Roles(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoAclRole> localVarResponse = getAclV2RolesWithHttpInfo(fields, ndjson, filter, limit);
+    return getAclV2Roles(fields, ndjson, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all ACL roles that match the following privilege: - resource: acl-role, action: read
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoAclRole
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoAclRole getAclV2Roles(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoAclRole> localVarResponse = getAclV2RolesWithHttpInfo(fields, ndjson, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -1513,7 +2128,22 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoAclRole> getAclV2RolesWithHttpInfo(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getAclV2RolesRequestBuilder(fields, ndjson, filter, limit);
+    return getAclV2RolesWithHttpInfo(fields, ndjson, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all ACL roles that match the following privilege: - resource: acl-role, action: read
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoAclRole&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoAclRole> getAclV2RolesWithHttpInfo(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAclV2RolesRequestBuilder(fields, ndjson, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1521,11 +2151,13 @@ public class RbacsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getAclV2Roles", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoAclRole>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1533,15 +2165,21 @@ public class RbacsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoAclRole responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoAclRole>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoAclRole>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoAclRole>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1552,7 +2190,7 @@ public class RbacsApi {
     }
   }
 
-  private HttpRequest.Builder getAclV2RolesRequestBuilder(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getAclV2RolesRequestBuilder(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -1587,6 +2225,8 @@ public class RbacsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1606,7 +2246,24 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandExcludeXoAclRoleIsTemplateTrue getGroupAclRoles(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandExcludeXoAclRoleIsTemplateTrue> localVarResponse = getGroupAclRolesWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getGroupAclRoles(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all acl-roles that match the following privilege: - resource: acl-role, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandExcludeXoAclRoleIsTemplateTrue
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandExcludeXoAclRoleIsTemplateTrue getGroupAclRoles(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandExcludeXoAclRoleIsTemplateTrue> localVarResponse = getGroupAclRolesWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -1623,7 +2280,24 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandExcludeXoAclRoleIsTemplateTrue> getGroupAclRolesWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getGroupAclRolesRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getGroupAclRolesWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all acl-roles that match the following privilege: - resource: acl-role, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandExcludeXoAclRoleIsTemplateTrue&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandExcludeXoAclRoleIsTemplateTrue> getGroupAclRolesWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getGroupAclRolesRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1631,11 +2305,13 @@ public class RbacsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getGroupAclRoles", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandExcludeXoAclRoleIsTemplateTrue>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1643,15 +2319,21 @@ public class RbacsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandExcludeXoAclRoleIsTemplateTrue responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandExcludeXoAclRoleIsTemplateTrue>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandExcludeXoAclRoleIsTemplateTrue>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandExcludeXoAclRoleIsTemplateTrue>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1662,7 +2344,7 @@ public class RbacsApi {
     }
   }
 
-  private HttpRequest.Builder getGroupAclRolesRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getGroupAclRolesRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getGroupAclRoles");
@@ -1704,6 +2386,8 @@ public class RbacsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1722,7 +2406,23 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandAnyPrivilege getUserPrivileges(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandAnyPrivilege> localVarResponse = getUserPrivilegesWithHttpInfo(id, fields, ndjson, filter, limit);
+    return getUserPrivileges(id, fields, ndjson, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all ACL privileges that match the following privilege: - resource: acl-privilege, action: read (if not self)
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandAnyPrivilege
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandAnyPrivilege getUserPrivileges(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandAnyPrivilege> localVarResponse = getUserPrivilegesWithHttpInfo(id, fields, ndjson, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -1738,7 +2438,23 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandAnyPrivilege> getUserPrivilegesWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getUserPrivilegesRequestBuilder(id, fields, ndjson, filter, limit);
+    return getUserPrivilegesWithHttpInfo(id, fields, ndjson, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all ACL privileges that match the following privilege: - resource: acl-privilege, action: read (if not self)
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandAnyPrivilege&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandAnyPrivilege> getUserPrivilegesWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getUserPrivilegesRequestBuilder(id, fields, ndjson, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1746,11 +2462,13 @@ public class RbacsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getUserPrivileges", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandAnyPrivilege>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1758,15 +2476,21 @@ public class RbacsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandAnyPrivilege responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandAnyPrivilege>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandAnyPrivilege>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandAnyPrivilege>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1777,7 +2501,7 @@ public class RbacsApi {
     }
   }
 
-  private HttpRequest.Builder getUserPrivilegesRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getUserPrivilegesRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getUserPrivileges");
@@ -1817,6 +2541,8 @@ public class RbacsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1831,7 +2557,19 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public void updateAclV2Privilege(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleId unbrandSafeOmitPartialAnyPrivilegeIdOrRoleId) throws ApiException {
-    updateAclV2PrivilegeWithHttpInfo(id, unbrandSafeOmitPartialAnyPrivilegeIdOrRoleId);
+    updateAclV2Privilege(id, unbrandSafeOmitPartialAnyPrivilegeIdOrRoleId, null);
+  }
+
+  /**
+   * 
+   * Required privileges: - resource: acl-privilege, action: update (grants all fields) - resource: acl-privilege, action: update:action (if action is passed) - resource: acl-privilege, action: update:resource (if resource is passed) - resource: acl-privilege, action: update:effect (if effect is passed) - resource: acl-privilege, action: update:selector (if selector is passed)
+   * @param id  (required)
+   * @param unbrandSafeOmitPartialAnyPrivilegeIdOrRoleId  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void updateAclV2Privilege(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleId unbrandSafeOmitPartialAnyPrivilegeIdOrRoleId, Map<String, String> headers) throws ApiException {
+    updateAclV2PrivilegeWithHttpInfo(id, unbrandSafeOmitPartialAnyPrivilegeIdOrRoleId, headers);
   }
 
   /**
@@ -1843,7 +2581,20 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> updateAclV2PrivilegeWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleId unbrandSafeOmitPartialAnyPrivilegeIdOrRoleId) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = updateAclV2PrivilegeRequestBuilder(id, unbrandSafeOmitPartialAnyPrivilegeIdOrRoleId);
+    return updateAclV2PrivilegeWithHttpInfo(id, unbrandSafeOmitPartialAnyPrivilegeIdOrRoleId, null);
+  }
+
+  /**
+   * 
+   * Required privileges: - resource: acl-privilege, action: update (grants all fields) - resource: acl-privilege, action: update:action (if action is passed) - resource: acl-privilege, action: update:resource (if resource is passed) - resource: acl-privilege, action: update:effect (if effect is passed) - resource: acl-privilege, action: update:selector (if selector is passed)
+   * @param id  (required)
+   * @param unbrandSafeOmitPartialAnyPrivilegeIdOrRoleId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> updateAclV2PrivilegeWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleId unbrandSafeOmitPartialAnyPrivilegeIdOrRoleId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateAclV2PrivilegeRequestBuilder(id, unbrandSafeOmitPartialAnyPrivilegeIdOrRoleId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1851,9 +2602,14 @@ public class RbacsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("updateAclV2Privilege", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -1861,11 +2617,9 @@ public class RbacsApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1876,7 +2630,7 @@ public class RbacsApi {
     }
   }
 
-  private HttpRequest.Builder updateAclV2PrivilegeRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleId unbrandSafeOmitPartialAnyPrivilegeIdOrRoleId) throws ApiException {
+  private HttpRequest.Builder updateAclV2PrivilegeRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandSafeOmitPartialAnyPrivilegeIdOrRoleId unbrandSafeOmitPartialAnyPrivilegeIdOrRoleId, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling updateAclV2Privilege");
@@ -1905,6 +2659,8 @@ public class RbacsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1919,7 +2675,19 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public void updateAclV2Role(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateAclV2RoleRequest updateAclV2RoleRequest) throws ApiException {
-    updateAclV2RoleWithHttpInfo(id, updateAclV2RoleRequest);
+    updateAclV2Role(id, updateAclV2RoleRequest, null);
+  }
+
+  /**
+   * 
+   * Required privileges: - resource: acl-role, action: update (grants all fields) - resource: acl-role, action: update:name (if name is passed) - resource: acl-role, action: update:description (if description is passed)
+   * @param id  (required)
+   * @param updateAclV2RoleRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void updateAclV2Role(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateAclV2RoleRequest updateAclV2RoleRequest, Map<String, String> headers) throws ApiException {
+    updateAclV2RoleWithHttpInfo(id, updateAclV2RoleRequest, headers);
   }
 
   /**
@@ -1931,7 +2699,20 @@ public class RbacsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> updateAclV2RoleWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateAclV2RoleRequest updateAclV2RoleRequest) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = updateAclV2RoleRequestBuilder(id, updateAclV2RoleRequest);
+    return updateAclV2RoleWithHttpInfo(id, updateAclV2RoleRequest, null);
+  }
+
+  /**
+   * 
+   * Required privileges: - resource: acl-role, action: update (grants all fields) - resource: acl-role, action: update:name (if name is passed) - resource: acl-role, action: update:description (if description is passed)
+   * @param id  (required)
+   * @param updateAclV2RoleRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> updateAclV2RoleWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateAclV2RoleRequest updateAclV2RoleRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateAclV2RoleRequestBuilder(id, updateAclV2RoleRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1939,9 +2720,14 @@ public class RbacsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("updateAclV2Role", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -1949,11 +2735,9 @@ public class RbacsApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1964,7 +2748,7 @@ public class RbacsApi {
     }
   }
 
-  private HttpRequest.Builder updateAclV2RoleRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateAclV2RoleRequest updateAclV2RoleRequest) throws ApiException {
+  private HttpRequest.Builder updateAclV2RoleRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UpdateAclV2RoleRequest updateAclV2RoleRequest, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling updateAclV2Role");
@@ -1993,6 +2777,8 @@ public class RbacsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }

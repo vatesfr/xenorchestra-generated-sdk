@@ -108,7 +108,7 @@ public class Example {
 
 ## getBackupJobWithHttpInfo
 
-> ApiResponse<UnbrandAnyXoBackupJob> getBackupJob getBackupJobWithHttpInfo(id)
+> ApiResponse<UnbrandAnyXoBackupJob> getBackupJobWithHttpInfo(id)
 
 
 
@@ -280,7 +280,7 @@ public class Example {
 
 ## getBackupJobsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandAnyXoBackupJob> getBackupJobs getBackupJobsWithHttpInfo(fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandAnyXoBackupJob> getBackupJobsWithHttpInfo(fields, ndjson, markdown, filter, limit)
 
 
 
@@ -449,7 +449,7 @@ public class Example {
 
 ## getMetadataBackupJobWithHttpInfo
 
-> ApiResponse<UnbrandUnbrandedXoMetadataBackupJob> getMetadataBackupJob getMetadataBackupJobWithHttpInfo(id)
+> ApiResponse<UnbrandUnbrandedXoMetadataBackupJob> getMetadataBackupJobWithHttpInfo(id)
 
 
 
@@ -618,7 +618,7 @@ public class Example {
 
 ## getMetadataBackupJobsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoMetadataBackupJob> getMetadataBackupJobs getMetadataBackupJobsWithHttpInfo(fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoMetadataBackupJob> getMetadataBackupJobsWithHttpInfo(fields, ndjson, markdown, filter, limit)
 
 
 
@@ -787,7 +787,7 @@ public class Example {
 
 ## getMirrorBackupJobWithHttpInfo
 
-> ApiResponse<UnbrandUnbrandedXoMirrorBackupJob> getMirrorBackupJob getMirrorBackupJobWithHttpInfo(id)
+> ApiResponse<UnbrandUnbrandedXoMirrorBackupJob> getMirrorBackupJobWithHttpInfo(id)
 
 
 
@@ -956,7 +956,7 @@ public class Example {
 
 ## getMirrorBackupJobsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoMirrorBackupJob> getMirrorBackupJobs getMirrorBackupJobsWithHttpInfo(fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoMirrorBackupJob> getMirrorBackupJobsWithHttpInfo(fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1125,7 +1125,7 @@ public class Example {
 
 ## getVmBackupJobWithHttpInfo
 
-> ApiResponse<UnbrandUnbrandedXoVmBackupJob> getVmBackupJob getVmBackupJobWithHttpInfo(id)
+> ApiResponse<UnbrandUnbrandedXoVmBackupJob> getVmBackupJobWithHttpInfo(id)
 
 
 
@@ -1294,7 +1294,7 @@ public class Example {
 
 ## getVmBackupJobsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoVmBackupJob> getVmBackupJobs getVmBackupJobsWithHttpInfo(fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoVmBackupJob> getVmBackupJobsWithHttpInfo(fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1475,7 +1475,7 @@ public class Example {
 
 ## vmGetVmBackupJobsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoVmBackupJob> vmGetVmBackupJobs vmGetVmBackupJobsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoVmBackupJob> vmGetVmBackupJobsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 

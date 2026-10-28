@@ -135,7 +135,7 @@ public class Example {
 
 ## abortTaskWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> abortTask abortTaskWithHttpInfo(id, sync)
+> ApiResponse<CreateActionReturnTypeVoid> abortTaskWithHttpInfo(id, sync)
 
 
 
@@ -303,7 +303,7 @@ null (empty response body)
 
 ## deleteTaskWithHttpInfo
 
-> ApiResponse<Void> deleteTask deleteTaskWithHttpInfo(id)
+> ApiResponse<Void> deleteTaskWithHttpInfo(id)
 
 
 
@@ -461,7 +461,7 @@ null (empty response body)
 
 ## deleteTasksWithHttpInfo
 
-> ApiResponse<Void> deleteTasks deleteTasksWithHttpInfo()
+> ApiResponse<Void> deleteTasksWithHttpInfo()
 
 
 
@@ -629,7 +629,7 @@ public class Example {
 
 ## getGroupTasksWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoTask> getGroupTasks getGroupTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoTask> getGroupTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -813,7 +813,7 @@ public class Example {
 
 ## getHostTasksWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoTask> getHostTasks getHostTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoTask> getHostTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -997,7 +997,7 @@ public class Example {
 
 ## getNetworkTasksWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoTask> getNetworkTasks getNetworkTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoTask> getNetworkTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1181,7 +1181,7 @@ public class Example {
 
 ## getPifTasksWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoTask> getPifTasks getPifTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoTask> getPifTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1365,7 +1365,7 @@ public class Example {
 
 ## getPoolTasksWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoTask> getPoolTasks getPoolTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoTask> getPoolTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1549,7 +1549,7 @@ public class Example {
 
 ## getServerTasksWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoTask> getServerTasks getServerTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoTask> getServerTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1733,7 +1733,7 @@ public class Example {
 
 ## getSrTasksWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoTask> getSrTasks getSrTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoTask> getSrTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1910,7 +1910,7 @@ public class Example {
 
 ## getTaskWithHttpInfo
 
-> ApiResponse<UnbrandXoTask> getTask getTaskWithHttpInfo(id, wait)
+> ApiResponse<UnbrandXoTask> getTaskWithHttpInfo(id, wait)
 
 
 
@@ -2086,7 +2086,7 @@ public class Example {
 
 ## getTasksWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoTask> getTasks getTasksWithHttpInfo(fields, ndjson, markdown, watch, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoTask> getTasksWithHttpInfo(fields, ndjson, markdown, watch, filter, limit)
 
 
 
@@ -2269,7 +2269,7 @@ public class Example {
 
 ## getUserTasksWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoTask> getUserTasks getUserTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoTask> getUserTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -2453,7 +2453,7 @@ public class Example {
 
 ## getVbdTasksWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoTask> getVbdTasks getVbdTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoTask> getVbdTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -2637,7 +2637,7 @@ public class Example {
 
 ## getVdiSnapshotTasksWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoTask> getVdiSnapshotTasks getVdiSnapshotTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoTask> getVdiSnapshotTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -2821,7 +2821,7 @@ public class Example {
 
 ## getVdiTasksWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoTask> getVdiTasks getVdiTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoTask> getVdiTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -3005,7 +3005,7 @@ public class Example {
 
 ## getVifTasksWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoTask> getVifTasks getVifTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoTask> getVifTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -3189,7 +3189,7 @@ public class Example {
 
 ## getVmControllerTasksWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoTask> getVmControllerTasks getVmControllerTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoTask> getVmControllerTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -3373,7 +3373,7 @@ public class Example {
 
 ## getVmSnapshotTasksWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoTask> getVmSnapshotTasks getVmSnapshotTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoTask> getVmSnapshotTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -3557,7 +3557,7 @@ public class Example {
 
 ## getVmTasksWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoTask> getVmTasks getVmTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoTask> getVmTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -3741,7 +3741,7 @@ public class Example {
 
 ## getVmTemplateTasksWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoTask> getVmTemplateTasks getVmTemplateTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoTask> getVmTemplateTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 

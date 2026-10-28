@@ -38,7 +38,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   AwaitedReturnTypeXoAppAtTestRemoteAnyOf1.JSON_PROPERTY_STEP,
   AwaitedReturnTypeXoAppAtTestRemoteAnyOf1.JSON_PROPERTY_SUCCESS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class AwaitedReturnTypeXoAppAtTestRemoteAnyOf1 {
   public static final String JSON_PROPERTY_ERROR = "error";
   @javax.annotation.Nullable
@@ -69,14 +69,14 @@ public class AwaitedReturnTypeXoAppAtTestRemoteAnyOf1 {
    * @return error
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ERROR)
+  @JsonProperty(value = JSON_PROPERTY_ERROR, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Object getError() {
     return error;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ERROR)
+  @JsonProperty(value = JSON_PROPERTY_ERROR, required = false)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setError(@javax.annotation.Nullable Object error) {
     this.error = error;
@@ -93,14 +93,14 @@ public class AwaitedReturnTypeXoAppAtTestRemoteAnyOf1 {
    * @return _file
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_FILE)
+  @JsonProperty(value = JSON_PROPERTY_FILE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getFile() {
     return _file;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_FILE)
+  @JsonProperty(value = JSON_PROPERTY_FILE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setFile(@javax.annotation.Nonnull String _file) {
     this._file = _file;
@@ -117,14 +117,14 @@ public class AwaitedReturnTypeXoAppAtTestRemoteAnyOf1 {
    * @return step
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_STEP)
+  @JsonProperty(value = JSON_PROPERTY_STEP, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getStep() {
     return step;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_STEP)
+  @JsonProperty(value = JSON_PROPERTY_STEP, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setStep(@javax.annotation.Nonnull String step) {
     this.step = step;
@@ -141,14 +141,14 @@ public class AwaitedReturnTypeXoAppAtTestRemoteAnyOf1 {
    * @return success
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_SUCCESS)
+  @JsonProperty(value = JSON_PROPERTY_SUCCESS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Boolean getSuccess() {
     return success;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SUCCESS)
+  @JsonProperty(value = JSON_PROPERTY_SUCCESS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSuccess(@javax.annotation.Nonnull Boolean success) {
     this.success = success;
@@ -195,10 +195,7 @@ public class AwaitedReturnTypeXoAppAtTestRemoteAnyOf1 {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -235,22 +232,22 @@ public class AwaitedReturnTypeXoAppAtTestRemoteAnyOf1 {
 
     // add `error` to the URL query string
     if (getError() != null) {
-      joiner.add(String.format("%serror%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getError()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%serror%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getError()))));
     }
 
     // add `file` to the URL query string
     if (getFile() != null) {
-      joiner.add(String.format("%sfile%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFile()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sfile%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFile()))));
     }
 
     // add `step` to the URL query string
     if (getStep() != null) {
-      joiner.add(String.format("%sstep%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStep()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sstep%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStep()))));
     }
 
     // add `success` to the URL query string
     if (getSuccess() != null) {
-      joiner.add(String.format("%ssuccess%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSuccess()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssuccess%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSuccess()))));
     }
 
     return joiner.toString();

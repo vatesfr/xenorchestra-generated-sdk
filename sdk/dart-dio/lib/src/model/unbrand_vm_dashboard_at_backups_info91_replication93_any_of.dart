@@ -117,8 +117,9 @@ class _$UnbrandVmDashboardAtBackupsInfo91Replication93AnyOfSerializer
         case r'sr':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.sr = valueDes;
           break;
         case r'timestamp':

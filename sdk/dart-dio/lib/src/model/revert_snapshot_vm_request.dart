@@ -92,8 +92,9 @@ class _$RevertSnapshotVmRequestSerializer
         case r'snapshotBefore':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.snapshotBefore = valueDes;
           break;
         case r'snapshotId':

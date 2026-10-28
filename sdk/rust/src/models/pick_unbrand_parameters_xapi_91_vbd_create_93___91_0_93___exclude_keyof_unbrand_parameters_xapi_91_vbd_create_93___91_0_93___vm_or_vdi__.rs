@@ -11,9 +11,9 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// PickUnbrandParametersXapi91VbdCreate9391093PeriodExcludeKeyofUnbrandParametersXapi91VbdCreate9391093PeriodVmOrVdi : From T, pick a set of properties whose keys are in the union K
+/// PickUnbrandParametersXapi91VbdCreate9391093ExcludeKeyofUnbrandParametersXapi91VbdCreate9391093VmOrVdi : From T, pick a set of properties whose keys are in the union K
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct PickUnbrandParametersXapi91VbdCreate9391093PeriodExcludeKeyofUnbrandParametersXapi91VbdCreate9391093PeriodVmOrVdi
+pub struct PickUnbrandParametersXapi91VbdCreate9391093ExcludeKeyofUnbrandParametersXapi91VbdCreate9391093VmOrVdi
 {
     #[serde(rename = "bootable", skip_serializing_if = "Option::is_none")]
     pub bootable: Option<bool>,
@@ -40,10 +40,10 @@ pub struct PickUnbrandParametersXapi91VbdCreate9391093PeriodExcludeKeyofUnbrandP
     pub userdevice: Option<String>,
 }
 
-impl PickUnbrandParametersXapi91VbdCreate9391093PeriodExcludeKeyofUnbrandParametersXapi91VbdCreate9391093PeriodVmOrVdi {
+impl PickUnbrandParametersXapi91VbdCreate9391093ExcludeKeyofUnbrandParametersXapi91VbdCreate9391093VmOrVdi {
     /// From T, pick a set of properties whose keys are in the union K
-    pub fn new() -> PickUnbrandParametersXapi91VbdCreate9391093PeriodExcludeKeyofUnbrandParametersXapi91VbdCreate9391093PeriodVmOrVdi {
-        PickUnbrandParametersXapi91VbdCreate9391093PeriodExcludeKeyofUnbrandParametersXapi91VbdCreate9391093PeriodVmOrVdi {
+    pub fn new() -> PickUnbrandParametersXapi91VbdCreate9391093ExcludeKeyofUnbrandParametersXapi91VbdCreate9391093VmOrVdi {
+        PickUnbrandParametersXapi91VbdCreate9391093ExcludeKeyofUnbrandParametersXapi91VbdCreate9391093VmOrVdi {
             bootable: None,
             empty: None,
             mode: None,

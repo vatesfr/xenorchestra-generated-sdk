@@ -110,8 +110,9 @@ class _$PartialUnbrandXoVmVulnerabilitiesXsa468AnyOfSerializer
         case r'driver':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.driver = valueDes;
           break;
         case r'reason':
@@ -124,8 +125,9 @@ class _$PartialUnbrandXoVmVulnerabilitiesXsa468AnyOfSerializer
         case r'version':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.version = valueDes;
           break;
         default:

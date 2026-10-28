@@ -37,7 +37,7 @@ final String id = c4284e12-37c9-7967-b9e8-83ef229c3e03; // String |
 try {
     final response = api.getSr(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling SmsApi->getSr: $e\n');
 }
 ```
@@ -91,7 +91,7 @@ final double limit = 42; // double |
 try {
     final response = api.getSrs(fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling SmsApi->getSrs: $e\n');
 }
 ```

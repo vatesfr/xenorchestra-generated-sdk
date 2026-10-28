@@ -9,11 +9,11 @@ Name | Type | Description | Notes
 **sr** | Option<**String**> |  | [optional]
 **_xapi_ref** | Option<**String**> |  | [optional]
 **attached** | Option<**bool**> |  | [optional]
-**device_config** | Option<[**models::PartialUnbrandXoPbdDeviceConfig**](Partial_Unbrand_XoPbd___device_config.md)> |  | [optional]
+**device_config** | Option<[**models::PartialUnbrandXoPbdDeviceConfig**](PartialUnbrandXoPbdDeviceConfig.md)> |  | [optional]
 **host** | Option<**String**> |  | [optional]
 **id** | Option<**String**> |  | [optional]
-**other_config** | Option<[**serde_json::Value**](.md)> | Construct a type with a set of properties K of type T | [optional]
-**r#type** | Option<**String**> |  | [optional]
+**other_config** | Option<**serde_json::Value**> | Construct a type with a set of properties K of type T | [optional]
+**r#type** | Option<**Type**> |  (enum: PBD) | [optional]
 **uuid** | Option<**String**> |  | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

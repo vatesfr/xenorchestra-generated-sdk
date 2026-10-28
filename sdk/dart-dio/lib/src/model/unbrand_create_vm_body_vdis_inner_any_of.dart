@@ -114,8 +114,9 @@ class _$UnbrandCreateVmBodyVdisInnerAnyOfSerializer
         case r'name_description':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.nameDescription = valueDes;
           break;
         case r'name_label':
@@ -135,8 +136,9 @@ class _$UnbrandCreateVmBodyVdisInnerAnyOfSerializer
         case r'sr':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.sr = valueDes;
           break;
         default:

@@ -40,7 +40,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   UnbrandXoSchedule.JSON_PROPERTY_NAME,
   UnbrandXoSchedule.JSON_PROPERTY_TIMEZONE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class UnbrandXoSchedule {
   public static final String JSON_PROPERTY_CRON = "cron";
   @javax.annotation.Nonnull
@@ -79,14 +79,14 @@ public class UnbrandXoSchedule {
    * @return cron
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_CRON)
+  @JsonProperty(value = JSON_PROPERTY_CRON, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getCron() {
     return cron;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CRON)
+  @JsonProperty(value = JSON_PROPERTY_CRON, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCron(@javax.annotation.Nonnull String cron) {
     this.cron = cron;
@@ -103,14 +103,14 @@ public class UnbrandXoSchedule {
    * @return enabled
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ENABLED)
+  @JsonProperty(value = JSON_PROPERTY_ENABLED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Boolean getEnabled() {
     return enabled;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ENABLED)
+  @JsonProperty(value = JSON_PROPERTY_ENABLED, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setEnabled(@javax.annotation.Nonnull Boolean enabled) {
     this.enabled = enabled;
@@ -127,14 +127,14 @@ public class UnbrandXoSchedule {
    * @return id
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getId() {
     return id;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(value = JSON_PROPERTY_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setId(@javax.annotation.Nonnull String id) {
     this.id = id;
@@ -151,14 +151,14 @@ public class UnbrandXoSchedule {
    * @return jobId
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_JOB_ID)
+  @JsonProperty(value = JSON_PROPERTY_JOB_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getJobId() {
     return jobId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_JOB_ID)
+  @JsonProperty(value = JSON_PROPERTY_JOB_ID, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setJobId(@javax.annotation.Nonnull String jobId) {
     this.jobId = jobId;
@@ -175,14 +175,14 @@ public class UnbrandXoSchedule {
    * @return name
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getName() {
     return name;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
@@ -199,14 +199,14 @@ public class UnbrandXoSchedule {
    * @return timezone
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_TIMEZONE)
+  @JsonProperty(value = JSON_PROPERTY_TIMEZONE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getTimezone() {
     return timezone;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_TIMEZONE)
+  @JsonProperty(value = JSON_PROPERTY_TIMEZONE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTimezone(@javax.annotation.Nullable String timezone) {
     this.timezone = timezone;
@@ -257,10 +257,7 @@ public class UnbrandXoSchedule {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -297,32 +294,32 @@ public class UnbrandXoSchedule {
 
     // add `cron` to the URL query string
     if (getCron() != null) {
-      joiner.add(String.format("%scron%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCron()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%scron%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCron()))));
     }
 
     // add `enabled` to the URL query string
     if (getEnabled() != null) {
-      joiner.add(String.format("%senabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEnabled()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%senabled%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEnabled()))));
     }
 
     // add `id` to the URL query string
     if (getId() != null) {
-      joiner.add(String.format("%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
     }
 
     // add `jobId` to the URL query string
     if (getJobId() != null) {
-      joiner.add(String.format("%sjobId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getJobId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sjobId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getJobId()))));
     }
 
     // add `name` to the URL query string
     if (getName() != null) {
-      joiner.add(String.format("%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
     }
 
     // add `timezone` to the URL query string
     if (getTimezone() != null) {
-      joiner.add(String.format("%stimezone%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTimezone()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%stimezone%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTimezone()))));
     }
 
     return joiner.toString();

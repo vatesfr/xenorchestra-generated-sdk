@@ -52,15 +52,35 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class BackupRepositoriesApi {
+  /**
+   * Utility class for extending HttpRequest.Builder functionality.
+   */
+  private static class HttpRequestBuilderExtensions {
+    /**
+     * Adds additional headers to the provided HttpRequest.Builder. Useful for adding method/endpoint specific headers.
+     *
+     * @param builder the HttpRequest.Builder to which headers will be added
+     * @param headers a map of header names and values to add; may be null
+     * @return the same HttpRequest.Builder instance with the additional headers set
+     */
+    static HttpRequest.Builder withAdditionalHeaders(HttpRequest.Builder builder, Map<String, String> headers) {
+        if (headers != null) {
+            for (Map.Entry<String, String> entry : headers.entrySet()) {
+                builder.header(entry.getKey(), entry.getValue());
+            }
+        }
+        return builder;
+    }
+  }
   private final HttpClient memberVarHttpClient;
   private final ObjectMapper memberVarObjectMapper;
   private final String memberVarBaseUri;
   private final Consumer<HttpRequest.Builder> memberVarInterceptor;
   private final Duration memberVarReadTimeout;
   private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
-  private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
+  private final Consumer<HttpResponse<InputStream>> memberVarAsyncResponseInterceptor;
 
   public BackupRepositoriesApi() {
     this(Configuration.getDefaultApiClient());
@@ -76,8 +96,17 @@ public class BackupRepositoriesApi {
     memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
   }
 
+
   protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
-    String body = response.body() == null ? null : new String(response.body().readAllBytes());
+    InputStream responseBody = ApiClient.getResponseBody(response);
+    String body = null;
+    try {
+      body = responseBody == null ? null : new String(responseBody.readAllBytes());
+    } finally {
+      if (responseBody != null) {
+        responseBody.close();
+      }
+    }
     String message = formatExceptionMessage(operationId, response.statusCode(), body);
     return new ApiException(response.statusCode(), message, response.headers(), body);
   }
@@ -90,6 +119,57 @@ public class BackupRepositoriesApi {
   }
 
   /**
+   * Download file from the given response.
+   *
+   * @param response Response
+   * @return File
+   * @throws ApiException If fail to read file content from response and write to disk
+   */
+  public File downloadFileFromResponse(HttpResponse<InputStream> response, InputStream responseBody) throws ApiException {
+    if (responseBody == null) {
+      throw new ApiException(new IOException("Response body is empty"));
+    }
+    try {
+      File file = prepareDownloadFile(response);
+      java.nio.file.Files.copy(responseBody, file.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+      return file;
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+  }
+
+  /**
+   * <p>Prepare the file for download from the response.</p>
+   *
+   * @param response a {@link java.net.http.HttpResponse} object.
+   * @return a {@link java.io.File} object.
+   * @throws java.io.IOException if any.
+   */
+  private File prepareDownloadFile(HttpResponse<InputStream> response) throws IOException {
+    String filename = null;
+    java.util.Optional<String> contentDisposition = response.headers().firstValue("Content-Disposition");
+    if (contentDisposition.isPresent() && !"".equals(contentDisposition.get())) {
+      // Get filename from the Content-Disposition header.
+      java.util.regex.Pattern pattern = java.util.regex.Pattern.compile("filename=['\"]?([^'\"\\s]+)['\"]?");
+      java.util.regex.Matcher matcher = pattern.matcher(contentDisposition.get());
+      if (matcher.find())
+        filename = matcher.group(1);
+    }
+    File file = null;
+    if (filename != null) {
+      java.nio.file.Path tempDir = java.nio.file.Files.createTempDirectory("swagger-gen-native");
+      java.nio.file.Path filePath = java.nio.file.Files.createFile(tempDir.resolve(filename));
+      file = filePath.toFile();
+      tempDir.toFile().deleteOnExit();   // best effort cleanup
+      file.deleteOnExit(); // best effort cleanup
+    } else {
+      file = java.nio.file.Files.createTempFile("download-", "").toFile();
+      file.deleteOnExit(); // best effort cleanup
+    }
+    return file;
+  }
+
+  /**
    * 
    * Runs a benchmark for write and read speed on the Backup-repository. Saves the benchmark result on the BR and returns the results, speeds are in bytes/sec. 502 if the BR cannot be reached, 400 if there was a problem during the benchmark with the error.  Required privilege: - resource: backup-repository, action: benchmark
    * @param id  (required)
@@ -97,7 +177,19 @@ public class BackupRepositoriesApi {
    * @throws ApiException if fails to make API call
    */
   public void benchmarkBackupRepository(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    benchmarkBackupRepositoryWithHttpInfo(id, sync);
+    benchmarkBackupRepository(id, sync, null);
+  }
+
+  /**
+   * 
+   * Runs a benchmark for write and read speed on the Backup-repository. Saves the benchmark result on the BR and returns the results, speeds are in bytes/sec. 502 if the BR cannot be reached, 400 if there was a problem during the benchmark with the error.  Required privilege: - resource: backup-repository, action: benchmark
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void benchmarkBackupRepository(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    benchmarkBackupRepositoryWithHttpInfo(id, sync, headers);
   }
 
   /**
@@ -109,7 +201,20 @@ public class BackupRepositoriesApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> benchmarkBackupRepositoryWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = benchmarkBackupRepositoryRequestBuilder(id, sync);
+    return benchmarkBackupRepositoryWithHttpInfo(id, sync, null);
+  }
+
+  /**
+   * 
+   * Runs a benchmark for write and read speed on the Backup-repository. Saves the benchmark result on the BR and returns the results, speeds are in bytes/sec. 502 if the BR cannot be reached, 400 if there was a problem during the benchmark with the error.  Required privilege: - resource: backup-repository, action: benchmark
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> benchmarkBackupRepositoryWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = benchmarkBackupRepositoryRequestBuilder(id, sync, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -117,9 +222,14 @@ public class BackupRepositoriesApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("benchmarkBackupRepository", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -127,11 +237,9 @@ public class BackupRepositoriesApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -142,7 +250,7 @@ public class BackupRepositoriesApi {
     }
   }
 
-  private HttpRequest.Builder benchmarkBackupRepositoryRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
+  private HttpRequest.Builder benchmarkBackupRepositoryRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling benchmarkBackupRepository");
@@ -176,6 +284,8 @@ public class BackupRepositoriesApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -190,7 +300,19 @@ public class BackupRepositoriesApi {
    * @throws ApiException if fails to make API call
    */
   public CreateAclV2Privilege201Response createBackupRepository(@javax.annotation.Nonnull UnbrandParametersXoAppAtCreateRemote91093 unbrandParametersXoAppAtCreateRemote91093) throws ApiException {
-    ApiResponse<CreateAclV2Privilege201Response> localVarResponse = createBackupRepositoryWithHttpInfo(unbrandParametersXoAppAtCreateRemote91093);
+    return createBackupRepository(unbrandParametersXoAppAtCreateRemote91093, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: backup-repository, action: create
+   * @param unbrandParametersXoAppAtCreateRemote91093  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateAclV2Privilege201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateAclV2Privilege201Response createBackupRepository(@javax.annotation.Nonnull UnbrandParametersXoAppAtCreateRemote91093 unbrandParametersXoAppAtCreateRemote91093, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateAclV2Privilege201Response> localVarResponse = createBackupRepositoryWithHttpInfo(unbrandParametersXoAppAtCreateRemote91093, headers);
     return localVarResponse.getData();
   }
 
@@ -202,7 +324,19 @@ public class BackupRepositoriesApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateAclV2Privilege201Response> createBackupRepositoryWithHttpInfo(@javax.annotation.Nonnull UnbrandParametersXoAppAtCreateRemote91093 unbrandParametersXoAppAtCreateRemote91093) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = createBackupRepositoryRequestBuilder(unbrandParametersXoAppAtCreateRemote91093);
+    return createBackupRepositoryWithHttpInfo(unbrandParametersXoAppAtCreateRemote91093, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: backup-repository, action: create
+   * @param unbrandParametersXoAppAtCreateRemote91093  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateAclV2Privilege201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateAclV2Privilege201Response> createBackupRepositoryWithHttpInfo(@javax.annotation.Nonnull UnbrandParametersXoAppAtCreateRemote91093 unbrandParametersXoAppAtCreateRemote91093, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createBackupRepositoryRequestBuilder(unbrandParametersXoAppAtCreateRemote91093, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -210,11 +344,13 @@ public class BackupRepositoriesApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("createBackupRepository", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateAclV2Privilege201Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -222,15 +358,21 @@ public class BackupRepositoriesApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateAclV2Privilege201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateAclV2Privilege201Response>() {});
+        
 
         return new ApiResponse<CreateAclV2Privilege201Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateAclV2Privilege201Response>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -241,7 +383,7 @@ public class BackupRepositoriesApi {
     }
   }
 
-  private HttpRequest.Builder createBackupRepositoryRequestBuilder(@javax.annotation.Nonnull UnbrandParametersXoAppAtCreateRemote91093 unbrandParametersXoAppAtCreateRemote91093) throws ApiException {
+  private HttpRequest.Builder createBackupRepositoryRequestBuilder(@javax.annotation.Nonnull UnbrandParametersXoAppAtCreateRemote91093 unbrandParametersXoAppAtCreateRemote91093, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'unbrandParametersXoAppAtCreateRemote91093' is set
     if (unbrandParametersXoAppAtCreateRemote91093 == null) {
       throw new ApiException(400, "Missing the required parameter 'unbrandParametersXoAppAtCreateRemote91093' when calling createBackupRepository");
@@ -265,6 +407,8 @@ public class BackupRepositoriesApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -280,7 +424,20 @@ public class BackupRepositoriesApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeVoid forgetBackupRepository(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = forgetBackupRepositoryWithHttpInfo(id, sync);
+    return forgetBackupRepository(id, sync, null);
+  }
+
+  /**
+   * 
+   * Forgets a backup repository configuration.  A backup repository cannot be forgotten if it is referenced by any backup job (enabled or disabled).  Required privilege: - resource: backup-repository, action: forget
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeVoid
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeVoid forgetBackupRepository(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = forgetBackupRepositoryWithHttpInfo(id, sync, headers);
     return localVarResponse.getData();
   }
 
@@ -293,7 +450,20 @@ public class BackupRepositoriesApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeVoid> forgetBackupRepositoryWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = forgetBackupRepositoryRequestBuilder(id, sync);
+    return forgetBackupRepositoryWithHttpInfo(id, sync, null);
+  }
+
+  /**
+   * 
+   * Forgets a backup repository configuration.  A backup repository cannot be forgotten if it is referenced by any backup job (enabled or disabled).  Required privilege: - resource: backup-repository, action: forget
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeVoid&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeVoid> forgetBackupRepositoryWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = forgetBackupRepositoryRequestBuilder(id, sync, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -301,11 +471,13 @@ public class BackupRepositoriesApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("forgetBackupRepository", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeVoid>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -313,15 +485,21 @@ public class BackupRepositoriesApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeVoid responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeVoid>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -332,7 +510,7 @@ public class BackupRepositoriesApi {
     }
   }
 
-  private HttpRequest.Builder forgetBackupRepositoryRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
+  private HttpRequest.Builder forgetBackupRepositoryRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling forgetBackupRepository");
@@ -366,6 +544,8 @@ public class BackupRepositoriesApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -380,7 +560,19 @@ public class BackupRepositoriesApi {
    * @throws ApiException if fails to make API call
    */
   public ReturnTypeXoAppAtPingRemote getBackupRepositoryHealth(@javax.annotation.Nonnull String id) throws ApiException {
-    ApiResponse<ReturnTypeXoAppAtPingRemote> localVarResponse = getBackupRepositoryHealthWithHttpInfo(id);
+    return getBackupRepositoryHealth(id, null);
+  }
+
+  /**
+   * 
+   * Pings the backup-repository to check its health  Required privilege: - resource: backup-repository, action: read
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ReturnTypeXoAppAtPingRemote
+   * @throws ApiException if fails to make API call
+   */
+  public ReturnTypeXoAppAtPingRemote getBackupRepositoryHealth(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<ReturnTypeXoAppAtPingRemote> localVarResponse = getBackupRepositoryHealthWithHttpInfo(id, headers);
     return localVarResponse.getData();
   }
 
@@ -392,7 +584,19 @@ public class BackupRepositoriesApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<ReturnTypeXoAppAtPingRemote> getBackupRepositoryHealthWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getBackupRepositoryHealthRequestBuilder(id);
+    return getBackupRepositoryHealthWithHttpInfo(id, null);
+  }
+
+  /**
+   * 
+   * Pings the backup-repository to check its health  Required privilege: - resource: backup-repository, action: read
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ReturnTypeXoAppAtPingRemote&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ReturnTypeXoAppAtPingRemote> getBackupRepositoryHealthWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getBackupRepositoryHealthRequestBuilder(id, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -400,11 +604,13 @@ public class BackupRepositoriesApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getBackupRepositoryHealth", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<ReturnTypeXoAppAtPingRemote>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -412,15 +618,21 @@ public class BackupRepositoriesApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ReturnTypeXoAppAtPingRemote responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ReturnTypeXoAppAtPingRemote>() {});
+        
 
         return new ApiResponse<ReturnTypeXoAppAtPingRemote>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ReturnTypeXoAppAtPingRemote>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -431,7 +643,7 @@ public class BackupRepositoriesApi {
     }
   }
 
-  private HttpRequest.Builder getBackupRepositoryHealthRequestBuilder(@javax.annotation.Nonnull String id) throws ApiException {
+  private HttpRequest.Builder getBackupRepositoryHealthRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getBackupRepositoryHealth");
@@ -450,6 +662,8 @@ public class BackupRepositoriesApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -468,7 +682,23 @@ public class BackupRepositoriesApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoBackupRepository getRepositories(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoBackupRepository> localVarResponse = getRepositoriesWithHttpInfo(fields, ndjson, markdown, filter, limit);
+    return getRepositories(fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all backup repositories that match the following privilege: - resource: backup-repository, action: read
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoBackupRepository
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoBackupRepository getRepositories(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoBackupRepository> localVarResponse = getRepositoriesWithHttpInfo(fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -484,7 +714,23 @@ public class BackupRepositoriesApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoBackupRepository> getRepositoriesWithHttpInfo(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getRepositoriesRequestBuilder(fields, ndjson, markdown, filter, limit);
+    return getRepositoriesWithHttpInfo(fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all backup repositories that match the following privilege: - resource: backup-repository, action: read
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoBackupRepository&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoBackupRepository> getRepositoriesWithHttpInfo(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getRepositoriesRequestBuilder(fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -492,11 +738,13 @@ public class BackupRepositoriesApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getRepositories", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoBackupRepository>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -504,15 +752,21 @@ public class BackupRepositoriesApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoBackupRepository responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoBackupRepository>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoBackupRepository>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoBackupRepository>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -523,7 +777,7 @@ public class BackupRepositoriesApi {
     }
   }
 
-  private HttpRequest.Builder getRepositoriesRequestBuilder(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getRepositoriesRequestBuilder(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -560,6 +814,8 @@ public class BackupRepositoriesApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -574,7 +830,19 @@ public class BackupRepositoriesApi {
    * @throws ApiException if fails to make API call
    */
   public UnbrandXoBackupRepository getRepository(@javax.annotation.Nonnull String id) throws ApiException {
-    ApiResponse<UnbrandXoBackupRepository> localVarResponse = getRepositoryWithHttpInfo(id);
+    return getRepository(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: backup-repository, action: read
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return UnbrandXoBackupRepository
+   * @throws ApiException if fails to make API call
+   */
+  public UnbrandXoBackupRepository getRepository(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<UnbrandXoBackupRepository> localVarResponse = getRepositoryWithHttpInfo(id, headers);
     return localVarResponse.getData();
   }
 
@@ -586,7 +854,19 @@ public class BackupRepositoriesApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<UnbrandXoBackupRepository> getRepositoryWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getRepositoryRequestBuilder(id);
+    return getRepositoryWithHttpInfo(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: backup-repository, action: read
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UnbrandXoBackupRepository&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UnbrandXoBackupRepository> getRepositoryWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getRepositoryRequestBuilder(id, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -594,11 +874,13 @@ public class BackupRepositoriesApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getRepository", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<UnbrandXoBackupRepository>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -606,15 +888,21 @@ public class BackupRepositoriesApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UnbrandXoBackupRepository responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnbrandXoBackupRepository>() {});
+        
 
         return new ApiResponse<UnbrandXoBackupRepository>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnbrandXoBackupRepository>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -625,7 +913,7 @@ public class BackupRepositoriesApi {
     }
   }
 
-  private HttpRequest.Builder getRepositoryRequestBuilder(@javax.annotation.Nonnull String id) throws ApiException {
+  private HttpRequest.Builder getRepositoryRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getRepository");
@@ -644,6 +932,8 @@ public class BackupRepositoriesApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -658,7 +948,19 @@ public class BackupRepositoriesApi {
    * @throws ApiException if fails to make API call
    */
   public void updateBackupRepository(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandParametersXoAppAtUpdateRemote91193 unbrandParametersXoAppAtUpdateRemote91193) throws ApiException {
-    updateBackupRepositoryWithHttpInfo(id, unbrandParametersXoAppAtUpdateRemote91193);
+    updateBackupRepository(id, unbrandParametersXoAppAtUpdateRemote91193, null);
+  }
+
+  /**
+   * 
+   * Required privileges: - resource: backup-repository, action: update (grants all fields) - resource: backup-repository, action: update:enabled (if enabled is passed) - resource: backup-repository, action: update:name (if name is passed) - resource: backup-repository, action: update:options (if options is passed) - resource: backup-repository, action: update:proxy (if proxy is passed) - resource: backup-repository, action: update:url (if url is passed)
+   * @param id  (required)
+   * @param unbrandParametersXoAppAtUpdateRemote91193  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void updateBackupRepository(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandParametersXoAppAtUpdateRemote91193 unbrandParametersXoAppAtUpdateRemote91193, Map<String, String> headers) throws ApiException {
+    updateBackupRepositoryWithHttpInfo(id, unbrandParametersXoAppAtUpdateRemote91193, headers);
   }
 
   /**
@@ -670,7 +972,20 @@ public class BackupRepositoriesApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> updateBackupRepositoryWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandParametersXoAppAtUpdateRemote91193 unbrandParametersXoAppAtUpdateRemote91193) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = updateBackupRepositoryRequestBuilder(id, unbrandParametersXoAppAtUpdateRemote91193);
+    return updateBackupRepositoryWithHttpInfo(id, unbrandParametersXoAppAtUpdateRemote91193, null);
+  }
+
+  /**
+   * 
+   * Required privileges: - resource: backup-repository, action: update (grants all fields) - resource: backup-repository, action: update:enabled (if enabled is passed) - resource: backup-repository, action: update:name (if name is passed) - resource: backup-repository, action: update:options (if options is passed) - resource: backup-repository, action: update:proxy (if proxy is passed) - resource: backup-repository, action: update:url (if url is passed)
+   * @param id  (required)
+   * @param unbrandParametersXoAppAtUpdateRemote91193  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> updateBackupRepositoryWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandParametersXoAppAtUpdateRemote91193 unbrandParametersXoAppAtUpdateRemote91193, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateBackupRepositoryRequestBuilder(id, unbrandParametersXoAppAtUpdateRemote91193, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -678,9 +993,14 @@ public class BackupRepositoriesApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("updateBackupRepository", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -688,11 +1008,9 @@ public class BackupRepositoriesApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -703,7 +1021,7 @@ public class BackupRepositoriesApi {
     }
   }
 
-  private HttpRequest.Builder updateBackupRepositoryRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandParametersXoAppAtUpdateRemote91193 unbrandParametersXoAppAtUpdateRemote91193) throws ApiException {
+  private HttpRequest.Builder updateBackupRepositoryRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull UnbrandParametersXoAppAtUpdateRemote91193 unbrandParametersXoAppAtUpdateRemote91193, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling updateBackupRepository");
@@ -732,6 +1050,8 @@ public class BackupRepositoriesApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }

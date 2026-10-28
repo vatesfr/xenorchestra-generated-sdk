@@ -1,5 +1,3 @@
-# coding: utf-8
-
 """
     @xen-orchestra/rest-api
 
@@ -10,6 +8,7 @@
 
     Do not edit the class manually.
 """  # noqa: E501
+
 
 import warnings
 from pydantic import validate_call, Field, StrictFloat, StrictStr, StrictInt
@@ -3834,7 +3833,7 @@ class VmsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> bytearray:
+    ) -> bytes:
         """export_vm
 
          Export VM. Compress is only used for XVA format  Required privilege: - resource: vm, action: export
@@ -3878,7 +3877,7 @@ class VmsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "bytearray",
+            '200': "bytes",
             '400': None,
             '401': None,
             '403': None,
@@ -3914,7 +3913,7 @@ class VmsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[bytearray]:
+    ) -> ApiResponse[bytes]:
         """export_vm
 
          Export VM. Compress is only used for XVA format  Required privilege: - resource: vm, action: export
@@ -3958,7 +3957,7 @@ class VmsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "bytearray",
+            '200': "bytes",
             '400': None,
             '401': None,
             '403': None,
@@ -4038,7 +4037,7 @@ class VmsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "bytearray",
+            '200': "bytes",
             '400': None,
             '401': None,
             '403': None,
@@ -4143,7 +4142,7 @@ class VmsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> bytearray:
+    ) -> bytes:
         """export_vm_snapshot
 
          Export VM-snapshot. Compress is only used for XVA format  Required privilege: - resource: vm-snapshot, action: export
@@ -4187,7 +4186,7 @@ class VmsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "bytearray",
+            '200': "bytes",
             '400': None,
             '401': None,
             '403': None,
@@ -4223,7 +4222,7 @@ class VmsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[bytearray]:
+    ) -> ApiResponse[bytes]:
         """export_vm_snapshot
 
          Export VM-snapshot. Compress is only used for XVA format  Required privilege: - resource: vm-snapshot, action: export
@@ -4267,7 +4266,7 @@ class VmsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "bytearray",
+            '200': "bytes",
             '400': None,
             '401': None,
             '403': None,
@@ -4347,7 +4346,7 @@ class VmsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "bytearray",
+            '200': "bytes",
             '400': None,
             '401': None,
             '403': None,
@@ -4452,7 +4451,7 @@ class VmsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> bytearray:
+    ) -> bytes:
         """export_vm_template
 
          Export VM-template. Compress is only used for XVA format  Required privilege: - resource: vm-template, action: export
@@ -4496,7 +4495,7 @@ class VmsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "bytearray",
+            '200': "bytes",
             '400': None,
             '401': None,
             '403': None,
@@ -4532,7 +4531,7 @@ class VmsApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[bytearray]:
+    ) -> ApiResponse[bytes]:
         """export_vm_template
 
          Export VM-template. Compress is only used for XVA format  Required privilege: - resource: vm-template, action: export
@@ -4576,7 +4575,7 @@ class VmsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "bytearray",
+            '200': "bytes",
             '400': None,
             '401': None,
             '403': None,
@@ -4656,7 +4655,7 @@ class VmsApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            '200': "bytearray",
+            '200': "bytes",
             '400': None,
             '401': None,
             '403': None,
@@ -14089,7 +14088,7 @@ class VmsApi:
         :param id: (required)
         :type id: str
         :param body: (required)
-        :type body: bytearray
+        :type body: bytes
         :param sr:
         :type sr: str
         :param _request_timeout: timeout setting for this request. If one
@@ -14169,7 +14168,7 @@ class VmsApi:
         :param id: (required)
         :type id: str
         :param body: (required)
-        :type body: bytearray
+        :type body: bytes
         :param sr:
         :type sr: str
         :param _request_timeout: timeout setting for this request. If one
@@ -14249,7 +14248,7 @@ class VmsApi:
         :param id: (required)
         :type id: str
         :param body: (required)
-        :type body: bytearray
+        :type body: bytes
         :param sr:
         :type sr: str
         :param _request_timeout: timeout setting for this request. If one

@@ -281,8 +281,9 @@ class _$UnbrandXoPgpuSerializer implements PrimitiveSerializer<UnbrandXoPgpu> {
         case r'gpuGroup':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.gpuGroup = valueDes;
           break;
         case r'host':
@@ -309,15 +310,17 @@ class _$UnbrandXoPgpuSerializer implements PrimitiveSerializer<UnbrandXoPgpu> {
         case r'pci':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.pci = valueDes;
           break;
         case r'supportedVgpuMaxCapcities':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.supportedVgpuMaxCapcities = valueDes;
           break;
         case r'supportedVgpuTypes':

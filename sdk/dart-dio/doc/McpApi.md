@@ -28,7 +28,7 @@ final api = XenorchestraDartSdk().getMcpApi();
 try {
     final response = api.getMcpStatus();
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling McpApi->getMcpStatus: $e\n');
 }
 ```

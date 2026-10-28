@@ -23,6 +23,7 @@ from xenorchestra_client.models.vbdmode import VBDMODE
 from xenorchestra_client.models.vbdtype import VBDTYPE
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class PickUnbrandParametersXapi91VBDCreate9391093ExcludeKeyofUnbrandParametersXapi91VBDCreate9391093VMOrVDI(BaseModel):
     """
@@ -40,7 +41,8 @@ class PickUnbrandParametersXapi91VBDCreate9391093ExcludeKeyofUnbrandParametersXa
     __properties: ClassVar[List[str]] = ["bootable", "empty", "mode", "other_config", "qos_algorithm_params", "qos_algorithm_type", "type", "unpluggable", "userdevice"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -52,8 +54,7 @@ class PickUnbrandParametersXapi91VBDCreate9391093ExcludeKeyofUnbrandParametersXa
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:

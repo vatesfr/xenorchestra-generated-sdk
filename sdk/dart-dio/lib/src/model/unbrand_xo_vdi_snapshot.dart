@@ -322,8 +322,9 @@ class _$UnbrandXoVdiSnapshotSerializer
         case r'$snapshot_of':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.dollarSnapshotOf = valueDes;
           break;
         case r'VDI_type':
@@ -343,8 +344,9 @@ class _$UnbrandXoVdiSnapshotSerializer
         case r'cbt_enabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.cbtEnabled = valueDes;
           break;
         case r'current_operations':
@@ -364,8 +366,9 @@ class _$UnbrandXoVdiSnapshotSerializer
         case r'image_format':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.imageFormat = valueDes;
           break;
         case r'missing':
@@ -399,8 +402,9 @@ class _$UnbrandXoVdiSnapshotSerializer
         case r'parent':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.parent = valueDes;
           break;
         case r'size':

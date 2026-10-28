@@ -40,7 +40,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   UnbrandCreateNetworkBody.JSON_PROPERTY_PIF,
   UnbrandCreateNetworkBody.JSON_PROPERTY_VLAN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class UnbrandCreateNetworkBody {
   public static final String JSON_PROPERTY_DESCRIPTION = "description";
   @javax.annotation.Nullable
@@ -79,14 +79,14 @@ public class UnbrandCreateNetworkBody {
    * @return description
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getDescription() {
     return description;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDescription(@javax.annotation.Nullable String description) {
     this.description = description;
@@ -103,14 +103,14 @@ public class UnbrandCreateNetworkBody {
    * @return mtu
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_MTU)
+  @JsonProperty(value = JSON_PROPERTY_MTU, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Double getMtu() {
     return mtu;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MTU)
+  @JsonProperty(value = JSON_PROPERTY_MTU, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMtu(@javax.annotation.Nullable Double mtu) {
     this.mtu = mtu;
@@ -127,14 +127,14 @@ public class UnbrandCreateNetworkBody {
    * @return name
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getName() {
     return name;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setName(@javax.annotation.Nonnull String name) {
     this.name = name;
@@ -151,14 +151,14 @@ public class UnbrandCreateNetworkBody {
    * @return nbd
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_NBD)
+  @JsonProperty(value = JSON_PROPERTY_NBD, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getNbd() {
     return nbd;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NBD)
+  @JsonProperty(value = JSON_PROPERTY_NBD, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNbd(@javax.annotation.Nullable Boolean nbd) {
     this.nbd = nbd;
@@ -175,14 +175,14 @@ public class UnbrandCreateNetworkBody {
    * @return pif
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_PIF)
+  @JsonProperty(value = JSON_PROPERTY_PIF, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getPif() {
     return pif;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PIF)
+  @JsonProperty(value = JSON_PROPERTY_PIF, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setPif(@javax.annotation.Nonnull String pif) {
     this.pif = pif;
@@ -201,14 +201,14 @@ public class UnbrandCreateNetworkBody {
    * @return vlan
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_VLAN)
+  @JsonProperty(value = JSON_PROPERTY_VLAN, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getVlan() {
     return vlan;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_VLAN)
+  @JsonProperty(value = JSON_PROPERTY_VLAN, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setVlan(@javax.annotation.Nonnull Double vlan) {
     this.vlan = vlan;
@@ -259,10 +259,7 @@ public class UnbrandCreateNetworkBody {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -299,32 +296,32 @@ public class UnbrandCreateNetworkBody {
 
     // add `description` to the URL query string
     if (getDescription() != null) {
-      joiner.add(String.format("%sdescription%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDescription()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdescription%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDescription()))));
     }
 
     // add `mtu` to the URL query string
     if (getMtu() != null) {
-      joiner.add(String.format("%smtu%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMtu()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%smtu%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMtu()))));
     }
 
     // add `name` to the URL query string
     if (getName() != null) {
-      joiner.add(String.format("%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
     }
 
     // add `nbd` to the URL query string
     if (getNbd() != null) {
-      joiner.add(String.format("%snbd%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNbd()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%snbd%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNbd()))));
     }
 
     // add `pif` to the URL query string
     if (getPif() != null) {
-      joiner.add(String.format("%spif%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPif()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%spif%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPif()))));
     }
 
     // add `vlan` to the URL query string
     if (getVlan() != null) {
-      joiner.add(String.format("%svlan%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVlan()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%svlan%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVlan()))));
     }
 
     return joiner.toString();

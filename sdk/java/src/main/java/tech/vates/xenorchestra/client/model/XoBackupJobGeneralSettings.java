@@ -30,9 +30,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -46,7 +44,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   XoBackupJobGeneralSettings.JSON_PROPERTY_REPORT_RECIPIENTS,
   XoBackupJobGeneralSettings.JSON_PROPERTY_REPORT_WHEN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class XoBackupJobGeneralSettings {
   /**
    * Gets or Sets backupReportTpl
@@ -155,14 +153,14 @@ private final String value;
    * @return backupReportTpl
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_BACKUP_REPORT_TPL)
+  @JsonProperty(value = JSON_PROPERTY_BACKUP_REPORT_TPL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public BackupReportTplEnum getBackupReportTpl() {
     return backupReportTpl;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_BACKUP_REPORT_TPL)
+  @JsonProperty(value = JSON_PROPERTY_BACKUP_REPORT_TPL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBackupReportTpl(@javax.annotation.Nullable BackupReportTplEnum backupReportTpl) {
     this.backupReportTpl = backupReportTpl;
@@ -179,14 +177,14 @@ private final String value;
    * @return hideSuccessfulItems
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_HIDE_SUCCESSFUL_ITEMS)
+  @JsonProperty(value = JSON_PROPERTY_HIDE_SUCCESSFUL_ITEMS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getHideSuccessfulItems() {
     return hideSuccessfulItems;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_HIDE_SUCCESSFUL_ITEMS)
+  @JsonProperty(value = JSON_PROPERTY_HIDE_SUCCESSFUL_ITEMS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHideSuccessfulItems(@javax.annotation.Nullable Boolean hideSuccessfulItems) {
     this.hideSuccessfulItems = hideSuccessfulItems;
@@ -211,14 +209,14 @@ private final String value;
    * @return reportRecipients
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_REPORT_RECIPIENTS)
+  @JsonProperty(value = JSON_PROPERTY_REPORT_RECIPIENTS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public List<String> getReportRecipients() {
     return reportRecipients;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_REPORT_RECIPIENTS)
+  @JsonProperty(value = JSON_PROPERTY_REPORT_RECIPIENTS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setReportRecipients(@javax.annotation.Nullable List<String> reportRecipients) {
     this.reportRecipients = reportRecipients;
@@ -235,14 +233,14 @@ private final String value;
    * @return reportWhen
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_REPORT_WHEN)
+  @JsonProperty(value = JSON_PROPERTY_REPORT_WHEN, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public ReportWhenEnum getReportWhen() {
     return reportWhen;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_REPORT_WHEN)
+  @JsonProperty(value = JSON_PROPERTY_REPORT_WHEN, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setReportWhen(@javax.annotation.Nullable ReportWhenEnum reportWhen) {
     this.reportWhen = reportWhen;
@@ -334,10 +332,7 @@ private final String value;
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -374,26 +369,26 @@ private final String value;
 
     // add `backupReportTpl` to the URL query string
     if (getBackupReportTpl() != null) {
-      joiner.add(String.format("%sbackupReportTpl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBackupReportTpl()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbackupReportTpl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBackupReportTpl()))));
     }
 
     // add `hideSuccessfulItems` to the URL query string
     if (getHideSuccessfulItems() != null) {
-      joiner.add(String.format("%shideSuccessfulItems%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHideSuccessfulItems()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%shideSuccessfulItems%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHideSuccessfulItems()))));
     }
 
     // add `reportRecipients` to the URL query string
     if (getReportRecipients() != null) {
       for (int i = 0; i < getReportRecipients().size(); i++) {
-        joiner.add(String.format("%sreportRecipients%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%sreportRecipients%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getReportRecipients().get(i)))));
       }
     }
 
     // add `reportWhen` to the URL query string
     if (getReportWhen() != null) {
-      joiner.add(String.format("%sreportWhen%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReportWhen()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sreportWhen%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReportWhen()))));
     }
 
     return joiner.toString();

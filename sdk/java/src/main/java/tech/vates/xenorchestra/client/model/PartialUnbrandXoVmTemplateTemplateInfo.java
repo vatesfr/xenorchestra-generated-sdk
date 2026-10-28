@@ -41,7 +41,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PartialUnbrandXoVmTemplateTemplateInfo.JSON_PROPERTY_INSTALL_METHODS,
   PartialUnbrandXoVmTemplateTemplateInfo.JSON_PROPERTY_INSTALL_REPOSITORY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PartialUnbrandXoVmTemplateTemplateInfo {
   public static final String JSON_PROPERTY_ARCH = "arch";
   @javax.annotation.Nullable
@@ -72,14 +72,14 @@ public class PartialUnbrandXoVmTemplateTemplateInfo {
    * @return arch
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_ARCH)
+  @JsonProperty(value = JSON_PROPERTY_ARCH, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getArch() {
     return arch;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ARCH)
+  @JsonProperty(value = JSON_PROPERTY_ARCH, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setArch(@javax.annotation.Nullable String arch) {
     this.arch = arch;
@@ -104,14 +104,14 @@ public class PartialUnbrandXoVmTemplateTemplateInfo {
    * @return disks
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_DISKS)
+  @JsonProperty(value = JSON_PROPERTY_DISKS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<PartialUnbrandXoVmTemplateTemplateInfoDisksInner> getDisks() {
     return disks;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DISKS)
+  @JsonProperty(value = JSON_PROPERTY_DISKS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDisks(@javax.annotation.Nonnull List<PartialUnbrandXoVmTemplateTemplateInfoDisksInner> disks) {
     this.disks = disks;
@@ -136,14 +136,14 @@ public class PartialUnbrandXoVmTemplateTemplateInfo {
    * @return installMethods
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_INSTALL_METHODS)
+  @JsonProperty(value = JSON_PROPERTY_INSTALL_METHODS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public List<String> getInstallMethods() {
     return installMethods;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_INSTALL_METHODS)
+  @JsonProperty(value = JSON_PROPERTY_INSTALL_METHODS, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setInstallMethods(@javax.annotation.Nonnull List<String> installMethods) {
     this.installMethods = installMethods;
@@ -160,14 +160,14 @@ public class PartialUnbrandXoVmTemplateTemplateInfo {
    * @return installRepository
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_INSTALL_REPOSITORY)
+  @JsonProperty(value = JSON_PROPERTY_INSTALL_REPOSITORY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getInstallRepository() {
     return installRepository;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_INSTALL_REPOSITORY)
+  @JsonProperty(value = JSON_PROPERTY_INSTALL_REPOSITORY, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setInstallRepository(@javax.annotation.Nullable String installRepository) {
     this.installRepository = installRepository;
@@ -214,10 +214,7 @@ public class PartialUnbrandXoVmTemplateTemplateInfo {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -254,15 +251,15 @@ public class PartialUnbrandXoVmTemplateTemplateInfo {
 
     // add `arch` to the URL query string
     if (getArch() != null) {
-      joiner.add(String.format("%sarch%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getArch()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sarch%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getArch()))));
     }
 
     // add `disks` to the URL query string
     if (getDisks() != null) {
       for (int i = 0; i < getDisks().size(); i++) {
         if (getDisks().get(i) != null) {
-          joiner.add(getDisks().get(i).toUrlQueryString(String.format("%sdisks%s%s", prefix, suffix,
-          "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix))));
+          joiner.add(getDisks().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sdisks%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
     }
@@ -270,15 +267,15 @@ public class PartialUnbrandXoVmTemplateTemplateInfo {
     // add `install_methods` to the URL query string
     if (getInstallMethods() != null) {
       for (int i = 0; i < getInstallMethods().size(); i++) {
-        joiner.add(String.format("%sinstall_methods%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, i, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%sinstall_methods%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getInstallMethods().get(i)))));
       }
     }
 
     // add `install_repository` to the URL query string
     if (getInstallRepository() != null) {
-      joiner.add(String.format("%sinstall_repository%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getInstallRepository()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sinstall_repository%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getInstallRepository()))));
     }
 
     return joiner.toString();

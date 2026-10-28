@@ -86,15 +86,17 @@ class _$XoGuiRoutesSerializer implements PrimitiveSerializer<XoGuiRoutes> {
         case r'xo5':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.xo5 = valueDes;
           break;
         case r'xo6':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.xo6 = valueDes;
           break;
         default:

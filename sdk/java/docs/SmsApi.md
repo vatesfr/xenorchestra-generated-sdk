@@ -93,7 +93,7 @@ public class Example {
 
 ## getSrWithHttpInfo
 
-> ApiResponse<UnbrandXoSm> getSr getSrWithHttpInfo(id)
+> ApiResponse<UnbrandXoSm> getSrWithHttpInfo(id)
 
 
 
@@ -264,7 +264,7 @@ public class Example {
 
 ## getSrsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoSm> getSrs getSrsWithHttpInfo(fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoSm> getSrsWithHttpInfo(fields, ndjson, markdown, filter, limit)
 
 
 

@@ -121,8 +121,9 @@ class _$CreateVifBodySerializer implements PrimitiveSerializer<CreateVifBody> {
         case r'MAC':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.MAC = valueDes;
           break;
         case r'networkId':
@@ -135,17 +136,19 @@ class _$CreateVifBodySerializer implements PrimitiveSerializer<CreateVifBody> {
         case r'other_config':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType:
-                const FullType(BuiltMap, [FullType(String), FullType(String)]),
-          ) as BuiltMap<String, String>;
+            specifiedType: const FullType.nullable(
+                BuiltMap, [FullType(String), FullType(String)]),
+          ) as BuiltMap<String, String>?;
+          if (valueDes == null) continue;
           result.otherConfig.replace(valueDes);
           break;
         case r'qos_algorithm_params':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType:
-                const FullType(BuiltMap, [FullType(String), FullType(String)]),
-          ) as BuiltMap<String, String>;
+            specifiedType: const FullType.nullable(
+                BuiltMap, [FullType(String), FullType(String)]),
+          ) as BuiltMap<String, String>?;
+          if (valueDes == null) continue;
           result.qosAlgorithmParams.replace(valueDes);
           break;
         case r'vmId':

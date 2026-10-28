@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**action** | Option<**String**> |  | [optional]
-**effect** | Option<**String**> |  | [optional]
+**action** | Option<**Action**> |  (enum: *, read) | [optional]
+**effect** | Option<**Effect**> |  (enum: allow, deny) | [optional]
 **id** | Option<**String**> |  | [optional]
-**resource** | Option<**String**> |  | [optional]
+**resource** | Option<**Resource**> |  (enum: pci) | [optional]
 **role_id** | Option<**String**> |  | [optional]
 **selector** | Option<**String**> |  | [optional]
 

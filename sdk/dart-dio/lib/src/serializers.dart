@@ -1080,8 +1080,46 @@ part 'serializers.g.dart';
 ])
 Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(UnbrandXoAuthenticationToken)]),
-        () => ListBuilder<UnbrandXoAuthenticationToken>(),
+        const FullType(BuiltMap, [FullType(String), FullType(String)]),
+        () => MapBuilder<String, String>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(UnbrandVmDashboardBackupArchive)]),
+        () => ListBuilder<UnbrandVmDashboardBackupArchive>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType.nullable(double)]),
+        () => ListBuilder<double>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(BrandedPIF)]),
+        () => ListBuilder<BrandedPIF>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltMap, [
+          FullType(String),
+          FullType(BuiltList, [FullType(double)])
+        ]),
+        () => MapBuilder<String, BuiltList<double>>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList,
+            [FullType(PartialUnbrandXoVmTemplateTemplateInfoDisksInner)]),
+        () => ListBuilder<PartialUnbrandXoVmTemplateTemplateInfoDisksInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(
+            BuiltList, [FullType(PartialUnbrandXoBackupLogInfosInner)]),
+        () => ListBuilder<PartialUnbrandXoBackupLogInfosInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList,
+            [FullType(PartialUnbrandXoBackupRepositoryBenchmarksInner)]),
+        () => ListBuilder<PartialUnbrandXoBackupRepositoryBenchmarksInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(UnbrandCreateVmBodyVdisInner)]),
+        () => ListBuilder<UnbrandCreateVmBodyVdisInner>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltMap, [
@@ -1092,12 +1130,83 @@ Serializers serializers = (_$serializers.toBuilder()
             RecordXoHostAtIdXapiHostStatsOrErrorRecordStringUnknownValue>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(UnbrandCreateVmBodyVifsInner)]),
+        () => ListBuilder<UnbrandCreateVmBodyVifsInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(DashboardBackupsInfoIssuesInner)]),
+        () => ListBuilder<DashboardBackupsInfoIssuesInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltMap, [FullType(String), FullType.nullable(String)]),
+        () => MapBuilder<String, String?>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(double)]),
+        () => ListBuilder<double>(),
+      )
+      ..addBuilderFactory(
+        const FullType(
+            BuiltList, [FullType(PoolDashboardVmsTopFiveUsageRamInner)]),
+        () => ListBuilder<PoolDashboardVmsTopFiveUsageRamInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(UnbrandXoAuthenticationToken)]),
+        () => ListBuilder<UnbrandXoAuthenticationToken>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(UnbrandVmDashboardRun)]),
+        () => ListBuilder<UnbrandVmDashboardRun>(),
+      )
+      ..addBuilderFactory(
+        const FullType(
+            BuiltList, [FullType(PoolDashboardSrsTopFiveUsageInner)]),
+        () => ListBuilder<PoolDashboardSrsTopFiveUsageInner>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(JsonObject)]),
         () => ListBuilder<JsonObject>(),
       )
       ..addBuilderFactory(
+        const FullType(BuiltList, [FullType.nullable(JsonObject)]),
+        () => ListBuilder<JsonObject>(),
+      )
+      ..addBuilderFactory(
+        const FullType(
+            BuiltList, [FullType(PoolDashboardHostsTopFiveUsageRamInner)]),
+        () => ListBuilder<PoolDashboardHostsTopFiveUsageRamInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(
+            BuiltList, [FullType(PoolDashboardHostsTopFiveUsageCpuInner)]),
+        () => ListBuilder<PoolDashboardHostsTopFiveUsageCpuInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(
+            BuiltList, [FullType(PartialUnbrandXoHostCertificatesInner)]),
+        () => ListBuilder<PartialUnbrandXoHostCertificatesInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(
+            BuiltMap, [FullType(String), FullType.nullable(JsonObject)]),
+        () => MapBuilder<String, JsonObject?>(),
+      )
+      ..addBuilderFactory(
         const FullType(BuiltList, [FullType(String)]),
         () => ListBuilder<String>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(XoTask)]),
+        () => ListBuilder<XoTask>(),
+      )
+      ..addBuilderFactory(
+        const FullType(
+            BuiltList, [FullType(PartialUnbrandXoVmBackupArchiveDisksInner)]),
+        () => ListBuilder<PartialUnbrandXoVmBackupArchiveDisksInner>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltMap, [FullType(String), FullType(JsonObject)]),
+        () => MapBuilder<String, JsonObject>(),
       )
       ..add(const OneOfSerializer())
       ..add(const AnyOfSerializer())

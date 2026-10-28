@@ -129,8 +129,9 @@ class _$UnbrandXoProxyAnyOfSerializer
         case r'address':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.address = valueDes;
           break;
         case r'id':
@@ -157,8 +158,9 @@ class _$UnbrandXoProxyAnyOfSerializer
         case r'version':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.version = valueDes;
           break;
         case r'vmUuid':

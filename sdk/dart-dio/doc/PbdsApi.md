@@ -39,7 +39,7 @@ final String id = 16b2a60f-7c4d-f45f-7c7a-963b06fc587d; // String |
 try {
     final response = api.getPbd(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PbdsApi->getPbd: $e\n');
 }
 ```
@@ -93,7 +93,7 @@ final double limit = 42; // double |
 try {
     final response = api.getPbds(fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PbdsApi->getPbds: $e\n');
 }
 ```
@@ -148,7 +148,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.plugPbd(id, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PbdsApi->plugPbd: $e\n');
 }
 ```
@@ -200,7 +200,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.unplugPbd(id, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling PbdsApi->unplugPbd: $e\n');
 }
 ```

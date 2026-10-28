@@ -43,7 +43,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   XcpPatches.JSON_PROPERTY_URL,
   XcpPatches.JSON_PROPERTY_VERSION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class XcpPatches {
   public static final String JSON_PROPERTY_CHANGELOG = "changelog";
   @javax.annotation.Nullable
@@ -90,14 +90,14 @@ public class XcpPatches {
    * @return changelog
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_CHANGELOG)
+  @JsonProperty(value = JSON_PROPERTY_CHANGELOG, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public XcpPatchesChangelog getChangelog() {
     return changelog;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_CHANGELOG)
+  @JsonProperty(value = JSON_PROPERTY_CHANGELOG, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setChangelog(@javax.annotation.Nullable XcpPatchesChangelog changelog) {
     this.changelog = changelog;
@@ -114,14 +114,14 @@ public class XcpPatches {
    * @return description
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getDescription() {
     return description;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DESCRIPTION)
+  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDescription(@javax.annotation.Nonnull String description) {
     this.description = description;
@@ -138,14 +138,14 @@ public class XcpPatches {
    * @return license
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_LICENSE)
+  @JsonProperty(value = JSON_PROPERTY_LICENSE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getLicense() {
     return license;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_LICENSE)
+  @JsonProperty(value = JSON_PROPERTY_LICENSE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setLicense(@javax.annotation.Nonnull String license) {
     this.license = license;
@@ -162,14 +162,14 @@ public class XcpPatches {
    * @return name
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getName() {
     return name;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonProperty(value = JSON_PROPERTY_NAME, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setName(@javax.annotation.Nonnull String name) {
     this.name = name;
@@ -186,14 +186,14 @@ public class XcpPatches {
    * @return release
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_RELEASE)
+  @JsonProperty(value = JSON_PROPERTY_RELEASE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getRelease() {
     return release;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_RELEASE)
+  @JsonProperty(value = JSON_PROPERTY_RELEASE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setRelease(@javax.annotation.Nonnull String release) {
     this.release = release;
@@ -210,14 +210,14 @@ public class XcpPatches {
    * @return size
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonProperty(value = JSON_PROPERTY_SIZE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getSize() {
     return size;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_SIZE)
+  @JsonProperty(value = JSON_PROPERTY_SIZE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSize(@javax.annotation.Nonnull Double size) {
     this.size = size;
@@ -234,14 +234,14 @@ public class XcpPatches {
    * @return url
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_URL)
+  @JsonProperty(value = JSON_PROPERTY_URL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getUrl() {
     return url;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_URL)
+  @JsonProperty(value = JSON_PROPERTY_URL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setUrl(@javax.annotation.Nonnull String url) {
     this.url = url;
@@ -258,14 +258,14 @@ public class XcpPatches {
    * @return version
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_VERSION)
+  @JsonProperty(value = JSON_PROPERTY_VERSION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getVersion() {
     return version;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_VERSION)
+  @JsonProperty(value = JSON_PROPERTY_VERSION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setVersion(@javax.annotation.Nonnull String version) {
     this.version = version;
@@ -320,10 +320,7 @@ public class XcpPatches {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -365,37 +362,37 @@ public class XcpPatches {
 
     // add `description` to the URL query string
     if (getDescription() != null) {
-      joiner.add(String.format("%sdescription%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDescription()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdescription%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDescription()))));
     }
 
     // add `license` to the URL query string
     if (getLicense() != null) {
-      joiner.add(String.format("%slicense%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLicense()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%slicense%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLicense()))));
     }
 
     // add `name` to the URL query string
     if (getName() != null) {
-      joiner.add(String.format("%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sname%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getName()))));
     }
 
     // add `release` to the URL query string
     if (getRelease() != null) {
-      joiner.add(String.format("%srelease%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRelease()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%srelease%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRelease()))));
     }
 
     // add `size` to the URL query string
     if (getSize() != null) {
-      joiner.add(String.format("%ssize%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSize()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssize%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSize()))));
     }
 
     // add `url` to the URL query string
     if (getUrl() != null) {
-      joiner.add(String.format("%surl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUrl()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%surl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getUrl()))));
     }
 
     // add `version` to the URL query string
     if (getVersion() != null) {
-      joiner.add(String.format("%sversion%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVersion()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sversion%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVersion()))));
     }
 
     return joiner.toString();

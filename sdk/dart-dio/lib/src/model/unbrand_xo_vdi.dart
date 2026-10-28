@@ -319,8 +319,9 @@ class _$UnbrandXoVdiSerializer implements PrimitiveSerializer<UnbrandXoVdi> {
         case r'cbt_enabled':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.cbtEnabled = valueDes;
           break;
         case r'chainPhysicalUsage':
@@ -347,8 +348,9 @@ class _$UnbrandXoVdiSerializer implements PrimitiveSerializer<UnbrandXoVdi> {
         case r'image_format':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.imageFormat = valueDes;
           break;
         case r'missing':
@@ -382,8 +384,9 @@ class _$UnbrandXoVdiSerializer implements PrimitiveSerializer<UnbrandXoVdi> {
         case r'parent':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.parent = valueDes;
           break;
         case r'size':

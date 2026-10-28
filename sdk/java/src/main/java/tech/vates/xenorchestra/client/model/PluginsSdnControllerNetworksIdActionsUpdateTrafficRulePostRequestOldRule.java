@@ -40,7 +40,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PluginsSdnControllerNetworksIdActionsUpdateTrafficRulePostRequestOldRule.JSON_PROPERTY_PORT,
   PluginsSdnControllerNetworksIdActionsUpdateTrafficRulePostRequestOldRule.JSON_PROPERTY_PROTOCOL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PluginsSdnControllerNetworksIdActionsUpdateTrafficRulePostRequestOldRule {
   public static final String JSON_PROPERTY_ALLOW = "allow";
   @javax.annotation.Nonnull
@@ -75,14 +75,14 @@ public class PluginsSdnControllerNetworksIdActionsUpdateTrafficRulePostRequestOl
    * @return allow
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ALLOW)
+  @JsonProperty(value = JSON_PROPERTY_ALLOW, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Boolean getAllow() {
     return allow;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ALLOW)
+  @JsonProperty(value = JSON_PROPERTY_ALLOW, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setAllow(@javax.annotation.Nonnull Boolean allow) {
     this.allow = allow;
@@ -99,14 +99,14 @@ public class PluginsSdnControllerNetworksIdActionsUpdateTrafficRulePostRequestOl
    * @return direction
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_DIRECTION)
+  @JsonProperty(value = JSON_PROPERTY_DIRECTION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getDirection() {
     return direction;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_DIRECTION)
+  @JsonProperty(value = JSON_PROPERTY_DIRECTION, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDirection(@javax.annotation.Nonnull String direction) {
     this.direction = direction;
@@ -123,14 +123,14 @@ public class PluginsSdnControllerNetworksIdActionsUpdateTrafficRulePostRequestOl
    * @return ipRange
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_IP_RANGE)
+  @JsonProperty(value = JSON_PROPERTY_IP_RANGE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getIpRange() {
     return ipRange;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_IP_RANGE)
+  @JsonProperty(value = JSON_PROPERTY_IP_RANGE, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setIpRange(@javax.annotation.Nonnull String ipRange) {
     this.ipRange = ipRange;
@@ -147,14 +147,14 @@ public class PluginsSdnControllerNetworksIdActionsUpdateTrafficRulePostRequestOl
    * @return port
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_PORT)
+  @JsonProperty(value = JSON_PROPERTY_PORT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public BigDecimal getPort() {
     return port;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PORT)
+  @JsonProperty(value = JSON_PROPERTY_PORT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPort(@javax.annotation.Nullable BigDecimal port) {
     this.port = port;
@@ -171,14 +171,14 @@ public class PluginsSdnControllerNetworksIdActionsUpdateTrafficRulePostRequestOl
    * @return protocol
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_PROTOCOL)
+  @JsonProperty(value = JSON_PROPERTY_PROTOCOL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getProtocol() {
     return protocol;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_PROTOCOL)
+  @JsonProperty(value = JSON_PROPERTY_PROTOCOL, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setProtocol(@javax.annotation.Nonnull String protocol) {
     this.protocol = protocol;
@@ -227,10 +227,7 @@ public class PluginsSdnControllerNetworksIdActionsUpdateTrafficRulePostRequestOl
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -267,27 +264,27 @@ public class PluginsSdnControllerNetworksIdActionsUpdateTrafficRulePostRequestOl
 
     // add `allow` to the URL query string
     if (getAllow() != null) {
-      joiner.add(String.format("%sallow%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAllow()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sallow%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAllow()))));
     }
 
     // add `direction` to the URL query string
     if (getDirection() != null) {
-      joiner.add(String.format("%sdirection%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDirection()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdirection%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDirection()))));
     }
 
     // add `ipRange` to the URL query string
     if (getIpRange() != null) {
-      joiner.add(String.format("%sipRange%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIpRange()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sipRange%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIpRange()))));
     }
 
     // add `port` to the URL query string
     if (getPort() != null) {
-      joiner.add(String.format("%sport%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPort()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sport%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPort()))));
     }
 
     // add `protocol` to the URL query string
     if (getProtocol() != null) {
-      joiner.add(String.format("%sprotocol%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProtocol()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sprotocol%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProtocol()))));
     }
 
     return joiner.toString();

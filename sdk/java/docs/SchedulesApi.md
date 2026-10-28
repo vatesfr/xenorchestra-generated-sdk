@@ -96,7 +96,7 @@ public class Example {
 
 ## getScheduleWithHttpInfo
 
-> ApiResponse<UnbrandXoSchedule> getSchedule getScheduleWithHttpInfo(id)
+> ApiResponse<UnbrandXoSchedule> getScheduleWithHttpInfo(id)
 
 
 
@@ -268,7 +268,7 @@ public class Example {
 
 ## getSchedulesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoSchedule> getSchedules getSchedulesWithHttpInfo(fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoSchedule> getSchedulesWithHttpInfo(fields, ndjson, markdown, filter, limit)
 
 
 
@@ -444,7 +444,7 @@ public class Example {
 
 ## runScheduleWithHttpInfo
 
-> ApiResponse<CreateActionReturnTypeVoid> runSchedule runScheduleWithHttpInfo(id, sync)
+> ApiResponse<CreateActionReturnTypeVoid> runScheduleWithHttpInfo(id, sync)
 
 
 

@@ -60,15 +60,35 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class HostsApi {
+  /**
+   * Utility class for extending HttpRequest.Builder functionality.
+   */
+  private static class HttpRequestBuilderExtensions {
+    /**
+     * Adds additional headers to the provided HttpRequest.Builder. Useful for adding method/endpoint specific headers.
+     *
+     * @param builder the HttpRequest.Builder to which headers will be added
+     * @param headers a map of header names and values to add; may be null
+     * @return the same HttpRequest.Builder instance with the additional headers set
+     */
+    static HttpRequest.Builder withAdditionalHeaders(HttpRequest.Builder builder, Map<String, String> headers) {
+        if (headers != null) {
+            for (Map.Entry<String, String> entry : headers.entrySet()) {
+                builder.header(entry.getKey(), entry.getValue());
+            }
+        }
+        return builder;
+    }
+  }
   private final HttpClient memberVarHttpClient;
   private final ObjectMapper memberVarObjectMapper;
   private final String memberVarBaseUri;
   private final Consumer<HttpRequest.Builder> memberVarInterceptor;
   private final Duration memberVarReadTimeout;
   private final Consumer<HttpResponse<InputStream>> memberVarResponseInterceptor;
-  private final Consumer<HttpResponse<String>> memberVarAsyncResponseInterceptor;
+  private final Consumer<HttpResponse<InputStream>> memberVarAsyncResponseInterceptor;
 
   public HostsApi() {
     this(Configuration.getDefaultApiClient());
@@ -84,8 +104,17 @@ public class HostsApi {
     memberVarAsyncResponseInterceptor = apiClient.getAsyncResponseInterceptor();
   }
 
+
   protected ApiException getApiException(String operationId, HttpResponse<InputStream> response) throws IOException {
-    String body = response.body() == null ? null : new String(response.body().readAllBytes());
+    InputStream responseBody = ApiClient.getResponseBody(response);
+    String body = null;
+    try {
+      body = responseBody == null ? null : new String(responseBody.readAllBytes());
+    } finally {
+      if (responseBody != null) {
+        responseBody.close();
+      }
+    }
     String message = formatExceptionMessage(operationId, response.statusCode(), body);
     return new ApiException(response.statusCode(), message, response.headers(), body);
   }
@@ -98,6 +127,57 @@ public class HostsApi {
   }
 
   /**
+   * Download file from the given response.
+   *
+   * @param response Response
+   * @return File
+   * @throws ApiException If fail to read file content from response and write to disk
+   */
+  public File downloadFileFromResponse(HttpResponse<InputStream> response, InputStream responseBody) throws ApiException {
+    if (responseBody == null) {
+      throw new ApiException(new IOException("Response body is empty"));
+    }
+    try {
+      File file = prepareDownloadFile(response);
+      java.nio.file.Files.copy(responseBody, file.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+      return file;
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+  }
+
+  /**
+   * <p>Prepare the file for download from the response.</p>
+   *
+   * @param response a {@link java.net.http.HttpResponse} object.
+   * @return a {@link java.io.File} object.
+   * @throws java.io.IOException if any.
+   */
+  private File prepareDownloadFile(HttpResponse<InputStream> response) throws IOException {
+    String filename = null;
+    java.util.Optional<String> contentDisposition = response.headers().firstValue("Content-Disposition");
+    if (contentDisposition.isPresent() && !"".equals(contentDisposition.get())) {
+      // Get filename from the Content-Disposition header.
+      java.util.regex.Pattern pattern = java.util.regex.Pattern.compile("filename=['\"]?([^'\"\\s]+)['\"]?");
+      java.util.regex.Matcher matcher = pattern.matcher(contentDisposition.get());
+      if (matcher.find())
+        filename = matcher.group(1);
+    }
+    File file = null;
+    if (filename != null) {
+      java.nio.file.Path tempDir = java.nio.file.Files.createTempDirectory("swagger-gen-native");
+      java.nio.file.Path filePath = java.nio.file.Files.createFile(tempDir.resolve(filename));
+      file = filePath.toFile();
+      tempDir.toFile().deleteOnExit();   // best effort cleanup
+      file.deleteOnExit(); // best effort cleanup
+    } else {
+      file = java.nio.file.Files.createTempFile("download-", "").toFile();
+      file.deleteOnExit(); // best effort cleanup
+    }
+    return file;
+  }
+
+  /**
    * 
    * Required privilege: - resource: host, action: reboot:clean  Reboot a host by evacuating its VMs to other hosts first.  Checks for active backup jobs and version compatibility before rebooting.
    * @param id  (required)
@@ -107,7 +187,21 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeVoid cleanRebootHost(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable CleanRebootHostRequest cleanRebootHostRequest) throws ApiException {
-    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = cleanRebootHostWithHttpInfo(id, sync, cleanRebootHostRequest);
+    return cleanRebootHost(id, sync, cleanRebootHostRequest, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: host, action: reboot:clean  Reboot a host by evacuating its VMs to other hosts first.  Checks for active backup jobs and version compatibility before rebooting.
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param cleanRebootHostRequest  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeVoid
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeVoid cleanRebootHost(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable CleanRebootHostRequest cleanRebootHostRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = cleanRebootHostWithHttpInfo(id, sync, cleanRebootHostRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -121,7 +215,21 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeVoid> cleanRebootHostWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable CleanRebootHostRequest cleanRebootHostRequest) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = cleanRebootHostRequestBuilder(id, sync, cleanRebootHostRequest);
+    return cleanRebootHostWithHttpInfo(id, sync, cleanRebootHostRequest, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: host, action: reboot:clean  Reboot a host by evacuating its VMs to other hosts first.  Checks for active backup jobs and version compatibility before rebooting.
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param cleanRebootHostRequest  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeVoid&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeVoid> cleanRebootHostWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable CleanRebootHostRequest cleanRebootHostRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = cleanRebootHostRequestBuilder(id, sync, cleanRebootHostRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -129,11 +237,13 @@ public class HostsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("cleanRebootHost", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeVoid>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -141,15 +251,21 @@ public class HostsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeVoid responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeVoid>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -160,7 +276,7 @@ public class HostsApi {
     }
   }
 
-  private HttpRequest.Builder cleanRebootHostRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable CleanRebootHostRequest cleanRebootHostRequest) throws ApiException {
+  private HttpRequest.Builder cleanRebootHostRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable CleanRebootHostRequest cleanRebootHostRequest, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling cleanRebootHost");
@@ -200,6 +316,8 @@ public class HostsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -216,7 +334,21 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeVoid cleanShutdownHost(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable CleanShutdownHostRequest cleanShutdownHostRequest) throws ApiException {
-    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = cleanShutdownHostWithHttpInfo(id, sync, cleanShutdownHostRequest);
+    return cleanShutdownHost(id, sync, cleanShutdownHostRequest, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: host, action: shutdown:clean  Shutdown a host.
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param cleanShutdownHostRequest  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeVoid
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeVoid cleanShutdownHost(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable CleanShutdownHostRequest cleanShutdownHostRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = cleanShutdownHostWithHttpInfo(id, sync, cleanShutdownHostRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -230,7 +362,21 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeVoid> cleanShutdownHostWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable CleanShutdownHostRequest cleanShutdownHostRequest) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = cleanShutdownHostRequestBuilder(id, sync, cleanShutdownHostRequest);
+    return cleanShutdownHostWithHttpInfo(id, sync, cleanShutdownHostRequest, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: host, action: shutdown:clean  Shutdown a host.
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param cleanShutdownHostRequest  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeVoid&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeVoid> cleanShutdownHostWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable CleanShutdownHostRequest cleanShutdownHostRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = cleanShutdownHostRequestBuilder(id, sync, cleanShutdownHostRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -238,11 +384,13 @@ public class HostsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("cleanShutdownHost", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeVoid>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -250,15 +398,21 @@ public class HostsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeVoid responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeVoid>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -269,7 +423,7 @@ public class HostsApi {
     }
   }
 
-  private HttpRequest.Builder cleanShutdownHostRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable CleanShutdownHostRequest cleanShutdownHostRequest) throws ApiException {
+  private HttpRequest.Builder cleanShutdownHostRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable CleanShutdownHostRequest cleanShutdownHostRequest, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling cleanShutdownHost");
@@ -309,6 +463,8 @@ public class HostsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -323,7 +479,19 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public void deleteHostTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    deleteHostTagWithHttpInfo(id, tag);
+    deleteHostTag(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: host, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void deleteHostTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    deleteHostTagWithHttpInfo(id, tag, headers);
   }
 
   /**
@@ -335,7 +503,20 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> deleteHostTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = deleteHostTagRequestBuilder(id, tag);
+    return deleteHostTagWithHttpInfo(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: host, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> deleteHostTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteHostTagRequestBuilder(id, tag, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -343,9 +524,14 @@ public class HostsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("deleteHostTag", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -353,11 +539,9 @@ public class HostsApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -368,7 +552,7 @@ public class HostsApi {
     }
   }
 
-  private HttpRequest.Builder deleteHostTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
+  private HttpRequest.Builder deleteHostTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling deleteHostTag");
@@ -392,6 +576,8 @@ public class HostsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -407,7 +593,20 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeVoid detachHost(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = detachHostWithHttpInfo(id, sync);
+    return detachHost(id, sync, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: host, action: detach  Detaches a host from its pool.
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeVoid
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeVoid detachHost(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = detachHostWithHttpInfo(id, sync, headers);
     return localVarResponse.getData();
   }
 
@@ -420,7 +619,20 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeVoid> detachHostWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = detachHostRequestBuilder(id, sync);
+    return detachHostWithHttpInfo(id, sync, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: host, action: detach  Detaches a host from its pool.
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeVoid&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeVoid> detachHostWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = detachHostRequestBuilder(id, sync, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -428,11 +640,13 @@ public class HostsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("detachHost", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeVoid>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -440,15 +654,21 @@ public class HostsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeVoid responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeVoid>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -459,7 +679,7 @@ public class HostsApi {
     }
   }
 
-  private HttpRequest.Builder detachHostRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
+  private HttpRequest.Builder detachHostRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling detachHost");
@@ -493,6 +713,8 @@ public class HostsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -509,7 +731,21 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeVoid disable(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable DisableRequest disableRequest) throws ApiException {
-    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = disableWithHttpInfo(id, sync, disableRequest);
+    return disable(id, sync, disableRequest, null);
+  }
+
+  /**
+   * 
+   * Required privileges: - resource: host, action: disable - resource: host, action: evacuate (if &#x60;evacuate: true&#x60;)  Disable a host.  Set &#x60;autoEnable&#x60; to &#x60;true&#x60; to re-enable after a toolstack restart automatically  Set &#x60;evacuate&#x60; to &#x60;true&#x60; to also evacuate all running VMs to other hosts in the pool.  Use &#x60;vmIdsToForceMigrate&#x60; to unblock VMs whose migration is currently blocked (e.g. by &#x60;pool_migrate&#x60; or &#x60;migrate_send&#x60; blocked operations).  Use &#x60;force&#x60; to ignore evacuation errors.
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param disableRequest  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeVoid
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeVoid disable(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable DisableRequest disableRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = disableWithHttpInfo(id, sync, disableRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -523,7 +759,21 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeVoid> disableWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable DisableRequest disableRequest) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = disableRequestBuilder(id, sync, disableRequest);
+    return disableWithHttpInfo(id, sync, disableRequest, null);
+  }
+
+  /**
+   * 
+   * Required privileges: - resource: host, action: disable - resource: host, action: evacuate (if &#x60;evacuate: true&#x60;)  Disable a host.  Set &#x60;autoEnable&#x60; to &#x60;true&#x60; to re-enable after a toolstack restart automatically  Set &#x60;evacuate&#x60; to &#x60;true&#x60; to also evacuate all running VMs to other hosts in the pool.  Use &#x60;vmIdsToForceMigrate&#x60; to unblock VMs whose migration is currently blocked (e.g. by &#x60;pool_migrate&#x60; or &#x60;migrate_send&#x60; blocked operations).  Use &#x60;force&#x60; to ignore evacuation errors.
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param disableRequest  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeVoid&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeVoid> disableWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable DisableRequest disableRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = disableRequestBuilder(id, sync, disableRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -531,11 +781,13 @@ public class HostsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("disable", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeVoid>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -543,15 +795,21 @@ public class HostsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeVoid responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeVoid>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -562,7 +820,7 @@ public class HostsApi {
     }
   }
 
-  private HttpRequest.Builder disableRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable DisableRequest disableRequest) throws ApiException {
+  private HttpRequest.Builder disableRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable DisableRequest disableRequest, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling disable");
@@ -602,6 +860,8 @@ public class HostsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -617,7 +877,20 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeVoid emergencyShutdownHost(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = emergencyShutdownHostWithHttpInfo(id, sync);
+    return emergencyShutdownHost(id, sync, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: host, action: shutdown:emergency  Shut down a host by disabling it, suspending its VMs in place, and powering off without migrating them.  Unlike &#x60;clean_shutdown&#x60;, VMs are not evacuated to other hosts, they are suspended on the same host (errors are ignored) before the host shuts down. No backup check is performed.
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeVoid
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeVoid emergencyShutdownHost(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = emergencyShutdownHostWithHttpInfo(id, sync, headers);
     return localVarResponse.getData();
   }
 
@@ -630,7 +903,20 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeVoid> emergencyShutdownHostWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = emergencyShutdownHostRequestBuilder(id, sync);
+    return emergencyShutdownHostWithHttpInfo(id, sync, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: host, action: shutdown:emergency  Shut down a host by disabling it, suspending its VMs in place, and powering off without migrating them.  Unlike &#x60;clean_shutdown&#x60;, VMs are not evacuated to other hosts, they are suspended on the same host (errors are ignored) before the host shuts down. No backup check is performed.
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeVoid&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeVoid> emergencyShutdownHostWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = emergencyShutdownHostRequestBuilder(id, sync, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -638,11 +924,13 @@ public class HostsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("emergencyShutdownHost", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeVoid>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -650,15 +938,21 @@ public class HostsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeVoid responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeVoid>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -669,7 +963,7 @@ public class HostsApi {
     }
   }
 
-  private HttpRequest.Builder emergencyShutdownHostRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
+  private HttpRequest.Builder emergencyShutdownHostRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling emergencyShutdownHost");
@@ -703,6 +997,8 @@ public class HostsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -718,7 +1014,20 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeVoid enable(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = enableWithHttpInfo(id, sync);
+    return enable(id, sync, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: host, action: enable  Enable a host, taking it out of disabled state.
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeVoid
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeVoid enable(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = enableWithHttpInfo(id, sync, headers);
     return localVarResponse.getData();
   }
 
@@ -731,7 +1040,20 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeVoid> enableWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = enableRequestBuilder(id, sync);
+    return enableWithHttpInfo(id, sync, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: host, action: enable  Enable a host, taking it out of disabled state.
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeVoid&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeVoid> enableWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = enableRequestBuilder(id, sync, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -739,11 +1061,13 @@ public class HostsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("enable", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeVoid>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -751,15 +1075,21 @@ public class HostsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeVoid responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeVoid>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -770,7 +1100,7 @@ public class HostsApi {
     }
   }
 
-  private HttpRequest.Builder enableRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
+  private HttpRequest.Builder enableRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling enable");
@@ -804,6 +1134,8 @@ public class HostsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -819,7 +1151,20 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeVoid forgetHost(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = forgetHostWithHttpInfo(id, sync);
+    return forgetHost(id, sync, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: host, action: forget  Forgets a host, host must not be running.
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeVoid
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeVoid forgetHost(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = forgetHostWithHttpInfo(id, sync, headers);
     return localVarResponse.getData();
   }
 
@@ -832,7 +1177,20 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeVoid> forgetHostWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = forgetHostRequestBuilder(id, sync);
+    return forgetHostWithHttpInfo(id, sync, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: host, action: forget  Forgets a host, host must not be running.
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeVoid&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeVoid> forgetHostWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = forgetHostRequestBuilder(id, sync, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -840,11 +1198,13 @@ public class HostsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("forgetHost", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeVoid>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -852,15 +1212,21 @@ public class HostsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeVoid responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeVoid>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -871,7 +1237,7 @@ public class HostsApi {
     }
   }
 
-  private HttpRequest.Builder forgetHostRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
+  private HttpRequest.Builder forgetHostRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling forgetHost");
@@ -905,6 +1271,8 @@ public class HostsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -918,7 +1286,18 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public void getAuditLog(@javax.annotation.Nonnull String id) throws ApiException {
-    getAuditLogWithHttpInfo(id);
+    getAuditLog(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: host, action: export:logs  Host must be running  Download the audit log of a host.
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void getAuditLog(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    getAuditLogWithHttpInfo(id, headers);
   }
 
   /**
@@ -929,7 +1308,19 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> getAuditLogWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getAuditLogRequestBuilder(id);
+    return getAuditLogWithHttpInfo(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: host, action: export:logs  Host must be running  Download the audit log of a host.
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> getAuditLogWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAuditLogRequestBuilder(id, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -937,9 +1328,14 @@ public class HostsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getAuditLog", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -947,11 +1343,9 @@ public class HostsApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -962,7 +1356,7 @@ public class HostsApi {
     }
   }
 
-  private HttpRequest.Builder getAuditLogRequestBuilder(@javax.annotation.Nonnull String id) throws ApiException {
+  private HttpRequest.Builder getAuditLogRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getAuditLog");
@@ -981,6 +1375,8 @@ public class HostsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -995,7 +1391,19 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public UnbrandXoHost getHost(@javax.annotation.Nonnull String id) throws ApiException {
-    ApiResponse<UnbrandXoHost> localVarResponse = getHostWithHttpInfo(id);
+    return getHost(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: host, action: read
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return UnbrandXoHost
+   * @throws ApiException if fails to make API call
+   */
+  public UnbrandXoHost getHost(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<UnbrandXoHost> localVarResponse = getHostWithHttpInfo(id, headers);
     return localVarResponse.getData();
   }
 
@@ -1007,7 +1415,19 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<UnbrandXoHost> getHostWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getHostRequestBuilder(id);
+    return getHostWithHttpInfo(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: host, action: read
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UnbrandXoHost&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UnbrandXoHost> getHostWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getHostRequestBuilder(id, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1015,11 +1435,13 @@ public class HostsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getHost", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<UnbrandXoHost>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1027,15 +1449,21 @@ public class HostsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UnbrandXoHost responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnbrandXoHost>() {});
+        
 
         return new ApiResponse<UnbrandXoHost>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UnbrandXoHost>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1046,7 +1474,7 @@ public class HostsApi {
     }
   }
 
-  private HttpRequest.Builder getHostRequestBuilder(@javax.annotation.Nonnull String id) throws ApiException {
+  private HttpRequest.Builder getHostRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getHost");
@@ -1065,6 +1493,8 @@ public class HostsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1084,7 +1514,24 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoAlarm getHostAlarms(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoAlarm> localVarResponse = getHostAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getHostAlarms(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all alarms that match the following privilege: - resource: alarm, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoAlarm
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoAlarm getHostAlarms(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoAlarm> localVarResponse = getHostAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -1101,7 +1548,24 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoAlarm> getHostAlarmsWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getHostAlarmsRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getHostAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all alarms that match the following privilege: - resource: alarm, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoAlarm&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoAlarm> getHostAlarmsWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getHostAlarmsRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1109,11 +1573,13 @@ public class HostsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getHostAlarms", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoAlarm>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1121,15 +1587,21 @@ public class HostsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoAlarm responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoAlarm>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoAlarm>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoAlarm>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1140,7 +1612,7 @@ public class HostsApi {
     }
   }
 
-  private HttpRequest.Builder getHostAlarmsRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getHostAlarmsRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getHostAlarms");
@@ -1182,6 +1654,8 @@ public class HostsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1195,7 +1669,18 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public void getHostLogs(@javax.annotation.Nonnull String id) throws ApiException {
-    getHostLogsWithHttpInfo(id);
+    getHostLogs(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: host, action: export:logs  Host must be running  Download all logs of a host.
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void getHostLogs(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    getHostLogsWithHttpInfo(id, headers);
   }
 
   /**
@@ -1206,7 +1691,19 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> getHostLogsWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getHostLogsRequestBuilder(id);
+    return getHostLogsWithHttpInfo(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: host, action: export:logs  Host must be running  Download all logs of a host.
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> getHostLogsWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getHostLogsRequestBuilder(id, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1214,9 +1711,14 @@ public class HostsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getHostLogs", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -1224,11 +1726,9 @@ public class HostsApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1239,7 +1739,7 @@ public class HostsApi {
     }
   }
 
-  private HttpRequest.Builder getHostLogsRequestBuilder(@javax.annotation.Nonnull String id) throws ApiException {
+  private HttpRequest.Builder getHostLogsRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getHostLogs");
@@ -1258,6 +1758,8 @@ public class HostsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1277,7 +1779,24 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoMessage getHostMessages(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoMessage> localVarResponse = getHostMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getHostMessages(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all messages that match the following privilege: - resource: message, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoMessage
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoMessage getHostMessages(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoMessage> localVarResponse = getHostMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -1294,7 +1813,24 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoMessage> getHostMessagesWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getHostMessagesRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getHostMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all messages that match the following privilege: - resource: message, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoMessage&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoMessage> getHostMessagesWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getHostMessagesRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1302,11 +1838,13 @@ public class HostsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getHostMessages", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoMessage>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1314,15 +1852,21 @@ public class HostsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoMessage responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoMessage>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoMessage>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoMessage>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1333,7 +1877,7 @@ public class HostsApi {
     }
   }
 
-  private HttpRequest.Builder getHostMessagesRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getHostMessagesRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getHostMessages");
@@ -1375,6 +1919,8 @@ public class HostsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1390,7 +1936,20 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public XapiStatsResponseXapiHostStatsRaw getHostStats(@javax.annotation.Nonnull String id, @javax.annotation.Nullable XapiStatsGranularity granularity) throws ApiException {
-    ApiResponse<XapiStatsResponseXapiHostStatsRaw> localVarResponse = getHostStatsWithHttpInfo(id, granularity);
+    return getHostStats(id, granularity, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: host, action: read  Host must be running
+   * @param id  (required)
+   * @param granularity  (optional)
+   * @param headers Optional headers to include in the request
+   * @return XapiStatsResponseXapiHostStatsRaw
+   * @throws ApiException if fails to make API call
+   */
+  public XapiStatsResponseXapiHostStatsRaw getHostStats(@javax.annotation.Nonnull String id, @javax.annotation.Nullable XapiStatsGranularity granularity, Map<String, String> headers) throws ApiException {
+    ApiResponse<XapiStatsResponseXapiHostStatsRaw> localVarResponse = getHostStatsWithHttpInfo(id, granularity, headers);
     return localVarResponse.getData();
   }
 
@@ -1403,7 +1962,20 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<XapiStatsResponseXapiHostStatsRaw> getHostStatsWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable XapiStatsGranularity granularity) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getHostStatsRequestBuilder(id, granularity);
+    return getHostStatsWithHttpInfo(id, granularity, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: host, action: read  Host must be running
+   * @param id  (required)
+   * @param granularity  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;XapiStatsResponseXapiHostStatsRaw&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<XapiStatsResponseXapiHostStatsRaw> getHostStatsWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable XapiStatsGranularity granularity, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getHostStatsRequestBuilder(id, granularity, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1411,11 +1983,13 @@ public class HostsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getHostStats", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<XapiStatsResponseXapiHostStatsRaw>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1423,15 +1997,21 @@ public class HostsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        XapiStatsResponseXapiHostStatsRaw responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<XapiStatsResponseXapiHostStatsRaw>() {});
+        
 
         return new ApiResponse<XapiStatsResponseXapiHostStatsRaw>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<XapiStatsResponseXapiHostStatsRaw>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1442,7 +2022,7 @@ public class HostsApi {
     }
   }
 
-  private HttpRequest.Builder getHostStatsRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable XapiStatsGranularity granularity) throws ApiException {
+  private HttpRequest.Builder getHostStatsRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable XapiStatsGranularity granularity, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getHostStats");
@@ -1476,6 +2056,8 @@ public class HostsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1495,7 +2077,24 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoTask getHostTasks(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoTask> localVarResponse = getHostTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit);
+    return getHostTasks(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all tasks that match the following privilege: - resource: task, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoTask
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoTask getHostTasks(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoTask> localVarResponse = getHostTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -1512,7 +2111,24 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoTask> getHostTasksWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getHostTasksRequestBuilder(id, fields, ndjson, markdown, filter, limit);
+    return getHostTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all tasks that match the following privilege: - resource: task, action: read
+   * @param id  (required)
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoTask&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoTask> getHostTasksWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getHostTasksRequestBuilder(id, fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1520,11 +2136,13 @@ public class HostsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getHostTasks", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoTask>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1532,15 +2150,21 @@ public class HostsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoTask responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoTask>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoTask>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoTask>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1551,7 +2175,7 @@ public class HostsApi {
     }
   }
 
-  private HttpRequest.Builder getHostTasksRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getHostTasksRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getHostTasks");
@@ -1593,6 +2217,8 @@ public class HostsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1611,7 +2237,23 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public SendObjectsPartialUnbrandXoHost getHosts(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    ApiResponse<SendObjectsPartialUnbrandXoHost> localVarResponse = getHostsWithHttpInfo(fields, ndjson, markdown, filter, limit);
+    return getHosts(fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all hosts that match the following privilege: - resource: host, action: read
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return SendObjectsPartialUnbrandXoHost
+   * @throws ApiException if fails to make API call
+   */
+  public SendObjectsPartialUnbrandXoHost getHosts(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    ApiResponse<SendObjectsPartialUnbrandXoHost> localVarResponse = getHostsWithHttpInfo(fields, ndjson, markdown, filter, limit, headers);
     return localVarResponse.getData();
   }
 
@@ -1627,7 +2269,23 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<SendObjectsPartialUnbrandXoHost> getHostsWithHttpInfo(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getHostsRequestBuilder(fields, ndjson, markdown, filter, limit);
+    return getHostsWithHttpInfo(fields, ndjson, markdown, filter, limit, null);
+  }
+
+  /**
+   * 
+   * Returns all hosts that match the following privilege: - resource: host, action: read
+   * @param fields  (optional)
+   * @param ndjson  (optional)
+   * @param markdown  (optional)
+   * @param filter  (optional)
+   * @param limit  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SendObjectsPartialUnbrandXoHost&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SendObjectsPartialUnbrandXoHost> getHostsWithHttpInfo(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getHostsRequestBuilder(fields, ndjson, markdown, filter, limit, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1635,11 +2293,13 @@ public class HostsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getHosts", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<SendObjectsPartialUnbrandXoHost>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1647,15 +2307,21 @@ public class HostsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SendObjectsPartialUnbrandXoHost responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoHost>() {});
+        
 
         return new ApiResponse<SendObjectsPartialUnbrandXoHost>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SendObjectsPartialUnbrandXoHost>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1666,7 +2332,7 @@ public class HostsApi {
     }
   }
 
-  private HttpRequest.Builder getHostsRequestBuilder(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit) throws ApiException {
+  private HttpRequest.Builder getHostsRequestBuilder(@javax.annotation.Nullable String fields, @javax.annotation.Nullable Boolean ndjson, @javax.annotation.Nullable Boolean markdown, @javax.annotation.Nullable String filter, @javax.annotation.Nullable Double limit, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -1703,6 +2369,8 @@ public class HostsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1717,7 +2385,19 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public GetMissingPatches200Response getMissingPatches(@javax.annotation.Nonnull String id) throws ApiException {
-    ApiResponse<GetMissingPatches200Response> localVarResponse = getMissingPatchesWithHttpInfo(id);
+    return getMissingPatches(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: host, action: read  Host must be running
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return GetMissingPatches200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetMissingPatches200Response getMissingPatches(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetMissingPatches200Response> localVarResponse = getMissingPatchesWithHttpInfo(id, headers);
     return localVarResponse.getData();
   }
 
@@ -1729,7 +2409,19 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<GetMissingPatches200Response> getMissingPatchesWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getMissingPatchesRequestBuilder(id);
+    return getMissingPatchesWithHttpInfo(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: host, action: read  Host must be running
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetMissingPatches200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetMissingPatches200Response> getMissingPatchesWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getMissingPatchesRequestBuilder(id, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1737,11 +2429,13 @@ public class HostsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("getMissingPatches", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<GetMissingPatches200Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1749,15 +2443,21 @@ public class HostsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetMissingPatches200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetMissingPatches200Response>() {});
+        
 
         return new ApiResponse<GetMissingPatches200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetMissingPatches200Response>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1768,7 +2468,7 @@ public class HostsApi {
     }
   }
 
-  private HttpRequest.Builder getMissingPatchesRequestBuilder(@javax.annotation.Nonnull String id) throws ApiException {
+  private HttpRequest.Builder getMissingPatchesRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling getMissingPatches");
@@ -1787,6 +2487,8 @@ public class HostsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1801,7 +2503,19 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public GethostSmt200Response gethostSmt(@javax.annotation.Nonnull String id) throws ApiException {
-    ApiResponse<GethostSmt200Response> localVarResponse = gethostSmtWithHttpInfo(id);
+    return gethostSmt(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: host, action: read  Returns a boolean indicating whether SMT (Simultaneous Multi-Threading) is enabled
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return GethostSmt200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GethostSmt200Response gethostSmt(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    ApiResponse<GethostSmt200Response> localVarResponse = gethostSmtWithHttpInfo(id, headers);
     return localVarResponse.getData();
   }
 
@@ -1813,7 +2527,19 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<GethostSmt200Response> gethostSmtWithHttpInfo(@javax.annotation.Nonnull String id) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = gethostSmtRequestBuilder(id);
+    return gethostSmtWithHttpInfo(id, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: host, action: read  Returns a boolean indicating whether SMT (Simultaneous Multi-Threading) is enabled
+   * @param id  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GethostSmt200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GethostSmt200Response> gethostSmtWithHttpInfo(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = gethostSmtRequestBuilder(id, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1821,11 +2547,13 @@ public class HostsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("gethostSmt", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<GethostSmt200Response>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1833,15 +2561,21 @@ public class HostsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GethostSmt200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GethostSmt200Response>() {});
+        
 
         return new ApiResponse<GethostSmt200Response>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GethostSmt200Response>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1852,7 +2586,7 @@ public class HostsApi {
     }
   }
 
-  private HttpRequest.Builder gethostSmtRequestBuilder(@javax.annotation.Nonnull String id) throws ApiException {
+  private HttpRequest.Builder gethostSmtRequestBuilder(@javax.annotation.Nonnull String id, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling gethostSmt");
@@ -1871,6 +2605,8 @@ public class HostsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1887,7 +2623,21 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeVoid managementReconfigure(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull ManagementReconfigureRequest managementReconfigureRequest, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = managementReconfigureWithHttpInfo(id, managementReconfigureRequest, sync);
+    return managementReconfigure(id, managementReconfigureRequest, sync, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: pif, action: update:management  Reconfigure the management interface of the host to use the given PIF.  The target PIF must already have an IP address configured.
+   * @param id  (required)
+   * @param managementReconfigureRequest  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeVoid
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeVoid managementReconfigure(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull ManagementReconfigureRequest managementReconfigureRequest, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = managementReconfigureWithHttpInfo(id, managementReconfigureRequest, sync, headers);
     return localVarResponse.getData();
   }
 
@@ -1901,7 +2651,21 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeVoid> managementReconfigureWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull ManagementReconfigureRequest managementReconfigureRequest, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = managementReconfigureRequestBuilder(id, managementReconfigureRequest, sync);
+    return managementReconfigureWithHttpInfo(id, managementReconfigureRequest, sync, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: pif, action: update:management  Reconfigure the management interface of the host to use the given PIF.  The target PIF must already have an IP address configured.
+   * @param id  (required)
+   * @param managementReconfigureRequest  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeVoid&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeVoid> managementReconfigureWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull ManagementReconfigureRequest managementReconfigureRequest, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = managementReconfigureRequestBuilder(id, managementReconfigureRequest, sync, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -1909,11 +2673,13 @@ public class HostsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("managementReconfigure", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeVoid>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -1921,15 +2687,21 @@ public class HostsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeVoid responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeVoid>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1940,7 +2712,7 @@ public class HostsApi {
     }
   }
 
-  private HttpRequest.Builder managementReconfigureRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull ManagementReconfigureRequest managementReconfigureRequest, @javax.annotation.Nullable Boolean sync) throws ApiException {
+  private HttpRequest.Builder managementReconfigureRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull ManagementReconfigureRequest managementReconfigureRequest, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling managementReconfigure");
@@ -1984,6 +2756,8 @@ public class HostsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -1998,7 +2772,19 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public void putHostTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    putHostTagWithHttpInfo(id, tag);
+    putHostTag(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: host, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @throws ApiException if fails to make API call
+   */
+  public void putHostTag(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    putHostTagWithHttpInfo(id, tag, headers);
   }
 
   /**
@@ -2010,7 +2796,20 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<Void> putHostTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = putHostTagRequestBuilder(id, tag);
+    return putHostTagWithHttpInfo(id, tag, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: host, action: update:tags
+   * @param id  (required)
+   * @param tag  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;Void&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<Void> putHostTagWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = putHostTagRequestBuilder(id, tag, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2018,9 +2817,14 @@ public class HostsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("putHostTag", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody != null) {
+          localVarResponseBody.readAllBytes();
         }
         return new ApiResponse<>(
             localVarResponse.statusCode(),
@@ -2028,11 +2832,9 @@ public class HostsApi {
             null
         );
       } finally {
-        // Drain the InputStream
-        while (localVarResponse.body().read() != -1) {
-          // Ignore
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
         }
-        localVarResponse.body().close();
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -2043,7 +2845,7 @@ public class HostsApi {
     }
   }
 
-  private HttpRequest.Builder putHostTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag) throws ApiException {
+  private HttpRequest.Builder putHostTagRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nonnull String tag, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling putHostTag");
@@ -2067,6 +2869,8 @@ public class HostsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -2083,7 +2887,21 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeVoid restartHostToolstack(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable RestartHostToolstackRequest restartHostToolstackRequest) throws ApiException {
-    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = restartHostToolstackWithHttpInfo(id, sync, restartHostToolstackRequest);
+    return restartHostToolstack(id, sync, restartHostToolstackRequest, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: host, action: restart-toolstack  Restart a host&#39;s toolstack.
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param restartHostToolstackRequest  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeVoid
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeVoid restartHostToolstack(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable RestartHostToolstackRequest restartHostToolstackRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = restartHostToolstackWithHttpInfo(id, sync, restartHostToolstackRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -2097,7 +2915,21 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeVoid> restartHostToolstackWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable RestartHostToolstackRequest restartHostToolstackRequest) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = restartHostToolstackRequestBuilder(id, sync, restartHostToolstackRequest);
+    return restartHostToolstackWithHttpInfo(id, sync, restartHostToolstackRequest, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: host, action: restart-toolstack  Restart a host&#39;s toolstack.
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param restartHostToolstackRequest  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeVoid&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeVoid> restartHostToolstackWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable RestartHostToolstackRequest restartHostToolstackRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = restartHostToolstackRequestBuilder(id, sync, restartHostToolstackRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2105,11 +2937,13 @@ public class HostsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("restartHostToolstack", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeVoid>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -2117,15 +2951,21 @@ public class HostsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeVoid responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeVoid>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -2136,7 +2976,7 @@ public class HostsApi {
     }
   }
 
-  private HttpRequest.Builder restartHostToolstackRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable RestartHostToolstackRequest restartHostToolstackRequest) throws ApiException {
+  private HttpRequest.Builder restartHostToolstackRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable RestartHostToolstackRequest restartHostToolstackRequest, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling restartHostToolstack");
@@ -2176,6 +3016,8 @@ public class HostsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -2192,7 +3034,21 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeVoid smartRebootHost(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable SmartRebootHostRequest smartRebootHostRequest) throws ApiException {
-    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = smartRebootHostWithHttpInfo(id, sync, smartRebootHostRequest);
+    return smartRebootHost(id, sync, smartRebootHostRequest, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: host, action: reboot:smart  Reboot a host by suspending its VMs in place.
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param smartRebootHostRequest  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeVoid
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeVoid smartRebootHost(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable SmartRebootHostRequest smartRebootHostRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = smartRebootHostWithHttpInfo(id, sync, smartRebootHostRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -2206,7 +3062,21 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeVoid> smartRebootHostWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable SmartRebootHostRequest smartRebootHostRequest) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = smartRebootHostRequestBuilder(id, sync, smartRebootHostRequest);
+    return smartRebootHostWithHttpInfo(id, sync, smartRebootHostRequest, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: host, action: reboot:smart  Reboot a host by suspending its VMs in place.
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param smartRebootHostRequest  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeVoid&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeVoid> smartRebootHostWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable SmartRebootHostRequest smartRebootHostRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = smartRebootHostRequestBuilder(id, sync, smartRebootHostRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2214,11 +3084,13 @@ public class HostsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("smartRebootHost", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeVoid>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -2226,15 +3098,21 @@ public class HostsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeVoid responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeVoid>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -2245,7 +3123,7 @@ public class HostsApi {
     }
   }
 
-  private HttpRequest.Builder smartRebootHostRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable SmartRebootHostRequest smartRebootHostRequest) throws ApiException {
+  private HttpRequest.Builder smartRebootHostRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, @javax.annotation.Nullable SmartRebootHostRequest smartRebootHostRequest, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling smartRebootHost");
@@ -2285,6 +3163,8 @@ public class HostsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }
@@ -2300,7 +3180,20 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public CreateActionReturnTypeVoid startHost(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = startHostWithHttpInfo(id, sync);
+    return startHost(id, sync, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: host, action: start  Start a host.
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return CreateActionReturnTypeVoid
+   * @throws ApiException if fails to make API call
+   */
+  public CreateActionReturnTypeVoid startHost(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateActionReturnTypeVoid> localVarResponse = startHostWithHttpInfo(id, sync, headers);
     return localVarResponse.getData();
   }
 
@@ -2313,7 +3206,20 @@ public class HostsApi {
    * @throws ApiException if fails to make API call
    */
   public ApiResponse<CreateActionReturnTypeVoid> startHostWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = startHostRequestBuilder(id, sync);
+    return startHostWithHttpInfo(id, sync, null);
+  }
+
+  /**
+   * 
+   * Required privilege: - resource: host, action: start  Start a host.
+   * @param id  (required)
+   * @param sync  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateActionReturnTypeVoid&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateActionReturnTypeVoid> startHostWithHttpInfo(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = startHostRequestBuilder(id, sync, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2321,11 +3227,13 @@ public class HostsApi {
       if (memberVarResponseInterceptor != null) {
         memberVarResponseInterceptor.accept(localVarResponse);
       }
+      InputStream localVarResponseBody = null;
       try {
         if (localVarResponse.statusCode()/ 100 != 2) {
           throw getApiException("startHost", localVarResponse);
         }
-        if (localVarResponse.body() == null) {
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
           return new ApiResponse<CreateActionReturnTypeVoid>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
@@ -2333,15 +3241,21 @@ public class HostsApi {
           );
         }
 
-        String responseBody = new String(localVarResponse.body().readAllBytes());
-        localVarResponse.body().close();
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateActionReturnTypeVoid responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {});
+        
 
         return new ApiResponse<CreateActionReturnTypeVoid>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
-            responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateActionReturnTypeVoid>() {})
+            responseValue
         );
       } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
       }
     } catch (IOException e) {
       throw new ApiException(e);
@@ -2352,7 +3266,7 @@ public class HostsApi {
     }
   }
 
-  private HttpRequest.Builder startHostRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync) throws ApiException {
+  private HttpRequest.Builder startHostRequestBuilder(@javax.annotation.Nonnull String id, @javax.annotation.Nullable Boolean sync, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'id' is set
     if (id == null) {
       throw new ApiException(400, "Missing the required parameter 'id' when calling startHost");
@@ -2386,6 +3300,8 @@ public class HostsApi {
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
     if (memberVarInterceptor != null) {
       memberVarInterceptor.accept(localVarRequestBuilder);
     }

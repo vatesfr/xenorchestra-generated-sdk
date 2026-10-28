@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **read_rate** | **f64** |  | 
 **success** | **bool** |  | 
 **write_rate** | **f64** |  | 
-**error** | Option<[**serde_json::Value**](.md)> |  | 
+**error** | Option<**serde_json::Value**> |  | 
 **file** | **String** |  | 
 **step** | **String** |  | 
 

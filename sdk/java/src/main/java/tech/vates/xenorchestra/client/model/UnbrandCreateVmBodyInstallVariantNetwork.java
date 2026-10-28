@@ -36,7 +36,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   UnbrandCreateVmBodyInstallVariantNetwork.JSON_PROPERTY_METHOD,
   UnbrandCreateVmBodyInstallVariantNetwork.JSON_PROPERTY_REPOSITORY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class UnbrandCreateVmBodyInstallVariantNetwork {
   /**
    * Gets or Sets method
@@ -133,14 +133,14 @@ private final String value;
    * @return method
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_METHOD)
+  @JsonProperty(value = JSON_PROPERTY_METHOD, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public MethodEnum getMethod() {
     return method;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_METHOD)
+  @JsonProperty(value = JSON_PROPERTY_METHOD, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setMethod(@javax.annotation.Nonnull MethodEnum method) {
     this.method = method;
@@ -157,14 +157,14 @@ private final String value;
    * @return repository
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_REPOSITORY)
+  @JsonProperty(value = JSON_PROPERTY_REPOSITORY, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public RepositoryEnum getRepository() {
     return repository;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_REPOSITORY)
+  @JsonProperty(value = JSON_PROPERTY_REPOSITORY, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setRepository(@javax.annotation.Nonnull RepositoryEnum repository) {
     this.repository = repository;
@@ -207,10 +207,7 @@ private final String value;
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -247,12 +244,12 @@ private final String value;
 
     // add `method` to the URL query string
     if (getMethod() != null) {
-      joiner.add(String.format("%smethod%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMethod()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%smethod%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMethod()))));
     }
 
     // add `repository` to the URL query string
     if (getRepository() != null) {
-      joiner.add(String.format("%srepository%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRepository()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%srepository%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRepository()))));
     }
 
     return joiner.toString();

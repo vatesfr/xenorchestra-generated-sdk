@@ -155,8 +155,9 @@ class _$UnbrandXoBackupLogSerializer
         case r'end':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.end = valueDes;
           break;
         case r'id':
@@ -169,16 +170,18 @@ class _$UnbrandXoBackupLogSerializer
         case r'infos':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(
+            specifiedType: const FullType.nullable(
                 BuiltList, [FullType(PartialUnbrandXoBackupLogInfosInner)]),
-          ) as BuiltList<PartialUnbrandXoBackupLogInfosInner>;
+          ) as BuiltList<PartialUnbrandXoBackupLogInfosInner>?;
+          if (valueDes == null) continue;
           result.infos.replace(valueDes);
           break;
         case r'jobId':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.jobId = valueDes;
           break;
         case r'message':
@@ -205,8 +208,10 @@ class _$UnbrandXoBackupLogSerializer
         case r'tasks':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(XoTask)]),
-          ) as BuiltList<XoTask>;
+            specifiedType:
+                const FullType.nullable(BuiltList, [FullType(XoTask)]),
+          ) as BuiltList<XoTask>?;
+          if (valueDes == null) continue;
           result.tasks.replace(valueDes);
           break;
         default:

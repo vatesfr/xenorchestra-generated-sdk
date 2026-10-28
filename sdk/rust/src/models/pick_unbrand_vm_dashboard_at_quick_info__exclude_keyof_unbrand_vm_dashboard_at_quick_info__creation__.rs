@@ -11,9 +11,9 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// PickUnbrandVmDashboardAtQuickInfoPeriodExcludeKeyofUnbrandVmDashboardAtQuickInfoPeriodCreation : From T, pick a set of properties whose keys are in the union K
+/// PickUnbrandVmDashboardAtQuickInfoExcludeKeyofUnbrandVmDashboardAtQuickInfoCreation : From T, pick a set of properties whose keys are in the union K
 #[derive(Clone, Default, Debug, PartialEq, Serialize, Deserialize)]
-pub struct PickUnbrandVmDashboardAtQuickInfoPeriodExcludeKeyofUnbrandVmDashboardAtQuickInfoPeriodCreation {
+pub struct PickUnbrandVmDashboardAtQuickInfoExcludeKeyofUnbrandVmDashboardAtQuickInfoCreation {
     #[serde(rename = "$pool")]
     pub dollar_pool: String,
     #[serde(rename = "CPUs")]
@@ -48,12 +48,22 @@ pub struct PickUnbrandVmDashboardAtQuickInfoPeriodExcludeKeyofUnbrandVmDashboard
     pub virtualization_mode: models::DomainType,
 }
 
-impl
-    PickUnbrandVmDashboardAtQuickInfoPeriodExcludeKeyofUnbrandVmDashboardAtQuickInfoPeriodCreation
-{
+impl PickUnbrandVmDashboardAtQuickInfoExcludeKeyofUnbrandVmDashboardAtQuickInfoCreation {
     /// From T, pick a set of properties whose keys are in the union K
-    pub fn new(dollar_pool: String, cpus: models::PickUnbrandVmDashboardAtQuickInfoExcludeKeyofUnbrandVmDashboardAtQuickInfoCreationCpus, id: String, memory: models::PickUnbrandVmDashboardAtQuickInfoExcludeKeyofUnbrandVmDashboardAtQuickInfoCreationMemory, name_description: String, os_version: models::PickUnbrandVmDashboardAtQuickInfoExcludeKeyofUnbrandVmDashboardAtQuickInfoCreationOsVersion, power_state: models::VmPowerState, pv_drivers_detected: bool, tags: Vec<String>, uuid: String, virtualization_mode: models::DomainType) -> PickUnbrandVmDashboardAtQuickInfoPeriodExcludeKeyofUnbrandVmDashboardAtQuickInfoPeriodCreation{
-        PickUnbrandVmDashboardAtQuickInfoPeriodExcludeKeyofUnbrandVmDashboardAtQuickInfoPeriodCreation {
+    pub fn new(
+        dollar_pool: String,
+        cpus: models::PickUnbrandVmDashboardAtQuickInfoExcludeKeyofUnbrandVmDashboardAtQuickInfoCreationCpus,
+        id: String,
+        memory: models::PickUnbrandVmDashboardAtQuickInfoExcludeKeyofUnbrandVmDashboardAtQuickInfoCreationMemory,
+        name_description: String,
+        os_version: models::PickUnbrandVmDashboardAtQuickInfoExcludeKeyofUnbrandVmDashboardAtQuickInfoCreationOsVersion,
+        power_state: models::VmPowerState,
+        pv_drivers_detected: bool,
+        tags: Vec<String>,
+        uuid: String,
+        virtualization_mode: models::DomainType,
+    ) -> PickUnbrandVmDashboardAtQuickInfoExcludeKeyofUnbrandVmDashboardAtQuickInfoCreation {
+        PickUnbrandVmDashboardAtQuickInfoExcludeKeyofUnbrandVmDashboardAtQuickInfoCreation {
             dollar_pool,
             cpus: Box::new(cpus),
             host: None,

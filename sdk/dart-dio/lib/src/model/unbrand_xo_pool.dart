@@ -340,8 +340,9 @@ class _$UnbrandXoPoolSerializer implements PrimitiveSerializer<UnbrandXoPool> {
         case r'crashDumpSr':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.crashDumpSr = valueDes;
           break;
         case r'current_operations':
@@ -354,8 +355,9 @@ class _$UnbrandXoPoolSerializer implements PrimitiveSerializer<UnbrandXoPool> {
         case r'default_SR':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.defaultSR = valueDes;
           break;
         case r'haRebootVmOnInternalShutdown':
@@ -389,8 +391,9 @@ class _$UnbrandXoPoolSerializer implements PrimitiveSerializer<UnbrandXoPool> {
         case r'migrationCompression':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(bool),
-          ) as bool;
+            specifiedType: const FullType.nullable(bool),
+          ) as bool?;
+          if (valueDes == null) continue;
           result.migrationCompression = valueDes;
           break;
         case r'name_description':
@@ -424,8 +427,9 @@ class _$UnbrandXoPoolSerializer implements PrimitiveSerializer<UnbrandXoPool> {
         case r'suspendSr':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
+            specifiedType: const FullType.nullable(String),
+          ) as String?;
+          if (valueDes == null) continue;
           result.suspendSr = valueDes;
           break;
         case r'tags':

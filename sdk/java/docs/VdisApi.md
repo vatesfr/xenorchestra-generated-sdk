@@ -145,7 +145,7 @@ public class Example {
 
 ## createVdiWithHttpInfo
 
-> ApiResponse<CreateAclV2Privilege201Response> createVdi createVdiWithHttpInfo(createVdiBody)
+> ApiResponse<CreateAclV2Privilege201Response> createVdiWithHttpInfo(createVdiBody)
 
 
 
@@ -311,7 +311,7 @@ null (empty response body)
 
 ## deleteVdiWithHttpInfo
 
-> ApiResponse<Void> deleteVdi deleteVdiWithHttpInfo(id)
+> ApiResponse<Void> deleteVdiWithHttpInfo(id)
 
 
 
@@ -475,7 +475,7 @@ null (empty response body)
 
 ## deleteVdiSnapshotWithHttpInfo
 
-> ApiResponse<Void> deleteVdiSnapshot deleteVdiSnapshotWithHttpInfo(id)
+> ApiResponse<Void> deleteVdiSnapshotWithHttpInfo(id)
 
 
 
@@ -641,7 +641,7 @@ null (empty response body)
 
 ## deleteVdiSnapshotTagWithHttpInfo
 
-> ApiResponse<Void> deleteVdiSnapshotTag deleteVdiSnapshotTagWithHttpInfo(id, tag)
+> ApiResponse<Void> deleteVdiSnapshotTagWithHttpInfo(id, tag)
 
 
 
@@ -809,7 +809,7 @@ null (empty response body)
 
 ## deleteVdiTagWithHttpInfo
 
-> ApiResponse<Void> deleteVdiTag deleteVdiTagWithHttpInfo(id, tag)
+> ApiResponse<Void> deleteVdiTagWithHttpInfo(id, tag)
 
 
 
@@ -979,7 +979,7 @@ public class Example {
 
 ## exportVdiContentWithHttpInfo
 
-> ApiResponse<byte[]> exportVdiContent exportVdiContentWithHttpInfo(id, format)
+> ApiResponse<byte[]> exportVdiContentWithHttpInfo(id, format)
 
 
 
@@ -1151,7 +1151,7 @@ public class Example {
 
 ## exportVdiSnapshotContentWithHttpInfo
 
-> ApiResponse<byte[]> exportVdiSnapshotContent exportVdiSnapshotContentWithHttpInfo(id, format)
+> ApiResponse<byte[]> exportVdiSnapshotContentWithHttpInfo(id, format)
 
 
 
@@ -1320,7 +1320,7 @@ public class Example {
 
 ## getVdiWithHttpInfo
 
-> ApiResponse<UnbrandXoVdi> getVdi getVdiWithHttpInfo(id)
+> ApiResponse<UnbrandXoVdi> getVdiWithHttpInfo(id)
 
 
 
@@ -1495,7 +1495,7 @@ public class Example {
 
 ## getVdiAlarmsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVdiAlarms getVdiAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVdiAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1679,7 +1679,7 @@ public class Example {
 
 ## getVdiMessagesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoMessage> getVdiMessages getVdiMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoMessage> getVdiMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -1854,7 +1854,7 @@ public class Example {
 
 ## getVdiSnapshotWithHttpInfo
 
-> ApiResponse<UnbrandXoVdiSnapshot> getVdiSnapshot getVdiSnapshotWithHttpInfo(id)
+> ApiResponse<UnbrandXoVdiSnapshot> getVdiSnapshotWithHttpInfo(id)
 
 
 
@@ -2029,7 +2029,7 @@ public class Example {
 
 ## getVdiSnapshotAlarmsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVdiSnapshotAlarms getVdiSnapshotAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoAlarm> getVdiSnapshotAlarmsWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -2213,7 +2213,7 @@ public class Example {
 
 ## getVdiSnapshotMessagesWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoMessage> getVdiSnapshotMessages getVdiSnapshotMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoMessage> getVdiSnapshotMessagesWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -2397,7 +2397,7 @@ public class Example {
 
 ## getVdiSnapshotTasksWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoTask> getVdiSnapshotTasks getVdiSnapshotTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoTask> getVdiSnapshotTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -2578,7 +2578,7 @@ public class Example {
 
 ## getVdiSnapshotsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoVdiSnapshot> getVdiSnapshots getVdiSnapshotsWithHttpInfo(fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoVdiSnapshot> getVdiSnapshotsWithHttpInfo(fields, ndjson, markdown, filter, limit)
 
 
 
@@ -2759,7 +2759,7 @@ public class Example {
 
 ## getVdiTasksWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoTask> getVdiTasks getVdiTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoTask> getVdiTasksWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -2940,7 +2940,7 @@ public class Example {
 
 ## getVdisWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoVdi> getVdis getVdisWithHttpInfo(fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoVdi> getVdisWithHttpInfo(fields, ndjson, markdown, filter, limit)
 
 
 
@@ -3121,7 +3121,7 @@ public class Example {
 
 ## getVmControllerVdisWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoVdi> getVmControllerVdis getVmControllerVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoVdi> getVmControllerVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -3305,7 +3305,7 @@ public class Example {
 
 ## getVmSnapshotVdisWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoVdiSnapshot> getVmSnapshotVdis getVmSnapshotVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoVdiSnapshot> getVmSnapshotVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -3489,7 +3489,7 @@ public class Example {
 
 ## getVmTemplateVdisWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoVdi> getVmTemplateVdis getVmTemplateVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoVdi> getVmTemplateVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -3673,7 +3673,7 @@ public class Example {
 
 ## getVmVdisWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoVdi> getVmVdis getVmVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoVdi> getVmVdisWithHttpInfo(id, fields, ndjson, markdown, filter, limit)
 
 
 
@@ -3853,7 +3853,7 @@ null (empty response body)
 
 ## importVdiContentWithHttpInfo
 
-> ApiResponse<Void> importVdiContent importVdiContentWithHttpInfo(id, format, body)
+> ApiResponse<Void> importVdiContentWithHttpInfo(id, format, body)
 
 
 
@@ -4029,7 +4029,7 @@ null (empty response body)
 
 ## migrateVdiWithHttpInfo
 
-> ApiResponse<Void> migrateVdi migrateVdiWithHttpInfo(id, migrateVdiRequest, sync)
+> ApiResponse<Void> migrateVdiWithHttpInfo(id, migrateVdiRequest, sync)
 
 
 
@@ -4201,7 +4201,7 @@ null (empty response body)
 
 ## putVdiSnapshotTagWithHttpInfo
 
-> ApiResponse<Void> putVdiSnapshotTag putVdiSnapshotTagWithHttpInfo(id, tag)
+> ApiResponse<Void> putVdiSnapshotTagWithHttpInfo(id, tag)
 
 
 
@@ -4369,7 +4369,7 @@ null (empty response body)
 
 ## putVdiTagWithHttpInfo
 
-> ApiResponse<Void> putVdiTag putVdiTagWithHttpInfo(id, tag)
+> ApiResponse<Void> putVdiTagWithHttpInfo(id, tag)
 
 
 
@@ -4544,7 +4544,7 @@ public class Example {
 
 ## srImportVdiWithHttpInfo
 
-> ApiResponse<CreateAclV2Privilege201Response> srImportVdi srImportVdiWithHttpInfo(id, body, nameLabel, nameDescription, raw)
+> ApiResponse<CreateAclV2Privilege201Response> srImportVdiWithHttpInfo(id, body, nameLabel, nameDescription, raw)
 
 
 
@@ -4721,7 +4721,7 @@ null (empty response body)
 
 ## updateVdiWithHttpInfo
 
-> ApiResponse<Void> updateVdi updateVdiWithHttpInfo(id, updateVdiRequestBody)
+> ApiResponse<Void> updateVdiWithHttpInfo(id, updateVdiRequestBody)
 
 
 

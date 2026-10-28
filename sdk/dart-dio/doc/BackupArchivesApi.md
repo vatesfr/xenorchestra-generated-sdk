@@ -37,7 +37,7 @@ final String id = 231264c3-af43-4ec0-a3be-394c5b1fdbfc/xo-vm-backups/6ef7c09e-67
 try {
     final response = api.getBackupArchive(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BackupArchivesApi->getBackupArchive: $e\n');
 }
 ```
@@ -92,7 +92,7 @@ final double limit = 42; // double |
 try {
     final response = api.getBackupArchives(backupRepository, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BackupArchivesApi->getBackupArchives: $e\n');
 }
 ```

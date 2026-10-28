@@ -8,19 +8,19 @@ void main() {
 
   group(XapiVmStatsRawXvds, () {
     // Construct a type with a set of properties K of type T
-    // BuiltMap<String, BuiltList<double>> r
+    // BuiltMap<String, BuiltList<double?>> r
     test('to test the property `r`', () async {
       // TODO
     });
 
     // Construct a type with a set of properties K of type T
-    // BuiltMap<String, BuiltList<double>> total
+    // BuiltMap<String, BuiltList<double?>> total
     test('to test the property `total`', () async {
       // TODO
     });
 
     // Construct a type with a set of properties K of type T
-    // BuiltMap<String, BuiltList<double>> w
+    // BuiltMap<String, BuiltList<double?>> w
     test('to test the property `w`', () async {
       // TODO
     });

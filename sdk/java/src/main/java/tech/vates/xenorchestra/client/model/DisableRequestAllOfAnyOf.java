@@ -35,7 +35,7 @@ import tech.vates.xenorchestra.client.ApiClient;
 @JsonPropertyOrder({
   DisableRequestAllOfAnyOf.JSON_PROPERTY_EVACUATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class DisableRequestAllOfAnyOf {
   public static final String JSON_PROPERTY_EVACUATE = "evacuate";
   @javax.annotation.Nullable
@@ -54,14 +54,14 @@ public class DisableRequestAllOfAnyOf {
    * @return evacuate
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_EVACUATE)
+  @JsonProperty(value = JSON_PROPERTY_EVACUATE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public Boolean getEvacuate() {
     return evacuate;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_EVACUATE)
+  @JsonProperty(value = JSON_PROPERTY_EVACUATE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setEvacuate(@javax.annotation.Nullable Boolean evacuate) {
     this.evacuate = evacuate;
@@ -102,10 +102,7 @@ public class DisableRequestAllOfAnyOf {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -142,7 +139,7 @@ public class DisableRequestAllOfAnyOf {
 
     // add `evacuate` to the URL query string
     if (getEvacuate() != null) {
-      joiner.add(String.format("%sevacuate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEvacuate()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%sevacuate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getEvacuate()))));
     }
 
     return joiner.toString();

@@ -213,22 +213,25 @@ class _$UnbrandXoTaskSerializer implements PrimitiveSerializer<UnbrandXoTask> {
         case r'abortionRequestedAt':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.abortionRequestedAt = valueDes;
           break;
         case r'data':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(JsonObject),
-          ) as JsonObject;
+            specifiedType: const FullType.nullable(JsonObject),
+          ) as JsonObject?;
+          if (valueDes == null) continue;
           result.data = valueDes;
           break;
         case r'end':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.end = valueDes;
           break;
         case r'id':
@@ -241,16 +244,18 @@ class _$UnbrandXoTaskSerializer implements PrimitiveSerializer<UnbrandXoTask> {
         case r'infos':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(
+            specifiedType: const FullType.nullable(
                 BuiltList, [FullType(PartialUnbrandXoBackupLogInfosInner)]),
-          ) as BuiltList<PartialUnbrandXoBackupLogInfosInner>;
+          ) as BuiltList<PartialUnbrandXoBackupLogInfosInner>?;
+          if (valueDes == null) continue;
           result.infos.replace(valueDes);
           break;
         case r'progress':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.progress = valueDes;
           break;
         case r'properties':
@@ -263,9 +268,10 @@ class _$UnbrandXoTaskSerializer implements PrimitiveSerializer<UnbrandXoTask> {
         case r'result':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(
+            specifiedType: const FullType.nullable(
                 BuiltMap, [FullType(String), FullType.nullable(JsonObject)]),
-          ) as BuiltMap<String, JsonObject?>;
+          ) as BuiltMap<String, JsonObject?>?;
+          if (valueDes == null) continue;
           result.result.replace(valueDes);
           break;
         case r'start':
@@ -285,23 +291,27 @@ class _$UnbrandXoTaskSerializer implements PrimitiveSerializer<UnbrandXoTask> {
         case r'tasks':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(BuiltList, [FullType(XoTask)]),
-          ) as BuiltList<XoTask>;
+            specifiedType:
+                const FullType.nullable(BuiltList, [FullType(XoTask)]),
+          ) as BuiltList<XoTask>?;
+          if (valueDes == null) continue;
           result.tasks.replace(valueDes);
           break;
         case r'updatedAt':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(double),
-          ) as double;
+            specifiedType: const FullType.nullable(double),
+          ) as double?;
+          if (valueDes == null) continue;
           result.updatedAt = valueDes;
           break;
         case r'warnings':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(
+            specifiedType: const FullType.nullable(
                 BuiltList, [FullType(PartialUnbrandXoBackupLogInfosInner)]),
-          ) as BuiltList<PartialUnbrandXoBackupLogInfosInner>;
+          ) as BuiltList<PartialUnbrandXoBackupLogInfosInner>?;
+          if (valueDes == null) continue;
           result.warnings.replace(valueDes);
           break;
         default:

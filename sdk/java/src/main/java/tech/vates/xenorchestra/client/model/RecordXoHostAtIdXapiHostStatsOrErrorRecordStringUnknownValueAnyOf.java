@@ -37,7 +37,7 @@ import tech.vates.xenorchestra.client.ApiClient;
 @JsonPropertyOrder({
   RecordXoHostAtIdXapiHostStatsOrErrorRecordStringUnknownValueAnyOf.JSON_PROPERTY_ERROR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class RecordXoHostAtIdXapiHostStatsOrErrorRecordStringUnknownValueAnyOf {
   public static final String JSON_PROPERTY_ERROR = "error";
   @javax.annotation.Nonnull
@@ -64,14 +64,14 @@ public class RecordXoHostAtIdXapiHostStatsOrErrorRecordStringUnknownValueAnyOf {
    * @return error
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_ERROR)
+  @JsonProperty(value = JSON_PROPERTY_ERROR, required = true)
   @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.ALWAYS)
   public Map<String, Object> getError() {
     return error;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_ERROR)
+  @JsonProperty(value = JSON_PROPERTY_ERROR, required = true)
   @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.ALWAYS)
   public void setError(@javax.annotation.Nonnull Map<String, Object> error) {
     this.error = error;
@@ -112,10 +112,7 @@ public class RecordXoHostAtIdXapiHostStatsOrErrorRecordStringUnknownValueAnyOf {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -153,8 +150,8 @@ public class RecordXoHostAtIdXapiHostStatsOrErrorRecordStringUnknownValueAnyOf {
     // add `error` to the URL query string
     if (getError() != null) {
       for (String _key : getError().keySet()) {
-        joiner.add(String.format("%serror%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format("%s%d%s", containerPrefix, _key, containerSuffix),
+        joiner.add(String.format(java.util.Locale.ROOT, "%serror%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getError().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getError().get(_key)))));
       }
     }

@@ -1,4 +1,4 @@
-# WithHrefPartialUnbrandExcludeXoAclRolePeriodIsTemplateTrue
+# WithHrefPartialUnbrandExcludeXoAclRoleIsTemplateTrue
 
 ## Properties
 

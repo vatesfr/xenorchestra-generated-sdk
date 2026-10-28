@@ -35,7 +35,7 @@ import tech.vates.xenorchestra.client.ApiClient;
 @JsonPropertyOrder({
   StartVmRequest.JSON_PROPERTY_HOST_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class StartVmRequest {
   public static final String JSON_PROPERTY_HOST_ID = "hostId";
   @javax.annotation.Nullable
@@ -54,14 +54,14 @@ public class StartVmRequest {
    * @return hostId
    */
   @javax.annotation.Nullable
-  @JsonProperty(JSON_PROPERTY_HOST_ID)
+  @JsonProperty(value = JSON_PROPERTY_HOST_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getHostId() {
     return hostId;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_HOST_ID)
+  @JsonProperty(value = JSON_PROPERTY_HOST_ID, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHostId(@javax.annotation.Nullable String hostId) {
     this.hostId = hostId;
@@ -102,10 +102,7 @@ public class StartVmRequest {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -142,7 +139,7 @@ public class StartVmRequest {
 
     // add `hostId` to the URL query string
     if (getHostId() != null) {
-      joiner.add(String.format("%shostId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHostId()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%shostId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHostId()))));
     }
 
     return joiner.toString();

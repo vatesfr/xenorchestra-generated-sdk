@@ -42,7 +42,7 @@ final bool sync_ = true; // bool |
 
 try {
     api.benchmarkBackupRepository(id, sync_);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BackupRepositoriesApi->benchmarkBackupRepository: $e\n');
 }
 ```
@@ -93,7 +93,7 @@ final UnbrandParametersXoAppAtCreateRemote91093 unbrandParametersXoAppAtCreateRe
 try {
     final response = api.createBackupRepository(unbrandParametersXoAppAtCreateRemote91093);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BackupRepositoriesApi->createBackupRepository: $e\n');
 }
 ```
@@ -144,7 +144,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.forgetBackupRepository(id, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BackupRepositoriesApi->forgetBackupRepository: $e\n');
 }
 ```
@@ -195,7 +195,7 @@ final String id = c4284e12-37c9-7967-b9e8-83ef229c3e03; // String |
 try {
     final response = api.getBackupRepositoryHealth(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BackupRepositoriesApi->getBackupRepositoryHealth: $e\n');
 }
 ```
@@ -249,7 +249,7 @@ final double limit = 42; // double |
 try {
     final response = api.getRepositories(fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BackupRepositoriesApi->getRepositories: $e\n');
 }
 ```
@@ -303,7 +303,7 @@ final String id = c4284e12-37c9-7967-b9e8-83ef229c3e03; // String |
 try {
     final response = api.getRepository(id);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BackupRepositoriesApi->getRepository: $e\n');
 }
 ```
@@ -353,7 +353,7 @@ final UnbrandParametersXoAppAtUpdateRemote91193 unbrandParametersXoAppAtUpdateRe
 
 try {
     api.updateBackupRepository(id, unbrandParametersXoAppAtUpdateRemote91193);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling BackupRepositoriesApi->updateBackupRepository: $e\n');
 }
 ```

@@ -98,7 +98,7 @@ public class Example {
 
 ## getBackupLogWithHttpInfo
 
-> ApiResponse<UnbrandXoBackupLog> getBackupLog getBackupLogWithHttpInfo(id)
+> ApiResponse<UnbrandXoBackupLog> getBackupLogWithHttpInfo(id)
 
 
 
@@ -270,7 +270,7 @@ public class Example {
 
 ## getBackupLogsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoBackupLog> getBackupLogs getBackupLogsWithHttpInfo(fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoBackupLog> getBackupLogsWithHttpInfo(fields, ndjson, markdown, filter, limit)
 
 
 
@@ -438,7 +438,7 @@ public class Example {
 
 ## getDeprecatedBackupLogWithHttpInfo
 
-> ApiResponse<UnbrandXoBackupLog> getDeprecatedBackupLog getDeprecatedBackupLogWithHttpInfo(id)
+> ApiResponse<UnbrandXoBackupLog> getDeprecatedBackupLogWithHttpInfo(id)
 
 
 
@@ -606,7 +606,7 @@ public class Example {
 
 ## getDeprecatedBackupLogsWithHttpInfo
 
-> ApiResponse<SendObjectsPartialUnbrandXoBackupLog> getDeprecatedBackupLogs getDeprecatedBackupLogsWithHttpInfo(fields, ndjson, markdown, filter, limit)
+> ApiResponse<SendObjectsPartialUnbrandXoBackupLog> getDeprecatedBackupLogsWithHttpInfo(fields, ndjson, markdown, filter, limit)
 
 
 

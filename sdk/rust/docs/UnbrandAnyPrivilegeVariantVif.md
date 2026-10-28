@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**action** | **String** |  | 
-**effect** | **String** |  | 
+**action** | **Action** |  (enum: update, *, create, delete, read, update:other_config, connect, disconnect, update:allowedIpv4Addresses, update:allowedIpv6Addresses, update:lockingMode, update:rateLimit, update:txChecksumming) | 
+**effect** | **Effect** |  (enum: allow, deny) | 
 **id** | **String** |  | 
-**resource** | **String** |  | 
+**resource** | **Resource** |  (enum: vif) | 
 **role_id** | **String** |  | 
 **selector** | Option<**String**> |  | [optional]
 

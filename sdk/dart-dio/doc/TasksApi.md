@@ -57,7 +57,7 @@ final bool sync_ = true; // bool |
 try {
     final response = api.abortTask(id, sync_);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling TasksApi->abortTask: $e\n');
 }
 ```
@@ -107,7 +107,7 @@ final String id = 0mdd1basu; // String |
 
 try {
     api.deleteTask(id);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling TasksApi->deleteTask: $e\n');
 }
 ```
@@ -155,7 +155,7 @@ final api = XenorchestraDartSdk().getTasksApi();
 
 try {
     api.deleteTasks();
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling TasksApi->deleteTasks: $e\n');
 }
 ```
@@ -207,7 +207,7 @@ final double limit = 42; // double |
 try {
     final response = api.getGroupTasks(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling TasksApi->getGroupTasks: $e\n');
 }
 ```
@@ -267,7 +267,7 @@ final double limit = 42; // double |
 try {
     final response = api.getHostTasks(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling TasksApi->getHostTasks: $e\n');
 }
 ```
@@ -327,7 +327,7 @@ final double limit = 42; // double |
 try {
     final response = api.getNetworkTasks(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling TasksApi->getNetworkTasks: $e\n');
 }
 ```
@@ -387,7 +387,7 @@ final double limit = 42; // double |
 try {
     final response = api.getPifTasks(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling TasksApi->getPifTasks: $e\n');
 }
 ```
@@ -447,7 +447,7 @@ final double limit = 42; // double |
 try {
     final response = api.getPoolTasks(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling TasksApi->getPoolTasks: $e\n');
 }
 ```
@@ -507,7 +507,7 @@ final double limit = 42; // double |
 try {
     final response = api.getServerTasks(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling TasksApi->getServerTasks: $e\n');
 }
 ```
@@ -567,7 +567,7 @@ final double limit = 42; // double |
 try {
     final response = api.getSrTasks(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling TasksApi->getSrTasks: $e\n');
 }
 ```
@@ -623,7 +623,7 @@ final bool wait = true; // bool |
 try {
     final response = api.getTask(id, wait);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling TasksApi->getTask: $e\n');
 }
 ```
@@ -679,7 +679,7 @@ final double limit = 42; // double |
 try {
     final response = api.getTasks(fields, ndjson, markdown, watch, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling TasksApi->getTasks: $e\n');
 }
 ```
@@ -739,7 +739,7 @@ final double limit = 42; // double |
 try {
     final response = api.getUserTasks(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling TasksApi->getUserTasks: $e\n');
 }
 ```
@@ -799,7 +799,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVbdTasks(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling TasksApi->getVbdTasks: $e\n');
 }
 ```
@@ -859,7 +859,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVdiSnapshotTasks(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling TasksApi->getVdiSnapshotTasks: $e\n');
 }
 ```
@@ -919,7 +919,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVdiTasks(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling TasksApi->getVdiTasks: $e\n');
 }
 ```
@@ -979,7 +979,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVifTasks(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling TasksApi->getVifTasks: $e\n');
 }
 ```
@@ -1039,7 +1039,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmControllerTasks(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling TasksApi->getVmControllerTasks: $e\n');
 }
 ```
@@ -1099,7 +1099,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmSnapshotTasks(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling TasksApi->getVmSnapshotTasks: $e\n');
 }
 ```
@@ -1159,7 +1159,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmTasks(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling TasksApi->getVmTasks: $e\n');
 }
 ```
@@ -1219,7 +1219,7 @@ final double limit = 42; // double |
 try {
     final response = api.getVmTemplateTasks(id, fields, ndjson, markdown, filter, limit);
     print(response);
-} catch on DioException (e) {
+} on DioException catch (e) {
     print('Exception when calling TasksApi->getVmTemplateTasks: $e\n');
 }
 ```

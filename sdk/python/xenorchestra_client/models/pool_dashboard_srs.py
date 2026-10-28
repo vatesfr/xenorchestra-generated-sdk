@@ -22,6 +22,7 @@ from typing import Any, ClassVar, Dict, List
 from xenorchestra_client.models.pool_dashboard_srs_top_five_usage_inner import PoolDashboardSrsTopFiveUsageInner
 from typing import Optional, Set
 from typing_extensions import Self
+from pydantic_core import to_jsonable_python
 
 class PoolDashboardSrs(BaseModel):
     """
@@ -31,7 +32,8 @@ class PoolDashboardSrs(BaseModel):
     __properties: ClassVar[List[str]] = ["topFiveUsage"]
 
     model_config = ConfigDict(
-        populate_by_name=True,
+        validate_by_name=True,
+        validate_by_alias=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
@@ -43,8 +45,7 @@ class PoolDashboardSrs(BaseModel):
 
     def to_json(self) -> str:
         """Returns the JSON representation of the model using alias"""
-        # TODO: pydantic v2: use .model_dump_json(by_alias=True, exclude_unset=True) instead
-        return json.dumps(self.to_dict())
+        return json.dumps(to_jsonable_python(self.to_dict()))
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
@@ -73,8 +74,7 @@ class PoolDashboardSrs(BaseModel):
         _items = []
         if self.top_five_usage:
             for _item_top_five_usage in self.top_five_usage:
-                if _item_top_five_usage:
-                    _items.append(_item_top_five_usage.to_dict())
+                _items.append(_item_top_five_usage.to_dict() if _item_top_five_usage is not None else None)
             _dict['topFiveUsage'] = _items
         return _dict
 

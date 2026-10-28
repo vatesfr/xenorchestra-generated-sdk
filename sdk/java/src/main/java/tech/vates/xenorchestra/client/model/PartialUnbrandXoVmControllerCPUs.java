@@ -36,7 +36,7 @@ import tech.vates.xenorchestra.client.ApiClient;
   PartialUnbrandXoVmControllerCPUs.JSON_PROPERTY_MAX,
   PartialUnbrandXoVmControllerCPUs.JSON_PROPERTY_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.14.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.26.0")
 public class PartialUnbrandXoVmControllerCPUs {
   public static final String JSON_PROPERTY_MAX = "max";
   @javax.annotation.Nonnull
@@ -59,14 +59,14 @@ public class PartialUnbrandXoVmControllerCPUs {
    * @return max
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_MAX)
+  @JsonProperty(value = JSON_PROPERTY_MAX, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getMax() {
     return max;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_MAX)
+  @JsonProperty(value = JSON_PROPERTY_MAX, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setMax(@javax.annotation.Nonnull Double max) {
     this.max = max;
@@ -83,14 +83,14 @@ public class PartialUnbrandXoVmControllerCPUs {
    * @return number
    */
   @javax.annotation.Nonnull
-  @JsonProperty(JSON_PROPERTY_NUMBER)
+  @JsonProperty(value = JSON_PROPERTY_NUMBER, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public Double getNumber() {
     return number;
   }
 
 
-  @JsonProperty(JSON_PROPERTY_NUMBER)
+  @JsonProperty(value = JSON_PROPERTY_NUMBER, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setNumber(@javax.annotation.Nonnull Double number) {
     this.number = number;
@@ -133,10 +133,7 @@ public class PartialUnbrandXoVmControllerCPUs {
    * (except the first line).
    */
   private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
+    return o == null ? "null" : o.toString().replace("\n", "\n    ");
   }
 
   /**
@@ -173,12 +170,12 @@ public class PartialUnbrandXoVmControllerCPUs {
 
     // add `max` to the URL query string
     if (getMax() != null) {
-      joiner.add(String.format("%smax%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMax()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%smax%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMax()))));
     }
 
     // add `number` to the URL query string
     if (getNumber() != null) {
-      joiner.add(String.format("%snumber%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNumber()))));
+      joiner.add(String.format(java.util.Locale.ROOT, "%snumber%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNumber()))));
     }
 
     return joiner.toString();
