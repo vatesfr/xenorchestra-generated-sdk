@@ -20,7 +20,11 @@ func generatedSDKs(rustVersion, pythonVersion, dartVersion, javaVersion string) 
 		{Artifact: patches.DartArtifact, Generator: "dart-dio", GeneratorProperties: "pubName=xenorchestra_dart_sdk,pubVersion=" + dartVersion},
 		{Artifact: patches.JavaArtifact, Generator: "java", GeneratorProperties: "library=native,groupId=tech.vates,artifactId=xenorchestra-java-sdk,artifactVersion=" + javaVersion +
 			",invokerPackage=tech.vates.xenorchestra.client,apiPackage=tech.vates.xenorchestra.client.api,modelPackage=tech.vates.xenorchestra.client.model" +
-			",hideGenerationTimestamp=true,containerDefaultToNull=true,enumUnknownDefaultCase=true"},
+			",hideGenerationTimestamp=true,containerDefaultToNull=true,enumUnknownDefaultCase=true" +
+			",artifactDescription=Java client for the Xen Orchestra REST API,artifactUrl=https://github.com/vatesfr/xenorchestra-generated-sdk" +
+			",scmConnection=scm:git:https://github.com/vatesfr/xenorchestra-generated-sdk.git,scmDeveloperConnection=scm:git:ssh://git@github.com/vatesfr/xenorchestra-generated-sdk.git,scmUrl=https://github.com/vatesfr/xenorchestra-generated-sdk" +
+			",licenseName=GNU Affero General Public License v3.0 or later,licenseUrl=https://www.gnu.org/licenses/agpl-3.0.html" +
+			",developerName=Vates SAS,developerOrganization=Vates,developerOrganizationUrl=https://vates.tech"},
 	}
 }
 

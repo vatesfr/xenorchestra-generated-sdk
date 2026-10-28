@@ -90,6 +90,12 @@ func patchGeneratedJava(root string) error {
 		"        <maven.compiler.release>25</maven.compiler.release>\n", 1); err != nil {
 		return fmt.Errorf("patch Java release: %w", err)
 	}
+	// The pom template always emits a developer email, defaulting to the
+	// generator team's address.
+	if err := replaceExactlyInFile(filepath.Join(root, "pom.xml"),
+		"            <email>team@openapitools.org</email>\n", "", 1); err != nil {
+		return fmt.Errorf("patch Java developer email: %w", err)
+	}
 	if err := replaceExactlyInFile(filepath.Join(root, "README.md"), "1. Java 11+\n", "1. Java 25+\n", 1); err != nil {
 		return fmt.Errorf("patch Java README requirement: %w", err)
 	}
