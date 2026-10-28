@@ -1,6 +1,10 @@
 GO ?= go
 
-.PHONY: help generate generate-mocks check-idempotence lint lint-sdk lint-generated-sdks test test-sdk test-generated-sdks test-examples
+# SDK_TARGETS selects generated SDKs to lint and test, e.g. SDK_TARGETS=rust,java.
+comma := ,
+EXAMPLE_TARGETS := $(if $(strip $(SDK_TARGETS)),$(subst $(comma), ,$(SDK_TARGETS)),rust python dart-dio java)
+
+.PHONY: help generate generate-mocks check-idempotence lint lint-sdk lint-generated-sdks test test-sdk test-generated-sdks test-examples test-examples-python test-examples-rust test-examples-dart-dio test-examples-java
 
 help:
 	@echo "Available commands:"
@@ -14,6 +18,7 @@ help:
 	@echo "  make test-generated-sdks  Test generated SDKs against the simulator"
 	@echo "  make test-examples  Compile the real Xen Orchestra usage examples"
 	@echo "  make test      Run both test targets"
+	@echo "Set SDK_TARGETS=rust,python,dart-dio,java to restrict generated SDK lint and tests"
 
 generate:
 	@$(GO) run ./cmd/sdk generate
@@ -40,10 +45,18 @@ test-sdk:
 test-generated-sdks:
 	@$(GO) run ./cmd/sdk test-generated-sdks
 
-test-examples:
+test-examples: $(addprefix test-examples-,$(EXAMPLE_TARGETS))
+
+test-examples-python:
 	@python3 -m py_compile examples/python/inventory.py
+
+test-examples-rust:
 	@cargo check --manifest-path examples/rust/Cargo.toml
+
+test-examples-dart-dio:
 	@cd sdk/dart-dio && dart pub get && dart run build_runner build
 	@cd examples/dart && dart pub get && dart analyze && dart run inventory.dart --check-only
+
+test-examples-java:
 	@mvn --batch-mode --quiet --file sdk/java/pom.xml -DskipTests -Dmaven.javadoc.skip=true install
 	@mvn --batch-mode --quiet --file examples/java/pom.xml compile exec:java -Dexec.args=--check-only

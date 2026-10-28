@@ -34,8 +34,10 @@ jobs:
         run: |
           actual="$(cargo metadata --no-deps --format-version 1 --manifest-path sdk/rust/Cargo.toml | jq -r '.packages[0].version')"
           test "$actual" = "$RUST_SDK_VERSION"
-      - name: Test generated SDKs
+      - name: Test generated SDK
         run: make lint-generated-sdks test-generated-sdks test-examples
+        env:
+          SDK_TARGETS: rust
       - name: Verify crate package
         run: cargo package --manifest-path sdk/rust/Cargo.toml
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2

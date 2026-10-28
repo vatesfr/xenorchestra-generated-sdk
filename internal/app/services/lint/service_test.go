@@ -46,7 +46,23 @@ func TestGeneratedSDKsLintChecksPresenceThenLintsEveryTarget(t *testing.T) {
 		backend.EXPECT().Lint(ctx, common.Java).Return(nil),
 	)
 
-	if err := NewGeneratedSDKsLintService(catalog, backend).Lint(ctx); err != nil {
+	if err := NewGeneratedSDKsLintService(catalog, backend, common.GeneratedSDKTargets).Lint(ctx); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestGeneratedSDKsLintOnlyLintsSelectedTargets(t *testing.T) {
+	controller := gomock.NewController(t)
+	catalog := mocks.NewMockGeneratedSDKsCatalog(controller)
+	backend := mocks.NewMockGeneratedSDKLintBackend(controller)
+	ctx := context.Background()
+	targets := []common.SDKTarget{common.Java}
+	gomock.InOrder(
+		catalog.EXPECT().Require(targets).Return(nil),
+		backend.EXPECT().Lint(ctx, common.Java).Return(nil),
+	)
+
+	if err := NewGeneratedSDKsLintService(catalog, backend, targets).Lint(ctx); err != nil {
 		t.Fatal(err)
 	}
 }

@@ -35,12 +35,16 @@ func NewGeneratedSDKsAdapter(configuration GeneratedSDKsLintConfiguration, runne
 }
 
 func (s *GeneratedSDKsAdapter) Require(targets []common.SDKTarget) error {
-	rustManifest := s.workspace.Join(s.root, "sdk", "rust", "Cargo.toml")
-	pythonProject := s.workspace.Join(s.root, "sdk", "python", "pyproject.toml")
-	dartProject := s.workspace.Join(s.root, "sdk", "dart-dio", "pubspec.yaml")
-	javaProject := s.workspace.Join(s.root, "sdk", "java", "pom.xml")
-	if !s.workspace.RegularFile(rustManifest) || !s.workspace.RegularFile(pythonProject) || !s.workspace.RegularFile(dartProject) || !s.workspace.RegularFile(javaProject) {
-		return fmt.Errorf("generated SDKs are missing; run make generate first")
+	projects := map[common.SDKTarget]string{
+		common.Rust:   "Cargo.toml",
+		common.Python: "pyproject.toml",
+		common.Dart:   "pubspec.yaml",
+		common.Java:   "pom.xml",
+	}
+	for _, target := range targets {
+		if !s.workspace.RegularFile(s.workspace.Join(s.root, "sdk", string(target), projects[target])) {
+			return fmt.Errorf("generated SDKs are missing; run make generate first")
+		}
 	}
 	return nil
 }

@@ -35,8 +35,10 @@ jobs:
       - name: Verify generated version
         working-directory: sdk/python
         run: python -c 'import tomllib, os; assert tomllib.load(open("pyproject.toml", "rb"))["project"]["version"] == os.environ["PYTHON_SDK_VERSION"]'
-      - name: Test generated SDKs
+      - name: Test generated SDK
         run: make lint-generated-sdks test-generated-sdks test-examples
+        env:
+          SDK_TARGETS: python
       - name: Build Python distributions
         working-directory: sdk/python
         run: |

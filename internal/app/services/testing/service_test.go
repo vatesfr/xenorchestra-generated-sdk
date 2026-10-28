@@ -30,7 +30,7 @@ func TestCompatibilityTestOwnsSimulatorLifecycleAndMissingSDKPolicy(t *testing.T
 		simulator.EXPECT().Stop(gomock.Any(), running).Return(nil),
 	)
 
-	if err := New(generation, catalog, simulator, tester).Test(ctx); err != nil {
+	if err := New(generation, catalog, simulator, tester, common.GeneratedSDKTargets).Test(ctx); err != nil {
 		t.Fatal(err)
 	}
 }

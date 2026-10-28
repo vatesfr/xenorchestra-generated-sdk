@@ -37,8 +37,10 @@ jobs:
         run: |
           dart pub get
           test "$(dart pub deps --json | jq -r '.packages[] | select(.kind == "root") | .version')" = "$DART_SDK_VERSION"
-      - name: Test generated SDKs
+      - name: Test generated SDK
         run: make lint-generated-sdks test-generated-sdks test-examples
+        env:
+          SDK_TARGETS: dart-dio
       - name: Verify publishable package
         working-directory: sdk/dart-dio
         run: dart pub publish --dry-run

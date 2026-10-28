@@ -203,9 +203,14 @@ make lint
 
 - `make lint-sdk` delegates formatting diagnostics and Go vet to
   `SDKLintService`;
-- `make lint-generated-sdks` checks only the existing generated Rust library
-  and Python package. It fails with an instruction to run `make generate` when
-  either generated SDK is absent.
+- `make lint-generated-sdks` checks only the existing generated Rust, Python,
+  Dart/Dio and Java SDKs. It fails with an instruction to run `make generate`
+  when a selected generated SDK is absent.
+
+`SDK_TARGETS` restricts `make lint-generated-sdks`, `make test-generated-sdks`
+and `make test-examples` to a comma-separated list of `rust`, `python`,
+`dart-dio` and `java`; it selects every SDK when unset. Release workflows set it
+to the SDK they publish, so they only need that SDK's toolchain.
 
 Tests are not linted or executed by these targets. Current Swagger patch
 functions rewrite invalid backup-job settings, normalize authentication

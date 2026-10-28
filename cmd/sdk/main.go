@@ -15,6 +15,7 @@ import (
 	generationadapter "github.com/vatesfr/xenorchestra-generated-sdk/internal/adapters/generation"
 	lintadapter "github.com/vatesfr/xenorchestra-generated-sdk/internal/adapters/lint"
 	testingadapter "github.com/vatesfr/xenorchestra-generated-sdk/internal/adapters/testing"
+	"github.com/vatesfr/xenorchestra-generated-sdk/internal/app/ports/common"
 	generationservice "github.com/vatesfr/xenorchestra-generated-sdk/internal/app/services/generation"
 	lintservice "github.com/vatesfr/xenorchestra-generated-sdk/internal/app/services/lint"
 	testingservice "github.com/vatesfr/xenorchestra-generated-sdk/internal/app/services/testing"
@@ -34,6 +35,10 @@ func run() error {
 	}
 	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
 	defer cancel()
+	targets, err := common.ParseSDKTargets(os.Getenv("SDK_TARGETS"))
+	if err != nil {
+		return err
+	}
 	environment := os.Environ()
 	processActor := process.ProcessRunnerActor{}
 	workspaceActor := filesystem.LocalWorkspaceActor{}
@@ -61,11 +66,11 @@ func run() error {
 	generatedSDKsLintAdapter := lintadapter.NewGeneratedSDKsAdapter(lintadapter.GeneratedSDKsLintConfiguration{
 		Root: root, Environment: environment, Output: os.Stdout, ErrorOutput: os.Stderr,
 	}, processActor, workspaceActor)
-	generatedSDKsLintService := lintservice.NewGeneratedSDKsLintService(generatedSDKsLintAdapter, generatedSDKsLintAdapter)
+	generatedSDKsLintService := lintservice.NewGeneratedSDKsLintService(generatedSDKsLintAdapter, generatedSDKsLintAdapter, targets)
 	testAdapter := testingadapter.New(testingadapter.GeneratedSDKsCompatibilityTestConfiguration{
 		Root: root, Environment: environment, Windows: runtime.GOOS == "windows", Output: os.Stdout, ErrorOutput: os.Stderr,
 	}, processActor, workspaceActor)
-	testService := testingservice.New(generationService, generatedSDKsLintAdapter, testAdapter, testAdapter)
+	testService := testingservice.New(generationService, generatedSDKsLintAdapter, testAdapter, testAdapter, targets)
 	cliActor := cli.New(generationService, sdkLintService, generatedSDKsLintService, testService)
 	return cliActor.Run(ctx, os.Args[1:])
 }

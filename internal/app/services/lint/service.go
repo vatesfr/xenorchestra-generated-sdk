@@ -32,19 +32,20 @@ func (s *SDKLintService) Lint(ctx context.Context) error {
 type GeneratedSDKsLintService struct {
 	catalog driven.GeneratedSDKsCatalog
 	backend driven.GeneratedSDKLintBackend
+	targets []common.SDKTarget
 }
 
 var _ driving.GeneratedSDKsLintService = (*GeneratedSDKsLintService)(nil)
 
-func NewGeneratedSDKsLintService(catalog driven.GeneratedSDKsCatalog, backend driven.GeneratedSDKLintBackend) *GeneratedSDKsLintService {
-	return &GeneratedSDKsLintService{catalog: catalog, backend: backend}
+func NewGeneratedSDKsLintService(catalog driven.GeneratedSDKsCatalog, backend driven.GeneratedSDKLintBackend, targets []common.SDKTarget) *GeneratedSDKsLintService {
+	return &GeneratedSDKsLintService{catalog: catalog, backend: backend, targets: targets}
 }
 
 func (s *GeneratedSDKsLintService) Lint(ctx context.Context) error {
-	if err := s.catalog.Require(common.GeneratedSDKTargets); err != nil {
+	if err := s.catalog.Require(s.targets); err != nil {
 		return err
 	}
-	for _, target := range common.GeneratedSDKTargets {
+	for _, target := range s.targets {
 		if err := s.backend.Lint(ctx, target); err != nil {
 			return err
 		}

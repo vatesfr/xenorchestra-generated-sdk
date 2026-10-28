@@ -15,16 +15,17 @@ type GeneratedSDKsCompatibilityTestService struct {
 	catalog    driven.GeneratedSDKsCatalog
 	simulator  driven.SimulatorBackend
 	tester     driven.GeneratedSDKTestBackend
+	targets    []common.SDKTarget
 }
 
 var _ driving.GeneratedSDKsTestService = (*GeneratedSDKsCompatibilityTestService)(nil)
 
-func New(generation driving.GenerationService, catalog driven.GeneratedSDKsCatalog, simulator driven.SimulatorBackend, tester driven.GeneratedSDKTestBackend) *GeneratedSDKsCompatibilityTestService {
-	return &GeneratedSDKsCompatibilityTestService{generation: generation, catalog: catalog, simulator: simulator, tester: tester}
+func New(generation driving.GenerationService, catalog driven.GeneratedSDKsCatalog, simulator driven.SimulatorBackend, tester driven.GeneratedSDKTestBackend, targets []common.SDKTarget) *GeneratedSDKsCompatibilityTestService {
+	return &GeneratedSDKsCompatibilityTestService{generation: generation, catalog: catalog, simulator: simulator, tester: tester, targets: targets}
 }
 
 func (s *GeneratedSDKsCompatibilityTestService) Test(ctx context.Context) (resultErr error) {
-	if err := s.catalog.Require(common.GeneratedSDKTargets); err != nil {
+	if err := s.catalog.Require(s.targets); err != nil {
 		if err := s.generation.Generate(ctx); err != nil {
 			return err
 		}
@@ -36,7 +37,7 @@ func (s *GeneratedSDKsCompatibilityTestService) Test(ctx context.Context) (resul
 	defer func() {
 		resultErr = errors.Join(resultErr, s.simulator.Stop(context.Background(), running))
 	}()
-	for _, target := range common.GeneratedSDKTargets {
+	for _, target := range s.targets {
 		if err := s.tester.Test(ctx, target, running); err != nil {
 			return fmt.Errorf("test %s SDK: %w", target, err)
 		}
