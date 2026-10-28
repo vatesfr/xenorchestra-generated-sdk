@@ -30,18 +30,30 @@ PYTHON_SDK_VERSION=1.2.0 RUST_SDK_VERSION=0.4.0 DART_SDK_VERSION=0.3.0 make gene
 
 ## Releases
 
-Each SDK has its own release sequence even though both are generated from the
+Each SDK has its own release sequence even though all are generated from the
 same repository and OpenAPI document:
 
 - pushing `python-v1.2.0` builds and publishes version `1.2.0` to PyPI;
-- pushing `rust-v0.4.0` builds and publishes version `0.4.0` to crates.io.
+- pushing `rust-v0.4.0` builds and publishes version `0.4.0` to crates.io;
 - pushing `dart-v0.3.0` builds and publishes version `0.3.0` to pub.dev.
 
-The release workflows regenerate and test all clients, verify that the
-generated package version exactly matches the tag, and publish only the SDK
-selected by the tag. Configure the `pypi` and `crates-io` GitHub environments
-and register the corresponding workflows as trusted publishers before pushing
-the first release tag.
+The release workflows regenerate all clients, lint and test only the SDK
+selected by the tag, verify that the generated package version exactly matches
+the tag, and publish that SDK. The Java SDK has no release workflow yet.
+
+Publishing uses OIDC trusted publishing from the `pypi`, `crates-io` and
+`pub-dev` GitHub environments. Create these environments before the first
+release tag, restricted to the `python-v*`, `rust-v*` and `dart-v*` tags
+respectively. Each registry then needs a one-time setup:
+
+- PyPI: register `release-python.yml` with the `pypi` environment as a
+  (pending) trusted publisher, then push the first tag;
+- crates.io: publish the first version manually with an API token, then
+  register `release-rust.yml` with the `crates-io` environment as a trusted
+  publisher;
+- pub.dev: publish the first version manually, transfer the package to the
+  verified publisher, then enable automated publishing from GitHub Actions with
+  the `dart-v{{version}}` tag pattern and the `pub-dev` environment.
 
 The source file is already OpenAPI 3.0.0.
 
@@ -53,8 +65,9 @@ standard OpenAPI requirements: protected operations accept either the
 operations send no credentials.
 
 Release builds verify generator tests, reproducibility, generated-client lint
-and compatibility tests. They also validate the final crate or Python
-distributions before the trusted-publisher job receives an OIDC token.
+and compatibility tests. They also validate the final crate, Python
+distributions or Dart package in a build job; only the separate publish job,
+which runs in the GitHub environment, receives an OIDC token.
 
 ## Reproducible generation
 
