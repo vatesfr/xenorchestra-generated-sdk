@@ -10,7 +10,7 @@ Made with OpenAPI Generator. Go, Docker, Cargo and Python 3 are required.
 The published distributions are named `xenorchestra-rust-sdk` on crates.io and
 `xenorchestra-python-sdk` on PyPI. The Python import package remains
 `xenorchestra_client`. The Dart package is `xenorchestra_dart_sdk` on pub.dev. The Java artifact is
-`tech.vates:xenorchestra-java-sdk` (not published; coordinates to be decided).
+`tech.vates:xenorchestra-java-sdk` on Maven Central.
 
 ## Building
 
@@ -21,11 +21,11 @@ To regenerate all clients, use the Makefile. It recreates `sdk/rust/`,
 make generate
 ```
 
-The generated package versions can be selected independently. Both default to
-`0.1.0` for local development:
+The generated package versions can be selected independently. They all default
+to `0.1.0` for local development:
 
 ```bash
-PYTHON_SDK_VERSION=1.2.0 RUST_SDK_VERSION=0.4.0 DART_SDK_VERSION=0.3.0 make generate
+PYTHON_SDK_VERSION=1.2.0 RUST_SDK_VERSION=0.4.0 DART_SDK_VERSION=0.3.0 JAVA_SDK_VERSION=0.2.0 make generate
 ```
 
 ## Releases
@@ -35,16 +35,21 @@ same repository and OpenAPI document:
 
 - pushing `python-v1.2.0` builds and publishes version `1.2.0` to PyPI;
 - pushing `rust-v0.4.0` builds and publishes version `0.4.0` to crates.io;
-- pushing `dart-v0.3.0` builds and publishes version `0.3.0` to pub.dev.
+- pushing `dart-v0.3.0` builds and publishes version `0.3.0` to pub.dev;
+- pushing `java-v0.2.0` builds and publishes version `0.2.0` to Maven Central.
 
 The release workflows regenerate all clients, lint and test only the SDK
 selected by the tag, verify that the generated package version exactly matches
-the tag, and publish that SDK. The Java SDK has no release workflow yet.
+the tag, and publish that SDK.
 
-Publishing uses OIDC trusted publishing from the `pypi`, `crates-io` and
-`pub-dev` GitHub environments. Create these environments before the first
-release tag, restricted to the `python-v*`, `rust-v*` and `dart-v*` tags
-respectively. Each registry then needs a one-time setup:
+Publishing runs from the `pypi`, `crates-io`, `pub-dev` and `maven-central`
+GitHub environments. Create these environments before the first release tag,
+restricted to the `python-v*`, `rust-v*`, `dart-v*` and `java-v*` tags
+respectively. PyPI, crates.io and pub.dev use OIDC trusted publishing, without
+stored secrets. Maven Central has no OIDC support: the `maven-central`
+environment holds the `MAVEN_CENTRAL_USERNAME` and `MAVEN_CENTRAL_PASSWORD`
+Central Portal user token and the `MAVEN_GPG_PRIVATE_KEY` and
+`MAVEN_GPG_PASSPHRASE` signing key. Each registry then needs a one-time setup:
 
 - PyPI: register `release-python.yml` with the `pypi` environment as a
   (pending) trusted publisher, then push the first tag;
@@ -53,7 +58,10 @@ respectively. Each registry then needs a one-time setup:
   publisher;
 - pub.dev: publish the first version manually, transfer the package to the
   verified publisher, then enable automated publishing from GitHub Actions with
-  the `dart-v{{version}}` tag pattern and the `pub-dev` environment.
+  the `dart-v{{version}}` tag pattern and the `pub-dev` environment;
+- Maven Central: verify the `tech.vates` namespace in the Central Portal with a
+  DNS TXT record on `vates.tech`, then store the user token and signing key in
+  the `maven-central` environment. Published versions can never be removed.
 
 The source file is already OpenAPI 3.0.0.
 
@@ -66,8 +74,10 @@ operations send no credentials.
 
 Release builds verify generator tests, reproducibility, generated-client lint
 and compatibility tests. They also validate the final crate, Python
-distributions or Dart package in a build job; only the separate publish job,
-which runs in the GitHub environment, receives an OIDC token.
+distributions, Dart package or Maven bundle in a build job; only the separate
+publish job, which runs in the GitHub environment, receives an OIDC token or
+the Maven Central secrets. The Java publish job signs the staged artifacts with
+`gpg` and uploads them through the Central Portal API without running Maven.
 
 ## Reproducible generation
 
