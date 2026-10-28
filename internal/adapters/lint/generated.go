@@ -69,9 +69,9 @@ func (s *GeneratedSDKsAdapter) Lint(ctx context.Context, target common.SDKTarget
 			s.commandIn(root, "dart", "analyze", "--no-fatal-warnings"),
 		}
 	case common.Java:
-		// Javadoc is skipped: doclint rejects the generated comments.
+		// Build the javadoc jar too: Maven Central requires it.
 		commands = []process.Command{
-			s.command("mvn", "--batch-mode", "--quiet", "--file", s.workspace.Join(s.root, "sdk", "java", "pom.xml"), "-DskipTests", "-Dmaven.javadoc.skip=true", "package"),
+			s.command("mvn", "--batch-mode", "--quiet", "--file", s.workspace.Join(s.root, "sdk", "java", "pom.xml"), "-DskipTests", "package"),
 		}
 	default:
 		return fmt.Errorf("unsupported SDK target %q", target)

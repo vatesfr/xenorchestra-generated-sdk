@@ -96,6 +96,13 @@ func patchGeneratedJava(root string) error {
 		"            <email>team@openapitools.org</email>\n", "", 1); err != nil {
 		return fmt.Errorf("patch Java developer email: %w", err)
 	}
+	// Maven Central requires a javadoc jar. doclint rejects the generated
+	// comments, e.g. {@link} references copied from the OpenAPI descriptions.
+	if err := replaceExactlyInFile(filepath.Join(root, "pom.xml"),
+		"                <artifactId>maven-javadoc-plugin</artifactId>\n                <version>3.4.1</version>\n",
+		"                <artifactId>maven-javadoc-plugin</artifactId>\n                <version>3.4.1</version>\n                <configuration>\n                    <doclint>none</doclint>\n                </configuration>\n", 1); err != nil {
+		return fmt.Errorf("patch Java javadoc: %w", err)
+	}
 	if err := replaceExactlyInFile(filepath.Join(root, "README.md"), "1. Java 11+\n", "1. Java 25+\n", 1); err != nil {
 		return fmt.Errorf("patch Java README requirement: %w", err)
 	}
