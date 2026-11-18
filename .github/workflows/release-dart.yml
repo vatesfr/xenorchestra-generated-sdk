@@ -15,7 +15,7 @@ jobs:
       - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
         with:
           go-version-file: go.mod
-      - uses: dart-lang/setup-dart@6afc89df92d6eb3834022f73cd65adc8cdfcb92d # v1
+      - uses: dart-lang/setup-dart@2286a0c042b44434fe26d292bbce8d34f7ec662b # v1
       - name: Read and validate version from tag
         shell: bash
         run: |
@@ -63,7 +63,7 @@ jobs:
         with:
           name: dart-sdk
           path: sdk/dart-dio
-      - uses: dart-lang/setup-dart@6afc89df92d6eb3834022f73cd65adc8cdfcb92d # v1
+      - uses: dart-lang/setup-dart@2286a0c042b44434fe26d292bbce8d34f7ec662b # v1
       - name: Publish to pub.dev
         working-directory: sdk/dart-dio
         run: dart pub publish --force
