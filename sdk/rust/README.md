@@ -21,6 +21,33 @@ Add the published crate with Cargo:
 cargo add xenorchestra-rust-sdk
 ```
 
+## Cargo features
+
+- `rustls` (default): use rustls for HTTPS.
+- `native-tls`: use the platform TLS implementation instead.
+- `file-upload` (default): enable the operations that upload a local file
+  from a filesystem path (`pools_api::import_vm`, `srs_api::sr_import_vdi`,
+  `vdis_api::import_vdi_content`, `vdis_api::sr_import_vdi` and
+  `vms_api::import_vm`). They read the file with Tokio and stream it with
+  reqwest, so they pull in `tokio`, `tokio-util` and reqwest's `stream`
+  feature.
+
+Neither Tokio's file system support nor reqwest's streaming bodies exist on
+`wasm32-unknown-unknown`. To build for WebAssembly, disable the default
+features (`default-features = false` in `Cargo.toml`); reqwest then sends
+requests through the global `fetch()`:
+
+```
+cargo add xenorchestra-rust-sdk --no-default-features
+```
+
+Native builds that do not need file uploads keep HTTPS by enabling `rustls`
+again:
+
+```
+cargo add xenorchestra-rust-sdk --no-default-features --features rustls
+```
+
 ## Collection responses
 
 Collection endpoints return `ResourceCollection<T>`. Request typed fields and

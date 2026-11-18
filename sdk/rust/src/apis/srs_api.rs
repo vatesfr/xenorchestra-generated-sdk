@@ -12,7 +12,9 @@ use super::{configuration, ContentType, Error};
 use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
+#[cfg(feature = "file-upload")]
 use tokio::fs::File as TokioFile;
+#[cfg(feature = "file-upload")]
 use tokio_util::codec::{BytesCodec, FramedRead};
 
 /// struct for typed errors of method [`create_sr`]
@@ -938,6 +940,7 @@ pub async fn scan_sr(
 }
 
 /// Import an exported VDI  Required privilege: - resource: sr, action: import:vdi
+#[cfg(feature = "file-upload")]
 pub async fn sr_import_vdi(
     configuration: &configuration::Configuration,
     id: &str,

@@ -56,16 +56,11 @@ func patchGeneratedRust(root string) error {
 		return err
 	}
 
-	manifest := filepath.Join(root, "Cargo.toml")
-	manifestReplacements := [][2]string{
-		{`authors = ["OpenAPI Generator team and contributors"]`, `authors = ["Vates SAS"]`},
-		{`default = ["native-tls"]`, `default = ["rustls"]`},
-		{`edition = "2021"`, `edition = "2021"
-repository = "https://github.com/vatesfr/xenorchestra-generated-sdk"
-homepage = "https://xen-orchestra.com"
-documentation = "https://docs.rs/xenorchestra-rust-sdk"`},
+	if err := gateRustFileUploads(filepath.Join(root, "src", "apis"), rustFileUploadModules, rustFileUploadOperations); err != nil {
+		return fmt.Errorf("gate Rust file uploads: %w", err)
 	}
-	if err := applyExactReplacements(manifest, manifestReplacements); err != nil {
+
+	if err := applyExactReplacements(filepath.Join(root, "Cargo.toml"), rustManifestReplacements); err != nil {
 		return fmt.Errorf("patch Rust package metadata: %w", err)
 	}
 
@@ -73,7 +68,34 @@ documentation = "https://docs.rs/xenorchestra-rust-sdk"`},
 	readmeReplacements := [][2]string{
 		{`Put the package under your project folder in a directory named ` + "`xenorchestra-rust-sdk`" + ` and add the following to ` + "`Cargo.toml`" + ` under ` + "`[dependencies]`" + `:`, `Add the published crate with Cargo:`},
 		{`xenorchestra-rust-sdk = { path = "./xenorchestra-rust-sdk" }`, `cargo add xenorchestra-rust-sdk`},
-		{`## Documentation for API Endpoints`, `## Collection responses
+		{`## Documentation for API Endpoints`, `## Cargo features
+
+- ` + "`rustls`" + ` (default): use rustls for HTTPS.
+- ` + "`native-tls`" + `: use the platform TLS implementation instead.
+- ` + "`" + rustFileUploadFeature + "`" + ` (default): enable the operations that upload a local file
+  from a filesystem path (` + "`pools_api::import_vm`" + `, ` + "`srs_api::sr_import_vdi`" + `,
+  ` + "`vdis_api::import_vdi_content`" + `, ` + "`vdis_api::sr_import_vdi`" + ` and
+  ` + "`vms_api::import_vm`" + `). They read the file with Tokio and stream it with
+  reqwest, so they pull in ` + "`tokio`" + `, ` + "`tokio-util`" + ` and reqwest's ` + "`stream`" + `
+  feature.
+
+Neither Tokio's file system support nor reqwest's streaming bodies exist on
+` + "`wasm32-unknown-unknown`" + `. To build for WebAssembly, disable the default
+features (` + "`default-features = false`" + ` in ` + "`Cargo.toml`" + `); reqwest then sends
+requests through the global ` + "`fetch()`" + `:
+
+` + "```" + `
+cargo add xenorchestra-rust-sdk --no-default-features
+` + "```" + `
+
+Native builds that do not need file uploads keep HTTPS by enabling ` + "`rustls`" + `
+again:
+
+` + "```" + `
+cargo add xenorchestra-rust-sdk --no-default-features --features rustls
+` + "```" + `
+
+## Collection responses
 
 Collection endpoints return ` + "`ResourceCollection<T>`" + `. Request typed fields and
 consume them without matching wire-format variants:
@@ -244,4 +266,83 @@ impl Error for ResourceCollectionError {}
 		return fmt.Errorf("generated models unexpectedly contain resource_collection")
 	}
 	return os.WriteFile(modulePath, []byte(moduleExports+moduleContent), 0o644)
+}
+
+// rustFileUploadFeature gates the operations that stream a local file. Tokio's
+// file system support and reqwest::Body::wrap_stream are unavailable on
+// wasm32-unknown-unknown, so WebAssembly consumers disable this default feature.
+const rustFileUploadFeature = "file-upload"
+
+const (
+	rustFileUploadModules    = 4
+	rustFileUploadOperations = 5
+)
+
+var rustManifestReplacements = [][2]string{
+	{`authors = ["OpenAPI Generator team and contributors"]`, `authors = ["Vates SAS"]`},
+	{`tokio = { version = "^1.46.0", features = ["fs"] }`, `tokio = { version = "^1.46.0", features = ["fs"], optional = true }`},
+	{`tokio-util = { version = "^0.7", features = ["codec"] }`, `tokio-util = { version = "^0.7", features = ["codec"], optional = true }`},
+	// reqwest's stream feature only provides Body::wrap_stream for file uploads.
+	{`features = ["json", "multipart", "stream", "query", "form"] }`, `features = ["json", "multipart", "query", "form"] }`},
+	{`default = ["native-tls"]`, `default = ["rustls", "` + rustFileUploadFeature + `"]
+` + rustFileUploadFeature + ` = ["dep:tokio", "dep:tokio-util", "reqwest/stream"]`},
+	{`edition = "2021"`, `edition = "2021"
+repository = "https://github.com/vatesfr/xenorchestra-generated-sdk"
+homepage = "https://xen-orchestra.com"
+documentation = "https://docs.rs/xenorchestra-rust-sdk"`},
+}
+
+const (
+	rustFileUploadImports = "use tokio::fs::File as TokioFile;\nuse tokio_util::codec::{BytesCodec, FramedRead};\n"
+	rustFileUploadBody    = "    let file = TokioFile::open(p_body_body).await?;\n    let stream = FramedRead::new(file, BytesCodec::new());\n    req_builder = req_builder.body(reqwest::Body::wrap_stream(stream));\n"
+	rustOperationStart    = "\npub async fn "
+	rustFileUploadCfg     = `#[cfg(feature = "` + rustFileUploadFeature + `")]` + "\n"
+)
+
+// gateRustFileUploads puts the file-upload feature gate on every generated
+// operation that streams a local file, and on the imports only they use.
+func gateRustFileUploads(apis string, expectedModules, expectedOperations int) error {
+	paths, err := filepath.Glob(filepath.Join(apis, "*_api.rs"))
+	if err != nil {
+		return err
+	}
+	modules, operations := 0, 0
+	for _, path := range paths {
+		data, err := os.ReadFile(path)
+		if err != nil {
+			return err
+		}
+		content := string(data)
+		uploads := strings.Count(content, rustFileUploadBody)
+		imports := strings.Count(content, rustFileUploadImports)
+		if uploads == 0 && imports == 0 {
+			continue
+		}
+		if uploads == 0 || imports != 1 {
+			return fmt.Errorf("%s: expected one file-upload import block for %d upload(s), found %d", path, uploads, imports)
+		}
+		// Insert the attributes from the end so earlier offsets stay valid.
+		offset := len(content)
+		for range uploads {
+			body := strings.LastIndex(content[:offset], rustFileUploadBody)
+			start := strings.LastIndex(content[:body], rustOperationStart)
+			if start < 0 {
+				return fmt.Errorf("%s: file upload outside a generated operation", path)
+			}
+			start++ // keep the newline before the function
+			content = content[:start] + rustFileUploadCfg + content[start:]
+			offset = start
+		}
+		gatedImports := rustFileUploadCfg + "use tokio::fs::File as TokioFile;\n" + rustFileUploadCfg + "use tokio_util::codec::{BytesCodec, FramedRead};\n"
+		content = strings.Replace(content, rustFileUploadImports, gatedImports, 1)
+		if err := os.WriteFile(path, []byte(content), 0o644); err != nil {
+			return err
+		}
+		modules++
+		operations += uploads
+	}
+	if modules != expectedModules || operations != expectedOperations {
+		return fmt.Errorf("%s: expected %d file-upload operation(s) in %d module(s), found %d in %d", apis, expectedOperations, expectedModules, operations, modules)
+	}
+	return nil
 }

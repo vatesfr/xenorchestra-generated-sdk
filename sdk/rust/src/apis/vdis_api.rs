@@ -12,7 +12,9 @@ use super::{configuration, ContentType, Error};
 use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
+#[cfg(feature = "file-upload")]
 use tokio::fs::File as TokioFile;
+#[cfg(feature = "file-upload")]
 use tokio_util::codec::{BytesCodec, FramedRead};
 
 /// struct for typed errors of method [`create_vdi`]
@@ -1767,6 +1769,7 @@ pub async fn get_vm_vdis(
 }
 
 ///  Import VDI content  Required privilege: - resource: vdi, action: import-content
+#[cfg(feature = "file-upload")]
 pub async fn import_vdi_content(
     configuration: &configuration::Configuration,
     id: &str,
@@ -1975,6 +1978,7 @@ pub async fn put_vdi_tag(
 }
 
 /// Import an exported VDI  Required privilege: - resource: sr, action: import:vdi
+#[cfg(feature = "file-upload")]
 pub async fn sr_import_vdi(
     configuration: &configuration::Configuration,
     id: &str,

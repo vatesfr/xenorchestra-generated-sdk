@@ -12,7 +12,9 @@ use super::{configuration, ContentType, Error};
 use crate::{apis::ResponseContent, models};
 use reqwest;
 use serde::{de::Error as _, Deserialize, Serialize};
+#[cfg(feature = "file-upload")]
 use tokio::fs::File as TokioFile;
+#[cfg(feature = "file-upload")]
 use tokio_util::codec::{BytesCodec, FramedRead};
 
 /// struct for typed errors of method [`add_data_source`]
@@ -3657,6 +3659,7 @@ pub async fn hard_shutdown_vm(
 }
 
 /// Import an XVA VM into a pool  Required privilege: - resource: sr, action: import:vm
+#[cfg(feature = "file-upload")]
 pub async fn import_vm(
     configuration: &configuration::Configuration,
     id: &str,
