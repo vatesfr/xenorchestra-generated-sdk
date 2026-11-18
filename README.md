@@ -236,7 +236,10 @@ make lint
   `SDKLintService`;
 - `make lint-generated-sdks` checks only the existing generated Rust, Python,
   Dart/Dio and Java SDKs. It fails with an instruction to run `make generate`
-  when a selected generated SDK is absent.
+  when a selected generated SDK is absent. For Rust, it runs `cargo fmt` and
+  `cargo clippy` with the default features, `cargo clippy` without the default
+  `file-upload` feature, and `cargo check` for `wasm32-unknown-unknown`; install
+  that target once with `rustup target add wasm32-unknown-unknown`.
 
 `SDK_TARGETS` restricts `make lint-generated-sdks`, `make test-generated-sdks`
 and `make test-examples` to a comma-separated list of `rust`, `python`,

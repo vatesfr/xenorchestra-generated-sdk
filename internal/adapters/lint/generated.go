@@ -57,6 +57,10 @@ func (s *GeneratedSDKsAdapter) Lint(ctx context.Context, target common.SDKTarget
 		commands = []process.Command{
 			s.command("cargo", "fmt", "--manifest-path", manifest, "--check"),
 			s.command("cargo", "clippy", "--manifest-path", manifest, "--lib", "--", "-D", "warnings"),
+			// Without the default file-upload feature, the SDK must stay clean
+			// natively and compile for WebAssembly.
+			s.command("cargo", "clippy", "--manifest-path", manifest, "--lib", "--no-default-features", "--features", "rustls", "--", "-D", "warnings"),
+			s.command("cargo", "check", "--manifest-path", manifest, "--lib", "--target", "wasm32-unknown-unknown", "--no-default-features"),
 		}
 	case common.Python:
 		commands = []process.Command{s.command("python3", "-m", "compileall", "-q", s.workspace.Join(s.root, "sdk", "python", "xenorchestra_client"))}

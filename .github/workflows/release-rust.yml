@@ -34,6 +34,8 @@ jobs:
         run: |
           actual="$(cargo metadata --no-deps --format-version 1 --manifest-path sdk/rust/Cargo.toml | jq -r '.packages[0].version')"
           test "$actual" = "$RUST_SDK_VERSION"
+      - name: Install the WebAssembly Rust target
+        run: rustup target add wasm32-unknown-unknown
       - name: Test generated SDK
         run: make lint-generated-sdks test-generated-sdks test-examples
         env:
